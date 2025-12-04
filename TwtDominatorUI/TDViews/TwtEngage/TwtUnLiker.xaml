@@ -1,0 +1,116 @@
+﻿<local:UnLikerBase
+    x:Class="TwtDominatorUI.TDViews.TwtEngage.TwtUnLiker"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:customControl1="clr-namespace:TwtDominatorUI.CustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TwtDominatorUI.TDViews.TwtEngage"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="UnlikerUserControl"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <StackPanel VerticalAlignment="Top">
+            <customControl:HeaderControl
+                Name="UnLikerHeader"
+                Grid.Row="0"
+                CampaignName="{Binding CampaignName}"
+                CancelEditCommand="{Binding CancelEditCommand}"
+                InfoCommand="{Binding InfoCommand}"
+                IsCampaignNameEditable="{Binding IsEditCampaignName}"
+                IsCancelEditVisible="{Binding CancelEditVisibility}" />
+            <!--
+                CancelEditClick="HeaderGrid_OnCancelEditClick"
+                InfoChanged="HeaderControl_OnInfoChanged"/>
+            -->
+        </StackPanel>
+
+        <Grid
+            Name="MainGrid"
+            Margin="0,40,0,60"
+            ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+
+                    <Expander Margin="5" Header="{DynamicResource LangKeySourceType}">
+                        <StackPanel>
+                            <CheckBox
+                                Margin="5"
+                                Content="{DynamicResource LangKeyLikedTweets}"
+                                IsChecked="{Binding UnLikeModel.UnLike.IsLikedTweets}" />
+                            <CheckBox
+                                Margin="5"
+                                Content="{DynamicResource LangKeyCustomTweetLists}"
+                                IsChecked="{Binding UnLikeModel.UnLike.IsCustomTweets}" />
+                            <customControl:InputBoxControl
+                                Name="CustomPostLists"
+                                CommandParameter="{Binding ElementName=CustomPostLists}"
+                                InputText="{Binding UnLikeModel.UnLike.CustomTweets}"
+                                SaveCommand="{Binding SplitInputToListCommand}"
+                                Visibility="{Binding UnLikeModel.UnLike.IsCustomTweets, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        </StackPanel>
+                    </Expander>
+                    <!--<customControl:SearchQueryControl IsExpanded="True" Name="UnLikerSearchControl"  ListQueryInfo="{Binding SavedQueries}" ListQueryType="{Binding ListQueryType}"
+                                                              AddQuery="UnLikerSearchControl_AddQuery" CustomFilterChanged="UnLikerSearchControl_CustomFilterChanged"/>-->
+
+                    <!--  JobConfiguration  Expander  -->
+                    <Expander Margin="5" Header="{DynamicResource LangKeyJobConfiguration}">
+                        <customControl:JobConfigControl JobConfiguration="{Binding UnLikeModel.JobConfiguration}" />
+                    </Expander>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <StackPanel
+            Name="FooterGrid"
+            Margin="5,0"
+            VerticalAlignment="Bottom">
+            <customControl:FooterControl
+                x:Name="UnLikerFooter"
+                CampaignManager="{Binding CampaignButtonContent}"
+                CreateCampaignCommand="{Binding CreateCampaignCommand}"
+                NoOfAccountsSelected="{Binding SelectedAccountCount, Mode=TwoWay}"
+                SelectAccountCommand="{Binding SelectAccountCommand}" />
+            <!--
+                SelectAccountChanged="UnLikerFooter_SelectAccountChanged"
+                CreateCampaignChanged="UnLikerFooter_CreateCampaignChanged"
+                UpdateCampaignChanged="UnLikerFooter_UpdateCampaignChanged"/>
+            -->
+        </StackPanel>
+
+        <Controls:FlyoutsControl>
+            <Controls:Flyout
+                Name="HelpFlyout"
+                Width="300"
+                Background="{DynamicResource AccentBaseColorBrush}"
+                BorderBrush="Black"
+                BorderThickness="2"
+                DataContext="{Binding ElementName=UnLikerFooter, Path=DataContext}"
+                FontSize="10"
+                FontWeight="Bold"
+                Foreground="White"
+                Header="{DynamicResource LangKeyModuleDescription}"
+                IsOpen="{Binding IsOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                Position="Right"
+                Theme="Accent"
+                Visibility="Collapsed">
+
+                <customControl:HelpControl
+                    ContactSupportLink="{Binding ContactSupportLink}"
+                    DataContext="{Binding ElementName=UnLikerFooter, Path=DataContext}"
+                    KnowledgeBaseLink="{Binding KnowledgeBaseLink}"
+                    ModuleDescription="{DynamicResource LangKeyModuleDescriptionTwitterAutoUnlike}"
+                    VideoTutorial="{Binding VideoTutorialLink}" />
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+
+    </Grid>
+</local:UnLikerBase>

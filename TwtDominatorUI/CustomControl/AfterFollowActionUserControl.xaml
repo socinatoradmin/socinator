@@ -1,0 +1,218 @@
+﻿<UserControl x:Class="TwtDominatorUI.CustomControl.AfterFollowActionUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:TwtDominatorUI.CustomControl"
+             mc:Ignorable="d"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility">
+
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+        <StackPanel>
+
+            <StackPanel Margin="0,0,0,5">
+                <CheckBox Content="{DynamicResource LangKeyTurnOnUserNotifications}" Margin="5,0"
+                          IsChecked="{Binding AfterFollowAction.IsChkTurnOnUserNotifications}" />
+            </StackPanel>
+
+
+            <StackPanel Margin="0,0,0,5">
+                <CheckBox Content="{DynamicResource LangKeyMuteUser}" Margin="5,0"
+                          IsChecked="{Binding AfterFollowAction.IsChkMuteUser}" />
+            </StackPanel>
+
+            <StackPanel Margin="0,0,0,5">
+                <CheckBox Content="{DynamicResource LangKeyLikeUsersLatestTweets}" Name="ChkLikeUsersLatestTweets"
+                          Margin="5,0" IsChecked="{Binding AfterFollowAction.IsChkLikeTweets}" />
+                <StackPanel Margin="15,0"
+                            Visibility="{Binding AfterFollowAction.IsChkLikeTweets,Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal" Margin="5,0">
+                        <Label Content="{DynamicResource LangKeyLikeBetween}" VerticalAlignment="Center" />
+                        <controls:NumericUpDown Minimum="0" Margin="5,5,5,0"
+                                                Value="{Binding AfterFollowAction.LikeTweetsRange.StartValue}"
+                                                Name="LikeBetweenJobsStartValue" />
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Content="{DynamicResource LangKeyAnd}" />
+                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                Value="{Binding AfterFollowAction.LikeTweetsRange.EndValue}"
+                                                Minimum="{Binding Value,ElementName=LikeBetweenJobsStartValue}" />
+                        <Label VerticalAlignment="Center" Content="{DynamicResource LangKeyTweet}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,0">
+                        <Label Content="{DynamicResource LangKeyDelayBetween}" VerticalAlignment="Center" />
+                        <controls:NumericUpDown Minimum="1" Margin="5,5,5,0"
+                                                Value="{Binding AfterFollowAction.DelayBetweenLikeRange.StartValue}"
+                                                Name="LikeDelayBetweenJobsStartValue" />
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Content="{DynamicResource LangKeyAnd}" />
+                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                Value="{Binding AfterFollowAction.DelayBetweenLikeRange.EndValue}"
+                                                Minimum="{Binding Value,ElementName=LikeDelayBetweenJobsStartValue}" />
+
+                    </StackPanel>
+                    <!--<StackPanel Orientation="Horizontal" Margin="5,0">
+                        <CheckBox Content="{DynamicResource LangKeyLikeAMaximumOf}" VerticalAlignment="Center" IsChecked="{Binding AfterFollowAction.IsChkMaxLike}"/>
+                        <controls:NumericUpDown Minimum="1" Margin="5,5,5,0" Value="{Binding AfterFollowAction.LikeMaxRange.StartValue}" Name="LikeMaxBetweenStartValue" IsEnabled="{Binding AfterFollowAction.IsChkMaxLike}"/>
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyTo}" />
+                        <controls:NumericUpDown Margin="5,5,5,0" Value="{Binding AfterFollowAction.LikeMaxRange.EndValue}" Minimum="{Binding Value,ElementName=LikeMaxBetweenStartValue}" IsEnabled="{Binding AfterFollowAction.IsChkMaxLike}"/>
+                        <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyUserPerDay0NoLimit}"  />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,0">
+                        <CheckBox Content="{DynamicResource LangKeyIncreaseEachDayWith}" VerticalAlignment="Center"  IsChecked="{Binding AfterFollowAction.IsChkIncreaseEachDayLike}"/>
+                        <controls:NumericUpDown Minimum="1" Margin="5,5,5,0" Value="{Binding AfterFollowAction.IncreaseEachDayLike.StartValue}" Name="IncreaseEachDayStartValue" IsEnabled="{Binding AfterFollowAction.IsChkIncreaseEachDayLike}"/>
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyUntilItReaches}" />
+                        <controls:NumericUpDown Margin="5,5,5,0" Value="{Binding AfterFollowAction.IncreaseEachDayLike.EndValue}" Minimum="{Binding Value, ElementName=IncreaseEachDayStartValue}" IsEnabled="{Binding AfterFollowAction.IsChkIncreaseEachDayLike}"/>
+                        <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyMaxLikesPerDay}"  />
+                    </StackPanel>
+                    <CheckBox Content="{DynamicResource LangKeyLikeRandomTweets}" Name="ChkLikeRandomTweets" Margin="5,0" IsChecked="{Binding AfterFollowAction.IsCheckLikeRandomTweets}"/>
+                    <CheckBox Content="{DynamicResource LangKeySkipRetweets}" Name="ChkSkipRetweet" Margin="5,5" IsChecked="{Binding AfterFollowAction.IsChkLikeButSkipRetweets}"/>-->
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,0,5">
+                <CheckBox Content="{DynamicResource LangKeyRetweetUsersLatestTweets}"
+                          Name="ChkRetweetUsersLatestTweets" Margin="5,0"
+                          IsChecked="{Binding AfterFollowAction.IsChkRetweetTweets}" />
+                <StackPanel Margin="15,0"
+                            Visibility="{Binding AfterFollowAction.IsChkRetweetTweets,Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal" Margin="5,0">
+                        <Label Content="{DynamicResource LangKeyRetweetBetween}" VerticalAlignment="Center" />
+                        <controls:NumericUpDown Minimum="0" Margin="5,5,5,0"
+                                                Value="{Binding AfterFollowAction.RetweetTweetsRange.StartValue}"
+                                                Name="RetweetBetweenJobsStartValue" />
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Content="{DynamicResource LangKeyAnd}" />
+                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                Value="{Binding AfterFollowAction.RetweetTweetsRange.EndValue}"
+                                                Minimum="{Binding Value,ElementName=RetweetBetweenJobsStartValue}" />
+                        <Label VerticalAlignment="Center" Content="{DynamicResource LangKeyTweet}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,0">
+                        <Label Content="{DynamicResource LangKeyDelayBetween}" VerticalAlignment="Center" />
+                        <controls:NumericUpDown Minimum="1" Margin="5,5,5,0"
+                                                Value="{Binding AfterFollowAction.DelayBetweenRetweetRange.StartValue}"
+                                                Name="RetweetDelayBetweenJobsStartValue" />
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Content="{DynamicResource LangKeyAnd}" />
+                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                Value="{Binding AfterFollowAction.DelayBetweenRetweetRange.EndValue}"
+                                                Minimum="{Binding Value,ElementName=RetweetDelayBetweenJobsStartValue}" />
+
+                    </StackPanel>
+                    <!--<StackPanel Orientation="Horizontal" Margin="5,0">
+                        <CheckBox Content="{DynamicResource LangKeyRetweetAMaximumOf}" VerticalAlignment="Center" IsChecked="{Binding AfterFollowAction.IsChkMaxRetweet}"/>
+                        <controls:NumericUpDown Minimum="1" Margin="5,5,5,0" Value="{Binding AfterFollowAction.RetweetMaxRange.StartValue}" Name="RetweetMaxBetweenStartValue" IsEnabled="{Binding AfterFollowAction.IsChkMaxRetweet}"/>
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyTo}" />
+                        <controls:NumericUpDown Margin="5,5,5,0" Value="{Binding AfterFollowAction.RetweetMaxRange.EndValue}" Minimum="{Binding Value,ElementName=RetweetMaxBetweenStartValue}" IsEnabled="{Binding AfterFollowAction.IsChkMaxRetweet}"/>
+                        <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyUserPerDay0NoLimit}"  />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,0">
+                        <CheckBox Content="{DynamicResource LangKeyIncreaseEachDayWith}" VerticalAlignment="Center"  IsChecked="{Binding AfterFollowAction.IsChkIncreaseEachDayRetweet}"/>
+                        <controls:NumericUpDown Minimum="1" Margin="5,5,5,0" Value="{Binding AfterFollowAction.IncreaseEachDayRetweet.StartValue}" Name="IncreaseEachDayRetweetStartValue" IsEnabled="{Binding AfterFollowAction.IsChkIncreaseEachDayRetweet}"/>
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyUntilItReaches}" />
+                        <controls:NumericUpDown Margin="5,5,5,0" Value="{Binding AfterFollowAction.IncreaseEachDayRetweet.EndValue}" Minimum="{Binding Value, ElementName=IncreaseEachDayRetweetStartValue}" IsEnabled="{Binding AfterFollowAction.IsChkIncreaseEachDayRetweet}"/>
+                        <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyMaxRetweetPerDay}"  />
+                    </StackPanel>
+                    <CheckBox Content="{DynamicResource LangKeyRetweetRandomTweets}" Name="ChkRetweetRandomTweets" Margin="5,0" IsChecked="{Binding AfterFollowAction.IsCheckRetweetRandomTweets}"/>
+                    <CheckBox Content="{DynamicResource LangKeySkipRetweets}"  Margin="5,5" IsChecked="{Binding AfterFollowAction.IsChkRetweetTweetButSkipRetweets}"/>-->
+                </StackPanel>
+
+            </StackPanel>
+
+            <!--<StackPanel Margin="0,0,0,5">
+                <CheckBox Margin="5,0" Content="{DynamicResource LangKeyTweetToUser}" Name="ChkTweetAfterFollow" IsChecked="{Binding AfterFollowAction.IsChkTweetToUser}"/>
+                <StackPanel Margin="15,0" Visibility="{Binding AfterFollowAction.IsChkTweetToUser, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Label Content="{DynamicResource LangKeyUploadTweetS}" />
+                    <customControl:InputBoxControl Margin="30,5" x:Name="TweetToUserInputBox" GetInputClick="TweetToUserInputBox_OnGetInputClick" 
+                                                                           InputText="{Binding AfterFollowAction.TweetToUserInput}" />
+                    <StackPanel Orientation="Horizontal" >
+                        <CheckBox Content="{DynamicResource LangKeyTweetAMaximumOf}" VerticalAlignment="Center" IsChecked="{Binding AfterFollowAction.IsChkMaxTweet}"/>
+                        <controls:NumericUpDown Margin="5,5,5,0" Value="{Binding AfterFollowAction.TweetMaxRange.StartValue}" Name="MaxTweetRangeStartValue" IsEnabled="{Binding AfterFollowAction.IsChkMaxTweet}"/>
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyTo}" />
+                        <controls:NumericUpDown Margin="5,5,5,0" Value="{Binding AfterFollowAction.TweetMaxRange.EndValue}" Minimum="{Binding Value, ElementName=MaxTweetRangeStartValue}" IsEnabled="{Binding AfterFollowAction.IsChkMaxTweet}"/>
+                        <TextBlock Text="{DynamicResource LangKeyUserPerDay0NoLimit}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox Content="{DynamicResource LangKeyIncreaseEachDayWith}"  VerticalAlignment="Center"  IsChecked="{Binding AfterFollowAction.IsChkIncreaseEachDayTweet}"/>
+                        <controls:NumericUpDown Margin="5,5,5,0" Value="{Binding AfterFollowAction.IncreaseEachDayTweet.StartValue}" Name="IncreaseEachDayTweetStartValue" IsEnabled="{Binding AfterFollowAction.IsChkIncreaseEachDay}"/>
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyUntilItReaches}" />
+                        <controls:NumericUpDown Margin="5,5,5,0" Value="{Binding AfterFollowAction.IncreaseEachDayTweet.EndValue}" Minimum="{Binding Value, ElementName=IncreaseEachDayTweetStartValue}" IsEnabled="{Binding AfterFollowAction.IsChkIncreaseEachDay}"/>
+                        <Label  VerticalAlignment="Center" Content="{DynamicResource TdLangMaxTweetsPerDay}"  />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox Content="{DynamicResource LangKeyTweetPercentage}" VerticalAlignment="Center" IsChecked="{Binding AfterFollowAction.IsChkTweetPercentage}"/>
+                        <controls:NumericUpDown Margin="5,5,5,0" Value="{Binding AfterFollowAction.TweetPercentage}" IsEnabled="{Binding AfterFollowAction.IsChkTweetPercentage}"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>-->
+
+            <StackPanel Margin="0,0,0,5">
+                <CheckBox Content="{DynamicResource LangKeyCommentOnUsersLatestTweets}" Margin="5,0"
+                          Name="ChkCommentOnUserLatestTweets"
+                          IsChecked="{Binding AfterFollowAction.IsChkCommentOnTweets}" />
+                <StackPanel Margin="15,0"
+                            Visibility="{Binding AfterFollowAction.IsChkCommentOnTweets,Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel>
+                        <Label Content="{DynamicResource LangKeyUploadCommentS}" Name="ChkUploadComments" />
+                        <CheckBox Content="{DynamicResource LangKeySpintax}"
+                                  IsChecked="{Binding AfterFollowAction.IsSpintax}" />
+                        <customControl:InputBoxControl Margin="30,5,0,0" x:Name="CommentOnUsersTweetInputBox"
+                                                       SaveCommand="{Binding CommentWordCommand}"
+                                                       InputText="{Binding AfterFollowAction.CommentOnUsersTweetInput}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{DynamicResource LangKeyCommentBetween}" />
+                        <controls:NumericUpDown Minimum="0" Margin="5,5,5,0" Name="CommentPostStartValue"
+                                                Value="{Binding AfterFollowAction.CommentsPerUser.StartValue}" />
+                        <TextBlock Text="{DynamicResource LangKeyTo}" VerticalAlignment="Center" />
+                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                Minimum="{Binding AfterFollowAction.CommentsPerUser.StartValue}"
+                                                Value="{Binding AfterFollowAction.CommentsPerUser.EndValue}" />
+                        <!--<TextBlock Text="{DynamicResource LangKeyTweets}" Margin="5"/>-->
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="5,0">
+                        <Label Content="{DynamicResource LangKeyDelayBetween}" VerticalAlignment="Center" />
+                        <controls:NumericUpDown Minimum="1" Margin="5,5,5,0"
+                                                Value="{Binding AfterFollowAction.DelayBetweenCommentRange.StartValue}"
+                                                Name="CommentDelayBetweenJobsStartValue" />
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Content="{DynamicResource LangKeyAnd}" />
+                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                Value="{Binding AfterFollowAction.DelayBetweenCommentRange.EndValue}"
+                                                Minimum="{Binding Value,ElementName=CommentDelayBetweenJobsStartValue}" />
+
+                    </StackPanel>
+                    <!--<StackPanel Orientation="Horizontal">
+                        <CheckBox Content="{DynamicResource LangKeyCommentAMaximumOf}" IsChecked="{Binding AfterFollowAction.IsChkMaxComment}"/>
+                        <controls:NumericUpDown Minimum="1" Margin="5,5,5,0"  Name="CommentStartVAlue" Value="{Binding AfterFollowAction.CommentsPerDayMaxRange.StartValue}" IsEnabled="{Binding AfterFollowAction.IsChkMaxComment}"/>
+                        <TextBlock Text="{DynamicResource LangKeyTo}" VerticalAlignment="Center"/>
+                        <controls:NumericUpDown Margin="5,5,5,0" Minimum="{Binding  AfterFollowAction.CommentsPerDayMaxRange.StartValue}" Value="{Binding AfterFollowAction.CommentsPerDayMaxRange.EndValue}"  IsEnabled="{Binding AfterFollowAction.IsChkMaxComment}"/>
+                        <TextBlock Text="{DynamicResource LangKeyPeoplePerDay}" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" >
+                        <CheckBox Content="{DynamicResource LangKeyIncreaseEachDayWith}" VerticalAlignment="Center" IsChecked="{Binding AfterFollowAction.IsChkIncreaseEachDayComment}"  />
+                        <controls:NumericUpDown Minimum="1" Margin="5,5,5,0" Value="{Binding AfterFollowAction.IncreaseEachDayComment.StartValue}" Name="IncreaseEachDayCommentStartValue" IsEnabled="{Binding AfterFollowAction.IsChkIncreaseEachDayComment}"/>
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyUntilItReaches}" />
+                        <controls:NumericUpDown Margin="5,5,5,0" Value="{Binding AfterFollowAction.IncreaseEachDayComment.EndValue}" Minimum="{Binding Value, ElementName=IncreaseEachDayCommentStartValue}" IsEnabled="{Binding AfterFollowAction.IsChkIncreaseEachDayComment}"/>
+                        <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyMaxCommentPerDay}"  />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" >
+                        <CheckBox Content="{DynamicResource LangKeyCommentPercentage}" IsChecked="{Binding AfterFollowAction.IsChkCommentPercentage}"/>
+                        <controls:NumericUpDown Minimum="1" Margin="5,5,5,0" Value="{Binding AfterFollowAction.CommentPercentage}" IsEnabled="{Binding AfterFollowAction.IsChkCommentPercentage}"/>
+                    </StackPanel>
+                    <CheckBox Content="{DynamicResource LangKeySkipRetweets}" Name="ChkSkipRetweetComment" Margin="0,5" IsChecked="{Binding AfterFollowAction.IsChkCommentButSkipRetweets}"/>-->
+                </StackPanel>
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+
+
+</UserControl>
