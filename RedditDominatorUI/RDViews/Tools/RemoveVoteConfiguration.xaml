@@ -1,0 +1,83 @@
+﻿<local:RemoveVoteConfigurationBase x:Class="RedditDominatorUI.RDViews.Tools.RemoveVoteConfiguration"
+                                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                   xmlns:local="clr-namespace:RedditDominatorUI.RDViews.Tools"
+                                   mc:Ignorable="d" x:Name="RemoveVoteConfigurations"
+                                   xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                                   xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+                                   xmlns:customControl1="clr-namespace:RedditDominatorUI.CustomControl"
+                                   xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+                                   xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=RemoveVoteConfigurations}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+
+        <customControl:AccountGrowthModeHeader x:FieldModifier="public" x:Name="AccountGrowthHeader"
+                                               VerticalAlignment="Top" SelectedIndex="0"
+                                               SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=RemoveVoteConfigurations}"
+                                               SaveCommand="{Binding SaveConfigurationsCommand}"
+                                               VideoTutorialLink="{Binding VideoTutorialLink}" />
+
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" VerticalAlignment="Center"
+                                   Margin="10,0,10,0" />
+                        <controls:ToggleSwitch x:Name="TglStatus" OnLabel="Active﻿" OffLabel="Stopped﻿"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                                               IsChecked="{Binding RemoveVoteModel.IsAccountGrowthActive}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=RemoveVoteConfigurations}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </controls:ToggleSwitch>
+                    </StackPanel>
+
+                    <!--Search query section-->
+                    <Expander Header="{DynamicResource LangKeySearchQuery}" IsExpanded="True" Margin="5">
+                        <customControl:SearchQueryControl Name="RemoveVoteConfigurationSearchControl"
+                                                          IsExpanded="{Binding IsExpanded, ElementName=AccountGrowthHeader, UpdateSourceTrigger=Explicit}"
+                                                          ListQueryType="{Binding RemoveVoteModel.ListQueryType}"
+                                                          ListQueryInfo="{Binding RemoveVoteModel.SavedQueries}"
+                                                          AddQueryCommand="{Binding AddQueryCommand}"
+                                                          CommandParameter="{Binding ElementName=RemoveVoteConfigurations}"
+                                                          CustomFilterCommand="{Binding CustomFilterCommand}"
+                                                          DeleteQueryCommand="{Binding DeleteQueryCommand}"
+                                                          DeleteMulipleCommand="{Binding DeleteMulipleCommand}" />
+                    </Expander>
+
+                    <StackPanel Orientation="Vertical">
+                        <!--After JobConfiguration  Expender-->
+                        <Expander Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+                            <customControl:JobConfigControl
+                                JobConfiguration="{Binding RemoveVoteModel.JobConfiguration}" />
+                        </Expander>
+
+                        <!--After Post Filter Expender-->
+                        <Expander IsExpanded="{Binding IsExpanded, ElementName=accountGrowthHeader}"
+                                  Header="{DynamicResource LangKeyPostFilters}" Margin="5,5"
+                                  Visibility="{Binding RemoveVoteModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <customControl1:PostFilterControl x:Name="RemoveVoteConfigurationPostFilterControl"
+                                                              PostFilter="{Binding RemoveVoteModel.PostFilterModel}" />
+                        </Expander>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</local:RemoveVoteConfigurationBase>

@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="RedditDominatorUI.CustomControl.UserFiltersControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls">
+    <UserControl.Resources>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Name="MainGrid" Margin="10">
+
+            <StackPanel>
+                <!-- Filter User Is Employee -->
+                <CheckBox x:Name="FilterEmployeesCheckbox" Margin="5,0,0,0"
+                          IsChecked="{Binding UserFilter.FilterEmployees}"
+                          Content="{DynamicResource LangKeyFilterUsersWhoAreEmployees}" />
+
+                <!-- Filter User Is Gold -->
+                <CheckBox x:Name="FilterGoldUsersCheckbox" Margin="5,5,0,0"
+                          IsChecked="{Binding UserFilter.FilterGoldUsers}"
+                          Content="{DynamicResource LangKeyFilterGoldUsers}" />
+
+                <!-- Filter User Is Moderator -->
+                <CheckBox x:Name="FilterModeratorsCheckbox" Margin="5,5,0,0"
+                          IsChecked="{Binding UserFilter.FilterModerators}"
+                          Content="{DynamicResource LangKeyFilterModerators}" />
+
+                <!-- Filter User Is NSFW -->
+                <CheckBox x:Name="FilterNsfwUsersCheckbox" Margin="5,5,0,0"
+                          IsChecked="{Binding UserFilter.FilterNsfwUsers}"
+                          Content="{DynamicResource LangKeyFilterNSFWUsers}" />
+
+                <!--User Has Minimum Karma -->
+                <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                    <CheckBox x:Name="FilterCommentKarmaCountsCheckbox"
+                              IsChecked="{Binding UserFilter.FilterCommentKarmaCounts}"
+                              Content="{DynamicResource LangKeyFilterByCommentKarmaCounts}" />
+                    <Label Content="{DynamicResource LangKeyMinimum}" VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterCommentKarmaCounts}"
+                                            TextAlignment="Center" Margin="0,5,0,0"
+                                            Value="{Binding UserFilter.CommentKarmaCounts.StartValue}" Minimum="0" />
+                    <Label Content="{DynamicResource LangKeyMaximum}" VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterCommentKarmaCounts}"
+                                            Minimum="{Binding UserFilter.PostCounts.StartValue}" TextAlignment="Center"
+                                            Margin="0,5,0,0"
+                                            Value="{Binding UserFilter.CommentKarmaCounts.EndValue}" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

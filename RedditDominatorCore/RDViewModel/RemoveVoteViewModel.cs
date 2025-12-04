@@ -1,0 +1,144 @@
+﻿using DominatorHouseCore;
+using DominatorHouseCore.Command;
+using DominatorHouseCore.Enums;
+using DominatorHouseCore.Enums.RdQuery;
+using DominatorHouseCore.Models;
+using DominatorHouseCore.Utility;
+using DominatorUIUtility.CustomControl;
+using RedditDominatorCore.RDModel;
+using System;
+using System.Linq;
+using System.Windows;
+using System.Windows.Input;
+
+namespace RedditDominatorCore.RDViewModel
+{
+    public class RemoveVoteViewModel : BindableBase
+    {
+        public RemoveVoteViewModel()
+        {
+            if (RemoveVoteModel.ListQueryType.Count == 0)
+            {
+                RemoveVoteModel.ListQueryType.Add(Application.Current
+                    .FindResource(PostQuery.CustomUrl.GetDescriptionAttr())?.ToString());
+                //RemoveVoteModel.ListQueryType.Add(Application.Current
+                //    .FindResource(PostQuery.CommunityUrl.GetDescriptionAttr())?.ToString());
+                RemoveVoteModel.ListQueryType.Add(Application.Current
+                    .FindResource(PostQuery.SpecificUserPost.GetDescriptionAttr())?.ToString());
+            }
+
+            RemoveVoteModel.JobConfiguration = new JobConfiguration
+            {
+                ActivitiesPerJobDisplayName = "LangKeyRemoveVotePerJob".FromResourceDictionary(),
+                ActivitiesPerHourDisplayName = "LangKeyRemoveVotePerHour".FromResourceDictionary(),
+                ActivitiesPerDayDisplayName = "LangKeyRemoveVotePerDay".FromResourceDictionary(),
+                ActivitiesPerWeekDisplayName = "LangKeyRemoveVotePerWeek".FromResourceDictionary(),
+                IncreaseActivityDisplayName = "LangKeyMaxRemoveVoteDay".FromResourceDictionary(),
+                RunningTime = RunningTimes.DayWiseRunningTimes,
+                Speeds = Enum.GetNames(typeof(ActivitySpeed)).ToList()
+            };
+
+            AddQueryCommand = new BaseCommand<object>(sender => true, AddQuery);
+            CustomFilterCommand = new BaseCommand<object>(sender => true, CustomFilter);
+            DeleteQueryCommand = new BaseCommand<object>(sender => true, DeleteQuery);
+            DeleteMulipleCommand = new BaseCommand<object>(sender => true, DeleteMuliple);
+        }
+
+        public RemoveVoteModel Model => RemoveVoteModel;
+
+        #region Object creation logic
+
+        private RemoveVoteModel _removeVoteModel = new RemoveVoteModel();
+
+        public RemoveVoteModel RemoveVoteModel
+        {
+            get => _removeVoteModel;
+            set
+            {
+                if ((_removeVoteModel == null) & (_removeVoteModel == value))
+                    return;
+                SetProperty(ref _removeVoteModel, value);
+            }
+        }
+
+        #endregion
+
+
+        #region Commands
+
+        public ICommand AddQueryCommand { get; set; }
+        public ICommand CustomFilterCommand { get; set; }
+        public ICommand DeleteQueryCommand { get; set; }
+        public ICommand DeleteMulipleCommand { get; set; }
+
+        #endregion
+
+        #region Methods
+
+        private void CustomFilter(object sender)
+        {
+            try
+            {
+                var moduleSettingsUserControl =
+                    sender as ModuleSettingsUserControl<RemoveVoteViewModel, RemoveVoteModel>;
+                moduleSettingsUserControl?.CustomFilter();
+            }
+            catch (Exception ex)
+            {
+                ex.DebugLog();
+            }
+        }
+
+        private void AddQuery(object sender)
+        {
+            try
+            {
+                var moduleSettingsUserControl =
+                    sender as ModuleSettingsUserControl<RemoveVoteViewModel, RemoveVoteModel>;
+                moduleSettingsUserControl?.AddQuery(typeof(PostQuery));
+            }
+            catch (Exception ex)
+            {
+                ex.DebugLog();
+            }
+        }
+
+        private void DeleteQuery(object sender)
+        {
+            try
+            {
+                var currentQuery = sender as QueryInfo;
+                if (Model.SavedQueries.Any(x => currentQuery != null && x.Id == currentQuery.Id))
+                    Model.SavedQueries.Remove(currentQuery);
+            }
+            catch (Exception ex)
+            {
+                ex.DebugLog();
+            }
+        }
+
+        private void DeleteMuliple(object sender)
+        {
+            var selectedQuery = Model.SavedQueries.Where(x => x.IsQuerySelected).ToList();
+            try
+            {
+                foreach (var currentQuery in selectedQuery)
+                    try
+                    {
+                        if (Model.SavedQueries.Any(x => currentQuery != null && x.Id == currentQuery.Id))
+                            Model.SavedQueries.Remove(currentQuery);
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.DebugLog();
+                    }
+            }
+            catch (Exception ex)
+            {
+                ex.DebugLog();
+            }
+        }
+
+        #endregion
+    }
+}

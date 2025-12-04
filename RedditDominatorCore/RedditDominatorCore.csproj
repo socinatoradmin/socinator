@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6D1BC42E-FFEA-4F4A-9375-328D0DE7269D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RedditDominatorCore</RootNamespace>
+    <AssemblyName>RedditDominatorCore</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp, Version=112.3.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dominatorhouse-social\packages\CefSharp.Common.112.3.0\lib\net452\CefSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp.Core, Version=112.3.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dominatorhouse-social\packages\CefSharp.Common.112.3.0\lib\net452\CefSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp.Wpf, Version=112.3.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dominatorhouse-social\packages\CefSharp.Wpf.112.3.0\lib\net452\CefSharp.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\CommonServiceLocator.2.0.5\lib\net48\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.8.5.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\HtmlAgilityPack.1.8.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\MahApps.Metro.1.6.5\lib\net47\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\MSTest.TestFramework.2.1.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\MSTest.TestFramework.2.1.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Core.7.2.0.1422\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.3.7.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\protobuf-net.2.3.7\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.4.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\RestSharp.106.4.0\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\ControlzEx.3.0.2.4\lib\net462\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ThreadUtils, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\ThreadUtils.1.0.1\lib\net461\ThreadUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.Abstractions.5.11.1\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.Container.5.11.1\lib\net47\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.Interception.5.11.1\lib\net47\Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DbMigrations\RdAccountDbMigrations.cs" />
+    <Compile Include="DbMigrations\RdCampaignDbMigrations.cs" />
+    <Compile Include="DbMigrations\RdDbMigrationUnityExtension.cs" />
+    <Compile Include="Factories\RdJobProcessFactory.cs" />
+    <Compile Include="Interface\IPostFilter.cs" />
+    <Compile Include="Interface\IPostScraper.cs" />
+    <Compile Include="Interface\IRDAccountSessionManager.cs" />
+    <Compile Include="Interface\IRdAccountUpdateFactory.cs" />
+    <Compile Include="Interface\IRdAdsScrapperFactory.cs" />
+    <Compile Include="Interface\IUserFilter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Publisher\RdPublisherPostDetailScraper.cs" />
+    <Compile Include="Publisher\RdPublisherPostScraper.cs" />
+    <Compile Include="RDEnums\Enums.cs" />
+    <Compile Include="RDFactories\RdAccountDbConnection.cs" />
+    <Compile Include="RDFactories\RdAccountSelectorFactory.cs" />
+    <Compile Include="RDFactories\RdAccountUpdateFactory.cs" />
+    <Compile Include="RDFactories\RdAdsScrapperFactory.cs" />
+    <Compile Include="RDFactories\RdCampaignDbConnection.cs" />
+    <Compile Include="RDFactories\RdPublisherCoreFactory.cs" />
+    <Compile Include="RDFactories\RdReportFactory.cs" />
+    <Compile Include="RDFactories\RdScraperFactory.cs" />
+    <Compile Include="RDFactories\RdAccountCountFactory.cs" />
+    <Compile Include="RDFactories\RdUtilityFactory.cs" />
+    <Compile Include="RDLibrary\Actions\BroadcastMessageProcess.cs" />
+    <Compile Include="RDLibrary\Actions\ChannelScraperProcess.cs" />
+    <Compile Include="RDLibrary\Actions\CommentProcess.cs" />
+    <Compile Include="RDLibrary\Actions\CommentScraperProcess.cs" />
+    <Compile Include="RDLibrary\Actions\EditCommentProcess.cs" />
+    <Compile Include="RDLibrary\Actions\PostAutoActivityProcess.cs" />
+    <Compile Include="RDLibrary\AdsReddit\AdDetailModel.cs" />
+    <Compile Include="RDLibrary\BlackListWhitelistHandler.cs" />
+    <Compile Include="RDLibrary\BrowserManager\BrowserUtility\BrowserUtilities.cs" />
+    <Compile Include="RDLibrary\BrowserManager\RdBrowserManager.cs" />
+    <Compile Include="RDLibrary\DAL\DbAccountService.cs" />
+    <Compile Include="RDLibrary\DAL\DbCampaignService.cs" />
+    <Compile Include="RDLibrary\DAL\DbGlobalService.cs" />
+    <Compile Include="RDLibrary\Actions\DownVoteProcess.cs" />
+    <Compile Include="RDLibrary\Actions\FollowProcess.cs" />
+    <Compile Include="RDLibrary\LogInProcess.cs" />
+    <Compile Include="RDLibrary\Processors\AutoActivity\PostAutoActivityProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\BaseRedditProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\Channel\BaseRedditChannelProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\Channel\CustomUserChannelProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\Channel\KeywordsChannelProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\Channel\UnsubscribeProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\CommentScraper\BaseRedditCommentScraperProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\CommentScraper\CommunityCommentScraperProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\CommentScraper\CustomCommentScraperProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\CommentScraper\KeywordCommentScraperProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\Messanger\AutoReplyProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\Post\EditCommentProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\IQueryProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\Post\BaseRedditPostProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\Post\CommunityAndUserPostProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\Post\CustomUserPostProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\Post\CustomUserReplyProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\Post\KeywordsPostProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\Post\SocianatorPublisherCampaignProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\User\BaseRedditUserProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\User\CustomUrlProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\User\KeywordsProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\User\UnfollowProcessor.cs" />
+    <Compile Include="RDLibrary\Processors\User\UserWhocommentedOnPostProcessor.cs" />
+    <Compile Include="RDLibrary\RdAdScrapperProcess.cs" />
+    <Compile Include="RDLibrary\RdConstants.cs" />
+    <Compile Include="RDLibrary\RdJobProcess.cs" />
+    <Compile Include="RDLibrary\RdUpdateAccountProcess.cs" />
+    <Compile Include="RDLibrary\RedditFunction.cs" />
+    <Compile Include="RDLibrary\RedditQueryScraper.cs" />
+    <Compile Include="RDLibrary\Actions\ReplyProcess.cs" />
+    <Compile Include="RDLibrary\ScrapeFilter.cs" />
+    <Compile Include="RDLibrary\Actions\SubscribeProcess.cs" />
+    <Compile Include="RDLibrary\RedditJobProcessUnityExtension.cs" />
+    <Compile Include="RDLibrary\Actions\UnFollowProcess.cs" />
+    <Compile Include="RDLibrary\Actions\RemoveVoteProcess.cs" />
+    <Compile Include="RDLibrary\Actions\UnSubscribeProcess.cs" />
+    <Compile Include="RDLibrary\Actions\UrlScraperProcess.cs" />
+    <Compile Include="RDLibrary\Actions\UpVoteProcess.cs" />
+    <Compile Include="RDLibrary\Actions\UserScraperProcess.cs" />
+    <Compile Include="RDModel\AutoReplyModel.cs" />
+    <Compile Include="RDModel\BaseUser.cs" />
+    <Compile Include="RDModel\BrodcastMessageModel.cs" />
+    <Compile Include="RDModel\ChannelScraperModel.cs" />
+    <Compile Include="RDModel\CommentModel.cs" />
+    <Compile Include="RDModel\CommentScraperModel.cs" />
+    <Compile Include="RDModel\CommunityFiltersModel.cs" />
+    <Compile Include="RDModel\ConversationDetails.cs" />
+    <Compile Include="RDModel\DownvoteModel.cs" />
+    <Compile Include="RDModel\EditCommentInfo.cs" />
+    <Compile Include="RDModel\EditCommentModel.cs" />
+    <Compile Include="RDModel\FollowModel.cs" />
+    <Compile Include="RDModel\ICommunityFilter.cs" />
+    <Compile Include="RDModel\ManageBlacklist.cs" />
+    <Compile Include="RDModel\ModuleSetting.cs" />
+    <Compile Include="RDModel\PostAutoActivityModel.cs" />
+    <Compile Include="RDModel\PostFilterModel.cs" />
+    <Compile Include="RDModel\PublishPostModel.cs" />
+    <Compile Include="RDModel\RedditAutoActivityModel.cs" />
+    <Compile Include="RDModel\RedditPost.cs" />
+    <Compile Include="RDModel\RedditPostFlairInfo.cs" />
+    <Compile Include="RDModel\RedditUser.cs" />
+    <Compile Include="RDModel\RemoveVoteModel.cs" />
+    <Compile Include="RDModel\ReplyModel.cs" />
+    <Compile Include="RDRequest\RdAdJsonElement.cs" />
+    <Compile Include="RDRequest\RdHttpHelper.cs" />
+    <Compile Include="RDUtility\HtmlUtility.cs" />
+    <Compile Include="RDUtility\JsonJArrayHandler.cs" />
+    <Compile Include="RDViewModel\AutoReplyViewModel.cs" />
+    <Compile Include="RDViewModel\ChannelScraperViewModel.cs" />
+    <Compile Include="RDViewModel\CommentScraperViewModel.cs" />
+    <Compile Include="RDViewModel\DownvoteForCommentViewModel.cs" />
+    <Compile Include="RDViewModel\EditCommentViewModel.cs" />
+    <Compile Include="RDViewModel\PostAutoActivityViewModel.cs" />
+    <Compile Include="RDViewModel\PrivateBlackListViewModel.cs" />
+    <Compile Include="RDViewModel\PrivateWhiteListViewModel.cs" />
+    <Compile Include="RDViewModel\UpvoteForCommentViewModel.cs" />
+    <Compile Include="ReportModel\CommentReportModel.cs" />
+    <Compile Include="ReportModel\CommunitiesModel.cs" />
+    <Compile Include="ReportModel\DownvoteReportModel.cs" />
+    <Compile Include="ReportModel\InteractedUsersReportModel.cs" />
+    <Compile Include="ReportModel\RemoveVoteReportModel.cs" />
+    <Compile Include="ReportModel\SubRedditReportModel.cs" />
+    <Compile Include="ReportModel\UnfollowedUsersReportModel.cs" />
+    <Compile Include="ReportModel\UpvoteReportModel.cs" />
+    <Compile Include="RDModel\SubRedditModel.cs" />
+    <Compile Include="RDModel\SubscribeModel.cs" />
+    <Compile Include="RDModel\UnfollowerModel.cs" />
+    <Compile Include="RDModel\UnSubscribeModel.cs" />
+    <Compile Include="RDModel\UpvoteModel.cs" />
+    <Compile Include="RDModel\UrlScraperModel.cs" />
+    <Compile Include="RDModel\UserFilterModel.cs" />
+    <Compile Include="RDModel\UserScraperModel.cs" />
+    <Compile Include="RDRequest\RdJsonElement.cs" />
+    <Compile Include="RDRequest\RdRequestParameter.cs" />
+    <Compile Include="RDUtility\Utils.cs" />
+    <Compile Include="RDViewModel\BrodcastMessageViewModel.cs" />
+    <Compile Include="RDViewModel\CommentViewModel.cs" />
+    <Compile Include="RDViewModel\DownvoteViewModel.cs" />
+    <Compile Include="RDViewModel\FollowViewModel.cs" />
+    <Compile Include="Publisher\RdPublisherJobProcess.cs" />
+    <Compile Include="Publisher\RdPublisherJobProcessFactory.cs" />
+    <Compile Include="RDViewModel\RemoveVoteViewModel.cs" />
+    <Compile Include="RDViewModel\ReplyViewModel.cs" />
+    <Compile Include="RDViewModel\SubscribeViewModel.cs" />
+    <Compile Include="RDViewModel\UnfollowerViewModel.cs" />
+    <Compile Include="RDViewModel\UnSubscribeViewModel.cs" />
+    <Compile Include="RDViewModel\UpvoteViewModel.cs" />
+    <Compile Include="RDViewModel\UrlScraperViewModel.cs" />
+    <Compile Include="RDViewModel\UserScraperViewModel.cs" />
+    <Compile Include="ReportModel\UrlScraperReportModel.cs" />
+    <Compile Include="Report\InteractedPostReportDetails.cs" />
+    <Compile Include="Report\InteractedUsersReportDetails.cs" />
+    <Compile Include="Report\UnfollowedUsersReport.cs" />
+    <Compile Include="Response\ActivityResposneHandler.cs" />
+    <Compile Include="Response\ApprovePostResponseHandler.cs" />
+    <Compile Include="Response\ApproveResponseHandler.cs" />
+    <Compile Include="Response\AutoActivityResponseHandler.cs" />
+    <Compile Include="Response\BroadcastResponseHandler.cs" />
+    <Compile Include="Response\CommentResponseHandler.cs" />
+    <Compile Include="Response\CommunitiesScraperResponseHandler.cs" />
+    <Compile Include="Response\DownVoteResponseHandler.cs" />
+    <Compile Include="Response\FetchTitleOfUrlResponseHandler.cs" />
+    <Compile Include="Response\FollowResponseHandler.cs" />
+    <Compile Include="Response\LoginRdResponseHandler.cs" />
+    <Compile Include="Response\PaginationResponseHandler.cs" />
+    <Compile Include="Response\PublishPostResponseHandler.cs" />
+    <Compile Include="Response\RDResponseHandler.cs" />
+    <Compile Include="RDLibrary\AdsReddit\RedditAdsResponseHandler.cs" />
+    <Compile Include="Response\RedditChatResponseHandler.cs" />
+    <Compile Include="Response\RedditCommentRespondHandler.cs" />
+    <Compile Include="Response\RedditPostResponseHandler.cs" />
+    <Compile Include="Response\RedditUserResponseHandler.cs" />
+    <Compile Include="Response\ReplyResponseHandler.cs" />
+    <Compile Include="Response\ScrapeCommentedUsersResponseHandler.cs" />
+    <Compile Include="Response\SendMessagesResponseHandler.cs" />
+    <Compile Include="Response\SubredditResponseHandler.cs" />
+    <Compile Include="Response\SubRedditSubmitValidationResponseHandler.cs" />
+    <Compile Include="Response\SubscribeResponseHandler.cs" />
+    <Compile Include="Response\UnFollowResponseHandler.cs" />
+    <Compile Include="Response\UnSubscribeResponseHandler.cs" />
+    <Compile Include="Response\UpvoteResponseHandler.cs" />
+    <Compile Include="Response\RemoveVoteResponseHandler.cs" />
+    <Compile Include="Response\UserNameInfoRDResponseHandler.cs" />
+    <Compile Include="Response\UserResponseHandler.cs" />
+    <Compile Include="Utility\IRdBaseFactory.cs" />
+    <Compile Include="Utility\IRdReportFactory.cs" />
+    <Compile Include="Utility\IRdUtilityFactory.cs" />
+    <Compile Include="Utility\IRdViewCampaign.cs" />
+    <Compile Include="Utility\RDAccountSessionManager.cs" />
+    <Compile Include="Utility\RdBaseFactoryBuilder.cs" />
+    <Compile Include="Utility\RedditInitialize.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\dominatorhouse-social\DominatorHouseCore\DominatorHouseCore.csproj">
+      <Project>{f40a5c83-8eda-43c5-88b9-dfaab492a497}</Project>
+      <Name>DominatorHouseCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dominatorhouse-social\DominatorUIUtility\DominatorUIUtility.csproj">
+      <Project>{e8d95af0-e99b-4059-9140-5c02b3f52e06}</Project>
+      <Name>DominatorUIUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dominatorhouse-social\EmbeddedBrowser\EmbeddedBrowser.csproj">
+      <Project>{21F00635-AAF7-466B-9214-A830EA9C8963}</Project>
+      <Name>EmbeddedBrowser</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if "$(Configuration)" == "Release" signtool sign /fd SHA256 /f "C:\Globussoft_Dotnet\code_signing_certificate_gbs.cer" "$(TargetDir)RedditDominatorCore.dll"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

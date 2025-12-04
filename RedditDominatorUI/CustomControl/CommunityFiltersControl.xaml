@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="RedditDominatorUI.CustomControl.CommunityFiltersControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls">
+    <UserControl.Resources>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Name="MainGrid" Margin="10">
+
+            <StackPanel>
+                <!-- Filter Community Is NSFW -->
+                <CheckBox x:Name="FilterNsfwCommmunities" Margin="5,5,0,0"
+                          IsChecked="{Binding CommunityFilter.FilterNsfwCommmunities}"
+                          Content="{DynamicResource LangKeyFilterCommunityNsfw}" />
+
+                <!-- Filter Community Is QuarantinedCommmunities -->
+                <CheckBox x:Name="FilterisQuarantinedCommmunitiesCheckBox" Margin="5,5,0,0"
+                          IsChecked="{Binding CommunityFilter.FilterisQuarantinedCommmunities}"
+                          Content="{DynamicResource LangKeyFilterQuarantinedCommunity}" />
+
+                <!-- Filter Community Is userIsSubscriberCommmunities -->
+                <CheckBox x:Name="FilteruserIsSubscriberCommmunitiesCheckBox" Margin="5,5,0,0"
+                          IsChecked="{Binding CommunityFilter.FilteruserIsSubscriberCommmunities}"
+                          Content="{DynamicResource LangKeyFilteruserIsSubscriberCommunity}" />
+
+                <!-- Filter Community Is showMediaCommmunities -->
+                <CheckBox  x:Name="FilterMediaCommmunitiesCheckBox" Margin="5,5,0,0"
+                          IsChecked="{Binding CommunityFilter.FilterMediaCommmunities}"
+                          Content="{DynamicResource LangKeyFilterFilterMediaCommunity}" />
+                <StackPanel Margin="20,0,0,0" Visibility="{Binding CommunityFilter.FilterMediaCommmunities,Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <!-- Filter Community Is should showMediaCommmunities -->
+                    <RadioButton GroupName="ShowMedia" x:Name="FiltershowMediaCommmunitiesCheckBox" Margin="5,5,0,0"
+                          IsChecked="{Binding CommunityFilter.FiltershowMediaCommmunities}"
+                          Content="{DynamicResource LangKeyFiltershowMediaCommunity}" />
+
+                    <!-- Filter Community Is NotshowMediaCommmunities -->
+                    <RadioButton GroupName="ShowMedia" x:Name="FilterNotshowMediaCommmunitiesCheckBox" Margin="5,5,0,5"
+                          IsChecked="{Binding CommunityFilter.FilterNotshowMediaCommmunities}"
+                          Content="{DynamicResource LangKeyFilterNotshowMediaCommunity}" />
+                </StackPanel>
+                <!-- Filter Community Is emojisEnabledCommmunities -->
+                <CheckBox x:Name="FilteremojisEnabledCommmunitiesCheckBox" Margin="5,5,0,0"
+                          IsChecked="{Binding CommunityFilter.FilteremojisEnabledCommmunities}"
+                          Content="{DynamicResource LangKeyFilteremojisEnabledCommunity}" />
+
+                <!-- Filter Community Is originalContentTagEnabledCommmunities -->
+                <CheckBox x:Name="FilteroriginalContentTagEnabledCommmunitiesCheckBox" Margin="5,5,0,0"
+                          IsChecked="{Binding CommunityFilter.FilteroriginalContentTagEnabledCommmunities}"
+                          Content="{DynamicResource LangKeyFilteroriginalContentTagEnabledCommunity}" />
+
+                <!-- Filter Community Is allOriginalContentCommmunities -->
+                <CheckBox x:Name="FilterallOriginalContentCommmunitiesCheckBox" Margin="5,5,0,0"
+                          IsChecked="{Binding CommunityFilter.FilterallOriginalContentCommmunities}"
+                          Content="{DynamicResource LangKeyFilterOriginalContentCommunity}" />
+
+                <!--Community  Has SubscribersCounts -->
+                <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                    <CheckBox x:Name="FilterSubscribersCountsCheckbox"
+                              IsChecked="{Binding CommunityFilter.FilterSubscribersCounts}"
+                              Content="{DynamicResource LangKeyFilterBySubscribersCounts}" />
+                    <Label Content="{DynamicResource LangKeyMinimum}" VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding CommunityFilter.FilterSubscribersCounts}"
+                                            TextAlignment="Center" Margin="5,5,0,0"
+                                            Value="{Binding CommunityFilter.SubscribersCounts.StartValue}" Minimum="0" />
+                    <Label Content="{DynamicResource LangKeyMaximum}" VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding CommunityFilter.FilterSubscribersCounts}"
+                                            Minimum="{Binding CommunityFilter.SubscribersCounts.StartValue}"
+                                            TextAlignment="Center"
+                                            Value="{Binding CommunityFilter.SubscribersCounts.EndValue}"
+                                            Margin="0,5,0,0" />
+                </StackPanel>
+
+                <!--Community  Has WlsCounts -->
+                <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                    <CheckBox x:Name="FilterwlsCountsCheckbox" IsChecked="{Binding CommunityFilter.FilterwlsCounts}"
+                              Content="{DynamicResource LangKeyFilterBywlsCounts}" />
+                    <Label Content="{DynamicResource LangKeyMinimum}" VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding CommunityFilter.FilterwlsCounts}"
+                                            TextAlignment="Center" Margin="0,5,0,0"
+                                            Value="{Binding CommunityFilter.WlsCounts.StartValue}" Minimum="0" />
+                    <Label Content="{DynamicResource LangKeyMaximum}" VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding CommunityFilter.FilterwlsCounts}"
+                                            Minimum="{Binding CommunityFilter.wlsCounts.StartValue}"
+                                            TextAlignment="Center"
+                                            Value="{Binding CommunityFilter.WlsCounts.EndValue}" Margin="0,5,0,0" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>
