@@ -1,0 +1,156 @@
+﻿<UserControl x:Class="RedditDominatorUI.CustomControl.PostFilterControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls">
+    <UserControl.Resources>
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <StackPanel>
+
+            <!--<CheckBox Margin="10,5,0,0" x:Name="PinnedcheckBox" Content="{DynamicResource LangKeyShouldBePinned}" IsChecked="{Binding PostFilter.FilterPinned}"/>-->
+
+
+            <CheckBox Margin="10,5,0,0" x:Name="SponsoredCheckBox" Content="{DynamicResource LangKeyShouldBeSponsored}"
+                      IsChecked="{Binding PostFilter.FilterSponsored}" />
+
+
+            <CheckBox Margin="10,5,0,0" x:Name="LockedCheckBox" Content="{DynamicResource LangKeyShouldBeLocked}"
+                      IsChecked="{Binding PostFilter.FilterLocked}" />
+
+
+            <CheckBox Margin="10,5,0,0" x:Name="ArchivedCheckBox" Content="{DynamicResource LangKeyShouldBeArchived}"
+                      IsChecked="{Binding PostFilter.FilterArchived}" />
+
+
+            <CheckBox Margin="10,5,0,0" x:Name="HiddenCheckBox" Content="{DynamicResource LangKeyShouldBeHidden}"
+                      IsChecked="{Binding PostFilter.FilterHidden}" />
+
+
+            <!--<CheckBox Margin="10,5,0,0" x:Name="RoadblockCheckBox" Content="{DynamicResource LangKeyShouldBeRoadblock}"
+                      IsChecked="{Binding PostFilter.FilterRoadblock}" />-->
+
+
+            <CheckBox Margin="10,5,0,0" x:Name="BlankCheckBox" Content="{DynamicResource LangKeyShouldBeBlank}"
+                      IsChecked="{Binding PostFilter.FilterBlankPost}" />
+
+
+            <CheckBox Margin="10,5,0,0" x:Name="OriginalContentCheckBox"
+                      Content="{DynamicResource LangKeyShouldBeOriginalcontent}"
+                      IsChecked="{Binding PostFilter.FilterOriginalContent}" />
+
+            <!--Gold Counts-->
+            <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                <CheckBox Name="CommentCheckBox" Content="{DynamicResource LangKeyShouldHaveGoldcountInSpecificRange}"
+                          IsChecked="{Binding PostFilter.FilterGoldCounts}" />
+                <controls:NumericUpDown Margin="5,5,0,0" Minimum="0" IsEnabled="{Binding PostFilter.FilterGoldCounts}"
+                                        Value="{Binding PostFilter.GoldCounts.StartValue}" />
+                <Label Content="{DynamicResource LangKeyTo}" VerticalAlignment="Center" Margin="0,5,0,0" />
+                <controls:NumericUpDown Margin="0,5,0,0" Minimum="{Binding PostFilter.GoldCounts.StartValue}"
+                                        IsEnabled="{Binding PostFilter.FilterGoldCounts}"
+                                        Value="{Binding PostFilter.GoldCounts.EndValue}" />
+            </StackPanel>
+
+            <!--Score Filter-->
+            <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                <CheckBox Name="ScoreCheckBox" Content="{DynamicResource LangKeyShouldHaveScoreInASpecificRange}"
+                          IsChecked="{Binding PostFilter.FilterScore}" />
+                <controls:NumericUpDown Margin="5,5,0,0" Minimum="0" IsEnabled="{Binding PostFilter.FilterScore}"
+                                        Value="{Binding PostFilter.Score.StartValue}" />
+                <Label Content="{DynamicResource LangKeyTo}" VerticalAlignment="Center" Margin="0,5,0,0" />
+                <controls:NumericUpDown Margin="0,5,0,0" Minimum="{Binding PostFilter.Score.StartValue}"
+                                        IsEnabled="{Binding PostFilter.FilterScore}"
+                                        Value="{Binding PostFilter.Score.EndValue}" />
+            </StackPanel>
+
+            <!--numCrossposts-->
+            <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                <CheckBox Name="NumCrosspostsCheckBox"
+                          Content="{DynamicResource LangKeyShouldHaveNumcrosspostsInASpecificRange}"
+                          IsChecked="{Binding PostFilter.FilterCrossPostsCount}" />
+                <controls:NumericUpDown Margin="5,5,0,0" Minimum="0"
+                                        IsEnabled="{Binding PostFilter.FilterCrossPostsCount}"
+                                        Value="{Binding PostFilter.CrossPostsCount.StartValue}" />
+                <Label Content="{DynamicResource LangKeyTo}" VerticalAlignment="Center" Margin="0,5,0,0" />
+                <controls:NumericUpDown Margin="0,5,0,0" Minimum="{Binding PostFilter.CrossPostsCount.StartValue}"
+                                        IsEnabled="{Binding PostFilter.FilterCrossPostsCount}"
+                                        Value="{Binding PostFilter.CrossPostsCount.EndValue}" />
+            </StackPanel>
+
+            <!--vote-->
+            <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                <CheckBox Name="Chkvotes" Content="{DynamicResource LangKeyShouldHaveNumberOfVotesInSpecificRange}"
+                          IsChecked="{Binding PostFilter.FilterViewCount}" />
+                <controls:NumericUpDown Margin="5,5,0,0" Minimum="0" IsEnabled="{Binding PostFilter.FilterViewCount}"
+                                        Value="{Binding PostFilter.ViewCount.StartValue}" />
+                <Label Content="{DynamicResource LangKeyTo}" VerticalAlignment="Center" Margin="0,5,0,0" />
+                <controls:NumericUpDown Margin="0,5,0,0" Minimum="{Binding PostFilter.ViewCount.StartValue}"
+                                        IsEnabled="{Binding PostFilter.FilterViewCount}"
+                                        Value="{Binding PostFilter.ViewCount.EndValue}" />
+            </StackPanel>
+
+            <!--Comments-->
+            <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                <CheckBox Name="Chkcomment" Content="{DynamicResource LangKeyComments}"
+                          IsChecked="{Binding PostFilter.FilterCommentsCount}" />
+                <controls:NumericUpDown Margin="5,5,0,0" Minimum="0"
+                                        IsEnabled="{Binding PostFilter.FilterCommentsCount}"
+                                        Value="{Binding PostFilter.CommentsCount.StartValue}" />
+                <Label Content="{DynamicResource LangKeyTo}" Margin="0,5,0,0" />
+                <controls:NumericUpDown Margin="0,5,0,0" Minimum="{Binding PostFilter.CommentsCount.StartValue}"
+                                        IsEnabled="{Binding PostFilter.FilterCommentsCount}"
+                                        Value="{Binding PostFilter.CommentsCount.EndValue}" />
+            </StackPanel>
+
+            <StackPanel Margin="10,5">
+                <CheckBox IsChecked="{Binding PostFilter.IsCheckedFlairFilter}"
+                                              Content="Flair Filter On Post" />
+                <StackPanel Margin="15 8 0 0" Visibility="{Binding PostFilter.IsCheckedFlairFilter,Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <RadioButton GroupName="FlairOption" IsChecked="{Binding PostFilter.IsCheckedSelectFlair}" 
+                                              Content="Select Flair" />
+                    <StackPanel Visibility="{Binding PostFilter.IsCheckedSelectFlair,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Orientation="Horizontal" Margin="15,5,0,0">
+                        <RadioButton GroupName="FlairFilter" Margin="6,0,0,0"
+                                                     IsChecked="{Binding PostFilter.IsCheckedGeneralDiscourse}"
+                                                     Content="General Discourse" />
+                        <RadioButton GroupName="FlairFilter" Margin="10,0,0,0"
+                                                     IsChecked="{Binding PostFilter.IsCheckedHighlights}"
+                                                     Content="Highlights" />
+                        <RadioButton GroupName="FlairFilter" Margin="10,0,0,0"
+                                                     IsChecked="{Binding PostFilter.IsCheckedDiscussion}"
+                                                     Content="Discussion" />
+                        <RadioButton GroupName="FlairFilter" Margin="10,0,0,0"
+                                                     IsChecked="{Binding PostFilter.IsCheckedDiscuss}"
+                                                     Content="Discuss" />
+                        <RadioButton GroupName="FlairFilter" Margin="10,0,0,0"
+                                                     IsChecked="{Binding PostFilter.IsCheckedPhoto}"
+                                                     Content="Photo" />
+                        <RadioButton GroupName="FlairFilter" Margin="10,0,0,0"
+                                                     IsChecked="{Binding PostFilter.IsCheckedWedding}"
+                                                     Content="Wedding" />
+                        <RadioButton GroupName="FlairFilter" Margin="10,0,0,0"
+                                                     IsChecked="{Binding PostFilter.IsCheckedImage}"
+                                                     Content="Image" />
+                        <RadioButton GroupName="FlairFilter" Margin="10,0,0,0"
+                                                     IsChecked="{Binding PostFilter.IsCheckedBlastFromPast}"
+                                                     Content="BlastFromPast" />
+                        <RadioButton GroupName="FlairFilter" Margin="10,0,0,0"
+                                                     IsChecked="{Binding PostFilter.IsCheckedStats}"
+                                                     Content="Stats" />
+                        <RadioButton GroupName="FlairFilter" Margin="10,0,0,0"
+                                                     IsChecked="{Binding PostFilter.IsCheckedImUnoriginal}"
+                                                     Content="Im Unoriginal" />
+                        <RadioButton GroupName="FlairFilter" Margin="10,0,0,0"
+                                                     IsChecked="{Binding PostFilter.IsCheckedVideo}"
+                                                     Content="Video" />
+                    </StackPanel>
+                    <RadioButton GroupName="FlairOption" IsChecked="{Binding PostFilter.IsCheckedCustomFlair}"
+                                              Content="Custom Flair" Margin="0 8 0 0"/>
+                    <TextBox Text="{Binding PostFilter.CustomFlairText,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="22,5,0,0" Width="200" HorizontalAlignment="Left" Name="FlairTextBox" Visibility="{Binding PostFilter.IsCheckedCustomFlair,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

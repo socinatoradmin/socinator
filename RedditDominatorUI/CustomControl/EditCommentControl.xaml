@@ -1,0 +1,142 @@
+﻿<UserControl x:Class="RedditDominatorUI.CustomControl.EditCommentControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:RedditDominatorUI.CustomControl"
+             xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:EditCommentControl}">
+
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid x:Name="MainGrid">
+        <Expander FontWeight="Bold" BorderThickness="2" Header="{DynamicResource LangKeyEditComment}"
+                  Foreground="White"
+                  IsExpanded="True" Margin="5">
+            <Grid>
+                <TabControl Name="EditCommentTab" SelectedIndex="{Binding EditCommentInfo.SelectedIndex}">
+                    <TabItem Header="Comment Setting" controls:ControlsHelper.HeaderFontSize="20"
+                             controls:ControlsHelper.HeaderFontWeight="SemiBold">
+                        <Grid>
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                                    <Label Content="Edit Comment Url" VerticalAlignment="Top" Width="200" Height="25" />
+                                    <TextBox x:Name="TxtCommentUrl" VerticalAlignment="Top" Width="200" Height="25"
+                                             Text="{Binding EditCommentInfo.EditCommentUrl,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                                    <Label Content="Message" VerticalAlignment="Top" Width="200" Height="25" />
+                                    <TextBox x:Name="TxtMessage" VerticalAlignment="Top" Width="200" Height="70"
+                                             VerticalScrollBarVisibility="Auto"
+                                             Text="{Binding EditCommentInfo.Message,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                             TextWrapping="Wrap" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="30,10,0,0"
+                                            Visibility="{Binding SelectAccountVisibility, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <Label Content="Select Account" HorizontalAlignment="Left" Width="200" Height="25" />
+                                    <ComboBox x:Name="CmbBoxAccountLists" IsEditable="True"
+                                              ItemsSource="{Binding ListAccounts}"
+                                              SelectedItem="{Binding EditCommentInfo.Accounts,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                              Width="200" Height="25" SelectedIndex="0" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20,10,0,0">
+                                    <Button Visibility="Visible" Name="BtnImportQuery"
+                                            Style="{StaticResource ButtonStyle}"
+                                            Background="{DynamicResource AccentBaseColorBrush}" Width="100" Height="25"
+                                            VerticalAlignment="Top" Margin="10,0,0,0"
+                                            ToolTip="Import From csv/txt file"
+                                            Command="{Binding ImportFromCsvCommand}"
+                                            CommandParameter="{Binding CommandParameter}">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                            <Rectangle Width="15" Height="15" Fill="White" HorizontalAlignment="Center">
+                                                <Rectangle.OpacityMask>
+                                                    <VisualBrush Stretch="Fill"
+                                                                 Visual="{StaticResource appbar_page_upload}" />
+                                                </Rectangle.OpacityMask>
+                                            </Rectangle>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button x:Name="BtnAddToList" Style="{StaticResource ButtonStyle}"
+                                            Background="{DynamicResource AccentBaseColorBrush}" Width="100" Height="25"
+                                            VerticalAlignment="Top" Margin="10,0,0,0" ToolTip="Add Urls To The List"
+                                            Command="{Binding AddCommentCommand}"
+                                            CommandParameter="{Binding CommandParameter}">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Rectangle Width="15" Height="15" Fill="White" HorizontalAlignment="Center">
+                                                <Rectangle.OpacityMask>
+                                                    <VisualBrush Stretch="Fill"
+                                                                 Visual="{StaticResource appbar_add_multiple}" />
+                                                </Rectangle.OpacityMask>
+                                            </Rectangle>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Comment List" controls:ControlsHelper.HeaderFontSize="20"
+                             controls:ControlsHelper.HeaderFontWeight="SemiBold">
+                        <Grid>
+                            <GroupBox Header="Comment List" FontWeight="Bold" BorderThickness="1" Foreground="White">
+                                <DataGrid Name="DataGridQueryList" Width="auto" AutoGenerateColumns="False"
+                                          CanUserAddRows="False"
+                                          SelectionMode="Single" ItemsSource="{Binding ListEditCommentInfo}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Width="*" FontSize="12" Binding="{Binding EditCommentUrl}">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock Text="Edit Comment Url" VerticalAlignment="Center"
+                                                           HorizontalAlignment="Center" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Width="*" FontSize="12" Binding="{Binding Message}">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock Text="Message" VerticalAlignment="Center"
+                                                           HorizontalAlignment="Center" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Width="*" FontSize="12" Binding="{Binding Accounts}">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock Text="Select Accounts" VerticalAlignment="Center"
+                                                           HorizontalAlignment="Center" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTemplateColumn Width="*">
+                                            <DataGridTemplateColumn.Header>
+                                                <TextBlock Text="{DynamicResource LangKeyAction}" />
+                                            </DataGridTemplateColumn.Header>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Background="Transparent" Name="BtnDelete"
+                                                            Command="{Binding DataContext.DeleteCommentCommand, 
+                                                        RelativeSource= {RelativeSource AncestorType= DataGrid}}"
+                                                            CommandParameter="{Binding}">
+                                                        <Button.Content>
+                                                            <Rectangle Width="15" Height="20" Fill="Black"
+                                                                       Name="DeleteSingle">
+                                                                <Rectangle.OpacityMask>
+                                                                    <VisualBrush Stretch="Fill"
+                                                                                 Visual="{StaticResource appbar_delete}" />
+                                                                </Rectangle.OpacityMask>
+                                                            </Rectangle>
+                                                        </Button.Content>
+                                                    </Button>
+
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </GroupBox>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+        </Expander>
+    </Grid>
+</UserControl>

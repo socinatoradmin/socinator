@@ -1,0 +1,142 @@
+﻿<local:BroadcastMessageBase x:Class="RedditDominatorUI.RDViews.Messanger.BroadcastMessage"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:local="clr-namespace:RedditDominatorUI.RDViews.Messanger"
+                            mc:Ignorable="d" x:Name="BroadCast"
+                            xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                            xmlns:customControl1="clr-namespace:RedditDominatorUI.CustomControl"
+                            xmlns:dhCustomControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+                            xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel VerticalAlignment="Top">
+
+            <!--Header Section-->
+            <dhCustomControl:HeaderControl Margin="0,0,15,0" CampaignName="{Binding CampaignName}"
+                                           Name="SendMessageHeader"
+                                           IsCampaignNameEditable="{Binding IsEditCampaignName}"
+                                           IsCancelEditVisible="{Binding CancelEditVisibility}"
+                                           CancelEditCommand="{Binding CancelEditCommand}"
+                                           InfoCommand="{Binding InfoCommand}" />
+        </StackPanel>
+        <Grid Margin="0,40,0,90">
+
+            <!--Filter section-->
+            <Grid Name="MainGrid" Margin="0,5,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical">
+
+                        <!--Search query section-->
+                        <Expander Header="{DynamicResource LangKeySearchQuery}" IsExpanded="True" Margin="5">
+                            <dhCustomControl:SearchQueryControl
+                                IsExpanded="{Binding IsExpanded,ElementName=SendMessageHeader,UpdateSourceTrigger=Explicit}"
+                                Name="BrodcastMessagesSearchControl"
+                                ListQueryType="{Binding BrodcastMessageModel.ListQueryType}"
+                                ListQueryInfo="{Binding BrodcastMessageModel.SavedQueries}"
+                                AddQueryCommand="{Binding AddQueryCommand}"
+                                CommandParameter="{Binding ElementName=BroadCast}"
+                                CustomFilterCommand="{Binding CustomFilterCommand}"
+                                DeleteQueryCommand="{Binding DeleteQueryCommand}"
+                                DeleteMulipleCommand="{Binding DeleteMulipleCommand}" />
+                        </Expander>
+
+                        <!-- Messages manager Expender-->
+                        <Expander IsExpanded="True" Header="{DynamicResource LangKeyManageMessages}" Margin="5,5">
+                            <StackPanel>
+                                <CheckBox Content="{DynamicResource LangKeySpintax}"
+                                          IsChecked="{Binding BrodcastMessageModel.IsSpintax}" Margin="15,2"
+                                          ToolTip="{DynamicResource LangKeyMessageSpintaxFormat}" FontSize="15"
+                                          FontWeight="Bold" />
+                                
+                                <dhCustomControl:MessagesControl Name="MessagesControl"
+                                                                 Messages="{Binding BrodcastMessageModel.ManageMessagesModel,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                                 AddMessagesCommand="{Binding AddMessagesCommand}"
+                                                                 CommandParameter="{Binding ElementName=MessagesControl}" />
+                                <dhCustomControl:ManageMessages Name="ManageMessages"
+                                                                LstManageMessagesModel="{Binding BrodcastMessageModel.LstManageMessagesModel,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+                            </StackPanel>
+                        </Expander>
+
+                        <!-- After JobConfiguration  Expender-->
+                        <Expander IsExpanded="True" Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+                            <dhCustomControl:JobConfigControl
+                                JobConfiguration="{Binding BrodcastMessageModel.JobConfiguration}" />
+                        </Expander>
+
+                        <!-- After User Filters Expender-->
+                        <Expander IsExpanded="True" Header="{DynamicResource LangKeyUserFilters}" Margin="5,5"
+                                  Visibility="{Binding BrodcastMessageModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <customControl1:UserFiltersControl x:Name="UserFiltersControl"
+                                                               UserFilter="{Binding BrodcastMessageModel.UserFilterModel}" />
+                        </Expander>
+
+
+                        <!--other Configuration-->
+
+                        <Expander Header="{DynamicResource LangKeyOtherConfigurations}" Margin="5,5"
+                              Visibility="{Binding BrodcastMessageModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel>
+                                <!--<StackPanel>
+                                    <CheckBox Margin="5,5"
+                                            IsChecked="{Binding BrodcastMessageModel.IsSkipUsersWhoWereAlreadySentAMessageFromSoftware}"
+                                            Content="{DynamicResource LangKeySkipUsersWhoWereAlreadySentAMessageFromTheSoftware}" />
+                                </StackPanel>-->
+                                <StackPanel>
+                                    <CheckBox Content="{DynamicResource LangKeyMessageUniqueUsersFromEachAccount}"
+                                          IsChecked="{Binding BrodcastMessageModel.IschkUniqueUserForCampaign}"
+                                          Margin="10,5" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>
+
+
+                        <!-- Blacklists Expender-->
+
+                        <Expander IsExpanded="True" Header="{DynamicResource LangKeyManageBlacklistedUsers}"
+                                  Margin="5,5"
+                                  Visibility="{Binding BrodcastMessageModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel>
+                                <CheckBox Content="{DynamicResource LangKeyPrivateBlacklist}" Margin="10,5"
+                                          IsChecked="{Binding BrodcastMessageModel.IsChkBroadCastPrivateBlacklist}" />
+                                <CheckBox Content="{DynamicResource LangKeyGroupBlacklist}" Margin="10,5"
+                                          IsChecked="{Binding BrodcastMessageModel.IsChkBroadCastGroupBlacklist}" />
+                            </StackPanel>
+                        </Expander>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+
+        </Grid>
+        <StackPanel Margin="5,35,5,0" VerticalAlignment="Bottom">
+            <dhCustomControl:FooterControl x:Name="BrodcastMessageFooter"
+                                           CampaignManager="{Binding CampaignButtonContent}"
+                                           NoOfAccountsSelected="{Binding SelectedAccountCount,Mode=TwoWay}"
+                                           Height="96" VerticalAlignment="Top"
+                                           SelectAccountCommand="{Binding SelectAccountCommand}"
+                                           CreateCampaignCommand="{Binding CreateCampaignCommand}" />
+        </StackPanel>
+
+
+        <!--Help section-->
+        <controls:FlyoutsControl>
+            <controls:Flyout Header="{DynamicResource LangKeyModuleDescription}" Position="Right"
+                             Visibility="Collapsed" Name="HelpFlyout" Theme="Accent" FontWeight="Bold"
+                             Foreground="White" Width="300" BorderBrush="Black" BorderThickness="2"
+                             DataContext="{Binding ElementName=BrodcastMessageFooter,Path=DataContext}"
+                             IsOpen="{Binding IsOpen,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                             Background="{DynamicResource AccentBaseColorBrush}" FontSize="10">
+                <dhCustomControl:HelpControl
+                    ModuleDescription="{DynamicResource LangKeyModuleDescriptionRedditAutoBroadcastMessage}"
+                    VideoTutorial="{Binding VideoTutorialLink}" 
+                    KnowledgeBaseLink="{Binding KnowledgeBaseLink}"
+                    ContactSupportLink="{Binding ContactSupportLink}"
+                    DataContext="{Binding ElementName=BrodCastMessageFooter,Path=DataContext}" />
+            </controls:Flyout>
+        </controls:FlyoutsControl>
+
+    </Grid>
+</local:BroadcastMessageBase>
