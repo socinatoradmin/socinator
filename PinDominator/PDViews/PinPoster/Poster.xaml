@@ -1,0 +1,293 @@
+﻿<UserControl x:Class="PinDominator.PDViews.PinPoster.Poster"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PinDominator.PDViews.PinPoster"
+             mc:Ignorable="d" 
+            xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+               xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility">
+    <Grid >
+        <Grid Name="MainGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.6*" />
+                <RowDefinition Height="10*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <customControl:HeaderControl/>
+            </Grid>
+            <ScrollViewer Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Vertical">
+                            <RadioButton Margin="0,10,0,0"  Name="rdb_SinglePost" Content="{DynamicResource PDlangCreateSinglePost}" Grid.Row="0"  GroupName="selectPostType" IsChecked="{Binding isSinglePostChecked}" >
+                                <!--Checked="rdb_SinglePost_Checked"-->
+                                <!--<RadioButton.Style>
+                                                <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsChecked" Value="true">
+                                                            <Setter Property="Command" Value="{Binding RdbSinglePostCheckedCommand,Source={StaticResource viewModel}}"/>
+                                                        </Trigger>
+
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </RadioButton.Style>-->
+
+                            </RadioButton>
+                            <RadioButton Margin="0,8,0,0"  Content="{DynamicResource PDlangCreateMultiplePosts}" Grid.Row="0"  GroupName="selectPostType" VerticalAlignment="Top" IsChecked="{Binding isMultiPostChecked}" Name="rdbbtn_MultiPost">
+                                <!--Checked="rdbbtn_MultiPost_Checked"-->
+                                <!--<RadioButton.Style>
+                                                <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsChecked" Value="true">
+                                                            <Setter Property="Command" Value="{Binding RdbbtnMultiPostCheckedCommand,Source={StaticResource viewModel}}"/>
+                                                        </Trigger>
+
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </RadioButton.Style>-->
+                            </RadioButton>
+                            <RadioButton Margin="0,8,0,0"   Content="{DynamicResource PDlangMonitoredFolder}" Grid.Row="0"  GroupName="selectPostType" VerticalAlignment="Top" IsChecked="{Binding isMonitoredPosterChecked}" Name="rdbbtn_MonitorFolder">
+                                <!--Checked="rdbbtn_MonitorFolder_Checked"-->
+                                <!--<RadioButton.Style>
+                                                <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsChecked" Value="true">
+                                                            <Setter Property="Command" Value="{Binding RdbbtnMonitorFolderCheckedCommand,Source={StaticResource viewModel}}"/>
+                                                        </Trigger>
+
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </RadioButton.Style>-->
+                            </RadioButton>
+                            <TextBlock Name="txtblk_TagMediaGenerator"  Text="{DynamicResource PDlangAdvancedTools}" FontWeight="SemiBold" Margin="0,8,0,0"/>
+                            <Button Name="btnPostGenerator"
+                                                    Grid.Row="4" 
+                                                    Width="152"
+                                                    Height="30" 
+                                                    VerticalAlignment="Center"
+                                                    Foreground="White"
+                                                     Background="{DynamicResource AccentColorBrush}" Content="{DynamicResource PDlangImagePathGenerator}"
+                                                    FontSize="12"
+                                                    Margin="20,8,0,0">
+                            </Button>
+                        </StackPanel>
+                        <Rectangle VerticalAlignment="Stretch" Width="1" Margin="2" Stroke="Gray" HorizontalAlignment="Right" />
+                        <Grid Grid.Column="1">
+                            <StackPanel Orientation="Horizontal">
+                                <Grid>
+
+                                    <Grid>
+                                        <customControl:PostAreaBoxControl x:Name="SinglePostAreaBox" />
+                                    </Grid>
+
+                                    <Grid Visibility="{Binding IsMultiPostAreaVisible}" HorizontalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="0.5*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <Button Name="btnCreateMultiplePost"
+                                                            Grid.Column="0" Grid.Row="1"
+                                                            Width="159" Visibility="{Binding IsMultiPostAreaVisible}"
+                                                            Height="30"
+                                                            HorizontalAlignment="Left"
+                                                           Foreground="White"
+                                                            Background="{DynamicResource AccentColorBrush}"                  
+                                                            Content="{DynamicResource PDlangCreateMultiplePosts}"
+                                                            FontSize="12" 
+                                                            Margin="20,0,0,0" />
+
+
+
+                                        <Button Name="btnLoadFromCSV"
+                                                        Content="{DynamicResource PDlangImportCSV}"
+                                                            Grid.Row="2" Visibility="{Binding IsMultiPostAreaVisible}"
+                                                            Width="159"
+                                                            Height="30"
+                                                            HorizontalAlignment="Left"
+                                                           Foreground="White"
+                                                            Background="{DynamicResource AccentColorBrush}"                              
+                                                            FontSize="12"
+                                                             Margin="20,0,0,0" Command="{Binding LoadFromCSVCommand}"/>
+
+
+
+
+                                        <Button Name="btnLoadFromText"
+                                                            Grid.Row="3" Visibility="{Binding IsMultiPostAreaVisible}"
+                                                            Width="159"
+                                                            Height="30"
+                                                            HorizontalAlignment="Left"
+                                                            Foreground="White"
+                                                            Background="{DynamicResource AccentColorBrush}"
+                                                            FontSize="12"
+                                                            Margin="20,0,0,0"
+                                                            Content="{DynamicResource PDlangImportTextFile}"  Command="{Binding LoadFromTextCommand}"/>
+
+
+
+                                    </Grid>
+
+                                    <Grid HorizontalAlignment="Center" Visibility="{Binding IsMonitorFolderAreaVisible}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="0.5*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <Button Name="btnSelectMonitorFolder"
+                                                            Grid.Column="0" Grid.Row="1"
+                                
+                                                            Width="160" Visibility="{Binding IsMonitorFolderAreaVisible}"
+                                                            Height="30"
+                                                            HorizontalAlignment="Left"
+                                                            Foreground="White"
+                                                            Background="{DynamicResource AccentColorBrush}"                          
+                                                            FontSize="12"
+                                                           Margin="20,0,0,0" Command="{Binding SelectMonitorFolderCommand}">
+
+                                            <Button.Content>
+                                                <TextBlock Text="{DynamicResource PDlangSelectMonitoredFolder}"/>
+                                            </Button.Content>
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+
+                            </StackPanel>
+                        </Grid>
+
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" >
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.3*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Orientation="Vertical" Grid.Column="0">
+
+                                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <Label Grid.Column="0"  VerticalAlignment="Center"   Content="{DynamicResource PDlangThread}" Margin="10,2,0,0" FontWeight="SemiBold" />
+                                    <StackPanel>
+                                        <Controls:NumericUpDown Name="txt_Threads" Margin="5,5,5,0" Minimum="1" Value="{Binding ThreadCount }"/>
+                                    </StackPanel>
+
+                                </StackPanel>
+                                <RadioButton  Margin="20,5,0,0"   Content="{DynamicResource PDlangAsaPost}"  VerticalAlignment="Center" HorizontalAlignment="Left"  Name="chkbox_PostOnOwnAccount"   IsChecked="{Binding IsUploadAsNormalPic}" />
+                                <RadioButton   Margin="20,5,0,0"   Content="{DynamicResource PDlangAsaPP}"   VerticalAlignment="Center"  HorizontalAlignment="Left" Name="chkbox_PostAsProfilePic" IsChecked="{Binding IsUploadAsProfilePic}" />
+                                <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Left" Margin="10,8,0,0">
+                                    <Label Grid.Column="2" 
+                               VerticalAlignment="Center" 
+                               Content="{DynamicResource PDlangDelayPosts}"/>
+
+                                    <StackPanel>
+                                        <Controls:NumericUpDown Name="txt_DelayMin" Margin="5,5,5,0" Minimum="1" Value="{Binding MinDelayBetweenJobs }"/>
+                                    </StackPanel>
+
+                                    <Label Grid.Column="4"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" 
+                               Content="{DynamicResource PDlangTo}"
+                               />
+                                    <StackPanel>
+                                        <Controls:NumericUpDown Name="txt_DelayMax" Margin="5,5,5,0"  Value="{Binding MaxDelayBetweenJobs }"/>
+                                    </StackPanel>
+
+
+                                    <Label 
+                               VerticalAlignment="Center" 
+                               Content="{DynamicResource PDlangMinutes}"
+                             />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" Margin="10,8,0,0">
+                                    <Label Grid.Column="2" 
+                               VerticalAlignment="Center" 
+                               Content="{DynamicResource PDlangDelayPostsAccounts}"
+                               />
+                                    <StackPanel>
+                                        <Controls:NumericUpDown Name="txt_DelayMin_betweenAccount" Margin="5,5,5,0"  Value="{Binding MinDelay_BetweenAccount }"/>
+                                    </StackPanel>
+
+                                    <Label Grid.Column="4"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" 
+                               Content="{DynamicResource PDlangTo}"
+                               />
+                                    <StackPanel>
+                                        <Controls:NumericUpDown Name="txt_DelayMax_betweenAccount" Margin="5,5,5,0"  Value="{Binding MaxDelay_BetweenAccount }"/>
+                                    </StackPanel>
+
+
+                                    <Label 
+                               VerticalAlignment="Center" 
+                               Content="{DynamicResource PDlangSeconds}"
+                               />
+                                </StackPanel>
+
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1">
+                                <Grid Grid.Row="0">
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Label 
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Center"
+                                       Content="{DynamicResource PDlangPostPerDay}" />
+
+                                        <StackPanel>
+                                            <Controls:NumericUpDown Name="txt_ActivityCount" Margin="5,5,5,0"  Value="{Binding ConstantTotalActionCount }"/>
+                                        </StackPanel>
+
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Row="1">
+
+                                    <CheckBox Name="chk_Box_PostUnique" Content="{DynamicResource PDlangRepostUnique}"  VerticalAlignment="Center" HorizontalAlignment="Left"  IsChecked="{Binding DoUniqueOperation}" />
+                                </Grid>
+                            </StackPanel>
+
+                        </Grid>
+
+                    </Grid>
+
+
+                    <Grid Grid.Row="2">
+                        <customControl:FooterControl/>
+                    </Grid>
+
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+
+        <Controls:FlyoutsControl >
+            <Controls:Flyout Header="{DynamicResource PDlangModuleDescription}" Visibility="Collapsed" Position="Right"  Name="slider" Theme="Accent" FontWeight="Bold"
+                             Width="300" BorderBrush="Black" BorderThickness="2"  IsPinned="False"  IsOpen="False"   Background="{DynamicResource AccentBaseColorBrush}"  >
+                <customControl:HelpControl/>
+            </Controls:Flyout>
+        </Controls:FlyoutsControl >
+    </Grid>
+</UserControl>

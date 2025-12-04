@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="PinDominator.PDViews.Tools.DeleteComment.DeleteCommentConfiguration"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PinDominator.PDViews.Tools.DeleteComment"
+             mc:Ignorable="d" Height="500"
+             xmlns:Control="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility">
+    <Grid x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+
+        <!--AccountGrowthModeHeader-->
+        <customControl:AccountGrowthModeHeader Name="accountgrothHeader"/>
+
+        <ScrollViewer Grid.Row="1" >
+            <StackPanel>
+
+                <!--Run Timers-->
+                <Expander Header="{DynamicResource PDlangRunTimers}" Margin="5,5" IsExpanded="True">
+                    <StackPanel  Margin="5">
+                        <StackPanel Orientation="Horizontal"  Margin="5">
+                            <CheckBox Content="{DynamicResource PDlangWaitBetween}" Margin="0,0,5,0" IsChecked="{Binding IsChkWaitBetweenChecked}"/>
+                            <Control:NumericUpDown IsEnabled="{Binding IsChkWaitBetweenChecked}" Value="{Binding WaitRange.StartValue}"/>
+                            <Label Content="{DynamicResource PDlangAnd}"/>
+                            <Control:NumericUpDown IsEnabled="{Binding IsChkWaitBetweenChecked}" Minimum="{Binding WaitRange.StartValue}" Value="{Binding WaitRange.EndValue}"/>
+                            <Label Content="{DynamicResource PDlangMinutesBeforeEachNewOperation}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  Margin="5">
+                            <CheckBox Content="{DynamicResource PDlangWithDelayBetween}" Margin="0,0,5,0" IsChecked="{Binding IsWithDelayBetweenChecked}"/>
+                            <Control:NumericUpDown IsEnabled="{Binding IsWithDelayBetweenChecked}" Value="{Binding WithDelayRange.StartValue}"/>
+                            <Label Content="{DynamicResource PDlangAnd}"/>
+                            <Control:NumericUpDown IsEnabled="{Binding IsWithDelayBetweenChecked}" Minimum="{Binding WithDelayRange.StartValue}" Value="{Binding WithDelayRange.EndValue}"/>
+                            <Label Content="{DynamicResource PDlangSecondBetweenEachDelete}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  Margin="5">
+                            <CheckBox Content="{DynamicResource PDlangDeleteBetween}" Margin="0,0,5,0" IsChecked="{Binding IsDeleteBetweenChecked}"/>
+                            <Control:NumericUpDown IsEnabled="{Binding IsDeleteBetweenChecked}" Value="{Binding DeleteRange.StartValue}"/>
+                            <Label Content="{DynamicResource PDlangAnd}"/>
+                            <Control:NumericUpDown IsEnabled="{Binding IsDeleteBetweenChecked}"  Minimum="{Binding DeleteRange.StartValue}"  Value="{Binding DeleteRange.EndValue}"/>
+                            <Label Content="{DynamicResource PDlangCommentsPerOperation}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <CheckBox Content="{DynamicResource PDlangExecuteBetween}" Margin="0,0,5,0" IsChecked="{Binding IsExecuteBetweenChecked}"/>
+                            <Control:NumericUpDown IsEnabled="{Binding IsExecuteBetweenChecked}" Value="{Binding ExecuteRange.StartValue}"/>
+                            <Label Content="{DynamicResource PDlangAnd}"/>
+                            <Control:NumericUpDown IsEnabled="{Binding IsExecuteBetweenChecked}" Minimum="{Binding ExecuteRange.StartValue}" Value="{Binding ExecuteRange.EndValue}"/>
+
+                        </StackPanel>
+                    </StackPanel>
+                </Expander>
+
+                <!--Delete Limits-->
+                <Expander Header="{DynamicResource PDlangDeleteLimits}" Margin="5,5" IsExpanded="True">
+                    <StackPanel  Margin="5">
+                        <StackPanel Orientation="Horizontal"  Margin="5">
+                            <CheckBox Content="{DynamicResource PDlangDeleteMaximumof}" Margin="0,0,5,0" IsChecked="{Binding IsDeleteMaximumChecked}"/>
+                            <Control:NumericUpDown IsEnabled="{Binding IsDeleteMaximumChecked}" Value="{Binding DeleteMaximumRange.StartValue}"/>
+                            <Label Content="{DynamicResource PDlangAnd}"/>
+                            <Control:NumericUpDown IsEnabled="{Binding IsDeleteMaximumChecked}" Minimum="{Binding DeleteMaximumRange.StartValue}" Value="{Binding DeleteMaximumRange.EndValue}"/>
+                            <Label Content="{DynamicResource PDlangPerDays}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  Margin="5">
+                            <CheckBox Content="{DynamicResource PDlangIncreaseEachDayWith}" Margin="0,0,5,0" IsChecked="{Binding IsIncreaseEachDayChecked}"/>
+                            <Control:NumericUpDown IsEnabled="{Binding IsIncreaseEachDayChecked}" Value="{Binding IncreaseEachDayRange.StartValue}"/>
+                            <Label Content="{DynamicResource PDlangUntilitReaches}"/>
+                            <Control:NumericUpDown IsEnabled="{Binding IsIncreaseEachDayChecked}" Minimum="{Binding IncreaseEachDayRange.StartValue}" Value="{Binding IncreaseEachDayRange.EndValue}"/>
+                            <Label Content="{DynamicResource PDlangMaxDeletePerDay}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  Margin="5">
+                            <CheckBox Content="{DynamicResource PDlangScrapeCommentsFromMostRecent}" Margin="0,0,5,0" IsChecked="{Binding IsChkRecentCommentsScrapeChecked}"/>
+                            <Control:NumericUpDown IsEnabled="{Binding IsChkRecentCommentsScrapeChecked}" Value="{Binding NoOfPost}"/>
+                            <Label Content="{DynamicResource langPost}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Expander>
+
+                <!--Comment Filters-->
+                <Expander Header="{DynamicResource PDlangCommentFilters}" Margin="5,5" IsExpanded="True">
+                    <StackPanel  Margin="5">
+                        <CheckBox Content="{DynamicResource PDlangDeleteAllCommentsFromRecentPosts}" Margin="5" IsChecked="{Binding IsChkDeleteAllRecentPostsCommentsChecked}"/>
+                        <CheckBox Content="{DynamicResource PDlangDeleteNonEnglishComments}" Margin="5" IsChecked="{Binding IsChkDeleteNonEnglishCommentsChecked}"/>
+                        <CheckBox Content="{DynamicResource PDlangDoNotDeleteOwnComments}" Margin="5" IsChecked="{Binding IsChkDoNotDeleteOwnCommentsChecked}"/>
+                        <CheckBox Content="{DynamicResource PDlangDoNotDeleteOwnComments}" Margin="5" IsChecked="{Binding IsChkDeleteCommenthavingSpecificWordChecked}"/>
+                        <CheckBox Content="{DynamicResource PDlangDeleteCommentsOfUsersHavingFollowingUsername}" Margin="5" IsChecked="{Binding IsChkDeleteCommentsHavingSpecificUsernameChecked}"/>
+                    </StackPanel>
+                </Expander>
+                <Label Content="{DynamicResource PDlangAfterDeleteActions}" FontWeight="Bold" Margin="5"/>
+                <CheckBox Content="{DynamicResource PDlangBlockUserAfterHisCommentIsDeleted}" Margin="15,0,0,10" IsChecked="{Binding IsChkBlockUserAfterHisCommentDeletedChecked}"/>
+
+                <!--Copy Settings for send to other Accounts-->
+                <Expander Header="{DynamicResource PDlangCopySettingsForSendToOtherAccounts}" Margin="5,5">
+                    <StackPanel>
+                        <CheckBox  Margin="5" Content="{DynamicResource PDlangFilterAccounts}" IsChecked="{Binding IsChkFilterAccountsChecked}"/>
+                        <CheckBox  Margin="5" Content="{DynamicResource PDlangCopyStartStopStatusToSelectedAccounts}" IsChecked="{Binding IsChkCopyStartStopStatusChecked}"/>
+                        <CheckBox  Margin="5" Content="{DynamicResource PDlangCopyToosettingsToSelectedAccounts}" IsChecked="{Binding IsChkCopyToosettingsChecked}"/>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

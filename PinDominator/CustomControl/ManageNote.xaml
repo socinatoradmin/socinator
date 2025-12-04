@@ -1,0 +1,121 @@
+﻿<UserControl x:Class="PinDominator.CustomControl.ManageNote"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:PinDominator.CustomControl"
+             mc:Ignorable="d"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+             xmlns:pdModel="clr-namespace:PinDominatorCore.PDModel;assembly=PinDominatorCore"
+             d:DataContext="{d:DesignInstance local:ManageNote}">
+    <UserControl.Resources>
+        <converters:IndexToRowNoConverter x:Key="IndexToRowNoConverter" />
+    </UserControl.Resources>
+
+    <StackPanel Margin="10" x:Name="MainGrid">
+        <TextBlock FontWeight="Bold" Margin="0,10,0,5" FontSize="16" Text="{DynamicResource LangKeyNoteLists}"
+                   VerticalAlignment="Center" />
+        <ListView x:Name="NoteList" ItemsSource="{Binding LstManageNoteModel}"
+                  ItemContainerStyle="{StaticResource ListViewItems}" Margin="5">
+            <ListView.Resources>
+                <Style TargetType="{x:Type GridViewColumnHeader}"
+                       BasedOn="{StaticResource {x:Type GridViewColumnHeader}}">
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                </Style>
+            </ListView.Resources>
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="{DynamicResource LangKeySNo}"
+                                        DisplayMemberBinding="{Binding (ItemsControl.AlternationIndex),
+                                                  RelativeSource={RelativeSource AncestorType=ListViewItem},Converter={StaticResource IndexToRowNoConverter}}" />
+                        <GridViewColumn Header="{DynamicResource LangKeyNotes}"
+                                        DisplayMemberBinding="{Binding TryText}" />
+                        <GridViewColumn Header="{DynamicResource LangKeyQuery}">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate DataType="{x:Type pdModel:ManageNoteModel}">
+                                    <ListBox Name="chkSelectAccount" HorizontalAlignment="Center"
+                                             ItemsSource="{Binding SelectedQuery}">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <MultiBinding StringFormat="{}{0} [ {1} ]">
+                                                            <Binding Path="Content.QueryValue" />
+                                                            <Binding Path="Content.QueryType" />
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{DynamicResource LangKeyMediaPath}"
+                                        DisplayMemberBinding="{Binding MediaPath}" />
+                        <GridViewColumn Header="{DynamicResource LangKeyAction}">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate DataType="{x:Type pdModel:ManageNoteModel}">
+                                    <StackPanel Orientation="Horizontal" Margin="4">
+                                        <Button Name="BtnAction" Style="{StaticResource ButtonStyle}"
+                                                Background="{DynamicResource AccentBaseColorBrush}" Width="40"
+                                                Height="25"
+                                                VerticalAlignment="Top" Margin="10,0,0,0" Click="BtnAction_Click">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <Rectangle Width="15" Height="15" Fill="White"
+                                                           HorizontalAlignment="Center">
+                                                    <Rectangle.OpacityMask>
+                                                        <VisualBrush Stretch="Fill"
+                                                                     Visual="{StaticResource appbar_settings}" />
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                            </StackPanel>
+
+                                            <Button.ContextMenu>
+                                                <ContextMenu>
+                                                    <MenuItem Header="{DynamicResource LangKeyEdit}" Height="30"
+                                                              VerticalContentAlignment="Center"
+                                                              Name="EditNote" Click="EditNote_Click">
+                                                        <MenuItem.Icon>
+                                                            <Rectangle Width="20" Height="20" Fill="Black">
+                                                                <Rectangle.OpacityMask>
+                                                                    <VisualBrush Stretch="Fill"
+                                                                                 Visual="{StaticResource appbar_edit_box}" />
+                                                                </Rectangle.OpacityMask>
+                                                            </Rectangle>
+                                                        </MenuItem.Icon>
+                                                    </MenuItem>
+
+                                                    <Separator />
+
+                                                    <MenuItem Header="{DynamicResource LangKeyDelete}" Height="30"
+                                                              Click="DeleteSingleNote_Click"
+                                                              x:Name="DeleteSingleNote"
+                                                              VerticalContentAlignment="Center">
+                                                        <MenuItem.Icon>
+                                                            <Rectangle Width="15" Height="20" Fill="Black">
+                                                                <Rectangle.OpacityMask>
+                                                                    <VisualBrush Stretch="Fill"
+                                                                                 Visual="{StaticResource appbar_delete}" />
+                                                                </Rectangle.OpacityMask>
+                                                            </Rectangle>
+
+                                                        </MenuItem.Icon>
+                                                    </MenuItem>
+
+                                                </ContextMenu>
+                                            </Button.ContextMenu>
+
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </StackPanel>
+</UserControl>

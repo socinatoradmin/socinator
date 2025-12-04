@@ -1,0 +1,352 @@
+﻿<UserControl
+    x:Class="PinDominator.CustomControl.AddBoards"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:PinDominator.CustomControl"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{DynamicResource GabaritoSemiBold}"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <Style x:Key="TabStyle" TargetType="TabItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border
+                            x:Name="BorderTabItem"
+                            Margin="5,0"
+                            BorderThickness="1"
+                            CornerRadius="10,10,0,0">
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                ContentSource="Header" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="BorderTabItem" Property="Background" Value="{StaticResource AccentBaseColorBrush}" />
+                                <Setter TargetName="BorderTabItem" Property="BitmapEffect">
+                                    <Setter.Value>
+                                        <DropShadowBitmapEffect ShadowDepth="10" Color="#070852" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter TargetName="BorderTabItem" Property="Background" Value="#fae8fc" />
+                                <Setter TargetName="BorderTabItem" Property="BitmapEffect">
+                                    <Setter.Value>
+                                        <DropShadowBitmapEffect ShadowDepth="10" Color="#fad2d4" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="BorderTabItem" Property="Background" Value="{StaticResource AccentBaseColorBrush}" />
+                                <Setter TargetName="BorderTabItem" Property="BitmapEffect">
+                                    <Setter.Value>
+                                        <DropShadowBitmapEffect ShadowDepth="10" Color="#070852" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Width" Value="180" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+
+        <Expander
+            Margin="5"
+            BorderThickness="2"
+            FontWeight="Bold"
+            Foreground="White"
+            Header="{DynamicResource LangKeyAddBoard}"
+            IsExpanded="{Binding IsExpanded}"
+            Visibility="{Binding IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid>
+                <TabControl
+                    Name="BoardsTab"
+                    Background="Transparent"
+                    SelectedIndex="{Binding CurrentBoard.SelectedIndex, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                    <TabItem
+                        FontWeight="Bold"
+                        Header="{DynamicResource LangKeyBoardSetting}"
+                        Style="{StaticResource TabItemStyle}">
+                        <Grid>
+
+                            <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                <StackPanel Margin="30,10,0,0" Orientation="Horizontal">
+                                    <Label
+                                        Width="200"
+                                        Height="25"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Content="{DynamicResource LangKeyBoardName}" />
+                                    <TextBox
+                                        x:Name="TxtBoardName"
+                                        Width="200"
+                                        Height="25"
+                                        VerticalAlignment="Top"
+                                        Text="{Binding CurrentBoard.BoardName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        TextWrapping="Wrap"
+                                        VerticalScrollBarVisibility="Auto" />
+                                    <Label
+                                        VerticalAlignment="Top"
+                                        Content="{DynamicResource LangKeyCreateBoardFormatForMultiple}"
+                                        FontWeight="SemiBold" />
+                                </StackPanel>
+                                <StackPanel Margin="30,10,0,0" Orientation="Horizontal">
+                                    <Label
+                                        Width="200"
+                                        Height="25"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Content="{DynamicResource LangKeyDescription}" />
+                                    <TextBox
+                                        x:Name="TxtBoardDescription"
+                                        Width="200"
+                                        Height="65"
+                                        VerticalAlignment="Top"
+                                        Text="{Binding CurrentBoard.BoardDescription, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        TextWrapping="Wrap"
+                                        VerticalScrollBarVisibility="Auto" />
+                                    <Label
+                                        VerticalAlignment="Top"
+                                        Content="{DynamicResource LangKeyCreateBoardFormatForMultiple}"
+                                        FontWeight="SemiBold" />
+
+                                </StackPanel>
+                                <StackPanel Margin="30,10,0,0" Orientation="Horizontal">
+                                    <Label
+                                        Width="200"
+                                        Height="25"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Content="{DynamicResource LangKeySection}" />
+                                    <TextBox
+                                        x:Name="TxtBoardSection"
+                                        Width="200"
+                                        Height="65"
+                                        VerticalAlignment="Top"
+                                        Text="{Binding CurrentBoard.Section, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        TextWrapping="Wrap"
+                                        VerticalScrollBarVisibility="Auto" />
+                                    <Label
+                                        VerticalAlignment="Top"
+                                        Content="{DynamicResource LangKeyCreateBoardFormatForMultiple}"
+                                        FontWeight="SemiBold" />
+                                </StackPanel>
+                                <!--<StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                                    <Label VerticalAlignment="Top" Width="200"
+                                           Content="{DynamicResource LangKeyCategory}"
+                                           HorizontalAlignment="Left" Height="25" />
+                                    <ComboBox x:Name="CmbboxQueryTypeLists" ItemsSource="{ Binding ListCategoryType}"
+                                              SelectedItem="{Binding CurrentBoard.Category,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                              Width="200" VerticalAlignment="Top" Height="25" SelectedIndex="0" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="30,10,0,10">
+                                    <StackPanel>
+                                        <CheckBox x:Name="ChkUseRandomCategory"
+                                                  Content="{DynamicResource LangKeyUseRandomCategory}"
+                                                  FontWeight="SemiBold"
+                                                  IsChecked="{Binding CurrentBoard.UseRandomCategory,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+                                        <CheckBox x:Name="ChkSpintax"
+                                                  Content="{DynamicResource LangKeyCreateBoardSpintaxFormat}"
+                                                  FontWeight="SemiBold" Margin="0,5"
+                                                  IsChecked="{Binding CurrentBoard.ChkSpintax,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+                                        <CheckBox x:Name="ChkSkipCategory"
+                                                  Content="{DynamicResource LangKeySkipCommonCategory}"
+                                                  FontWeight="SemiBold" Margin="0,0"
+                                                  IsChecked="{Binding CurrentBoard.SkipCommonCategory,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                  IsEnabled="{Binding CurrentBoard.ChkSpintax,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+                                    </StackPanel>
+                                </StackPanel>-->
+                                <StackPanel Margin="30,10,0,0" Orientation="Horizontal">
+                                    <CheckBox IsChecked="{Binding CurrentBoard.KeepBoardSecret, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                                        <CheckBox.Content>
+                                            <StackPanel Orientation="Vertical">
+                                                <Label Content="Keep this board secret" />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Margin="5,0,0,0" Text="So only you and collaborators can see it." />
+                                                    <TextBlock
+                                                        Margin="5,0,0,0"
+                                                        Cursor="Hand"
+                                                        Text="Learn more"
+                                                        ToolTip="{Binding CurrentBoard.LearnMoreBoardPolicy}">
+                                                        <TextBlock.InputBindings>
+                                                            <MouseBinding Command="{Binding LearnMoreExecuteCommand}" MouseAction="LeftClick" />
+                                                        </TextBlock.InputBindings>
+                                                    </TextBlock>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                </StackPanel>
+                                <StackPanel
+                                    Margin="0,10"
+                                    HorizontalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <Button
+                                        Name="BtnImportBoards"
+                                        Width="100"
+                                        Height="25"
+                                        Margin="10,0,0,0"
+                                        VerticalAlignment="Top"
+                                        Background="{DynamicResource AccentBaseColorBrush}"
+                                        Command="{Binding ImportFromCsvCommand}"
+                                        CommandParameter="{Binding CommandParameter}"
+                                        Style="{StaticResource ButtonStyle}"
+                                        ToolTip="{DynamicResource LangKeyImportFromCsvTxt}">
+                                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                            <Rectangle
+                                                Width="15"
+                                                Height="15"
+                                                HorizontalAlignment="Center"
+                                                Fill="White">
+                                                <Rectangle.OpacityMask>
+                                                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_page_upload}" />
+                                                </Rectangle.OpacityMask>
+                                            </Rectangle>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button
+                                        Name="BtnAddToList"
+                                        Width="100"
+                                        Height="25"
+                                        Margin="10,0,0,0"
+                                        VerticalAlignment="Top"
+                                        Background="{DynamicResource AccentBaseColorBrush}"
+                                        Command="{Binding AddBoardCommand}"
+                                        CommandParameter="{Binding CommandParameter}"
+                                        Style="{StaticResource ButtonStyle}"
+                                        ToolTip="{DynamicResource LangKeyAddBoardsToList}">
+                                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                            <Rectangle
+                                                Width="15"
+                                                Height="15"
+                                                HorizontalAlignment="Center"
+                                                Fill="White">
+                                                <Rectangle.OpacityMask>
+                                                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_add_multiple}" />
+                                                </Rectangle.OpacityMask>
+                                            </Rectangle>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="{DynamicResource LangKeyBoardList}" Style="{StaticResource TabItemStyle}">
+                        <Grid>
+                            <GroupBox
+                                BorderThickness="1"
+                                FontWeight="Bold"
+                                Foreground="white"
+                                Header="{DynamicResource LangKeyBoardsList}">
+
+                                <DataGrid
+                                    Name="DataGridQueriesList"
+                                    Width="auto"
+                                    MinWidth="400"
+                                    MinHeight="150"
+                                    AutoGenerateColumns="False"
+                                    Background="Transparent"
+                                    CanUserAddRows="false"
+                                    CanUserDeleteRows="False"
+                                    IsReadOnly="True"
+                                    ItemsSource="{Binding ListBoardInfo}"
+                                    SelectionMode="Single"
+                                    SelectionUnit="FullRow">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn
+                                            MinWidth="120"
+                                            Binding="{Binding BoardName}"
+                                            FontSize="12">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Text="{DynamicResource LangKeyBoardName}" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn
+                                            MinWidth="120"
+                                            Binding="{Binding BoardDescription}"
+                                            FontSize="12">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Text="{DynamicResource LangKeyBoardDescription}" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn
+                                            MinWidth="120"
+                                            Binding="{Binding Section}"
+                                            FontSize="12">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Text="{DynamicResource LangKeySection}" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <!--<DataGridTextColumn Width="*" FontSize="12" Binding="{Binding Category}">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock Text="{DynamicResource LangKeyCategory}"
+                                                           VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>-->
+                                        <DataGridTemplateColumn>
+                                            <DataGridTemplateColumn.Header>
+                                                <TextBlock Text="{DynamicResource LangKeyAction}" />
+                                            </DataGridTemplateColumn.Header>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button
+                                                        Name="BtnDelete"
+                                                        Background="Transparent"
+                                                        Command="{Binding DataContext.DeleteBoardCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                        CommandParameter="{Binding}">
+                                                        <Button.Content>
+                                                            <Rectangle
+                                                                Name="DeleteSingle"
+                                                                Width="15"
+                                                                Height="20"
+                                                                Fill="Black">
+                                                                <Rectangle.OpacityMask>
+                                                                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_delete}" />
+                                                                </Rectangle.OpacityMask>
+                                                            </Rectangle>
+                                                        </Button.Content>
+                                                    </Button>
+
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+
+                            </GroupBox>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+
+
+            </Grid>
+        </Expander>
+    </Grid>
+</UserControl>

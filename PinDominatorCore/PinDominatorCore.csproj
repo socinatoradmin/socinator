@@ -1,0 +1,466 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{68EF34BF-36C9-4E33-9ACD-7B9D7B746F29}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PinDominatorCore</RootNamespace>
+    <AssemblyName>PinDominatorCore</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug-fast-test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug-fast-test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CefSharp, Version=112.3.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dominatorhouse-social\packages\CefSharp.Common.112.3.0\lib\net452\CefSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp.Core, Version=112.3.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dominatorhouse-social\packages\CefSharp.Common.112.3.0\lib\net452\CefSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp.Wpf, Version=112.3.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dominatorhouse-social\packages\CefSharp.Wpf.112.3.0\lib\net452\CefSharp.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\CommonServiceLocator.2.0.5\lib\net48\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="Dragablz, Version=0.0.3.234, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Dragablz.0.0.3.234\lib\net45\Dragablz.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentScheduler">
+      <HintPath>..\packages\FluentScheduler.5.3.0\lib\net40\FluentScheduler.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.8.5.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\HtmlAgilityPack.1.8.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="imagetyperzapi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\imagetyperz-api-latest.1.0.3\lib\net40\imagetyperzapi.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\MahApps.Metro.1.6.5\lib\net47\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Core.7.2.0.1422\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.3.7.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\protobuf-net.2.3.7\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.CodeFirst, Version=1.5.1.25, Culture=neutral, PublicKeyToken=eb96ba0a78d831a7, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\SQLite.CodeFirst.1.5.1.25\lib\net45\SQLite.CodeFirst.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Data.SQLite.EF6.1.0.108.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Data.SQLite.Linq.1.0.108.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\ControlzEx.3.0.2.4\lib\net462\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ThreadUtils, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\ThreadUtils.1.0.1\lib\net461\ThreadUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.Abstractions.5.11.1\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.Container.5.11.1\lib\net47\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DbMigrations\PdAccountDbMigrations.cs" />
+    <Compile Include="DbMigrations\PdCampaignDbMigrations.cs" />
+    <Compile Include="DbMigrations\PdDbMigrationUnityExtension.cs" />
+    <Compile Include="Interface\IPDAccountSessionManager.cs" />
+    <Compile Include="Interface\IPdBaseFactory.cs" />
+    <Compile Include="Interface\IPdReportFactory.cs" />
+    <Compile Include="Interface\IPdUtilityFactory.cs" />
+    <Compile Include="Interface\IPdViewCampaign.cs" />
+    <Compile Include="PDEnums\BrowserFuncts.cs" />
+    <Compile Include="PDEnums\IpLocationDetails.cs" />
+    <Compile Include="PDEnums\PDElements.cs" />
+    <Compile Include="PDEnums\PdEntityType.cs" />
+    <Compile Include="PDFactories\PdAccountDbConnection.cs" />
+    <Compile Include="PDFactories\PdAccountSelectorFactory.cs" />
+    <Compile Include="PDFactories\PdAccountUpdateFactory.cs" />
+    <Compile Include="PDFactories\PdCampaignDbConnection.cs" />
+    <Compile Include="PDFactories\PdPublisherCoreFactory.cs" />
+    <Compile Include="PDFactories\PdReportFactory.cs" />
+    <Compile Include="PDFactories\PdQueryScraperFactory.cs" />
+    <Compile Include="PDEnums\HealthState.cs" />
+    <Compile Include="PDEnums\PinterestGender.cs" />
+    <Compile Include="PDEnums\PinterestError.cs" />
+    <Compile Include="PDEnums\ScrapingParameters.cs" />
+    <Compile Include="PDFactories\PdAccountCountFactory.cs" />
+    <Compile Include="PDFactories\PdJobProcessFactory.cs" />
+    <Compile Include="PDFactories\PdResetAccountPasswordFactory.cs" />
+    <Compile Include="PDFactories\PdUtilityFactory.cs" />
+    <Compile Include="PDLibrary\BrowserManager\BrowserUtilities.cs" />
+    <Compile Include="PDLibrary\DAL\DbAccountService.cs" />
+    <Compile Include="PDLibrary\DAL\DbCampaignService.cs" />
+    <Compile Include="PDLibrary\DAL\DbGlobalService.cs" />
+    <Compile Include="PDEnums\Enums.cs" />
+    <Compile Include="Interface\IPostFilter.cs" />
+    <Compile Include="Interface\IUserFilter.cs" />
+    <Compile Include="PDLibrary\LogInProcess.cs" />
+    <Compile Include="PDLibrary\BrowserManager\PdBrowserManager.cs" />
+    <Compile Include="PDLibrary\PDFilters.cs" />
+    <Compile Include="PDLibrary\PdJobProcess.cs" />
+    <Compile Include="PDLibrary\PdJobProcessInteracted.cs" />
+    <Compile Include="PDLibrary\PdPublisherJobProcess.cs" />
+    <Compile Include="PDLibrary\PinFunction.cs" />
+    <Compile Include="PDLibrary\PinterestQueryScraper.cs" />
+    <Compile Include="PDLibrary\PowerAdsSpy\AdsScraperFunction.cs" />
+    <Compile Include="PDLibrary\Processors\AccountCreator\BaseAccountCreatorProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\BasePinterestProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\Board\AcceptBoardInvitationsProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\Board\BasePinterestBoardProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\Board\BoardsbyKeywordsBoardProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\Board\CreateBoardProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\Board\CustomUserBoardProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\Board\CustomBoardProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\Board\SendBoardInvitationsProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\IQueryProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\Pin\BasePinterestPinProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\Pin\CustomBoardPinProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\Pin\CustomPinProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\Pin\CustomUserPinProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\Pin\DeletePinProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\Pin\EditPinProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\Pin\KeywordPinProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\Pin\NewsFeedPinProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\Pin\OwnFollowersPinProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\Pin\OwnFollowingsPinProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\Pin\SocinatorPublisherCampaignPinProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\User\AutoReplyToNewMessageProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\User\BasePinterestUserProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\User\BoardFollowersUserProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\User\CustomUserProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\User\FollowBackProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\User\FollowersOfSomeonesFollowersUserProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\User\FollowersOfSomeonesFollowingsUserProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\User\KeywordUserProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\User\SendMessageToFollowerProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\User\SomeonesFollowersUserProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\User\SomeonesFollowingsUserProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\User\UnfollowProcessor.cs" />
+    <Compile Include="PDLibrary\Processors\User\UsersWhoTriedPinsUserProcessor.cs" />
+    <Compile Include="PDLibrary\Process\AcceptBoardInvitationsProcess.cs" />
+    <Compile Include="PDLibrary\Process\AutoReplyToNewMessageProcess.cs" />
+    <Compile Include="PDLibrary\Process\BoardScraperProcess.cs" />
+    <Compile Include="PDLibrary\Process\BroadCastMessegeProcess.cs" />
+    <Compile Include="PDLibrary\Process\CommentProcess.cs" />
+    <Compile Include="PDLibrary\Process\CreateAccountProcess.cs" />
+    <Compile Include="PDLibrary\Process\CreateBoardProcess.cs" />
+    <Compile Include="PDLibrary\Process\DeletePinProcess.cs" />
+    <Compile Include="PDLibrary\Process\EditPinProcess.cs" />
+    <Compile Include="PDLibrary\Process\FollowBackProcess.cs" />
+    <Compile Include="PDLibrary\Process\FollowProcess.cs" />
+    <Compile Include="PDLibrary\Process\PinScraperProcess.cs" />
+    <Compile Include="PDLibrary\Process\RepinProcess.cs" />
+    <Compile Include="PDLibrary\Process\SendBoardInvitationsProcess.cs" />
+    <Compile Include="PDLibrary\Process\SendMessageToNewFollowersProcess.cs" />
+    <Compile Include="PDLibrary\Process\TryProcess.cs" />
+    <Compile Include="PDLibrary\Process\UnfollowProcess.cs" />
+    <Compile Include="PDLibrary\Process\UserScraperProcess.cs" />
+    <Compile Include="PDModel\AcceptBoardInvitationModel.cs" />
+    <Compile Include="PDModel\AccountCreatorModel.cs" />
+    <Compile Include="PDModel\AccountDetailsSelectorModel.cs" />
+    <Compile Include="PDModel\AccountModel.cs" />
+    <Compile Include="PDModel\AdsDataModel.cs" />
+    <Compile Include="PDModel\AutoReplyToNewMessageModel.cs" />
+    <Compile Include="PDModel\BaseUser.cs" />
+    <Compile Include="PDModel\BlacklistedUser.cs" />
+    <Compile Include="PDModel\BoardCollaboratorInfo.cs" />
+    <Compile Include="PDModel\BoardInfo.cs" />
+    <Compile Include="PDModel\BoardModel.cs" />
+    <Compile Include="PDModel\BroadcastMessagesModel.cs" />
+    <Compile Include="PDModel\CampaignDetailsPD.cs" />
+    <Compile Include="PDModel\CommentDetails.cs" />
+    <Compile Include="PDModel\CommentModel.cs" />
+    <Compile Include="PDModel\CreateAccountInfo.cs" />
+    <Compile Include="PDModel\CustomDestinationModel.cs" />
+    <Compile Include="PDModel\DeletePinModel.cs" />
+    <Compile Include="PDModel\BoardScraperModel.cs" />
+    <Compile Include="PDModel\PinterestBoardSections.cs" />
+    <Compile Include="PDModel\RepinCreateDestinationSelectModel.cs" />
+    <Compile Include="PDModel\EditPinModel.cs" />
+    <Compile Include="PDModel\FilterPinType.cs" />
+    <Compile Include="PDModel\FollowBackModel.cs" />
+    <Compile Include="PDModel\FollowerModel.cs" />
+    <Compile Include="PDModel\IAccountModel.cs" />
+    <Compile Include="PDModel\JsonElements.cs" />
+    <Compile Include="PDModel\JsonFunct.cs" />
+    <Compile Include="PDModel\ManageNoteModel.cs" />
+    <Compile Include="PDModel\ModuleSetting.cs" />
+    <Compile Include="PDModel\PinCreateDestinationModel.cs" />
+    <Compile Include="PDModel\PinInfo.cs" />
+    <Compile Include="PDModel\PinScraperModel.cs" />
+    <Compile Include="PDModel\PinterestAction.cs" />
+    <Compile Include="PDModel\PinterestBoard.cs" />
+    <Compile Include="PDModel\PinterestPin.cs" />
+    <Compile Include="PDModel\PinterestUser.cs" />
+    <Compile Include="PDModel\PinterestIssue.cs" />
+    <Compile Include="PDModel\BoardCreateDestinationModel.cs" />
+    <Compile Include="PDModel\RePinModel.cs" />
+    <Compile Include="PDModel\ScrapeResult.cs" />
+    <Compile Include="PDModel\SendBoardInvitationModel.cs" />
+    <Compile Include="PDModel\SendMessageToNewFollowersModel.cs" />
+    <Compile Include="PDModel\TryModel.cs" />
+    <Compile Include="PDModel\PostFilterModel.cs" />
+    <Compile Include="PDModel\UnfollowerModel.cs" />
+    <Compile Include="PDModel\UserFilterModel.cs" />
+    <Compile Include="PDModel\UserInfoDetailed.cs" />
+    <Compile Include="PDModel\UserScraperModel.cs" />
+    <Compile Include="PDUtility\ConstantHelpDetails.cs" />
+    <Compile Include="PDUtility\HtmlAgilityHelper.cs" />
+    <Compile Include="PDUtility\HtmlTags.cs" />
+    <Compile Include="PDUtility\ImageTypersHelper.cs" />
+    <Compile Include="PDUtility\JobScheduler.cs" />
+    <Compile Include="PDUtility\Global.cs" />
+    <Compile Include="PDUtility\Macros.cs" />
+    <Compile Include="PDUtility\PDAccountSessionManager.cs" />
+    <Compile Include="PDUtility\PDClassesConstant.cs" />
+    <Compile Include="PDUtility\PDConstants.cs" />
+    <Compile Include="PDUtility\PdRequestHeaderDetails.cs" />
+    <Compile Include="PDUtility\PdStatic.cs" />
+    <Compile Include="PDUtility\PinPostStatusResponseHandler.cs" />
+    <Compile Include="PDViewModel\Accounts\AccountCreatorViewModel.cs" />
+    <Compile Include="PDViewModel\Boards\AcceptBoardInvitationViewModel.cs" />
+    <Compile Include="PDViewModel\Boards\BoardViewModel.cs" />
+    <Compile Include="PDViewModel\Boards\SendBoardInvitationViewModel.cs" />
+    <Compile Include="PDViewModel\DeletePins\DeletePinsViewModel.cs" />
+    <Compile Include="PDViewModel\GrowFollower\FollowBackViewModel.cs" />
+    <Compile Include="PDViewModel\GrowFollower\FollowerViewModel.cs" />
+    <Compile Include="PDViewModel\GrowFollower\UnfollowerViewModel.cs" />
+    <Compile Include="PDViewModel\PinMessenger\AutoReplyToNewMessageViewModel.cs" />
+    <Compile Include="PDViewModel\PinMessenger\BroadcastMessagesViewModel.cs" />
+    <Compile Include="PDViewModel\PinMessenger\SendMessageToNewFollowersViewModel.cs" />
+    <Compile Include="PDViewModel\PinPoster\EditPinViewModel.cs" />
+    <Compile Include="PDViewModel\PinPoster\RePinViewModel.cs" />
+    <Compile Include="PDViewModel\PinScraper\PinScraperViewModel.cs" />
+    <Compile Include="PDViewModel\PinTryCommenter\CommentViewModel.cs" />
+    <Compile Include="PDViewModel\PinTryCommenter\TryViewModel.cs" />
+    <Compile Include="PDViewModel\PinScraper\BoardScraperViewModel.cs" />
+    <Compile Include="PDViewModel\PinScraper\UserScraperViewModel.cs" />
+    <Compile Include="PDViewModel\PrivateBlackListViewModel.cs" />
+    <Compile Include="PDViewModel\PrivateWhiteListViewModel.cs" />
+    <Compile Include="PDViewModel\Publisher\PdPublisherPostDetailsScraper.cs" />
+    <Compile Include="PDViewModel\Publisher\PdPublisherPostScraper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report\CreateAccountReportDetails.cs" />
+    <Compile Include="Report\InteractedBoardsReportDetails.cs" />
+    <Compile Include="Report\InteractedPinsReportDetails.cs" />
+    <Compile Include="Report\InteractedUsersReportDetails.cs" />
+    <Compile Include="Report\UnfollowedUsersReportDetails.cs" />
+    <Compile Include="Request\PdJsonElement.cs" />
+    <Compile Include="Request\PdHttpHelper.cs" />
+    <Compile Include="Request\PdRequestParameters.cs" />
+    <Compile Include="Response\AcceptBoardInvitationResponseHandler.cs" />
+    <Compile Include="Response\AcceptMessageInvitationResponseHandler.cs" />
+    <Compile Include="Response\AdsScraperResponseHandler.cs" />
+    <Compile Include="Response\BoardInfoPtResponseHandler.cs" />
+    <Compile Include="Response\BoardInvitationsResponseHandler.cs" />
+    <Compile Include="Response\BoardResponse.cs" />
+    <Compile Include="Response\BoardsOfUserRasponseHandler.cs" />
+    <Compile Include="Response\CommentResponse.cs" />
+    <Compile Include="Response\CommentsOfPinResponseHandler.cs" />
+    <Compile Include="Response\CreateAccountRespHandler.cs" />
+    <Compile Include="Response\DeletePinResponseHandler.cs" />
+    <Compile Include="Response\FindMessageResponseHandler.cs" />
+    <Compile Include="Response\FollowerAndFollowingPTResponseHandler.cs" />
+    <Compile Include="Response\FriendshipsResponse.cs" />
+    <Compile Include="Response\BoardsWithKeywordsPTResponseHandler.cs" />
+    <Compile Include="Response\LikeCommentResponseHandler.cs" />
+    <Compile Include="Response\MessageInvitationsResponseHandler.cs" />
+    <Compile Include="Response\MessageResponseHandler.cs" />
+    <Compile Include="Response\NewsFeedPinsResponseHandler.cs" />
+    <Compile Include="Response\PinInfoPtResponseHandler.cs" />
+    <Compile Include="Response\PinLikersResponseHandler.cs" />
+    <Compile Include="Response\PinsByBoardUrlResponseHandler.cs" />
+    <Compile Include="Response\PinsFromSpecificUserResponseHandler.cs" />
+    <Compile Include="Response\PinterestException.cs" />
+    <Compile Include="Response\PdResponseHandler.cs" />
+    <Compile Include="Response\RepostPinResponseHandler.cs" />
+    <Compile Include="Response\ResetPasswordWithLinkResponseHandler.cs" />
+    <Compile Include="Response\SearchAllPinResponseHandler.cs" />
+    <Compile Include="Response\SearchPeopleResponseHandler.cs" />
+    <Compile Include="Response\SectionResponseHandler.cs" />
+    <Compile Include="Response\SendBoardInvitationResponseHandler.cs" />
+    <Compile Include="Response\SendResetPasswordLinkResponseHandler.cs" />
+    <Compile Include="Response\SwitchProfileRespHandler.cs" />
+    <Compile Include="Response\TryResponse.cs" />
+    <Compile Include="Response\UserConnectedWithMessageResponseHandler.cs" />
+    <Compile Include="Response\UserNameInfoPtResponseHandler.cs" />
+    <Compile Include="Response\VideoUploadParametersRespHand.cs" />
+    <Compile Include="Settings\AccountGroup.cs" />
+    <Compile Include="Settings\ActivityManager.cs" />
+    <Compile Include="Settings\PostCategory.cs" />
+    <Compile Include="UnityContainers\PinterestJobProcessUnityExtension.cs" />
+    <Compile Include="Utility\JsonJArrayHandler.cs" />
+    <Compile Include="Utility\PdBaseFactoryBuilder.cs" />
+    <Compile Include="Utility\PdUtility.cs" />
+    <Compile Include="Utility\PinterestInitialize.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\dominatorhouse-social\DominatorHouseCore\DominatorHouseCore.csproj">
+      <Project>{f40a5c83-8eda-43c5-88b9-dfaab492a497}</Project>
+      <Name>DominatorHouseCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dominatorhouse-social\DominatorUIUtility\DominatorUIUtility.csproj">
+      <Project>{e8d95af0-e99b-4059-9140-5c02b3f52e06}</Project>
+      <Name>DominatorUIUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dominatorhouse-social\EmbeddedBrowser\EmbeddedBrowser.csproj">
+      <Project>{21F00635-AAF7-466B-9214-A830EA9C8963}</Project>
+      <Name>EmbeddedBrowser</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if "$(Configuration)" == "Release" signtool sign /fd SHA256 /f "C:\Globussoft_Dotnet\code_signing_certificate_gbs.cer" "$(TargetDir)PinDominatorCore.dll"</PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

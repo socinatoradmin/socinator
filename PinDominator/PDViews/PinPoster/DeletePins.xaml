@@ -1,0 +1,133 @@
+﻿<local:DeletePinsBase x:Class="PinDominator.PDViews.PinPoster.DeletePins"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:local="clr-namespace:PinDominator.PDViews.PinPoster"
+                      mc:Ignorable="d"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+                      xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+                      xmlns:pdModel="clr-namespace:PinDominatorCore.PDModel;assembly=PinDominatorCore">
+
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid Name="MainGrid">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="80" />
+                </Grid.RowDefinitions>
+                <customControl:HeaderControl Grid.Row="0" CampaignName="{Binding CampaignName}" Name="DeletePinsHeader"
+                                             IsCampaignNameEditable="{Binding IsEditCampaignName}"
+                                             IsCancelEditVisible="{Binding CancelEditVisibility}"
+                                             CancelEditCommand="{Binding CancelEditCommand}"
+                                             InfoCommand="{Binding InfoCommand}" />
+
+                <ScrollViewer Grid.Row="1">
+                    <Grid>
+                        <StackPanel Orientation="Vertical">
+                            <!--Delete Pins Filter Expander-->
+                            <Expander Header="{DynamicResource LangKeyDeletePinsFilter}" Margin="5,5">
+                                <StackPanel>
+                                    <StackPanel Margin="10">
+                                        <RadioButton Grid.Column="1"
+                                                     IsChecked="{Binding DeletePinModel.IsDeteleAllPins,Mode=TwoWay}"
+                                                     Content="{DynamicResource LangKeyDeleteAllPins}"
+                                                     Click="DeteleAllPins_Click"
+                                                     Name="DeteleAllPins" />
+                                    </StackPanel>
+                                    <StackPanel Margin="10">
+                                        <RadioButton Grid.Column="1"
+                                                     IsChecked="{Binding DeletePinModel.IsDeteleAllPinsFromBoard,Mode=TwoWay}"
+                                                     Click="DetelePinsOfBoards_Click"
+                                                     Content="{DynamicResource LangKeyDeletePinsFromBoard}"
+                                                     Name="DetelePinsOfBoards" />
+                                    </StackPanel>
+                                    <StackPanel Background="AliceBlue"
+                                                Visibility="{Binding DeletePinModel.IsDeteleAllPinsFromBoard, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <ListBox ItemsSource="{Binding DeletePinModel.LstBoardsDetails}">
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate DataType="{x:Type pdModel:Boards}">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="*" />
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <TextBlock Text="{Binding Account}" Margin="5,5"
+                                                                       Width="250" HorizontalAlignment="Center"
+                                                                       VerticalAlignment="Center" />
+                                                            <ComboBox ItemsSource="{Binding LstBoards}" Grid.Column="1"
+                                                                      Margin="5,5" Width="170"
+                                                                      HorizontalAlignment="Center"
+                                                                      VerticalAlignment="Center">
+                                                                <ComboBox.ItemTemplate>
+                                                                    <DataTemplate>
+                                                                        <StackPanel Orientation="Horizontal">
+                                                                            <CheckBox
+                                                                                IsChecked="{Binding IsCheckBoard}"
+                                                                                Margin="5,5" />
+                                                                            <TextBlock Text="{Binding BoardName}"
+                                                                                       Margin="5,5" />
+                                                                        </StackPanel>
+                                                                    </DataTemplate>
+                                                                </ComboBox.ItemTemplate>
+                                                            </ComboBox>
+                                                        </Grid>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Expander>
+
+                            <!-- After JobConfiguration  Expender-->
+                            <Expander Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+                                <customControl:JobConfigControl
+                                    JobConfiguration="{Binding DeletePinModel.JobConfiguration}"
+                                    PerJobActivity="{DynamicResource LangKeyPins}"
+                                    PerHourActivity="{DynamicResource LangKeyPins}"
+                                    PerDayActivity="{DynamicResource LangKeyPins}"
+                                    PerWeekActivity="{DynamicResource LangKeyPins}" />
+                            </Expander>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+
+                <Grid Grid.Row="2" Margin="5,0" Name="FooterGrid">
+                    <customControl:FooterControl x:Name="DeletePinsFooter"
+                                                 CampaignManager="{Binding CampaignButtonContent}"
+                                                 NoOfAccountsSelected="{Binding SelectedAccountCount,Mode=TwoWay}"
+                                                 SelectAccountCommand="{Binding SelectAccountCommand}"
+                                                 CreateCampaignCommand="{Binding CreateCampaignCommand}" />
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+
+        <controls:FlyoutsControl>
+            <controls:Flyout Header="{DynamicResource LangKeyModuleDescription}" Position="Right"
+                             Visibility="Collapsed" Name="HelpFlyout" Theme="Accent" FontWeight="Bold"
+                             Foreground="White" Width="300" BorderBrush="Black" BorderThickness="2"
+                             DataContext="{Binding ElementName=DeletePinsFooter,Path=DataContext}"
+                             IsOpen="{Binding IsOpen,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                             Background="{DynamicResource AccentBaseColorBrush}" FontSize="10">
+                <customControl:HelpControl
+                    ModuleDescription="{DynamicResource LangKeyModuleDescriptionPinterestAutoDelete}"
+                    DataContext="{Binding ElementName=DeletePinsFooter,Path=DataContext}"
+                    VideoTutorial="{Binding VideoTutorialLink}" KnowledgeBaseLink="{Binding KnowledgeBaseLink}"
+                    ContactSupportLink="{Binding ContactSupportLink}" />
+            </controls:Flyout>
+        </controls:FlyoutsControl>
+    </Grid>
+
+
+</local:DeletePinsBase>

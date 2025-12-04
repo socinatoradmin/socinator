@@ -1,0 +1,158 @@
+﻿<local:BroadcastMessagesBase x:Class="PinDominator.PDViews.PinMessenger.BroadcastMessages"
+                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                             xmlns:local="clr-namespace:PinDominator.PDViews.PinMessenger"
+                             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+                             xmlns:customControl1="clr-namespace:PinDominator.CustomControl"
+                             FontFamily="{DynamicResource GabaritoSemiBold}"
+                             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+                             mc:Ignorable="d" x:Name="BroadCastMessagesUserControl">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid Name="MainGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="80" />
+            </Grid.RowDefinitions>
+            <customControl:HeaderControl Grid.Row="0" CampaignName="{Binding CampaignName}"
+                                         Name="BroadcastMessagesHeader"
+                                         IsCampaignNameEditable="{Binding IsEditCampaignName}"
+                                         IsCancelEditVisible="{Binding CancelEditVisibility}"
+                                         CancelEditCommand="{Binding CancelEditCommand}"
+                                         InfoCommand="{Binding InfoCommand}" />
+
+            <ScrollViewer Grid.Row="1">
+                <Grid>
+                    <StackPanel Orientation="Vertical">
+                        <Expander Header="{DynamicResource LangKeySearchQuery}" IsExpanded="True" Margin="5">
+                            <customControl:SearchQueryControl
+                                IsExpanded="{Binding IsExpanded,ElementName=BroadcastMessagesHeader,UpdateSourceTrigger=Explicit}"
+                                Name="BroadcastMessagesSearchControl"
+                                ListQueryType="{Binding BroadcastMessagesModel.ListQueryType}"
+                                ListQueryInfo="{Binding BroadcastMessagesModel.SavedQueries}"
+                                AddQueryCommand="{Binding AddQueryCommand}"
+                                CommandParameter="{Binding ElementName=BroadCastMessagesUserControl}"
+                                CustomFilterCommand="{Binding CustomFilterCommand}"
+                                DeleteQueryCommand="{Binding DeleteQueryCommand}"
+                                DeleteMulipleCommand="{Binding DeleteMulipleCommand}" />
+                        </Expander>
+                        <!-- Manage Messege -->
+                        <Expander Header="{DynamicResource LangKeyManageMessages}" Margin="5,5">
+                            <StackPanel>
+                                <CheckBox Content="{DynamicResource LangKeyMakeMessageAsSpinText}"
+                                          IsChecked="{Binding BroadcastMessagesModel.IsMakeMessageAsSpinText}" />
+                                <CheckBox Content="{DynamicResource LangKeyAddMultipleMessageSeparatedByNewLine}"
+                                          Margin="0,5,0,0"
+                                          IsChecked="{Binding BroadcastMessagesModel.IsChkAddMultipleMessages}" />
+
+                                <customControl:MessagesControl Name="MessagesControl"
+                                                               Messages="{Binding BroadcastMessagesModel.ManageMessagesModel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                               AddMessagesCommand="{Binding AddMessagesCommand}"
+                                                               CommandParameter="{Binding ElementName=MessagesControl}" />
+                                <customControl:ManageMessages
+                                    LstManageMessagesModel="{Binding BroadcastMessagesModel.LstDisplayManageMessagesModel}" />
+                            </StackPanel>
+                        </Expander>
+
+                        <!-- After JobConfiguration  Expender-->
+                        <Expander Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+                            <customControl:JobConfigControl
+                                JobConfiguration="{Binding BroadcastMessagesModel.JobConfiguration}" />
+                        </Expander>
+
+
+                        <!-- After User Filters Expender-->
+                        <Expander Header="{DynamicResource LangKeyUserFilters}" Margin="5,5"
+                                  Visibility="{Binding BroadcastMessagesModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <customControl1:UserFiltersControl x:Name="UserFiltersControl"
+                                                               UserFilter="{Binding BroadcastMessagesModel.UserFilterModel}" />
+                        </Expander>
+
+                        <!--Other Configuration Settings-->
+                        <Expander Header="{DynamicResource LangKeyOtherConfigurations}" Margin="5,5"
+                                  Visibility="{Binding BroadcastMessagesModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                            <StackPanel Margin="10,5">
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Name="ChkStopActivityAfterXxFailedAttempt"
+                                              Content="{DynamicResource LangKeyStopActivityAfter}"
+                                              IsChecked="{Binding BroadcastMessagesModel.IsChkStopActivityAfterXXFailed}"
+                                              FontWeight="SemiBold" />
+                                    <controls:NumericUpDown Name="FailedCount" TextAlignment="Center" Margin="5,5"
+                                                            IsEnabled="{Binding BroadcastMessagesModel.IsChkStopActivityAfterXXFailed}"
+                                                            Minimum="1"
+                                                            Value="{Binding BroadcastMessagesModel.ActivityFailedCount}" />
+                                    <Label Content="{DynamicResource LangKeyFailedAttemptFor}"
+                                           VerticalAlignment="Center" FontWeight="SemiBold" />
+                                    <controls:NumericUpDown Name="FailedActivityReschedule" TextAlignment="Center"
+                                                            Margin="5,5"
+                                                            IsEnabled="{Binding BroadcastMessagesModel.IsChkStopActivityAfterXXFailed}"
+                                                            Minimum="10"
+                                                            Value="{Binding BroadcastMessagesModel.FailedActivityReschedule}" />
+                                    <Label Content="{DynamicResource LangKeyHourPerAccount}" VerticalAlignment="Center"
+                                           FontWeight="SemiBold" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Name="ChkSkipUserWhoHasEverReceivedMessage" FontWeight="SemiBold"
+                                              Content="{DynamicResource LangKeySkipUserWhoHasEverReceivedMessage}"
+                                              IsChecked="{Binding BroadcastMessagesModel.SkipUserWhoHasEverReceivedMessage}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>
+
+                        <!--Manage Blacklist Whitelist Users  expander-->
+                        <Expander Header="{DynamicResource LangKeyManageBlacklistedUsers}" Margin="5,5"
+                                  Visibility="{Binding BroadcastMessagesModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel>
+                                <CheckBox Content="{DynamicResource LangKeySkipBlacklistedUsers}" Margin="10,5"
+                                          IsChecked="{Binding BroadcastMessagesModel.IsChkSkipBlackListedUser}" />
+                                <StackPanel Margin="25,5"
+                                            Visibility="{Binding BroadcastMessagesModel.IsChkSkipBlackListedUser, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                            Orientation="Horizontal">
+                                    <CheckBox Content="{DynamicResource LangKeyPrivateBlacklist}" Margin="5,0"
+                                              IsChecked="{Binding BroadcastMessagesModel.IsChkPrivateBlackList}" />
+                                    <CheckBox Content="{DynamicResource LangKeyGroupBlacklist}" Margin="5,0"
+                                              IsChecked="{Binding BroadcastMessagesModel.IsChkGroupBlackList}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
+
+            <Grid Grid.Row="2" Margin="5,0" Name="FooterGrid">
+                <customControl:FooterControl x:Name="BroadcastMessagesFooter"
+                                             CampaignManager="{Binding CampaignButtonContent}"
+                                             NoOfAccountsSelected="{Binding SelectedAccountCount,Mode=TwoWay}"
+                                             SelectAccountCommand="{Binding SelectAccountCommand}"
+                                             CreateCampaignCommand="{Binding CreateCampaignCommand}" />
+            </Grid>
+
+
+        </Grid>
+
+        <controls:FlyoutsControl Grid.Row="0">
+            <controls:Flyout Header="{DynamicResource LangKeyModuleDescription}" Position="Right"
+                             Visibility="Collapsed" Name="HelpFlyout" Theme="Accent" FontWeight="Bold"
+                             Foreground="White" Width="300" BorderBrush="Black" BorderThickness="2"
+                             IsOpen="{Binding IsOpen,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                             DataContext="{Binding ElementName=BroadcastMessagesFooter,Path=DataContext}"
+                             Background="{DynamicResource AccentBaseColorBrush}" FontSize="10">
+                <customControl:HelpControl
+                    ModuleDescription="{DynamicResource LangKeyModuleDescriptionPinterestAutoBroadcastMessage}"
+                    DataContext="{Binding ElementName=BroadcastMessagesFooter,Path=DataContext}"
+                    VideoTutorial="{Binding VideoTutorialLink}" KnowledgeBaseLink="{Binding KnowledgeBaseLink}"
+                    ContactSupportLink="{Binding ContactSupportLink}" />
+            </controls:Flyout>
+        </controls:FlyoutsControl>
+    </Grid>
+
+
+</local:BroadcastMessagesBase>

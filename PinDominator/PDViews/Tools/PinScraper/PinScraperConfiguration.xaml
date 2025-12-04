@@ -1,0 +1,105 @@
+﻿<local:PinScraperConfigurationBase x:Class="PinDominator.PDViews.Tools.PinScraper.PinScraperConfiguration"
+                                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                   xmlns:local="clr-namespace:PinDominator.PDViews.Tools.PinScraper"
+                                   mc:Ignorable="d" x:Name="PinScraperConfigurationUserControl"
+                                   xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                                   xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+                                   xmlns:customControl1="clr-namespace:PinDominator.CustomControl"
+                                   xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+                                   xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=PinScraperConfigurationUserControl}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <customControl:AccountGrowthModeHeader x:FieldModifier="public" Name="AccountGrowthHeader"
+                                               VerticalAlignment="Top" SelectedIndex="0"
+                                               SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=PinScraperConfigurationUserControl}"
+                                               SaveCommand="{Binding SaveConfigurationsCommand}"
+                                               VideoTutorialLink="{Binding VideoTutorialLink}" />
+
+        <ScrollViewer Grid.Row="1">
+            <Grid>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" HorizontalAlignment="Left"
+                                   Margin="5" />
+                        <controls:ToggleSwitch OnLabel="Active﻿" OffLabel="Stopped" x:Name="TglStatus"
+                                               FontSize="12" Margin="5"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                                               IsChecked="{Binding PinScraperModel.IsAccountGrowthActive}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=PinScraperConfigurationUserControl}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </controls:ToggleSwitch>
+                    </StackPanel>
+
+                    <Expander Header="{DynamicResource LangKeySearchQuery}" IsExpanded="True" Margin="5">
+                        <customControl:SearchQueryControl
+                            IsExpanded="{Binding IsExpanded,ElementName=AccountGrowthHeader,UpdateSourceTrigger=Explicit}"
+                            Name="PinScraperConfigurationSearchControl"
+                            ListQueryInfo="{Binding PinScraperModel.SavedQueries}"
+                            ListQueryType="{Binding PinScraperModel.ListQueryType}"
+                            AddQueryCommand="{Binding AddQueryCommand}"
+                            CommandParameter="{Binding ElementName=PinScraperConfigurationUserControl}"
+                            CustomFilterCommand="{Binding CustomFilterCommand}" />
+                    </Expander>
+                    <!-- After JobConfiguration  Expender-->
+
+                    <Expander Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+                        <customControl:JobConfigControl JobConfiguration="{Binding PinScraperModel.JobConfiguration}"
+                                                        PerJobActivity="{DynamicResource LangKeyPins}"
+                                                        PerHourActivity="{DynamicResource LangKeyPins}"
+                                                        PerDayActivity="{DynamicResource LangKeyPins}"
+                                                        PerWeekActivity="{DynamicResource LangKeyPins}" />
+                    </Expander>
+
+                    <!-- After Pin Filter Expender-->
+
+                    <Expander Header="{DynamicResource LangKeyPinFilter}" Margin="5,5"
+                              Visibility="{Binding PinScraperModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <customControl1:PostFilterControl PostFilter="{Binding PinScraperModel.PostFilterModel}" />
+                    </Expander>
+
+                    <Expander Header="{DynamicResource LangKeyOtherConfigurations}" Margin="5,5"
+                              Visibility="{Binding PinScraperModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+                            <CheckBox Content="{DynamicResource LangKeyDownloadPhotoAfterScrap}"
+                                      IsChecked="{Binding PinScraperModel.IsDownLoadAfterScrap}" Margin="20,0,0,0" />
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5"
+                                        Visibility="{Binding PinScraperModel.IsDownLoadAfterScrap, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Label Content="{DynamicResource LangKeySelectFolderPathWhereYouWantToDownloadMediaS}"
+                                       Name="LblSelectDownloadedFolderPath" Margin="10,0,0,5" />
+                                <Button Content="{DynamicResource LangKeySelectFolder}"
+                                        Foreground="White" FontSize="11" FontWeight="SemiBold"
+                                        Background="{DynamicResource AccentBaseColorBrush}"
+                                        VerticalContentAlignment="Center" Margin="5,0,5,0"
+                                        Name="BtnDownloadedPath" Width="100" Height="25"
+                                        Command="{Binding DownloadedPathCommand}" />
+                                <Label Content="{Binding PinScraperModel.DownloadedFolderPath}"
+                                       Name="LblDownloadedFolderPath"
+                                       Foreground="DarkOliveGreen" FontWeight="SemiBold" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</local:PinScraperConfigurationBase>

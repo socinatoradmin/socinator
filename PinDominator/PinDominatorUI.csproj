@@ -1,0 +1,909 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{107CEBC6-409B-47CA-A248-4A5E03D86E66}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PinDominator</RootNamespace>
+    <AssemblyName>PinDominator</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ContentSQLiteInteropFiles>true</ContentSQLiteInteropFiles>
+    <CopySQLiteInteropFiles>false</CopySQLiteInteropFiles>
+    <CleanSQLiteInteropFiles>false</CleanSQLiteInteropFiles>
+    <CollectSQLiteInteropFiles>false</CollectSQLiteInteropFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug-fast-test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug-fast-test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <SignManifests>true</SignManifests>
+    <CertificateThumbprint>b6d08bf4e7cfd123f1c279907063b78af25f9bb3</CertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>B6D08BF4E7CFD123F1C279907063B78AF25F9BB3</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <!--<PropertyGroup>
+    <ManifestTimestampUrl>http://timestamp.digicert.com</ManifestTimestampUrl>
+  </PropertyGroup>-->
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\dominatorhouse-social\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\CommonServiceLocator.2.0.5\lib\net48\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="Dragablz, Version=0.0.3.234, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Dragablz.0.0.3.234\lib\net45\Dragablz.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentScheduler, Version=5.3.0.0, Culture=neutral, PublicKeyToken=b76503528a14ebd1, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\FluentScheduler.5.3.0\lib\net40\FluentScheduler.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.8.1.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dominatorhouse-social\packages\HtmlAgilityPack.1.8.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\MahApps.Metro.1.6.5\lib\net47\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Core.7.2.0.1422\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Unity.Wpf, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Unity.7.2.0.1422\lib\net45\Prism.Unity.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Wpf.7.2.0.1422\lib\net45\Prism.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.CodeFirst, Version=1.5.1.25, Culture=neutral, PublicKeyToken=eb96ba0a78d831a7, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\SQLite.CodeFirst.1.5.1.25\lib\net45\SQLite.CodeFirst.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Data.SQLite.EF6.1.0.108.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Data.SQLite.Linq.1.0.108.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Windows.Controls.DataVisualization.Toolkit.4.0.0.0\lib\net40-Client\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Wpf.7.2.0.1422\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="ThreadUtils">
+      <HintPath>..\..\dominatorhouse-social\packages\ThreadUtils.1.0.1\lib\net461\ThreadUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.Abstractions.5.11.1\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.Container.5.11.1\lib\net47\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="CustomControl\AccountCreatorControl.xaml.cs">
+      <DependentUpon>AccountCreatorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\AccountDetailsSelector.xaml.cs">
+      <DependentUpon>AccountDetailsSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\AccountReport.xaml.cs">
+      <DependentUpon>AccountReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\AddBoards.xaml.cs">
+      <DependentUpon>AddBoards.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\BoardCreateDestination.xaml.cs">
+      <DependentUpon>BoardCreateDestination.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\EditPins.xaml.cs">
+      <DependentUpon>EditPins.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\ManageNote.xaml.cs">
+      <DependentUpon>ManageNote.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\NoteControl.xaml.cs">
+      <DependentUpon>NoteControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\PostFilterControl.xaml.cs">
+      <DependentUpon>PostFilterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\SendBoardInvitationControl.xaml.cs">
+      <DependentUpon>SendBoardInvitationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\UserFiltersControl.xaml.cs">
+      <DependentUpon>UserFiltersControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Factories\PinterestNetworkCollectionFactory.cs" />
+    <Compile Include="Factories\PinterestPublisherCollectionFactory.cs" />
+    <Compile Include="IoC\PdContainerExtension.cs" />
+    <Compile Include="IoC\PdDominatorModule.cs" />
+    <Compile Include="Modules\PinterestPrismModule.cs" />
+    <Compile Include="PdCoreLibrary\PdCoreBuilder.cs" />
+    <Compile Include="PdCoreLibrary\PdInitializer.cs" />
+    <Compile Include="PdCoreLibrary\PdNetworkCoreFactory.cs" />
+    <Compile Include="PdCoreLibrary\PdAccountToolsFactory.cs" />
+    <Compile Include="PdCoreLibrary\PdPublisherCoreBuilder.cs" />
+    <Compile Include="PdCoreLibrary\PdTabHandlerFactory.cs" />
+    <Compile Include="PdCoreLibrary\PdViewCampaignsFactory.cs" />
+    <Compile Include="PDViews\Boards\AcceptBoardInvitation.xaml.cs">
+      <DependentUpon>AcceptBoardInvitation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Boards\CreateBoard.xaml.cs">
+      <DependentUpon>CreateBoard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Boards\SendBoardInvitation.xaml.cs">
+      <DependentUpon>SendBoardInvitation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\CreateAccount\AccountCreator.xaml.cs">
+      <DependentUpon>AccountCreator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\GrowFollowers\FollowBack.xaml.cs">
+      <DependentUpon>FollowBack.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\GrowFollowers\Follower.xaml.cs">
+      <DependentUpon>Follower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\GrowFollowers\UnFollower.xaml.cs">
+      <DependentUpon>UnFollower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\PinMessenger\AutoReplyToNewMessage.xaml.cs">
+      <DependentUpon>AutoReplyToNewMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\PinMessenger\BroadcastMessages.xaml.cs">
+      <DependentUpon>BroadcastMessages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\PinMessenger\SendMessageToNewFollowers.xaml.cs">
+      <DependentUpon>SendMessageToNewFollowers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\PinPoster\DeletePins.xaml.cs">
+      <DependentUpon>DeletePins.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\PinPoster\EditPin.xaml.cs">
+      <DependentUpon>EditPin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\PinPoster\RePin.xaml.cs">
+      <DependentUpon>RePin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\PinScrape\BoardScraper.xaml.cs">
+      <DependentUpon>BoardScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\PinScrape\PinScraper.xaml.cs">
+      <DependentUpon>PinScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\PinScrape\UserScraper.xaml.cs">
+      <DependentUpon>UserScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\PinTryComment\Comment.xaml.cs">
+      <DependentUpon>Comment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\PinTryComment\Try.xaml.cs">
+      <DependentUpon>Try.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Settings\Setting.xaml.cs">
+      <DependentUpon>Setting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\AcceptBoardInvitationTab.xaml.cs">
+      <DependentUpon>AcceptBoardInvitationTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\AcceptBoardInvitation\AcceptBoardInvitationConfiguration.xaml.cs">
+      <DependentUpon>AcceptBoardInvitationConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\AutoReplyToNewMessegeTab.xaml.cs">
+      <DependentUpon>AutoReplyToNewMessegeTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\AutoReplyToNewMessage\AutoReplyToNewMessegeConfiguration.xaml.cs">
+      <DependentUpon>AutoReplyToNewMessegeConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\BoardScraperTab.xaml.cs">
+      <DependentUpon>BoardScraperTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\BoardScraper\BoardScraperConfiguration.xaml.cs">
+      <DependentUpon>BoardScraperConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\BroadCastMessageTab.xaml.cs">
+      <DependentUpon>BroadCastMessageTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\BroadCastMessage\BroadCastMessageConfiguration.xaml.cs">
+      <DependentUpon>BroadCastMessageConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\Comments\CommentConfiguration.xaml.cs">
+      <DependentUpon>CommentConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\CommentTab.xaml.cs">
+      <DependentUpon>CommentTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\CreateBoardTab.xaml.cs">
+      <DependentUpon>CreateBoardTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\CreateBoard\CreateBoardConfiguration.xaml.cs">
+      <DependentUpon>CreateBoardConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\DeletePinsTab.xaml.cs">
+      <DependentUpon>DeletePinsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\DeletePins\DeletePinsConfiguration.xaml.cs">
+      <DependentUpon>DeletePinsConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\EditPins\EditPinsConfiguration.xaml.cs">
+      <DependentUpon>EditPinsConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\EditPinTab.xaml.cs">
+      <DependentUpon>EditPinTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\FollowBackTab.xaml.cs">
+      <DependentUpon>FollowBackTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\FollowBack\FollowBackConfiguration.xaml.cs">
+      <DependentUpon>FollowBackConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\FollowTab.xaml.cs">
+      <DependentUpon>FollowTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\Follow\FollowConfiguration.xaml.cs">
+      <DependentUpon>FollowConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\PinScraperTab.xaml.cs">
+      <DependentUpon>PinScraperTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\PinScraper\PinScraperConfiguration.xaml.cs">
+      <DependentUpon>PinScraperConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\RepinsTab.xaml.cs">
+      <DependentUpon>RepinsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\Repin\RePinConfiguration.xaml.cs">
+      <DependentUpon>RePinConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\SendBoardInvitationTab.xaml.cs">
+      <DependentUpon>SendBoardInvitationTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\SendBoardInvitation\SendBoardInvitationConfiguration.xaml.cs">
+      <DependentUpon>SendBoardInvitationConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\SendMessageToNewFollowersTab.xaml.cs">
+      <DependentUpon>SendMessageToNewFollowersTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\SendMessageToNewFollowers\SendMessageToNewFollowersConfiguration.xaml.cs">
+      <DependentUpon>SendMessageToNewFollowersConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\TryTab.xaml.cs">
+      <DependentUpon>TryTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\Try\TryConfiguration.xaml.cs">
+      <DependentUpon>TryConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\UnfollowTab.xaml.cs">
+      <DependentUpon>UnfollowTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\Unfollow\UnFollowConfiguration.xaml.cs">
+      <DependentUpon>UnFollowConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\UserScraperTab.xaml.cs">
+      <DependentUpon>UserScraperTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PDViews\Tools\UserScraper\UserScraperConfiguration.xaml.cs">
+      <DependentUpon>UserScraperConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\AccountTab.xaml.cs">
+      <DependentUpon>AccountTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\CampaignTab.xaml.cs">
+      <DependentUpon>CampaignTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\BoardsTab.xaml.cs">
+      <DependentUpon>BoardsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\GrowFollowersTab.xaml.cs">
+      <DependentUpon>GrowFollowersTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\PinMessengerTab.xaml.cs">
+      <DependentUpon>PinMessengerTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\PinPosterTab.xaml.cs">
+      <DependentUpon>PinPosterTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\ScraperTab.xaml.cs">
+      <DependentUpon>ScraperTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\PinTryPinCommenterTab.xaml.cs">
+      <DependentUpon>PinTryPinCommenterTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\SettingsTab.xaml.cs">
+      <DependentUpon>SettingsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\ToolTabs.xaml.cs">
+      <DependentUpon>ToolTabs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\Boards\Accept Board Invitation\AcceptBoardInvitationBaseFactory.cs" />
+    <Compile Include="Utility\Boards\Accept Board Invitation\AcceptBoardInvitationReports.cs" />
+    <Compile Include="Utility\Boards\Accept Board Invitation\AcceptBoardInvitationViewCampaign.cs" />
+    <Compile Include="Utility\Boards\Create Board\CreateBoardBaseFactory.cs" />
+    <Compile Include="Utility\Boards\Create Board\CreateBoardReports.cs" />
+    <Compile Include="Utility\Boards\Create Board\CreateBoardViewCampaign.cs" />
+    <Compile Include="Utility\Boards\Send Board Invitation\SendBoardInvitationBaseFactory.cs" />
+    <Compile Include="Utility\Boards\Send Board Invitation\SendBoardInvitationReports.cs" />
+    <Compile Include="Utility\Boards\Send Board Invitation\SendBoardInvitationViewCampaign.cs" />
+    <Compile Include="Utility\CreateAccount\AccountCreatorBaseFactory.cs" />
+    <Compile Include="Utility\CreateAccount\AccountCreatorReports.cs" />
+    <Compile Include="Utility\CreateAccount\AccountCreatorViewCampaign.cs" />
+    <Compile Include="Utility\Grow Followers\Follow Back\FollowBackBaseFactory.cs" />
+    <Compile Include="Utility\Grow Followers\Follow Back\FollowBackReports.cs" />
+    <Compile Include="Utility\Grow Followers\Follow Back\FollowBackViewCampaign.cs" />
+    <Compile Include="Utility\Grow Followers\Follow\FollowBaseFactory.cs" />
+    <Compile Include="Utility\Grow Followers\Follow\FollowReports.cs" />
+    <Compile Include="Utility\Grow Followers\Follow\FollowViewCampaign.cs" />
+    <Compile Include="Utility\Grow Followers\Unfollow\UnfollowBaseFactory.cs" />
+    <Compile Include="Utility\Grow Followers\Unfollow\UnfollowReports.cs" />
+    <Compile Include="Utility\Grow Followers\Unfollow\UnfollowViewCampaign.cs" />
+    <Compile Include="Utility\Pin Messanger\Auto Reply To New Message\AutoReplyToNewMessageBaseFactory.cs" />
+    <Compile Include="Utility\Pin Messanger\Auto Reply To New Message\AutoReplyToNewMessageReports.cs" />
+    <Compile Include="Utility\Pin Messanger\Auto Reply To New Message\AutoReplyToNewMessageViewCampaign.cs" />
+    <Compile Include="Utility\Pin Messanger\Broadcast Messages\BroadCastMessagesBaseFactory.cs" />
+    <Compile Include="Utility\Pin Messanger\Broadcast Messages\BroadCastMessagesReports.cs" />
+    <Compile Include="Utility\Pin Messanger\Broadcast Messages\BroadCastMessagesViewCampaigns.cs" />
+    <Compile Include="Utility\Pin Messanger\Send Message To New Followers\SendMessageToNewFollowrsBaseFactory.cs" />
+    <Compile Include="Utility\Pin Messanger\Send Message To New Followers\SendMessageToNewFollowrsReports.cs" />
+    <Compile Include="Utility\Pin Messanger\Send Message To New Followers\SendMessageToNewFollowrsViewCampaigns.cs" />
+    <Compile Include="Utility\Pin Try Comment\Comment\CommentBaseFactory.cs" />
+    <Compile Include="Utility\Pin Try Comment\Comment\CommentReports.cs" />
+    <Compile Include="Utility\Pin Try Comment\Comment\CommentViewCampaigns.cs" />
+    <Compile Include="Utility\Pin Try Comment\Try\TryBaseFactory.cs" />
+    <Compile Include="Utility\Pin Try Comment\Try\TryReports.cs" />
+    <Compile Include="Utility\Pin Try Comment\Try\TryViewCampaigns.cs" />
+    <Compile Include="Utility\PinPoster\DeletePin\DeletePinBaseFactory.cs" />
+    <Compile Include="Utility\PinPoster\DeletePin\DeletePinReports.cs" />
+    <Compile Include="Utility\PinPoster\DeletePin\DeletePinViewCampaigns.cs" />
+    <Compile Include="Utility\PinPoster\EditPin\EditPinBaseFactory.cs" />
+    <Compile Include="Utility\PinPoster\EditPin\EditPinReports.cs" />
+    <Compile Include="Utility\PinPoster\EditPin\EditPinViewCampaigns.cs" />
+    <Compile Include="Utility\PinPoster\RePin\RePinBaseFactory.cs" />
+    <Compile Include="Utility\PinPoster\RePin\RePinReports.cs" />
+    <Compile Include="Utility\PinPoster\RePin\RePinViewCampaigns.cs" />
+    <Compile Include="Utility\PinScrap\Board Scraper\BoardScraperBaseFactory.cs" />
+    <Compile Include="Utility\PinScrap\Board Scraper\BoardScraperReports.cs" />
+    <Compile Include="Utility\PinScrap\Board Scraper\BoardScraperViewCampagns.cs" />
+    <Compile Include="Utility\PinScrap\Pin Scraper\PinScraperBaseFactory.cs" />
+    <Compile Include="Utility\PinScrap\Pin Scraper\PinScraperReports.cs" />
+    <Compile Include="Utility\PinScrap\Pin Scraper\PinScraperViewCampaigns.cs" />
+    <Compile Include="Utility\PinScrap\User Scraper\UserScraperBaseFactory.cs" />
+    <Compile Include="Utility\PinScrap\User Scraper\UserScraperReports.cs" />
+    <Compile Include="Utility\PinScrap\User Scraper\UserScraperViewCampaign.cs" />
+    <Compile Include="Utility\TabSelectors.cs" />
+    <Compile Include="ViewModel\AccountDetailsSelectorViewModel.cs" />
+    <Compile Include="ViewModel\BoardCreateDestinationsViewModel.cs" />
+    <Page Include="CustomControl\AccountCreatorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\AccountDetailsSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\AccountReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\AddBoards.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\BoardCreateDestination.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\EditPins.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\ManageNote.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\NoteControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\PostFilterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\SendBoardInvitationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\UserFiltersControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="PDViews\Boards\AcceptBoardInvitation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Boards\CreateBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Boards\SendBoardInvitation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\CreateAccount\AccountCreator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\GrowFollowers\FollowBack.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\GrowFollowers\Follower.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PDViews\GrowFollowers\UnFollower.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\PinMessenger\AutoReplyToNewMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\PinMessenger\BroadcastMessages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\PinMessenger\SendMessageToNewFollowers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\PinPoster\DeletePins.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\PinPoster\EditPin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\PinPoster\RePin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\PinScrape\BoardScraper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\PinScrape\PinScraper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\PinScrape\UserScraper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\PinTryComment\Comment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\PinTryComment\Try.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Settings\Setting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\AcceptBoardInvitationTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\AcceptBoardInvitation\AcceptBoardInvitationConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\AutoReplyToNewMessegeTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\AutoReplyToNewMessage\AutoReplyToNewMessegeConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\BoardScraperTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\BoardScraper\BoardScraperConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\BroadCastMessageTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\BroadCastMessage\BroadCastMessageConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\Comments\CommentConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\CommentTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\CreateBoardTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\CreateBoard\CreateBoardConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\DeletePinsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\DeletePins\DeletePinsConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\EditPins\EditPinsConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\EditPinTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\FollowBackTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\FollowBack\FollowBackConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\FollowTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\Follow\FollowConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PDViews\Tools\PinScraperTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\PinScraper\PinScraperConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\RepinsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\Repin\RePinConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\SendBoardInvitationTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\SendBoardInvitation\SendBoardInvitationConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\SendMessageToNewFollowersTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\SendMessageToNewFollowers\SendMessageToNewFollowersConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\TryTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\Try\TryConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\UnfollowTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\Unfollow\UnFollowConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\UserScraperTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PDViews\Tools\UserScraper\UserScraperConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\AccountTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\CampaignTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\BoardsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\GrowFollowersTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\PinMessengerTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\PinPosterTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\ScraperTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\PinTryPinCommenterTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\SettingsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\ToolTabs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Utility\Styles\PlaceHolder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\dominatorhouse-social\DominatorHouseCore\DominatorHouseCore.csproj">
+      <Project>{f40a5c83-8eda-43c5-88b9-dfaab492a497}</Project>
+      <Name>DominatorHouseCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dominatorhouse-social\DominatorUIUtility\DominatorUIUtility.csproj">
+      <Project>{e8d95af0-e99b-4059-9140-5c02b3f52e06}</Project>
+      <Name>DominatorUIUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PinDominatorCore\PinDominatorCore.csproj">
+      <Project>{68ef34bf-36c9-4e33-9acd-7b9d7b746f29}</Project>
+      <Name>PinDominatorCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.106.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.106.0\build\net46\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.106.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.106.0\build\net46\System.Data.SQLite.Core.targets'))" />
+    <Error Condition="!Exists('..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets'))" />
+  </Target>
+	<PropertyGroup>
+		<PostBuildEvent>if "$(Configuration)" == "Release" signtool sign /fd SHA256 /f "C:\Globussoft_Dotnet\code_signing_certificate_gbs.cer" "$(TargetDir)PinDominator.exe"</PostBuildEvent>
+	</PropertyGroup>
+  <Import Project="..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+-->
+</Project>
