@@ -1,0 +1,135 @@
+﻿<UserControl x:Class="QuoraDominatorUI.CustomControl.QuestionFiltersControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+        <StackPanel>
+            <!--Answer Count Filter -->
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Margin="5,5,0,0" x:Name="MinimumAnswersCheckBox"
+                          IsChecked="{Binding QuestionFilter.FilterAnswersCount}"
+                          Content="{DynamicResource LangKeyAnswersCount}" />
+                <Label Content="{DynamicResource LangKeyMinimum}" Margin="0,5,0,0" VerticalContentAlignment="Center" />
+                <controls:NumericUpDown x:Name="MinimumAnswersCount" TextAlignment="Center" Minimum="0"
+                                        Margin="5,10,0,0" Value="{Binding QuestionFilter.AnswersCount.StartValue}"
+                                        IsEnabled="{Binding QuestionFilter.FilterAnswersCount}" />
+                <Label Content="{DynamicResource LangKeyMaximum}" x:Name="MinimumAnswersLabel" Margin="0,5,0,0"
+                       VerticalContentAlignment="Center" />
+                <controls:NumericUpDown x:Name="MaxAnswersCount" TextAlignment="Center" Margin="10,10,0,0"
+                                        Value="{Binding QuestionFilter.AnswersCount.EndValue}"
+                                        Minimum="{Binding Value, ElementName=MinimumAnswersCount}"
+                                        IsEnabled="{Binding QuestionFilter.FilterAnswersCount}" />
+            </StackPanel>
+
+            <!--Questions Followers Count Filter -->
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Margin="5,5,0,0" x:Name="MinimumQuestionFollowersCheckBox"
+                          IsChecked="{Binding QuestionFilter.FilterQuestionFollowers}"
+                          Content="{DynamicResource LangKeyQuestionFollowersCount}" />
+                <Label Content="{DynamicResource LangKeyMinimum}" Margin="0,5,0,0" VerticalContentAlignment="Center" />
+                <controls:NumericUpDown x:Name="MinimumQuestionFollowersCount" Minimum="0" TextAlignment="Center"
+                                        Margin="5,10,0,0"
+                                        Value="{Binding QuestionFilter.QuestionFollowersCount.StartValue}"
+                                        IsEnabled="{Binding QuestionFilter.FilterQuestionFollowers}" />
+                <Label Content="{DynamicResource LangKeyMaximum}" x:Name="MinimumQuestionFollowersLabel"
+                       Margin="0,5,0,0" VerticalContentAlignment="Center" />
+                <controls:NumericUpDown x:Name="MaxQuestionFollowersCount" TextAlignment="Center" Margin="10,10,0,0"
+                                        Value="{Binding QuestionFilter.QuestionFollowersCount.EndValue}"
+                                        Minimum="{Binding Value, ElementName=QuestionFollowersCount}"
+                                        IsEnabled="{Binding QuestionFilter.FilterQuestionFollowers}" />
+            </StackPanel>
+
+            <!--Comments Count Filter -->
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Margin="5,5,0,0" x:Name="MinimumCommentsCheckBox"
+                          IsChecked="{Binding QuestionFilter.FilterCommentsCount}"
+                          Content="{DynamicResource LangKeyCommentsCount}" />
+                <Label Content="{DynamicResource LangKeyMinimum}" Margin="0,5,0,0" VerticalContentAlignment="Center" />
+                <controls:NumericUpDown x:Name="MinimumCommentsCount" Minimum="0" TextAlignment="Center"
+                                        Margin="5,10,0,0" Value="{Binding QuestionFilter.CommentsCount.StartValue}"
+                                        IsEnabled="{Binding QuestionFilter.FilterCommentsCount}" />
+                <Label Content="{DynamicResource LangKeyMaximum}" x:Name="MinimumCommentsLabel" Margin="0,5,0,0"
+                       VerticalContentAlignment="Center" />
+                <controls:NumericUpDown x:Name="MaxCommentsCount" TextAlignment="Center" Margin="10,10,0,0"
+                                        Value="{Binding QuestionFilter.CommentsCount.EndValue}"
+                                        Minimum="{Binding Value, ElementName=FilterCommentsCount}"
+                                        IsEnabled="{Binding QuestionFilter.FilterCommentsCount}" />
+            </StackPanel>
+
+            <!--Public Followers Count Filter -->
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Margin="5,5,0,0" x:Name="MinimumPublicFollowersCheckBox"
+                          IsChecked="{Binding QuestionFilter.FilterPublicFollowersCount}"
+                          Content="{DynamicResource LangKeyPublicFollowersCount}" />
+                <Label Content="{DynamicResource LangKeyMinimum}" Margin="0,5,0,0" VerticalContentAlignment="Center" />
+                <controls:NumericUpDown x:Name="MinimumPublicFollowersCount" Minimum="0" TextAlignment="Center"
+                                        Margin="5,10,0,0"
+                                        Value="{Binding QuestionFilter.PublicFollowersCount.StartValue}"
+                                        IsEnabled="{Binding QuestionFilter.FilterPublicFollowersCount}" />
+                <Label Content="{DynamicResource LangKeyMaximum}" x:Name="MinimumPublicFollowersLabel" Margin="0,5,0,0"
+                       VerticalContentAlignment="Center" />
+                <controls:NumericUpDown x:Name="MaxPublicFollowersCount" TextAlignment="Center" Margin="10,10,0,0"
+                                        Value="{Binding QuestionFilter.PublicFollowersCount.EndValue}"
+                                        Minimum="{Binding Value, ElementName=FilterPublicFollowersCount}"
+                                        IsEnabled="{Binding QuestionFilter.FilterPublicFollowersCount}" />
+            </StackPanel>
+
+            <!--Views Count Filter -->
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Margin="5,5,0,0" x:Name="MinimumViewsCountCheckBox"
+                          IsChecked="{Binding QuestionFilter.FilterViewsCount}"
+                          Content="{DynamicResource LangKeyViewsCount}" />
+                <Label Content="{DynamicResource LangKeyMinimum}" Margin="0,5,0,0" VerticalContentAlignment="Center" />
+                <controls:NumericUpDown x:Name="MinimumViewsCount" Minimum="0" TextAlignment="Center" Margin="5,10,0,0"
+                                        Value="{Binding QuestionFilter.ViewsCount.StartValue}"
+                                        IsEnabled="{Binding QuestionFilter.FilterViewsCount}" />
+                <Label Content="{DynamicResource LangKeyMaximum}" x:Name="MinimumViewsCountLabel" Margin="0,5,0,0"
+                       VerticalContentAlignment="Center" />
+                <controls:NumericUpDown x:Name="MaxViewsCount" TextAlignment="Center" Margin="10,10,0,0"
+                                        Value="{Binding QuestionFilter.ViewsCount.EndValue}"
+                                        Minimum="{Binding Value, ElementName=FilterViewsCount}"
+                                        IsEnabled="{Binding QuestionFilter.FilterViewsCount}" />
+            </StackPanel>
+
+            <!--Last Asked In Spaces Filter -->
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Margin="5,5,0,0" x:Name="MinimumAskedInSpacesCountCheckBox"
+                          IsChecked="{Binding QuestionFilter.FilterAskedInSpacesCount}"
+                          Content="{DynamicResource LangKeyAskedInSpacesCount}" />
+                <Label Content="{DynamicResource LangKeyMinimum}" Margin="0,5,0,0" VerticalContentAlignment="Center" />
+                <controls:NumericUpDown x:Name="MinimumLastAskedDaysCount" Minimum="0" TextAlignment="Center"
+                                        Margin="5,10,0,0"
+                                        Value="{Binding QuestionFilter.AskedInSpacesCount.StartValue}"
+                                        IsEnabled="{Binding QuestionFilter.FilterAskedInSpacesCount}" />
+                <Label Content="{DynamicResource LangKeyMaximum}" x:Name="MinimumLastAskedDaysCountLabel"
+                       Margin="0,5,0,0" VerticalContentAlignment="Center" />
+                <controls:NumericUpDown x:Name="MaxLastAskedDaysCount" TextAlignment="Center" Margin="10,10,0,0"
+                                        Value="{Binding QuestionFilter.AskedInSpacesCount.EndValue}"
+                                        Minimum="{Binding Value, ElementName=FilterLastAskedDaysCount}"
+                                        IsEnabled="{Binding QuestionFilter.FilterAskedInSpacesCount}" />
+            </StackPanel>
+
+            <!--Locked Status Filter -->
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Margin="5,5,0,0" x:Name="LockedStatusCheckBox"
+                          IsChecked="{Binding QuestionFilter.FilterLockedStatus}"
+                          Content="{DynamicResource LangKeyLockedStatus}" />
+            </StackPanel>
+            <StackPanel Margin="2" Orientation="Horizontal" HorizontalAlignment="Center"
+                        Visibility="{Binding QuestionFilter.SaveCloseButtonVisible,Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Button x:Name="SaveButton" Foreground="White" Click="SaveButton_OnClick" x:FieldModifier="public"
+                        Margin="10,5,0,0" Background="{DynamicResource AccentColorBrush}"
+                        Height="25" HorizontalAlignment="Center" BorderThickness="1" FontSize="12"
+                        Content="{DynamicResource LangKeySave}" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

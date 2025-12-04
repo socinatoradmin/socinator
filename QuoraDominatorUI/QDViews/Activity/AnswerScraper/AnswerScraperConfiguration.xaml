@@ -1,0 +1,103 @@
+﻿<local:AnswerScraperConfigurationBase
+    x:Class="QuoraDominatorUI.QDViews.Activity.AnswerScraperConfiguration.AnswerScraperConfiguration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:QuoraDominatorUI.QDViews.Activity.AnswerScraperConfiguration"
+    mc:Ignorable="d"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:DHCustomControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:QdControl="clr-namespace:QuoraDominatorUI.CustomControl"
+    x:Name="Answer"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=Answer}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+        <DHCustomControl:AccountGrowthModeHeader x:FieldModifier="public" x:Name="AccountGrowthHeader"
+                                                 VerticalAlignment="Top" SelectedIndex="0"
+                                                 SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=Answer}"
+                                                 SaveCommand="{Binding SaveConfigurationsCommand}" VideoTutorialLink="{Binding VideoTutorialLink}" />
+        <!--Filter section-->
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" VerticalAlignment="Center"
+                                   Margin="10,0,10,0" />
+                        <Controls:ToggleSwitch x:Name="TglStatus" OnLabel="Active﻿" OffLabel="Stopped﻿"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                                               IsChecked="{Binding AnswersScraperModel.IsAccountGrowthActive}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction Command="{Binding StatusChangedCommand,ElementName=Answer}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Controls:ToggleSwitch>
+                    </StackPanel>
+
+                    <StackPanel>
+
+                        <Expander Header="{DynamicResource LangKeySearchQuery}" IsExpanded="True" Margin="10,5">
+                            <DHCustomControl:SearchQueryControl
+                                IsExpanded="{Binding IsExpanded,ElementName=AccountGrowthHeader,UpdateSourceTrigger=Explicit}"
+                                Margin="5,5,5,0" x:Name="AnswersScraperSearchControl"
+                                ListQueryInfo="{Binding AnswersScraperModel.SavedQueries}"
+                                ListQueryType="{Binding AnswersScraperModel.ListQueryType}"
+                                AddQueryCommand="{Binding AddQueryCommand}"
+                                CommandParameter="{Binding ElementName=Answer}"
+                                CustomFilterCommand="{Binding CustomFilterCommand}" />
+                        </Expander>
+                        <StackPanel Orientation="Vertical">
+                            <!--JobConfiguration  Expender-->
+                            <Expander IsExpanded="True" Header="{DynamicResource LangKeyJobConfiguration}"
+                                      Margin="10,5">
+                                <DHCustomControl:JobConfigControl
+                                    JobConfiguration="{Binding AnswersScraperModel.JobConfiguration}" />
+                            </Expander>
+
+                            <!--Answer Filters Expender-->
+                            <Expander IsExpanded="True" Header="{DynamicResource LangKeyAnswerFilters}" Margin="10 5"
+                                      Visibility="{Binding AnswersScraperModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <QdControl:AnswerFiltersControl x:Name="AnswersScraperFiltersControl"
+                                                                AnswerFilter="{Binding AnswersScraperModel.AnswerFilterModel}" />
+
+                            </Expander>
+
+                            <!--User Filters Expender-->
+                            <Expander IsExpanded="True" Header="{DynamicResource LangKeyUserFilters}" Margin="10,5"
+                                      Visibility="{Binding AnswersScraperModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <QdControl:UserFiltersControl
+                                    UserFilter="{Binding AnswersScraperModel.UserFilterModel}" />
+                            </Expander>
+
+
+                            <!--Blacklists Expender-->
+
+                            <Expander IsExpanded="True" Header="{DynamicResource LangKeyManageBlacklistedUsers}"
+                                      Margin="10,5"
+                                      Visibility="{Binding AnswersScraperModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <StackPanel>
+                                    <CheckBox Content="{DynamicResource LangKeyPrivateBlacklist}"
+                                              IsChecked="{Binding AnswersScraperModel.IsChkAnswerScraperPrivateList}" />
+                                    <CheckBox Content="{DynamicResource LangKeyGroupBlacklist}"
+                                              IsChecked="{Binding AnswersScraperModel.IsChkAnswerScraperGroupList}" />
+                                </StackPanel>
+                            </Expander>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</local:AnswerScraperConfigurationBase>

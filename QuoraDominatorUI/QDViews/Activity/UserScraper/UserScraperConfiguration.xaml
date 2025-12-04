@@ -1,0 +1,131 @@
+﻿<local:UserScraperConfigurationBase x:Class="QuoraDominatorUI.QDViews.Activity.UserScraper.UserScraperConfiguration"
+                                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                    xmlns:local="clr-namespace:QuoraDominatorUI.QDViews.Activity.UserScraper"
+                                    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                                    xmlns:DHCustomControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+                                    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+                                    xmlns:QDCustomControl="clr-namespace:QuoraDominatorUI.CustomControl"
+                                    mc:Ignorable="d"
+                                    x:Name="UserScraper"
+                                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=UserScraper}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+
+    <Grid Name="MainGrid">
+
+        <DHCustomControl:AccountGrowthModeHeader x:FieldModifier="public" x:Name="AccountGrowthHeader"
+                                                 VerticalAlignment="Top" SelectedIndex="0"
+                                                 SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=UserScraper}"
+                                                 SaveCommand="{Binding SaveConfigurationsCommand}" VideoTutorialLink="{Binding VideoTutorialLink}" />
+        <!--Filter section-->
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" VerticalAlignment="Center"
+                                   Margin="10,0,10,0" />
+                        <Controls:ToggleSwitch x:Name="TglStatus" OnLabel="Active﻿" OffLabel="Stopped﻿"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                                               IsChecked="{Binding UserScraperModel.IsAccountGrowthActive}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=UserScraper}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Controls:ToggleSwitch>
+                    </StackPanel>
+
+                    <StackPanel>
+
+                        <Expander Header="{DynamicResource LangKeySearchQuery}" IsExpanded="True" Margin="10,5">
+                            <DHCustomControl:SearchQueryControl
+                                IsExpanded="{Binding IsExpanded,ElementName=AccountGrowthHeader,UpdateSourceTrigger=Explicit}"
+                                Margin="5,5,5,0" x:Name="UserScraperSearchControl"
+                                ListQueryInfo="{Binding UserScraperModel.SavedQueries}"
+                                ListQueryType="{Binding UserScraperModel.ListQueryType}"
+                                AddQueryCommand="{Binding AddQueryCommand}"
+                                CommandParameter="{Binding ElementName=UserScraper}"
+                                CustomFilterCommand="{Binding CustomFilterCommand}" />
+                        </Expander>
+                        <StackPanel Orientation="Vertical">
+
+                            <!--JobConfiguration  Expender-->
+                            <Expander IsExpanded="True" Header="{DynamicResource LangKeyJobConfiguration}"
+                                      Margin="10,5">
+                                <DHCustomControl:JobConfigControl
+                                    JobConfiguration="{Binding UserScraperModel.JobConfiguration}" />
+                            </Expander>
+
+                            <!--User Filters Expender-->
+
+                            <Expander IsExpanded="True" Header="{DynamicResource LangKeyUserFilters}" Margin="10 5"
+                                      Visibility="{Binding UserScraperModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <QDCustomControl:UserFiltersControl x:Name="UserScraperFiltersControl"
+                                                                    UserFilter="{Binding UserScraperModel.UserFilterModel}" />
+
+                            </Expander>
+
+                            <!-- Blacklists Expender-->
+                            <Expander IsExpanded="True" Header="{DynamicResource LangKeyManageBlacklistedUsers}"
+                                      Margin="10,5"
+                                      Visibility="{Binding UserScraperModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <StackPanel>
+
+                                    <CheckBox Content="{DynamicResource LangKeyPrivateBlacklist}" Margin="10,5"
+                                              IsChecked="{Binding UserScraperModel.IsChkUserScraperPrivateBlacklist}" />
+
+                                    <CheckBox Content="{DynamicResource LangKeyGroupBlacklist}" Margin="10,5"
+                                              IsChecked="{Binding UserScraperModel.IsChkUserScraperGroupBlacklist}" />
+
+                                </StackPanel>
+                            </Expander>
+
+                            <!--Scrape User Expander-->
+                            <!--<Expander IsExpanded="True"  Header="{DynamicResource LangKeyAfterScrapeUser}" Margin="10,5" 
+                        Visibility="{Binding UserScraperModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel>
+                                <CheckBox Content="{DynamicResource LangKeyEnableFollowUser}" Name="ChkLikeUsersLatestPosts" IsChecked="{Binding UserScraperModel.EnableFollowUserer}"  Margin="5,0"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,8,0,0" Visibility="{Binding UserScraperModel.EnableFollowUserer, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock  VerticalAlignment="Center" Text="{DynamicResource LangKeyFollowBetween}"  />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding UserScraperModel.FollowBetweenJobs.StartValue}" Name="LikeBetweenJobsStartValue" Minimum="0"/>
+                                    <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyAnd}" />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding UserScraperModel.FollowBetweenJobs.EndValue}" Minimum="{Binding Value,ElementName=LikeBetweenJobsStartValue}" />
+                                    <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyPost}"  />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="10,8,0,0">
+                                    <TextBlock  VerticalAlignment="Center" Text="{DynamicResource LangKeyFollowMaximumOf}"  />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding UserScraperModel.FollowMaxBetween.StartValue}" Name="FollowBetweenStartValue" Minimum="0"/>
+                                    <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyTo}" />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding UserScraperModel.FollowMaxBetween.EndValue}" Minimum="{Binding Value,ElementName=FollowMaxBetweenStartValue}"/>
+                                    <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyUserPerDay0NoLimit}"  />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="10,8,0,0">
+                                    <TextBlock VerticalAlignment="Center" Text="{DynamicResource LangKeyIncreaseEachDayWith}"  />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding UserScraperModel.IncreaseEachDayFollow.StartValue}" Name="IncreaseEachDayStartValue" Minimum="0"/>
+                                    <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyUntilItReaches}" />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding UserScraperModel.IncreaseEachDayFollow.EndValue}" Minimum="{Binding Value, ElementName=IncreaseEachDayFollowStartValue}"/>
+                                    <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyMaxFollowsPerDay}"  />
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>-->
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</local:UserScraperConfigurationBase>

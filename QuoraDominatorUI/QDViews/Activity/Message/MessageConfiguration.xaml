@@ -1,0 +1,111 @@
+﻿<local:MessageConfigurationBase x:Class="QuoraDominatorUI.QDViews.Activity.Message.MessageConfiguration"
+                                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                xmlns:local="clr-namespace:QuoraDominatorUI.QDViews.Activity.Message"
+                                mc:Ignorable="d" x:Name="BroadCast"
+                                xmlns:DHCustomControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+                                xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                                xmlns:QuoraControl="clr-namespace:QuoraDominatorUI.CustomControl"
+                                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=BroadCast}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <DHCustomControl:AccountGrowthModeHeader x:FieldModifier="public" x:Name="AccountGrowthHeader"
+                                                 VerticalAlignment="Top" SelectedIndex="0"
+                                                 SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=BroadCast}"
+                                                 SaveCommand="{Binding SaveConfigurationsCommand}" VideoTutorialLink="{Binding VideoTutorialLink}"/>
+
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" VerticalAlignment="Center"
+                                   Margin="10,0,10,0" />
+                        <Controls:ToggleSwitch x:Name="TglStatus" OnLabel="Active﻿" OffLabel="Stopped﻿"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                                               IsChecked="{Binding BroadcastMessagesModel.IsAccountGrowthActive}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=BroadCast}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Controls:ToggleSwitch>
+                    </StackPanel>
+                    <Expander Header="{DynamicResource LangKeySearchQuery}" IsExpanded="True" Margin="5,5">
+                        <!--Search query section-->
+                        <DHCustomControl:SearchQueryControl
+                            IsExpanded="{Binding IsExpanded,ElementName=AccountGrowthHeader,UpdateSourceTrigger=Explicit}"
+                            Name="BroadcastMessagesSearchControl"
+                            ListQueryType="{Binding BroadcastMessagesModel.ListQueryType}"
+                            ListQueryInfo="{Binding BroadcastMessagesModel.SavedQueries}"
+                            AddQueryCommand="{Binding AddQueryCommand}"
+                            CommandParameter="{Binding ElementName=BroadCast}"
+                            CustomFilterCommand="{Binding CustomFilterCommand}"
+                            DeleteQueryCommand="{Binding DeleteQueryCommand}"
+                            DeleteMulipleCommand="{Binding DeleteMulipleCommand}" />
+                    </Expander>
+                    <!-- Messages manager Expender-->
+
+                    <Expander IsExpanded="True" Header="{DynamicResource LangKeyManageMessages}" Margin="5,5">
+                        <StackPanel>
+                            <DHCustomControl:MessagesControl Name="MessagesControl"
+                                                             Messages="{Binding BroadcastMessagesModel.ManageMessagesModel,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                             AddMessagesCommand="{Binding AddMessagesCommand}"
+                                                             CommandParameter="{Binding ElementName=MessagesControl}" />
+                            <DHCustomControl:ManageMessages Name="ManageMessages"
+                                                            LstManageMessagesModel="{Binding BroadcastMessagesModel.LstDisplayManageMessageModel,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+                        </StackPanel>
+                    </Expander>
+
+                    <!-- After JobConfiguration  Expender-->
+                    <Expander IsExpanded="True" Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+                        <DHCustomControl:JobConfigControl
+                            JobConfiguration="{Binding BroadcastMessagesModel.JobConfiguration}" />
+                    </Expander>
+
+                    <!-- After User Filters Expender-->
+
+                    <Expander IsExpanded="True" Header="{DynamicResource LangKeyUserFilters}" Margin="5,5"
+                              Visibility="{Binding BroadcastMessagesModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <QuoraControl:UserFiltersControl x:Name="UserFiltersControl"
+                                                         UserFilter="{Binding BroadcastMessagesModel.UserFilterModel}" />
+                    </Expander>
+
+                    <!--Other Configurations filter Expender-->
+                    <!--<Expander IsExpanded="True"  Header="{DynamicResource LangKeyOtherConfigurations}" Margin="5,5" Visibility="{Binding IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <DHCustomControl:OtherConfig OtherConfigFilter="{Binding OtherConfigModel}" Name="OtherConfigControl"/>
+                    </Expander>-->
+
+
+                    <!-- Blacklists Expender-->
+
+                    <Expander IsExpanded="True" Header="{DynamicResource LangKeyManageBlacklistedUsers}" Margin="5,5"
+                              Visibility="{Binding BroadcastMessagesModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+
+                            <CheckBox Content="{DynamicResource LangKeyPrivateBlacklist}" Margin="10,5"
+                                      IsChecked="{Binding BroadcastMessagesModel.IsChkBroadCastPrivateBlacklist}" />
+                            <CheckBox Content="{DynamicResource LangKeyGroupBlacklist}" Margin="10,5"
+                                      IsChecked="{Binding BroadcastMessagesModel.IsChkBroadCastGroupBlacklist}" />
+
+                        </StackPanel>
+                    </Expander>
+
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</local:MessageConfigurationBase>

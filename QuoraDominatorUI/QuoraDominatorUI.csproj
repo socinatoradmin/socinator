@@ -1,0 +1,730 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{164CDDCD-DB12-4998-B822-3ADC9C8A7072}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QuoraDominatorUI</RootNamespace>
+    <AssemblyName>QuoraDominatorUI</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <SignManifests>true</SignManifests>
+    <CertificateThumbprint>b6d08bf4e7cfd123f1c279907063b78af25f9bb3</CertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>B6D08BF4E7CFD123F1C279907063B78AF25F9BB3</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <!--<PropertyGroup>
+    <ManifestTimestampUrl>http://timestamp.digicert.com</ManifestTimestampUrl>
+  </PropertyGroup>-->
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\CommonServiceLocator.2.0.4\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentScheduler, Version=5.3.0.0, Culture=neutral, PublicKeyToken=b76503528a14ebd1, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\FluentScheduler.5.3.0\lib\net40\FluentScheduler.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\MahApps.Metro.1.6.5\lib\net47\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Core.7.2.0.1422\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Unity.Wpf, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Unity.7.2.0.1422\lib\net45\Prism.Unity.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Wpf.7.2.0.1422\lib\net45\Prism.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Threading.Tasks.Extensions.4.5.3\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Wpf.7.2.0.1422\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="ThreadUtils, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\ThreadUtils.1.0.1\lib\net461\ThreadUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.Abstractions.5.11.1\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.Container.5.11.1\lib\net47\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="CustomControl\AccountReport.xaml.cs">
+      <DependentUpon>AccountReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\AnswerFiltersControl.xaml.cs">
+      <DependentUpon>AnswerFiltersControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\ManageBlacklistControl.xaml.cs">
+      <DependentUpon>ManageBlacklistControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\QuestionFiltersControl.xaml.cs">
+      <DependentUpon>QuestionFiltersControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\TopicFilterControl.xaml.cs">
+      <DependentUpon>TopicFilterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\UserFiltersControl.xaml.cs">
+      <DependentUpon>UserFiltersControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Factories\GrowFollower\AnswerOnQuestionFactory.cs" />
+    <Compile Include="Factories\GrowFollower\FollowFactory.cs" />
+    <Compile Include="Factories\Messages\AutoReplyToNewMessageFactory.cs" />
+    <Compile Include="Factories\Messages\BroadcastMessagesFactory.cs" />
+    <Compile Include="Factories\Messages\SendMessageToFollowerFactory.cs" />
+    <Compile Include="Factories\QuoraNetworkCollectionFactory.cs" />
+    <Compile Include="Factories\GrowFollower\UnfollowFactory.cs" />
+    <Compile Include="Factories\QuoraPublisherCollectionFactory .cs" />
+    <Compile Include="Factories\Reports\ReportAnswersFactory.cs" />
+    <Compile Include="Factories\Reports\ReportUsersFactory.cs" />
+    <Compile Include="Factories\Scrape\AnswersScraperFactory.cs" />
+    <Compile Include="Factories\Scrape\QuestionsScraperFactory.cs" />
+    <Compile Include="Factories\Scrape\UserScraperFactory.cs" />
+    <Compile Include="Factories\Voting\DownvoteAnswersFactory.cs" />
+    <Compile Include="Factories\Voting\DownvotePostFactory.cs" />
+    <Compile Include="Factories\Voting\DownvoteQuestionsFactory.cs" />
+    <Compile Include="Factories\Voting\UpvoteAnswersFactory.cs" />
+    <Compile Include="Factories\Voting\UpvotePostsFactory.cs" />
+    <Compile Include="IoC\QdContainerExtension.cs" />
+    <Compile Include="IoC\QdDominatorModule.cs" />
+    <Compile Include="Modules\QuoraPrismModule.cs" />
+    <Compile Include="QDCoreLibrary\QDAccountToolsFactory.cs" />
+    <Compile Include="QDCoreLibrary\QDCoreBuilder.cs" />
+    <Compile Include="QDCoreLibrary\QDNetworkCoreFactory.cs" />
+    <Compile Include="QDCoreLibrary\QdPublisherCoreBuilder.cs" />
+    <Compile Include="QDCoreLibrary\QDTabHandlerFactory.cs" />
+    <Compile Include="QDCoreLibrary\QdViewCampaignsFactory.cs" />
+    <Compile Include="QDViews\Activity\AnswerScraperConfigurationTab.xaml.cs">
+      <DependentUpon>AnswerScraperConfigurationTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\AnswerOnQuestionTab.xaml.cs">
+      <DependentUpon>AnswerOnQuestionTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\AnswerScraper\AnswerScraperConfiguration.xaml.cs">
+      <DependentUpon>AnswerScraperConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\Answer\AnswerOnQuestion.xaml.cs">
+      <DependentUpon>AnswerOnQuestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\AutoReplyToNewMessageTab.xaml.cs">
+      <DependentUpon>AutoReplyToNewMessageTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\BroadcastMessageTab.xaml.cs">
+      <DependentUpon>BroadcastMessageTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\DownvoteAnswersTab.xaml.cs">
+      <DependentUpon>DownvoteAnswersTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\DownvoteAnswers\DownvoteAnswersConfiguration.xaml.cs">
+      <DependentUpon>DownvoteAnswersConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\DownvoteQuestionsTab.xaml.cs">
+      <DependentUpon>DownvoteQuestionsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\DownvoteQuestions\DownvoteQuestionsConfiguration.xaml.cs">
+      <DependentUpon>DownvoteQuestionsConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\FollowTab.xaml.cs">
+      <DependentUpon>FollowTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\Follow\FollowConfiguration.xaml.cs">
+      <DependentUpon>FollowConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\Message\AutoReplyToNewMessageConfiguration.xaml.cs">
+      <DependentUpon>AutoReplyToNewMessageConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\Message\MessageConfiguration.xaml.cs">
+      <DependentUpon>MessageConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\Message\SendMessageToNewFollowerConfiguration.xaml.cs">
+      <DependentUpon>SendMessageToNewFollowerConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\QuestionScraperConfigurationTab.xaml.cs">
+      <DependentUpon>QuestionScraperConfigurationTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\QuestionScraper\QuestionScraperConfiguration.xaml.cs">
+      <DependentUpon>QuestionScraperConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\ReportAnswerTab.xaml.cs">
+      <DependentUpon>ReportAnswerTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\ReportAnswer\ReportAnswerConfiguration.xaml.cs">
+      <DependentUpon>ReportAnswerConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\ReportUserTab.xaml.cs">
+      <DependentUpon>ReportUserTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\ReportUser\ReportUserConfiguration.xaml.cs">
+      <DependentUpon>ReportUserConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\SendMessageToNewFollowerTab.xaml.cs">
+      <DependentUpon>SendMessageToNewFollowerTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\UnfollowTab.xaml.cs">
+      <DependentUpon>UnfollowTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\Unfollow\UnFollowConfiguration.xaml.cs">
+      <DependentUpon>UnFollowConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\UpvoteAnswersTab.xaml.cs">
+      <DependentUpon>UpvoteAnswersTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\UpvoteAnswers\UpvoteAnswersConfiguration.xaml.cs">
+      <DependentUpon>UpvoteAnswersConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\UserScraperConfigurationTab.xaml.cs">
+      <DependentUpon>UserScraperConfigurationTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Activity\UserScraper\UserScraperConfiguration.xaml.cs">
+      <DependentUpon>UserScraperConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Answers\AnswerOnQuestion.xaml.cs">
+      <DependentUpon>AnswerOnQuestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\GrowFollowers\Follower.xaml.cs">
+      <DependentUpon>Follower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\GrowFollowers\Unfollow.xaml.cs">
+      <DependentUpon>Unfollow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Messages\AutoReplyToNewMessage.xaml.cs">
+      <DependentUpon>AutoReplyToNewMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Messages\BroadcastMessages.xaml.cs">
+      <DependentUpon>BroadcastMessages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Messages\SendMessageToFollower.xaml.cs">
+      <DependentUpon>SendMessageToFollower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Reports\ReportAnswers.xaml.cs">
+      <DependentUpon>ReportAnswers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Reports\ReportUsers.xaml.cs">
+      <DependentUpon>ReportUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Scrape\AnswersScraper.xaml.cs">
+      <DependentUpon>AnswersScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Scrape\QuestionsScraper.xaml.cs">
+      <DependentUpon>QuestionsScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Scrape\UserScraper.xaml.cs">
+      <DependentUpon>UserScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Voting\DownvoteAnswers.xaml.cs">
+      <DependentUpon>DownvoteAnswers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Voting\DownvotePost.xaml.cs">
+      <DependentUpon>DownvotePost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Voting\DownvoteQuestions.xaml.cs">
+      <DependentUpon>DownvoteQuestions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Voting\UpvoteAnswers.xaml.cs">
+      <DependentUpon>UpvoteAnswers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDViews\Voting\UpvotePosts.xaml.cs">
+      <DependentUpon>UpvotePosts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\AccountTab.xaml.cs">
+      <DependentUpon>AccountTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\CampaignsTab.xaml.cs">
+      <DependentUpon>CampaignsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\GrowFollowersTab.xaml.cs">
+      <DependentUpon>GrowFollowersTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\AnswersTab.xaml.cs">
+      <DependentUpon>AnswersTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\MessagesTab.xaml.cs">
+      <DependentUpon>MessagesTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\ReportTab.xaml.cs">
+      <DependentUpon>ReportTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\ScrapeTab.xaml.cs">
+      <DependentUpon>ScrapeTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\SettingsTab.xaml.cs">
+      <DependentUpon>SettingsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\ToolsTab.xaml.cs">
+      <DependentUpon>ToolsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\VotingTab.xaml.cs">
+      <DependentUpon>VotingTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\GlobalMethods.cs" />
+    <Compile Include="Utility\QdInitializer.cs" />
+    <Compile Include="Utility\Report\Answer\AnswerOnQuestionReports.cs" />
+    <Compile Include="Utility\Report\GrowFollower\FollowReports.cs" />
+    <Compile Include="Utility\Report\GrowFollower\UnfollowReports.cs" />
+    <Compile Include="Utility\Report\Messages\AutoReplyToNewMessageReports.cs" />
+    <Compile Include="Utility\Report\Messages\BroadcastMessagesReports.cs" />
+    <Compile Include="Utility\Report\Messages\SendMessageToFollowerReports.cs" />
+    <Compile Include="Utility\Report\Reports\ReportAnswersReports.cs" />
+    <Compile Include="Utility\Report\Reports\ReportUsersReports.cs" />
+    <Compile Include="Utility\Report\Scrape\AnswersScraperReports.cs" />
+    <Compile Include="Utility\Report\Scrape\QuestionsScraperReports.cs" />
+    <Compile Include="Utility\Report\Scrape\UserScraperReports.cs" />
+    <Compile Include="Utility\Report\Voting\DownvoteAnswersReports.cs" />
+    <Compile Include="Utility\Report\Voting\DownvotePostReport.cs" />
+    <Compile Include="Utility\Report\Voting\DownvoteQuestionsReports.cs" />
+    <Compile Include="Utility\Report\Voting\UpvoteAnswersReports.cs" />
+    <Compile Include="Utility\Report\Voting\UpvotePostsReport.cs" />
+    <Compile Include="Utility\ViewCampaign\GrowFollower\AnswerOnQuestionViewCampaign.cs" />
+    <Compile Include="Utility\ViewCampaign\GrowFollower\FollowViewCampaign.cs" />
+    <Compile Include="Utility\ViewCampaign\GrowFollower\UnFollowViewCampaign.cs" />
+    <Compile Include="Utility\ViewCampaign\Messages\AutoReplyToNewMessageViewCampaign.cs" />
+    <Compile Include="Utility\ViewCampaign\Messages\BroadcastMessagesViewCampaign.cs" />
+    <Compile Include="Utility\ViewCampaign\Messages\SendMessageToFollowerViewCampaign.cs" />
+    <Compile Include="Utility\ViewCampaign\Reports\ReportAnswersViewCampaign.cs" />
+    <Compile Include="Utility\ViewCampaign\Reports\ReportUsersViewCampaign.cs" />
+    <Compile Include="Utility\ViewCampaign\Scrape\AnswersScraperViewCampaign.cs" />
+    <Compile Include="Utility\ViewCampaign\Scrape\QuestionsScraperViewCampaign.cs" />
+    <Compile Include="Utility\ViewCampaign\Scrape\UserScraperViewCampaign.cs" />
+    <Compile Include="Utility\ViewCampaign\Voting\DownvoteAnswersViewCampaign.cs" />
+    <Compile Include="Utility\ViewCampaign\Voting\DownvotePostViewCampaign.cs" />
+    <Compile Include="Utility\ViewCampaign\Voting\DownvoteQuestionsViewCampaign.cs" />
+    <Compile Include="Utility\ViewCampaign\Voting\UpvoteAnswersViewCampaign.cs" />
+    <Compile Include="Utility\ViewCampaign\Voting\UpvotePostsViewCampaign.cs" />
+    <Page Include="CustomControl\AccountReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\AnswerFiltersControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\ManageBlacklistControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\PostFilterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\QuestionFiltersControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\TopicFilterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\UserFiltersControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CustomControl\PostFilterControl.xaml.cs">
+      <DependentUpon>PostFilterControl.xaml</DependentUpon>
+    </Compile>
+    <Page Include="QDViews\Activity\AnswerScraperConfigurationTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Activity\AnswerOnQuestionTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Activity\AnswerScraper\AnswerScraperConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Activity\Answer\AnswerOnQuestion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Activity\AutoReplyToNewMessageTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Activity\BroadcastMessageTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Activity\DownvoteAnswersTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QDViews\Activity\DownvoteAnswers\DownvoteAnswersConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Activity\DownvoteQuestionsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QDViews\Activity\DownvoteQuestions\DownvoteQuestionsConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Activity\FollowTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QDViews\Activity\Follow\FollowConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QDViews\Activity\Message\AutoReplyToNewMessageConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Activity\Message\MessageConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Activity\Message\SendMessageToNewFollowerConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Activity\QuestionScraperConfigurationTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Activity\QuestionScraper\QuestionScraperConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Activity\ReportAnswerTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QDViews\Activity\ReportAnswer\ReportAnswerConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Activity\ReportUserTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QDViews\Activity\ReportUser\ReportUserConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Activity\SendMessageToNewFollowerTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Activity\UnfollowTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QDViews\Activity\Unfollow\UnFollowConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Activity\UpvoteAnswersTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QDViews\Activity\UpvoteAnswers\UpvoteAnswersConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Activity\UserScraperConfigurationTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Activity\UserScraper\UserScraperConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Answers\AnswerOnQuestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QDViews\GrowFollowers\Follower.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QDViews\GrowFollowers\Unfollow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QDViews\Messages\AutoReplyToNewMessage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Messages\BroadcastMessages.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Messages\SendMessageToFollower.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Reports\ReportAnswers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Reports\ReportUsers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QDViews\Scrape\AnswersScraper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QDViews\Scrape\QuestionsScraper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QDViews\Scrape\UserScraper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QDViews\Voting\DownvoteAnswers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QDViews\Voting\DownvotePost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QDViews\Voting\DownvoteQuestions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QDViews\Voting\UpvoteAnswers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QDViews\Voting\UpvotePosts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\AccountTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\CampaignsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\GrowFollowersTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\AnswersTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TabManager\MessagesTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\ReportTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\ScrapeTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\SettingsTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TabManager\ToolsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\VotingTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\dominatorhouse-social\DominatorHouseCore\DominatorHouseCore.csproj">
+      <Project>{f40a5c83-8eda-43c5-88b9-dfaab492a497}</Project>
+      <Name>DominatorHouseCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dominatorhouse-social\DominatorUIUtility\DominatorUIUtility.csproj">
+      <Project>{e8d95af0-e99b-4059-9140-5c02b3f52e06}</Project>
+      <Name>DominatorUIUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dominatorhouse-social\EmbeddedBrowser\EmbeddedBrowser.csproj">
+      <Project>{21f00635-aaf7-466b-9214-a830ea9c8963}</Project>
+      <Name>EmbeddedBrowser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuoraDominatorCore\QuoraDominatorCore.csproj">
+      <Project>{21b1d90e-f201-4ef0-b4e9-a99315945f1d}</Project>
+      <Name>QuoraDominatorCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+	<PropertyGroup>
+		<PostBuildEvent>if "$(Configuration)" == "Release" signtool sign /fd SHA256 /f "C:\Globussoft_Dotnet\code_signing_certificate_gbs.cer" "$(TargetDir)QuoraDominatorUI.exe"</PostBuildEvent>
+	</PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
