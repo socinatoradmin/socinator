@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Tumblr.Page.Login"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Tumblr.Page"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="53*"/>
+            <RowDefinition Height="180*"/>
+            <RowDefinition Height="67*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="213*"/>
+                <ColumnDefinition Width="187*"/>
+            </Grid.ColumnDefinitions>
+            <GroupBox>
+                <Grid>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="16*"/>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="9*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="26*"/>
+                            <ColumnDefinition Width="91*"/>
+                            <ColumnDefinition Width="7*"/>
+                            <ColumnDefinition Width="149*"/>
+                            <ColumnDefinition Width="27*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" Grid.Column="3" VerticalAlignment="Top" Width="180" Margin="3,10,-65,0" Grid.ColumnSpan="2" />
+                        <TextBox x:Name="stextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" Grid.Column="3" VerticalAlignment="Top" Width="180" Margin="3,60,-65,0" Grid.ColumnSpan="2" />
+                        <Label x:Name="label" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="1" Margin="21,13,12,0"/>
+                        <Label x:Name="slabel" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="1" Margin="21,63,12,0"/>
+                        <Button x:Name="button" Content="Login" HorizontalAlignment="Center" Grid.Column="3"  Grid.Row="1" VerticalAlignment="Center" Width="75" Click="btn_clicknow"/>
+                    </Grid>
+                </Grid>
+            </GroupBox>
+        </Grid>
+
+        <Label x:Name="sdlabel" Content="Tumlur.com" HorizontalAlignment="Center" FontSize="33" VerticalAlignment="Center" Grid.Column="1" />
+    </Grid>
+</UserControl>

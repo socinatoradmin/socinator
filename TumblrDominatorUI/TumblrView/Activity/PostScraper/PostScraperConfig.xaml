@@ -1,0 +1,81 @@
+﻿<local:PostScraperConfigBase x:Class="TumblrDominatorUI.TumblrView.Activity.PostScraper.PostScraperConfig"
+                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                             xmlns:local="clr-namespace:TumblrDominatorUI.TumblrView.Activity.PostScraper"
+                             mc:Ignorable="d" x:Name="PostScraperConfigurationUserControl"
+                             xmlns:trdCustomControl="clr-namespace:TumblrDominatorUI.CustomControl"
+                             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+                             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=PostScraperConfigurationUserControl}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+        <customControl:AccountGrowthModeHeader Name="AccountGrowthHeader"
+                                               VerticalAlignment="Top" SelectedIndex="0"
+                                               SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=PostScraperConfigurationUserControl}"
+                                               SaveCommand="{Binding SaveConfigurationsCommand}" VideoTutorialLink="{Binding VideoTutorialLink}" />
+
+        <!--Filter section-->
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" VerticalAlignment="Center"
+                                   Margin="10,0,10,0" />
+                        <controls:ToggleSwitch x:Name="TglStatus" OnLabel="Active﻿" OffLabel="Stopped﻿"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                                               IsChecked="{Binding PostScraperModel.IsAccountGrowthActive}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=PostScraperConfigurationUserControl}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </controls:ToggleSwitch>
+                    </StackPanel>
+
+                    <Expander Header="{DynamicResource LangKeySearchQuery}" Margin="10,5,5,0">
+                        <!--Search query section-->
+                        <customControl:SearchQueryControl
+                            Name="PostScraperConfigSearchControl"
+                            ListQueryType="{Binding PostScraperModel.ListQueryType}"
+                            ListQueryInfo="{Binding PostScraperModel.SavedQueries}"
+                            AddQueryCommand="{Binding AddQueryCommand}"
+                            CommandParameter="{Binding ElementName=PostScraperConfigurationUserControl}"
+                            CustomFilterCommand="{Binding CustomFilterCommand}" />
+                    </Expander>
+
+                    <StackPanel Orientation="Vertical">
+
+                        <!-- After JobConfiguration  Expender-->
+                        <Expander Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+                            <customControl:JobConfigControl
+                                JobConfiguration="{Binding PostScraperModel.JobConfiguration}" />
+                        </Expander>
+                    </StackPanel>
+
+                    <!-- After Post Filter Expender-->
+
+                    <Expander
+                        Visibility="{Binding PostScraperModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Header="{DynamicResource LangKeyPostFilters}" Margin="5,5">
+                        <trdCustomControl:PostFilterControl PostFilter="{Binding PostScraperModel.BlogFilterModel}" />
+                    </Expander>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</local:PostScraperConfigBase>

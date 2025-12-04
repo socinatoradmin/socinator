@@ -1,0 +1,676 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{82AF3B95-2454-4866-816D-2EE690349EF0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TumblrDominatorUI</RootNamespace>
+    <AssemblyName>TumblrDominatorUI</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <SignManifests>true</SignManifests>
+    <CertificateThumbprint>b6d08bf4e7cfd123f1c279907063b78af25f9bb3</CertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>B6D08BF4E7CFD123F1C279907063B78AF25F9BB3</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <!--<PropertyGroup>
+    <ManifestTimestampUrl>http://timestamp.digicert.com</ManifestTimestampUrl>
+  </PropertyGroup>-->
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\dominatorhouse-social\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\CommonServiceLocator.2.0.4\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\MahApps.Metro.1.6.5\lib\net47\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NReco.VideoConverter, Version=1.1.2.0, Culture=neutral, PublicKeyToken=395ccb334978a0cd, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\NReco.VideoConverter.1.1.2\lib\net20\NReco.VideoConverter.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\PresentationFramework.4.6.0\lib\PresentationFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Core.7.2.0.1422\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Unity.Wpf, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Unity.7.2.0.1422\lib\net45\Prism.Unity.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Wpf.7.2.0.1422\lib\net45\Prism.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.CodeFirst, Version=1.5.1.25, Culture=neutral, PublicKeyToken=eb96ba0a78d831a7, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\SQLite.CodeFirst.1.5.1.25\lib\net45\SQLite.CodeFirst.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Collections.Immutable.1.4.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Data.SQLite.EF6.1.0.108.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Data.SQLite.Linq.1.0.108.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Wpf.7.2.0.1422\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="ThreadUtils">
+      <HintPath>..\..\dominatorhouse-social\packages\ThreadUtils.1.0.1\lib\net461\ThreadUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.Abstractions.5.11.1\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.Container.5.11.1\lib\net47\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="CustomControl\AccountReport.xaml.cs">
+      <DependentUpon>AccountReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\PostFilterControl.xaml.cs">
+      <DependentUpon>PostFilterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\UserFiltersControl.xaml.cs">
+      <DependentUpon>UserFiltersControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Factories\TumblrNetworkCollectionFactory.cs" />
+    <Compile Include="Factories\TumblrPublisherCollectionFactory.cs" />
+    <Compile Include="IoC\TumblrContainerExtension.cs" />
+    <Compile Include="IoC\TumblrDominatorModule.cs" />
+    <Compile Include="Report\AccountReportEngage.cs" />
+    <Compile Include="Report\CommentUserDetails.cs" />
+    <Compile Include="Report\CommentScraperReportDetails.cs" />
+    <Compile Include="Report\UnLikeReportDetails.cs" />
+    <Compile Include="Report\UserScraperReportDetails.cs" />
+    <Compile Include="Report\PostScraperReportDetails.cs" />
+    <Compile Include="Report\LikeReportDetails.cs" />
+    <Compile Include="Report\FollowReportDetails.cs" />
+    <Compile Include="Report\MessageReportDetails.cs" />
+    <Compile Include="Report\ReblogReportDetails.cs" />
+    <Compile Include="Report\UnfollowReportDetails.cs" />
+    <Compile Include="TabManager\ScraperTab.xaml.cs">
+      <DependentUpon>ScraperTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\MessagesTab.xaml.cs">
+      <DependentUpon>MessagesTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\SettingsTab.xaml.cs">
+      <DependentUpon>SettingsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrCoreLibrary\TumblrInitialiser.cs" />
+    <Compile Include="TumblrCoreLibrary\TumblrPublisherCoreBuilder.cs" />
+    <Compile Include="TumblrCoreLibrary\TumblrViewCampaignsFactory.cs" />
+    <Compile Include="TumblrCoreLibrary\TumblrTabHandlerFactory.cs" />
+    <Compile Include="TumblrCoreLibrary\TumblrAccountToolsFactory.cs" />
+    <Compile Include="TumblrCoreLibrary\TumblrCoreBuilder.cs" />
+    <Compile Include="TumblrCoreLibrary\TumblrNetworkCoreFactory.cs" />
+    <Compile Include="TabManager\AccountTab.xaml.cs">
+      <DependentUpon>AccountTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\BlogTab.xaml.cs">
+      <DependentUpon>BlogTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\CampaignsTab.xaml.cs">
+      <DependentUpon>CampaignsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\EngageTab.xaml.cs">
+      <DependentUpon>EngageTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\GrowFollowersTab.xaml.cs">
+      <DependentUpon>GrowFollowersTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\ToolsTab.xaml.cs">
+      <DependentUpon>ToolsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\CommentTab.xaml.cs">
+      <DependentUpon>CommentTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\Comment\CommentConfiguration.xaml.cs">
+      <DependentUpon>CommentConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\Comment\CommentReport.xaml.cs">
+      <DependentUpon>CommentReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\FollowTab.xaml.cs">
+      <DependentUpon>FollowTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\Follow\FollowConfiguration.xaml.cs">
+      <DependentUpon>FollowConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\Follow\FollowReports.xaml.cs">
+      <DependentUpon>FollowReports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\CommentScraper\CommentScraperConfig.xaml.cs">
+      <DependentUpon>CommentScraperConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\CommentScraper\CommentScraperReports.xaml.cs">
+      <DependentUpon>CommentScraperReports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\CommentScraperTab.xaml.cs">
+      <DependentUpon>CommentScraperTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\UnLikeTab.xaml.cs">
+      <DependentUpon>UnLikeTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\UnLike\UnLikeConfiguration.xaml.cs">
+      <DependentUpon>UnLikeConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\UserScraperTab .xaml.cs">
+      <DependentUpon>UserScraperTab .xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\UserScraper\UserScraperConfig.xaml.cs">
+      <DependentUpon>UserScraperConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\UserScraper\UserScraperReports.xaml.cs">
+      <DependentUpon>UserScraperReports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\PostScraper\PostScraperReports.xaml.cs">
+      <DependentUpon>PostScraperReports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\PostScraperTab.xaml.cs">
+      <DependentUpon>PostScraperTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\LikeTab.xaml.cs">
+      <DependentUpon>LikeTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\Like\LikeConfiguration.xaml.cs">
+      <DependentUpon>LikeConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\Like\LikeReports.xaml.cs">
+      <DependentUpon>LikeReports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\MessageTab.xaml.cs">
+      <DependentUpon>MessageTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\Message\BroadcastMessagesConfig.xaml.cs">
+      <DependentUpon>BroadcastMessagesConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\Message\MessageReports.xaml.cs">
+      <DependentUpon>MessageReports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\PostScraper\PostScraperConfig.xaml.cs">
+      <DependentUpon>PostScraperConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\ReblogTab.xaml.cs">
+      <DependentUpon>ReblogTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\Reblog\ReblogConfiguration.xaml.cs">
+      <DependentUpon>ReblogConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\Reblog\ReblogReports.xaml.cs">
+      <DependentUpon>ReblogReports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\UnfollowTab.xaml.cs">
+      <DependentUpon>UnfollowTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\Unfollow\UnfollowConfiguration.xaml.cs">
+      <DependentUpon>UnfollowConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Activity\Unfollow\UnfollowReports.xaml.cs">
+      <DependentUpon>UnfollowReports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Blogs\Reblog.xaml.cs">
+      <DependentUpon>Reblog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\GrowFollowers\Follower.xaml.cs">
+      <DependentUpon>Follower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\GrowFollowers\Unfollower.xaml.cs">
+      <DependentUpon>Unfollower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Liker\Comment.xaml.cs">
+      <DependentUpon>Comment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Liker\Like.xaml.cs">
+      <DependentUpon>Like.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Liker\UnLike.xaml.cs">
+      <DependentUpon>UnLike.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Message\BroadcastMessages.xaml.cs">
+      <DependentUpon>BroadcastMessages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Scraper\CommentScraper.xaml.cs">
+      <DependentUpon>CommentScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Scraper\UserScraper.xaml.cs">
+      <DependentUpon>UserScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TumblrView\Scraper\PostScraper.xaml.cs">
+      <DependentUpon>PostScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\Comment\CommentBaseFactory.cs" />
+    <Compile Include="Utility\Comment\CommentReports.cs" />
+    <Compile Include="Utility\Comment\CommentViewCampaign.cs" />
+    <Compile Include="Utility\Follow\FollowBaseFactory.cs" />
+    <Compile Include="Utility\Follow\FollowReports.cs" />
+    <Compile Include="Utility\Follow\FollowViewCampaign.cs" />
+    <Compile Include="Utility\Like\LikeBaseFactory.cs" />
+    <Compile Include="Utility\Like\LikeReports.cs" />
+    <Compile Include="Utility\Like\LikeViewCampaign.cs" />
+    <Compile Include="Utility\Message\MessageBaseFactory.cs" />
+    <Compile Include="Utility\Message\MessageReports.cs" />
+    <Compile Include="Utility\Message\MessageViewCampaign.cs" />
+    <Compile Include="Utility\CommentScraper\CommentScraperBaseFactory.cs" />
+    <Compile Include="Utility\CommentScraper\CommentScraperReports.cs" />
+    <Compile Include="Utility\CommentScraper\CommentScraperViewCampaign.cs" />
+    <Compile Include="Utility\Unlike\UnLikeBaseFactory.cs" />
+    <Compile Include="Utility\Unlike\UnLikeReports.cs" />
+    <Compile Include="Utility\Unlike\UnLikeViewCampaign.cs" />
+    <Compile Include="Utility\UserScraper\UserScraperBaseFactory.cs" />
+    <Compile Include="Utility\UserScraper\UserScraperReports.cs" />
+    <Compile Include="Utility\UserScraper\UserScraperViewCampaign.cs" />
+    <Compile Include="Utility\PostScraper\PostScraperBaseFactory.cs" />
+    <Compile Include="Utility\PostScraper\PostScraperReports.cs" />
+    <Compile Include="Utility\PostScraper\PostScraperViewCampaign.cs" />
+    <Compile Include="Utility\Reblog\ReblogBaseFactory.cs" />
+    <Compile Include="Utility\Reblog\ReblogReports.cs" />
+    <Compile Include="Utility\Reblog\ReblogViewCampaign.cs" />
+    <Compile Include="Utility\Unfollow\UnfollowBaseFactory.cs" />
+    <Compile Include="Utility\Unfollow\UnfollowReports.cs" />
+    <Compile Include="Utility\Unfollow\UnfollowViewCampaign.cs" />
+    <Page Include="CustomControl\AccountReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\PostFilterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="CustomControl\UserFiltersControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceDictionary\TumblrResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\AccountTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\BlogTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\CampaignsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\EngageTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\GrowFollowersTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\ScraperTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TabManager\MessagesTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\SettingsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\ToolsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Activity\CommentTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Activity\Comment\CommentConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Activity\Comment\CommentReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Activity\FollowTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Activity\Follow\FollowConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Activity\Follow\FollowReports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Activity\CommentScraper\CommentScraperConfig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TumblrView\Activity\CommentScraper\CommentScraperReports.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TumblrView\Activity\CommentScraperTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TumblrView\Activity\UnLikeTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Activity\UnLike\UnLikeConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Activity\UserScraperTab .xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TumblrView\Activity\UserScraper\UserScraperConfig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TumblrView\Activity\UserScraper\UserScraperReports.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TumblrView\Activity\PostScraper\PostScraperReports.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TumblrView\Activity\PostScraperTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TumblrView\Activity\LikeTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Activity\Like\LikeConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Activity\Like\LikeReports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Activity\MessageTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Activity\Message\BroadcastMessagesConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Activity\Message\MessageReports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Activity\PostScraper\PostScraperConfig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TumblrView\Activity\ReblogTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Activity\Reblog\ReblogConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Activity\Reblog\ReblogReports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Activity\UnfollowTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Activity\Unfollow\UnfollowConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Activity\Unfollow\UnfollowReports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Blogs\Reblog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\GrowFollowers\Follower.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\GrowFollowers\Unfollower.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Liker\Comment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Liker\Like.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Liker\UnLike.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Message\BroadcastMessages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TumblrView\Scraper\CommentScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TumblrView\Scraper\UserScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TumblrView\Scraper\PostScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\dominatorhouse-social\DominatorHouseCore\DominatorHouseCore.csproj">
+      <Project>{f40a5c83-8eda-43c5-88b9-dfaab492a497}</Project>
+      <Name>DominatorHouseCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dominatorhouse-social\DominatorUIUtility\DominatorUIUtility.csproj">
+      <Project>{e8d95af0-e99b-4059-9140-5c02b3f52e06}</Project>
+      <Name>DominatorUIUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TumblrDominatorCore\TumblrDominatorCore.csproj">
+      <Project>{5898E952-8C43-40B7-9527-EB814650D50F}</Project>
+      <Name>TumblrDominatorCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+	  <PostBuildEvent>if "$(Configuration)" == "Release" signtool sign /fd SHA256 /f "C:\Globussoft_Dotnet\code_signing_certificate_gbs.cer" "$(TargetDir)TumblrDominatorUI.exe"</PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

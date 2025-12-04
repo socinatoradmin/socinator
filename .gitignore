@@ -1,0 +1,12 @@
+TumblrDominatorCore/obj/
+TumblrDominatorUI/bin/
+TumblrDominatorUI/obj/
+TumblrDominatorCore/bin/
+packages/
+TumblrDominatorCore/obj/
+TumlurRequest.sln
+TumblrDominatorCore.Tests/obj/
+TumblrDominatorCore.UnitTests/bin/
+TumblrDominatorCore.UnitTests/obj/
+/.vs
+/TumlurRequest/obj/Debug
