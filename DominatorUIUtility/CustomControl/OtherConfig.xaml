@@ -1,0 +1,71 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.CustomControl.OtherConfig"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <StackPanel x:Name="MainGrid" Margin="5">
+        <StackPanel Orientation="Horizontal">
+            <CheckBox
+                Margin="5"
+                VerticalAlignment="Center"
+                Content="{DynamicResource LangKeySendSecondaryMessagesAfter}"
+                IsChecked="{Binding OtherConfigFilter.IsSendSecondaryMessagesAfterChecked}" />
+            <controls:NumericUpDown
+                IsEnabled="{Binding OtherConfigFilter.IsSendSecondaryMessagesAfterChecked}"
+                Minimum="0"
+                Value="{Binding OtherConfigFilter.SendSecondaryMessages.StartValue}" />
+            <Label Content="{DynamicResource LangKeyTo}" />
+            <controls:NumericUpDown
+                IsEnabled="{Binding OtherConfigFilter.IsSendSecondaryMessagesAfterChecked}"
+                Minimum="{Binding OtherConfigFilter.SendSecondaryMessages.StartValue}"
+                Value="{Binding OtherConfigFilter.SendSecondaryMessages.EndValue}" />
+            <Label Content="{DynamicResource LangKeyHours}" />
+        </StackPanel>
+        <StackPanel Margin="5" Visibility="{Binding OtherConfigFilter.IsSendSecondaryMessagesAfterChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+            <CheckBox
+                VerticalAlignment="Center"
+                Content="{DynamicResource LangKeySendOnlyIfTheUserHasReplied}"
+                IsChecked="{Binding OtherConfigFilter.IsSendIfUserHasRepliedChecked}" />
+            <Button
+                Name="BtnSendIfUserHasReplied"
+                HorizontalAlignment="Left"
+                Background="Transparent"
+                Click="BtnSendIfUserHasReplied_OnClick"
+                Content="{DynamicResource LangKeyManageSecondaryMessages}"
+                FontWeight="SemiBold"
+                Foreground="{DynamicResource AccentBaseColorBrush}"
+                Visibility="{Binding OtherConfigFilter.IsSendIfUserHasRepliedChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            <CheckBox
+                Margin="0,5,0,0"
+                VerticalAlignment="Center"
+                Content="{DynamicResource LangKeySendOnlyIfTheUserHasNotReplied}"
+                IsChecked="{Binding OtherConfigFilter.IsSendIfUserHasRepliedNotChecked}" />
+            <Button
+                Name="BtnSendIfUserHasNotReplied"
+                HorizontalAlignment="Left"
+                Background="Transparent"
+                Click="BtnSendIfUserHasNotReplied_OnClick"
+                Content="{DynamicResource LangKeyManageSecondaryMessages}"
+                FontWeight="SemiBold"
+                Foreground="{DynamicResource AccentBaseColorBrush}"
+                Visibility="{Binding OtherConfigFilter.IsSendIfUserHasRepliedNotChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+        </StackPanel>
+        <StackPanel Margin="5" Orientation="Horizontal">
+            <CheckBox
+                VerticalAlignment="Center"
+                Content="{DynamicResource LangKeyCheckForNewMessagesAroundEvery}"
+                IsChecked="{Binding OtherConfigFilter.IsCheckForNewMessagesChecked}" />
+            <controls:NumericUpDown
+                IsEnabled="{Binding OtherConfigFilter.IsCheckForNewMessagesChecked}"
+                Minimum="0"
+                Value="{Binding OtherConfigFilter.CheckMessagesMinutes}" />
+            <Label Content="{DynamicResource LangKeyMinutes}" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

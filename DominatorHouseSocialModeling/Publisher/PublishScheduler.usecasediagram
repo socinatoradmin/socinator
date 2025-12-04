@@ -1,0 +1,524 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="28defdad-d177-4bf5-a924-72c8db36e521" name="PublishScheduler" linkedPackageId="6cbf1b91-4605-4732-b3bc-6b5e6b13fe0f" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <ownedCommentsInternal>
+    <comment Id="d3505206-4f67-4d16-88e7-ec6e4aba28e6">
+      <elementDefinition Id="ee76057e-e12d-409e-9fd8-0902e2b1cccb" />
+      <body>Interact when user clicks publish now options</body>
+      <annotatedElements>
+        <useCaseMoniker Id="d84c8f4f-1b55-40ad-a5c4-edd74e51ade9" LastKnownName="Publish Now" />
+      </annotatedElements>
+    </comment>
+    <comment Id="c6c7b8fe-57d1-4710-9866-e4e147c3807a">
+      <elementDefinition Id="302212e6-e554-4dc0-b920-0f6ec74a174d" />
+      <body>Trigger when scheduled time has arrived.
+
+This process will take care whether publishing on all destination or only x random destinations</body>
+      <annotatedElements>
+        <useCaseMoniker Id="e9c2cf1e-1c59-48f0-8f21-0a1717ef258d" LastKnownName="Publish By Campaign Id" />
+      </annotatedElements>
+    </comment>
+    <comment Id="42965b8a-ddb4-452b-9fcc-df4a5084a8ba">
+      <elementDefinition Id="28a8b7ce-9a0e-4e76-a7f9-b5eff3cd55e6" />
+      <body>Stop all scheduled activities. It will call directly when user click to pause or while updating the campaign's Timing</body>
+      <annotatedElements>
+        <useCaseMoniker Id="1076e4e4-b8ea-4016-a8eb-81339841de3b" LastKnownName="Stop Schedule Activities" />
+      </annotatedElements>
+    </comment>
+    <comment Id="e046ef06-0c26-4b8d-99a6-3747fe9f2fd5">
+      <elementDefinition Id="c2e91bd6-87c2-4111-9a5f-347402ccae95" />
+      <body>Trigger while campaign deleting</body>
+      <annotatedElements>
+        <useCaseMoniker Id="065b8df7-e44f-4a16-9b93-18f0cc95b596" LastKnownName="Stop Currently Publishing Posts" />
+      </annotatedElements>
+    </comment>
+    <comment Id="5af69bf0-1687-4689-9db4-fec2b883a2f9">
+      <elementDefinition Id="e00f056e-4e6b-4e8c-9522-63ee6807432c" />
+      <body>Call Publishing Methodology as per respective Network</body>
+      <annotatedElements>
+        <artifactMoniker Id="e2f14674-6ff1-491d-a1a4-720e004f3212" LastKnownName="Publisher Job Process" />
+      </annotatedElements>
+    </comment>
+    <comment Id="f9cc7cf6-ee8d-47d4-8a7f-a76f01f7c3fb">
+      <elementDefinition Id="17e7c8c5-38a3-407a-bb07-07b469fd0708" />
+      <body>Trigger whenever time arrived to publish, If end user select at a time only x active history per account then untill reaching x it will  call direct to Publisher Job Process, otherwise add in Linked list of action</body>
+      <annotatedElements>
+        <useCaseMoniker Id="8b9a8c68-712c-4794-9f13-f77075718d82" LastKnownName="Schedule Publisher " />
+      </annotatedElements>
+    </comment>
+    <comment Id="2d6d7b83-7641-490d-981f-e5b91d90c001">
+      <elementDefinition Id="70f68fec-9a26-4fb6-bccc-e397e7bd1f51" />
+      <body>When end user needs randomize publishing time on everyday</body>
+      <annotatedElements>
+        <useCaseMoniker Id="1a566023-f2b8-45ff-b3a8-fd8c731185ef" LastKnownName="Generate Random Time" />
+      </annotatedElements>
+    </comment>
+    <comment Id="8dfcc162-5816-4dc1-8101-ec48d77e6da9">
+      <elementDefinition Id="d5bc03ae-0d98-4fa0-b72c-a54193c9d252" />
+      <body>If end user needs to delete the published post after x hours</body>
+      <annotatedElements>
+        <useCaseMoniker Id="8f677bb2-a94e-47f9-acf2-3825fa4eb6bc" LastKnownName="Delete Post  Once Published" />
+      </annotatedElements>
+    </comment>
+    <comment Id="6559da7a-2734-4761-b471-572e2a45616d">
+      <elementDefinition Id="3c65e417-f2e1-4be2-adee-2ae71fee08ca" />
+      <body>Update the new Groups for save campaign's Destinations Only if end user needs</body>
+      <annotatedElements>
+        <useCaseMoniker Id="885fc9c7-c7ad-4c00-abca-fc1806f67b25" LastKnownName="Update New Groups" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <appliedStereotypesInternal>
+    <stereotypeInstance Id="e92b103a-0dc2-4693-bdbc-21737e1d5b80" name="namespace" profile="CSharpProfile">
+      <elementDefinition Id="8adae484-baf2-4c1b-9b39-977f8a2ba1ec" />
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="2ed632f6-721f-4fe5-97d8-6c6c5046574a">
+          <propertyInstance Id="2296201c-c367-4d29-8e2b-d162d15b1c9e" name="BaseName">
+            <elementDefinition Id="0f41da63-46f0-4926-9017-b5c8c3fad72f" />
+          </propertyInstance>
+          <elementDefinition Id="af0a5cbc-ec64-4313-8278-1c86da700ac0" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="db126f2c-ca77-4f03-9087-e6bd37a7969e">
+          <propertyInstance Id="fd1b68f9-1531-4348-ba43-d1d853a446a4" name="ClrAttributes">
+            <elementDefinition Id="6d114f75-2178-45eb-a336-6937e89a259a" />
+          </propertyInstance>
+          <elementDefinition Id="7fbc7984-23c1-4dc6-ae82-6a1fbeb585a9" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="d3342373-a18c-4e06-8b3a-458dabf05893">
+          <propertyInstance Id="5e988e55-094f-4417-bf04-bd3c2b693ce7" name="Usings">
+            <elementDefinition Id="8dbd23a1-759b-448e-b3c5-319b3680a6b6" />
+          </propertyInstance>
+          <elementDefinition Id="007dad1e-fc03-499a-964a-f4dd4a6383e6" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+    <stereotypeInstance Id="d189fe43-5660-425b-a40d-136072d9d211" name="TextTemplateBindings" profile="TextTemplateBindings">
+      <elementDefinition Id="12ade86c-6850-43b9-84db-205ac0440c6a" />
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="c5294583-b6c3-4937-9dc3-5fc3bf67e1d0">
+          <propertyInstance Id="3812db17-d609-4eb4-b878-28a49a0889f8" name="Alias" value="ClassTemplate|EnumTemplate|InterfaceTemplate|StructTemplate">
+            <elementDefinition Id="4660c147-d919-4b99-8791-9a99fd9390e4" />
+          </propertyInstance>
+          <elementDefinition Id="f8279097-10fa-47c9-9059-18864df9e016" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="450106ad-ddf1-4e84-a317-6aab86a21dd3">
+          <propertyInstance Id="e55a6ace-281b-429e-923c-875e7c3f162e" name="TemplateFilePath" value="ClassTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4|EnumTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\EnumTemplate.t4|InterfaceTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\InterfaceTemplate.t4|StructTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4">
+            <elementDefinition Id="b313329b-15bb-46b0-9a86-4d51ce239981" />
+          </propertyInstance>
+          <elementDefinition Id="286eeab3-9df0-4be2-a1a0-49aa966a6ad2" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="c5515b4c-42a9-4e4c-89bd-4fa7c086962c">
+          <propertyInstance Id="be543e7a-7c79-45ad-8e4c-e929bac92ef3" name="ProjectPath" value="ClassTemplate=..\DominatorHouseSocialModelingLib\DominatorHouseSocialModelingLib.csproj|EnumTemplate=..\DominatorHouseSocialModelingLib\DominatorHouseSocialModelingLib.csproj|InterfaceTemplate=..\DominatorHouseSocialModelingLib\DominatorHouseSocialModelingLib.csproj|StructTemplate=..\DominatorHouseSocialModelingLib\DominatorHouseSocialModelingLib.csproj">
+            <elementDefinition Id="0a3743bf-eeb2-4780-80c1-4dcd38f6e2ee" />
+          </propertyInstance>
+          <elementDefinition Id="abe99e85-3005-4b2f-8827-dcce60f94682" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="6715aa4e-5857-4482-858f-a39b3ff323ee">
+          <propertyInstance Id="561e887d-95d8-4388-bf92-eaa212b8ddee" name="TargetDirectory" value="ClassTemplate=GeneratedCode\{PackageStructure}|EnumTemplate=GeneratedCode\{PackageStructure}|InterfaceTemplate=GeneratedCode\{PackageStructure}|StructTemplate=GeneratedCode\{PackageStructure}">
+            <elementDefinition Id="864cec6c-99a1-4bf0-b832-4869064c4009" />
+          </propertyInstance>
+          <elementDefinition Id="173e6699-d5a6-40fa-b17b-e58449baf577" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="fdd3aae7-a44c-49e3-a881-5bc6cfb1934b">
+          <propertyInstance Id="86dfb17a-de96-407b-8ab1-a48c6188e9a0" name="TargetName" value="ClassTemplate={Name}|EnumTemplate={Name}|InterfaceTemplate={Name}|StructTemplate={Name}">
+            <elementDefinition Id="759bb1aa-1801-433f-95ab-0b872d631e82" />
+          </propertyInstance>
+          <elementDefinition Id="1d9db066-4174-4967-99c8-9366a1a38d63" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="b7249847-2b59-4283-ab2e-561fa9d628bd">
+          <propertyInstance Id="25e6464e-e126-4d9e-8f7b-7c7c22b10862" name="Overwrite" value="ClassTemplate=True|EnumTemplate=True|InterfaceTemplate=True|StructTemplate=True">
+            <elementDefinition Id="0113d5f3-7e27-4dd5-8e68-b17fc103cb26" />
+          </propertyInstance>
+          <elementDefinition Id="0dd09f3b-c24f-42e5-a144-5ce44923d2ef" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="2f465fb4-bac3-40bc-8443-d1ab6fe0b45b">
+          <propertyInstance Id="49d062fc-ffad-4270-82aa-7080d9b377a3" name="Parameters">
+            <elementDefinition Id="218709c4-4aa1-4a25-aabc-d521a96d0a0a" />
+          </propertyInstance>
+          <elementDefinition Id="40e94879-bf3f-46d4-83ff-384c58bdd648" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+  </appliedStereotypesInternal>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="e3a7c1eb-1ae6-4d71-9f85-99aade4db144" name="Socinator" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="7a693625-b882-42f0-9f6d-b0e39f02e886" />
+        <targetEnds>
+          <association Id="f9809691-c53d-478f-9720-b35db5eba853" isDerived="false" sourceEndRoleName="Socinator" targetEndRoleName="Publish Now" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="d84c8f4f-1b55-40ad-a5c4-edd74e51ade9" LastKnownName="Publish Now" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d9e93cdb-097b-4b35-a4c9-4a4e3dc4d8ca" name="Socinator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="2a162fc7-0da6-4293-9908-65e838c525bc" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5b9ce2df-1cd0-4d00-8e0a-bceeaeb440c9" name="Publish Now" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="19ac64d5-73f3-4fcd-9a34-6179b80ef8e4" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="233f8826-d58e-4c08-a123-03d7d50e31b7" />
+          </association>
+          <association Id="0e66a258-00f3-4a54-bdf6-62d3882dc267" isDerived="false" sourceEndRoleName="Socinator" targetEndRoleName="Publish By Campaign Id" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="e9c2cf1e-1c59-48f0-8f21-0a1717ef258d" LastKnownName="Publish By Campaign Id" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8957c619-5a45-4a3f-b7b5-9f383d17f4b9" name="Socinator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="9da6c554-2115-413b-9b7f-cc9ea0b55bd7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a0d9e125-797b-4f6b-b048-fc4189df15da" name="Publish By Campaign Id" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="6e145d51-26e1-4e38-ac3b-dfa1d551f23a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="662132d6-b9c7-4b58-b78b-874121df0882" />
+          </association>
+          <association Id="2e3af6c6-cf39-4f58-843e-39d815596b94" isDerived="false" sourceEndRoleName="Socinator" targetEndRoleName="Stop Schedule Activities" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="1076e4e4-b8ea-4016-a8eb-81339841de3b" LastKnownName="Stop Schedule Activities" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="63233b57-adfc-47b7-a647-04b3b6fad843" name="Socinator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="10dd0880-4b66-4416-ae77-092f7d952755" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="cfbbc2ea-ad4f-4e12-8ffe-aa9fcdce74e6" name="Stop Schedule Activities" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="0ecfc1fb-06fe-4127-855d-e576d456c15c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="57637ac6-269a-46ba-9002-fb19eac356e7" />
+          </association>
+          <association Id="f6746f15-2852-469c-9c3c-6a248be80fee" isDerived="false" sourceEndRoleName="Socinator" targetEndRoleName="Stop Currently Publishing Posts" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="065b8df7-e44f-4a16-9b93-18f0cc95b596" LastKnownName="Stop Currently Publishing Posts" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7c001bee-3b43-4042-b187-cf9824ee4a96" name="Socinator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="fe3ae276-0314-450a-b4a4-12530c708da3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8741a222-cb0b-46a7-9563-c71f1d36087f" name="Stop Currently Publishing Posts" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="8adc2817-e1e0-499e-a2f0-31a31ad91837" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="560c48bc-57e5-4756-a752-fca66c95756e" />
+          </association>
+          <association Id="b8ba3833-ee84-46d3-8eb0-c7e6696752f3" isDerived="false" sourceEndRoleName="Socinator" targetEndRoleName="Schedule Publisher " isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="8b9a8c68-712c-4794-9f13-f77075718d82" LastKnownName="Schedule Publisher " />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="34324383-7b7a-475d-ae85-c032cbe0b9ae" name="Socinator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="323a297d-334c-4e69-ae81-c123e858b74a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9c7aa520-02dc-48a8-920c-0f3f80f46ad5" name="Schedule Publisher " isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="b8f48d91-4b7c-49fb-b7f9-02343217889c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="c9cebe56-6133-4bcf-8c5e-e5804edf2953" />
+          </association>
+          <association Id="0c4c37e8-778c-4444-8a64-ff4f313eb823" isDerived="false" sourceEndRoleName="Socinator" targetEndRoleName="Delete Post  Once Published" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="8f677bb2-a94e-47f9-acf2-3825fa4eb6bc" LastKnownName="Delete Post  Once Published" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5d7f4c3f-68e3-41da-bb1b-ab6d09f39dc0" name="Socinator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="15939ca3-7b13-4eb1-9f5d-758dd0b26eb8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7c75631e-acd1-426d-8189-f2bb7420ed65" name="Delete Post  Once Published" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="b2b381f3-ff40-4992-8513-d6f4581b931c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="8f91b9d0-23f0-4e0f-adf7-5aedb7fffc84" />
+          </association>
+          <association Id="24f13421-e89a-4067-826f-3d13d59dcc59" isDerived="false" sourceEndRoleName="Socinator" targetEndRoleName="Update New Groups" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="885fc9c7-c7ad-4c00-abca-fc1806f67b25" LastKnownName="Update New Groups" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="b4cfb1ee-d208-4e2d-8fd6-f8ef5c10f357" name="Socinator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="6f27793f-2f64-4467-8e5e-70df6a91c9f8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5958b6bf-cdf1-4dce-b8a0-aa1977ce6e8e" name="Update New Groups" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="616ab6c4-69d0-47e4-b839-f10ef2d8988c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="34569d61-698e-4225-b7f5-26e4db4031e7" />
+          </association>
+          <association Id="bab86af7-7d4f-4f2e-96a0-d26a8741e6bc" isDerived="false" sourceEndRoleName="Socinator" targetEndRoleName="Enable to Delete Publsihed Post" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="1d27fde4-777b-44e3-be83-08780524cd56" LastKnownName="Enable to Delete Publsihed Post" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="96149a85-1d81-4543-a0c6-8d2516ef7268" name="Socinator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="717c486d-76c4-4438-91dd-b8ad42d6b661" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="dbbb8299-192b-4f1d-a232-5fb0e443ade8" name="Enable to Delete Publsihed Post" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="7379805a-bef7-4d6b-9dd9-f5c4a41653f7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="f018c0db-3981-4e9a-91bb-4573fe0f4656" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="d84c8f4f-1b55-40ad-a5c4-edd74e51ade9" name="Publish Now" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="eea467fb-db91-421c-9bb4-b4006b1b1fee" />
+        <targetEnds>
+          <association Id="bdff3f4a-5022-4c3f-8dc5-4cf1606924c8" isDerived="false" sourceEndRoleName="Publish Now" targetEndRoleName="Publisher Job Porcess" isLeaf="false" isAbstract="false">
+            <artifactMoniker Id="e2f14674-6ff1-491d-a1a4-720e004f3212" LastKnownName="Publisher Job Process" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="6ff091ed-6128-4083-8a7d-52ca02321446" name="Publish Now" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="7ae2d0b7-f211-48d4-94e9-9e6b8bae0c49" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a769d300-5c81-445a-b483-f239533bc1c0" name="Publisher Job Porcess" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="7c5f0719-6675-4bb0-a2f2-ed114d1b04d0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="bcb4831d-f925-4e67-8b58-56814c5de361" />
+          </association>
+        </targetEnds>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="e9c2cf1e-1c59-48f0-8f21-0a1717ef258d" name="Publish By Campaign Id" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="000ae917-e2ab-4736-8c35-0282d4598a61" />
+        <targetEnds>
+          <association Id="7f4f11e7-16b4-41fd-9038-32eada39ef57" isDerived="false" sourceEndRoleName="Publish By Campaign Id" targetEndRoleName="Stop Schedule Activities" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="1076e4e4-b8ea-4016-a8eb-81339841de3b" LastKnownName="Stop Schedule Activities" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="68355e40-b5c0-417a-9a53-cf427311e9c4" name="Publish By Campaign Id" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="cd1da598-914a-4d3f-b4a5-94fe5644e699" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="73fbe89e-b872-4ad7-a036-6bb287f0618b" name="Stop Schedule Activities" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="076d2480-e510-4475-9e51-d4498e5ec38e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="50cad3fb-4143-429d-b6ee-b04eb7abb2df" />
+          </association>
+          <association Id="87b6c7a4-bd2f-4dec-b5fe-506a7609d60c" isDerived="false" sourceEndRoleName="Publish By Campaign Id" targetEndRoleName="Publisher Job Porcess" isLeaf="false" isAbstract="false">
+            <artifactMoniker Id="e2f14674-6ff1-491d-a1a4-720e004f3212" LastKnownName="Publisher Job Process" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="eff6a59b-72cb-4f56-87ff-ee1581ae51a8" name="Publish By Campaign Id" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="644592f0-1c3f-49c6-ab2f-d51c5a6b93f3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="11e1f090-e794-4ed1-8f79-23828ea2a9a2" name="Publisher Job Porcess" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="6026da85-0e6f-471d-8beb-aecb5098b534" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="a358dedb-9e11-41e7-af75-ebf7e1f50061" />
+          </association>
+        </targetEnds>
+        <additions>
+          <include Id="a2c08044-1167-436c-8fc6-ae75169546dc">
+            <useCaseMoniker Id="6f0b1bf1-3fdf-4045-a02d-b43fc02f334c" LastKnownName="Validate Start and End time of Campaign" />
+            <elementDefinition Id="b91a6028-9cdd-49ca-8e94-e3e47d7353da" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="6f0b1bf1-3fdf-4045-a02d-b43fc02f334c" name="Validate Start and End time of Campaign" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="2031472f-37e4-49a7-86bd-6c646f518a86" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="1076e4e4-b8ea-4016-a8eb-81339841de3b" name="Stop Schedule Activities" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="16a67cc5-7fe3-4b7b-a432-b65666c0240c" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="065b8df7-e44f-4a16-9b93-18f0cc95b596" name="Stop Currently Publishing Posts" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="40756d7c-6184-4b9d-9540-467b41405f8a" />
+        <extendedCases>
+          <extend Id="6530f024-6e69-4cba-88e9-c3488353f39e">
+            <useCaseMoniker Id="1076e4e4-b8ea-4016-a8eb-81339841de3b" LastKnownName="Stop Schedule Activities" />
+            <elementDefinition Id="7f9ae1b3-152b-465f-bbe6-fed4d9e28d8c" />
+          </extend>
+        </extendedCases>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <artifact Id="e2f14674-6ff1-491d-a1a4-720e004f3212" name="Publisher Job Process" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="31a82347-9d28-4f57-8ced-96c50ba19f94" />
+        <targetEnds>
+          <association Id="e93d0f53-b5d7-47d4-976a-6c19fbfd160d" isDerived="false" sourceEndRoleName="Publisher Job Porcess" targetEndRoleName="Adding Accounts Waiting Actions" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="1a9b5356-421e-4c4b-9796-902eccb9418e" LastKnownName="Adding Accounts Waiting Actions" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f2024bd7-4758-4b5d-8054-428c791af301" name="Publisher Job Porcess" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="50bca443-baf1-48e7-961b-24c7202f99cd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5c3a1f01-af2e-4ecc-9f82-a9b71675607a" name="Adding Accounts Waiting Actions" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="8c86635e-ab5a-4f33-81af-1842fe314e72" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="c669031c-7424-4375-82f3-af57bbcfa1dd" />
+          </association>
+        </targetEnds>
+      </artifact>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="1a9b5356-421e-4c4b-9796-902eccb9418e" name="Adding Accounts Waiting Actions" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="41ed6dbb-33c6-4352-bca6-473ffc62df1f" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="8b9a8c68-712c-4794-9f13-f77075718d82" name="Schedule Publisher " isAbstract="false" isLeaf="false">
+        <elementDefinition Id="491cd63f-6445-447f-931f-1e1919a00884" />
+        <targetEnds>
+          <association Id="3dd3f897-d3df-4e27-a35e-1ecd5b6eb89b" isDerived="false" sourceEndRoleName="Schedule Publisher " targetEndRoleName="Publisher Job Porcess" isLeaf="false" isAbstract="false">
+            <artifactMoniker Id="e2f14674-6ff1-491d-a1a4-720e004f3212" LastKnownName="Publisher Job Process" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="56ceba33-402f-4258-843b-1d45ac7d685e" name="Schedule Publisher " isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="25d01618-3dc5-4906-9294-72b61ca86c7b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9d6ff930-ede5-4acc-a74c-6336b6de383d" name="Publisher Job Porcess" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="6ba28d79-62d2-4359-b561-eef5298a3d48" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ba22cfa2-f531-485f-af86-bd80566aaf61" />
+          </association>
+          <association Id="0eee8658-c883-4a68-990e-222a855feb9b" isDerived="false" sourceEndRoleName="Schedule Publisher " targetEndRoleName="Adding Accounts Waiting Actions" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="1a9b5356-421e-4c4b-9796-902eccb9418e" LastKnownName="Adding Accounts Waiting Actions" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e8208a66-abad-4c51-98bd-f662d782cd3b" name="Schedule Publisher " isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="ef76223d-732c-4cef-8df1-f5cea9240b2c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a18e076c-48af-4645-a7e1-082ba640d158" name="Adding Accounts Waiting Actions" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="4bd651e7-678f-4b3b-887c-1e2538d60502" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="a975a463-1b66-4b71-b011-aacf56e99585" />
+          </association>
+          <association Id="c7f4fd7f-c81e-4a77-a305-ff54b922407e" isDerived="false" sourceEndRoleName="Schedule Publisher " targetEndRoleName="Generate Random Time" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="1a566023-f2b8-45ff-b3a8-fd8c731185ef" LastKnownName="Generate Random Time" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7bb6185e-a06f-4a2c-86a5-3d3a893f5700" name="Schedule Publisher " isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="7a743f04-b1a4-42da-b417-7f819258ee3a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4d71182f-5e0a-42d7-afcf-8d217467f934" name="Generate Random Time" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="0f45b83f-ea5a-49c1-b3ec-913c1459661d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="25fb5abb-df90-485b-bc1b-4fa1c1df2b25" />
+          </association>
+        </targetEnds>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="1a566023-f2b8-45ff-b3a8-fd8c731185ef" name="Generate Random Time" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="189e2e57-586b-45db-a621-ed35b2b5a980" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="8f677bb2-a94e-47f9-acf2-3825fa4eb6bc" name="Delete Post  Once Published" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="3bfddd1d-0298-466b-af9c-ee9d1064f6da" />
+        <targetEnds>
+          <association Id="9ea74027-7ab0-4180-b083-f7b9015d877e" isDerived="false" sourceEndRoleName="Delete Post  Once Published" targetEndRoleName="Publisher Job Process" isLeaf="false" isAbstract="false">
+            <artifactMoniker Id="e2f14674-6ff1-491d-a1a4-720e004f3212" LastKnownName="Publisher Job Process" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9ada57df-20e6-4079-ab21-d15bca1d9d58" name="Delete Post  Once Published" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="c94d8a2a-4630-4ea6-961b-0f1dfda6e75d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="53aec463-725f-4dcd-849a-c0a59d1228c3" name="Publisher Job Process" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="29d5ca1b-60ef-4ee7-b8ea-26d785f218b6" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="bcdcf2d9-f6ac-48d6-9687-1bad45392e3e" />
+          </association>
+        </targetEnds>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="885fc9c7-c7ad-4c00-abca-fc1806f67b25" name="Update New Groups" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="6d890625-8fea-4053-8aa4-a6bd38257a39" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="1d27fde4-777b-44e3-be83-08780524cd56" name="Enable to Delete Publsihed Post" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e0119e8e-c415-4a7f-8ce9-ec340fb60d6c" />
+        <extendedCases>
+          <extend Id="7fc315b2-4ef0-4402-a691-4aabf7c07abf">
+            <useCaseMoniker Id="8f677bb2-a94e-47f9-acf2-3825fa4eb6bc" LastKnownName="Delete Post  Once Published" />
+            <elementDefinition Id="4d48443e-a7f9-4308-9c9c-62c5980860f3" />
+          </extend>
+        </extendedCases>
+      </useCase>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="6cbf1b91-4605-4732-b3bc-6b5e6b13fe0f" name="DominatorHouseSocialModeling">
+    <elementDefinition Id="684edace-4e6a-4e55-aaa6-c524a34915f1" />
+    <profileInstances>
+      <packageHasProfileInstances Id="2a3dd752-542c-4647-bce0-a5f3fbc65a68">
+        <profileInstance Id="3e2dfa87-6ccf-4e4f-bd2d-affa47b77f5f" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="23144d06-857f-4efc-ba4e-2059a9121aed">
+        <profileInstance Id="242ae516-e536-4265-920c-788febcb766e" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="03f80d29-0b87-44d1-a34b-8d04c15472c1">
+        <profileInstance Id="35aae338-6b8f-421d-96ad-71ccb7d37b0d" name="CSharpProfile">
+          <elementDefinition Id="0495bffe-9d9b-4661-8ddb-8e8d661a9fd6" />
+        </profileInstance>
+        <elementDefinition Id="9c1acb66-46a1-41ba-8238-70b7a7927211" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="6fd8b4f7-164b-48b9-8d14-29697fdf30c4">
+        <profileInstance Id="00f9f7f6-4136-4d3d-90b3-019518c184d2" name="TextTemplateBindings">
+          <elementDefinition Id="4f2e9847-44f7-4536-8aab-e8cf5e10aac1" />
+        </profileInstance>
+        <elementDefinition Id="b7c807f7-51ed-491e-9a75-4a5c99b92a63" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</useCaseModelRoot>

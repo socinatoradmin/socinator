@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="DominatorUIUtility.Views.SocioPublisher.CustomControl.PublisherEditShareUrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.Views.SocioPublisher.CustomControl"
+             xmlns:suggestions="clr-namespace:DominatorUIUtility.Views.SocioPublisher.Suggestions"
+             Loaded="PublisherEditSourceUrl_OnLoaded">
+    <UserControl.Resources>
+        <suggestions:SuggestionProvider x:Key="MacrosSuggestionProvider" />
+        <DataTemplate x:Key="MacroTemplate">
+            <TextBlock Text="{Binding Path=Key}" />
+        </DataTemplate>
+    </UserControl.Resources>
+    <StackPanel Margin="0,10,0,10" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock FontWeight="SemiBold" Foreground="Black" Text="{DynamicResource LangKeyPostDescription}"
+                   VerticalAlignment="Center" FontSize="12" />
+        <customControl:SocinatorTextBox
+            MacroTemplate="{StaticResource ResourceKey=MacroTemplate}"
+            SuggestionProvider="{StaticResource ResourceKey=MacrosSuggestionProvider}"
+            Watermark="{DynamicResource LangKeyWhatsOnYourMind}" Foreground="Black"
+            Text="{Binding PostDescription, Mode=TwoWay}" TextHeight="60" TextWidth="300" Margin="2"
+            TextWrapping="Wrap"
+            DisplayMember="Key">
+            <customControl:SocinatorTextBox.LoadingContent>
+                <TextBlock Text="Loading Macros..." Margin="5" FontSize="14" />
+            </customControl:SocinatorTextBox.LoadingContent>
+        </customControl:SocinatorTextBox>
+        <customControl:MediaViewer x:Name="MediaViewerControl" HorizontalAlignment="Center" Foreground="Black"
+                                   customControl:MediaViewerAssist.MediaList="{Binding MediaList,Mode=TwoWay}"
+                                   customControl:MediaViewerAssist.CurrentMediaUrl="{Binding CurrentMediaUrl,Mode=TwoWay}"
+                                   customControl:MediaViewerAssist.MediaHeight="75"
+                                   customControl:MediaViewerAssist.MediaWidth="75"
+                                   customControl:MediaViewerAssist.TotalMediaCount="{Binding TotalMediaCount}"
+                                   customControl:MediaViewerAssist.CurrentMediaPointer="{Binding MediaCurrentPointer}" />
+        <TextBlock FontWeight="SemiBold" Foreground="Black"
+                   Text="{DynamicResource LangKeyShareUrl}" VerticalAlignment="Center"
+                   FontSize="12" Margin="0,10" />
+        <TextBox Height="50" Width="300" HorizontalAlignment="Left" Text="{Binding ShareUrl}" AcceptsReturn="True"
+                 TextWrapping="Wrap" />
+        <StackPanel Orientation="Horizontal" Margin="10"
+                    HorizontalAlignment="Right">
+            <Button Background="{DynamicResource AccentBaseColorBrush}" Width="80"
+                    Name="BtnSave" Click="BtnSave_OnClick" Height="30">
+                <Button.Content>
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Rectangle Fill="White" Height="15" Width="15">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_save}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <TextBlock Text="{DynamicResource LangKeySave}" Margin="5,0" Foreground="White" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Background="#ef1d1d" Width="100"
+                    Name="BtnCancel" Margin="10,0,0,0" Click="BtnCancel_OnClick">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Rectangle Fill="White" Height="15" Width="15">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_cancel}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <TextBlock Text="{DynamicResource LangKeyCancel}" Margin="5,0" Foreground="White" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

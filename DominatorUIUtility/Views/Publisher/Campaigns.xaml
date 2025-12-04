@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="DominatorUIUtility.Views.Publisher.Campaigns"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:DominatorUIUtility.Views.Publisher"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d">
+
+    <Grid x:Name="createCampign">
+
+        <local:Header x:Name="publishersHeader" VerticalAlignment="Top" />
+
+        <StackPanel Margin="0,50,0,10">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="{DynamicResource LangKeyCampaign}" />
+                <ComboBox x:Name="cmbCampaign" Height="25" Width="250" ItemsSource="{Binding LstCampaign}"
+                          DisplayMemberPath="CampaignName"
+                          controls:TextBoxHelper.ClearTextButton="True" SelectionChanged="cmbCampaign_SelectionChanged"
+                          SelectedIndex="-1" />
+                <Label Content="{DynamicResource LangKeyType}" Margin="10,0" />
+                <ComboBox x:Name="cmbStatus" Height="25" Width="200" ItemsSource="{Binding LstStatus}"
+                          SelectedItem="{Binding SelectedStatus}" />
+            </StackPanel>
+            <TextBox controls:TextBoxHelper.Watermark="{DynamicResource LangKeyCampaign}"
+                     Name="txtCampaign" Width="310" HorizontalAlignment="Left" Margin="10,5"
+                     Text="{Binding CampaignName,UpdateSourceTrigger=PropertyChanged}" />
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="{DynamicResource LangKeyStatus}" VerticalAlignment="Center" />
+                <controls:ToggleSwitch VerticalAlignment="Center" x:Name="tglStatus"
+                                       HorizontalContentAlignment="Center"
+                                       FontSize="12" OnLabel="{Binding Status}" OffLabel="{Binding Status}"
+                                       Margin="10,0"
+                                       IsCheckedChanged="tglStatus_IsCheckedChanged">
+                    <controls:ToggleSwitch.Style>
+                        <Style TargetType="controls:ToggleSwitch"
+                               BasedOn="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}">
+                            <Style.Triggers>
+                                <Trigger Property="OnLabel" Value="Active">
+                                    <Setter Property="OffSwitchBrush" Value="LightGreen" />
+                                    <Setter Property="OnSwitchBrush" Value="LightGreen" />
+                                </Trigger>
+                                <Trigger Property="OnLabel" Value="Completed">
+                                    <Setter Property="OffSwitchBrush" Value="DarkGreen" />
+                                    <Setter Property="OnSwitchBrush" Value="DarkGreen" />
+                                </Trigger>
+                                <Trigger Property="OffLabel" Value="Paused">
+                                    <Setter Property="OffSwitchBrush" Value="Yellow" />
+                                    <Setter Property="OnSwitchBrush" Value="Yellow" />
+                                </Trigger>
+                                <Trigger Property="OffLabel" Value="Stopped">
+                                    <Setter Property="OffSwitchBrush" Value="Red" />
+                                    <Setter Property="OnSwitchBrush" Value="Red" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </controls:ToggleSwitch.Style>
+                </controls:ToggleSwitch>
+            </StackPanel>
+            <TabControl x:Name="CreateCampaignTabs" TabStripPlacement="Top" Margin="5"
+                        controls:TabControlHelper.IsUnderlined="True"
+                        controls:TabControlHelper.Underlined="SelectedTabItem">
+                <TabControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}" FontSize="16"
+                                   MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" />
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
+                <TabControl.ContentTemplate>
+                    <DataTemplate>
+                        <!--<Border BorderThickness="2"  BorderBrush="{DynamicResource AccentBaseColorBrush}" Margin="0,5">-->
+                        <UserControl Content="{Binding Content.Value}" />
+                        <!--</Border>-->
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
+            </TabControl>
+
+        </StackPanel>
+
+    </Grid>
+</UserControl>

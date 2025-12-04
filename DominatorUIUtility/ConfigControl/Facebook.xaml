@@ -1,0 +1,63 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.ConfigControl.Facebook"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <GroupBox Background="{DynamicResource AccentBaseColorBrush}">
+        <GroupBox.Header>
+            <Grid>
+                <Label
+                    HorizontalAlignment="Left"
+                    Content="{DynamicResource LangKeyConfiguration}"
+                    Foreground="White" />
+                <Button
+                    Name="BtnSave"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Background="{DynamicResource AccentBaseColorBrush}"
+                    Click="BtnSave_OnClick"
+                    Foreground="White">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle
+                                Width="15"
+                                Height="15"
+                                Fill="White">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_save}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                            <AccessText Margin="6,0" Text="{DynamicResource LangKey_Save}" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </GroupBox.Header>
+        <StackPanel x:Name="MainGrid" Margin="10">
+            <StackPanel Orientation="Horizontal">
+                <Label Margin="5" Content="{DynamicResource LangKeyWaitAMinimumOf}" />
+                <controls:NumericUpDown
+                    Margin="5"
+                    Minimum="0"
+                    Value="{Binding WaitMinimumOf}" />
+                <Label Content="{DynamicResource LangKeyHoursBeforeRefreshingTheFriendListForAFacebookAccountFriendBackupOrInviteToolsMustBeStarted}" />
+            </StackPanel>
+            <CheckBox
+                Margin="5"
+                Content="{DynamicResource LangKeyDisableSyncForNewAccounts}"
+                IsChecked="{Binding IsDisableSyncForNewAccountsChecked}" />
+            <StackPanel Orientation="Horizontal">
+                <Label Margin="5" Content="{DynamicResource LangKeyAllowSyncsToExecuteOnAMaximumOf}" />
+                <controls:NumericUpDown
+                    Margin="5"
+                    Minimum="0"
+                    Value="{Binding MaxOfFbAccount}" />
+                <Label Content="{DynamicResource LangKeyFacebookAccountsAtTheSameTime}" />
+            </StackPanel>
+
+        </StackPanel>
+    </GroupBox>
+</UserControl>

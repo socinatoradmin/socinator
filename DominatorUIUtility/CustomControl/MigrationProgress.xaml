@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="DominatorUIUtility.CustomControl.MigrationProgress"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d" Loaded="MigrationProgress_OnLoaded">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <Storyboard x:Key="DottedAnimation">
+            <StringAnimationUsingKeyFrames AutoReverse="True" Storyboard.TargetProperty="Text" RepeatBehavior="Forever">
+                <DiscreteStringKeyFrame Value="Start Migrating" KeyTime="0:0:0.0" />
+                <DiscreteStringKeyFrame Value="Start Migrating." KeyTime="0:0:0.1" />
+                <DiscreteStringKeyFrame Value="Start Migrating.." KeyTime="0:0:0.2" />
+                <DiscreteStringKeyFrame Value="Start Migrating..." KeyTime="0:0:0.3" />
+                <DiscreteStringKeyFrame Value="Start Migrating...." KeyTime="0:0:0.4" />
+                <DiscreteStringKeyFrame Value="Start Migrating....." KeyTime="0:0:0.5" />
+            </StringAnimationUsingKeyFrames>
+        </Storyboard>
+
+    </UserControl.Resources>
+    <Grid Margin="0,20">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <mah:ProgressRing Foreground="{DynamicResource AccentColorBrush}" Name="ProgressRing" Height="100"
+                              Width="100" x:FieldModifier="public"
+                              IsActive="False" />
+            <StackPanel VerticalAlignment="Bottom"
+                        Visibility="{Binding ElementName=ProgressRing,Path=IsActive,Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBlock Margin="5" FontSize="14" FontWeight="Bold">
+                    <TextBlock.Triggers>
+                        <EventTrigger RoutedEvent="TextBlock.Loaded">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard Storyboard="{StaticResource DottedAnimation}" />
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </TextBlock.Triggers>
+                </TextBlock>
+                <TextBlock Text="Don't close softwere otherwise you will lose some data" Margin="5" FontSize="12"
+                           FontWeight="SemiBold" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

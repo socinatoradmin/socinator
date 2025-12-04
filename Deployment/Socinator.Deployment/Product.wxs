@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<?include "config.wxi"?>
+	<Product Id="*" Name="$(var.ProductName)" Language="1033" Version="!(bind.FileVersion.Socinatorexe)" Manufacturer="$(var.Manufacturer)" UpgradeCode="094ee1fc-18c8-4e25-9494-51a86a39ea14">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="Socinator" Level="1">
+			<ComponentGroupRef Id="MainComponents" />
+			<ComponentRef Id="ApplicationShortcutDesktop" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="ManufacturerFolder" Name="$(var.Manufacturer)">
+					<Directory Id="INSTALLFOLDERDir" Name="$(var.ProductName)" >
+						<Directory Id="apppublishDir" Name="app.publish" />
+						<Directory Id="localesDir" Name="locales" />
+						<Directory Id="RevisionHistoryDir" Name="RevisionHistory" />
+						<Directory Id="x64Dir" Name="x64" >
+							<Directory Id="x64localesDir" Name="locales" />
+							<Directory Id="x64swiftshaderDir" Name="swiftshader" />
+						</Directory>
+						<Directory Id="x86Dir" Name="x86" >
+							<Directory Id="x86localesDir" Name="locales" />
+							<Directory Id="x86swiftshaderDir" Name="swiftshader" />
+						</Directory>
+					</Directory>
+				</Directory>
+			</Directory>
+			<Directory Id="DesktopFolder" Name="Desktop">
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDERDir">
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+			<!-- <Component Id="ProductComponent"> -->
+				<!-- TODO: Insert files, registry keys, and other resources here. -->
+			<!-- </Component> -->
+		</ComponentGroup>
+		<Component Id="ApplicationShortcutDesktop" Guid="9FF2A99C-0C3C-41DA-8C57-2FEB2897B33B" Directory="DesktopFolder">
+			<Shortcut Id="ApplicationDesktopShortcut"
+								Name="Socinator"
+								Description="Socinator"
+								Directory="DesktopFolder"
+								Target="[INSTALLFOLDERDir]Socinator.exe"
+								WorkingDirectory="INSTALLFOLDERDir"/>
+			<RemoveFolder Id="DesktopFolder" On="uninstall"/>
+			<RegistryValue
+				Root="HKCU"
+				Key="Software/SocinatorClient"
+				Name="installed"
+				Type="integer"
+				Value="1"
+				KeyPath="yes"/>
+		</Component>
+	</Fragment>
+</Wix>

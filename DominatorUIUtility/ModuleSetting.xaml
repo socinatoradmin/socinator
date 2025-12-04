@@ -1,0 +1,15 @@
+﻿<mah:MetroWindow x:Class="DominatorUIUtility.ModuleSetting"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 mc:Ignorable="d" Icon="SociNator.ico"
+                 WindowStartupLocation="CenterScreen"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:regions="http://prismlibrary.com/" MinWidth="777" MinHeight="500"
+                 Title="ModuleSetting" Closing="MetroWindow_Closing">
+    <Grid>
+        <ContentControl regions:RegionManager.RegionName="StartupRegion"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+    </Grid>
+</mah:MetroWindow>

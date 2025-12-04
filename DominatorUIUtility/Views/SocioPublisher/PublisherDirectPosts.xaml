@@ -1,0 +1,335 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.Views.SocioPublisher.PublisherDirectPosts"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:control="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.Views.SocioPublisher.CustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:suggestions="clr-namespace:DominatorUIUtility.Views.SocioPublisher.Suggestions"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <suggestions:SuggestionProvider x:Key="MacrosSuggestionProvider" />
+        <DataTemplate x:Key="MacroTemplate">
+            <Grid>
+                <TextBlock Text="{Binding Path=Key}" />
+            </Grid>
+        </DataTemplate>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <StackPanel Name="DirectPost">
+        <StackPanel Margin="0,10,0,0">
+            <RadioButton
+                Name="CheckBoxSinglePost"
+                Margin="2"
+                Content="{DynamicResource LangKeyCreateASinglePost}"
+                GroupName="CreatePost"
+                IsChecked="{Binding PostDetailsModel.IsSinglePost}" />
+            <StackPanel Margin="2" Visibility="{Binding PostDetailsModel.IsSinglePost, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="12"
+                    FontWeight="SemiBold"
+                    Text="{DynamicResource LangKeyPostDescription}" />
+                <customControl:SocinatorTextBox
+                    Margin="2"
+                    DisplayMember="Key"
+                    MacroTemplate="{StaticResource ResourceKey=MacroTemplate}"
+                    SuggestionProvider="{StaticResource ResourceKey=MacrosSuggestionProvider}"
+                    Text="{Binding PostDetailsModel.PostDescription, Mode=TwoWay}"
+                    TextHeight="60"
+                    TextWidth="300"
+                    TextWrapping="Wrap"
+                    Watermark="{DynamicResource LangKeyWhatsOnYourMind}">
+                    <customControl:SocinatorTextBox.LoadingContent>
+                        <TextBlock
+                            Margin="5"
+                            FontSize="14"
+                            Text="Loading Macros..." />
+                    </customControl:SocinatorTextBox.LoadingContent>
+                </customControl:SocinatorTextBox>
+                <customControl:PostContent
+                    x:Name="PostContentControl"
+                    customControl:MediaViewerAssist.CurrentMediaPointer="{Binding PostDetailsModel.MediaViewer.CurrentItem}"
+                    customControl:MediaViewerAssist.CurrentMediaUrl="{Binding PostDetailsModel.MediaViewer.MediaUrl, Mode=TwoWay}"
+                    customControl:MediaViewerAssist.DeleteMenu="Visible"
+                    customControl:MediaViewerAssist.MediaHeight="75"
+                    customControl:MediaViewerAssist.MediaList="{Binding PostDetailsModel.MediaViewer.MediaList, Mode=TwoWay}"
+                    customControl:MediaViewerAssist.MediaWidth="75"
+                    customControl:MediaViewerAssist.TotalMediaCount="{Binding PostDetailsModel.MediaViewer.TotalItem}"
+                    FdCondition="{Binding PostDetailsModel.FdCondition, Mode=TwoWay}"
+                    FdSellLocation="{Binding PostDetailsModel.FdSellLocation, Mode=TwoWay}"
+                    FdSellPrice="{Binding PostDetailsModel.FdSellPrice, Mode=TwoWay}"
+                    FdSellProductTitle="{Binding PostDetailsModel.FdSellProductTitle, Mode=TwoWay}"
+                    IsChangeHashOfMedia="{Binding PostDetailsModel.IsChangeHashOfMedia, Mode=TwoWay}"
+                    IsFdSellPost="{Binding PostDetailsModel.IsFdSellPost, Mode=TwoWay}"
+                    IsSpinTax="{Binding PostDetailsModel.IsSpinTax, Mode=TwoWay}"
+                    PdSourceUrl="{Binding PostDetailsModel.PdSourceUrl, Mode=TwoWay}"
+                    PublisherInstagramTitle="{Binding PostDetailsModel.PublisherInstagramTitle, Mode=TwoWay}"
+                    PublisherPostSettings="{Binding PostDetailsModel.PublisherPostSettings, Mode=TwoWay}" />
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Margin="0,10,0,0">
+            <RadioButton
+                Name="CheckBoxMultiPost"
+                Margin="2"
+                Content="{DynamicResource LangKeyCreateAMultiplePosts}"
+                GroupName="CreatePost"
+                IsChecked="{Binding PostDetailsModel.IsMultiPost}" />
+            <StackPanel Orientation="Horizontal" Visibility="{Binding PostDetailsModel.IsMultiPost, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Button
+                    Width="160"
+                    Height="30"
+                    Margin="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="{DynamicResource AccentBaseColorBrush}"
+                    Command="{Binding MultiplePostCommand}"
+                    CommandParameter="{Binding}"
+                    Cursor="Hand"
+                    Foreground="White"
+                    Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle
+                            Width="18"
+                            Height="15"
+                            HorizontalAlignment="Center"
+                            Fill="White">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_image_export}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <Label
+                            Margin="0,-3,0,0"
+                            VerticalContentAlignment="Center"
+                            Content="{DynamicResource LangKeyMultiplePost}"
+                            FontSize="11"
+                            FontWeight="SemiBold"
+                            Foreground="White" />
+                    </StackPanel>
+                </Button>
+
+                <Button
+                    Width="160"
+                    Height="30"
+                    Margin="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="{DynamicResource AccentBaseColorBrush}"
+                    Command="{Binding ImportFromCsvCommand}"
+                    Cursor="Hand"
+                    Foreground="White">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle
+                            Width="18"
+                            Height="15"
+                            HorizontalAlignment="Center"
+                            Fill="White">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_image_export}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <Label
+                            Margin="0,-3,0,0"
+                            VerticalContentAlignment="Center"
+                            Content="{DynamicResource LangKeyImportFromCSV}"
+                            FontSize="11"
+                            FontWeight="SemiBold"
+                            Foreground="White" />
+                    </StackPanel>
+                </Button>
+
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Margin="0,10,0,0">
+
+            <RadioButton
+                Name="CheckBoxMultiImage"
+                Margin="2"
+                Content="{DynamicResource LangKeyCreateAMultipleImagePost}"
+                GroupName="CreatePost"
+                IsChecked="{Binding PostDetailsModel.IsMultipleImagePost}" />
+
+            <StackPanel
+                Margin="20,0,0,0"
+                Orientation="Horizontal"
+                Visibility="{Binding PostDetailsModel.IsMultipleImagePost, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel Margin="0,10">
+                    <RadioButton
+                        Name="CheckBoxUseFileNameAsDescription"
+                        Margin="2"
+                        Content="{DynamicResource LangKeyUseFileNameAsPostDescription}"
+                        GroupName="Description"
+                        IsChecked="{Binding PostDetailsModel.IsUseFileNameAsDescription}" />
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton
+                            Margin="2"
+                            VerticalAlignment="Center"
+                            Content="{DynamicResource LangKeyUploadPostDescription}"
+                            GroupName="Description"
+                            IsChecked="{Binding PostDetailsModel.IsUploadPostDescription}" />
+                        <Button
+                            Height="30"
+                            Margin="2"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Background="{DynamicResource AccentBaseColorBrush}"
+                            Command="{Binding UploadDescriptionCommand}"
+                            CommandParameter="SaveToDraft"
+                            Cursor="Hand"
+                            Foreground="White"
+                            Visibility="{Binding PostDetailsModel.IsUploadPostDescription, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Rectangle
+                                    Width="15"
+                                    Height="15"
+                                    HorizontalAlignment="Left"
+                                    Fill="White">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_upload}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <TextBlock
+                                    Margin="5,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontSize="11"
+                                    FontWeight="SemiBold"
+                                    Foreground="White"
+                                    Text="{DynamicResource LangKeyUploadDescription}" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                    <customControl:PostContent
+                        x:Name="PostTitle"
+                        IsClearPostTitleOptionVisibility="Visible"
+                        IsImportOptionsVisibility="Visible"
+                        IsImportPostTitleOptionVisibility="Visible"
+                        IsMediaVisibility="Collapsed"
+                        IsPostTitleOptionVisibility="Collapsed"
+                        IsRandomlyPickTitleFromList="{Binding PostDetailsModel.IsRandomlyPickTitleFromList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        IsRemoveTitleOnceUsed="{Binding PostDetailsModel.IsRemoveTitleOnceUsed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        IsSourceUrlAndFdSellPostVisible="Collapsed"
+                        PostTitleHeight="80"
+                        PublisherInstagramTitle="{Binding PostDetailsModel.PublisherInstagramTitle, Mode=TwoWay}" />
+
+                    <CheckBox
+                        Name="CheckBoxUniquePost"
+                        Margin="2"
+                        Content="{DynamicResource LangKeyAddOnlyUniquePost}"
+                        IsChecked="{Binding PostDetailsModel.IsUniquePost}" />
+                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                        <TextBlock
+                            Name="UploadGoogleImageUrl"
+                            Margin="2"
+                            Text="{DynamicResource LangKeyUploadGoogleImageFromUrl}" />
+                        <TextBox
+                            Name="TextBoxGetImages"
+                            Width="180"
+                            Height="25"
+                            Margin="5,0"
+                            control:TextBoxHelper.ButtonCommand="{Binding SearchCommand}"
+                            control:TextBoxHelper.ButtonCommandParameter="{Binding ElementName=ImageMediaViewer}"
+                            Style="{StaticResource SearchMetroTextBox}"
+                            Text="{Binding PostDetailsModel.ImagesUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+
+                    <!--<StackPanel Orientation="Vertical" Margin="0,5">
+                        <RadioButton GroupName="MultipleImage" Name="UploadImageUrl" Margin="2" Content="{DynamicResource LangKeyUploadMutipleImageUrl}"
+                                  IsChecked="{Binding PostDetailsModel.IsUploadMultipleImage}"/>
+                        <customControl2:InputBoxControl Margin="25,5" InputText="{Binding PostDetailsModel.MultipleImageUrl}" SaveCommand="{Binding MultipleImageUrlCommand}" />
+                    </StackPanel>-->
+                </StackPanel>
+
+                <StackPanel Margin="10,0,0,0">
+                    <customControl:MediaViewer
+                        x:Name="ImageMediaViewer"
+                        DeleteImage="ImageMediaViewer_OnDeleteImage"
+                        DeleteMenuVisibility="Visible"
+                        IsPostDataPresent="False"
+                        MediaHeight="75"
+                        MediaList="{Binding PostDetailsModel.MediaList, Mode=TwoWay}"
+                        MediaWidth="75" />
+                </StackPanel>
+
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+
+            <Button
+                Width="160"
+                Height="30"
+                Margin="2"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Background="{DynamicResource AccentBaseColorBrush}"
+                Command="{Binding SaveCurrentPostCommand}"
+                CommandParameter="SaveToDraft"
+                Cursor="Hand"
+                Foreground="White"
+                Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                    <Rectangle
+                        Width="15"
+                        Height="15"
+                        HorizontalAlignment="Left"
+                        Fill="White">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_pin}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <Label
+                        Margin="0,-3,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalContentAlignment="Center"
+                        Content="{DynamicResource LangKeySavePostToDraft}"
+                        FontSize="11"
+                        FontWeight="SemiBold"
+                        Foreground="White" />
+                </StackPanel>
+            </Button>
+
+            <Button
+                Width="175"
+                Height="30"
+                Margin="2"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Background="{DynamicResource AccentBaseColorBrush}"
+                Command="{Binding SaveCurrentPostCommand}"
+                CommandParameter="SaveToPending"
+                Cursor="Hand"
+                Foreground="White"
+                Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                    <Rectangle
+                        Width="18"
+                        Height="15"
+                        HorizontalAlignment="Left"
+                        Fill="White">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_network_port}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <Label
+                        Margin="0,-3,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalContentAlignment="Center"
+                        Content="{DynamicResource LangKeySavePostToPending}"
+                        FontSize="11"
+                        FontWeight="SemiBold"
+                        Foreground="White" />
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+
+    </StackPanel>
+
+</UserControl>

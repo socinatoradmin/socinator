@@ -1,0 +1,157 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.Views.Publisher.AdvancedSettings.Twitter"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Loaded="Twitter_OnLoaded"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <ScrollViewer>
+        <StackPanel Name="MainGrid" Margin="5">
+            <CheckBox
+                Margin="5"
+                VerticalAlignment="Center"
+                Content="{DynamicResource LangKeyEnableAutomaticHashtags}"
+                IsChecked="{Binding TwitterModel.IsEnableAutomaticHashTags}" />
+            <StackPanel Margin="30,0" Visibility="{Binding TwitterModel.IsEnableAutomaticHashTags, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBlock
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Text="{DynamicResource LangKeyUseToAddNumOfInFrontOfTheKeywordsThatYouSelectedOrInFrontOfWordsWithALengthGreaterThanAGivenValue}" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        Text="{DynamicResource LangKeyMaxHashtagsPerPost}" />
+                    <controls:NumericUpDown
+                        VerticalAlignment="Center"
+                        Minimum="0"
+                        Value="{Binding TwitterModel.MaxHashtagsPerPost}" />
+                </StackPanel>
+                <GroupBox Margin="0,5" Header="{DynamicResource LangKeyHashByKeyword}">
+                    <StackPanel>
+                        <TextBlock
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            Text="{DynamicResource LangKeyAutomaticallyHashAllTheWordsInTheListBelowAddYourKeywordsSeparatedByCommas}" />
+                        <TextBox
+                            Width="300"
+                            Height="50"
+                            Margin="10,5"
+                            HorizontalAlignment="Left"
+                            AcceptsReturn="True"
+                            Text="{Binding TwitterModel.HashWords}" />
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="{DynamicResource LangKeyHashByMinimumWordLength}">
+                    <StackPanel>
+                        <StackPanel Margin="5" Orientation="Horizontal">
+                            <TextBlock
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                Text="{DynamicResource LangKeyMinimumWordLength}" />
+                            <controls:NumericUpDown
+                                VerticalAlignment="Center"
+                                Minimum="0"
+                                Value="{Binding TwitterModel.MinimumWordLength}" />
+                        </StackPanel>
+                        <!--<StackPanel Orientation="Horizontal" Margin="5,0">
+                                <TextBlock Text="{DynamicResource LangKeyReplaceProbability}" VerticalAlignment="Center" Margin="5"/>
+                                <controls:NumericUpDown Minimum="0" VerticalAlignment="Center"
+                                                Value="{Binding TwitterModel.ReplaceProbability}"/>
+                            </StackPanel>-->
+                    </StackPanel>
+                </GroupBox>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <CheckBox
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Content="{DynamicResource LangKeyDeletePostAfter}"
+                    IsChecked="{Binding TwitterModel.IsDeletePostAfter}" />
+                <controls:NumericUpDown
+                    Margin="5"
+                    IsEnabled="{Binding TwitterModel.IsDeletePostAfter}"
+                    Minimum="0"
+                    Value="{Binding TwitterModel.DeletePostAfter.StartValue}" />
+                <TextBlock VerticalAlignment="Center" Text="{DynamicResource LangKeyTo}" />
+                <controls:NumericUpDown
+                    Margin="5"
+                    IsEnabled="{Binding TwitterModel.IsDeletePostAfter}"
+                    Minimum="{Binding TwitterModel.DeletePostAfter.StartValue}"
+                    Value="{Binding TwitterModel.DeletePostAfter.EndValue}" />
+                <TextBlock VerticalAlignment="Center" Text="{DynamicResource LangKeyHours}" />
+            </StackPanel>
+            <CheckBox
+                Margin="5"
+                VerticalAlignment="Center"
+                Content="{DynamicResource LangKeyEnableDynamicHashtags}"
+                IsChecked="{Binding TwitterModel.IsEnableDynamicHashTags}" />
+            <CheckBox
+                Margin="30,0"
+                VerticalAlignment="Center"
+                Content="{DynamicResource LangKeyAddHashtagsEvenIfThePostAlreadyHasHashtags}"
+                IsChecked="{Binding TwitterModel.IsAddHashTagEvenIfAlreadyHastags}"
+                Visibility="{Binding TwitterModel.IsEnableDynamicHashTags, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <StackPanel Visibility="{Binding TwitterModel.IsAddHashTagEvenIfAlreadyHastags, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel Margin="50,0" Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Text="{DynamicResource LangKeyMaxHashtagsPerPost}" />
+                    <controls:NumericUpDown
+                        Margin="5"
+                        Minimum="0"
+                        Value="{Binding TwitterModel.MaxHashtagsPerPostRange.StartValue}" />
+                    <TextBlock VerticalAlignment="Center" Text="-" />
+                    <controls:NumericUpDown
+                        Margin="5"
+                        Minimum="{Binding TwitterModel.MaxHashtagsPerPostRange.StartValue}"
+                        Value="{Binding TwitterModel.MaxHashtagsPerPostRange.EndValue}" />
+                </StackPanel>
+                <StackPanel Margin="50,0" Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Text="{DynamicResource LangKeyPick}" />
+                    <controls:NumericUpDown
+                        Margin="5"
+                        Minimum="0"
+                        Value="{Binding TwitterModel.PickPercentHashTag}" />
+                    <TextBlock VerticalAlignment="Center" Text="{DynamicResource LangKeyPercentOfTheExtraHashtagsFromThisList}" />
+                </StackPanel>
+                <TextBox
+                    Width="300"
+                    Height="50"
+                    Margin="50,5"
+                    HorizontalAlignment="Left"
+                    AcceptsReturn="True"
+                    Text="{Binding TwitterModel.HashtagsFromList1}" />
+                <StackPanel Margin="50,0" Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Text="{DynamicResource LangKeyPick}" />
+                    <controls:NumericUpDown
+                        Margin="5"
+                        Minimum="0"
+                        Value="{Binding TwitterModel.PickPercentFromList}" />
+                    <TextBlock VerticalAlignment="Center" Text="{DynamicResource LangKeyPercentFromThisList}" />
+                </StackPanel>
+                <TextBox
+                    Width="300"
+                    Height="50"
+                    Margin="50,5"
+                    HorizontalAlignment="Left"
+                    AcceptsReturn="True"
+                    Text="{Binding TwitterModel.HashtagsFromList2}" />
+            </StackPanel>
+            <!--<CheckBox Content="{DynamicResource LangKeyAutomaticallyDeletePosts}" VerticalAlignment="Center" Margin="5"/>
+            <StackPanel Orientation="Horizontal" Margin="30,0">
+                <TextBlock Text="{DynamicResource LangKeyDeletePostAfter}" VerticalAlignment="Center" Margin="5"/>
+                <controls:NumericUpDown Minimum="0" VerticalAlignment="Center" />
+                <TextBlock Text="{DynamicResource LangKeyTo}" VerticalAlignment="Center" Margin="5"/>
+                <controls:NumericUpDown Minimum="0" VerticalAlignment="Center" />
+                <TextBlock Text="{DynamicResource LangKeyHours}" VerticalAlignment="Center" Margin="5"/>
+            </StackPanel>-->
+
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>

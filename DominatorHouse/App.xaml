@@ -1,0 +1,180 @@
+<unity:PrismApplication
+    x:Class="Socinator.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:unity="http://prismlibrary.com/"
+    d1p1:Ignorable="d"
+    Startup="OnSocinatorStartup">
+    <unity:PrismApplication.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/DominatorUIUtility;component/Resources/Languages/English.xaml" />
+                <ResourceDictionary Source="/DominatorUIUtility;component/Styles/BaseStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/ToastNotifications.Messages;component/Themes/Default.xaml" />
+                <ResourceDictionary Source="/DominatorUIUtility;component/Themes/PrussianBlue.xaml" />
+                <ResourceDictionary Source="/DominatorUIUtility;component/Resources/Icons.xaml" />
+                <ResourceDictionary Source="/Social/DashBoards/DashboardTemplates.xaml" />
+                <ResourceDictionary Source="/Social/TablifiedContentControlTemplates.xaml" />
+                <ResourceDictionary Source="/DominatorUIUtility;component/Resources/UtilityControls.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style BasedOn="{StaticResource MaterialExpander}" TargetType="{x:Type Expander}">
+                <Setter Property="IsExpanded" Value="True" />
+                <EventSetter Event="Expanded" Handler="CheckAllForExpand" />
+                <EventSetter Event="Collapsed" Handler="CheckAllForExpand" />
+            </Style>
+            <Style BasedOn="{StaticResource MetroComboBox}" TargetType="ComboBox">
+                <Setter Property="Background" Value="Transparent" />
+            </Style>
+            <!--  ==== MAIN STYLE ====  -->
+            <Style TargetType="ScrollBar">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Template" Value="{StaticResource MaterialVerticalScrollBar}" />
+                <Style.Triggers>
+                    <Trigger Property="Orientation" Value="Horizontal">
+                        <Setter Property="Template" Value="{StaticResource MaterialHorizontalScrollBar}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <!--  ==============================  -->
+            <!--  MATERIAL DATAGRID  -->
+            <!--  ==============================  -->
+            <Style TargetType="DataGrid">
+                <Setter Property="FontFamily" Value="Segoe UI" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="RowHeight" Value="42" />
+                <Setter Property="ColumnHeaderHeight" Value="44" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="GridLinesVisibility" Value="None" />
+                <Setter Property="HeadersVisibility" Value="Column" />
+
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+
+                <Setter Property="SnapsToDevicePixels" Value="True" />
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="DataGrid">
+                            <Border
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10">
+                                <DockPanel>
+                                    <DataGridColumnHeadersPresenter DockPanel.Dock="Top" />
+                                    <ScrollViewer x:Name="DG_ScrollViewer" Focusable="false">
+                                        <ItemsPresenter />
+                                    </ScrollViewer>
+                                </DockPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!--  ==============================  -->
+            <!--  MATERIAL COLUMN HEADER  -->
+            <!--  ==============================  -->
+            <Style TargetType="DataGridColumnHeader">
+                <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="Foreground" Value="{DynamicResource TextColorBrushAccordingTheme}" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="Height" Value="44" />
+                <Setter Property="BorderBrush" Value="#E0E0E0" />
+                <Setter Property="BorderThickness" Value="0,0,0,1" />
+                <Setter Property="Padding" Value="10" />
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="DataGridColumnHeader">
+                            <Grid>
+                                <!--  Header Background  -->
+                                <Border
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ContentPresenter
+                                        Margin="10,0,10,0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center" />
+                                </Border>
+
+                                <!--  IMPORTANT: Resize Thumb  -->
+                                <Thumb
+                                    x:Name="PART_LeftHeaderGripper"
+                                    Width="0.5"
+                                    HorizontalAlignment="Left"
+                                    Background="Transparent"
+                                    Cursor="SizeWE" />
+
+                                <!--<Thumb
+                                    x:Name="PART_RightHeaderGripper"
+                                    Width="0.5"
+                                    HorizontalAlignment="Right"
+                                    Background="Transparent"
+                                    Cursor="SizeWE" />-->
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!--  ==============================  -->
+            <!--  MATERIAL ROW STYLE  -->
+            <!--  ==============================  -->
+            <Style TargetType="DataGridRow">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="{DynamicResource TextColorBrushAccordingTheme}" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="SnapsToDevicePixels" Value="True" />
+
+                <Style.Triggers>
+                    <!--  Hover  -->
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="Transparent" />
+                    </Trigger>
+
+                    <!--  Selected  -->
+
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Background" Value="#658099" />
+                        <Setter Property="Foreground" Value="White" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <!--  ==============================  -->
+            <!--  MATERIAL CELL STYLE  -->
+            <!--  ==============================  -->
+            <Style TargetType="DataGridCell">
+                <Setter Property="Padding" Value="12,6" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="{DynamicResource TextColorBrushAccordingTheme}" />
+                <Setter Property="SnapsToDevicePixels" Value="True" />
+
+                <Style.Triggers>
+                    <!--  Hover  -->
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="Transparent" />
+                    </Trigger>
+
+                    <!--  Selected  -->
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Foreground" Value="White" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </unity:PrismApplication.Resources>
+</unity:PrismApplication>

@@ -1,0 +1,146 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.Views.Publisher.ManagePosts"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:header="clr-namespace:DominatorUIUtility.Views.Publisher"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+    <Grid Name="MainGrid">
+        <header:Header x:Name="publishersHeader" VerticalAlignment="Top" />
+        <Border BorderBrush="{DynamicResource AccentBaseColorBrush}" BorderThickness="2">
+            <ScrollViewer Margin="0,40,0,0">
+                <StackPanel ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="5,5,0,5" Orientation="Horizontal">
+                        <Label Content="{DynamicResource LangKeyCampaign}" />
+                        <ComboBox
+                            x:Name="cmbCampaign"
+                            Width="200"
+                            Height="25" />
+                    </StackPanel>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button
+                                x:Name="btnClearHistroy"
+                                Margin="5"
+                                Background="{DynamicResource AccentBaseColorBrush}"
+                                Content="{DynamicResource LangKeyClearHistory}"
+                                Foreground="White" />
+                            <TextBlock
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                Text="{DynamicResource LangKeyFilter}" />
+                            <TextBox
+                                x:Name="txtFilter"
+                                Width="200"
+                                Margin="5" />
+                            <CheckBox Margin="20,5,5,5" Content="{DynamicResource LangKeyAutomaticallySendNewHistoryPostsToBump}" />
+                            <TextBlock
+                                Margin="30,5,5,5"
+                                VerticalAlignment="Center"
+                                Text="{DynamicResource LangKeyDeletePostsThatAreOlderThen}" />
+                            <controls:NumericUpDown VerticalAlignment="Center" Minimum="0" />
+                            <TextBlock
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                Text="{DynamicResource LangKeyDaysOld}" />
+                            <Button
+                                x:Name="btnDelete"
+                                Margin="10,5"
+                                Background="{StaticResource AccentBaseColorBrush}"
+                                Content="{DynamicResource LangKeyDelete}"
+                                Foreground="White" />
+                        </StackPanel>
+
+                        <ListView Margin="5" ItemsSource="{Binding PostsDetailCollection}">
+                            <ListView.Resources>
+                                <Style BasedOn="{StaticResource {x:Type GridViewColumnHeader}}" TargetType="{x:Type GridViewColumnHeader}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn DisplayMemberBinding="{Binding SerialNo}" Header="#" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding Messeges}" Header="{DynamicResource LangKeyMessage}" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding CampaignEndDate}" Header="{DynamicResource LangKeyEndDate}" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding Finished}" Header="{DynamicResource LangKeyNumOfFinished}" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding Succeessfull}" Header="{DynamicResource LangKeyNumOfSucceessfull}" />
+                                    <GridViewColumn Header="{DynamicResource LangKeyStatus}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Status}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="{DynamicResource LangKeyAction}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Button
+                                                        x:Name="btnContinue"
+                                                        Background="Transparent"
+                                                        Click="btnContinue_Click"
+                                                        Content="{DynamicResource LangKeyContinue}"
+                                                        FontWeight="SemiBold"
+                                                        Foreground="{DynamicResource AccentBaseColorBrush}" />
+                                                    <Button
+                                                        x:Name="btnDetails"
+                                                        Background="Transparent"
+                                                        Content="{DynamicResource LangKeyDetails}"
+                                                        FontWeight="SemiBold"
+                                                        Foreground="{DynamicResource AccentBaseColorBrush}" />
+                                                    <Button
+                                                        x:Name="btnReAdd"
+                                                        Background="Transparent"
+                                                        Content="{DynamicResource LangKeyReAdd}"
+                                                        FontWeight="SemiBold"
+                                                        Foreground="{DynamicResource AccentBaseColorBrush}" />
+                                                    <Button
+                                                        x:Name="btnBump"
+                                                        Background="Transparent"
+                                                        Content="{DynamicResource LangKeyBump}"
+                                                        FontWeight="SemiBold"
+                                                        Foreground="{DynamicResource AccentBaseColorBrush}" />
+                                                    <Button
+                                                        x:Name="btnCreateReport"
+                                                        Background="Transparent"
+                                                        Content="{DynamicResource LangKeyCreateReport}"
+                                                        FontWeight="SemiBold"
+                                                        Foreground="{DynamicResource AccentBaseColorBrush}" />
+                                                    <Button
+                                                        x:Name="btnDeleteReport"
+                                                        Background="Transparent"
+                                                        Content="{DynamicResource LangKeyDeleteReport}"
+                                                        FontWeight="SemiBold"
+                                                        Foreground="{DynamicResource AccentBaseColorBrush}" />
+                                                    <Button
+                                                        x:Name="btnDeletePosts"
+                                                        Background="Transparent"
+                                                        Content="{DynamicResource LangKeyDeletePosts}"
+                                                        FontWeight="SemiBold"
+                                                        Foreground="{DynamicResource AccentBaseColorBrush}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Deleted}" Header="{DynamicResource LangKeyDeletedDate}" />
+
+                                </GridView>
+                            </ListView.View>
+
+                        </ListView>
+
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,236 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.Views.SocioPublisher.SelectDestinations"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="ManageDestination"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:IndexToRowNoConverter x:Key="IndexToRowNoConverter" />
+        <converters:BooleanToStringSelectConverter x:Key="BooleanToStringSelectConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <ListView
+            x:Name="CampaignStatusList"
+            VerticalAlignment="Stretch"
+            AlternationCount="{Binding Items.Count, RelativeSource={RelativeSource Self}}"
+            Background="Transparent"
+            Foreground="White"
+            ItemsSource="{Binding ListPublisherManageDestinationModels}"
+            ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListView.Resources>
+                <Style BasedOn="{StaticResource {x:Type GridViewColumnHeader}}" TargetType="{x:Type GridViewColumnHeader}">
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="Height" Value="30" />
+                    <Setter Property="Margin" Value="0,2,0,0" />
+                    <Setter Property="Foreground" Value="White" />
+                </Style>
+            </ListView.Resources>
+            <ListView.ItemContainerStyle>
+                <Style BasedOn="{StaticResource ListViewItems}" TargetType="{x:Type ListViewItem}">
+                    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                    <Setter Property="Foreground" Value="White" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="80">
+                        <GridViewColumn.Header>
+                            <Border
+                                Margin="-6,-2,-6,-2"
+                                BorderBrush="LightGray"
+                                BorderThickness="1,0,0,0">
+                                <CheckBox
+                                    x:Name="AllCampaign"
+                                    Background="Transparent"
+                                    Command="{Binding SelectionExecute}"
+                                    CommandParameter="{Binding IsAllDestinationSelected, Converter={StaticResource BooleanToStringSelectConverter}}"
+                                    Content=" #"
+                                    Foreground="White"
+                                    IsChecked="{Binding IsAllDestinationSelected}" />
+                            </Border>
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <CheckBox
+                                        x:Name="ChkSingleCampaign"
+                                        Margin="6,2,6,2"
+                                        Background="Transparent"
+                                        Command="{Binding DataContext.SelectionCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                        CommandParameter="SelectManually"
+                                        Content="{Binding (ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ListViewItem}, Converter={StaticResource IndexToRowNoConverter}}"
+                                        Foreground="White"
+                                        IsChecked="{Binding IsSelected}" />
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Width="250">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyDestinationName}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock
+                                            Margin="6,2,6,2"
+                                            Foreground="White"
+                                            Text="{Binding DestinationName}" />
+                                    </StackPanel>
+
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Width="130">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyAccountCount}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding AccountCount}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Width="130">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyPagesOrBoardsCount}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding PagesOrBoardsCount}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="130">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyGroupsCount}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding GroupsCount}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Width="160">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyCustomDestinationCount}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding CustomDestinationsCount}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Width="150">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyWallsProfilesCount}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding WallsOrProfilesCount}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Width="150">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyCampaignsCount}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,1,0">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding CampaignsCount}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button
+            x:Name="btnCancel"
+            Grid.Row="1"
+            Margin="10,5"
+            HorizontalAlignment="Right"
+            x:FieldModifier="public"
+            Background="#ef1d1d">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle
+                        Width="15"
+                        Height="15"
+                        Fill="White">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_cancel}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock
+                        Margin="6,0"
+                        Foreground="White"
+                        Text="{DynamicResource LangKeyCancel}" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+    </Grid>
+</UserControl>

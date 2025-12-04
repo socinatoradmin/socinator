@@ -1,0 +1,125 @@
+﻿<UserControl
+    x:Class="DominatorHouse.Support.Logs.Views.LogView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:views="clr-namespace:DominatorHouse.Support.Logs.Views"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <system:Boolean x:Key="True">True</system:Boolean>
+        <converters:AccountsFilterConverter x:Key="AccountsFilterConverter" />
+        <converters:ActivityTypesSourceConverter x:Key="ActivityTypesSourceConverter" />
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converters:SocialNetworkToColorBrushConverter x:Key="SocialNetworkToColorBrushConverter" />
+        <converters:SocialNetworkToVisualBrushConverter x:Key="SocialNetworkToVisualBrushConverter" />
+    </UserControl.Resources>
+    <UserControl.Template>
+        <ControlTemplate>
+            <Grid DataContext="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}">
+                <StackPanel
+                    Margin="0,0,15,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal">
+
+                    <Label Content="{DynamicResource LangKeyFilterByNetwork}" FontWeight="SemiBold" />
+                    <ComboBox
+                        Width="200"
+                        mah:TextBoxHelper.ClearTextButton="True"
+                        ItemsSource="{Binding AvailableNetworks, RelativeSource={RelativeSource TemplatedParent}}"
+                        SelectedItem="{Binding SelectedNetwork, Mode=TwoWay}" />
+
+                    <StackPanel Orientation="Horizontal" Visibility="{Binding NetworkIsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Label Content="{DynamicResource LangKeyFilterByActivityType}" FontWeight="SemiBold" />
+                        <ComboBox
+                            Name="CmbActivityType"
+                            Width="200"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            SelectedItem="{Binding ActivityTypes.Selected}">
+                            <ComboBox.ItemsSource>
+                                <MultiBinding Converter="{StaticResource ActivityTypesSourceConverter}">
+                                    <Binding Path="ActivityTypes.ItemsCollection" />
+                                    <Binding Path="SelectedNetwork" />
+                                </MultiBinding>
+                            </ComboBox.ItemsSource>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{DynamicResource LangKeyFilterByAccount}" FontWeight="SemiBold" />
+                        <ComboBox
+                            Name="CmbAccount"
+                            Width="200"
+                            mah:TextBoxHelper.ClearTextButton="True"
+                            SelectedItem="{Binding SelectedAccount, Mode=TwoWay}">
+                            <ComboBox.ItemsSource>
+                                <MultiBinding Converter="{StaticResource AccountsFilterConverter}" ConverterParameter="{StaticResource True}">
+                                    <Binding
+                                        IsAsync="True"
+                                        Path="AvailableAccounts"
+                                        RelativeSource="{RelativeSource TemplatedParent}" />
+                                    <Binding Path="SelectedNetwork" />
+                                </MultiBinding>
+                            </ComboBox.ItemsSource>
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle
+                                            Width="12"
+                                            Height="12"
+                                            Margin="5,0"
+                                            VerticalAlignment="Center"
+                                            Fill="{Binding AccountBaseModel.AccountNetwork, Converter={StaticResource SocialNetworkToColorBrushConverter}}">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Stretch="Fill" Visual="{Binding AccountBaseModel.AccountNetwork, Converter={StaticResource SocialNetworkToVisualBrushConverter}}" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                        <TextBlock
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                            Text="{Binding AccountBaseModel.UserName}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+                <dragablz:TabablzControl
+                    x:Name="InitialTabablzControl"
+                    Margin="0,5,0,0"
+                    Background="Transparent"
+                    SelectionChanged="TabSelectionChange"
+                    Style="{DynamicResource TabablzControlStyle}">
+                    <TabItem
+                        Name="InfoTab"
+                        Header="{DynamicResource LangKeyInfo}"
+                        IsSelected="True">
+                        <views:LogList
+                            ActivityTypeFilter="{Binding ActivityTypes.Selected}"
+                            LogTypeFilter="{x:Static views:LogList.LogTypeInfo}"
+                            Logs="{Binding Logs}"
+                            NetworkFilter="{Binding SelectedNetwork}"
+                            SelectedLoggerModel="{Binding Selected, Mode=TwoWay}"
+                            SyncObject="{Binding SyncObject, Mode=OneTime}" />
+                    </TabItem>
+                    <TabItem Name="ErrorTab" Header="{DynamicResource LangKeyError}">
+                        <views:LogList
+                            ActivityTypeFilter="{Binding ActivityTypes.Selected}"
+                            LogTypeFilter="{x:Static views:LogList.LogTypeError}"
+                            Logs="{Binding Logs}"
+                            NetworkFilter="{Binding SelectedNetwork}"
+                            SelectedLoggerModel="{Binding Selected, Mode=TwoWay}"
+                            SyncObject="{Binding SyncObject, Mode=OneTime}" />
+                    </TabItem>
+                </dragablz:TabablzControl>
+            </Grid>
+        </ControlTemplate>
+    </UserControl.Template>
+</UserControl>

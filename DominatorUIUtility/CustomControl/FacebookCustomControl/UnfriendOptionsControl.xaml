@@ -1,0 +1,197 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.CustomControl.FacebookCustomControl.UnfriendOptionsControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl"
+    xmlns:customControl1="clr-namespace:DominatorUIUtility.CustomControl.FacebookCustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical">
+                <TextBlock
+                    Margin="4"
+                    FontSize="13"
+                    FontWeight="Bold"
+                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                    Text="{Binding UnfriendOptionModel.SourceDisplayName}" />
+                <StackPanel Orientation="Vertical">
+                    <CheckBox
+                        Margin="30,5"
+                        Checked="Source_Checked"
+                        Content="{Binding UnfriendOptionModel.BySoftwareDisplayName}"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        IsChecked="{Binding UnfriendOptionModel.IsAddedThroughSoftware}"
+                        Unchecked="Source_UnChecked" />
+                    <CheckBox
+                        Margin="30,5"
+                        Checked="Source_Checked"
+                        Content="{Binding UnfriendOptionModel.OutsideSoftwareDisplayName}"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        IsChecked="{Binding UnfriendOptionModel.IsAddedOutsideSoftware}"
+                        Unchecked="Source_UnChecked" />
+                    <CheckBox
+                        Margin="30,5"
+                        Checked="Source_Checked"
+                        Content="{DynamicResource LangKeyCustomUsersList}"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        IsChecked="{Binding UnfriendOptionModel.CustomUserList}"
+                        Unchecked="Source_UnChecked"
+                        Visibility="Collapsed" />
+                    <StackPanel Orientation="Vertical" Visibility="{Binding IsCustomOptionsRequired, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <CheckBox
+                            Margin="30,5"
+                            Checked="Source_Checked"
+                            Content="{DynamicResource LangKeyCustomUsersList}"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                            IsChecked="{Binding UnfriendOptionModel.IsCustomUserList}"
+                            Unchecked="Source_UnChecked" />
+                        <customControl1:SelectOptionControl
+                            x:Name="CustomUserList"
+                            Margin="50,10"
+                            InputText="{Binding UnfriendOptionModel.CustomUserText}"
+                            IsSelectButtonVisible="False"
+                            LstSelectedInput="{Binding UnfriendOptionModel.LstCustomUsers}"
+                            Visibility="{Binding UnfriendOptionModel.IsCustomUserList, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Visibility="{Binding IsCustomOptionsRequired, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <CheckBox
+                            Margin="30,5"
+                            Checked="Source_Checked"
+                            Content="{DynamicResource LangKeyMutualFriends}"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                            IsChecked="{Binding UnfriendOptionModel.IsMutualFriends}"
+                            Unchecked="Source_UnChecked" />
+
+                    </StackPanel>
+
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Visibility="{Binding IsSourceTypeRequired, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBlock
+                    Margin="4,30,4,10"
+                    FontSize="13"
+                    FontWeight="Bold"
+                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                    Text="{DynamicResource LangKeySourceType}" />
+                <StackPanel Orientation="Vertical">
+                    <CheckBox
+                        Margin="30,5"
+                        Checked="TypeChecked"
+                        Content="{DynamicResource LangKeyWhoAcceptedRequest}"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        IsChecked="{Binding UnfriendOptionModel.IsAlreadyFriends}"
+                        Unchecked="TypeUnChecked" />
+                    <CheckBox
+                        Margin="30,5"
+                        Checked="TypeChecked"
+                        Content="{DynamicResource LangKeyWhoDidNotAcceptRequest}"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        IsChecked="{Binding UnfriendOptionModel.IsPendingRequest}"
+                        Unchecked="TypeUnChecked" />
+                </StackPanel>
+
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <TextBlock
+                    Margin="4,30,4,10"
+                    FontSize="13"
+                    FontWeight="Bold"
+                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                    Text="{DynamicResource LangKeySourceFilter}" />
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        Margin="30,5,15,5"
+                        Content="{DynamicResource LangKeyRequestShouldHaveBeenSentBefore}"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        IsChecked="{Binding UnfriendOptionModel.IsFilterApplied}" />
+                    <controls:NumericUpDown
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        IsEnabled="{Binding UnfriendOptionModel.IsGroupsBetweenChecked}"
+                        Minimum="0"
+                        Value="{Binding UnfriendOptionModel.DaysBefore}" />
+                    <Label
+                        Content="{DynamicResource LangKeyDays}"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                    <Label
+                        Margin="0,0,5,0"
+                        Content="{DynamicResource LangKeyAnd}"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                    <controls:NumericUpDown
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        IsEnabled="{Binding UnfriendOptionModel.IsGroupsBetweenChecked}"
+                        Minimum="0"
+                        Value="{Binding UnfriendOptionModel.HoursBefore}" />
+                    <Label
+                        Content="{DynamicResource LangKeyHours}"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                </StackPanel>
+                <StackPanel
+                    Margin="0,5,0,0"
+                    Orientation="Horizontal"
+                    Visibility="{Binding IsPostOnWallActivityFilterNeeded, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <CheckBox
+                        Margin="30,5,15,5"
+                        Content="{DynamicResource LangKeyHaveNotPerformedPostOnWallActivityFrom}"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        IsChecked="{Binding UnfriendOptionModel.IsNotPostOnWall}" />
+                    <controls:NumericUpDown
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        IsEnabled="{Binding UnfriendOptionModel.IsNotPostOnWall}"
+                        Minimum="0"
+                        Value="{Binding UnfriendOptionModel.DaysNotPostedOnWall}" />
+                    <Label
+                        Content="{DynamicResource LangKeyDays}"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Visibility="{Binding MessageOptionsVisibility, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <CheckBox
+                        Margin="30,5,15,5"
+                        Content="{DynamicResource LangKeyReplyToMessagesThatContainSpecificWord﻿}"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        IsChecked="{Binding UnfriendOptionModel.IsFilterByMessageText}" />
+                    <customControl:InputBoxControl
+                        Margin="55,5,15,5"
+                        GetInputClick="Save_Click"
+                        InputText="{Binding UnfriendOptionModel.FilterText}"
+                        Visibility="{Binding UnfriendOptionModel.IsFilterByMessageText, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,44 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.CustomControl.FacebookCustomControl.ManageFriendsOptionControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Name="MainGrid">
+
+        <StackPanel Orientation="Vertical">
+            <TextBlock
+                Margin="4"
+                FontSize="13"
+                FontWeight="Bold"
+                Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                Text="{DynamicResource LangKeyEngagementType}" />
+            <StackPanel Orientation="Vertical">
+                <RadioButton
+                    Margin="30,5"
+                    Checked="Postoptions_Checked"
+                    Content="{DynamicResource LangKeyAcceptRequest}"
+                    FontSize="13"
+                    FontWeight="SemiBold"
+                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                    GroupName="EngagementType"
+                    IsChecked="{Binding ManageFriendsModel.IsAcceptRequest}"
+                    Unchecked="Postoptions_Unchecked" />
+                <RadioButton
+                    Margin="30,5"
+                    Checked="Postoptions_Checked"
+                    Content="{DynamicResource LangKeyCancelReceivedRequest}"
+                    FontSize="13"
+                    FontWeight="SemiBold"
+                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                    GroupName="EngagementType"
+                    IsChecked="{Binding ManageFriendsModel.IsCancelReceivedRequest}"
+                    Unchecked="Postoptions_Unchecked" />
+
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

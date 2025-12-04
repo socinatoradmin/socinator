@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="DominatorUIUtility.Views.AccountSetting.Activity.Unfollow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:DominatorUIUtility.Views.AccountSetting.Activity"
+             mc:Ignorable="d" x:Name="ActivityControl"
+             xmlns:next="clr-namespace:DominatorUIUtility.Views.AccountSetting"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl"
+             xmlns:actcustom="clr-namespace:DominatorUIUtility.Views.AccountSetting.CustomControl"
+             xmlns:cnvrt="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <UserControl.Resources>
+        <cnvrt:BooleanToVisibilityConverter x:Key="visiblity" IsInversed="True" />
+    </UserControl.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" CommandParameter="Unfollow" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Background="{DynamicResource AccentColorBrush}" Margin="5">
+            <actcustom:ModuleHeader Heading="UnFollow user Setting" x:Name="header"
+                                    View="{Binding ElementName=ActivityControl}" />
+        </DockPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Grid.Row="1">
+            <StackPanel>
+
+                <StackPanel>
+                    <Label Content="{DynamicResource LangKeyUnfollowSource}" FontWeight="SemiBold" Margin="5,10,0,0" />
+                    <StackPanel Margin="15,0,0,5">
+                        <CheckBox Content="{DynamicResource LangKeyPeopleFollowedBySoftware}" Margin="5,15,0,5"
+                                  IsChecked="{Binding IsChkPeopleFollowedBySoftwareChecked}" />
+                        <CheckBox Content="{DynamicResource LangKeyPeopleFollowedOutsideSoftware}" Margin="5"
+                                  IsChecked="{Binding IsChkPeopleFollowedOutsideSoftwareChecked}" />
+                        <CheckBox Content="{DynamicResource LangKeyCustomUsersList}" Margin="5"
+                                  IsChecked="{Binding IsChkCustomUsersListChecked}" />
+                        <customControl:InputBoxControl x:Name="CustomUsersListInputBox"
+                                                       InputText="{Binding CustomUsersList}"
+                                                       SaveCommand="{Binding SaveInputCommand}"
+                                                       CommandParameter="{Binding CustomUsersList}" Margin="25,5"
+                                                       Visibility="{Binding IsChkCustomUsersListChecked,Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    </StackPanel>
+                    <StackPanel Margin="15,0,0,5" Visibility="{Binding IsVisible,Converter={StaticResource visiblity}}">
+                        <Label Content="{DynamicResource LangKeySourceType}" Margin="-5,0" FontWeight="SemiBold" />
+                        <CheckBox Content="{DynamicResource LangKeyWhoDoNotFollowBack}" Margin="5"
+                                  IsChecked="{Binding IsWhoDoNotFollowBackChecked,UpdateSourceTrigger=PropertyChanged}" />
+                        <CheckBox Content="{DynamicResource LangKeyWhoFollowBack}" Margin="5"
+                                  IsChecked="{Binding IsWhoFollowBackChecked}" />
+                    </StackPanel>
+                    <StackPanel Margin="15,0,0,5" Visibility="{Binding InstagramElementsVisibility}">
+                        <Label Content="{DynamicResource LangKeySourceType}" Margin="-5,0" FontWeight="SemiBold" />
+                        <RadioButton Content="{DynamicResource LangKeyWhoDoNotFollowBack}" Margin="5"
+                                     IsChecked="{Binding IsRdWhoDoNotFollowBackChecked}" GroupName="radio" />
+                        <RadioButton Content="{DynamicResource LangKeyWhoFollowBack}" Margin="5"
+                                     IsChecked="{Binding IsRdWhoFollowBackChecked}" GroupName="radio" />
+                    </StackPanel>
+                    <Label Content="{DynamicResource LangKeySourceFilter}" FontWeight="SemiBold" Margin="5,10,0,0" />
+                    <StackPanel Orientation="Horizontal" Margin="15,0,0,5">
+                        <CheckBox Content="{DynamicResource LangKeyUserShouldHaveBeenFollowedBefore}" Margin="5"
+                                  IsChecked="{Binding IsUserFollowedBeforeChecked}" />
+                        <mah:NumericUpDown Minimum="0" Value="{Binding FollowedBeforeDay}"
+                                           IsEnabled="{Binding IsUserFollowedBeforeChecked}" />
+                        <Label Content="{DynamicResource LangKeyDays}" />
+                        <Label Content="{DynamicResource LangKeyAnd}" />
+                        <mah:NumericUpDown Value="{Binding FollowedBeforeHour}" Maximum="24" Minimum="0"
+                                           IsEnabled="{Binding IsUserFollowedBeforeChecked}" />
+                        <Label Content="{DynamicResource LangKeyHours}" />
+                    </StackPanel>
+                </StackPanel>
+                <Expander Header="{DynamicResource LangKeyJobConfiguration}" Margin="5"
+                          IsExpanded="{Binding ElementName=header,Path=IsExpanded,Mode=OneWay}">
+                    <actcustom:ActivityJobConfig JobConfiguration="{Binding JobConfiguration}" />
+                </Expander>
+            </StackPanel>
+        </ScrollViewer>
+        <DockPanel Grid.Row="2">
+            <actcustom:NextPreviousButton NextCommand="{Binding NextCommand}"
+                                          PreviousCommand="{Binding PreviousCommand}"
+                                          NextButtonContent="{Binding NextButtonContent}" />
+        </DockPanel>
+    </Grid>
+</UserControl>

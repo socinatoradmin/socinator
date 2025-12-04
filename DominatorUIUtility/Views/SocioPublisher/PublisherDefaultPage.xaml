@@ -1,0 +1,950 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.Views.SocioPublisher.PublisherDefaultPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Name="PublisherDefault"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:IndexToRowNoConverter x:Key="IndexToRowNoConverter" />
+        <converters:BooleanToStringSelectConverter x:Key="BooleanToStringSelectConverter" />
+        <!--  Display the border for list view  -->
+        <GridViewColumnCollection x:Key="ColumnSubHeading">
+            <GridViewColumn Width="80">
+                <GridViewColumn.Header>
+                    <TextBlock Text="{DynamicResource LangKeyDraft}" />
+                </GridViewColumn.Header>
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <Border
+                            Margin="-6,-2,-6,-2"
+                            BorderBrush="LightGray"
+                            BorderThickness="0,1,0,0">
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock
+                                    Margin="6,2,6,2"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Text="{Binding DraftCount}" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Width="80">
+                <GridViewColumn.Header>
+                    <TextBlock Text="{DynamicResource LangKeyPending}" />
+                </GridViewColumn.Header>
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <Border
+                            Margin="-6,-2,-6,-2"
+                            BorderBrush="LightGray"
+                            BorderThickness="1,1,0,0">
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock
+                                    Margin="6,2,6,2"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Text="{Binding PendingCount}" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Width="80">
+                <GridViewColumn.Header>
+                    <TextBlock Text="{DynamicResource LangKeyPublished}" />
+                </GridViewColumn.Header>
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <Border
+                            Margin="-6,-2,-6,-2"
+                            BorderBrush="LightGray"
+                            BorderThickness="1,1,0,0">
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock
+                                    Margin="6,2,6,2"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Text="{Binding PublishedCount}" />
+                            </StackPanel>
+
+                        </Border>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+        </GridViewColumnCollection>
+        <DataTemplate x:Key="MultiColumnHeaderTemplate">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Grid.Row="0"
+                    Margin="2"
+                    HorizontalAlignment="Center"
+                    Text="{DynamicResource LangKeyPostStatus}" />
+                <Border
+                    Grid.Row="1"
+                    Margin="-6,-2,-6,-2"
+                    BorderBrush="LightGray"
+                    BorderThickness="0,1,0,0">
+                    <GridViewHeaderRowPresenter
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Columns="{StaticResource ColumnSubHeading}" />
+                </Border>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="MultiColumnCellTemplate">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Border
+                    Margin="-6,-2,-6,-2"
+                    BorderBrush="LightGray"
+                    BorderThickness="1,1,0,0">
+                    <GridViewRowPresenter HorizontalAlignment="Stretch" Columns="{DynamicResource ColumnSubHeading}" />
+                </Border>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+
+        <!--  Header Sections  -->
+        <Border
+            Grid.Row="0"
+            Background="{DynamicResource AccentBaseColorBrush}"
+            CornerRadius="8,8,0,0">
+            <Grid Name="HeaderGrid">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+
+                <!--  Publisher Title Sections  -->
+                <TextBlock
+                    Margin="10,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Foreground="White">
+                    <Rectangle
+                        Width="25"
+                        Height="25"
+                        Margin="0,0,0,3"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Fill="White">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_billing}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+
+                    <Label
+                        VerticalContentAlignment="Center"
+                        Content="{DynamicResource LangKeyPublisher}"
+                        FontSize="18"
+                        FontWeight="SemiBold"
+                        Foreground="White" />
+                </TextBlock>
+
+                <!--  Menu Options  -->
+                <StackPanel
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+
+                    <!--  Button for navigate into managing destination  -->
+                    <Button
+                        Name="ButtonManageDestinations"
+                        Margin="5"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding NavigationCommand}"
+                        CommandParameter="ManageDestinations"
+                        Cursor="Hand"
+                        ToolTip="{DynamicResource LangKeyGoToManageDestination}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle
+                                            Width="20"
+                                            Height="20"
+                                            Fill="White">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_resource_group}" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                        <Label
+                                            Margin="5,0,0,0"
+                                            VerticalContentAlignment="Center"
+                                            Content="{DynamicResource LangKeyManageDestinations}"
+                                            FontSize="13"
+                                            FontWeight="SemiBold"
+                                            Foreground="White" />
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!--  Button for navigate into managing posts  -->
+                    <Button
+                        Name="ButtonManagePosts"
+                        Margin="5"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding NavigationCommand}"
+                        CommandParameter="ManagePosts"
+                        Cursor="Hand"
+                        ToolTip="{DynamicResource LangKeyGoToManagePosts}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle
+                                            Width="20"
+                                            Height="20"
+                                            Fill="White">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_image_gallery}" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                        <Label
+                                            Margin="5,0,0,0"
+                                            VerticalContentAlignment="Center"
+                                            Content="{DynamicResource LangKeyManagePosts}"
+                                            FontSize="13"
+                                            FontWeight="SemiBold"
+                                            Foreground="White" />
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!--  Button for navigate into create campaign  -->
+                    <Button
+                        Name="ButtonCreateCampaigns"
+                        Margin="5"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding NavigationCommand}"
+                        CommandParameter="CreateCampaigns"
+                        Cursor="Hand"
+                        ToolTip="{DynamicResource LangKeyGoToCreateCampaign}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle
+                                            Width="20"
+                                            Height="20"
+                                            Fill="White">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_calendar}" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                        <Label
+                                            Margin="5,0,0,0"
+                                            VerticalContentAlignment="Center"
+                                            Content="{DynamicResource LangKeyCreateCampaign}"
+                                            FontSize="13"
+                                            FontWeight="SemiBold"
+                                            Foreground="White" />
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!--  Button for Select/Deselect the campaigns  -->
+                    <Button
+                        Name="BtnSelect"
+                        Margin="5"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding OpenContextMenuCommand}"
+                        CommandParameter="{Binding ElementName=BtnSelect}"
+                        Cursor="Hand"
+                        Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                        ToolTip="{DynamicResource LangKeySelectMeBeforeNextAction}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image
+                                            Width="25"
+                                            Height="25"
+                                            Source="/DominatorUIUtility;component/Images/Select.png"
+                                            Stretch="UniformToFill" />
+                                        <Label
+                                            Margin="5,0,0,0"
+                                            VerticalContentAlignment="Center"
+                                            Content="{DynamicResource LangKeySelect}"
+                                            FontSize="13"
+                                            FontWeight="SemiBold"
+                                            Foreground="White" />
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                        <Button.ContextMenu>
+                            <ContextMenu DataContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
+                                <!--  Menu to select all campaigns  -->
+                                <MenuItem
+                                    Name="MenuSelectAllCampaigns"
+                                    Command="{Binding SelectionCommand}"
+                                    CommandParameter="MenuSelectAll"
+                                    Header="{DynamicResource LangKeySelectAll}">
+                                    <MenuItem.Icon>
+                                        <Rectangle
+                                            Width="15"
+                                            Height="15"
+                                            Margin="0,0,0,3"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Fill="Black">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_checkmark}" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+
+                                <!--  Menu to Deselect all campaigns  -->
+                                <MenuItem
+                                    Name="MenuDeselectAllCampaigns"
+                                    Command="{Binding SelectionCommand}"
+                                    CommandParameter="MenuSelectNone"
+                                    Header="{DynamicResource LangKeySelectNone}">
+                                    <MenuItem.Icon>
+                                        <Rectangle
+                                            Width="15"
+                                            Height="15"
+                                            Margin="0,0,0,3"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Fill="Black">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_checkmark_thick_unchecked}" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </Button.ContextMenu>
+                    </Button>
+
+                    <!--  Button will help to do following stuff's  -->
+                    <!--  1.Active, 2.Pause, 3.Delete, 4.Duplicate, 5.Publish Now, 6.Export CampaignId  -->
+                    <Button
+                        Name="PublisherAction"
+                        Margin="5"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding OpenContextMenuCommand}"
+                        CommandParameter="{Binding ElementName=PublisherAction}"
+                        Cursor="Hand"
+                        Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                        ToolTip="{DynamicResource LangKeySelectYoursAction}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    CornerRadius="10">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle
+                                            Width="20"
+                                            Height="20"
+                                            Fill="White">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_list_gear}" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                        <Label
+                                            Margin="0,0,0,0"
+                                            VerticalContentAlignment="Center"
+                                            Content="{DynamicResource LangKeyActions}"
+                                            FontSize="13"
+                                            FontWeight="SemiBold"
+                                            Foreground="White" />
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                        <Button.ContextMenu>
+                            <ContextMenu DataContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
+
+                                <!--  Make all selected campaign to Active  -->
+                                <MenuItem
+                                    Name="MenuSwitchToActive"
+                                    Command="{Binding ActiveSelectedCampaignCommand}"
+                                    CommandParameter="MakeCampaignActive"
+                                    Header="{DynamicResource LangKeySwitchToActive}">
+                                    <MenuItem.Icon>
+                                        <StackPanel>
+                                            <Rectangle
+                                                Width="15"
+                                                Height="15"
+                                                Fill="Green">
+                                                <Rectangle.OpacityMask>
+                                                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_moon_full}" />
+                                                </Rectangle.OpacityMask>
+                                            </Rectangle>
+                                        </StackPanel>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+
+                                <!--  Make all selected campaign to Pause  -->
+                                <MenuItem
+                                    Name="MenuSwitchToPause"
+                                    Command="{Binding PauseSelectedCampaignCommand}"
+                                    CommandParameter="MakeCampaignPause"
+                                    Header="{DynamicResource LangKeySwitchToPause}">
+                                    <MenuItem.Icon>
+                                        <StackPanel>
+                                            <Rectangle
+                                                Width="15"
+                                                Height="15"
+                                                Fill="DarkOrange">
+                                                <Rectangle.OpacityMask>
+                                                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_moon_full}" />
+                                                </Rectangle.OpacityMask>
+                                            </Rectangle>
+                                        </StackPanel>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+
+                                <!--  Delete all selected campaign  -->
+                                <MenuItem
+                                    Name="MenuDelete"
+                                    Command="{Binding DeleteCampaignCommand}"
+                                    CommandParameter="MenuDelete"
+                                    Header="{DynamicResource LangKeyDelete}">
+                                    <MenuItem.Icon>
+                                        <Rectangle
+                                            Width="12"
+                                            Height="15"
+                                            Fill="Black">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_delete}" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+
+                                <!--  Duplicate all selected campaign  -->
+                                <MenuItem
+                                    Name="MenuDuplicate"
+                                    Command="{Binding CampaignCloneCommand}"
+                                    CommandParameter="MenuClone"
+                                    Header="{DynamicResource LangKeyDuplicate}">
+                                    <MenuItem.Icon>
+                                        <Rectangle
+                                            Width="15"
+                                            Height="15"
+                                            Fill="Black">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_page_duplicate}" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+
+                                <!--  Publish Now all selected campaign  -->
+                                <MenuItem
+                                    Name="MenuPublishNow"
+                                    Command="{Binding PublishNowSelectedCampaignCommand}"
+                                    CommandParameter="PublishNow"
+                                    Header="{DynamicResource LangKeyPublishNow}">
+                                    <MenuItem.Icon>
+                                        <Rectangle
+                                            Width="15"
+                                            Height="15"
+                                            Fill="Black">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_door_enter}" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+
+                                <!--  Export the campaign Id all selected campaign  -->
+                                <MenuItem
+                                    Name="MenuExportCampaignId"
+                                    Command="{Binding CopyCampaignId}"
+                                    CommandParameter="MultipleCopy"
+                                    Header="{DynamicResource LangKeyExportCampaignId}">
+                                    <MenuItem.Icon>
+                                        <Rectangle
+                                            Width="15"
+                                            Height="15"
+                                            Fill="Black">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_inbox_out}" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </Button.ContextMenu>
+                    </Button>
+
+
+                    <Button
+                        VerticalAlignment="Center"
+                        Background="Transparent"
+                        Command="{Binding TutorialsCommand}"
+                        ToolTip="{DynamicResource LangKeyTutorials}">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle
+                                    Width="15"
+                                    Height="15"
+                                    Fill="White">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_video}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <TextBlock
+                                    Margin="6,0"
+                                    Foreground="White"
+                                    Text="{DynamicResource LangKeyTutorials}" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+        </Border>
+        <!--  Display the details of the campaign  -->
+        <ListView
+            x:Name="CampaignStatusList"
+            Grid.Row="1"
+            VerticalAlignment="Stretch"
+            AlternationCount="{Binding Items.Count, RelativeSource={RelativeSource Self}}"
+            Background="Transparent"
+            ItemsSource="{Binding PublisherCampaignStatusModelView}"
+            ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListView.Resources>
+                <Style BasedOn="{StaticResource {x:Type GridViewColumnHeader}}" TargetType="{x:Type GridViewColumnHeader}">
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                </Style>
+                <SolidColorBrush x:Key="ItemBackgroundHover" Color="Transparent" />
+            </ListView.Resources>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource ListItemsMouseHoverColorAccordingTheme}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background" Value="Transparent" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <!--  Selecting campaigns  -->
+                    <GridViewColumn Width="80">
+                        <GridViewColumn.Header>
+                            <Border
+                                Margin="-6,-2,-6,-2"
+                                BorderBrush="LightGray"
+                                BorderThickness="1,0,0,0">
+                                <CheckBox
+                                    x:Name="AllCampaign"
+                                    Background="Transparent"
+                                    Command="{Binding SelectionExecute}"
+                                    CommandParameter="{Binding IsAllCampaignSelected, Converter={StaticResource BooleanToStringSelectConverter}}"
+                                    Content=" #"
+                                    IsChecked="{Binding IsAllCampaignSelected}" />
+                            </Border>
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <CheckBox
+                                        x:Name="ChkSingleCampaign"
+                                        Margin="6,2,6,2"
+                                        Background="Transparent"
+                                        Command="{Binding DataContext.SelectionCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                        CommandParameter="SelectManually"
+                                        Content="{Binding (ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ListViewItem}, Converter={StaticResource IndexToRowNoConverter}}"
+                                        IsChecked="{Binding IsSelected}" />
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <!--  Campaign Name  -->
+                    <GridViewColumn Width="250">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyCampaignName}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding CampaignName}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <!--  Campaign Status  -->
+                    <GridViewColumn Width="100">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyStatus}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding Status}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <!--  Destination Count  -->
+                    <GridViewColumn Width="100">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyDestination}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding DestinationCount}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <!--  Post Count  -->
+                    <GridViewColumn
+                        Width="240"
+                        CellTemplate="{StaticResource MultiColumnCellTemplate}"
+                        HeaderTemplate="{StaticResource MultiColumnHeaderTemplate}" />
+
+                    <!--  Edit Campaign  -->
+                    <GridViewColumn Width="360">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyActions}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <StackPanel Margin="6,2,6,2" Orientation="Horizontal">
+                                        <Button
+                                            x:Name="ButtonEditCampaign"
+                                            Background="Transparent"
+                                            Command="{Binding Path=DataContext.NavigationCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                            CommandParameter="{Binding}"
+                                            Content="{DynamicResource LangKeyEdit}"
+                                            Cursor="Hand"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme1}" />
+                                        <Button
+                                            x:Name="ButtonDuplicateCampaign"
+                                            Background="Transparent"
+                                            Command="{Binding Path=DataContext.CampaignCloneCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                            CommandParameter="{Binding}"
+                                            Content="{DynamicResource LangKeyDuplicate}"
+                                            Cursor="Hand"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme1}" />
+                                        <Button
+                                            x:Name="ButtonDeleteCampaign"
+                                            Background="Transparent"
+                                            Command="{Binding Path=DataContext.DeleteCampaignCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                            CommandParameter="{Binding}"
+                                            Content="{DynamicResource LangKeyDelete}"
+                                            Cursor="Hand"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme1}" />
+                                        <Button
+                                            x:Name="ButtonCopyCampaignId"
+                                            Background="Transparent"
+                                            Command="{Binding Path=DataContext.CopyCampaignId, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                            CommandParameter="{Binding}"
+                                            Content="{DynamicResource LangKeyCopyCampaignId}"
+                                            Cursor="Hand"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme1}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <!--  Create Campaign Date  -->
+                    <GridViewColumn Width="150">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyCreatedDate}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding CreatedDate}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <!--  Create Last Modified Date  -->
+                    <GridViewColumn Width="150">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyLastModifiedDate}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding UpdatedTime}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <!--  Create campaign start date  -->
+                    <GridViewColumn Width="150">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyStartDate}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding StartDate}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <!--  Create Campaign end Date  -->
+                    <GridViewColumn Width="150">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyEndDate}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding EndDate}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <mah:FlyoutsControl Grid.Row="1">
+            <mah:Flyout
+                Width="400"
+                Background="{DynamicResource AccentBaseColorBrush}"
+                BorderBrush="Black"
+                BorderThickness="2"
+                FontSize="10"
+                FontWeight="Bold"
+                Foreground="White"
+                Header="{DynamicResource LangKeyTutorials}"
+                IsOpen="{Binding IsTutorialsOpen}"
+                Position="Right"
+                Theme="Accent"
+                Visibility="Collapsed">
+                <Grid Background="#717171">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <!--<RowDefinition Height="*"/>-->
+                    </Grid.RowDefinitions>
+                    <Border BorderBrush="Black" BorderThickness="0,2,0,2">
+                        <TextBlock
+                            Margin="5,10"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Cursor="Help"
+                            FontSize="16"
+                            TextWrapping="Wrap">
+                            <Hyperlink
+                                Command="{Binding WatchTutorialCommand}"
+                                CommandParameter="https://youtu.be/ft5IKDMwbhw?list=PL60e8mIWfxobdAiDPD8h-TkelSRApOb5M"
+                                Foreground="White">
+                                <TextBlock Foreground="White" Text="{DynamicResource LangKeySociopublisherCampaign}" />
+                            </Hyperlink>
+                        </TextBlock>
+                    </Border>
+                    <Border
+                        Grid.Row="1"
+                        BorderBrush="Black"
+                        BorderThickness="0,2,0,2">
+                        <TextBlock
+                            Margin="5,10"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Cursor="Help"
+                            FontSize="16"
+                            TextWrapping="Wrap">
+                            <Hyperlink
+                                Command="{Binding WatchTutorialCommand}"
+                                CommandParameter="https://youtu.be/vuVAh26c34Q?list=PL60e8mIWfxobdAiDPD8h-TkelSRApOb5M"
+                                Foreground="White">
+                                <TextBlock Foreground="White" Text="{DynamicResource LangKeySociopublisherDestination}" />
+                            </Hyperlink>
+                        </TextBlock>
+                    </Border>
+                    <!--<Border Grid.Row="2" BorderThickness="0,2,0,2" BorderBrush="Black">
+                        <TextBlock Cursor="Help" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,10"
+                               TextWrapping="Wrap" >
+                      <Hyperlink Foreground="White"
+                                 CommandParameter="https://youtu.be/O05T23h_sCs?list=PL60e8mIWfxobdAiDPD8h-TkelSRApOb5M"
+                                 Command="{Binding WatchTutorialCommand}">
+                          <TextBlock Text="{DynamicResource LangKeySociopublisherAdvancedsettingsforGooglePlush}"
+                               Foreground="White" />
+                      </Hyperlink>
+                        </TextBlock>
+                    </Border>-->
+                    <Border
+                        Grid.Row="2"
+                        BorderBrush="Black"
+                        BorderThickness="0,2,0,2">
+                        <TextBlock
+                            Margin="5,10"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Cursor="Help"
+                            FontSize="16"
+                            TextWrapping="Wrap">
+                            <Hyperlink
+                                Command="{Binding WatchTutorialCommand}"
+                                CommandParameter="https://youtu.be/nfFDjqNVsOg?list=PL60e8mIWfxobdAiDPD8h-TkelSRApOb5M"
+                                Foreground="White">
+                                <TextBlock Foreground="White" Text="{DynamicResource LangKeySociopublisherAdvancedGeneralSettings}" />
+                            </Hyperlink>
+                        </TextBlock>
+                    </Border>
+                    <Border
+                        Grid.Row="3"
+                        BorderBrush="Black"
+                        BorderThickness="0,2,0,2">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Cursor="Help"
+                            FontSize="16"
+                            TextWrapping="Wrap">
+                            <Hyperlink
+                                Command="{Binding WatchTutorialCommand}"
+                                CommandParameter="https://youtu.be/v6kemmvpgy0?list=PL60e8mIWfxobdAiDPD8h-TkelSRApOb5M"
+                                Foreground="White">
+                                <TextBlock Foreground="White" Text="{DynamicResource LangKeySociopublisherAdvancedSettingsforTwitter}" />
+                            </Hyperlink>
+                        </TextBlock>
+
+                    </Border>
+                    <Grid Grid.Row="4" Background="#3897F0">
+                        <Border BorderBrush="Black" BorderThickness="0,2,0,2">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Cursor="Help"
+                                FontSize="16"
+                                TextWrapping="Wrap">
+                                <Hyperlink
+                                    Command="{Binding WatchTutorialCommand}"
+                                    CommandParameter="https://help.socinator.com/support/solutions/42000063831"
+                                    Foreground="White">
+                                    <TextBlock Text="{DynamicResource LangKeyTakeHelpFromKnowledgebase}" />
+                                </Hyperlink>
+                            </TextBlock>
+                        </Border>
+                    </Grid>
+
+                    <Grid Grid.Row="5" Background="{DynamicResource AccentColorBrush}">
+                        <Border BorderBrush="Black" BorderThickness="0,2,0,2">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Cursor="Help"
+                                FontSize="16"
+                                TextWrapping="Wrap">
+                                <Hyperlink
+                                    Command="{Binding WatchTutorialCommand}"
+                                    CommandParameter="https://socinator.com/contact-us/"
+                                    Foreground="White">
+                                    <TextBlock Text="{DynamicResource LangKeyContactSupport}" />
+                                </Hyperlink>
+                            </TextBlock>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </mah:Flyout>
+        </mah:FlyoutsControl>
+
+    </Grid>
+</UserControl>

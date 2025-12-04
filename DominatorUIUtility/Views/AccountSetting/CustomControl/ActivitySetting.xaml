@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="DominatorUIUtility.Views.AccountSetting.CustomControl.ActivitySetting"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:DominatorUIUtility.Views.AccountSetting.CustomControl"
+             mc:Ignorable="d"
+             xmlns:next="clr-namespace:DominatorUIUtility.Views.AccountSetting"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl"
+             xmlns:actcustom="clr-namespace:DominatorUIUtility.Views.AccountSetting.CustomControl"
+             xmlns:convert="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore">
+    <UserControl.Resources>
+        <convert:BooleanToVisibilityConverter IsInversed="True" x:Key="BoolToVisible" />
+    </UserControl.Resources>
+    <Grid Margin="5,0" Name="Setting">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <!--<DockPanel Grid.Row="0" Background="{DynamicResource AccentColorBrush}" Visibility="{Binding HeaderNextPreViousVisiblity}">-->
+        <Grid Background="{DynamicResource AccentColorBrush}" Visibility="{Binding HeaderNextPreViousVisiblity}"
+              HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding Heading}" HorizontalAlignment="Left" FontWeight="SemiBold"
+                       VerticalAlignment="Center" Margin="5,0" Foreground="White" />
+            <ToggleButton VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Right" Margin="5,0"
+                          Foreground="White" Name="ClpsExpnd" Click="ClpsExpnd_OnClick">
+                <ToggleButton.Style>
+                    <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MetroFlatToggleButton}">
+                        <Setter Property="IsChecked" Value="{Binding IsExpanded,UpdateSourceTrigger=PropertyChanged}" />
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Content" Value="{DynamicResource LangKeyCollapseAll}" />
+                                <Setter Property="Background" Value="{DynamicResource AccentBaseColorBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter Property="Content" Value="{DynamicResource LangKeyExpandAll}" />
+                                <Setter Property="Background" Value="{DynamicResource AccentBaseColorBrush}" />
+                            </Trigger>
+                        </Style.Triggers>
+
+                    </Style>
+                </ToggleButton.Style>
+            </ToggleButton>
+        </Grid>
+        <!--</DockPanel>-->
+        <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Grid.Row="1">
+            <StackPanel Grid.Row="1">
+                <CheckBox Content="Use Global query" Visibility="Collapsed" IsChecked="{Binding IsUseGlobalQuery}"
+                          Margin="5" />
+                <Expander Header="{DynamicResource LangKeySearchQuery}" Margin="0,5"
+                          IsExpanded="{Binding IsExpanded,UpdateSourceTrigger=Explicit}"
+                          Visibility="{Binding IsUseGlobalQuery,Converter={StaticResource BoolToVisible}}">
+                    <customControl:SearchQueryControl x:Name="QueryControl" x:FieldModifier="public" Width="1000"
+                                                      ListQueryType="{Binding ListQueryType}"
+                                                      ListQueryInfo="{Binding SavedQueries}"
+                                                      DeleteQueryCommand="{Binding DeleteQueryCommand}"
+                                                      DeleteMulipleCommand="{Binding DeleteMulipleCommand}"
+                                                      AddQueryCommand="{Binding AddQueryCommand}"
+                                                      CommandParameter="{Binding}" />
+
+                </Expander>
+                <Expander Header="{DynamicResource LangKeyJobConfiguration}" Margin="0,5"
+                          IsExpanded="{Binding IsExpanded,UpdateSourceTrigger=Explicit}">
+                    <customControl:JobConfigControl JobConfiguration="{Binding JobConfiguration}" />
+                </Expander>
+            </StackPanel>
+
+        </ScrollViewer>
+        <DockPanel Grid.Row="2" Visibility="{Binding HeaderNextPreViousVisiblity}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Bottom">
+                <Button Height="30" HorizontalAlignment="Left" Margin="5"
+                        Foreground="White" Background="{DynamicResource AccentBaseColorBrush}"
+                        Content="{DynamicResource LangKeyPrevious}" Command="{Binding PreviousCommand}"
+                        Visibility="{Binding PreviousVisiblity}" />
+
+                <Button Height="30" x:Name="BtnNext" HorizontalAlignment="Left"
+                        Foreground="White" Background="{DynamicResource AccentBaseColorBrush}"
+                        Margin="5" Content="{Binding NextButtonContent}"
+                        Command="{Binding NextCommand}" />
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>

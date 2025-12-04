@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ff54a68b-88e9-4056-83a4-2ef08d5db7dd}</ProjectGuid>
+    <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
+    <Name>DominatorHouseSocialModeling</Name>
+    <RootNamespace>DominatorHouseSocialModeling</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
+  <ItemGroup>
+    <EmbeddedResource Include="Images\SociNator.ico">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <Content Include="Publisher\CreateDestinations.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Publisher\CreateDestinations.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Publisher\CreateDestinations.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="Publisher\ManagePosts.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Publisher\ManagePosts.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Publisher\ManagePosts.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="Publisher\PostFetcher.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Publisher\PostFetcher.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Publisher\PostFetcher.activitydiagram</DependentUpon>
+    </Content>
+    <Content Include="Publisher\PublisherJobProcess.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Publisher\PublisherJobProcess.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Publisher\PublisherJobProcess.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="Publisher\PublishInitialize.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Publisher\PublishInitialize.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Publisher\PublishInitialize.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="Publisher\PublishScheduler.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Publisher\PublishScheduler.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Publisher\PublishScheduler.usecasediagram</DependentUpon>
+    </Content>
+    <Folder Include="ModelDefinition\" />
+    <Content Include="ModelDefinition\DominatorHouseSocialModeling.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Folder Include="Images" />
+    <Folder Include="Publisher" />
+  </ItemGroup>
+  <ItemGroup>
+    <Validate Include="Publisher\PublisherLayer.layerdiagram">
+      <SubType>Content</SubType>
+    </Validate>
+    <Validate Include="Publisher\PublisherLayer.layerdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Publisher\PublisherLayer.layerdiagram</DependentUpon>
+    </Validate>
+    <Validate Include="Publisher\PublisherLayer.layerdiagram.suppressions">
+      <SubType>Content</SubType>
+      <DependentUpon>Publisher\PublisherLayer.layerdiagram</DependentUpon>
+    </Validate>
+  </ItemGroup>
+</Project>

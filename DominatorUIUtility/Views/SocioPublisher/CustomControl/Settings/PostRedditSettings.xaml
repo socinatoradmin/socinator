@@ -1,0 +1,32 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.Views.SocioPublisher.CustomControl.Settings.PostRedditSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Grid x:Name="MainGrid">
+        <StackPanel Margin="2">
+            <CheckBox
+                x:Name="CheckBoxIsNsfw"
+                Margin="2"
+                Content="{DynamicResource LangKeyIsNSFW}"
+                IsChecked="{Binding IsNsfw}" />
+            <CheckBox
+                x:Name="CheckBoxIsOriginalContent"
+                Margin="2"
+                Content="{DynamicResource LangKeyIsOriginalContent}"
+                IsChecked="{Binding IsOriginalContent}" />
+            <CheckBox
+                x:Name="CheckBoxIsSpoiler"
+                Margin="2"
+                Content="{DynamicResource LangKeyIsSpoiler}"
+                IsChecked="{Binding IsSpoiler}" />
+            <CheckBox
+                x:Name="CheckBoxIsDisableSendingReplies"
+                Margin="2"
+                Content="{DynamicResource LangKeyDisableSendingReplies}"
+                IsChecked="{Binding IsDisableSendingReplies}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

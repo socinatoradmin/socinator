@@ -1,0 +1,23 @@
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+.vs
+gramUISetup/Debug/
+gramUISetup/Release/
+CodeMap1.dgml
+*.msi
+**/UpgradeLog*.htm
+*.rar
+DominatorHouse/publish/
+packages/
+TestResults/
+SocinatorNew/Release/Socinator.zip
+*.zip
+Browser_Automation/Release/Facebook_Accounts.csv
+Browser_Automation/Release/Social_Accounts 09082019164219.csv
+Socinator/Debug/
+SocinatorSetupNew/Debug/
+SocinatorSetupNew/Release/
+SocinatorNew/Release/setup.exe

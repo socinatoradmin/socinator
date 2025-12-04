@@ -1,0 +1,194 @@
+﻿<UserControl x:Class="DominatorUIUtility.CustomControl.CustomizeAutoActivity"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+             mc:Ignorable="d"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
+    <UserControl.Resources>
+        <converters:SocialNetworkToVisualBrushConverter x:Key="SocialNetworkToVisualBrushConverter" />
+        <converters:SocialNetworkToColorBrushConverter x:Key="SocialNetworkToColorBrushConverter" />
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid Margin="2"
+              VerticalAlignment="Stretch"
+              HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Background="{DynamicResource ListItemsMouseHoverColorAccordingTheme}" Orientation="Horizontal"
+                        VerticalAlignment="Stretch">
+                <Button Height="30" x:Name="btnSaveSetting" Margin="10,5" HorizontalAlignment="Right"
+                        Command="{Binding SaveCommand}"
+                        Foreground="White" Background="{DynamicResource AccentBaseColorBrush}">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="16" Height="15" Fill="White" VerticalAlignment="Center">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_save}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                            <TextBlock Text="{DynamicResource LangKeySave}" Margin="5,0" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+
+            <ListView Grid.Row="1" VirtualizingPanel.IsVirtualizing="True" Margin="10,5"
+                      VirtualizingPanel.VirtualizationMode="Recycling"
+                      ScrollViewer.IsDeferredScrollingEnabled="True"
+                      x:Name="CampaignStatusList"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ItemsSource="{Binding Model.NetworksActListCollection,IsAsync=True}"
+                      VerticalAlignment="Stretch"
+                      HorizontalAlignment="Stretch">
+                <ListView.Style>
+                    <Style TargetType="ListView">
+                        <Style.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+                        </Style.Resources>
+                    </Style>
+                </ListView.Style>
+                <ListView.Resources>
+                    <Style TargetType="{x:Type GridViewColumnHeader}"
+                           BasedOn="{StaticResource {x:Type GridViewColumnHeader}}">
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Setter Property="Height" Value="30" />
+                        <Setter Property="Margin" Value="0,2,0,0" />
+                    </Style>
+                    <SolidColorBrush x:Key="ItemBackgroundHover" Color="Transparent" />
+                </ListView.Resources>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                        <Setter Property="Height" Value="35" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background"
+                                        Value="{DynamicResource ListItemsMouseHoverColorAccordingTheme}" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter Property="Background" Value="Transparent" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="Auto">
+                            <GridViewColumn.Header>
+                                <TextBlock Text="{DynamicResource LangKeyPlatform}" />
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="1,1,0,0" BorderBrush="LightGray" Margin="-6,-2,-6,-2">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Rectangle
+                                                Fill="{Binding SocialNetwork, Converter={StaticResource SocialNetworkToColorBrushConverter}}"
+                                                Width="20" Height="20">
+                                                <Rectangle.OpacityMask>
+                                                    <VisualBrush
+                                                        Visual="{Binding SocialNetwork, Converter={StaticResource SocialNetworkToVisualBrushConverter}}"
+                                                        Stretch="Fill" />
+                                                </Rectangle.OpacityMask>
+                                            </Rectangle>
+                                            <TextBlock Foreground="{DynamicResource AccentBaseColorBrush}"
+                                                       Text="{Binding SocialNetwork}" TextTrimming="CharacterEllipsis"
+                                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                       FontSize="12" Margin="3" />
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn>
+                            <GridViewColumn.Header>
+                                <TextBlock Text="{DynamicResource LangKeyActivityTypesSelect1To6ForEachNet}"
+                                           HorizontalAlignment="Left" />
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="1,1,0,0" BorderBrush="LightGray" Margin="-6,-2,-6,-2">
+                                        <StackPanel Margin="6,2,6,2" Orientation="Horizontal"
+                                                    HorizontalAlignment="Left" VerticalAlignment="Center">
+                                            <ListBox Name="ActivityStatus"
+                                                     ItemsSource="{Binding NetworkActivityTypeModelCollections}">
+                                                <ListBox.ItemContainerStyle>
+                                                    <Style TargetType="ListBoxItem">
+                                                        <Setter Property="Focusable" Value="False" />
+                                                        <Setter Property="Background" Value="Transparent" />
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="Transparent" />
+                                                            </Trigger>
+                                                            <Trigger Property="IsMouseOver" Value="False">
+                                                                <Setter Property="Background" Value="Transparent" />
+                                                            </Trigger>
+                                                            <DataTrigger
+                                                                Binding="{Binding IsMouseOver,RelativeSource={RelativeSource AncestorType=ListViewItem}}"
+                                                                Value="True">
+                                                                <Setter Property="Background"
+                                                                        Value="{DynamicResource ListItemsMouseHoverColorAccordingTheme}" />
+                                                            </DataTrigger>
+                                                            <DataTrigger
+                                                                Binding="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=ListViewItem}}"
+                                                                Value="True">
+                                                                <Setter Property="Background"
+                                                                        Value="{DynamicResource ListItemsMouseHoverColorAccordingTheme}" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+
+                                                </ListBox.ItemContainerStyle>
+                                                <ListBox.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel IsItemsHost="True" />
+                                                    </ItemsPanelTemplate>
+                                                </ListBox.ItemsPanel>
+                                                <ListBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border BorderThickness="0,0,0,0" Padding="1"
+                                                                BorderBrush="{DynamicResource AccentBaseColorBrush}">
+                                                            <StackPanel Orientation="Horizontal" Width="Auto">
+                                                                <CheckBox
+                                                                    Foreground="{DynamicResource AccentBaseColorBrush}"
+                                                                    Content="{Binding ActivityTitle}" Width="Auto"
+                                                                    IsChecked="{Binding IsSelected}"
+                                                                    HorizontalAlignment="Center"
+                                                                    VerticalAlignment="Center" FontSize="12" Margin="3">
+                                                                    <i:Interaction.Triggers>
+                                                                        <i:EventTrigger EventName="Click">
+                                                                            <i:InvokeCommandAction
+                                                                                Command="{Binding DataContext.ChangeActivityStatusCmd, Source={x:Reference CampaignStatusList}}"
+                                                                                CommandParameter="{Binding}" />
+                                                                        </i:EventTrigger>
+                                                                    </i:Interaction.Triggers>
+                                                                </CheckBox>
+                                                            </StackPanel>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ListBox.ItemTemplate>
+                                            </ListBox>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+        <ContentControl Content="{Binding SelectedUserControl}" Width="Auto"
+                        Visibility="{Binding ShowContent, Converter={StaticResource BooleanToVisibilityConverter}}" />
+    </Grid>
+</UserControl>

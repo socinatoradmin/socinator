@@ -1,0 +1,203 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.CustomControl.FacebookCustomControl.EventCreaterManager"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:control="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl"
+    xmlns:customControl1="clr-namespace:DominatorUIUtility.CustomControl.FacebookCustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Name="EventCreaterManagerControl"
+    BorderBrush="{DynamicResource AccentBaseColorBrush}"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+        <ScrollViewer>
+            <StackPanel Margin="20" HorizontalAlignment="Center">
+
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <TextBlock
+                        Width="100"
+                        Text="{DynamicResource LangKeyEventType}"
+                        TextAlignment="Left" />
+
+                    <ComboBox
+                        Name="ListComboBox"
+                        Width="270"
+                        Height="25"
+                        VerticalAlignment="Top"
+                        SelectedItem="{Binding EventCreaterManagerModelCommand.EventType, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                        <!--  SelectionChanged Is a Click Event Proprty  -->
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding TypeSelectionChangedCommand}" CommandParameter="{Binding ElementName=EventCreaterManagerControl}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Width="100"
+                        VerticalAlignment="Top"
+                        Text="{DynamicResource LangKeyEventphotoorvideo}"
+                        TextWrapping="Wrap" />
+
+                    <customControl1:FbMultiMediaControl
+                        ActivityType="{DynamicResource LangKeyEventCreater}"
+                        FbMultiMediaModel="{Binding EventCreaterManagerModelCommand.FbMultiMediaModel}"
+                        MediaHeight="200" />
+                </StackPanel>
+
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <TextBlock
+                        Width="100"
+                        Text="{DynamicResource LangKeyEventName}"
+                        TextAlignment="Left"
+                        TextWrapping="Wrap" />
+
+                    <TextBox
+                        Name="TextBoxEvent"
+                        Width="230"
+                        Height="30"
+                        control:TextBoxHelper.Watermark="{DynamicResource LangKeyAddashortandclearname}"
+                        MaxLength="64"
+                        Text="{Binding EventCreaterManagerModelCommand.EventName}"
+                        TextChanged="TextBoxBase_OnTextChanged" />
+                    <Label Width="40" Content="{Binding EventCreaterManagerModelCommand.TextLength}" />
+                </StackPanel>
+
+                <StackPanel Margin="2" Orientation="Horizontal">
+                    <CheckBox
+                        Margin="100,0,0,0"
+                        Content="{DynamicResource LangKeyUseFacebookSuggestedLocation}"
+                        IsChecked="{Binding EventCreaterManagerModelCommand.IsSelectLocation}" />
+                </StackPanel>
+
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <TextBlock
+                        Width="100"
+                        Text="{DynamicResource LangKeyLocation}"
+                        TextAlignment="Left" />
+                    <TextBox
+                        Width="270"
+                        Height="30"
+                        control:TextBoxHelper.Watermark="{DynamicResource LangKeyIncludeaplaceoraddress}"
+                        Text="{Binding EventCreaterManagerModelCommand.EventLocation}" />
+                </StackPanel>
+
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <TextBlock Width="100" Text="{DynamicResource LangKeyDescription}" />
+                    <TextBox
+                        Width="270"
+                        Height="100"
+                        control:TextBoxHelper.Watermark="{DynamicResource LangKeyTellpeoplemoreabouttheevent}"
+                        AcceptsReturn="True"
+                        Text="{Binding EventCreaterManagerModelCommand.EventDescription}"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <TextBlock Width="100" Text="{DynamicResource LangKeyStartTime}" />
+                    <control:DateTimePicker
+                        Width="185"
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        IsClockVisible="False"
+                        SelectedDate="{Binding EventCreaterManagerModelCommand.EventStartDate}" />
+                </StackPanel>
+
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <TextBlock Width="100" Text="{DynamicResource LangKeyEndTime}" />
+                    <control:DateTimePicker
+                        Width="185"
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        IsClockVisible="False"
+                        SelectedDate="{Binding EventCreaterManagerModelCommand.EventEndDate}" />
+                </StackPanel>
+
+                <StackPanel Margin="5" Orientation="Horizontal">
+
+                    <TextBlock Width="100" />
+                    <StackPanel>
+                        <CheckBox
+                            Margin="5"
+                            Content="{DynamicResource LangKeyGuestCanInviteFriends}"
+                            IsChecked="{Binding EventCreaterManagerModelCommand.IsGuestCanInviteFriends}"
+                            Visibility="{Binding EventCreaterManagerModelCommand.IsPrivatePostingVisibile, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <CheckBox
+                            Margin="5"
+                            Content="{DynamicResource LangKeyShowGuestList}"
+                            IsChecked="{Binding EventCreaterManagerModelCommand.IsShowGuestList}" />
+                    </StackPanel>
+
+                </StackPanel>
+
+                <StackPanel
+                    Margin="5"
+                    Orientation="Vertical"
+                    Visibility="{Binding EventCreaterManagerModelCommand.IsPublicPostingVisibile, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                    <StackPanel Margin="5" Orientation="Horizontal">
+                        <TextBlock
+                            Width="100"
+                            Text="EventType"
+                            TextAlignment="Left" />
+                        <ComboBox
+                            Name="ListCategoryBox"
+                            Width="270"
+                            Height="25"
+                            VerticalAlignment="Top"
+                            SelectedItem="{Binding EventCreaterManagerModelCommand.Category, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Width="100" Text="{DynamicResource LangKeyPostpermissions}" />
+                        <StackPanel>
+                            <RadioButton
+                                Margin="5"
+                                Content="{DynamicResource LangKeyAnyonecanpost}"
+                                IsChecked="{Binding EventCreaterManagerModelCommand.IsAnyOneCanPostForAllPost}" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Width="100" Text="{DynamicResource LangKeyPostapproval}" />
+                        <StackPanel>
+                            <CheckBox Content="{DynamicResource LangKeyPostsandstoriesmustbeapprovedbyahostorco-host}" IsChecked="{Binding EventCreaterManagerModelCommand.IsPostMustApproved}" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,5" Orientation="Horizontal">
+                        <TextBlock Width="100" Text="{DynamicResource LangKeyMessaging}" />
+                        <StackPanel>
+                            <CheckBox Content="{DynamicResource LangKeyPeoplecanaskquestionsaboutyoureventonMessenger}" IsChecked="{Binding EventCreaterManagerModelCommand.IsQuesOnMessanger}" />
+                        </StackPanel>
+                    </StackPanel>
+
+                </StackPanel>
+
+                <Button
+                    Name="BtnAddEventToList"
+                    Width="200"
+                    Margin="10,30,0,0"
+                    x:FieldModifier="public"
+                    Background="{DynamicResource AccentBaseColorBrush}"
+                    Command="{Binding AddEventCommand}"
+                    CommandParameter="{Binding CommandParameter, ElementName=EventCreaterManagerControl}"
+                    Content="{DynamicResource LangKeyAddEventToList}"
+                    Foreground="White" />
+
+            </StackPanel>
+
+        </ScrollViewer>
+    </Grid>
+
+</UserControl>

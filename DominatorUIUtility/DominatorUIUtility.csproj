@@ -1,0 +1,2432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E8D95AF0-E99B-4059-9140-5C02B3F52E06}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DominatorUIUtility</RootNamespace>
+    <AssemblyName>DominatorUIUtility</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug-fast-test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug-fast-test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug-fast-test|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug-fast-test\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SKIP_DELAYS</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <SignManifests>true</SignManifests>
+    <CertificateThumbprint>b6d08bf4e7cfd123f1c279907063b78af25f9bb3</CertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>B6D08BF4E7CFD123F1C279907063B78AF25F9BB3</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <!--<PropertyGroup>
+    <ManifestTimestampUrl>http://timestamp.digicert.com</ManifestTimestampUrl>
+  </PropertyGroup>-->
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.5\lib\net48\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper">
+      <HintPath>..\packages\CsvHelper.33.1.0\lib\net48\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentScheduler, Version=5.3.0.0, Culture=neutral, PublicKeyToken=b76503528a14ebd1, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentScheduler.5.3.0\lib\net40\FluentScheduler.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.8.5.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.8.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.6.5\lib\net47\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro.IconPacks, Version=2.3.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.IconPacks.2.3.0\lib\net46\MahApps.Metro.IconPacks.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NReco.VideoConverter, Version=1.1.2.0, Culture=neutral, PublicKeyToken=395ccb334978a0cd, processorArchitecture=MSIL">
+      <HintPath>..\packages\NReco.VideoConverter.1.1.2\lib\net20\NReco.VideoConverter.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.7.2.0.1422\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.7.2.0.1422\lib\net45\Prism.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.3.7.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\packages\protobuf-net.2.3.7\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.4.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.7.2.0.1422\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="ThreadUtils, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ThreadUtils.1.0.1\lib\net461\ThreadUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.11.1\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.11.1\lib\net47\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Behaviours\AdvanceSetting.cs" />
+    <Compile Include="Behaviours\ErrorModelControl.xaml.cs">
+      <DependentUpon>ErrorModelControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Behaviours\FixedWidthGridViewColumn.cs" />
+    <Compile Include="Behaviours\HeaderHelper.cs" />
+    <Compile Include="Behaviours\Lang.cs" />
+    <Compile Include="Behaviours\NetworkAvailablity.cs" />
+    <Compile Include="Behaviours\PasswordBoxHelper.cs" />
+    <Compile Include="Behaviours\SelectionChangedBehaviour.cs" />
+    <Compile Include="Behaviours\UserFilterAction.cs" />
+    <Compile Include="Behaviours\Utilities.cs" />
+    <Compile Include="CaptchaUtility\CaptchaSolverUtility.cs" />
+    <Compile Include="ConfigControl\EmbeddedBrowserSettings.xaml.cs">
+      <DependentUpon>EmbeddedBrowserSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigControl\Facebook.xaml.cs">
+      <DependentUpon>Facebook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigControl\Instagram.xaml.cs">
+      <DependentUpon>Instagram.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigControl\Pinterest.xaml.cs">
+      <DependentUpon>Pinterest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigControl\Tumblr.xaml.cs">
+      <DependentUpon>Tumblr.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigControl\Twitter.xaml.cs">
+      <DependentUpon>Twitter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\AccountCustomControl.xaml.cs">
+      <DependentUpon>AccountCustomControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\AccountDetailsSelector.xaml.cs">
+      <DependentUpon>AccountDetailsSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\AccountGrowthChartControl.xaml.cs">
+      <DependentUpon>AccountGrowthChartControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\AccountGrowthControl.xaml.cs">
+      <DependentUpon>AccountGrowthControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\AddOrUpdateProxyControl.xaml.cs">
+      <DependentUpon>AddOrUpdateProxyControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\AccountDetail.xaml.cs">
+      <DependentUpon>AccountDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\AddUpdateAccountControl.xaml.cs">
+      <DependentUpon>AddUpdateAccountControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\ChatImageContainer.xaml.cs">
+      <DependentUpon>ChatImageContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\ChatMediaContainer.xaml.cs">
+      <DependentUpon>ChatMediaContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\CommentMediaControl.xaml.cs">
+      <DependentUpon>CommentMediaControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\CustomDialogWindow.xaml.cs">
+      <DependentUpon>CustomDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\CustomInputDialog.xaml.cs">
+      <DependentUpon>CustomInputDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\CustomizeAutoActivity.xaml.cs">
+      <DependentUpon>CustomizeAutoActivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\CustomWindow.xaml.cs">
+      <DependentUpon>CustomWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\FacebookCustomControl\AutoReplyOptionControl.xaml.cs">
+      <DependentUpon>AutoReplyOptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\FacebookCustomControl\EventCreaterManager.xaml.cs">
+      <DependentUpon>EventCreaterManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\FacebookCustomControl\FbMultiMediaControl.xaml.cs">
+      <DependentUpon>FbMultiMediaControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\FacebookCustomControl\InviterOptionsControl.xaml.cs">
+      <DependentUpon>InviterOptionsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\FacebookCustomControl\LikerCommentorConfiguration.xaml.cs">
+      <DependentUpon>LikerCommentorConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\FacebookCustomControl\ManageEventDetails.xaml.cs">
+      <DependentUpon>ManageEventDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\FacebookCustomControl\ManageFriendsOptionControl.xaml.cs">
+      <DependentUpon>ManageFriendsOptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\FacebookCustomControl\PostOptionCustomControl.xaml.cs">
+      <DependentUpon>PostOptionCustomControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\FacebookCustomControl\SelectOptionControl.xaml.cs">
+      <DependentUpon>SelectOptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\FacebookCustomControl\UnfriendOptionsControl.xaml.cs">
+      <DependentUpon>UnfriendOptionsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\LinkedinCustomControl\ConnectionRequestPersonalNoteControl.xaml.cs">
+      <DependentUpon>ConnectionRequestPersonalNoteControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\LinkedinCustomControl\ManagePersonalNote.xaml.cs">
+      <DependentUpon>ManagePersonalNote.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\Loader.xaml.cs">
+      <DependentUpon>Loader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\ManageMediaComment.xaml.cs">
+      <DependentUpon>ManageMediaComment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\ManageMediaUserControl.xaml.cs">
+      <DependentUpon>ManageMediaUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\MediaDownloader.xaml.cs">
+      <DependentUpon>MediaDownloader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\NotificationPopUp.xaml.cs">
+      <DependentUpon>NotificationPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\SubscriptionPopUp.xaml.cs">
+      <DependentUpon>SubscriptionPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\YoutubeCutomControl\ManageReportVideosAs.xaml.cs">
+      <DependentUpon>ManageReportVideosAs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\PrivateBlacklistUserControl.xaml.cs">
+      <DependentUpon>PrivateBlacklistUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\BlacklistUserControl.xaml.cs">
+      <DependentUpon>BlacklistUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\Campaigns.xaml.cs">
+      <DependentUpon>Campaigns.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\CommentControl.xaml.cs">
+      <DependentUpon>CommentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\DayTimerControl.xaml.cs">
+      <DependentUpon>DayTimerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\EditProfile.xaml.cs">
+      <DependentUpon>EditProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\InputBoxControl.xaml.cs">
+      <DependentUpon>InputBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\JobConfigControl.xaml.cs">
+      <DependentUpon>JobConfigControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\LiveChat.xaml.cs">
+      <DependentUpon>LiveChat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\ManageComment.xaml.cs">
+      <DependentUpon>ManageComment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\ManageMediaMessages.xaml.cs">
+      <DependentUpon>ManageMediaMessages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\ManageMessages.xaml.cs">
+      <DependentUpon>ManageMessages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\MessageMediaControl.xaml.cs">
+      <DependentUpon>MessageMediaControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\MessagesControl.xaml.cs">
+      <DependentUpon>MessagesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\Migration.xaml.cs">
+      <DependentUpon>Migration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\MigrationProgress.xaml.cs">
+      <DependentUpon>MigrationProgress.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\ModuleSettingsUserControl.cs" />
+    <Compile Include="CustomControl\MultiMessage.xaml.cs">
+      <DependentUpon>MultiMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\OtherConfig.xaml.cs">
+      <DependentUpon>OtherConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\ProxyManager.xaml.cs">
+      <DependentUpon>ProxyManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\Reports.xaml.cs">
+      <DependentUpon>Reports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\SchedulerControl.xaml.cs">
+      <DependentUpon>SchedulerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\SelectAccountControl.xaml.cs">
+      <DependentUpon>SelectAccountControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\SelectAccountDetailsControl.xaml.cs">
+      <DependentUpon>SelectAccountDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\PrivateWhitelistUserControl.xaml.cs">
+      <DependentUpon>PrivateWhitelistUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\YoutubeCutomControl\VideoReportContentControl.xaml.cs">
+      <DependentUpon>VideoReportContentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IoC\UtilityUnityExtension.cs" />
+    <Compile Include="IoC\ISocialNetworkModule.cs" />
+    <Compile Include="ModuleSetting.xaml.cs">
+      <DependentUpon>ModuleSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\UiModule.cs" />
+    <Compile Include="ViewModel\AccountCollectionViewModel.cs" />
+    <Compile Include="ViewModel\AccountDetailsViewModel.cs" />
+    <Compile Include="ViewModel\AccountGrowthControlViewModel.cs" />
+    <Compile Include="ViewModel\AccountManagerViewModel.cs" />
+    <Compile Include="ViewModel\BlackListViewModel.cs" />
+    <Compile Include="ViewModel\CampaignViewModel.cs" />
+    <Compile Include="ViewModel\AccountsActivityDetailModel.cs" />
+    <Compile Include="ViewModel\DominatorAccountViewModel.cs" />
+    <Compile Include="ViewModel\CampaignStatusChange.cs" />
+    <Compile Include="ViewModel\MediaDownloaderViewModel.cs" />
+    <Compile Include="ViewModel\NetworksActivityCustomizeViewModel.cs" />
+    <Compile Include="ViewModel\OtherConfigurations\EmbeddedBrowserViewModel.cs" />
+    <Compile Include="ViewModel\OtherConfigurations\InstagramUserViewModel.cs" />
+    <Compile Include="ViewModel\OtherConfigurations\IOtherConfigurationViewModel.cs" />
+    <Compile Include="ViewModel\OtherConfigurations\LinkedInViewModel.cs" />
+    <Compile Include="ViewModel\OtherConfigurations\PinterestOtherConfigViewModel.cs" />
+    <Compile Include="ViewModel\OtherConfigurations\QuoraViewModel.cs" />
+    <Compile Include="ViewModel\OtherConfigurations\SocinatorMacrosViewModel.cs" />
+    <Compile Include="ViewModel\OtherConfigurations\ThridPartyServices\CaptchaServicesViewModel.cs" />
+    <Compile Include="ViewModel\OtherConfigurations\ThridPartyServices\FunCaptchaServiceViewModel.cs" />
+    <Compile Include="ViewModel\OtherConfigurations\ThridPartyServices\ImageCaptchaServicesViewModel.cs" />
+    <Compile Include="ViewModel\OtherConfigurations\ThridPartyServices\IThridPartyServicesViewModel.cs" />
+    <Compile Include="ViewModel\OtherConfigurations\ThirdPartyViewModel.cs" />
+    <Compile Include="ViewModel\OtherConfigurations\ThridPartyServices\UrlShortnerServicesViewModel.cs" />
+    <Compile Include="ViewModel\OtherConfigurations\YoutubeViewModel.cs" />
+    <Compile Include="ViewModel\OtherTools\IOtherToolsViewModel.cs" />
+    <Compile Include="ViewModel\OtherTools\MediaGeneratorViewModel.cs" />
+    <Compile Include="ViewModel\ProxyManagerViewModel.cs" />
+    <Compile Include="ViewModel\SelectAccountViewModel.cs" />
+    <Compile Include="ViewModel\SocioPublisher\AccountDetailsSelectorViewModel.cs" />
+    <Compile Include="ViewModel\SocioPublisher\AdvancedSettings\FacebookViewModel.cs" />
+    <Compile Include="ViewModel\SocioPublisher\MultipleImagePostViewModel.cs" />
+    <Compile Include="ViewModel\SocioPublisher\PublisherCreateCampaignViewModel.cs" />
+    <Compile Include="ViewModel\SocioPublisher\PublisherCreateDestinationsViewModel.cs" />
+    <Compile Include="ViewModel\SocioPublisher\PublisherDefaultViewModel.cs" />
+    <Compile Include="ViewModel\SocioPublisher\PublisherDirectPostsViewModel.cs" />
+    <Compile Include="ViewModel\SocioPublisher\PublisherHomeViewModel.cs" />
+    <Compile Include="ViewModel\SocioPublisher\PublisherManageDestinationViewModel.cs" />
+    <Compile Include="ViewModel\SocioPublisher\PublisherManagePostDraftsViewModel.cs" />
+    <Compile Include="ViewModel\SocioPublisher\PublisherManagePostPendingViewModel.cs" />
+    <Compile Include="ViewModel\SocioPublisher\PublisherManagePostPublishedViewModel.cs" />
+    <Compile Include="ViewModel\SocioPublisher\PublisherManagePostsViewModel.cs" />
+    <Compile Include="ViewModel\SocioPublisher\PublisherMonitorFolderViewModel.cs" />
+    <Compile Include="ViewModel\SocioPublisher\PublisherMultiplePostViewModel.cs" />
+    <Compile Include="ViewModel\SocioPublisher\PublisherPostlistBaseViewModel.cs" />
+    <Compile Include="ViewModel\SocioPublisher\PublisherRssFeedViewModel.cs" />
+    <Compile Include="ViewModel\SocioPublisher\PublisherScrapePostViewModel.cs" />
+    <Compile Include="ViewModel\SocioPublisher\PublisherSharePostViewModel.cs" />
+    <Compile Include="ViewModel\OtherConfigurations\SoftwareSettingsViewModel.cs" />
+    <Compile Include="ViewModel\SocioPublisher\SelectAccountDetailsViewModel.cs" />
+    <Compile Include="ViewModel\Startup\JobConfigViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\AcceptBoardInvitationViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\AcceptConnectionRequestViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\AnswerOnQuestionsViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\AnswersScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\AutoReplyToNewMessageViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\BlockFollowerViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\BlockUserViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\BoardScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\BroadcastMessagesViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\CancelSentRequestViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\ChannelScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\CommentScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\CommentViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\CommunityScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\CompanyScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\ConnectionRequestViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\CreateBoardViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\DeleteCommentViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\DeletePinViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\DeletePostViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\DeleteTweetViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\DeleteViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\DislikeViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\DownloadScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\DownvoteAnswersViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\DownvoteCommentViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\DownvoteQuestionsViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\DownvoteViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\EditCommentViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\EditPinViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\ElementsVisibility.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\EventCreatorViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\EventInviterViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\ExportConnectionViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\FanpageLikerViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\FanpageScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\FollowBackViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\FollowViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\GroupCreatorViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\GroupInviterViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\GroupJoinerViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\GroupMemberScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\GroupScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\GroupUnJoinerViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\HashtagsScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\IncommingFriendRequestViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\JobScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\JoinViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\LikeCommentViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\LikeViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\MakeAdminViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\MarketPlaceScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\MessageToFanpagesViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\MessageToPlacesViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\MuteViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\PageInviterViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\PinScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\PlaceScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\PostCommentorViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\PostLikerCommentorViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\PostLikerViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\PostScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\PostViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\ProfileEndorsementViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\ProfileScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\QuestionsScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\ReblogViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\RemoveConnectionsViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\RemoveVoteCommentViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\RemoveVoteViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\RepinViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\ReplyToCommentViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\ReplyViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\ReportAnswersViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\ReportQuestionsViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\ReportUsersViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\ReposterViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\RetweetViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\SalesNavigatorCompanyScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\SalesNavigatorUserScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\SendBoardInvitationViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\SendFriendRequestViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\SendGreetingsToConnectionsViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\SendGreetingsToFriendsViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\SendMessageToFollowerViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\SendMessageToNewConnectionViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\SendMessageToNewFriendsViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\ShareViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\SubscribeViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\TryViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\TweetScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\TweetToViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\TweetViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\UnFollowerViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\UnfriendViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\UnjoinViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\UnlikeViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\UnsubscribeViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\UpvoteAnswersViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\UpvoteCommentViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\UpvoteViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\UrlScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\UserScraperViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\ViewIncreaserViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\VoteAnswersViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\WatchPartyInviterViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\WebpageLikerCommentorViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\WebPostLikeCommentViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\WelcomeTweetViewModel.cs" />
+    <Compile Include="ViewModel\Startup\ModuleConfig\WithdrawConnectionRequestViewModel.cs" />
+    <Compile Include="ViewModel\Startup\NextPreviousViewModel.cs" />
+    <Compile Include="ViewModel\Startup\SaveSetting.cs" />
+    <Compile Include="ViewModel\Startup\SelectActivityViewModel.cs" />
+    <Compile Include="ViewModel\Startup\StartupBaseViewModel.cs" />
+    <Compile Include="ViewModel\VerifyProxiesViewModel.cs" />
+    <Compile Include="ViewModel\WhiteListViewModel.cs" />
+    <Compile Include="Views\AccountManager.xaml.cs">
+      <DependentUpon>AccountManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\AccountModuleSetting.xaml.cs">
+      <DependentUpon>AccountModuleSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\AcceptBoardInvitation.xaml.cs">
+      <DependentUpon>AcceptBoardInvitation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\AcceptConnectionRequest.xaml.cs">
+      <DependentUpon>AcceptConnectionRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\AnswerOnQuestions.xaml.cs">
+      <DependentUpon>AnswerOnQuestions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\AnswersScraper.xaml.cs">
+      <DependentUpon>AnswersScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\AutoReplyToNewMessage.xaml.cs">
+      <DependentUpon>AutoReplyToNewMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\BlockFollower.xaml.cs">
+      <DependentUpon>BlockFollower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\BlockUser.xaml.cs">
+      <DependentUpon>BlockUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\BoardScraper.xaml.cs">
+      <DependentUpon>BoardScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\BroadcastMessages.xaml.cs">
+      <DependentUpon>BroadcastMessages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\WithdrawSentRequest.xaml.cs">
+      <DependentUpon>WithdrawSentRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\ChannelScraper.xaml.cs">
+      <DependentUpon>ChannelScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Comment.xaml.cs">
+      <DependentUpon>Comment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\CommentScraper.xaml.cs">
+      <DependentUpon>CommentScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\CommunityScraper.xaml.cs">
+      <DependentUpon>CommunityScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\CompanyScraper.xaml.cs">
+      <DependentUpon>CompanyScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\ConnectionRequest.xaml.cs">
+      <DependentUpon>ConnectionRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\CreateBoard.xaml.cs">
+      <DependentUpon>CreateBoard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Delete.xaml.cs">
+      <DependentUpon>Delete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\DeleteComment.xaml.cs">
+      <DependentUpon>DeleteComment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\DeletePin.xaml.cs">
+      <DependentUpon>DeletePin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\DeletePost.xaml.cs">
+      <DependentUpon>DeletePost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\DeleteTweet.xaml.cs">
+      <DependentUpon>DeleteTweet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Dislike.xaml.cs">
+      <DependentUpon>Dislike.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\DownloadScraper.xaml.cs">
+      <DependentUpon>DownloadScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Downvote.xaml.cs">
+      <DependentUpon>Downvote.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\DownvoteAnswers.xaml.cs">
+      <DependentUpon>DownvoteAnswers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\DownvoteComment.xaml.cs">
+      <DependentUpon>DownvoteComment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\DownvoteQuestions.xaml.cs">
+      <DependentUpon>DownvoteQuestions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\EditComment.xaml.cs">
+      <DependentUpon>EditComment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\EditPin.xaml.cs">
+      <DependentUpon>EditPin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\EventCreator.xaml.cs">
+      <DependentUpon>EventCreator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\EventInviter.xaml.cs">
+      <DependentUpon>EventInviter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\ExportConnection.xaml.cs">
+      <DependentUpon>ExportConnection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\FanpageLiker.xaml.cs">
+      <DependentUpon>FanpageLiker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\FanpageScraper.xaml.cs">
+      <DependentUpon>FanpageScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Follow.xaml.cs">
+      <DependentUpon>Follow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\FollowBack.xaml.cs">
+      <DependentUpon>FollowBack.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\GroupCreator.xaml.cs">
+      <DependentUpon>GroupCreator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\GroupInviter.xaml.cs">
+      <DependentUpon>GroupInviter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\GroupJoiner.xaml.cs">
+      <DependentUpon>GroupJoiner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\GroupMemberScraper.xaml.cs">
+      <DependentUpon>GroupMemberScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\GroupScraper.xaml.cs">
+      <DependentUpon>GroupScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\GroupUnJoiner.xaml.cs">
+      <DependentUpon>GroupUnJoiner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\HashtagsScraper.xaml.cs">
+      <DependentUpon>HashtagsScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\IncommingFriendRequest.xaml.cs">
+      <DependentUpon>IncommingFriendRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\JobScraper.xaml.cs">
+      <DependentUpon>JobScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Join.xaml.cs">
+      <DependentUpon>Join.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Like.xaml.cs">
+      <DependentUpon>Like.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\LikeComment.xaml.cs">
+      <DependentUpon>LikeComment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\MakeAdmin.xaml.cs">
+      <DependentUpon>MakeAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\MarketPlaceScraper.xaml.cs">
+      <DependentUpon>MarketPlaceScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\MessageToFanpages.xaml.cs">
+      <DependentUpon>MessageToFanpages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\MessageToPlaces.xaml.cs">
+      <DependentUpon>MessageToPlaces.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Mute.xaml.cs">
+      <DependentUpon>Mute.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\PageInviter.xaml.cs">
+      <DependentUpon>PageInviter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\PinScraper.xaml.cs">
+      <DependentUpon>PinScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\PlaceScraper.xaml.cs">
+      <DependentUpon>PlaceScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Post.xaml.cs">
+      <DependentUpon>Post.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\PostCommentor.xaml.cs">
+      <DependentUpon>PostCommentor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\PostLiker.xaml.cs">
+      <DependentUpon>PostLiker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\PostLikerCommentor.xaml.cs">
+      <DependentUpon>PostLikerCommentor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\PostScraper.xaml.cs">
+      <DependentUpon>PostScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\ProfileEndorsement.xaml.cs">
+      <DependentUpon>ProfileEndorsement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\ProfileScraper.xaml.cs">
+      <DependentUpon>ProfileScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\QuestionsScraper.xaml.cs">
+      <DependentUpon>QuestionsScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Reblog.xaml.cs">
+      <DependentUpon>Reblog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\RemoveConnections.xaml.cs">
+      <DependentUpon>RemoveConnections.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\RemoveVote.xaml.cs">
+      <DependentUpon>RemoveVote.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\RemoveVoteComment.xaml.cs">
+      <DependentUpon>RemoveVoteComment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Repin.xaml.cs">
+      <DependentUpon>Repin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Reply.xaml.cs">
+      <DependentUpon>Reply.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\ReplyToComment.xaml.cs">
+      <DependentUpon>ReplyToComment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\ReportAnswers.xaml.cs">
+      <DependentUpon>ReportAnswers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\ReportQuestions.xaml.cs">
+      <DependentUpon>ReportQuestions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\ReportUsers.xaml.cs">
+      <DependentUpon>ReportUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Reposter.xaml.cs">
+      <DependentUpon>Reposter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Retweet.xaml.cs">
+      <DependentUpon>Retweet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\SalesNavigatorCompanyScraper.xaml.cs">
+      <DependentUpon>SalesNavigatorCompanyScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\SalesNavigatorUserScraper.xaml.cs">
+      <DependentUpon>SalesNavigatorUserScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\SendBoardInvitation.xaml.cs">
+      <DependentUpon>SendBoardInvitation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\SendFriendRequest.xaml.cs">
+      <DependentUpon>SendFriendRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\SendGreetingsToConnections.xaml.cs">
+      <DependentUpon>SendGreetingsToConnections.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\SendGreetingsToFriends.xaml.cs">
+      <DependentUpon>SendGreetingsToFriends.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\SendMessageToFollower.xaml.cs">
+      <DependentUpon>SendMessageToFollower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\SendMessageToNewConnection.xaml.cs">
+      <DependentUpon>SendMessageToNewConnection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\SendMessageToNewFriends.xaml.cs">
+      <DependentUpon>SendMessageToNewFriends.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Share.xaml.cs">
+      <DependentUpon>Share.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Subscribe.xaml.cs">
+      <DependentUpon>Subscribe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Try.xaml.cs">
+      <DependentUpon>Try.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Tweet.xaml.cs">
+      <DependentUpon>Tweet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\TweetScraper.xaml.cs">
+      <DependentUpon>TweetScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\TweetTo.xaml.cs">
+      <DependentUpon>TweetTo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Unfollow.xaml.cs">
+      <DependentUpon>Unfollow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Unfriend.xaml.cs">
+      <DependentUpon>Unfriend.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Unjoin.xaml.cs">
+      <DependentUpon>Unjoin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Unlike.xaml.cs">
+      <DependentUpon>Unlike.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\UnSubscribe.xaml.cs">
+      <DependentUpon>Unsubscribe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\Upvote.xaml.cs">
+      <DependentUpon>Upvote.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\UpvoteAnswers.xaml.cs">
+      <DependentUpon>UpvoteAnswers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\UpvoteComment.xaml.cs">
+      <DependentUpon>UpvoteComment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\UrlScraper.xaml.cs">
+      <DependentUpon>UrlScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\UserScraper.xaml.cs">
+      <DependentUpon>UserScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\ViewIncreaser.xaml.cs">
+      <DependentUpon>ViewIncreaser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\VoteAnswers.xaml.cs">
+      <DependentUpon>VoteAnswers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\WatchPartyInviter.xaml.cs">
+      <DependentUpon>WatchPartyInviter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\WebpageLikerCommentor.xaml.cs">
+      <DependentUpon>WebpageLikerCommentor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\WebPostLikeComment.xaml.cs">
+      <DependentUpon>WebPostLikeComment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\WelcomeTweet.xaml.cs">
+      <DependentUpon>WelcomeTweet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\Activity\WithdrawConnectionRequest.xaml.cs">
+      <DependentUpon>WithdrawConnectionRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\CustomControl\ActivityJobConfig.xaml.cs">
+      <DependentUpon>ActivityJobConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\CustomControl\ActivitySetting.xaml.cs">
+      <DependentUpon>ActivitySetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\CustomControl\ActivitySettingWithoutButton.xaml.cs">
+      <DependentUpon>ActivitySettingWithoutButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\CustomControl\ModuleHeader.xaml.cs">
+      <DependentUpon>ModuleHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\CustomControl\NextPreviousButton.xaml.cs">
+      <DependentUpon>NextPreviousButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\JobConfig.xaml.cs">
+      <DependentUpon>JobConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountSetting\SelectActivity.xaml.cs">
+      <DependentUpon>SelectActivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\AddPosts.xaml.cs">
+      <DependentUpon>AddPosts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\AdvancedOptions\AdvancedOption.xaml.cs">
+      <DependentUpon>AdvancedOption.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\AdvancedOptions\InstagramAdvancedOptions.xaml.cs">
+      <DependentUpon>InstagramAdvancedOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\AdvancedSettings\ErrorHandling.xaml.cs">
+      <DependentUpon>ErrorHandling.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\AdvancedSettings\Facebook.xaml.cs">
+      <DependentUpon>Facebook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\AdvancedSettings\General.xaml.cs">
+      <DependentUpon>General.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\AdvancedSettings\GooglePlus.xaml.cs">
+      <DependentUpon>GooglePlus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\AdvancedSettings\Instagram.xaml.cs">
+      <DependentUpon>Instagram.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\AdvancedSettings\Pinterest.xaml.cs">
+      <DependentUpon>Pinterest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\AdvancedSettings\Reddit.xaml.cs">
+      <DependentUpon>Reddit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\AdvancedSettings\Tumblr.xaml.cs">
+      <DependentUpon>Tumblr.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\AdvancedSettings\Twitter.xaml.cs">
+      <DependentUpon>Twitter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\Campaigns.xaml.cs">
+      <DependentUpon>Campaigns.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\CampaignsAdvanceSetting.xaml.cs">
+      <DependentUpon>CampaignsAdvanceSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\CreateDestination.xaml.cs">
+      <DependentUpon>CreateDestination.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\Header.xaml.cs">
+      <DependentUpon>Header.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\ManageDestination.xaml.cs">
+      <DependentUpon>ManageDestination.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\ManageDestinationIndex.xaml.cs">
+      <DependentUpon>ManageDestinationIndex.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\ManageDraft.xaml.cs">
+      <DependentUpon>ManageDraft.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\ManagePosts.xaml.cs">
+      <DependentUpon>ManagePosts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Publisher\PublisherIndexPage.xaml.cs">
+      <DependentUpon>PublisherIndexPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\CustomControl\MediaViewer.cs" />
+    <Compile Include="Views\SocioPublisher\CustomControl\MediaViewerAssist.cs" />
+    <Compile Include="Views\SocioPublisher\CustomControl\PublisherEditShareUrl.xaml.cs">
+      <DependentUpon>PublisherEditShareUrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\CustomControl\PublisherUpdateMultiPost.xaml.cs">
+      <DependentUpon>PublisherUpdateMultiPost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\CustomControl\Settings\PostAdvancedSettings.xaml.cs">
+      <DependentUpon>PostAdvancedSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\CustomControl\PostContent.cs" />
+    <Compile Include="Views\SocioPublisher\CustomControl\Settings\PostFacebookSettings.xaml.cs">
+      <DependentUpon>PostFacebookSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\CustomControl\Settings\PostGeneralSettings.xaml.cs">
+      <DependentUpon>PostGeneralSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\CustomControl\Settings\PostInstagramSettings.xaml.cs">
+      <DependentUpon>PostInstagramSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\CustomControl\Settings\PostLinkedInSettings.xaml.cs">
+      <DependentUpon>PostLinkedInSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\CustomControl\Settings\PostRedditSettings.xaml.cs">
+      <DependentUpon>PostRedditSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\CustomControl\Settings\PostTumblrSettings.xaml.cs">
+      <DependentUpon>PostTumblrSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\CustomControl\Settings\PostTwitterSettings.xaml.cs">
+      <DependentUpon>PostTwitterSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\CustomControl\Settings\PostYoutubeSettings.xaml.cs">
+      <DependentUpon>PostYoutubeSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\CustomControl\SocinatorTextBox.cs" />
+    <Compile Include="Views\SocioPublisher\JobConfiguration.xaml.cs">
+      <DependentUpon>JobConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\MultipleImagePostDialog.xaml.cs">
+      <DependentUpon>MultipleImagePostDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\OtherConfiguration.xaml.cs">
+      <DependentUpon>OtherConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\PublishedPostDetails.xaml.cs">
+      <DependentUpon>PublishedPostDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\PublisherAddCustomDestination.xaml.cs">
+      <DependentUpon>PublisherAddCustomDestination.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\SocioPublisher\PublisherCustomDestinationViewModel.cs" />
+    <Compile Include="Views\SocioPublisher\PublisherDirectPosts.xaml.cs">
+      <DependentUpon>PublisherDirectPosts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\PublisherMultiplePost.xaml.cs">
+      <DependentUpon>PublisherMultiplePost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\SelectDestinations.xaml.cs">
+      <DependentUpon>SelectDestinations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\Suggestions\FdFriendSuggestionProvider.cs" />
+    <Compile Include="Views\SocioPublisher\CustomControl\PublisherEditPost.xaml.cs">
+      <DependentUpon>PublisherEditPost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\Suggestions\SuggestionProvider.cs" />
+    <Compile Include="Views\SocioPublisher\PublisherCreateCampaigns.xaml.cs">
+      <DependentUpon>PublisherCreateCampaigns.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\PublisherCreateDestination.xaml.cs">
+      <DependentUpon>PublisherCreateDestination.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\PublisherDefaultPage.xaml.cs">
+      <DependentUpon>PublisherDefaultPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\PublisherHome.xaml.cs">
+      <DependentUpon>PublisherHome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\PublisherManageDestinations.xaml.cs">
+      <DependentUpon>PublisherManageDestinations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\PublisherManagePostDrafts.xaml.cs">
+      <DependentUpon>PublisherManagePostDrafts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\PublisherManagePostPending.xaml.cs">
+      <DependentUpon>PublisherManagePostPending.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\PublisherManagePostPublished.xaml.cs">
+      <DependentUpon>PublisherManagePostPublished.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\PublisherManagePosts.xaml.cs">
+      <DependentUpon>PublisherManagePosts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\PublisherMonitorFolder.xaml.cs">
+      <DependentUpon>PublisherMonitorFolder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\PublisherPostlistSettings.xaml.cs">
+      <DependentUpon>PublisherPostlistSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\PublisherRssFeed.xaml.cs">
+      <DependentUpon>PublisherRssFeed.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\PublisherScrapePost.xaml.cs">
+      <DependentUpon>PublisherScrapePost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SocioPublisher\PublisherSharePost.xaml.cs">
+      <DependentUpon>PublisherSharePost.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Behaviours\ErrorModelControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ConfigControl\CaptchaServicesTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ConfigControl\FunCaptchaService.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConfigControl\ImageCaptchaServicesTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConfigControl\EmbeddedBrowserSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ConfigControl\Facebook.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ConfigControl\Instagram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConfigControl\InstagramTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ConfigControl\LinkedInTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConfigControl\Pinterest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ConfigControl\PinterestTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ConfigControl\QuoraTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConfigControl\EmbeddedBrowserSettingTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ConfigControl\RedditTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConfigControl\SocinatorMacrosTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConfigControl\SoftwareSettingsTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConfigControl\Tumblr.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ConfigControl\Twitter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ConfigControl\URLShortnerServicesTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConfigControl\YoutubeTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\AccountCustomControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\AccountDetailsSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\AccountGrowthChartControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\AccountGrowthControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\AccountGrowthModeHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\AddOrUpdateProxyControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\AccountDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\AddUpdateAccountControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\AdvanceFilterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\ChatImageContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\ChatMediaContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\CommentMediaControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\CustomDialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\CustomInputDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\CustomizeAutoActivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\CustomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\FacebookCustomControl\AutoReplyOptionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\FacebookCustomControl\EventCreaterManager.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\FacebookCustomControl\FbMultiMediaControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\FacebookCustomControl\InviterOptionsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\FacebookCustomControl\LikerCommentorConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\FacebookCustomControl\ManageEventDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\FacebookCustomControl\ManageFriendsOptionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\FacebookCustomControl\PostOptionCustomControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\FacebookCustomControl\SelectOptionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\FacebookCustomControl\UnfriendOptionsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\LinkedinCustomControl\ConnectionRequestPersonalNoteControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\LinkedinCustomControl\ManagePersonalNote.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\Loader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\ManageMediaComment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\ManageMediaUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\MediaDownloader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\NotificationPopUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\SubscriptionPopUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\YoutubeCutomControl\ManageReportVideosAs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\PrivateBlacklistUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\BlacklistUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\Campaigns.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\CommentControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\DayTimerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\EditProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\FooterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\HeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\HelpControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\InputBoxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\JobConfigControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\LiveChat.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\ManageComment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\ManageMediaMessages.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\ManageMessages.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\MediaGeneratorTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\MessageMediaControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\MessagesControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\Migration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\MigrationProgress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\MultiMessage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\OtherConfig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\PostAreaBoxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\ProxyManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\ProxyManagerTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\Reports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\SchedulerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\SearchQueryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\SelectAccountControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\SelectAccountDetailsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\SingleAccountControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\PrivateWhitelistUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\YoutubeCutomControl\VideoReportContentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\WhitelistuserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModuleSetting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\IconsNonShared.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\UtilityControls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Languages\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CustomControl\AccountGrowthModeHeader.xaml.cs">
+      <DependentUpon>AccountGrowthModeHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\AdvanceFilterControl.xaml.cs">
+      <DependentUpon>AdvanceFilterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\FooterControl.xaml.cs">
+      <DependentUpon>FooterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\HeaderControl.xaml.cs">
+      <DependentUpon>HeaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\HelpControl.xaml.cs">
+      <DependentUpon>HelpControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\PostAreaBoxControl.xaml.cs">
+      <DependentUpon>PostAreaBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\SearchQueryControl.xaml.cs">
+      <DependentUpon>SearchQueryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\SingleAccountControl.xaml.cs">
+      <DependentUpon>SingleAccountControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\WhitelistuserControl.xaml.cs">
+      <DependentUpon>WhitelistuserControl.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Styles\BaseStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\PrussianBlue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AccountManager.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\AccountModuleSetting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\AcceptBoardInvitation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\AcceptConnectionRequest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\AnswerOnQuestions.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\AnswersScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\AutoReplyToNewMessage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\BlockFollower.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\BlockUser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\BoardScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\BroadcastMessages.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\WithdrawSentRequest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\ChannelScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Comment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\CommentScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\CommunityScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\CompanyScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\ConnectionRequest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\CreateBoard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Delete.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\DeleteComment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\DeletePin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\DeletePost.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\DeleteTweet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Dislike.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\DownloadScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Downvote.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\DownvoteAnswers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\DownvoteComment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\DownvoteQuestions.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\EditComment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\EditPin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\EventCreator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\EventInviter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\ExportConnection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\FanpageLiker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\FanpageScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Follow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\FollowBack.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\GroupCreator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\GroupInviter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\GroupJoiner.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\GroupMemberScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\GroupScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\GroupUnJoiner.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\HashtagsScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\IncommingFriendRequest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\JobScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Join.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Like.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\LikeComment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\MakeAdmin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\MarketPlaceScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\MessageToFanpages.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\MessageToPlaces.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Mute.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\PageInviter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\PinScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\PlaceScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Post.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\PostCommentor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\PostLiker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\PostLikerCommentor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\PostScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\ProfileEndorsement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\ProfileScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\QuestionsScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Reblog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\RemoveConnections.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\RemoveVote.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\RemoveVoteComment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Repin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Reply.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\ReplyToComment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\ReportAnswers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\ReportQuestions.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\ReportUsers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Reposter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Retweet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\SalesNavigatorCompanyScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\SalesNavigatorUserScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\SendBoardInvitation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\SendFriendRequest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\SendGreetingsToConnections.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\SendGreetingsToFriends.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\SendMessageToFollower.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\SendMessageToNewConnection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\SendMessageToNewFriends.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Share.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Subscribe.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Try.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Tweet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\TweetScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\TweetTo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Unfollow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Unfriend.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Unjoin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Unlike.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Unsubscribe.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\Upvote.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\UpvoteAnswers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\UpvoteComment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\UrlScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\UserScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\ViewIncreaser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\VoteAnswers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\WatchPartyInviter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\WebpageLikerCommentor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\WebPostLikeComment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\WelcomeTweet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\Activity\WithdrawConnectionRequest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\CustomControl\ActivityJobConfig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\CustomControl\ActivitySetting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\CustomControl\ActivitySettingWithoutButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\CustomControl\ModuleHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\CustomControl\NextPreviousButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\JobConfig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountSetting\SelectActivity.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Publisher\AddPosts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\AdvancedOptions\AdvancedOption.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\AdvancedOptions\InstagramAdvancedOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\AdvancedSettings\ErrorHandling.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\AdvancedSettings\Facebook.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\AdvancedSettings\General.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\AdvancedSettings\GooglePlus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\AdvancedSettings\Instagram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\AdvancedSettings\Pinterest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\AdvancedSettings\Reddit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\AdvancedSettings\Tumblr.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\AdvancedSettings\Twitter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\Campaigns.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\CampaignsAdvanceSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\CreateDestination.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\Header.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\ManageDestination.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\ManageDestinationIndex.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\ManageDraft.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\ManagePosts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Publisher\PublisherIndexPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\CustomControl\PublisherEditShareUrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\CustomControl\PublisherUpdateMultiPost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\CustomControl\Settings\PostAdvancedSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\CustomControl\Settings\PostFacebookSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\CustomControl\Settings\PostGeneralSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\CustomControl\Settings\PostInstagramSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\CustomControl\Settings\PostLinkedInSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\CustomControl\Settings\PostRedditSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\CustomControl\Settings\PostTumblrSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\CustomControl\Settings\PostTwitterSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\CustomControl\Settings\PostYoutubeSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\JobConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SocioPublisher\MultipleImagePostDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\OtherConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SocioPublisher\PublishedPostDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\PublisherAddCustomDestination.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\PublisherCreateCampaigns.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\PublisherCreateDestination.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\PublisherDefaultPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\PublisherDirectPosts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\PublisherHome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\PublisherManageDestinations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\PublisherManagePostDrafts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\PublisherManagePostPending.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\PublisherManagePostPublished.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\PublisherManagePosts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\PublisherMonitorFolder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\PublisherMultiplePost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\PublisherPostlistSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\PublisherRssFeed.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\PublisherScrapePost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\PublisherSharePost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\SelectDestinations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SocioPublisher\CustomControl\PublisherEditPost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\Entypo.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\black_Pause.png" />
+    <Resource Include="Images\black_PostList.png" />
+    <Resource Include="Images\black_Start.png" />
+    <Resource Include="Images\browsercheck.png" />
+    <Resource Include="Images\check.png" />
+    <Resource Include="Images\checkall.png" />
+    <Resource Include="Images\close.png" />
+    <Resource Include="Images\delete.png" />
+    <Resource Include="Images\deleteaccount.png" />
+    <Resource Include="Images\deletenotworking.png" />
+    <Resource Include="Images\deselect.png" />
+    <Resource Include="Images\duplicatecampaign.png" />
+    <Resource Include="Images\edit.png" />
+    <Resource Include="Images\followersUpdate.png" />
+    <Resource Include="Images\followingUpdate.png" />
+    <Resource Include="Images\loadaccouts.png" />
+    <Resource Include="Images\postsUpdate.png" />
+    <Resource Include="Images\remove.png" />
+    <Resource Include="Images\reset.png" />
+    <Resource Include="Images\search.png" />
+    <Resource Include="Images\setting.png" />
+    <Resource Include="Images\settings.png" />
+    <Resource Include="Images\singleaccount.png" />
+    <Resource Include="Images\stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AddMultiAccount.png" />
+    <Resource Include="Images\AddSingleAccount.png" />
+    <Resource Include="Images\DashBoardLogo.png" />
+    <Resource Include="Images\DeleteAccounts.png" />
+    <Resource Include="Images\DownArrow.png" />
+    <Resource Include="Images\export.png" />
+    <Resource Include="Images\friendupdate.png" />
+    <Resource Include="Images\groupsearch.png" />
+    <Resource Include="Images\groupupdate.png" />
+    <Resource Include="Images\help.png" />
+    <Resource Include="Images\NotChecked.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\notworking.png" />
+    <Resource Include="Images\Select.png" />
+    <Resource Include="Images\selectall.png" />
+    <Resource Include="Images\Updates.png" />
+    <Resource Include="Images\workingaccount.png" />
+    <Resource Include="Images\workingAccounts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\addlist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\selectaccount.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DominatorHouseCore\DominatorHouseCore.csproj">
+      <Project>{f40a5c83-8eda-43c5-88b9-dfaab492a497}</Project>
+      <Name>DominatorHouseCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmbeddedBrowser\EmbeddedBrowser.csproj">
+      <Project>{21F00635-AAF7-466B-9214-A830EA9C8963}</Project>
+      <Name>EmbeddedBrowser</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SociNator.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\angry.png" />
+    <Resource Include="Images\haha.png" />
+    <Resource Include="Images\sad.png" />
+    <Resource Include="Images\testsss.png" />
+    <Resource Include="Images\wow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Like.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Love.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Care.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ImportAccounts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\WindowsIcons-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Entypo-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\captcha-icon-withoutbg.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if "$(Configuration)" == "Release" signtool sign /fd SHA256 /f "C:\Globussoft_Dotnet\code_signing_certificate_gbs.cer" "$(TargetDir)DominatorUIUtility.exe"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

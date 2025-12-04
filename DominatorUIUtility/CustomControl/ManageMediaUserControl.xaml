@@ -1,0 +1,65 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.CustomControl.ManageMediaUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Visibility="{Binding ShowMediaControl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+    mc:Ignorable="d">
+    <StackPanel>
+        <WrapPanel Name="WrapPanel" Orientation="Horizontal">
+            <mah:Badged
+                Name="PostBadged"
+                Width="auto"
+                Height="auto"
+                Margin="10,10,0,0"
+                Badge="{Binding MediaCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                BadgePlacementMode="Left">
+                <Label
+                    Name="PostLabel"
+                    Margin="10"
+                    Content="{DynamicResource LangKeyMediaS}"
+                    FontWeight="Bold"
+                    Foreground="{DynamicResource AccentBaseColorBrush}" />
+            </mah:Badged>
+        </WrapPanel>
+        <Button
+            Width="120"
+            Height="35"
+            Margin="2"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Background="{DynamicResource AccentBaseColorBrush}"
+            Click="OpenMediaListWindow"
+            CommandParameter="{Binding}"
+            Cursor="Hand"
+            Foreground="White"
+            Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+            <StackPanel Orientation="Horizontal">
+                <Rectangle
+                    Width="18"
+                    Height="15"
+                    HorizontalAlignment="Center"
+                    Fill="White">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_edit_box}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+                <Label
+                    Margin="0,-2,0,0"
+                    VerticalContentAlignment="Center"
+                    FontSize="13"
+                    FontWeight="SemiBold"
+                    Foreground="White">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock>
+                            <Run Text="{DynamicResource LangKeyEdit}" />
+                            <Run Text="{DynamicResource LangKeyMedia}" />
+                        </TextBlock>
+                    </StackPanel>
+                </Label>
+            </StackPanel>
+        </Button>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,156 @@
+﻿<UserControl x:Class="DominatorUIUtility.Views.AccountSetting.JobConfig"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:DominatorUIUtility.Views.AccountSetting"
+             mc:Ignorable="d"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl"
+             xmlns:converter="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.Resources>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converter:BooleanToVisibilityConverter x:Key="BooleanToInverseVisibilityConverter" IsInversed="True" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <GroupBox Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+            <StackPanel>
+                <customControl:JobConfigControl JobConfiguration="{Binding JobConfiguration}"
+                                                Visibility="{Binding IsIndivisualSelected,Converter={StaticResource BooleanToInverseVisibilityConverter}}" />
+                <CheckBox Content="Set Indivisual Configuration" Margin="5,5"
+                          IsChecked="{Binding IsIndivisualSelected}" Grid.Row="1" />
+
+                <DataGrid Margin="5,5" ItemsSource="{Binding LstJobConfiguration}" Grid.Row="2" MaxHeight="550"
+                          VirtualizingPanel.IsVirtualizing="True"
+                          Visibility="{Binding IsIndivisualSelected,Converter={StaticResource BooleanToVisibilityConverter}}"
+                          VirtualizingPanel.VirtualizationMode="Recycling"
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          GridLinesVisibility="All" AutoGenerateColumns="False" CanUserAddRows="False">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Activity type" Binding="{Binding ActivityType}" />
+                        <DataGridTemplateColumn Header="Delay Between Each Operation">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <VirtualizingStackPanel Orientation="Horizontal">
+                                        <mah:NumericUpDown Minimum="0"
+                                                           Value="{Binding ActivityJobConfiguration.DelayBetweenActivity.StartValue}" />
+                                        <Label Content="{DynamicResource LangKeyTo}" />
+                                        <mah:NumericUpDown
+                                            Minimum="{Binding ActivityJobConfiguration.DelayBetweenActivity.StartValue}"
+                                            Value="{Binding ActivityJobConfiguration.DelayBetweenActivity.EndValue}" />
+                                        <Label Content="{DynamicResource LangKeySeconds}" />
+                                    </VirtualizingStackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Delay Between jobs">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <VirtualizingStackPanel Orientation="Horizontal">
+                                        <mah:NumericUpDown Minimum="0"
+                                                           Value="{Binding ActivityJobConfiguration.DelayBetweenJobs.StartValue}" />
+                                        <Label Content="{DynamicResource LangKeyTo}" />
+                                        <mah:NumericUpDown
+                                            Minimum="{Binding ActivityJobConfiguration.DelayBetweenJobs.StartValue}"
+                                            Value="{Binding ActivityJobConfiguration.DelayBetweenJobs.EndValue}" />
+                                        <Label Content="{DynamicResource LangKeyMinutes}" />
+                                    </VirtualizingStackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Number of action per job">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <VirtualizingStackPanel Orientation="Horizontal">
+                                        <mah:NumericUpDown Minimum="0"
+                                                           Value="{Binding ActivityJobConfiguration.ActivitiesPerJob.StartValue}" />
+                                        <Label Content="{DynamicResource LangKeyTo}" />
+                                        <mah:NumericUpDown
+                                            Minimum="{Binding ActivityJobConfiguration.ActivitiesPerJob.StartValue}"
+                                            Value="{Binding ActivityJobConfiguration.ActivitiesPerJob.EndValue}" />
+                                        <Label Content="{DynamicResource LangKeyUsers}" />
+                                    </VirtualizingStackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Number of action per hour">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <VirtualizingStackPanel Orientation="Horizontal">
+                                        <mah:NumericUpDown Minimum="0"
+                                                           Value="{Binding ActivityJobConfiguration.ActivitiesPerHour.StartValue}" />
+                                        <Label Content="{DynamicResource LangKeyTo}" />
+                                        <mah:NumericUpDown
+                                            Minimum="{Binding ActivityJobConfiguration.ActivitiesPerHour.StartValue}"
+                                            Value="{Binding ActivityJobConfiguration.ActivitiesPerHour.EndValue}" />
+                                        <Label Content="{DynamicResource LangKeyUsers}" />
+                                    </VirtualizingStackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Number of action per day">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <VirtualizingStackPanel Orientation="Horizontal">
+                                        <mah:NumericUpDown Minimum="0"
+                                                           Value="{Binding ActivityJobConfiguration.ActivitiesPerDay.StartValue}" />
+                                        <Label Content="{DynamicResource LangKeyTo}" />
+                                        <mah:NumericUpDown
+                                            Minimum="{Binding ActivityJobConfiguration.ActivitiesPerDay.StartValue}"
+                                            Value="{Binding ActivityJobConfiguration.ActivitiesPerDay.EndValue}" />
+                                        <Label Content="{DynamicResource LangKeyUsers}" />
+                                    </VirtualizingStackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Number of action per week">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <VirtualizingStackPanel Orientation="Horizontal">
+                                        <mah:NumericUpDown Minimum="0"
+                                                           Value="{Binding ActivityJobConfiguration.ActivitiesPerWeek.StartValue}" />
+                                        <Label Content="{DynamicResource LangKeyTo}" />
+                                        <mah:NumericUpDown
+                                            Minimum="{Binding ActivityJobConfiguration.ActivitiesPerWeek.StartValue}"
+                                            Value="{Binding ActivityJobConfiguration.ActivitiesPerWeek.EndValue}" />
+                                        <Label Content="{DynamicResource LangKeyUsers}" />
+                                    </VirtualizingStackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Day of week when to operate">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ListBox ItemsSource="{Binding ActivityJobConfiguration.RunningTime}">
+                                        <ListBox.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal" />
+                                            </ItemsPanelTemplate>
+                                        </ListBox.ItemsPanel>
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <customControl:DayTimerControl RunningTimes="{Binding Path=.}" />
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+
+                </DataGrid>
+
+            </StackPanel>
+        </GroupBox>
+
+        <!--<local:NextPreviousButton Grid.Row="1" NextCommand="{Binding NextCommand}"  NextCommandParameter="QueryControl"
+                                  PreviousCommand="{Binding PreviousCommand}" PreviousCommandParameter="SelectActivity" />-->
+    </Grid>
+</UserControl>

@@ -1,0 +1,138 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.CustomControl.ManageMessages"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:IndexToRowNoConverter x:Key="IndexToRowNoConverter" />
+    </UserControl.Resources>
+    <StackPanel x:Name="MainGrid" Margin="10">
+        <TextBlock
+            Margin="0,10,0,5"
+            VerticalAlignment="Center"
+            FontSize="16"
+            FontWeight="Bold"
+            Text="{DynamicResource LangKeyMessagesList}" />
+        <ListView
+            x:Name="MsgList"
+            Margin="5"
+            AlternationCount="{Binding Items.Count, RelativeSource={RelativeSource Self}}"
+            ItemContainerStyle="{StaticResource ListViewItems}"
+            ItemsSource="{Binding LstManageMessagesModel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+            <ListView.Resources>
+                <Style BasedOn="{StaticResource {x:Type GridViewColumnHeader}}" TargetType="{x:Type GridViewColumnHeader}">
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                </Style>
+            </ListView.Resources>
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn DisplayMemberBinding="{Binding (ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ListViewItem}, Converter={StaticResource IndexToRowNoConverter}}" Header="{DynamicResource LangKeySNo}" />
+                        <GridViewColumn DisplayMemberBinding="{Binding MessagesText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Header="{DynamicResource LangKeyMessages}" />
+                        <GridViewColumn Header="{DynamicResource LangKeyQuery}">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ListBox
+                                        Name="chkSelectAccount"
+                                        HorizontalAlignment="Center"
+                                        ItemsSource="{Binding SelectedQuery, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <MultiBinding StringFormat="{}{0} [ {1} ]">
+                                                            <Binding Path="Content.QueryValue" />
+                                                            <Binding Path="Content.QueryType" />
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{DynamicResource LangKeyAction}">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="4" Orientation="Horizontal">
+                                        <Button
+                                            Name="BtnAction"
+                                            Width="40"
+                                            Height="25"
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Top"
+                                            Background="{DynamicResource AccentBaseColorBrush}"
+                                            Click="BtnAction_Click"
+                                            Style="{StaticResource ButtonStyle}">
+                                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                                <Rectangle
+                                                    Width="15"
+                                                    Height="15"
+                                                    HorizontalAlignment="Center"
+                                                    Fill="White">
+                                                    <Rectangle.OpacityMask>
+                                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_settings}" />
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                            </StackPanel>
+
+                                            <Button.ContextMenu>
+                                                <ContextMenu>
+                                                    <MenuItem
+                                                        Name="EditMessage"
+                                                        Height="30"
+                                                        VerticalContentAlignment="Center"
+                                                        Click="EditMessage_OnClick"
+                                                        Header="{DynamicResource LangKeyEdit}">
+                                                        <MenuItem.Icon>
+                                                            <Rectangle
+                                                                Width="20"
+                                                                Height="20"
+                                                                Fill="Black">
+                                                                <Rectangle.OpacityMask>
+                                                                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_edit_box}" />
+                                                                </Rectangle.OpacityMask>
+                                                            </Rectangle>
+                                                        </MenuItem.Icon>
+                                                    </MenuItem>
+
+                                                    <Separator />
+
+                                                    <MenuItem
+                                                        x:Name="DeleteSingleMessage"
+                                                        Height="30"
+                                                        VerticalContentAlignment="Center"
+                                                        Click="DeleteSingleMessage_OnClick"
+                                                        Header="{DynamicResource LangKeyDelete}">
+                                                        <MenuItem.Icon>
+                                                            <Rectangle
+                                                                Width="15"
+                                                                Height="20"
+                                                                Fill="Black">
+                                                                <Rectangle.OpacityMask>
+                                                                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_delete}" />
+                                                                </Rectangle.OpacityMask>
+                                                            </Rectangle>
+
+                                                        </MenuItem.Icon>
+                                                    </MenuItem>
+
+                                                </ContextMenu>
+                                            </Button.ContextMenu>
+
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </StackPanel>
+</UserControl>

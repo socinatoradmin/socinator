@@ -1,0 +1,445 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.Views.SocioPublisher.PublisherManageDestinations"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="ManageDestination"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:IndexToRowNoConverter x:Key="IndexToRowNoConverter" />
+        <converters:BooleanToStringSelectConverter x:Key="BooleanToStringSelectConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+
+        <Grid
+            Name="HeaderGrid"
+            Background="{DynamicResource AccentBaseColorBrush}"
+            Visibility="{Binding HeaderVisibility}">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Margin="10,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Foreground="White">
+                <Rectangle
+                    Width="30"
+                    Height="25"
+                    Margin="0,0,0,3"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Fill="White">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_resource_group}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+                <Label
+                    VerticalContentAlignment="Center"
+                    Content="{DynamicResource LangKeyManageDestinations}"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Foreground="White" />
+            </TextBlock>
+
+            <StackPanel
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+
+                <Button
+                    Name="ButtonCreateDestination"
+                    Margin="5"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    BorderThickness="0"
+                    Command="{Binding NavigationCommand}"
+                    CommandParameter="CreateDestination"
+                    Cursor="Hand">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle
+                                        Width="15"
+                                        Height="20"
+                                        Fill="White">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_list_up}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <Label
+                                        Margin="5,0,0,0"
+                                        VerticalContentAlignment="Center"
+                                        Content="{DynamicResource LangKeyCreateDestination}"
+                                        FontSize="13"
+                                        FontWeight="SemiBold"
+                                        Foreground="White" />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+
+                </Button>
+
+                <Button
+                    Name="BtnSelect"
+                    Margin="5"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    BorderThickness="0"
+                    Command="{Binding OpenContextMenuCommand}"
+                    CommandParameter="{Binding ElementName=BtnSelect}"
+                    Cursor="Hand"
+                    Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image
+                                        Width="25"
+                                        Height="25"
+                                        Source="/DominatorUIUtility;component/Images/Select.png"
+                                        Stretch="UniformToFill" />
+                                    <Label
+                                        Margin="5,0,0,0"
+                                        VerticalContentAlignment="Center"
+                                        Content="{DynamicResource LangKeySelect}"
+                                        FontSize="13"
+                                        FontWeight="SemiBold"
+                                        Foreground="White" />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                    <Button.ContextMenu>
+                        <ContextMenu DataContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
+                            <MenuItem
+                                Name="MenuSelectAllDestination"
+                                Command="{Binding SelectionCommand}"
+                                CommandParameter="MenuSelectAll"
+                                Header="{DynamicResource LangKeySelectAll}">
+                                <MenuItem.Icon>
+                                    <Rectangle
+                                        Width="15"
+                                        Height="15"
+                                        Margin="0,0,0,3"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Fill="Black">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_checkmark}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem
+                                Name="MenuDeselectAllDestinations"
+                                Command="{Binding SelectionCommand}"
+                                CommandParameter="MenuSelectNone"
+                                Header="{DynamicResource LangKeySelectNone}">
+                                <MenuItem.Icon>
+                                    <Rectangle
+                                        Width="15"
+                                        Height="15"
+                                        Margin="0,0,0,3"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Fill="Black">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_checkmark_thick_unchecked}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+
+                <Button
+                    Name="DeleteAccounts"
+                    Margin="5"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    BorderThickness="0"
+                    Command="{Binding DeleteDestinationCommand}"
+                    CommandParameter="{Binding ElementName=DeleteAccounts}"
+                    Cursor="Hand"
+                    Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                CornerRadius="10">
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle
+                                        Width="15"
+                                        Height="20"
+                                        Fill="White">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_delete}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <Label
+                                        Margin="0,0,0,0"
+                                        VerticalContentAlignment="Center"
+                                        Content="{DynamicResource LangKeyDelete}"
+                                        FontSize="13"
+                                        FontWeight="SemiBold"
+                                        Foreground="White" />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button
+                    x:Name="BtnBackToCampaign"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Background="{DynamicResource AccentBaseColorBrush}"
+                    Command="{Binding NavigationCommand}"
+                    CommandParameter="Back"
+                    Cursor="Hand"
+                    Foreground="White">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle
+                                        Width="15"
+                                        Height="15"
+                                        Fill="White">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_arrow_left}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <Label
+                                        Margin="0,0,0,0"
+                                        VerticalContentAlignment="Center"
+                                        Content="{DynamicResource LangKeyBack}"
+                                        FontSize="13"
+                                        FontWeight="SemiBold"
+                                        Foreground="White" />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+            </StackPanel>
+
+        </Grid>
+
+        <ListView
+            x:Name="CampaignStatusList"
+            Grid.Row="1"
+            VerticalAlignment="Stretch"
+            AlternationCount="{Binding Items.Count, RelativeSource={RelativeSource Self}}"
+            Background="Transparent"
+            ItemsSource="{Binding ListPublisherManageDestinationModels}"
+            ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListView.Resources>
+                <Style BasedOn="{StaticResource {x:Type GridViewColumnHeader}}" TargetType="{x:Type GridViewColumnHeader}">
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="Height" Value="30" />
+                    <Setter Property="Margin" Value="0,2,0,0" />
+                </Style>
+                <SolidColorBrush x:Key="ItemBackgroundHover" Color="Transparent" />
+            </ListView.Resources>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="MouseDoubleClick" Handler="HandleDoubleClick" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                    <Setter Property="Height" Value="30" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ItemBackgroundHover}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="80">
+                        <GridViewColumn.Header>
+                            <Border
+                                Margin="-6,-2,-6,-2"
+                                BorderBrush="LightGray"
+                                BorderThickness="1,0,0,0">
+                                <CheckBox
+                                    x:Name="AllCampaign"
+                                    Background="Transparent"
+                                    Command="{Binding SelectionExecute}"
+                                    CommandParameter="{Binding IsAllDestinationSelected, Converter={StaticResource BooleanToStringSelectConverter}}"
+                                    Content=" #"
+                                    IsChecked="{Binding IsAllDestinationSelected}" />
+                            </Border>
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <CheckBox
+                                        x:Name="ChkSingleCampaign"
+                                        Margin="6,2,6,2"
+                                        Background="Transparent"
+                                        Command="{Binding DataContext.SelectionCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                        CommandParameter="SelectManually"
+                                        Content="{Binding (ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ListViewItem}, Converter={StaticResource IndexToRowNoConverter}}"
+                                        IsChecked="{Binding IsSelected}" />
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Width="250">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyDestinationName}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding DestinationName}" />
+                                    </StackPanel>
+
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Width="130">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyAccountCount}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding AccountCount}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Width="130">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyPagesOrBoardsCount}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding PagesOrBoardsCount}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+
+                    <GridViewColumn Width="130">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyGroupsCount}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding GroupsCount}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Width="160">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyCustomDestinationCount}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding CustomDestinationsCount}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Width="150">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyWallsProfilesCount}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding WallsOrProfilesCount}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Width="150">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyCampaignsCount}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,1,0">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding CampaignsCount}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</UserControl>

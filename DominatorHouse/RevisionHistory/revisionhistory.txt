@@ -1,0 +1,708 @@
+﻿Version[1.0.0.172],[8th October 2025]
+
+Social
+
+fixed:- 
+        Implemented new UI
+
+        browser login using chrome ==>reddit network==>Instagram network
+
+Facebook 
+
+Fixed :-
+       Engage==>post comment==>fixed issue with custom url
+       
+Reddit:
+
+Fixed:-
+     Scraper==>comment scraper==>fixed issue with all query type
+     
+     Voter==>remove vote from comments==>fixed issue with all query type
+
+Twitter
+
+Fixed :-
+
+     poster==>delete==>fixed issue with undo random tweets
+
+Instagram
+
+Fixed:-
+      Reposter==>repost==>fixed issue with specific user post
+      
+      grow follower==> unfollower ==>fixed issue with unfollow 
+
+
+
+Version[1.0.0.171],[12th June 2025]
+
+Social: 
+  Fixed: 
+
+    Sociopublisher==>Create post==>Issue fixed with Monitor Folder
+    Sociopublisher==>Instagram==>Issue fixed with Cropping the size
+    Sociopublisher==>Facebook==>Issue fixed with Posting on Groups 
+
+
+Facebook: 
+   
+Fixed: 
+  
+   Grow Friends==>Send Friend Request==>Fixed issue with postlikers
+   
+   
+YouTube :
+  
+   Fixed: 
+
+     Engage==>Comment==>Fixed issue with Importing Keywords
+    
+      
+Instagram :
+
+  Fixed:
+    
+     GrowFollowers==>Follow==>Fixed issue with Custom user list
+     Engage==>Like==>Fixed issue with Liking the posts
+     Engage==>Comment==>Fixed issue with Comment on posts
+     Broadcast Message==>Fixed issue with Send Messages 
+      
+Twitter: 
+ 
+ Fixed:
+  
+     Scraper==>User Scrape==>Fixed issue with Someone's Followers
+
+
+Version[1.0.0.170],[23rd April 2025]
+
+Fixed:-
+
+    Social:-
+   
+    Proxy Manager==>Changing the verify URL==>Google to YouTube==>Fixed issue with changing the URL. 
+
+    Sociopublisher==>Share post==>Fixed issue with Custom post List on Facebook.
+
+    LinkedIn:-
+
+    Grow Connections==>Send Connection==>Fixed issue with Keywords.
+
+   Instagram:- 
+
+   Grow Followers==>Follower==>Fixed issue with Someone's followers.
+   Grow Followers==>Follower==>Fixed issue with Custom users List.                
+	
+
+Version[1.0.0.169],[7th March 2025]
+
+Fixed:-
+
+         Facebook: 
+                  Facebook==>Engage==>fixed issue with after comment action.
+ 
+         LinkedIn:
+                 LinkedIn==>Grow Connections==>Fixed issue with keywords and profile URl and Joined group URL
+                  and Search URL.
+                 LinkedIn==>Scraper==>job Scraper==>fixed issue with search URL.
+                 LinkedIn==>Broadcast Message==>Fixed issue with By Software and out side the software.
+
+        Instagram:
+                 Instagram==>Fixed issue with Account Login.
+                 Instagram==>Grow followers==>Fixed issue with keywords.
+                 Instagram==>Instaliker/Instacommenter==>Fixed issue with Unliker.
+                 Instagram==>Reposter==>Fixed issue with specific user post Filter:(Ignore videos)
+ 
+        Pinterest:
+                 Pinterest==>Grow Followers==>Fixed issue with Unfollow by Software and Outside the Software. 
+                 Pinterest==>Pin Poster==>Repin==>Fixed issue with Custom board.
+
+        Quora:
+              Quora==>Answer==>Answer on questions==>Fixed issue with all query types with applied filters like
+              Spintex photo
+
+
+
+Version[1.0.0.168],[26th September 2024]
+
+Fixed:-
+
+             Feature:
+             Facebook:
+                  Sociopublisher==>Share post ==>Implemented in removing preview link  in post description.
+
+
+	     Facebook: 
+                      Broadcast message==>Broadcast message ==>Fixed Issue with sending message with own friends.
+ 
+             Twitter:
+                 Engage==>Comment ==>Fixed Issue with Someone followings Tweets as query type. 
+
+             Instagram:
+                       Instaliker ==>Fixed Issue with Hashtag post as Query type .
+
+
+Version[1.0.0.167],[9th July 2024]
+
+Fixed:-
+	New Feature: 
+		Modules like Grow Followers, Scrape, Message, Answers and  Voters ==> Added Skip Blacklisted Users.
+		Modules Like Grow Followers, Scrape, Message, Answers and  Voters ==> Added Managed Blacklisted Users.
+
+	Account Manager:
+		Account manager ==> Facebook ==> Fixed issue with updating the account details required for verification account.
+		Account Manager ==> Facebook ==> Add Account ==> Implemented 2FA enabled.
+		Account manager ==> Instagram ==> Add Account ==> Fixed Issue with login. 
+		Account manager ==> Youtube ==> Fixed issue of Social media accounts getting stuck after being added for verification account.
+
+	Social:
+		Sociopublisher ==> Facebook ==> Create Single Post ==> Fixed issue with posting on wall with Specific Desciption.
+		Sociopublisher ==> Facebook ==> Create Multiple Post ==> Import from CSV ==> Fixed issue with posting on Own Groups.
+	
+	Instagram:
+		Instaposter ==> Reposter ==> Fixed issue with Specific User's Post query type.
+		Grow Followers ==> Follow ==> Fixed issue with Someone's Followers query type.
+		Grow Followers ==> Unfollower ==> Fixed issue with Remove all users query type.
+
+	Twitter:
+		Messenger ==> Broadcast message ==> Fixed issue with Custom followers list.
+		Poster ==> Reposter ==> Fixed issue with Custom tweet list.
+
+Version[1.0.0.166],[04th June 2024]
+
+Fixed:-
+	
+	Social:
+		Sociopublisher ==> Facebook ==> Create Single Post ==> Fixed issue with Posting on wall with Specific Description.
+	
+	Instagram:
+		Insta-commenter ==> Reply to comment ==> Fixed issue with Custom Photo url Query Type.
+		
+	Twitter:
+		Grow Followers ==> Follow ==> Fixed issue with All Query Types.
+		Engage ==> Comments ==> Fixed issue with keyword Query Type.
+	
+	Youtube:
+		Account manager ==> Fixed issue with Phone Number Verification.
+
+	Quora:
+		Account Manager ==> Fixed issue with Login. 
+		Voting ==> Upvote ==> Fixed issue with Custom url Query Type.
+
+
+Version[1.0.0.165],[06th May 2024]
+
+Fixed:-
+
+	Social:
+		Sociopublisher ==> Pinterest ==> Scrapepost ==> Fixed issue with Publishing the Post after Scraping.
+	
+`	Instagram:
+		Instacommenter ==> Comment ==> Fixed issue with Specific User's Posts Querytype.
+		Instachat ==> Broadcast ==> Fixed issue with Custom userlist Querytype.
+		Growfollower ==> Follow ==> Fixed issue with Keyword Querytype.
+		
+	Facebook:
+		Engage ==> PostComment ==> Fixed Looping issue with ProfileScraper Querytype.
+
+
+
+Version[1.0.0.164],[01st April 2024]
+
+Fixed:-
+
+	Dominator House:
+		Security Updated
+
+Version[1.0.0.163],[14th March 2024]
+
+Fixed:-
+
+	Dominator House:
+		Issue Fixed in Delay between the jobs in Advance Job Configuration Settings. 
+
+	Social:
+		Sociopublisher ==> Instagram ==> Fixed Issue in Posting Video on Wall.
+	
+`	Instagram:
+		Accounts ==> Fixed issue with updating the Accounts Details for Specific Account.
+		InstaLiker/Commentor ==> Like Comments ==> Issue fixed with Custom Photos.
+		Instaposter ==> Reposter ==> Fixed issue with specific user's post Query Type.
+		Grow followers ==> Follow ==> Fixed issue with User who liked posts Query Type.
+		
+	Twitter:
+		Engage ==> Like ==> Fixed issue with commented tweet Query Type.
+
+	LinkedIn:
+		Messenger ==> Send Message to New Connection ==> Fixed issue with Specific Message format.
+
+
+
+Version[1.0.0.162],[07th February 2024]
+
+Fixed:-
+
+	Quora:
+		Voting ==> Upvoting Answers ==> Issue fixed with Custom url.	
+
+	Instagram:
+		Broadcast Message ==> Issue fixed with Hashtag User's.
+		Instaliker ==> Like ==> Issue fixed with Specific User's post and Suggested user.
+
+	Twitter:
+		Poster ==> Retweet ==> Issue Fixed with specific User tweet.
+		Engage ==> Like ==>  Fixed issue Custom tweet list.
+
+	YouTube:
+		Watch Video ==> View increaser ==> Issue Fixed with Custom channel.
+
+
+
+Version[1.0.0.161],[8th January 2024]
+
+
+Fixed:-
+	Social:             
+		Social ==> Facebook ==> Create post ==> Fixed Issue with disabling the comments.
+          
+	Instagram:
+		Instagram ==> Insta story ==> Story viewer==> Fixed issue Someone's followers query type.
+
+	LinkedIn:
+		LinkedIn ==> Account Manager ==> Fixed issue with captcha for accounts.
+	
+	Facebook:
+		Facebook ==> Engage ==> Reply to comment ==> Fixed issue with query types post url,Page post commenter and Group post commenter.
+
+
+
+Version[1.0.0.160],[12th December 2023]
+
+
+Fixed:-
+	Social:
+		Social==> Pinterest ==> Create single post ==>Fixed issue with Posting on board/own wall.              
+		Social==>Facebook ==> Create post ==>Fixed issue with publishing the post with Link as well as description.
+          
+	Instagram:
+		Instastory ==> Story viewer ===> Fixed issue with viewing the stories which is having profile picture.
+		Grow follower ==> Follower ==> Fixed issue with User who liked the post in liking the users latest post.
+		Account manager ==> Fixed issue with updating the account details with specific accounts.
+		Instacommenter ==> Comment ==> Fixed issue with specific user post query type.
+
+	LinkedIn:
+		Engage ==> Comment ==> Fixed issue with all query types.
+		Broadcast message ==> Fixed issue with By software and outside software query type.
+	
+	Pinterest:
+		Pin Commenter ==> Fixed issue with all query types.	
+		Pin poster ==> Edit pin ==> Fixed issue with edit pin.
+		
+	YouTube:
+		Subscribe ==> Fixed issue with custom URL.
+
+	Twitter:
+		Grow follower ==> Followers ==> Fixed issue with  user filters       
+
+	Facebook:
+		Engage ==> Post like ==> Fixed issue with Custom post list. 
+	
+	
+		
+			
+Version[1.0.0.159],[1st November 2023]
+
+
+Fixed:-
+          Social:
+               Account Manager==>Implementation in downloading the account format
+               Account Manager==>Implementation in importing multiple accounts
+               Pinterest==>Create single post ==>Fixed issue with Posting videos on board/own wall.
+             
+    
+          LinkedIn:
+                  LinkedIn ==>Messages ==> Broadcast messages ==>Fixed issue with specific accounts in messaging the users 
+      
+         
+          Pinterest:
+                  Pinterest==>Pin poster ==>  Edit Pin==>Fixed issue with editing the pins
+
+    
+          Twitter:
+                 Twitter ==> Engage ==> Comment ==> Query type(Hashtag) ==>Fixed issue with commenting the user 
+                 Twitter ==> Engage ==> Comment ==> Query type==>Specific user tweets ==>Fixed issue with commenting the user.
+      
+
+Version[1.0.0.158],[06th October 2023]
+
+
+Fixed:-
+
+
+       Social:
+              Reddit==>Sociopublisher ==>Create Single Post==>Fixed issue with posting images in own wall.
+               
+
+       YouTube:
+               YouTube==>Account==>Accounts manager==>Fixed issue with Phone number verification.
+
+       
+      Tumblr:
+               Tumblr==>Grow follower==>Follow==>Fixed issue with custom user list quert type.
+
+    
+      Twitter:
+               Twitter==>Engage==>Comment==>Fixed issue with skip tweet that contains Non English Characters.
+               Twitter==>Engage==>Comment=>Fixed issue with Specific user tweets 
+
+
+      Instagram:
+                Instagram==>Grow followers==>Follower==>Implemented query types as Someones Followers and Someones Followings
+                Instagram==>Instascraper==>User scraper==>Implemented query types as Someones Followers and Someones Followings
+                Instagram==>Instastory==Story viewer==>Implemented query types as Someones Followers and Someones Followings
+  
+
+Version[1.0.0.157],[13th September 2023]
+
+
+Fixed:-
+
+
+       Social:
+              Facebook ==>Sociopublisher ==>Create Single Post==>Fixed issue with posting images in group for specific account.
+              Facebook==>Account Manager==>Fixed issue with updating the group details.
+              Facebook==>Scraper==>Profile Scraper==>Fixed Issue with Group Member Query Type. 
+
+       Twitter:
+               Engage==>Comment==>Fixed issue with adult content commenting in different users post.
+
+
+       Instagram:
+                 Account manager==>Login==>Fixed issue with updating the details for specific accounts.
+                 Instaposter==>Reposter==>Fixed issue with reposting the post by using hashtag post as query type.
+                 Instaliker==>Like==>Fixed issue with liking the  post by using hashtag post as query type. 
+                 Instacommenter==>Comment==>Fixed issue with Commenting the post by using hashtag post as query type. 
+                 Grow followers==>Follow==>Implemented custom user list as query type. 
+                 Grow followers=>==>Implemented custom user list as query type.
+
+      LinkedIn:
+               Messenger==>Send Message To New Connection ==> Fixed Issue with Send Message to New Connection.
+               Grow Connection ==>Connection Request ==> Fixed Issue with All Query Types For Specific Account.
+
+  
+Version[1.0.0.156],[29th August 2023]
+ 
+
+Fixed:-
+
+
+	Twitter:
+		Social ==> Sociopublisher ==>Create Single Post ==> Fixed Issue With publishing Chinese Content In Description.
+
+	Instagram:
+		Instagram ==> Fixed all Instagram issues in Browser mode.
+                Instagram ==> Works only in Browser mode.
+        
+        Social:
+               Google Chrome must be installed to work video publish feature for Instagram.
+
+
+Version[1.0.0.155],[08th August 2023]
+ 
+
+Fixed:-
+
+	LinkedIn:
+		Grow Connection ==> Connection Request ==> Fixed Issue with Sale Navigator Search url.
+
+	Twitter:
+		Engage ==> Comment ==> Fixed Issue in commenting Emoji with all Query Types.
+
+	Instagram:
+		Grow Followers ==> Follower ==> Fixed Issue with Keyword with Browser Automation mode.
+
+
+
+Version[1.0.0.154],[21st July 2023]
+ 
+
+Fixed:-
+
+	Social:
+		Sociopublisher ==> Twitter ==> Fixed Issue in Posting Single Post with Images and Videos.
+		Sociopublisher ==> Facebook ==> Fixed Issue with Posting Image on Facebook page.
+		
+
+	Twitter:
+		Grow Followers ==> Follow ==> Fixed Issue with All Query Types. 
+		Poster ==> Retweet ==> Fixed Issue with All Query Types. 
+		Poster ==> Reposter ==> Fixed Issue with All Query Types. 
+		Engage ==> Comment==> Fixed Issue with All Query Types. 
+		Poster==> Like ==> Fixed Issue with All Query Types. 
+		Engage ==> Unlike ==> Fixed Issue with All Query Types. 
+
+	Reddit:
+		 Messenger ==> Broadcast message ==> Fixed issue with all Query type.
+	
+		
+
+Version[1.0.0.153],[27th June 2023]
+ 
+
+New Feature:-
+	Facebook:
+		Account Manager ==> Right Click on Account ==> Edit Profile ==> Uploading Profile  Picture.
+
+Fixed:-
+
+	Quora:
+		Voting ==> Upvoting Answers ==> Fixed Issue with Cusotm users Query Type.
+
+	LinkedIn:
+		Messenger ==> Auto Reply to New Message ==> Fixed Issue with Looping Messages in Activity Logger in Reply to all messsages Query Type.		
+
+
+Version[1.0.0.152],[19th June 2023]
+ 
+
+Fixed:-
+
+	Social:
+		Sociopublisher ==> Facebook ==> Fixed issue with share post from Facebook pages.
+		Sociopublisher ==> Instagram ==> Fixed issue with Posting Single Image and Multiple Images in Sinlge and Multiple Posts.
+		Sociopublisher ==> Instagram ==> Fixed issue with Mentioning Users in the post, Posting Geo Location Name and Id and Posting as an album in Sinlge Post.
+		Sociopublisher ==> Instagram ==> Fixed issue with posting images from Monitor Folder.
+
+	YouTube:
+		Watch video ==> View Increaser ==> Fixed issue with custom channel Query Type.
+
+	Instagram: 
+		Grow Follower ==> Fixed issue with Follow Back users.
+		Grow Follower ==> Fixed issue with Block Followers.
+		Instachat ==> Broadcast Message ==> Fixed issue with all Query Types.
+		Instachat ==> Auto reply to New Message ==> Fixed issue with all Message Filters.
+		Instachat ==> Fixed issue Send Message to New Followers.
+		InstaLiker/InstaCommenter ==> Like ==> Fixed issue with all Query Types.
+		InstaLiker/InstaCommenter ==> Comment ==> Fixed issue with all query types.
+		InstaLiker/InstaCommenter ==> Like Comments ==> Fixed issue all query types.
+		InstaLiker/InstaCommenter ==> Media Unliker ==> Fixed issue with Media Unliker.
+		InstaLiker/InstaCommenter ==> Reply Comment ==> Fixed issue with all Query Types.
+		Instascrape ==> User Scraper ==> Fixed issue all query types.
+		Instascrape ==> Hashtags Scraper ==> Fixed issue all query types.
+		Instascrape ==> Post Scraper ==> Fixed issue all query types.
+		Instascrape ==> Comment scrpaer ==> Fixed issue all query types.
+
+	Upcoming Fixes for Instagram: 
+		Sociopublisher ==> Create Post ==> Settings ==> Instagram ==> Post as a Reel.
+		Account Manager ==> Add Account ==> Enable Two fator Authentication.
+		Instagram ==> Fix Issue with Specific Users in All Modules.
+		
+
+Version[1.0.0.151],[6th June 2023]
+ 
+
+New Feature:-
+	LinkedIn:
+		Messenger ==> Broadcast Messages ==> Other Configurations ==> Skip Users Already Received Messages From Outside Software.
+Fixed:-
+
+	Social: 
+		Sociopublisher ==> Pinterest ==> Create Post ==> Fixed Issue with Create Multiple Post with CSV file.
+
+	YouTube:
+		Subscriber ==> Subscribe ==> Fixed Issue with Switching the Channels. 
+
+	LinkedIn:
+		Messenger ==> Auto Reply to New Messages ==> Fixed Issue with Looping Messages in Activity Logger in Reply to all messages Query type.
+	
+	Twitter:
+		Engage ==> Like ==> Keywords ==> Fixed issue with pagination.
+	
+	Facebook:
+		Grow Friends ==> Send Friend Request ==> Fixed Issue with Request to Friend of Friend.
+
+	Instagram: 
+		Account Manager ==> Fixed Issue with Login.
+		Grow Followers ==> Follower ==> Fixed Issue with All Query Types.
+		Grow Followers ==> Unfollower ==> Fixed Issue with All Query Types.
+
+Version[1.0.0.150],[12th May 2023]
+ 
+
+Fixed:-
+
+	Social:
+		Social ==> Twitter ==> Fixed issue with Delay between post and Posting Number of posts per day.
+		Soical ==> Pinterest ==> Fixed Issue with Image Resolution to Post pin on Boards with Bussiness account.
+
+	Reddit:
+		Engage ==> Comment ==> Fixed Issue with Custom url. 
+	
+	Pinterest:
+		PinPoster ==> Edit ==> Fixed Issue with Editing Existing pin Title and Description on Particular Board.
+
+	Tumblr:
+		Grow followers ==> Follow ==> Fixed issue with Custom Users List Query Type.
+		
+
+Version[1.0.0.149],[26th April 2023]
+ 
+
+Fixed:-
+
+	Social:
+		Sociopublisher ==> Facebook ==> Create post ==> Fixed Issue with Posting in Groups with Extra Link.
+		Sociopublisher ==> Create Multiple Post ==> Fixed Issue with Selecting days to Publish.
+
+	LinkedIn:
+		Grow Connection ==> Connection Request ==> Fixed issue with Search url Query types.
+
+	
+Version[1.0.0.148],[05th April 2023]
+ 
+New Feature:-
+
+	Twitter:
+		 Engage ==> Comment ==> Manage Comments ==> Photos ==> Now you can select multiple photos for comment.
+
+	
+Fixed:-
+      Social:
+		Sociopublisher ==> Facebook ==> Create single post ==> Fixed issue with Publishing on Groups.
+		Sociopublisher ==> Pinterest ==> Scrape post ==> Scrape post==> Fixed issue with publish on Board.
+
+	LinkedIn:
+		Grow Connection ==> Connection Request ==>  Fixed issue with Search url Query Type.
+
+	Pinterest:
+		Pin poster ==> Repin ==> Fixed issue with all query types.
+
+	Twitter:
+		Accounts Manager ==> Edit Twitter profile ==> Fixed Issue with the Updating profile picture.
+
+
+Version[1.0.0.147],[16th March 2023]
+ 
+
+Fixed:-
+	
+	Pinterest:
+		Pinposter ==> Repin ==> Fixed Repin Issue with all query types.
+
+	YouTube:
+		Engage ==> Comment ==> Auto reply to Comments ==> Fixed issue with Auto reply to Comments.
+
+	Twitter:
+		Account Manager ==> Add accounts ==> Fixed issue with login.
+		Engage ==> Like ==> Fixed issue with query type as Specific user tweet.
+
+	LinkedIn
+		Scraper  ==> User scraper ==> Fixed issue with Scraping Company Website, Description and Industry Details with all Query types.
+		
+
+Version[1.0.0.146],[06th March 2023] 
+
+Fixed:-
+
+	Social:
+		Sociopublisher ==> Pinterest ==> Scrape Post ==> Fixed Issue with Scrape all Pins from Board for Pinterest.
+
+		Fixed minor issues and improved performance.
+
+
+Version[1.0.0.145],[2nd March 2023]
+ 
+
+Fixed:-
+
+	Social:
+		Sociopublisher ==> LinkedIn ==> Sharepost ==> Fixed Issue with  Share post on groups and walls.
+		Sociopublisher ==> Pinterest ==> Scrape post ==> Fixed Issue with Scrape Post for pinterest.
+		Sociopublisher==> Facebook ==> Create Single post ==> Fixed issue with Publishing on Wall/Profile.
+
+	LinkedIn:
+		Scraper ==> User Scraper ==> Fixed issue with All Query types.
+		Messenger ==> Send Greetings to Connections ==> Fixed issue with Send Greetings to Connections.
+	
+	YouTube:
+		Engage ==> Comment ==> Fixed issue with Custom URLs Query Type.
+
+Version[1.0.0.144],[16th February 2023]
+ 
+
+Fixed:-
+
+	Social:
+		Socialpublisher ==> Facebook ==> Create post ==> Fixed Issue with Publishing Post on Groups with Images and Description.
+
+	LinkedIn:
+		Grow Connection ==> Connection Request ==> Fixed Issue with search url Query Type.
+
+	Quora:
+		Voting ==> Upvote Answer ==> Fixed issue with all query types. 
+		Voting ==> Downvote Answer ==> Fixed issue with all query types. 
+
+Version[1.0.0.143],[07th February 2023]
+ 
+
+Fixed:-
+	Social :
+		Fixed Minor issues and Improved Performance.
+
+	Pinterest:
+		Grow Followers ==> Unfollower ==> Fixed issue with User should have been Followed before number of days Source Filter.
+		
+
+Version[1.0.0.142],[23rd January 2023]
+ 
+New Feature:-
+
+	Social:
+		Proxy Manager ==> Now you can use the following type of Proxy Pattern(xx.wexenn.xxx-ger.com).
+
+	LinkedIn:
+		Engage ==> Comment ==> Added Hashtag Url Post Query Type.
+Fixed:-
+
+	Quora:
+		Voting ==> Upvote Answers ==> Fixed Issue with Custom Urls (Spaces Answers) Query Type.
+
+
+Version[1.0.0.141],[02nd January 2023]
+ 
+Fixed:-
+	
+	Soical:
+		Sociopublisher ==> Facebook ==> Create Post ==> Fixed Issue with Publishing Image on Groups.
+
+	LinkedIn: 
+		Messenger ==> Broadcast Messages ==> Fixed Issue with All Query Types to Skip Users Already Received Message from Software.
+
+	YouTube:
+		Accounts ==> Account Manager ==> Fixed Issue with Account login.
+
+Version[1.0.0.140],[07th December 2022]
+ 
+Fixed:-
+	
+	Twitter:
+		Engage ==> like ==> Fixed issue with Specific User Tweets.
+		Engage ==> Comment ==> Fixed issue with Keyword.
+		Grow Followers ==> Follow ==> Fixed issue with Someone's Followers/Someone's Followings.
+
+Version[1.0.0.139],[28th Novemeber 2022]
+ 
+Fixed:-
+	Social:
+		Sociopublisher ==> Facebook ==> Create Post ==> Fixed issue with publishing Multiple Image Post from Google url.
+		Sociopublisher ==> Twitter ==> Create Post ==> Fixed issue with publishing the Video and Image.
+		Sociopublisher ==> Twitter ==> RSS Feed ==> Fixed issue with publishing the Feeds.
+	Facebook:
+		Fb Invite ==> Page Inviter ==> Fixed issue with inviting Own pages. 
+	YouTube:
+		Engage ==> Like ==> Fixed issue with All Query Types.
+		Engage ==> Comment ==> Fixed issue with All Query Types.
+	Twitter:
+		Poster ==> Retweet ==> Fixed issue with Keywords,Hashtag.
+
+	

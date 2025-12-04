@@ -1,0 +1,72 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.Views.SocioPublisher.CustomControl.Settings.PostGeneralSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:control="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:utility="clr-namespace:DominatorHouseCore.Utility;assembly=DominatorHouseCore"
+    mc:Ignorable="d">
+
+
+    <Grid Name="MainGrid">
+        <Grid.Resources>
+            <ControlTemplate x:Key="ErrorTemplate">
+                <StackPanel Orientation="Horizontal">
+                    <AdornedElementPlaceholder x:Name="ErrorHolder">
+                        <Border BorderBrush="red" BorderThickness="1" />
+                    </AdornedElementPlaceholder>
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        VerticalAlignment="Center"
+                        FontWeight="Bold"
+                        Foreground="Red"
+                        Text="{Binding ElementName=ErrorHolder, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" />
+                </StackPanel>
+            </ControlTemplate>
+        </Grid.Resources>
+
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <CheckBox
+                    Margin="5"
+                    Content="{DynamicResource LangKeyExpireDate}"
+                    IsChecked="{Binding IsExpireDate}" />
+                <DatePicker
+                    Name="DatePicker"
+                    Margin="5"
+                    IsEnabled="{Binding IsExpireDate}"
+                    Validation.ErrorTemplate="{StaticResource ErrorTemplate}">
+                    <DatePicker.SelectedDate>
+                        <Binding
+                            Mode="TwoWay"
+                            Path="ExpireDate"
+                            UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <utility:ValidationHelper Sender="DatePicker" ValidatesOnTargetUpdated="True" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </DatePicker.SelectedDate>
+                </DatePicker>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <CheckBox
+                    Margin="5"
+                    Content="{DynamicResource LangKeyReaddPostToPostList}"
+                    IsChecked="{Binding IsReaddCount}" />
+                <control:NumericUpDown
+                    IsEnabled="{Binding IsReaddCount}"
+                    Minimum="1"
+                    Value="{Binding ReaddCount}" />
+                <TextBlock
+                    Name="TextBlockTimes"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Text="{DynamicResource LangKeyTimes}" />
+            </StackPanel>
+
+
+        </StackPanel>
+    </Grid>
+</UserControl>
