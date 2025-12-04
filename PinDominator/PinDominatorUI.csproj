@@ -895,9 +895,9 @@
     <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.106.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.106.0\build\net46\System.Data.SQLite.Core.targets'))" />
     <Error Condition="!Exists('..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets'))" />
   </Target>
-	<PropertyGroup>
-		<PostBuildEvent>if "$(Configuration)" == "Release" signtool sign /fd SHA256 /f "C:\Globussoft_Dotnet\code_signing_certificate_gbs.cer" "$(TargetDir)PinDominator.exe"</PostBuildEvent>
-	</PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>if "$(Configuration)" == "Release1" signtool sign /fd SHA256 /f "C:\Globussoft_Dotnet\code_signing_certificate_gbs.cer" "$(TargetDir)PinDominator.exe"</PostBuildEvent>
+  </PropertyGroup>
   <Import Project="..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
