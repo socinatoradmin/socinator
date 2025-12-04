@@ -690,7 +690,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if "$(Configuration)" == "Release" signtool sign /fd SHA256 /f "C:\Globussoft_Dotnet\code_signing_certificate_gbs.cer" "$(TargetDir)Socinator.exe"</PostBuildEvent>
+    <PostBuildEvent>if "$(Configuration)" == "Release1" signtool sign /fd SHA256 /f "C:\Globussoft_Dotnet\code_signing_certificate_gbs.cer" "$(TargetDir)Socinator.exe"</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\AutoItX.Dotnet.3.3.14.5\build\AutoItX.Dotnet.targets" Condition="Exists('..\packages\AutoItX.Dotnet.3.3.14.5\build\AutoItX.Dotnet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
