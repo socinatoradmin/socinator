@@ -1,0 +1,159 @@
+﻿<local:ReblogConfigurationBase x:Class="TumblrDominatorUI.TumblrView.Activity.Reblog.ReblogConfiguration"
+                               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                               xmlns:local="clr-namespace:TumblrDominatorUI.TumblrView.Activity.Reblog"
+                               mc:Ignorable="d" x:Name="ReblogConfigurationUserControl"
+                               xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                               xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+                               xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+                               xmlns:trdCustomControl="clr-namespace:TumblrDominatorUI.CustomControl"
+                               xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=ReblogConfigurationUserControl}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <customControl:AccountGrowthModeHeader Name="AccountGrowthHeader"
+                                               VerticalAlignment="Top" SelectedIndex="0"
+                                               SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=ReblogConfigurationUserControl}"
+                                               SaveCommand="{Binding SaveConfigurationsCommand}" VideoTutorialLink="{Binding VideoTutorialLink}" />
+        <Grid Name="MainGrid" Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" VerticalAlignment="Center"
+                                   Margin="10,0,10,0" />
+                        <controls:ToggleSwitch x:Name="TglStatus" OnLabel="Active﻿" OffLabel="Stopped﻿"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                                               IsChecked="{Binding ReblogModel.IsAccountGrowthActive}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=ReblogConfigurationUserControl}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </controls:ToggleSwitch>
+                    </StackPanel>
+                    <Expander Header="{DynamicResource LangKeySearchQuery}" Margin="10,5,5,0">
+                        <customControl:SearchQueryControl
+                            Name="ReblogSearchControl" ListQueryType="{Binding ReblogModel.ListQueryType}"
+                            ListQueryInfo="{Binding ReblogModel.SavedQueries}"
+                            AddQueryCommand="{Binding AddQueryCommand}"
+                            CommandParameter="{Binding ElementName=ReblogConfigurationUserControl}"
+                            CustomFilterCommand="{Binding CustomFilterCommand}" />
+
+                    </Expander>
+
+                    <StackPanel Orientation="Vertical">
+
+                        <!-- After JobConfiguration  Expender-->
+
+                        <Expander Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+                            <customControl:JobConfigControl JobConfiguration="{Binding ReblogModel.JobConfiguration}" />
+                        </Expander>
+
+                        <!-- After Post Filter Expender-->
+
+                        <Expander Header="{DynamicResource LangKeyPostFilters}"
+                                  Visibility="{Binding ReblogModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  Margin="5,5">
+                            <trdCustomControl:PostFilterControl PostFilter="{Binding ReblogModel.BlogFilterModel}" />
+                        </Expander>
+
+                        <!-- After User Filters Expender-->
+
+
+                        <!-- After Blacklists Expender-->
+
+                        <Expander Header="{DynamicResource LangKeyManageBlacklistedUsers}"
+                                  Visibility="{Binding ReblogModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  Margin="5,5">
+                            <StackPanel>
+                                <CheckBox Content="{DynamicResource LangKeySkipBlacklistedUsers}" Margin="5,0"
+                                          IsChecked="{Binding ReblogModel.IsSkipBlacklistsUser}" />
+                                <StackPanel Margin="8"
+                                            Visibility="{Binding ReblogModel.IsSkipBlacklistsUser, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                            Orientation="Horizontal">
+                                    <CheckBox Content="{DynamicResource LangKeyPrivateBlacklist}" Margin="5,0"
+                                              IsChecked="{Binding ReblogModel.IsPrivateBlacklists}" />
+                                    <CheckBox Content="{DynamicResource LangKeyGroupBlacklist}" Margin="5,0"
+                                              IsChecked="{Binding ReblogModel.IsGroupBlacklists}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>
+
+                        <!-- Other Configuration Expender-->
+
+                        <Expander
+                            Visibility="{Binding ReblogModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Header="{DynamicResource LangKeyOtherConfigurations}" Margin="5,5">
+                            <StackPanel Orientation="Vertical" Margin="10,5">
+                                <CheckBox Name="ChkUniqueUserAccount"
+                                          Content="{DynamicResource LangKeyPerformActionOnPostsOfUniqueUserFromEachAccountsInThisCampaign}"
+                                          FontWeight="SemiBold" Margin="0,0,10,0"
+                                          IsChecked="{Binding ReblogModel.IschkUniqueUserForAccount}" />
+                                <CheckBox Name="ChkUniqueUserCampaign"
+                                          Content="{DynamicResource LangKeyPerformActionOnPostsOfUniqueUserFromAllAccountsInThisCampaign}"
+                                          FontWeight="SemiBold" Margin="0,0,10,0"
+                                          IsChecked="{Binding ReblogModel.IschkUniqueUserForCampaign}" />
+                                <CheckBox Name="ChkUniquePostCampaign"
+                                          Content="{DynamicResource LangKeyPerformActionOnUniquePostFromAllAccountsInThisCampaign}"
+                                          FontWeight="SemiBold" Margin="0,0,10,0"
+                                          IsChecked="{Binding ReblogModel.IschkUniquePostForCampaign}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Name="ChkUpvoteFromRandomPercentageOfAccount"
+                                              Content="{DynamicResource LangKeyPerformActionFromRandom}"
+                                              FontWeight="SemiBold" Margin="0,0,10,0"
+                                              IsChecked="{Binding ReblogModel.IsPerformActionFromRandomPercentageOfAccounts}" />
+                                    <controls:NumericUpDown Margin="0,5,0,0" Minimum="10"
+                                                            IsEnabled="{Binding ReblogModel.IsPerformActionFromRandomPercentageOfAccounts}"
+                                                            Value="{Binding ReblogModel.PerformActionFromRandomPercentage.StartValue}" />
+                                    <Label Content="{DynamicResource LangKeyTo}" VerticalAlignment="Center"
+                                           Margin="0,5,0,0" />
+                                    <controls:NumericUpDown Margin="0,5,0,0"
+                                                            Minimum="{Binding PerformActionFromRandomPercentage.StartValue}"
+                                                            IsEnabled="{Binding ReblogModel.IsPerformActionFromRandomPercentageOfAccounts}"
+                                                            Value="{Binding PerformActionFromRandomPercentage.EndValue}" />
+                                    <Label Content="{DynamicResource LangKeyPercentageOfSelectedAccounts}"
+                                           VerticalAlignment="Center" Margin="0,5,0,0" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Name="ChkDelayBetweenUpvotesOnSamePost"
+                                              Content="{DynamicResource LangKeyKeepDelayBetween}" FontWeight="SemiBold"
+                                               Margin="0,0,10,0"
+                                              IsChecked="{Binding ReblogModel.EnableDelayBetweenPerformingActionOnSamePost}" />
+                                    <controls:NumericUpDown Margin="0,5,0,0" Minimum="10"
+                                                            IsEnabled="{Binding ReblogModel.EnableDelayBetweenPerformingActionOnSamePost}"
+                                                            Value="{Binding ReblogModel.DelayBetweenPerformingActionOnSamePost.StartValue}" />
+                                    <Label Content="{DynamicResource LangKeyTo}" VerticalAlignment="Center"
+                                           Margin="0,5,0,0" />
+                                    <controls:NumericUpDown Margin="0,5,0,0"
+                                                            Minimum="{Binding ReblogModel.DelayBetweenPerformingActionOnSamePost.StartValue}"
+                                                            IsEnabled="{Binding ReblogModel.EnableDelayBetweenPerformingActionOnSamePost}"
+                                                            Value="{Binding ReblogModel.DelayBetweenPerformingActionOnSamePost.EndValue}" />
+                                    <Label
+                                        Content="{DynamicResource LangKeySecondsWhenPerformingActionOnASpecificPost}"
+                                        VerticalAlignment="Center" Margin="0,5,0,0" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</local:ReblogConfigurationBase>
