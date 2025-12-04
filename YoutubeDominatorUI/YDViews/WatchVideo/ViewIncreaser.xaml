@@ -1,0 +1,374 @@
+﻿<local:ViewIncreaserBase
+    x:Class="YoutubeDominatorUI.YDViews.WatchVideo.ViewIncreaser"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:customControl1="clr-namespace:YoutubeDominatorUI.CustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:YoutubeDominatorUI.YDViews.WatchVideo"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="ViewIncreaserUserControl"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <!--  Header Section  -->
+        <StackPanel VerticalAlignment="Top">
+            <customControl:HeaderControl
+                Name="HeaderGrid"
+                CampaignName="{Binding CampaignName}"
+                CancelEditCommand="{Binding CancelEditCommand}"
+                InfoCommand="{Binding InfoCommand}"
+                IsCampaignNameEditable="{Binding IsEditCampaignName}"
+                IsCancelEditVisible="{Binding CancelEditVisibility}" />
+        </StackPanel>
+
+        <!--  Filter section  -->
+        <Grid
+            Name="MainGrid"
+            Margin="0,40,0,80"
+            ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Expander
+                            Margin="5"
+                            Header="{DynamicResource LangKeySearchQuery}"
+                            IsExpanded="True">
+                            <customControl:SearchQueryControl
+                                Name="ViewIncreaserSearchControl"
+                                AddQueryCommand="{Binding AddQueryCommand}"
+                                CommandParameter="{Binding ElementName=ViewIncreaserUserControl}"
+                                CustomFilterCommand="{Binding CustomFilterCommand}"
+                                IsExpanded="{Binding IsExpanded, ElementName=HeaderGrid, UpdateSourceTrigger=Explicit}"
+                                ListQueryInfo="{Binding ViewIncreaserModel.SavedQueries}"
+                                ListQueryType="{Binding ViewIncreaserModel.ListQueryType}" />
+                        </Expander>
+                        <!--  After JobConfiguration  Expender  -->
+                        <Expander Margin="5,5" Header="{DynamicResource LangKeyJobConfiguration}">
+                            <customControl:JobConfigControl
+                                JobConfiguration="{Binding ViewIncreaserModel.JobConfiguration}"
+                                PerDayActivity="{DynamicResource LangKeyVideos}"
+                                PerHourActivity="{DynamicResource LangKeyVideos}"
+                                PerJobActivity="{DynamicResource LangKeyVideos}"
+                                PerWeekActivity="{DynamicResource LangKeyVideos}" />
+                        </Expander>
+                        <!--<Expander Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5" IsExpanded="{Binding IsExpanded, ElementName=HeaderGrid}">
+                            <customControl1:YdJobConfigControl JobConfiguration="{Binding JobConfiguration}" />
+                        </Expander>-->
+                        <Expander
+                            Margin="5,5"
+                            Header="{DynamicResource LangKeyChannelFilter}"
+                            Visibility="{Binding ViewIncreaserModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <customControl1:ChannelFiltersControl x:Name="ChannelFiltersControl" ChannelFilter="{Binding ViewIncreaserModel.ChannelFilterModel}" />
+                        </Expander>
+                        <Expander
+                            Margin="5,5"
+                            Header="{DynamicResource LangKeyVideoFilter}"
+                            Visibility="{Binding ViewIncreaserModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <customControl1:VideoFilterControl x:Name="VideoFilterControl" VideoFilter="{Binding ViewIncreaserModel.VideoFilterModel}" />
+                        </Expander>
+                        <!--<Expander Header="{DynamicResource LangKeyAfterViewincreaserAction}" Margin="5,5" IsExpanded="{Binding IsExpanded, ElementName=HeaderGrid}"
+                                  Visibility="{Binding IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                            <StackPanel>
+                                <CheckBox Content="{DynamicResource langReViewIncreaserPost}" Margin="5,5" IsChecked="{Binding ChkReViewIncreaserPost}" />
+                                <StackPanel Orientation="Horizontal" Margin="5,5" >
+                                    <CheckBox Content="{DynamicResource langEnableViewIncreaserCommentsAfterPostsIsViewIncreaserd}" IsChecked="{Binding ChkEnableViewIncreaserCommentsAfterPostIsViewIncreaserd}" />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" IsEnabled="{Binding ChkEnableViewIncreaserCommentsAfterPostIsViewIncreaserd}" Value="{Binding CommentToBeViewIncreaserAfterEachViewIncreaserdPost.StartValue}" Name="CommentToBeViewIncreaserAfterEachViewIncreaserdPostStartValue" />
+                                    <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyTo}" />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" IsEnabled="{Binding ChkEnableViewIncreaserCommentsAfterPostIsViewIncreaserd}" Value="{Binding CommentToBeViewIncreaserAfterEachViewIncreaserdPost.EndValue}" Minimum="{Binding Value,ElementName=CommentToBeViewIncreaserAfterEachViewIncreaserdPostStartValue}"/>
+                                    <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource langAfterEachViewIncreaserdPost}" />
+
+                                </StackPanel>
+                                <CheckBox Content="{DynamicResource LangKeyRemovePoorQualitySources}" Margin="5,5" IsChecked="{Binding ChkRemovePoorQualitySources}"/>
+                                <StackPanel Orientation="Horizontal" Margin="5,5">
+                                    <CheckBox Content="{DynamicResource LangKeyRemoveSourceIfFollowBackRatioIsLowerThan}" IsChecked="{Binding ChkRemoveSourceIfFollowRatioLower}" />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" IsEnabled="{Binding ChkRemoveSourceIfFollowRatioLower}" Value="{Binding FollowBackRatio.StartValue}" Name="FollowBackRatioStartValue" />
+                                    <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyTo}" />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" IsEnabled="{Binding ChkRemoveSourceIfFollowRatioLower}" Value="{Binding FollowBackRatio.EndValue}" Minimum="{Binding Value,ElementName=FollowBackRatioStartValue}"/>
+                                    <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource langViewIncreasers}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>-->
+                        <!--  After User Filters Expender  -->
+
+                        <!--  Other Configurations filter Expender  -->
+                        <Expander
+                            Margin="5,5"
+                            Header="{DynamicResource LangKeyOtherConfigurations}"
+                            Visibility="{Binding IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox
+                                        Margin="5,0,0,0"
+                                        Content="{DynamicResource LangKeyWatchVideoBetween}"
+                                        IsChecked="{Binding ViewIncreaserModel.IsChkWatchVideoBetweentSeconds}" />
+                                    <controls:NumericUpDown
+                                        Margin="5,5,5,0"
+                                        IsEnabled="{Binding ViewIncreaserModel.IsChkWatchVideoBetweentSeconds}"
+                                        Minimum="10"
+                                        Value="{Binding ViewIncreaserModel.StopWatchVideoBetweentSeconds.StartValue}" />
+                                    <Label
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Content="{DynamicResource LangKeyTo}" />
+                                    <controls:NumericUpDown
+                                        Margin="5,5,5,0"
+                                        IsEnabled="{Binding ViewIncreaserModel.IsChkWatchVideoBetweentSeconds}"
+                                        Minimum="{Binding ViewIncreaserModel.StopWatchVideoBetweentSeconds.StartValue}"
+                                        Value="{Binding ViewIncreaserModel.StopWatchVideoBetweentSeconds.EndValue}" />
+                                    <Label
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Content="{DynamicResource LangKeySeconds}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox
+                                        Margin="5,0,0,0"
+                                        Content="{DynamicResource LangKeyWatchVideoBetween}"
+                                        IsChecked="{Binding ViewIncreaserModel.IsChkWatchVideoBetweenPercentage}" />
+                                    <controls:NumericUpDown
+                                        Margin="5,5,5,0"
+                                        IsEnabled="{Binding ViewIncreaserModel.IsChkWatchVideoBetweenPercentage}"
+                                        Maximum="100"
+                                        Minimum="1"
+                                        Value="{Binding ViewIncreaserModel.StopWatchVideoBetweenPercentage.StartValue}" />
+                                    <Label
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Content="{DynamicResource LangKeyTo}" />
+                                    <controls:NumericUpDown
+                                        Margin="5,5,5,0"
+                                        IsEnabled="{Binding ViewIncreaserModel.IsChkWatchVideoBetweenPercentage}"
+                                        Maximum="100"
+                                        Minimum="{Binding ViewIncreaserModel.StopWatchVideoBetweenPercentage.StartValue}"
+                                        Value="{Binding ViewIncreaserModel.StopWatchVideoBetweenPercentage.EndValue}" />
+                                    <Label
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Content="{DynamicResource LangKeyPercentage}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox
+                                        Margin="5,0,0,0"
+                                        Content="{DynamicResource LangRepeatWatchingCount}"
+                                        IsChecked="{Binding ViewIncreaserModel.IsChkRepeatVideo}" />
+                                    <controls:NumericUpDown
+                                        Margin="5,5,5,0"
+                                        IsEnabled="{Binding ViewIncreaserModel.IsChkRepeatVideo}"
+                                        Minimum="1"
+                                        Value="{Binding ViewIncreaserModel.ViewCountForRepeatVideo}" />
+                                    <Label
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Content="{DynamicResource LangKeyAfterMinutes}"
+                                        IsEnabled="{Binding ViewIncreaserModel.IsChkRepeatVideo}" />
+                                    <controls:NumericUpDown
+                                        Margin="5,5,5,0"
+                                        IsEnabled="{Binding ViewIncreaserModel.IsChkRepeatVideo}"
+                                        Minimum="0"
+                                        Value="{Binding ViewIncreaserModel.RepeatWatchAfterMinutes.StartValue}" />
+                                    <Label
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Content="{DynamicResource LangKeyTo}"
+                                        IsEnabled="{Binding ViewIncreaserModel.IsChkRepeatVideo}" />
+                                    <controls:NumericUpDown
+                                        Margin="5,5,5,0"
+                                        IsEnabled="{Binding ViewIncreaserModel.IsChkRepeatVideo}"
+                                        Minimum="{Binding ViewIncreaserModel.RepeatWatchAfterMinutes.StartValue}"
+                                        Value="{Binding ViewIncreaserModel.RepeatWatchAfterMinutes.EndValue}" />
+                                    <CheckBox
+                                        Margin="5,5,5,0"
+                                        Content="{DynamicResource LangRunEveryday}"
+                                        IsChecked="{Binding ViewIncreaserModel.RunEveryday}"
+                                        IsEnabled="{Binding ViewIncreaserModel.IsChkRepeatVideo}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox
+                                        Margin="5,0,0,0"
+                                        Content="{DynamicResource LangKeySkipAd}"
+                                        IsChecked="{Binding ViewIncreaserModel.SkipAd}" />
+                                </StackPanel>
+                                <StackPanel Margin="5,5,5,0" Orientation="Vertical">
+                                    <!--  Apply Campaing Level Setting  -->
+                                    <CheckBox
+                                        Name="ChkUniqueUserAccount"
+                                        Margin="0,0,10,0"
+                                        Content="{DynamicResource LangKeyPerformActionOnPostsOfUniqueUserFromEachAccountsInThisCampaign}"
+                                        FontWeight="SemiBold"
+                                        IsChecked="{Binding ViewIncreaserModel.IschkUniqueUserForAccount}" />
+                                    <CheckBox
+                                        Name="ChkUniqueUserCampaign"
+                                        Margin="0,5,10,0"
+                                        Content="{DynamicResource LangKeyPerformActionOnPostsOfUniqueUserFromAllAccountsInThisCampaign}"
+                                        FontWeight="SemiBold"
+                                        IsChecked="{Binding ViewIncreaserModel.IschkUniqueUserForCampaign}" />
+                                    <CheckBox
+                                        Name="ChkUniquePostCampaign"
+                                        Margin="0,5,10,0"
+                                        Content="{DynamicResource LangKeyPerformActionOnUniquePostFromAllAccountsInThisCampaign}"
+                                        FontWeight="SemiBold"
+                                        IsChecked="{Binding ViewIncreaserModel.IschkUniquePostForCampaign}" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox
+                                            Name="ChkUpvoteFromRandomPercentageOfAccount"
+                                            Margin="0,5,10,0"
+                                            Content="{DynamicResource LangKeyPerformActionFromRandom}"
+                                            FontWeight="SemiBold"
+                                            IsChecked="{Binding ViewIncreaserModel.IsPerformActionFromRandomPercentageOfAccounts}" />
+                                        <controls:NumericUpDown
+                                            Margin="0,5,0,0"
+                                            IsEnabled="{Binding ViewIncreaserModel.IsPerformActionFromRandomPercentageOfAccounts}"
+                                            Minimum="10"
+                                            Value="{Binding ViewIncreaserModel.PerformActionFromRandomPercentage.StartValue}" />
+                                        <Label
+                                            Margin="0,5,0,0"
+                                            VerticalAlignment="Center"
+                                            Content="{DynamicResource LangKeyTo}" />
+                                        <controls:NumericUpDown
+                                            Margin="0,5,0,0"
+                                            IsEnabled="{Binding ViewIncreaserModel.IsPerformActionFromRandomPercentageOfAccounts}"
+                                            Minimum="{Binding ViewIncreaserModel.PerformActionFromRandomPercentage.StartValue}"
+                                            Value="{Binding ViewIncreaserModel.PerformActionFromRandomPercentage.EndValue}" />
+                                        <Label
+                                            Margin="0,5,0,0"
+                                            VerticalAlignment="Center"
+                                            Content="{DynamicResource LangKeyPercentageOfSelectedAccounts}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox
+                                            Name="ChkDelayBetweenUpvotesOnSamePost"
+                                            Margin="0,0,10,0"
+                                            Content="{DynamicResource LangKeyKeepDelayBetween}"
+                                            FontWeight="SemiBold"
+                                            IsChecked="{Binding ViewIncreaserModel.EnableDelayBetweenPerformingActionOnSamePost}" />
+                                        <controls:NumericUpDown
+                                            Margin="0,5,0,0"
+                                            IsEnabled="{Binding ViewIncreaserModel.EnableDelayBetweenPerformingActionOnSamePost}"
+                                            Minimum="10"
+                                            Value="{Binding ViewIncreaserModel.DelayBetweenPerformingActionOnSamePost.StartValue}" />
+                                        <Label
+                                            Margin="0,5,0,0"
+                                            VerticalAlignment="Center"
+                                            Content="{DynamicResource LangKeyTo}" />
+                                        <controls:NumericUpDown
+                                            Margin="0,5,0,0"
+                                            IsEnabled="{Binding ViewIncreaserModel.EnableDelayBetweenPerformingActionOnSamePost}"
+                                            Minimum="{Binding ViewIncreaserModel.DelayBetweenPerformingActionOnSamePost.StartValue}"
+                                            Value="{Binding ViewIncreaserModel.DelayBetweenPerformingActionOnSamePost.EndValue}" />
+                                        <Label
+                                            Margin="0,5,0,0"
+                                            VerticalAlignment="Center"
+                                            Content="{DynamicResource LangKeySecondsWhenPerformingActionOnASpecificPost}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>
+                        <!--<Expander Header="{DynamicResource LangKeyBrowserOption}" Margin="5,5"
+                                  Visibility="{Binding ViewIncreaserModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{DynamicResource LangKeySelectBrowser}"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" Margin="40,0,0,0" />
+                                    <RadioButton Content="{DynamicResource LangKeyMozillaBrowser}"
+                                                 ToolTip="{DynamicResource LangKeyRequiresFirefox}" Margin="5,5,5,0"
+                                                 GroupName="SelectingBrowser"
+                                                 IsChecked="{Binding ViewIncreaserModel.MozillaSelected, UpdateSourceTrigger=PropertyChanged}" />
+                                    <RadioButton Content="{DynamicResource LangKeyCefSharpBrowser}" Margin="5,5,5,0"
+                                                 GroupName="SelectingBrowser"
+                                                 IsChecked="{Binding ViewIncreaserModel.CefSharpSelected, UpdateSourceTrigger=PropertyChanged}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Visibility="{Binding ViewIncreaserModel.IsBrowserVisibilityAvailable , Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <Label Content="{DynamicResource LangKeyBrowserVisibility}"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" Margin="40,0,0,0" />
+                                    <RadioButton Content="{DynamicResource LangKeyHidden}" Margin="5,5,5,0"
+                                                 GroupName="BrowserVisibility"
+                                                 IsChecked="{Binding ViewIncreaserModel.IsBrowserHidden,  UpdateSourceTrigger=PropertyChanged}" />
+                                    <RadioButton Content="{DynamicResource LangKeyVisible}" Margin="5,5,5,0"
+                                                 GroupName="BrowserVisibility"
+                                                 IsChecked="{Binding ViewIncreaserModel.IsBrowserVisible,  UpdateSourceTrigger=PropertyChanged}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>-->
+
+                        <!--  Blacklists Expander  -->
+                        <Expander
+                            Margin="5,5"
+                            Header="{DynamicResource LangKeyManageBlacklistedUsers}"
+                            Visibility="{Binding ViewIncreaserModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel>
+                                <CheckBox
+                                    Margin="5,5"
+                                    Content="{DynamicResource LangKeySkipBlacklistedUsers}"
+                                    IsChecked="{Binding ViewIncreaserModel.SkipBlacklist.IsSkipBlackListUsers}" />
+                                <StackPanel
+                                    Margin="5,5"
+                                    Orientation="Horizontal"
+                                    Visibility="{Binding ViewIncreaserModel.SkipBlacklist.IsSkipBlackListUsers, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <CheckBox
+                                        Margin="5,5"
+                                        Content="{DynamicResource LangKeyUsePrivateBlacklist}"
+                                        IsChecked="{Binding ViewIncreaserModel.SkipBlacklist.IsSkipPrivateBlackListUser}" />
+                                    <CheckBox
+                                        Margin="5,5"
+                                        Content="{DynamicResource LangKeyUseGroupBlacklist}"
+                                        IsChecked="{Binding ViewIncreaserModel.SkipBlacklist.IsSkipGroupBlackListUsers}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>
+
+                    </StackPanel>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <!--  Create campaign and select account section  -->
+        <StackPanel VerticalAlignment="Bottom">
+            <Grid Name="FooterGrid" Margin="5,0">
+                <customControl:FooterControl
+                    x:Name="ViewIncreaserFooter"
+                    Height="96"
+                    VerticalAlignment="Top"
+                    CampaignManager="{Binding CampaignButtonContent}"
+                    CreateCampaignCommand="{Binding CreateCampaignCommand}"
+                    NoOfAccountsSelected="{Binding SelectedAccountCount, Mode=TwoWay}"
+                    SelectAccountCommand="{Binding SelectAccountCommand}" />
+            </Grid>
+        </StackPanel>
+
+        <!--  Help section  -->
+        <controls:FlyoutsControl>
+            <controls:Flyout
+                Name="HelpFlyout"
+                Width="300"
+                Background="{DynamicResource AccentBaseColorBrush}"
+                BorderBrush="Black"
+                BorderThickness="2"
+                DataContext="{Binding ElementName=ViewIncreaserFooter, Path=DataContext}"
+                FontSize="10"
+                FontWeight="Bold"
+                Foreground="White"
+                Header="{DynamicResource LangKeyModuleDescription}"
+                IsOpen="{Binding IsOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                IsPinned="False"
+                Position="Right"
+                Theme="Accent"
+                Visibility="Collapsed">
+                <customControl:HelpControl
+                    ContactSupportLink="{Binding ContactSupportLink}"
+                    DataContext="{Binding ElementName=ViewIncreaserFooter, Path=DataContext}"
+                    KnowledgeBaseLink="{Binding KnowledgeBaseLink}"
+                    ModuleDescription="{DynamicResource LangKeyModuleDescriptionYouTubeAutoIncreaseViews}"
+                    VideoTutorial="{Binding VideoTutorialLink}" />
+            </controls:Flyout>
+        </controls:FlyoutsControl>
+
+    </Grid>
+</local:ViewIncreaserBase>

@@ -1,0 +1,679 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7A02118A-50AC-4ED5-8247-0899782DDD2F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>YoutubeDominatorUI</RootNamespace>
+    <AssemblyName>YoutubeDominatorUI</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <SignManifests>true</SignManifests>
+    <CertificateThumbprint>b6d08bf4e7cfd123f1c279907063b78af25f9bb3</CertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>B6D08BF4E7CFD123F1C279907063B78AF25F9BB3</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <!--<PropertyGroup>
+    <ManifestTimestampUrl>http://timestamp.digicert.com</ManifestTimestampUrl>
+  </PropertyGroup>-->
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\dominatorhouse-social\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\CommonServiceLocator.2.0.5\lib\net48\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="Dragablz, Version=0.0.3.234, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Dragablz.0.0.3.234\lib\net45\Dragablz.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentScheduler, Version=5.3.0.0, Culture=neutral, PublicKeyToken=b76503528a14ebd1, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\FluentScheduler.5.3.0\lib\net40\FluentScheduler.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\MahApps.Metro.1.6.5\lib\net47\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Core.7.2.0.1422\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Unity.Wpf, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Unity.7.2.0.1422\lib\net45\Prism.Unity.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Wpf.7.2.0.1422\lib\net45\Prism.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.CodeFirst, Version=1.5.1.25, Culture=neutral, PublicKeyToken=eb96ba0a78d831a7, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\SQLite.CodeFirst.1.5.1.25\lib\net45\SQLite.CodeFirst.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Data.SQLite.EF6.1.0.108.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Data.SQLite.Linq.1.0.108.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Wpf.7.2.0.1422\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="ThreadUtils, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\ThreadUtils.1.0.1\lib\net461\ThreadUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.Abstractions.5.11.1\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Configuration, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.Configuration.5.11.1\lib\net47\Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.Container.5.11.1\lib\net47\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.Interception.5.11.1\lib\net47\Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception.Configuration, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.Interception.Configuration.5.11.1\lib\net47\Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RegistrationByConvention, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.RegistrationByConvention.5.11.1\lib\net47\Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ServiceLocation, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.ServiceLocation.5.11.1\lib\net47\Unity.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="CustomControl\AccountReport.xaml.cs">
+      <DependentUpon>AccountReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\ChannelFiltersControl.xaml.cs">
+      <DependentUpon>ChannelFiltersControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\SelectChannel.xaml.cs">
+      <DependentUpon>SelectChannel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\VideoFilterControl.xaml.cs">
+      <DependentUpon>VideoFilterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Factories\YoutubePublisherCollectionFactory.cs" />
+    <Compile Include="Factories\YoutubeNetworkCollectionFactory.cs" />
+    <Compile Include="IoC\YdContainerExtension.cs" />
+    <Compile Include="IoC\YdDominatorModule.cs" />
+    <Compile Include="Modules\YouTubePrismModule.cs" />
+    <Compile Include="TabManager\AccountTab.xaml.cs">
+      <DependentUpon>AccountTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\CampaignTab.xaml.cs">
+      <DependentUpon>CampaignTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\EngageTab.xaml.cs">
+      <DependentUpon>EngageTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\GrowSubscribersTab.xaml.cs">
+      <DependentUpon>GrowSubscribersTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\ScraperTab.xaml.cs">
+      <DependentUpon>ScraperTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\SettingsTab.xaml.cs">
+      <DependentUpon>SettingsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\ToolsTab.xaml.cs">
+      <DependentUpon>ToolsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\WatchVideoTab.xaml.cs">
+      <DependentUpon>WatchVideoTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\ChannelScraperUtility\ChannelScraperBaseFactory.cs" />
+    <Compile Include="Utility\ChannelScraperUtility\ChannelScraperReports.cs" />
+    <Compile Include="Utility\ChannelScraperUtility\ChannelScraperViewCampaign.cs" />
+    <Compile Include="Utility\CommentScraperUtility\CommentScraperBaseFactory.cs" />
+    <Compile Include="Utility\CommentScraperUtility\CommentScraperReports.cs" />
+    <Compile Include="Utility\CommentScraperUtility\CommentScraperViewCampaign.cs" />
+    <Compile Include="Utility\CommentUtility\CommentBaseFactory.cs" />
+    <Compile Include="Utility\CommentUtility\CommentReports.cs" />
+    <Compile Include="Utility\CommentUtility\CommentViewCampaign.cs" />
+    <Compile Include="Utility\DisikeUtility\DislikeBaseFactory.cs" />
+    <Compile Include="Utility\DisikeUtility\DislikeReports.cs" />
+    <Compile Include="Utility\DisikeUtility\DislikeViewCampaign.cs" />
+    <Compile Include="Utility\LikeCommentUtility\LikeCommentBaseFactory.cs" />
+    <Compile Include="Utility\LikeCommentUtility\LikeCommentReports.cs" />
+    <Compile Include="Utility\LikeCommentUtility\LikeCommentViewCampaign.cs" />
+    <Compile Include="Utility\LikeUtility\LikeBaseFactory.cs" />
+    <Compile Include="Utility\LikeUtility\LikeReports.cs" />
+    <Compile Include="Utility\LikeUtility\LikeViewCampaign.cs" />
+    <Compile Include="Utility\PostScraperUtility\PostScraperBaseFactory.cs" />
+    <Compile Include="Utility\PostScraperUtility\PostScraperReports.cs" />
+    <Compile Include="Utility\PostScraperUtility\PostScraperViewCampaign.cs" />
+    <Compile Include="Utility\ReportVideoUtility\ReportVideoBaseFactory.cs" />
+    <Compile Include="Utility\ReportVideoUtility\ReportVideoReports.cs" />
+    <Compile Include="Utility\ReportVideoUtility\ReportVideoViewCampaign.cs" />
+    <Compile Include="Utility\SubscribeUtility\SubscribeBaseFactory.cs" />
+    <Compile Include="Utility\SubscribeUtility\SubscribeReports.cs" />
+    <Compile Include="Utility\SubscribeUtility\SubscribeViewCampaign.cs" />
+    <Compile Include="Utility\UnsubscribeUtility\UnsubscribeBaseFactory.cs" />
+    <Compile Include="Utility\UnsubscribeUtility\UnsubscribeReports.cs" />
+    <Compile Include="Utility\UnsubscribeUtility\UnsubscribeViewCampaign.cs" />
+    <Compile Include="Utility\ViewIncreaserUtility\ViewIncreaserBaseFactory.cs" />
+    <Compile Include="Utility\ViewIncreaserUtility\ViewIncreaserReports.cs" />
+    <Compile Include="Utility\ViewIncreaserUtility\ViewIncreaserViewCampaign.cs" />
+    <Compile Include="YdCoreLibrary\YdInitialiser.cs" />
+    <Compile Include="YdCoreLibrary\YdPublisherCoreBuilder.cs" />
+    <Compile Include="YdCoreLibrary\YdViewCampaignsFactory.cs" />
+    <Compile Include="YdCoreLibrary\YdTabHandlerFactory.cs" />
+    <Compile Include="YdCoreLibrary\YdNetworkCoreFactory.cs" />
+    <Compile Include="YdCoreLibrary\YdCoreBuilder.cs" />
+    <Compile Include="YdCoreLibrary\YdAccountToolsFactory.cs" />
+    <Compile Include="YDViews\Engage\Dislike.xaml.cs">
+      <DependentUpon>Dislike.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Engage\ReportVideo.xaml.cs">
+      <DependentUpon>ReportVideo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Scraper\ChannelScraper.xaml.cs">
+      <DependentUpon>ChannelScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Engage\Comment.xaml.cs">
+      <DependentUpon>Comment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Engage\Like.xaml.cs">
+      <DependentUpon>Like.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Engage\LikeComment.xaml.cs">
+      <DependentUpon>LikeComment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\GrowSubscribers\Subscribe.xaml.cs">
+      <DependentUpon>Subscribe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\GrowSubscribers\Unsubscribe.xaml.cs">
+      <DependentUpon>Unsubscribe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Scraper\CommentScraper.xaml.cs">
+      <DependentUpon>CommentScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Scraper\PostScraper.xaml.cs">
+      <DependentUpon>PostScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\ChannelScraperConfigurationTab.xaml.cs">
+      <DependentUpon>ChannelScraperConfigurationTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\CommentConfigurationTab.xaml.cs">
+      <DependentUpon>CommentConfigurationTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\CommentScraperConfigurationTab.xaml.cs">
+      <DependentUpon>CommentScraperConfigurationTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\DislikeConfigurationTab.xaml.cs">
+      <DependentUpon>DislikeConfigurationTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\Engage\CommentConfiguration.xaml.cs">
+      <DependentUpon>CommentConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\Engage\DislikeConfiguration.xaml.cs">
+      <DependentUpon>DislikeConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\Engage\LikeCommentConfiguration.xaml.cs">
+      <DependentUpon>LikeCommentConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\Engage\LikeConfiguration.xaml.cs">
+      <DependentUpon>LikeConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\Engage\ReportVideoConfiguration.xaml.cs">
+      <DependentUpon>ReportVideoConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\GrowSubscribers\SubscribeConfiguration.xaml.cs">
+      <DependentUpon>SubscribeConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\GrowSubscribers\UnsubscribeConfiguration.xaml.cs">
+      <DependentUpon>UnsubscribeConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\LikeCommentConfigurationTab.xaml.cs">
+      <DependentUpon>LikeCommentConfigurationTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\LikeConfigurationTab.xaml.cs">
+      <DependentUpon>LikeConfigurationTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\PostScraperConfigurationTab.xaml.cs">
+      <DependentUpon>PostScraperConfigurationTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\ReportVideoConfigurationTab.xaml.cs">
+      <DependentUpon>ReportVideoConfigurationTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\Scraper\ChannelScraperConfiguration.xaml.cs">
+      <DependentUpon>ChannelScraperConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\Scraper\CommentScraperConfiguration.xaml.cs">
+      <DependentUpon>CommentScraperConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\Scraper\PostScraperConfiguration.xaml.cs">
+      <DependentUpon>PostScraperConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\SubscribeConfigurationTab.xaml.cs">
+      <DependentUpon>SubscribeConfigurationTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\UnsubscribeConfigurationTab.xaml.cs">
+      <DependentUpon>UnsubscribeConfigurationTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\ViewIncreaserConfigurationTab.xaml.cs">
+      <DependentUpon>ViewIncreaserConfigurationTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\Tools\WatchVideo\ViewIncreaserConfiguration.xaml.cs">
+      <DependentUpon>ViewIncreaserConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YDViews\WatchVideo\ViewIncreaser.xaml.cs">
+      <DependentUpon>ViewIncreaser.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CustomControl\AccountReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\ChannelFiltersControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\SelectChannel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\VideoFilterControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="TabManager\AccountTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\CampaignTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\EngageTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\GrowSubscribersTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\ScraperTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\SettingsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabManager\ToolsTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TabManager\WatchVideoTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Engage\Dislike.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YDViews\Engage\ReportVideo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Scraper\ChannelScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YDViews\Engage\Comment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Engage\Like.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Engage\LikeComment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\GrowSubscribers\Subscribe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\GrowSubscribers\Unsubscribe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Scraper\CommentScraper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Scraper\PostScraper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Tools\ChannelScraperConfigurationTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Tools\CommentConfigurationTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Tools\CommentScraperConfigurationTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Tools\DislikeConfigurationTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YDViews\Tools\Engage\CommentConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Tools\Engage\DislikeConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YDViews\Tools\Engage\LikeCommentConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Tools\Engage\LikeConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YDViews\Tools\Engage\ReportVideoConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Tools\GrowSubscribers\SubscribeConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YDViews\Tools\GrowSubscribers\UnsubscribeConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YDViews\Tools\LikeCommentConfigurationTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Tools\LikeConfigurationTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Tools\PostScraperConfigurationTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Tools\ReportVideoConfigurationTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Tools\Scraper\ChannelScraperConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Tools\Scraper\CommentScraperConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Tools\Scraper\PostScraperConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Tools\SubscribeConfigurationTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YDViews\Tools\UnsubscribeConfigurationTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YDViews\Tools\ViewIncreaserConfigurationTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YDViews\Tools\WatchVideo\ViewIncreaserConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="YDViews\WatchVideo\ViewIncreaser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\dominatorhouse-social\DominatorHouseCore\DominatorHouseCore.csproj">
+      <Project>{f40a5c83-8eda-43c5-88b9-dfaab492a497}</Project>
+      <Name>DominatorHouseCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dominatorhouse-social\DominatorUIUtility\DominatorUIUtility.csproj">
+      <Project>{e8d95af0-e99b-4059-9140-5c02b3f52e06}</Project>
+      <Name>DominatorUIUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dominatorhouse-social\EmbeddedBrowser\EmbeddedBrowser.csproj">
+      <Project>{21f00635-aaf7-466b-9214-a830ea9c8963}</Project>
+      <Name>EmbeddedBrowser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YoutubeDominatorCore\YoutubeDominatorCore.csproj">
+      <Project>{9c42c9b5-331e-4ec5-b47f-ae9da1c89ad6}</Project>
+      <Name>YoutubeDominatorCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if "$(Configuration)" == "Release" signtool sign /fd SHA256 /f "C:\Globussoft_Dotnet\code_signing_certificate_gbs.cer" "$(TargetDir)YoutubeDominatorUI.exe"</PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
