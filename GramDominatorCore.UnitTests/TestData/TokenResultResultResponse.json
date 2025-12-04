@@ -1,0 +1,16 @@
+﻿{
+  "token": {
+    "carrier_name": "",
+    "carrier_id": 0,
+    "ttl": 72000,
+    "features": [],
+    "request_time": 1567663329,
+    "token_hash": "",
+    "rewrite_rules": [],
+    "enabled_wallet_defs_keys": [],
+    "deadline": "",
+    "zero_cms_fetch_interval_seconds": 86400,
+    "carrier_signal_config": []
+  },
+  "status": "ok"
+}

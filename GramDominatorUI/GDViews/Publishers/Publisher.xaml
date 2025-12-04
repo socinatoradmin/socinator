@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="GramDominatorUI.GDViews.Publishers.Publisher"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GramDominatorUI.GDViews.Publishers" 
+             mc:Ignorable="d" xmlns:campaign="clr-namespace:GramDominatorUI.GDViews.Campaigns"
+             xmlns:publisher="clr-namespace:GramDominatorUI.GDViews.Publishers"
+            xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls">
+    <UserControl.Resources>
+        <GridViewColumnCollection x:Key="SubColumnCollection">
+            <GridViewColumn Header="{DynamicResource langDraft}" Width="100" DisplayMemberBinding="{Binding PostStatus.DraftCount}"/>
+            <GridViewColumn Header="{DynamicResource langPending}"  Width="100" DisplayMemberBinding="{Binding PostStatus.PendingCount}"/>
+            <GridViewColumn Header="{DynamicResource langPublished}" Width="100" DisplayMemberBinding="{Binding PostStatus.PublishedCount}"/>
+        </GridViewColumnCollection>
+        <DataTemplate x:Key="MultiColumnHeaderTemplate">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="{Binding}" HorizontalAlignment="Center"/>
+                <GridViewHeaderRowPresenter HorizontalAlignment="Stretch" Grid.Row="1" Columns="{StaticResource SubColumnCollection}"/>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="MultiColumnCellTemplate">
+            <Grid>
+                <GridViewRowPresenter HorizontalAlignment="Stretch"  Columns="{DynamicResource SubColumnCollection}"/>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid  Name="MainGrid">
+        
+        <Border BorderBrush="{DynamicResource AccentBaseColorBrush}" BorderThickness="2" Margin="0,0,0,10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" x:Name="publisherPageButtons"  Margin="5" VerticalAlignment="Top">
+
+                    <Button Content="{DynamicResource langManageDestination}" Height="30" x:Name="btnManageDestination" Margin="5,5,20,5" HorizontalAlignment="Left"
+                Foreground="White" Background="{StaticResource AccentBaseColorBrush}" Click="btnManageDestination_Click"/>
+                    <Button Content="{DynamicResource langManagePosts}" Height="30" x:Name="btnManagePosts" Margin="20,5" HorizontalAlignment="Left"
+                Foreground="White" Background="{StaticResource AccentBaseColorBrush}" Click="btnManagePosts_Click"/>
+                    <Button Content="{DynamicResource langCreateCampaign}" Height="30" x:Name="btnCreateCampaign" Margin="20,5" HorizontalAlignment="Left"
+                Foreground="White" Background="{StaticResource AccentBaseColorBrush}" Click="btnCreateCampaign_Click"/>
+                </StackPanel>
+
+
+                <Grid Grid.Row="1">
+                    <campaign:CreateCampaign  x:Name="createCampign" Visibility="Collapsed"/>
+                    <publisher:ManageDestination  x:Name="manageDestination" Visibility="Collapsed"/>
+                    <publisher:ManagePosts x:Name="managePosts" Visibility="Collapsed"/>
+
+                    <ListView x:Name="publisherDetail"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto" >
+                        <ListView.Resources>
+                            <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource {x:Type GridViewColumnHeader}}">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </ListView.Resources>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView >
+                                <GridViewColumn   Header="{DynamicResource langSrno}" Width="auto" DisplayMemberBinding="{Binding SerialNo}" />
+                                <GridViewColumn Header="{DynamicResource langCampaignName}" Width="auto"  DisplayMemberBinding="{Binding CampaignDetails.CampaignName}"/>
+                                <GridViewColumn Header="{DynamicResource langStatus}" Width="auto" DisplayMemberBinding="{Binding CampaignDetails.Status}" />
+                                <GridViewColumn Width="300" Header="{DynamicResource langPostStatus}"  HeaderTemplate="{StaticResource MultiColumnHeaderTemplate}"
+                            CellTemplate="{StaticResource MultiColumnCellTemplate}" />
+                                <GridViewColumn Header="{DynamicResource langCreatedDate}" Width="auto" DisplayMemberBinding="{Binding CampaignStartDate}" />
+                                <GridViewColumn Header="{DynamicResource langStartDate}" Width="auto"   DisplayMemberBinding="{Binding CampaignStartDate}"/>
+                                <GridViewColumn Header="{DynamicResource langEndDate}" Width="auto"   DisplayMemberBinding="{Binding CampaignEndDate}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </Grid>
+        </Border>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,391 @@
+﻿<local:RePosterBase
+    x:Class="GramDominatorUI.GDViews.InstaPoster.RePoster"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:DHCustomControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:GDCustomControl="clr-namespace:GramDominatorUI.CustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:GramDominatorUI.GDViews.InstaPoster"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="ReposterControl"
+    mc:Ignorable="d">
+    <Grid Name="MainGrid">
+
+        <!--  Header Section  -->
+        <StackPanel VerticalAlignment="Top">
+            <DHCustomControl:HeaderControl
+                x:Name="RePosterHeader"
+                CampaignName="{Binding CampaignName}"
+                CancelEditCommand="{Binding CancelEditCommand}"
+                InfoCommand="{Binding InfoCommand}"
+                IsCampaignNameEditable="{Binding IsEditCampaignName}"
+                IsCancelEditVisible="{Binding CancelEditVisibility}" />
+        </StackPanel>
+
+        <!--  Filter section  -->
+        <Grid Margin="0,40,0,80" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel>
+
+                    <!--  Search Query Section  -->
+                    <Expander
+                        Margin="5"
+                        Header="{DynamicResource LangKeySearchQuery}"
+                        IsExpanded="True">
+                        <Grid>
+                            <DHCustomControl:SearchQueryControl
+                                x:Name="RePosterSearchQueryControl"
+                                AddQueryCommand="{Binding AddQueryCommand}"
+                                CommandParameter="{Binding ElementName=ReposterControl}"
+                                CustomFilterCommand="{Binding CustomFilterCommand}"
+                                IsExpanded="{Binding IsExpanded, ElementName=RePosterHeader, UpdateSourceTrigger=Explicit}"
+                                ListQueryInfo="{Binding RePosterModel.SavedQueries}"
+                                ListQueryType="{Binding RePosterModel.ListQueryType}" />
+                        </Grid>
+                    </Expander>
+                    <Grid>
+                        <StackPanel Orientation="Vertical">
+
+                            <!--  Manage Post Caption Expender  -->
+                            <Expander Margin="5,5" Header="{DynamicResource LangKeyManagePostCaption}">
+                                <StackPanel>
+
+                                    <StackPanel>
+                                        <CheckBox
+                                            Name="chkPostCaptions"
+                                            Margin="5"
+                                            Content="{DynamicResource LangKeyPostCaption}"
+                                            IsChecked="{Binding RePosterModel.IsChkPostCaption}" />
+                                        <CheckBox
+                                            Name="ChkMakeCaptionAsSpinText"
+                                            Margin="30,5,5,5"
+                                            Content="{DynamicResource LangKeyMakeCaptionAsSpinText}"
+                                            IsChecked="{Binding RePosterModel.IsChkMakeCaptionAsSpinText}"
+                                            IsEnabled="{Binding ElementName=chkPostCaptions, Path=IsChecked}"
+                                            Visibility="{Binding ElementName=chkPostCaptions, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                        <DHCustomControl:InputBoxControl
+                                            x:Name="PostCaptionInputBox"
+                                            Margin="30,5"
+                                            InputText="{Binding RePosterModel.OriginalPostCaptionInputText}"
+                                            Visibility="{Binding RePosterModel.IsChkPostCaption, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                        <CheckBox
+                                            Name="chkCommentAfterRepost"
+                                            Margin="5"
+                                            Content="{DynamicResource LangKeyMakeCommentAfterRepostAsSpinText}"
+                                            IsChecked="{Binding RePosterModel.IsCommentAfterRepost}" />
+                                        <DHCustomControl:InputBoxControl
+                                            x:Name="CommentAfterRepostInputBox"
+                                            Margin="30,5"
+                                            InputText="{Binding RePosterModel.OriginalCommentAfterRepostInputText}"
+                                            Visibility="{Binding RePosterModel.IsCommentAfterRepost, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                        <CheckBox
+                                            Name="chkUserTag"
+                                            Margin="5"
+                                            Content="{DynamicResource LangKeyUserTag}"
+                                            IsChecked="{Binding RePosterModel.IsChkUserTag}" />
+                                        <StackPanel Orientation="Vertical">
+                                            <StackPanel Orientation="Horizontal" Visibility="{Binding RePosterModel.IsChkUserTag, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                <CheckBox
+                                                    Margin="30,5,5,5"
+                                                    Content="{DynamicResource LangKeyNoOfUniqueUserTagPerPost}"
+                                                    IsChecked="{Binding RePosterModel.NoOfUniqueUserTag}" />
+                                                <Controls:NumericUpDown
+                                                    Margin="0,0"
+                                                    Minimum="{Binding RePosterModel.NoOfUserTagPerPost.StartValue}"
+                                                    Value="{Binding RePosterModel.NoOfUserTagPerPost.EndValue}" />
+                                            </StackPanel>
+                                            <DHCustomControl:InputBoxControl
+                                                x:Name="UserTagInputBox"
+                                                Margin="30,5"
+                                                InputText="{Binding RePosterModel.UserTagInputText}"
+                                                Visibility="{Binding RePosterModel.IsChkUserTag, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Expander>
+
+                            <!--  JobConfiguration  Expander  -->
+                            <Expander Margin="5,5" Header="{DynamicResource LangKeyJobConfiguration}">
+                                <DHCustomControl:JobConfigControl x:Name="RePosterJobConfigurationControl" JobConfiguration="{Binding RePosterModel.JobConfiguration}" />
+                            </Expander>
+
+                            <!--  Post Filter Expander  -->
+                            <Expander
+                                Margin="5,5"
+                                Header="{DynamicResource LangKeyPostFilters}"
+                                Visibility="{Binding RePosterModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <GDCustomControl:PostFilterControl x:Name="RePosterPostFilterControl" PostFilter="{Binding RePosterModel.PostFilterModel}" />
+                            </Expander>
+                            <!--  User Filters Expender  -->
+                            <Expander
+                                Margin="5,5"
+                                Header="{DynamicResource LangKeyUserFilters}"
+                                Visibility="{Binding RePosterModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <GDCustomControl:UserFiltersControl x:Name="UserFiltersControl" UserFilter="{Binding RePosterModel.UserFilterModel, UpdateSourceTrigger=PropertyChanged}" />
+                            </Expander>
+                            <!--  Other Configurations filter Expander  -->
+                            <Expander
+                                Margin="5,5"
+                                Header="{DynamicResource LangKeyOtherConfigurations}"
+                                Visibility="{Binding RePosterModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <StackPanel>
+                                    <StackPanel Margin="10,5,0,0" Orientation="Horizontal">
+                                        <CheckBox
+                                            Name="ChkRepostCountPerUser"
+                                            Content="{DynamicResource LangKeyRepostCount}"
+                                            IsChecked="{Binding RePosterModel.IsCheckedRepostCountPerUser}" />
+
+                                        <Controls:NumericUpDown
+                                            Name="NumericUpDownMinRepostCountPerUser"
+                                            Margin="10,0,0,0"
+                                            Interval="1"
+                                            IsEnabled="{Binding RePosterModel.IsCheckedRepostCountPerUser}"
+                                            Maximum="10000"
+                                            Minimum="1"
+                                            TextAlignment="Center"
+                                            Value="{Binding RePosterModel.RepostCountPerUser.StartValue}" />
+                                        <Label
+                                            Name="LblRepostCountPerUserTo"
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Content="{DynamicResource LangKeyTo}" />
+                                        <Controls:NumericUpDown
+                                            Name="NumericUpDownMaxRepostCountPerUser"
+                                            Margin="10,0,0,0"
+                                            Interval="1"
+                                            IsEnabled="{Binding RePosterModel.IsCheckedRepostCountPerUser}"
+                                            Maximum="10000"
+                                            Minimum="{Binding RePosterModel.RepostCountPerUser.StartValue}"
+                                            TextAlignment="Center"
+                                            Value="{Binding RePosterModel.RepostCountPerUser.EndValue}" />
+                                        <Label
+                                            Name="LblRepostCountPostsOfOneUser"
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Content="{DynamicResource LangKeyPostsOfOneUser}" />
+                                    </StackPanel>
+
+                                    <StackPanel Margin="10,5,0,5" Orientation="Vertical">
+                                        <CheckBox
+                                            Name="ChkUniqueUserAccount"
+                                            Margin="0,0,10,0"
+                                            Content="{DynamicResource LangKeyPerformActionOnPostsOfUniqueUserFromEachAccountsInThisCampaign}"
+                                            FontWeight="SemiBold"
+                                            IsChecked="{Binding RePosterModel.IschkUniqueUserForAccount}" />
+                                        <CheckBox
+                                            Name="ChkUniqueUserCampaign"
+                                            Margin="0,5,10,0"
+                                            Content="{DynamicResource LangKeyPerformActionOnPostsOfUniqueUserFromAllAccountsInThisCampaign}"
+                                            FontWeight="SemiBold"
+                                            IsChecked="{Binding RePosterModel.IschkUniqueUserForCampaign}" />
+                                        <CheckBox
+                                            Name="ChkUniquePostCampaign"
+                                            Margin="0,5,10,0"
+                                            Content="{DynamicResource LangKeyPerformActionOnUniquePostFromAllAccountsInThisCampaign}"
+                                            FontWeight="SemiBold"
+                                            IsChecked="{Binding RePosterModel.IschkUniquePostForCampaign}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <CheckBox
+                                                Name="ChkUpvoteFromRandomPercentageOfAccount"
+                                                Margin="0,5,10,0"
+                                                VerticalAlignment="Center"
+                                                Content="{DynamicResource LangKeyPerformActionFromRandom}"
+                                                FontWeight="SemiBold"
+                                                IsChecked="{Binding RePosterModel.IsPerformActionFromRandomPercentageOfAccounts}" />
+                                            <Controls:NumericUpDown
+                                                Margin="0,5,0,0"
+                                                IsEnabled="{Binding RePosterModel.IsPerformActionFromRandomPercentageOfAccounts}"
+                                                Minimum="10"
+                                                Value="{Binding RePosterModel.PerformActionFromRandomPercentage.StartValue}" />
+                                            <Label
+                                                Margin="0,5,0,0"
+                                                VerticalAlignment="Center"
+                                                Content="{DynamicResource LangKeyTo}" />
+                                            <Controls:NumericUpDown
+                                                Margin="0,5,0,0"
+                                                IsEnabled="{Binding RePosterModel.IsPerformActionFromRandomPercentageOfAccounts}"
+                                                Minimum="{Binding RePosterModel.PerformActionFromRandomPercentage.StartValue}"
+                                                Value="{Binding RePosterModel.PerformActionFromRandomPercentage.EndValue}" />
+                                            <Label
+                                                Margin="0,5,0,0"
+                                                VerticalAlignment="Center"
+                                                Content="{DynamicResource LangKeyPercentageOfSelectedAccounts}" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <CheckBox
+                                                Name="ChkDelayBetweenUpvotesOnSamePost"
+                                                Margin="0,0,10,0"
+                                                VerticalAlignment="Center"
+                                                Content="{DynamicResource LangKeyKeepDelayBetween}"
+                                                FontWeight="SemiBold"
+                                                IsChecked="{Binding RePosterModel.EnableDelayBetweenPerformingActionOnSamePost}" />
+                                            <Controls:NumericUpDown
+                                                Margin="0,5,0,0"
+                                                IsEnabled="{Binding RePosterModel.EnableDelayBetweenPerformingActionOnSamePost}"
+                                                Minimum="10"
+                                                Value="{Binding RePosterModel.DelayBetweenPerformingActionOnSamePost.StartValue}" />
+                                            <Label
+                                                Margin="0,5,0,0"
+                                                VerticalAlignment="Center"
+                                                Content="{DynamicResource LangKeyTo}" />
+                                            <Controls:NumericUpDown
+                                                Margin="0,5,0,0"
+                                                IsEnabled="{Binding RePosterModel.EnableDelayBetweenPerformingActionOnSamePost}"
+                                                Minimum="{Binding RePosterModel.DelayBetweenPerformingActionOnSamePost.StartValue}"
+                                                Value="{Binding RePosterModel.DelayBetweenPerformingActionOnSamePost.EndValue}" />
+                                            <Label
+                                                Margin="0,5,0,0"
+                                                VerticalAlignment="Center"
+                                                Content="{DynamicResource LangKeySecondsWhenPerformingActionOnASpecificPost}" />
+                                        </StackPanel>
+                                        <StackPanel Visibility="Collapsed">
+                                            <CheckBox Content="{DynamicResource LangKeyChangeHashOfImage}" IsChecked="{Binding RePosterModel.IsChangeHashOfImage}" />
+                                        </StackPanel>
+                                        <CheckBox
+                                            Name="RatioCheckBox"
+                                            Margin="0,5"
+                                            VerticalAlignment="Center"
+                                            Content="{DynamicResource LangKeyCropMediasInRatio}"
+                                            IsChecked="{Binding RePosterModel.IsCheckedCropMedias, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        <StackPanel
+                                            Margin="10,5,10,5"
+                                            Orientation="Horizontal"
+                                            Visibility="{Binding ElementName=RatioCheckBox, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <Label Margin="10,5,10,5" Content="{DynamicResource LangKeySelectCropRatio}" />
+                                            <ComboBox
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                HorizontalContentAlignment="Center"
+                                                ItemsSource="{Binding RePosterModel.MediaResolution, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                SelectedItem="{Binding RePosterModel.SelectedResolution, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </StackPanel>
+                                        <CheckBox
+                                            Margin="0,5,0,0"
+                                            Content="{DynamicResource LangKeyRepostAsStory}"
+                                            Cursor="Hand"
+                                            IsChecked="{Binding RePosterModel.RepostAsStory}" />
+                                    </StackPanel>
+                                    <StackPanel Margin="10,0,0,5" Visibility="Collapsed">
+                                        <CheckBox
+                                            Margin="0,10,0,0"
+                                            Content="{DynamicResource LangKeyTopRecentHashTagPost}"
+                                            IsChecked="{Binding RePosterModel.IsTopRecentHashTagPost}" />
+                                        <StackPanel Visibility="{Binding RePosterModel.IsTopRecentHashTagPost, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <CheckBox
+                                                Margin="20,5"
+                                                Content="{DynamicResource LangKeyRecentHashTagPost}"
+                                                IsChecked="{Binding RePosterModel.IsRecentHashTagPost}" />
+                                            <CheckBox
+                                                Margin="20,5"
+                                                Content="{DynamicResource LangKeyTopHashTagPost}"
+                                                IsChecked="{Binding RePosterModel.IsTopHashTagPost}" />
+                                            <!--<RadioButton GroupName="HashtagPost"
+                                                         Content="{DynamicResource LangKeyTopAndRecentHashTagPost}"
+                                                         IsChecked="{Binding RePosterModel.IsTopAndRecentHashTagPost}"
+                                                         Margin="20,5" />-->
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Expander>
+
+                            <!--  Manage Blacklists Expander  -->
+                            <Expander
+                                Margin="5,5"
+                                Header="{DynamicResource LangKeyManageBlacklistedUsers}"
+                                Visibility="{Binding RePosterModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <StackPanel>
+                                    <CheckBox
+                                        Margin="5,5"
+                                        Content="{DynamicResource LangKeySkipBlacklistedUsersPosts}"
+                                        IsChecked="{Binding RePosterModel.SkipBlacklist.IsSkipBlackListUsers}" />
+                                    <StackPanel
+                                        Margin="5,5"
+                                        Orientation="Horizontal"
+                                        Visibility="{Binding RePosterModel.SkipBlacklist.IsSkipBlackListUsers, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <CheckBox
+                                            Margin="5,5"
+                                            Content="{DynamicResource LangKeyPrivateBlacklist}"
+                                            IsChecked="{Binding RePosterModel.SkipBlacklist.IsSkipPrivateBlackListUser}" />
+                                        <CheckBox
+                                            Margin="5,5"
+                                            Content="{DynamicResource LangKeyGroupBlacklist}"
+                                            IsChecked="{Binding RePosterModel.SkipBlacklist.IsSkipGroupBlackListUsers}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Expander>
+
+                            <!--  After like Action Expander  -->
+                            <!--<Expander Header="{DynamicResource langAfterReposterAction}" Margin="5,5" Visibility="{Binding IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                                <StackPanel>
+                                    <CheckBox Content="{DynamicResource LangKeyRelikePost}" Margin="5,5" IsChecked="{Binding IsChkRelikePost}" />
+                                    <StackPanel Orientation="Horizontal" Margin="5,5" >
+                                        <CheckBox Content="{DynamicResource LangKeyEnableLikeCommentsAfterPostsIsLiked}" IsChecked="{Binding ChkEnableLikeCommentsAfterPostIsLiked}" />
+                                        <Controls:NumericUpDown Margin="5,5,5,0" IsEnabled="{Binding ChkEnableLikeCommentsAfterPostIsLiked}" Value="{Binding LikeRange.StartValue}" Name="CommentToBeLikeAfterEachLikedPostStartValue" Minimum="0"/>
+                                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyTo}" />
+                                        <Controls:NumericUpDown Margin="5,5,5,0" IsEnabled="{Binding ChkEnableLikeCommentsAfterPostIsLiked}" Value="{Binding LikeRange.EndValue}" Minimum="{Binding LikeRange.StartValue}"/>
+                                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyAfterEachLikedPost}" />
+
+                                    </StackPanel>
+                                    <CheckBox Content="{DynamicResource LangKeyRemovePoorQualitySources}" Margin="5,5" IsChecked="{Binding ChkRemovePoorQualitySources}"/>
+                                    <StackPanel Orientation="Horizontal" Margin="5,5">
+                                        <CheckBox Content="{DynamicResource LangKeyRemoveSourceIfFollowBackRatioIsLowerThan}" IsChecked="{Binding ChkRemoveSourceIfFollowRatioLower}" />
+                                        <Controls:NumericUpDown Margin="5,5,5,0" IsEnabled="{Binding ChkRemoveSourceIfFollowRatioLower}" Value="{Binding FollowBackRatio.StartValue}" Name="FollowBackRatioStartValue"
+                                                                Minimum="0"/>
+                                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyTo}" />
+                                        <Controls:NumericUpDown Margin="5,5,5,0" IsEnabled="{Binding ChkRemoveSourceIfFollowRatioLower}" Value="{Binding FollowBackRatio.EndValue}" Minimum="{Binding FollowBackRatio.StartValue}"/>
+                                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyLikesCount}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Expander>-->
+
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <!--  Create campaign and select account section  -->
+        <StackPanel Margin="5,0" VerticalAlignment="Bottom">
+
+            <DHCustomControl:FooterControl
+                x:Name="RePosterFooter"
+                Height="96"
+                VerticalAlignment="Top"
+                CampaignManager="{Binding CampaignButtonContent}"
+                CreateCampaignCommand="{Binding CreateCampaignCommand}"
+                NoOfAccountsSelected="{Binding SelectedAccountCount}"
+                SelectAccountCommand="{Binding SelectAccountCommand}" />
+
+        </StackPanel>
+
+        <!--  Help section  -->
+        <Controls:FlyoutsControl>
+            <Controls:Flyout
+                Name="HelpFlyout"
+                Width="300"
+                Background="{DynamicResource AccentBaseColorBrush}"
+                BorderBrush="Black"
+                BorderThickness="2"
+                DataContext="{Binding ElementName=RePosterFooter, Path=DataContext}"
+                FontSize="10"
+                FontWeight="Bold"
+                Foreground="White"
+                Header="{DynamicResource LangKeyModuleDescription}"
+                IsOpen="{Binding IsOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                IsPinned="False"
+                Position="Right"
+                Theme="Accent"
+                Visibility="Collapsed">
+                <DHCustomControl:HelpControl
+                    ContactSupportLink="{Binding ContactSupportLink}"
+                    DataContext="{Binding ElementName=RePosterFooter, Path=DataContext}"
+                    KnowledgeBaseLink="{Binding KnowledgeBaseLink}"
+                    ModuleDescription="{DynamicResource LangKeyModuleDescriptionInstagramAutoRepost}"
+                    VideoTutorial="{Binding VideoTutorialLink}" />
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+
+    </Grid>
+</local:RePosterBase>

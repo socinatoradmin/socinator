@@ -1,0 +1,399 @@
+﻿<UserControl
+    x:Class="GramDominatorUI.CustomControl.UserFiltersControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:GramDominatorUI.CustomControl"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{DynamicResource GabaritoRegular}"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Name="MainGrid" Margin="10">
+
+            <StackPanel>
+                <!--  UserHasProfileImage  -->
+                <CheckBox
+                    x:Name="UserHasProfileImageCheckbox"
+                    Margin="5,5,0,0"
+                    Content="{DynamicResource LangKeyShouldHaveProfilePicture}"
+                    IsChecked="{Binding UserFilter.IgnoreNoProfilePicUsers}" />
+
+                <!--  UserHasMinimumPosts  -->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        x:Name="UserHasMinimumPostsCheckbox"
+                        Margin="5,5,0,0"
+                        VerticalAlignment="Center"
+                        Content="{DynamicResource LangKeyPosts}"
+                        IsChecked="{Binding UserFilter.FilterPostCounts}" />
+                    <Label
+                        Margin="0,5,0,0"
+                        VerticalContentAlignment="Center"
+                        Content="{DynamicResource LangKeyMinimum}" />
+                    <controls:NumericUpDown
+                        Name="MinimumPost"
+                        Margin="5,10,0,0"
+                        IsEnabled="{Binding UserFilter.FilterPostCounts}"
+                        Minimum="0"
+                        TextAlignment="Center"
+                        Value="{Binding UserFilter.PostCounts.StartValue}" />
+                    <Label
+                        Margin="0,5,0,0"
+                        VerticalContentAlignment="Center"
+                        Content="{DynamicResource LangKeyMaximum}" />
+                    <controls:NumericUpDown
+                        Margin="10,10,0,0"
+                        IsEnabled="{Binding UserFilter.FilterPostCounts}"
+                        Minimum="{Binding UserFilter.PostCounts.StartValue}"
+                        TextAlignment="Center"
+                        Value="{Binding UserFilter.PostCounts.EndValue}" />
+                </StackPanel>
+
+
+                <!--  UserBioHasMinimumCharacters  -->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        x:Name="UserBioHasMinimumCharacters"
+                        Margin="5,5,0,0"
+                        VerticalAlignment="Center"
+                        Content="{DynamicResource LangKeyMinimumCharactersInBio}"
+                        IsChecked="{Binding UserFilter.FilterMinimumCharacterInBio}" />
+                    <controls:NumericUpDown
+                        x:Name="UserBioMinimumCharactersTextBox"
+                        Margin="10,5,0,0"
+                        IsEnabled="{Binding UserFilter.FilterMinimumCharacterInBio}"
+                        Maximum="100"
+                        Minimum="0"
+                        Value="{Binding UserFilter.MinimumCharacterInBio}" />
+                </StackPanel>
+
+                <!--  MinimumFollowingCount  -->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        x:Name="MinimumFollowingCountCheckBox"
+                        Margin="5,5,0,0"
+                        VerticalAlignment="Center"
+                        Content="{DynamicResource LangKeyFollowings}"
+                        IsChecked="{Binding UserFilter.FilterFollowingsCount}" />
+                    <Label
+                        Margin="0,5,0,0"
+                        VerticalContentAlignment="Center"
+                        Content="{DynamicResource LangKeyMinimum}" />
+                    <controls:NumericUpDown
+                        x:Name="MinimumFollowingCount"
+                        Margin="5,10,0,0"
+                        IsEnabled="{Binding UserFilter.FilterFollowingsCount}"
+                        Minimum="0"
+                        TextAlignment="Center"
+                        Value="{Binding UserFilter.FollowingsCount.StartValue}" />
+                    <Label
+                        x:Name="MinimumFollowingLabel"
+                        Margin="0,5,0,0"
+                        VerticalContentAlignment="Center"
+                        Content="{DynamicResource LangKeyMaximum}" />
+                    <controls:NumericUpDown
+                        x:Name="MaxFollowingCount"
+                        Margin="10,10,0,0"
+                        IsEnabled="{Binding UserFilter.FilterFollowingsCount}"
+                        Minimum="{Binding Value, ElementName=MinimumFollowingCount}"
+                        TextAlignment="Center"
+                        Value="{Binding UserFilter.FollowingsCount.EndValue}" />
+                </StackPanel>
+
+                <!--  MinimumFollowerCount  -->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        x:Name="MinimumFollowerCountCheckBox"
+                        Margin="5,5,0,0"
+                        VerticalAlignment="Center"
+                        Content="{DynamicResource LangKeyFollowers}"
+                        IsChecked="{Binding UserFilter.FilterFollowersCount}" />
+                    <Label
+                        Margin="0,5,0,0"
+                        VerticalContentAlignment="Center"
+                        Content="{DynamicResource LangKeyMinimum}" />
+                    <controls:NumericUpDown
+                        x:Name="MinimumFollowerCount"
+                        Margin="10,10,0,0"
+                        IsEnabled="{Binding UserFilter.FilterFollowersCount}"
+                        Minimum="0"
+                        TextAlignment="Center"
+                        Value="{Binding UserFilter.FollowersCount.StartValue}" />
+                    <Label
+                        x:Name="MinimumFollowerLabel"
+                        Margin="0,5,0,0"
+                        VerticalContentAlignment="Center"
+                        Content="{DynamicResource LangKeyMaximum}" />
+                    <controls:NumericUpDown
+                        x:Name="MaxFollowerCount"
+                        Margin="10,10,0,0"
+                        IsEnabled="{Binding UserFilter.FilterFollowersCount}"
+                        Minimum="{Binding Value, ElementName=MinimumFollowerCount}"
+                        TextAlignment="Center"
+                        Value="{Binding UserFilter.FollowersCount.EndValue}" />
+                </StackPanel>
+
+
+                <!--  UserHasInvalidWordsCheckBox  -->
+                <StackPanel>
+                    <CheckBox
+                        Name="UserHasInvalidWordsCheckBox"
+                        Margin="5,5,0,0"
+                        Content="{DynamicResource LangKeyMustNotContainSpecificWordsInBio}"
+                        IsChecked="{Binding UserFilter.FilterBioRestrictedWords}" />
+                    <customControl:InputBoxControl
+                        x:Name="InvalidWordsInputBox"
+                        Margin="30,5"
+                        InputText="{Binding UserFilter.InvalidWords}"
+                        SaveCommand="{Binding InvalidWordsInputBoxCommand}"
+                        Visibility="{Binding UserFilter.FilterBioRestrictedWords, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </StackPanel>
+                <StackPanel>
+                    <CheckBox
+                        Name="UserHasvalidWordsCheckBox"
+                        Margin="5,5,0,0"
+                        Content="{DynamicResource LangKeyMustContainSpecificWordsInBio}"
+                        IsChecked="{Binding UserFilter.FilterBioNotRestrictedWords}" />
+                    <customControl:InputBoxControl
+                        x:Name="validWordsInputBox"
+                        Margin="30,5"
+                        InputText="{Binding UserFilter.ValidWords}"
+                        SaveCommand="{Binding validWordsInputBoxCommand}"
+                        Visibility="{Binding UserFilter.FilterBioNotRestrictedWords, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </StackPanel>
+                <!--  UserHasCaptionOnPost  -->
+                <StackPanel>
+                    <CheckBox
+                        x:Name="UserHasCaptionOnPost"
+                        Margin="5,5,0,0"
+                        Content="{DynamicResource LangKeyMustHaveAtLeastOnePostWithACaptionContainingSpecificWords}"
+                        IsChecked="{Binding UserFilter.FilterInvaildWord}" />
+                    <customControl:InputBoxControl
+                        x:Name="CaptionPostInputBox"
+                        Margin="30,5"
+                        InputText="{Binding UserFilter.CaptionPosts}"
+                        SaveCommand="{Binding CaptionPostInputBoxCommand}"
+                        Visibility="{Binding UserFilter.FilterInvaildWord, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </StackPanel>
+                <!--  HasMinimumFollowerFollowingRatio  -->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        x:Name="UserHasMinimumFollowerFollowingRatioCheckBox"
+                        Margin="5,5,0,0"
+                        VerticalAlignment="Center"
+                        Content="{DynamicResource LangKeyMustHaveAFollowRatioLessThan}"
+                        IsChecked="{Binding UserFilter.FilterMinimumFollowRatio}" />
+                    <controls:NumericUpDown
+                        Margin="10,10,0,0"
+                        Interval="0.1"
+                        IsEnabled="{Binding UserFilter.FilterMinimumFollowRatio}"
+                        Maximum="500"
+                        Minimum="0"
+                        StringFormat=".00"
+                        TextAlignment="Center"
+                        Value="{Binding UserFilter.MinimumFollowRatio}" />
+                </StackPanel>
+                <!--  UserHasMaximumFollowerFollowingRatio  -->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        x:Name="UserHasMaximumFollowerFollowingRatioCheckBox"
+                        Margin="5,5,0,0"
+                        VerticalAlignment="Center"
+                        Content="{DynamicResource LangKeyMustHaveAFollowRatioGreaterThan}"
+                        IsChecked="{Binding UserFilter.FilterMaximumFollowRatio}" />
+                    <controls:NumericUpDown
+                        Margin="10,10,0,0"
+                        Interval="0.1"
+                        IsEnabled="{Binding UserFilter.FilterMaximumFollowRatio}"
+                        Maximum="500"
+                        Minimum="0"
+                        StringFormat=".00"
+                        TextAlignment="Center"
+                        Value="{Binding UserFilter.MaximumFollowRatio}" />
+                </StackPanel>
+
+                <!--  UserHasFollowerFollowingRange  -->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        Name="UserHasFollowerFollowingRange"
+                        Margin="5,5,0,0"
+                        VerticalAlignment="Center"
+                        Content="{DynamicResource LangKeyShouldHaveFollowRatioInASpecificRange}"
+                        IsChecked="{Binding UserFilter.FilterSpecificFollowRatio}" />
+                    <controls:NumericUpDown
+                        Name="SpecificFollowRatioStartValues"
+                        Margin="10,10,0,0"
+                        Interval="1"
+                        IsEnabled="{Binding UserFilter.FilterSpecificFollowRatio}"
+                        Maximum="500"
+                        Minimum="0"
+                        TextAlignment="Center"
+                        Value="{Binding UserFilter.SpecificFollowRatio.StartValue}" />
+                    <Label
+                        Name="FollowerFollowingRangeLabel"
+                        Margin="10,10,0,0"
+                        VerticalAlignment="Center"
+                        Content="{DynamicResource LangKeyTo}" />
+                    <controls:NumericUpDown
+                        Name="MaximumFollowerFollowingRangeTextbox"
+                        Margin="10,10,0,0"
+                        Interval="1"
+                        IsEnabled="{Binding UserFilter.FilterSpecificFollowRatio}"
+                        Maximum="500"
+                        Minimum="{Binding UserFilter.SpecificFollowRatio.StartValue}"
+                        TextAlignment="Center"
+                        Value="{Binding UserFilter.SpecificFollowRatio.EndValue}" />
+
+                </StackPanel>
+
+                <!--  UserPostedInLastXDays  -->
+                <StackPanel Orientation="Horizontal" Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=ShouldHavePostedOnRecentDaysVisibility}">
+                    <CheckBox
+                        x:Name="UserPostedInLastXDays"
+                        Margin="5,5,0,0"
+                        VerticalAlignment="Center"
+                        Content="{DynamicResource LangKeyShouldHavePostedWithinTheLast}"
+                        IsChecked="{Binding UserFilter.FilterPostedInRecentDays}" />
+                    <controls:NumericUpDown
+                        x:Name="TextboxUserPostedInLastXDays"
+                        Margin="10,5,0,0"
+                        IsEnabled="{Binding UserFilter.FilterPostedInRecentDays}"
+                        Maximum="100"
+                        Minimum="0"
+                        Value="{Binding UserFilter.PostedInRecentDays}" />
+                    <Label
+                        x:Name="LblLastXDaysShouldHavePosted"
+                        Margin="10,5,0,0"
+                        VerticalAlignment="Center"
+                        Content="{DynamicResource LangKeyDays}" />
+                </StackPanel>
+
+                <!--  UserHasNotPostedInLastXDays  -->
+                <StackPanel Orientation="Horizontal" Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=ShouldNotHavePostedOnRecentDaysVisibility}">
+                    <CheckBox
+                        x:Name="UserHasNotPostedInLastXDays"
+                        Margin="5,5,0,0"
+                        VerticalAlignment="Center"
+                        Content="{DynamicResource LangKeyShouldNotPostedWithinTheLast}"
+                        IsChecked="{Binding UserFilter.FilterNotPostedInRecentdDays}" />
+                    <controls:NumericUpDown
+                        x:Name="TextBoxUserHasNotPostedInLastXDays"
+                        Margin="10,5,0,0"
+                        IsEnabled="{Binding UserFilter.FilterNotPostedInRecentdDays}"
+                        Maximum="100"
+                        Minimum="0"
+                        Value="{Binding UserFilter.NotPostedInRecentDays}" />
+                    <Label
+                        x:Name="LblLastXDaysShouldNotHavePosted"
+                        Margin="10,5,0,0"
+                        VerticalAlignment="Center"
+                        Content="{DynamicResource LangKeyDays}" />
+                </StackPanel>
+
+                <!--  SkipUsersNotFollowingCurrentAccount  -->
+                <!--<CheckBox Margin="5,5,0,0" x:Name="SkipUsersNotFollowingCurrentAccountCheckBox" IsChecked="{Binding UserFilter.IgnoreCurrentUsersFollowers}" Content="{DynamicResource langSkipFollowers}"/>-->
+
+                <!--  AcceptPendingFriendRequest  -->
+                <!--<CheckBox Margin="5,5,0,0" Name="AcceptPendingFriendRequestCheckBox" IsChecked="{Binding UserFilter.IgnorePrivateUser}"  Content="{DynamicResource langAcceptpendingfriendrequests}" />-->
+
+                <!--  Gender  -->
+                <!--  TODO : Need to implement later  -->
+
+                <CheckBox
+                    Name="GenderCheckbox"
+                    Margin="5,5,0,0"
+                    Content="{DynamicResource LangKeyFilterByGender}"
+                    IsChecked="{Binding UserFilter.GenderFilters.IsFilterByGender}" />
+                <StackPanel
+                    Name="GenderSection"
+                    Orientation="Horizontal"
+                    Visibility="{Binding UserFilter.GenderFilters.IsFilterByGender, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <CheckBox
+                        Margin="30,5,0,0"
+                        Content="{DynamicResource LangKeyIgnoreMales}"
+                        IsChecked="{Binding UserFilter.GenderFilters.IgnoreMalesUser}" />
+                    <CheckBox
+                        Margin="30,5,0,0"
+                        Content="{DynamicResource LangKeyIgnoreFemales}"
+                        IsChecked="{Binding UserFilter.GenderFilters.IgnoreFemalesUser}" />
+                    <CheckBox
+                        Margin="30,5,0,0"
+                        Content="{DynamicResource LangKeyIgnoreUnknown}"
+                        IsChecked="{Binding UserFilter.GenderFilters.IgnoreOthersUser}" />
+                </StackPanel>
+
+
+                <!--  SkipNonEnglishUsers  -->
+                <CheckBox
+                    Margin="5,5,0,0"
+                    Content="{DynamicResource LangKeySkipNonEnglishUsers}"
+                    IsChecked="{Binding UserFilter.IgnoreNonEnglishUser}" />
+
+                <!--  Ignore Private Users  -->
+                <CheckBox
+                    Margin="5,5,0,0"
+                    Content="{DynamicResource LangKeyIgnorePrivateUsers}"
+                    IsChecked="{Binding UserFilter.IgnorePrivateUser}" />
+
+                <!--  IgnoreBusiness  -->
+                <CheckBox
+                    Margin="5,5,0,0"
+                    Content="{DynamicResource LangKeyIgnoreBusiness}"
+                    IsChecked="{Binding UserFilter.IgnoreBusinessUser}" />
+
+                <!--  IgnoreVerified  -->
+                <CheckBox
+                    Margin="5,5,0,0"
+                    Content="{DynamicResource LangKeyVerifiedAccounts}"
+                    IsChecked="{Binding UserFilter.VerifiedAccount}" />
+                <StackPanel Visibility="{Binding UserFilter.VerifiedAccount, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <RadioButton
+                        Margin="25,5,0,0"
+                        Content="{DynamicResource LangKeyIsVerified}"
+                        GroupName="VerifiedAccount"
+                        IsChecked="{Binding UserFilter.IsVerifiedAccount}" />
+                    <RadioButton
+                        Margin="25,5,0,0"
+                        Content="{DynamicResource LangKeyIgnoreVerified}"
+                        GroupName="VerifiedAccount"
+                        IsChecked="{Binding UserFilter.IgnoreVerifiedUser}" />
+                </StackPanel>
+                <!--  Must have Email-id and Contact no  -->
+                <CheckBox
+                    Margin="5,5,0,0"
+                    Content="{DynamicResource LangKeyMustHaveEmailId}"
+                    IsChecked="{Binding UserFilter.IsUserMustHaveEmailId}"
+                    Visibility="{Binding MustHaveEmailIdVisibility}" />
+                <CheckBox
+                    Margin="5,5,0,0"
+                    Content="{DynamicResource LangKeyMustHavePhoneNO}"
+                    IsChecked="{Binding UserFilter.IsUserMustHavePhoneNO}"
+                    Visibility="{Binding MustHaveContactVisibility}" />
+                <CheckBox
+                    Margin="5,5,0,0"
+                    Content="{DynamicResource LangKeyMustHaveBusinessAccount}"
+                    IsChecked="{Binding UserFilter.IsUserMustHaveBusinessAccount}"
+                    Visibility="{Binding MustHaveBusinessAccountVisibility}" />
+                <Button
+                    x:Name="SaveButton"
+                    Height="25"
+                    Margin="10,5,0,0"
+                    HorizontalAlignment="Center"
+                    x:FieldModifier="public"
+                    Background="{DynamicResource AccentColorBrush}"
+                    BorderThickness="1"
+                    Click="SaveButton_OnClick"
+                    Content="{DynamicResource LangKeySave}"
+                    FontSize="12"
+                    Foreground="White"
+                    Visibility="{Binding UserFilter.SaveCloseButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

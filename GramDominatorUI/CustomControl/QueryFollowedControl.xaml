@@ -1,0 +1,122 @@
+﻿<UserControl
+    x:Class="GramDominatorUI.CustomControl.QueryFollowedControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:GramDominatorUI.CustomControl"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    MaxWidth="600"
+    MaxHeight="700"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:IndexToRowNoConverter x:Key="IndexToRowNoConverter" />
+    </UserControl.Resources>
+    <Border
+        Margin="10"
+        BorderBrush="{DynamicResource AccentBaseColorBrush}"
+        BorderThickness="1">
+        <Grid Name="MainGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="8*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Background="{DynamicResource AccentBaseColorBrush}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+                <!--  Account combobox Section  -->
+                <Grid Height="30" VerticalAlignment="Center">
+                    <ComboBox
+                        x:Name="cmbAllAccounts"
+                        Grid.Column="0"
+                        Width="Auto"
+                        Height="30"
+                        Margin="10,0,0,0"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Top"
+                        Background="White"
+                        FontSize="14"
+                        IsTextSearchEnabled="False"
+                        ItemsSource="{Binding LstAccounts}"
+                        SelectionChanged="ComboBox_SelectionChanged"
+                        Text="{Binding Accountselect}" />
+                </Grid>
+                <!--  Query Combobox Section  -->
+                <StackPanel
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Grid Height="30" VerticalAlignment="Center">
+                        <ComboBox
+                            Grid.Column="0"
+                            Width="200"
+                            Height="30"
+                            Margin="10,0"
+                            VerticalAlignment="Top"
+                            IsTextSearchEnabled="False"
+                            ItemsSource="{Binding LstQuery}"
+                            SelectionChanged="ComboBox_SelectionChanged"
+                            Text="{Binding Queries}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <CheckBox
+                                        x:Name="chkQuery"
+                                        Checked="chkQuery_Checked"
+                                        Content="{Binding Content}"
+                                        IsChecked="{Binding IsContentSelected}"
+                                        Unchecked="chkQuery_Unchecked" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Grid>
+                </StackPanel>
+
+            </Grid>
+
+            <!--  Campaign detail list  -->
+            <Grid Grid.Row="1" Margin="0,10,0,0">
+                <ListView
+                    Name="lstviewAccounts"
+                    AlternationCount="{Binding Items.Count, RelativeSource={RelativeSource Self}}"
+                    Foreground="{DynamicResource AccentBaseColorBrush}"
+                    ItemContainerStyle="{StaticResource ListViewItems}"
+                    ItemsSource="{Binding lstReportModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ListView.Resources>
+                        <Style BasedOn="{StaticResource {x:Type GridViewColumnHeader}}" TargetType="{x:Type GridViewColumnHeader}">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </ListView.Resources>
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="False">
+                            <GridViewColumn DisplayMemberBinding="{Binding RowNo}" Header="{DynamicResource LangKeySNo}" />
+                            <GridViewColumn DisplayMemberBinding="{Binding UserName}" Header="{DynamicResource LangKeyAccounts}" />
+                            <GridViewColumn DisplayMemberBinding="{Binding QueryType}" Header="{DynamicResource LangKeyQueryType}" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Query}" Header="{DynamicResource LangKeyQueryValue}" />
+                            <GridViewColumn DisplayMemberBinding="{Binding NoOfFollowed}" Header="{DynamicResource LangKeyFollowedCount}" />
+                            <GridViewColumn DisplayMemberBinding="{Binding NoOfFollowedBack}" Header="{DynamicResource LangKeyFollowBackCount}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+            <!--  cancel button  -->
+            <!--
+            <Grid Grid.Row="2" Margin="0,10,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+                    <Button Content="{DynamicResource LangKeyCancel}" Name="btnCancel" x:FieldModifier="public" HorizontalAlignment="Center" Margin="0,0,10,0" Background="{DynamicResource AccentBaseColorBrush}" Foreground="White"/>
+                </StackPanel>
+            </Grid>-->
+
+        </Grid>
+    </Border>
+</UserControl>

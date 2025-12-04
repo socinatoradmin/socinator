@@ -1,0 +1,86 @@
+﻿{
+  "threads": [
+    {
+      "thread_id": "340282366841710300949128156540216554620",
+      "thread_v2_id": "17886701992293500",
+      "users": [
+        {
+          "pk": 4580718406,
+          "username": "frandy_shop",
+          "full_name": "\u0493\u0280\u1d00\u0274\u1d05\u028f_s\u029c\u1d0f\u1d18",
+          "is_private": false,
+          "profile_pic_url": "https://scontent-bom1-2.cdninstagram.com/vp/66c7736418ac63197f6f0bae3d32841b/5CB93ED0/t51.2885-19/s150x150/30841306_462961410805741_1862466169378701312_n.jpg?_nc_ht=scontent-bom1-2.cdninstagram.com",
+          "profile_pic_id": "1765327030461557934_4580718406",
+          "friendship_status": {
+            "following": true,
+            "blocking": false,
+            "is_private": false,
+            "incoming_request": false,
+            "outgoing_request": false,
+            "is_bestie": false
+          },
+          "is_verified": false,
+          "has_anonymous_profile_picture": false,
+          "reel_auto_archive": "on",
+          "is_directapp_installed": false
+        }
+      ],
+      "left_users": [ ],
+      "items": [
+        {
+          "item_id": "28528172758922701762870477297025024",
+          "user_id": 7150086983,
+          "timestamp": 1546515344113289,
+          "item_type": "text",
+          "text": "wow",
+          "client_context": "\"1680c464-12ca-4e0a-960d-1caadc079c93\""
+        }
+      ],
+      "last_activity_at": 1546515344113289,
+      "muted": false,
+      "is_pin": false,
+      "named": false,
+      "canonical": true,
+      "pending": false,
+      "valued_request": false,
+      "thread_type": "private",
+      "viewer_id": 7150086983,
+      "thread_title": "frandy_shop",
+      "pending_score": 1546515344113289,
+      "vc_muted": false,
+      "is_group": false,
+      "mentions_muted": false,
+      "inviter": {
+        "pk": 7150086983,
+        "username": "watkinspatricia610",
+        "full_name": "Patricia Watkins",
+        "is_private": false,
+        "profile_pic_url": "https://scontent-bom1-2.cdninstagram.com/vp/b14facc776339b6e965387ec6bfbdfda/5CCEA123/t51.2885-19/s150x150/28152260_188348491927273_8367750174226776064_n.jpg?_nc_ht=scontent-bom1-2.cdninstagram.com",
+        "profile_pic_id": "1719404941649194836_7150086983",
+        "is_verified": false,
+        "has_anonymous_profile_picture": false,
+        "reel_auto_archive": "unset"
+      },
+      "has_older": true,
+      "has_newer": true,
+      "last_seen_at": {
+        "7150086983": {
+          "timestamp": "1546515344113289",
+          "item_id": "28528172758922701762870477297025024"
+        }
+      },
+      "newest_cursor": "28528172758922701762870477297025024",
+      "oldest_cursor": "28528172758922701762870477297025024",
+      "next_cursor": "28528172758922701762870477297025025",
+      "prev_cursor": "28528172758922701762870477297025023",
+      "last_permanent_item": {
+        "item_id": "28528172758922701762870477297025024",
+        "user_id": 7150086983,
+        "timestamp": 1546515344113289,
+        "item_type": "text",
+        "text": "wow",
+        "client_context": "\"1680c464-12ca-4e0a-960d-1caadc079c93\""
+      }
+    }
+  ], 
+  "status": "ok"}

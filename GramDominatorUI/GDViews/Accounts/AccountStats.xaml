@@ -1,0 +1,243 @@
+﻿<UserControl
+    x:Class="GramDominatorUI.GDViews.Accounts.AccountStats"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:GramDominatorUI.GDViews.Accounts"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+    <Grid>
+        <Border BorderBrush="{DynamicResource AccentBaseColorBrush}">
+            <ScrollViewer>
+                <Grid Name="MainGrid">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.6*" />
+                        <RowDefinition Height="10*" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Background="{DynamicResource AccentColorBrush}">
+
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Vertical">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <TextBlock
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    FontWeight="SemiBold"
+                                    Foreground="White"
+                                    Text="{DynamicResource LangKeySelectFilter}" />
+                                <ComboBox
+                                    Name="FilterOptions"
+                                    Width="200"
+                                    Margin="10,10"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    Foreground="White"
+                                    ItemsSource="{Binding lst_FilterOptions, Mode=TwoWay}"
+                                    SelectedIndex="0" />
+
+                                <Button
+                                    Name="btn_ApplyFilter"
+                                    Width="120"
+                                    Height="30"
+                                    Margin="20,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Command="{Binding ApplyFilterCommand}"
+                                    CommandParameter="{Binding SelectedItem, ElementName=FilterOptions}"
+                                    Content="{DynamicResource LangKeyApplyFilter}"
+                                    Style="{StaticResource ButtonStyle}" />
+
+                            </StackPanel>
+
+
+                            <StackPanel Orientation="Horizontal" Visibility="Collapsed">
+                                <StackPanel>
+                                    <RadioButton
+                                        Margin="20,5,0,0"
+                                        Background="{DynamicResource AccentColorBrush}"
+                                        Content="{DynamicResource LangKeyAll}"
+                                        FontSize="13"
+                                        FontWeight="SemiBold"
+                                        Foreground="Black"
+                                        GroupName="SelectFilter"
+                                        IsChecked="{Binding FilterAll}" />
+                                </StackPanel>
+
+                                <StackPanel>
+                                    <RadioButton
+                                        Margin="20,5,0,0"
+                                        Background="{DynamicResource AccentColorBrush}"
+                                        Content="{DynamicResource LangKeyToday}"
+                                        FontSize="13"
+                                        FontWeight="SemiBold"
+                                        Foreground="Black"
+                                        GroupName="SelectFilter"
+                                        IsChecked="{Binding FilterLastOneWeek}" />
+                                </StackPanel>
+
+                                <StackPanel>
+                                    <RadioButton
+                                        Margin="20,5,0,0"
+                                        Background="{DynamicResource AccentColorBrush}"
+                                        Content="{DynamicResource LangKeyYesterday}"
+                                        FontSize="13"
+                                        FontWeight="SemiBold"
+                                        Foreground="Black"
+                                        GroupName="SelectFilter"
+                                        IsChecked="{Binding FilterLastMonth}" />
+                                </StackPanel>
+
+                                <StackPanel>
+                                    <RadioButton
+                                        Margin="20,5,0,0"
+                                        Content="{DynamicResource LangKeyLastOneMonth}"
+                                        FontSize="13"
+                                        FontWeight="SemiBold"
+                                        Foreground="Black"
+                                        GroupName="SelectFilter"
+                                        IsChecked="{Binding FilterLastMonth}" />
+                                </StackPanel>
+
+                                <StackPanel>
+                                    <RadioButton
+                                        Margin="20,5,0,0"
+                                        Background="{DynamicResource AccentColorBrush}"
+                                        Content="{DynamicResource LangKeyLastOneMonth}"
+                                        FontSize="13"
+                                        FontWeight="SemiBold"
+                                        Foreground="Black"
+                                        GroupName="SelectFilter"
+                                        IsChecked="{Binding FilterLastMonth}" />
+                                </StackPanel>
+
+                                <StackPanel />
+
+
+                            </StackPanel>
+
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                    <Border
+                        Grid.Row="1"
+                        Background="#EBF4FA"
+                        BorderBrush="Black"
+                        BorderThickness="1">
+                        <Grid
+                            Grid.Row="1"
+                            Margin="0,10,0,0"
+                            HorizontalAlignment="Center"
+                            Background="#EBF4FA">
+
+                            <StackPanel>
+                                <DataGrid
+                                    x:Name="dgrAllAccountStats"
+                                    Width="auto"
+                                    Margin="10,0,0,0"
+                                    AutoGenerateColumns="False"
+                                    Background="White"
+                                    CanUserAddRows="false"
+                                    CanUserDeleteRows="False"
+                                    ItemsSource="{Binding lstAccountStatsViewModel}"
+                                    MinRowHeight="40"
+                                    SelectionMode="Single"
+                                    SelectionUnit="FullRow">
+
+
+                                    <DataGrid.Columns>
+
+                                        <DataGridTextColumn
+                                            Width="*"
+                                            Binding="{Binding Account, Mode=TwoWay}"
+                                            IsReadOnly="True">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock Text="{DynamicResource LangKeyAccounts}" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn
+                                            Width="*"
+                                            Binding="{Binding CurrentFollower, Mode=TwoWay}"
+                                            IsReadOnly="True">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock Text="{DynamicResource LangKeyCurrentFollowers}" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn
+                                            Width="*"
+                                            Binding="{Binding Follows, Mode=TwoWay}"
+                                            IsReadOnly="True">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock Text="{DynamicResource LangKeyFollows}" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn
+                                            Width="*"
+                                            Binding="{Binding FollowBack, Mode=TwoWay}"
+                                            IsReadOnly="True">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock Text="{DynamicResource LangKeyFollowBack}" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn
+                                            Width="*"
+                                            Binding="{Binding UnFollows, Mode=TwoWay}"
+                                            IsReadOnly="True">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock Text="{DynamicResource LangKeyUnfollow}" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn
+                                            Width="*"
+                                            Binding="{Binding Likes, Mode=TwoWay}"
+                                            IsReadOnly="True">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock Text="{DynamicResource LangKeyLikesCount}" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn
+                                            Width="*"
+                                            Binding="{Binding Comment, Mode=TwoWay}"
+                                            IsReadOnly="True">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock Text="{DynamicResource LangKeyDeleteComment}" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn
+                                            Width="*"
+                                            Binding="{Binding Post, Mode=TwoWay}"
+                                            IsReadOnly="True">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock Text="{DynamicResource LangKeyPost}" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn
+                                            Width="*"
+                                            Binding="{Binding Message, Mode=TwoWay}"
+                                            IsReadOnly="True">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock Text="{DynamicResource LangKeyMessage}" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                    </DataGrid.Columns>
+
+
+                                </DataGrid>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                </Grid>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</UserControl>

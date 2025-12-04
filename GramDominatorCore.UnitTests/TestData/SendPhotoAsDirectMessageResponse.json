@@ -1,0 +1,10 @@
+﻿{
+  "action": "item_ack",
+  "status_code": "200",
+  "payload": {
+    "client_context": "8b58da62-46b5-4cff-aa40-a89adbd481fe",
+    "item_id": "28535881928966272902074327539646464",
+    "timestamp": "1546933259058754",
+    "thread_id": "340282366841710300949128271440909276368"
+  }, 
+  "status": "ok"}

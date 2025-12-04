@@ -1,0 +1,53 @@
+﻿{
+  "configs": {
+    "ig_android_media_codec_info_collection": { "params": { "is_enabled": { "value": false } } },
+    "stories_gif_sticker": { "params": { "mode_for_media_types": { "value": "disabled" } } },
+    "ig_android_felix_release_players": { "params": { "is_enabled": { "value": false } } },
+    "bloks_binding": { "params": { "is_rebind_crash_hack_enabled": { "value": true } } },
+    "ig_android_camera_network_activity_logger": { "params": { "is_enabled": { "value": true } } },
+    "ig_android_carrier_signals_killswitch": { "params": { "is_enabled": { "value": true } } },
+    "live_special_codec_size_list": { "params": { "is_blacklisted": { "value": false } } },
+    "fbns": {
+      "params": {
+        "config_url": { "value": "mqtt-gw.pushnotifs.com" },
+        "direct_preload_is_enabled": { "value": true },
+        "enable_for_blocked_countries": { "value": false },
+        "ig_preload_is_disabled": { "value": false },
+        "master_killswitch_enabled": { "value": false },
+        "preload_is_enabled": { "value": false },
+        "push_is_enabled": { "value": true }
+      }
+    },
+    "ig_android_aed": { "params": { "is_enabled": { "value": false } } },
+    "ig_client_config_server_side_retrieval": {
+      "params": {
+        "is_launcher_enabled": { "value": true },
+        "is_qe_enabled": { "value": true }
+      }
+    },
+    "ig_android_bloks_perf_logging": { "params": { "is_enabled": { "value": true } } },
+    "ig_user_mismatch_soft_error": { "params": { "crash_enabled": { "value": false } } },
+    "fizz_ig_android": { "params": { "is_enabled": { "value": true } } },
+    "ig_android_vc_clear_task_flag_killswitch": { "params": { "is_on": { "value": false } } },
+    "ig_android_killswitch_perm_direct_ssim": { "params": { "is_enabled": { "value": true } } },
+    "ig_android_codec_high_profile": {
+      "params": {
+        "is_constrained": { "value": true },
+        "is_enabled": { "value": true }
+      }
+    },
+    "sonar_prober": {
+      "params": {
+        "fna_info_endpoint": { "value": "https://graph.facebook.com/glb_map" },
+        "fna_info_params": { "value": "access_token=192684827885400|6a6e1271ca6359d77f723c8d282256ec&get_fna_candidates=true" },
+        "fna_sample_rate": { "value": 50000 },
+        "is_enabled": { "value": true },
+        "pop_info_endpoint": { "value": "https://graph.facebook.com/glb_map" },
+        "pop_info_params": { "value": "\t access_token=192684827885400|6a6e1271ca6359d77f723c8d282256ec&get_all_clusters=true" },
+        "pop_sample_rate": { "value": 50000 }
+      }
+    },
+    "action_bar_layout_width": { "params": { "is_enabled": { "value": false } } }
+  },
+  "status": "ok"
+}

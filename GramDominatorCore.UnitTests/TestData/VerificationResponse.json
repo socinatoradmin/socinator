@@ -1,0 +1,33 @@
+﻿{
+  "logged_in_user": {
+    "pk": 5514264613,
+    "username": "traceymills5042",
+    "full_name": "Tracey Mills",
+    "is_private": false,
+    "profile_pic_url": "https://scontent-bom1-2.cdninstagram.com/vp/67f7fb12570faea5ff985233be7b5423/5CE61DE5/t51.2885-19/s150x150/21436270_495096310827933_1874944883324616704_a.jpg?_nc_ht=scontent-bom1-2.cdninstagram.com",
+    "profile_pic_id": "1597783188944242046_5514264613",
+    "is_verified": false,
+    "has_anonymous_profile_picture": false,
+    "can_boost_post": false,
+    "is_business": false,
+    "is_call_to_action_enabled": null,
+    "account_type": 1,
+    "can_see_organic_insights": false,
+    "show_insights_terms": false,
+    "reel_auto_archive": "unset",
+    "has_placed_orders": false,
+    "allowed_commenter_type": "any",
+    "nametag": {
+      "mode": 0,
+      "gradient": 2,
+      "emoji": "\ud83d\ude00",
+      "selfie_sticker": 0
+    },
+    "allow_contacts_sync": true,
+    "phone_number": "+639101853103",
+    "country_code": 63,
+    "national_number": 9101853103
+  },
+  "action": "close",
+  "auto_login": true, 
+  "status": "ok"}

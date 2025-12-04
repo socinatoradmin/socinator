@@ -1,0 +1,32 @@
+﻿<UserControl
+    x:Class="GramDominatorUI.TabManager.ToolTabs"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:GramDominatorUI.TabManager"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Grid Background="{DynamicResource UserControlBackgroundBrush}">
+        <TabControl
+            x:Name="ToolTab"
+            x:FieldModifier="public"
+            Background="Transparent"
+            ItemContainerStyle="{StaticResource TabItemToolsStyle}"
+            TabStripPlacement="Top"
+            Template="{StaticResource TopTabstyle}">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Title}" />
+                    </StackPanel>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <UserControl Content="{Binding Content.Value}" />
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </Grid>
+</UserControl>

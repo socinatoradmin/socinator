@@ -1,0 +1,140 @@
+﻿<local:CommentScraperConfigurationBase
+    x:Class="GramDominatorUI.GDViews.Tools.Scraper.CommentScraperConfiguration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:customControl1="clr-namespace:GramDominatorUI.CustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:local="clr-namespace:GramDominatorUI.GDViews.Tools.Scraper"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="CommentScraperConfigurations"
+    mc:Ignorable="d">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand, ElementName=CommentScraperConfigurations}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+        <customControl:AccountGrowthModeHeader
+            x:Name="AccountGrowthHeader"
+            VerticalAlignment="Top"
+            x:FieldModifier="public"
+            SaveCommand="{Binding SaveConfigurationsCommand}"
+            SelectionChangedCommand="{Binding SelectionChangedCommand, ElementName=CommentScraperConfigurations}"
+            VideoTutorialLink="{Binding VideoTutorialLink}" />
+        <!--  Filter section  -->
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel>
+
+                    <StackPanel Margin="10" Orientation="Horizontal">
+                        <TextBlock
+                            Margin="10,0,10,0"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"
+                            Text="{DynamicResource LangKeyStatus}" />
+                        <mah:ToggleSwitch
+                            x:Name="TglStatus"
+                            VerticalAlignment="Center"
+                            FontSize="12"
+                            IsChecked="{Binding CommentScraperModel.IsAccountGrowthActive}"
+                            OffLabel="Stopped﻿"
+                            OnLabel="Active﻿"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction Command="{Binding StatusChangedCommand, ElementName=CommentScraperConfigurations}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </mah:ToggleSwitch>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+
+                        <!--  Search Query Section  -->
+                        <Expander
+                            Margin="5"
+                            Header="{DynamicResource LangKeySearchQuery}"
+                            IsExpanded="True">
+                            <customControl:SearchQueryControl
+                                x:Name="CommentScraperSearchQueryControl"
+                                Margin="5,5,5,0"
+                                AddQueryCommand="{Binding AddQueryCommand}"
+                                CommandParameter="{Binding ElementName=CommentScraperConfigurations}"
+                                CustomFilterCommand="{Binding CustomFilterCommand}"
+                                ListQueryInfo="{Binding CommentScraperModel.SavedQueries}"
+                                ListQueryType="{Binding CommentScraperModel.ListQueryType}" />
+                        </Expander>
+                        <StackPanel Margin="5,0" Orientation="Vertical">
+
+                            <!--  JobConfiguration  Expender  -->
+                            <Expander Margin="5,5" Header="{DynamicResource LangKeyJobConfiguration}">
+                                <customControl:JobConfigControl JobConfiguration="{Binding CommentScraperModel.JobConfiguration}" />
+                            </Expander>
+
+                            <!--  Post Filter Expender  -->
+                            <Expander
+                                Margin="5"
+                                Header="{DynamicResource LangKeyPostFilters}"
+                                Visibility="{Binding CommentScraperModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <customControl1:PostFilterControl
+                                    x:Name="CommentScraperPostFilterControl"
+                                    PostFilter="{Binding CommentScraperModel.PostFilterModel}"
+                                    PostTypeVisibility="Collapsed" />
+                            </Expander>
+                            <!--  User Filters Expender  -->
+                            <Expander
+                                Margin="5,5"
+                                Header="{DynamicResource LangKeyUserFilters}"
+                                Visibility="{Binding CommentScraperModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <customControl1:UserFiltersControl x:Name="UserFiltersControl" UserFilter="{Binding CommentScraperModel.UserFilterModel, UpdateSourceTrigger=PropertyChanged}" />
+                            </Expander>
+                            <!--  Post OtherConfiguration Expender  -->
+                            <Expander
+                                Margin="5"
+                                Header="{DynamicResource LangKeyOtherConfigurations}"
+                                Visibility="{Binding CommentScraperModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <StackPanel>
+                                    <StackPanel Margin="10,0,0,5">
+                                        <CheckBox
+                                            Margin="0,10,0,0"
+                                            Content="{DynamicResource LangKeyTopRecentHashTagPost}"
+                                            IsChecked="{Binding CommentScraperModel.IsTopRecentHashTagPost}" />
+                                        <StackPanel Visibility="{Binding CommentScraperModel.IsTopRecentHashTagPost, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <RadioButton
+                                                Margin="20,5"
+                                                Content="{DynamicResource LangKeyRecentHashTagPost}"
+                                                GroupName="HashtagPost"
+                                                IsChecked="{Binding CommentScraperModel.IsRecentHashTagPost}" />
+                                            <RadioButton
+                                                Margin="20,5"
+                                                Content="{DynamicResource LangKeyTopHashTagPost}"
+                                                GroupName="HashtagPost"
+                                                IsChecked="{Binding CommentScraperModel.IsTopHashTagPost}" />
+                                            <RadioButton
+                                                Margin="20,5"
+                                                Content="{DynamicResource LangKeyTopAndRecentHashTagPost}"
+                                                GroupName="HashtagPost"
+                                                IsChecked="{Binding CommentScraperModel.IsTopAndRecentHashTagPost}" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Expander>
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</local:CommentScraperConfigurationBase>

@@ -1,0 +1,31 @@
+﻿{
+  "logged_in_user": {
+    "pk": 5854658120,
+    "username": "metcalfe_penelope",
+    "full_name": "",
+    "is_private": false,
+    "profile_pic_url": "https://scontent-bom1-2.cdninstagram.com/vp/ab2e62347c4c68c5506f0314c1fe837b/5CC69797/t51.2885-19/s150x150/46256437_372268763544237_803953573560844288_n.jpg?_nc_ht=scontent-bom1-2.cdninstagram.com",
+    "profile_pic_id": "1806016647700202164_5854658120",
+    "is_verified": false,
+    "has_anonymous_profile_picture": false,
+    "can_boost_post": false,
+    "is_business": false,
+    "is_call_to_action_enabled": null,
+    "account_type": 1,
+    "can_see_organic_insights": false,
+    "show_insights_terms": false,
+    "reel_auto_archive": "on",
+    "has_placed_orders": false,
+    "allowed_commenter_type": "any",
+    "nametag": {
+      "mode": 1,
+      "gradient": 0,
+      "emoji": "\ud83d\ude00",
+      "selfie_sticker": 0
+    },
+    "allow_contacts_sync": false,
+    "phone_number": "+639357754288",
+    "country_code": 63,
+    "national_number": 9357754288
+  },
+  "status": "ok"}
