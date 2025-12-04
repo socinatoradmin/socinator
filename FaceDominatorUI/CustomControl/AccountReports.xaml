@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="FaceDominatorUI.CustomControl.AccountReports"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             Loaded="Report_Onload">
+    <Grid x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="8*" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.1*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.6*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Margin="5" VerticalAlignment="Center" Grid.Column="0"
+                        HorizontalAlignment="Left">
+                <Button Background="{DynamicResource AccentBaseColorBrush}" Foreground="White" Margin="0,0,15,0"
+                        HorizontalAlignment="Right" VerticalAlignment="Center" Click="OnRefresh_Button_Clicked">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="12" Height="15" Fill="White">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Visual="{StaticResource appbar_refresh}" Stretch="Fill" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                            <TextBlock Margin="5,0" Text="{DynamicResource LangKeyRefresh}" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Background="{DynamicResource AccentBaseColorBrush}" Foreground="White" Margin="0,0,15,0"
+                        HorizontalAlignment="Right" VerticalAlignment="Center" Click="Export_OnClick">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="15" Height="15" Fill="White">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Visual="{StaticResource appbar_inbox_out}" Stretch="Fill" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                            <TextBlock Margin="5,0" Text="{DynamicResource LangKeyExportAll}" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Background="{DynamicResource AccentBaseColorBrush}" Foreground="White" Margin="0,0,15,0"
+                        HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button_ClickDeleteAll">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="12" Height="15" Fill="White">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Visual="{StaticResource appbar_delete}" Stretch="Fill" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                            <TextBlock Margin="5,0" Text="{DynamicResource LangKeyDeleteAll}" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+                <!--<Button  Background="{DynamicResource AccentBaseColorBrush}" Foreground="{DynamicResource TextColorBrushAccordingTheme}" Margin="0,0,15,0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="15" Height="15" Fill="White">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Visual="{StaticResource appbar_inbox_in}" Stretch="Fill"/>
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                            <TextBlock Margin="5,0" Text="{DynamicResource LangKeyImport}"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>-->
+
+            </StackPanel>
+
+            <!--<StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Controls:DateTimePicker  VerticalAlignment="Center" Margin="0,0,0,0" Width="200" Controls:TextBoxHelper.UseFloatingWatermark="True"  SelectedDateFormat="Short"  Controls:TextBoxHelper.Watermark="Start Date"
+                                                               SelectedDateChanged="StartDate_SelectionChanged"       />
+                <Controls:DateTimePicker  VerticalAlignment="Center" Margin="20,0,0,0" Width="200" Controls:TextBoxHelper.UseFloatingWatermark="True"  SelectedDateFormat="Short"  Controls:TextBoxHelper.Watermark="End Date"
+                                                             SelectedDateChanged="EndDate_SelectionChanged"           />
+
+            </StackPanel>-->
+
+
+            <StackPanel Orientation="Vertical" Grid.Column="2" HorizontalAlignment="Right">
+                <ComboBox Width="200" x:Name="CmbAccounts" HorizontalAlignment="Right"
+                          SelectionChanged="CmbAccounts_SelectionChanged" Margin="0,0,15,2" Background="Transparent"
+                          Foreground="{DynamicResource AccentColorBrush}" BorderThickness="1" SelectedIndex="0"
+                          BorderBrush="AntiqueWhite" />
+                <!--<ComboBox  Width="150" x:Name="CmbKeyword" HorizontalAlignment="Right"
+                      SelectionChanged="CmbKeyword_SelectionChanged"  Margin="15,0" Background="Transparent" 
+                      Foreground="{DynamicResource AccentColorBrush}"  BorderThickness="1"  SelectedIndex="0"
+                      BorderBrush="AntiqueWhite"  >
+
+                </ComboBox>-->
+            </StackPanel>
+        </Grid>
+
+        <DataGrid Margin="5" Grid.Row="1" x:Name="ReportGrid" AutoGeneratingColumn="GenerateColumn"
+                  SelectionUnit="FullRow" IsReadOnly="False"
+                  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" />
+
+    </Grid>
+</UserControl>

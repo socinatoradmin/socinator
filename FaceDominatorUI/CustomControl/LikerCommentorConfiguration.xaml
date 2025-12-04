@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="FaceDominatorUI.CustomControl.LikerCommentorConfiguration"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+             >
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+
+    <StackPanel Name="MainGrid" Orientation="Vertical"  >
+        <StackPanel Visibility="{Binding IsLikeOptionVisible,Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Name="ChckLikeFilters" Margin="5,5,0,5" Content="{DynamicResource LangKeyLike}" FontWeight="SemiBold" Foreground="Black" FontSize="13" IsChecked="{Binding LikerCommentorConfig.IsLikeTypeFilterChkd}" />
+                <TextBlock Text="{DynamicResource LangKeySelectDesiredReactionsBelow}" Margin="4" FontWeight="SemiBold" Foreground="Black"  FontSize="13" Visibility="{Binding IsLikeTypeFilterRequired,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Visibility="{Binding IsLikeTypeFilterRequired,Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal" Margin="25,0" Visibility="{Binding LikerCommentorConfig.IsLikeTypeFilterChkd,Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <CheckBox Name="Like" Margin="5,5,0,5"  FontWeight="SemiBold" Foreground="Black"  IsChecked="{Binding LikerCommentorConfig.IsLikeFilterChkd}" Checked="Liketype_checked" Unchecked="Liketype_Unchecked">
+                        <CheckBox.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/FaceDominatorUI;component/Images/Like.png" Height="30"/>
+                                <TextBlock Name="TxtBlkLike" Text="{DynamicResource LangKeyLike}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </CheckBox.Content>
+                    </CheckBox>
+                    <CheckBox Name="Love" Margin="25,5,0,5"  FontWeight="SemiBold" Foreground="Black"  IsChecked="{Binding LikerCommentorConfig.IsLoveFilterChkd}" Checked="Liketype_checked" Unchecked="Liketype_Unchecked">
+                        <CheckBox.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/FaceDominatorUI;component/Images/Love.png" Height="30"/>
+                                <TextBlock Name="TxtBlkLove" Text="{DynamicResource LangKeyLove}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </CheckBox.Content>
+                    </CheckBox>
+                    <CheckBox Name="Haha" Margin="25,5,0,5"  FontWeight="SemiBold" Foreground="Black"  IsChecked="{Binding LikerCommentorConfig.IsHahaFilterChkd}" Checked="Liketype_checked" Unchecked="Liketype_Unchecked">
+                        <CheckBox.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/FaceDominatorUI;component/Images/Haha.png" Height="30"/>
+                                <TextBlock Name="TxtBlkHaha" Text="{DynamicResource LangKeyHaha}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </CheckBox.Content>
+                    </CheckBox>
+                    <CheckBox Name="Wow" Margin="25,5,0,5" FontWeight="SemiBold" Foreground="Black"  IsChecked="{Binding LikerCommentorConfig.IsWowFilterChkd}" Checked="Liketype_checked" Unchecked="Liketype_Unchecked">
+                        <CheckBox.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/FaceDominatorUI;component/Images/wow.png" Height="30"/>
+                                <TextBlock Name="TxtBlkWow" Text="{DynamicResource LangKeyWow}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </CheckBox.Content>
+                    </CheckBox>
+                    <CheckBox Name="Sad" Margin="25,5,0,5"  Foreground="Black"  IsChecked="{Binding LikerCommentorConfig.IsSadFilterChkd}" Checked="Liketype_checked" Unchecked="Liketype_Unchecked">
+                        <CheckBox.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/FaceDominatorUI;component/Images/sad.png" Height="30"/>
+                                <TextBlock Name="TxtBlkSad" Text="{DynamicResource LangKeySad}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </CheckBox.Content>
+                    </CheckBox>
+                    <CheckBox Name="Angry" Margin="25,5,0,5" FontWeight="SemiBold" Foreground="Black"  IsChecked="{Binding UserFilter.GenderFilters.IsAngryFilterChkd}"  Checked="Liketype_checked" Unchecked="Liketype_Unchecked">
+                        <CheckBox.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image  Height="30" Source="/FaceDominatorUI;component/Images/angry.png"/>
+                                <TextBlock Name="TxtBlkAngry" Text="{DynamicResource LangKeyAngry}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </CheckBox.Content>
+                    </CheckBox>
+                </StackPanel>
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical"  Visibility="{Binding IsCommentOptionVisible,Converter={StaticResource BooleanToVisibilityConverter}}">
+
+            <CheckBox Name="ChckCommentFilters" Margin="5,5" FontSize="13" Content="{DynamicResource LangKeyComment}" IsChecked="{Binding LikerCommentorConfig.IsCommentFilterChecked}" FontWeight="SemiBold" Foreground="Black"  />
+
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Name="ChckSpintax" Margin="25,5,15,0" Content="{DynamicResource LangKeySpintax}" FontWeight="SemiBold" Foreground="Black" ToolTip="{StaticResource LangKeyMessageSpintaxFormat}" IsChecked="{Binding LikerCommentorConfig.IsSpintaxChecked}" Visibility="{Binding LikerCommentorConfig.IsCommentFilterChecked,Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <CheckBox Name="CheckBoxforNextLine" Margin="25,5,15,0" Content="{DynamicResource LangKeySpliteCommentWithNextLine}" FontWeight="SemiBold" Foreground="Black" ToolTip="{DynamicResource LangKeySpliteNextValueIntoNextComment}" IsChecked="{Binding LikerCommentorConfig.IsSplitOnNextLine}" Visibility="{Binding LikerCommentorConfig.IsCommentFilterChecked,Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </StackPanel>
+                <customControl:CommentControl x:Name="CommentorConfigControl" Margin="20,5" HorizontalAlignment="Left"
+                                              AddCommentsCommand="{Binding AddCommentsBindCommand}" CommandParameter="{Binding ElementName=CommentorConfigControl}"  Comments="{Binding LikerCommentorConfig.ManageCommentModel,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                              AddCommentToListChanged="Comment_AddCommentToListChanged" Visibility="{Binding LikerCommentorConfig.IsCommentFilterChecked,Converter={StaticResource BooleanToVisibilityConverter}}" Loaded="CommentorConfigControl_Loaded"/>
+                <customControl:ManageComment LstManageCommentModel="{Binding LikerCommentorConfig.LstManageCommentModel}" Visibility="{Binding LikerCommentorConfig.IsCommentFilterChecked,Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            </StackPanel>
+        </StackPanel>
+
+    </StackPanel>
+
+</UserControl>

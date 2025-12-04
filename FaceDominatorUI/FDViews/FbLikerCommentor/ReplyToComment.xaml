@@ -1,0 +1,217 @@
+﻿<local:ReplyToCommentBase x:Class="FaceDominatorUI.FDViews.FbLikerCommentor.ReplyToComment"
+                          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                          xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                          xmlns:local="clr-namespace:FaceDominatorUI.FDViews.FbLikerCommentor"
+                          mc:Ignorable="d" x:Name="ReplyToCommentsControl"
+                          xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                          xmlns:customControl2="clr-namespace:DominatorUIUtility.CustomControl.FacebookCustomControl;assembly=DominatorUIUtility"
+                          xmlns:customControl1="clr-namespace:FaceDominatorUI.CustomControl"
+                          FontFamily="{DynamicResource GabaritoSemiBold}"
+                          xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+                          xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel VerticalAlignment="Top">
+            <customControl:HeaderControl  CampaignName="{Binding CampaignName}" Name="HeaderGrid"
+                                         IsCampaignNameEditable="{Binding IsEditCampaignName}"
+                                         IsCancelEditVisible="{Binding CancelEditVisibility}"
+                                         CancelEditCommand="{Binding CancelEditCommand}"
+                                         InfoCommand="{Binding InfoCommand}" />
+
+        </StackPanel>
+        <Grid Margin="0,40,0,85">
+            <Grid Name="MainGrid" Margin="0,5,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Vertical">
+                            <Expander Header="{DynamicResource LangKeySearchQuery}" Margin="5,5"
+                                      IsExpanded="True">
+                                <customControl:SearchQueryControl
+                                    IsExpanded="{Binding IsExpanded,ElementName=HeaderGrid,UpdateSourceTrigger=Explicit}"
+                                    Name="ReplyToCommentsQuery"
+                                    ListQueryType="{Binding ReplyToCommentsModel.ListQueryType}"
+                                    ListQueryInfo="{Binding ReplyToCommentsModel.SavedQueries}"
+                                    AddQueryCommand="{Binding AddQueryCommand}"
+                                    CommandParameter="{Binding ElementName=ReplyToCommentsControl}"
+                                    CustomFilterCommand="{Binding CustomFilterCommand}"
+                                    DeleteQueryCommand="{Binding DeleteQueryCommand}"
+                                    DeleteMulipleCommand="{Binding DeleteMulipleCommand}" />
+                            </Expander>
+                            <Expander Header="{DynamicResource LangKeyPagePostReactBy}" Margin="5,5"
+                                      IsExpanded="true">
+                                <StackPanel Orientation="Vertical" Margin="15,10">
+                                    <RadioButton IsChecked="{Binding ReplyToCommentsModel.IsActionasOwnAccountChecked}"
+                                              Margin="5"
+                                              FontSize="12" FontWeight="SemiBold"
+                                              Content="{DynamicResource LangKeyOwnAccount}" />
+                                    <RadioButton IsChecked="{Binding ReplyToCommentsModel.IsActionasPageChecked}"
+                                                  Margin="5" FontSize="12" FontWeight="SemiBold"
+                                                  Content="{DynamicResource LangKeyOwnPage}" />
+                                    <StackPanel Orientation="Vertical">
+                                       
+                                        <customControl2:SelectOptionControl x:Name="BtnSelectOwnPages"
+                                                                            SelectedInputOption="{DynamicResource LangKeySelectFriends}"
+                                                                            LstSelectedInput="{Binding ReplyToCommentsModel.ListOwnPageUrl}"
+                                                                            InputText="{Binding ReplyToCommentsModel.OwnPageUrl}"
+                                                                            IsSelectButtonVisible="False"
+                                                                            SelectedOptionDisplayName="{DynamicResource LangKeySelectFriends}"
+                                                                            Margin="25,0"
+                                                                            Visibility="{Binding ReplyToCommentsModel.IsActionasPageChecked,Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                    </StackPanel>
+
+                                </StackPanel>
+                            </Expander>
+                            <Expander Header="{DynamicResource LangKeyReactionType}" Margin="5,5"
+                                      IsExpanded="true">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox Name="ChckSpintax" Margin="10,10,15,0"
+                                                  Content="{DynamicResource LangKeySpintax}" FontWeight="SemiBold"
+                                                  Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                  ToolTip="{StaticResource LangKeyMessageSpintaxFormat}"
+                                                  IsChecked="{Binding ReplyToCommentsModel.IsSpintaxChecked}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" Margin="8,5">
+                                        <customControl:CommentControl Name="CommentControl"
+                                                                  Comments="{Binding ReplyToCommentsModel.ManageCommentsModel, UpdateSourceTrigger=PropertyChanged ,Mode=TwoWay}"
+                                                                  AddCommentsCommand="{Binding AddCommentsCommand}"
+                                                                  CommandParameter="{Binding ElementName=CommentControl}" />
+                                        <customControl:ManageComment Name="ManageComments"
+                                                                 LstManageCommentModel="{Binding ReplyToCommentsModel.LstManageCommentModel,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+                                    </StackPanel>
+                                    
+                                </StackPanel>
+                            </Expander>
+
+
+                            <Expander Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5"
+                                      IsExpanded="true">
+                                <customControl:JobConfigControl
+                                    JobConfiguration="{Binding ReplyToCommentsModel.JobConfiguration}"
+                                    PerDayActivity="Comments" PerJobActivity="Comments" PerWeekActivity="Comments"
+                                    PerHourActivity="Comments" />
+                            </Expander>
+                            <Expander Header="{DynamicResource LangKeyCommentFilter}" Margin="5,5"
+                                      IsExpanded="true"
+                                      Visibility="{Binding ReplyToCommentsModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <customControl1:CommentFilterControl Margin="0,10" x:Name="CommentFilter"
+                                                                     CommentFilter="{Binding ReplyToCommentsModel.CommentFilterModel}"
+                                                                     IsSaveCloseButtonVisisble="False" />
+                            </Expander>
+                            <Expander Header="{DynamicResource LangKeyOtherConfigurations}" Margin="5,5"
+                                      IsExpanded="True"
+                                      Visibility="{Binding ReplyToCommentsModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <StackPanel Orientation="Vertical" Margin="10,5">
+                                    <CheckBox Name="ChckUniqueForAccount"
+                                              Content="{DynamicResource LangKeySendUniqueCommentFromEachAccount}"
+                                              FontWeight="SemiBold"
+                                              Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                              Margin="0,5,10,5"
+                                              IsChecked="{Binding ReplyToCommentsModel.IschkUniqueCommentChecked}" />
+                                    <CheckBox Name="ChckUniqueForPost"
+                                              Content="{DynamicResource LangKeySendUniqueCommentForEachPost}"
+                                              FontWeight="SemiBold"
+                                              Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                              Margin="0,5,10,5"
+                                              IsChecked="{Binding ReplyToCommentsModel.IschkUniqueCommentForEachPostChecked}" />
+                                    <CheckBox Name="ChckSkipCommentsSameUser"
+                                              Content="{DynamicResource LangKeySkipCommentsOfSameProfile}"
+                                              FontWeight="SemiBold"
+                                              Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                              Margin="0,5,10,5"
+                                              IsChecked="{Binding ReplyToCommentsModel.IsSkipCommentsOfSameUser}" />
+                                </StackPanel>
+
+                            </Expander>
+                            <Expander Header="{DynamicResource LangKeyMentionUsers}" Margin="5,10"
+                                      IsExpanded="True"
+                                      Visibility="{Binding ReplyToCommentsModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <StackPanel Orientation="Vertical" Margin="10,10">
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                                        <StackPanel Orientation="Horizontal" Margin="10,5,15,5">
+                                            <CheckBox Margin="0,5,10,5" Content="{DynamicResource LangKeyMention}"
+                                                      FontWeight="SemiBold"
+                                                      Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                      IsChecked="{Binding ReplyToCommentsModel.IsMentionUsersChecked}" />
+                                            <controls:NumericUpDown
+                                                Value="{Binding ReplyToCommentsModel.NoOfUserMention.StartValue}"
+                                                Margin="0,5,10,5" FontWeight="SemiBold"
+                                                IsEnabled="{Binding ReplyToCommentsModel.IsMentionUsersChecked}"
+                                                Foreground="{DynamicResource TextColorBrushAccordingTheme}" Minimum="0" />
+                                            <Label Content="{DynamicResource LangKeyTo}" FontWeight="SemiBold"
+                                                   Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                   Margin="0,5,10,5" />
+                                            <controls:NumericUpDown
+                                                Value="{Binding ReplyToCommentsModel.NoOfUserMention.EndValue}"
+                                                Margin="0,5,10,5" FontWeight="SemiBold"
+                                                IsEnabled="{Binding ReplyToCommentsModel.IsMentionUsersChecked}"
+                                                Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                Maximum="10" Minimum="1" />
+                                            <Label Content="{DynamicResource LangKeyRandomFriendsOnEachComment}"
+                                                   FontWeight="SemiBold"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                   Margin="2,0,0,0" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left"
+                                                    Margin="10,5,15,5">
+                                            <customControl1:SelectDetailsControl x:Name="BtnSelectMentions"
+                                         SelectedDetailsOption="{DynamicResource LangKeySelectFriends}"
+                                         SelectOptionModel="{Binding ReplyToCommentsModel.SelectOptionModel}"
+                                         IsSelectOptionVisible="True"
+                                         Margin="10,5"
+                                         Visibility="{Binding ReplyToCommentsModel.IsMentionUsersChecked,Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="10,5,15,5">
+                                            <CheckBox Margin="0,5,10,5"
+                                                      Content="{DynamicResource LangKeyMentionCommentedUserInReply}"
+                                                      FontWeight="SemiBold"
+                                                      Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                      IsChecked="{Binding ReplyToCommentsModel.IsMentionCommentedUserChecked}" />
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                </StackPanel>
+                            </Expander>
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </ScrollViewer>
+            </Grid>
+
+
+        </Grid>
+        <StackPanel Margin="5,40,5,0" Name="FooterGrid" VerticalAlignment="Bottom">
+
+            <customControl:FooterControl x:Name="ReplyToCommentsFooter"
+                                         CampaignManager="{Binding CampaignButtonContent}"
+                                         NoOfAccountsSelected="{Binding SelectedAccountCount,Mode=TwoWay}"
+                                         Height="96" VerticalAlignment="Top"
+                                         SelectAccountCommand="{Binding SelectAccountCommand}"
+                                         CreateCampaignCommand="{Binding CreateCampaignCommand}" />
+
+
+        </StackPanel>
+        <controls:FlyoutsControl Margin="0,-10,0,10">
+            <controls:Flyout Header="{DynamicResource LangKeyModuleDescription}" Position="Right"
+                             Visibility="Collapsed" Name="HelpFlyout" Theme="Accent" FontWeight="Bold"
+                             Foreground="{DynamicResource IdealForegroundColorBrush}" Width="300" BorderBrush="Black" BorderThickness="2"
+                             DataContext="{Binding ElementName=ReplyToCommentsFooter,Path=DataContext}"
+                             IsOpen="{Binding IsOpen,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                             Background="{DynamicResource AccentBaseColorBrush}" FontSize="10">
+
+                <customControl:HelpControl
+                    ModuleDescription="{DynamicResource LangKeyModuleDescriptionFacebookAutoReplyToComment}"
+                    VideoTutorial="{Binding VideoTutorialLink}" KnowledgeBaseLink="{Binding KnowledgeBaseLink}"
+                    ContactSupportLink="{Binding ContactSupportLink}"
+                    DataContext="{Binding ElementName=ReplyToCommentsFooter,Path=DataContext}" />
+            </controls:Flyout>
+        </controls:FlyoutsControl>
+
+    </Grid>
+</local:ReplyToCommentBase>

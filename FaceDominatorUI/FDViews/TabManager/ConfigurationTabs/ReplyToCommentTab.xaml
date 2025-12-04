@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="FaceDominatorUI.FDViews.TabManager.ConfigurationTabs.ReplyToCommentTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             FontFamily="{DynamicResource GabaritoSemiBold}"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <TabControl x:Name="ReplyTocommentsTabs" TabStripPlacement="Top">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TabItem}">
+                                <Grid>
+                                    <Border Name="Border">
+                                        <ContentPresenter VerticalAlignment="Center" Margin="5"
+                                                          HorizontalAlignment="Left" ContentSource="Header"
+                                                          TextBlock.FontSize="18" />
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Border" Property="Background"
+                                                Value="{DynamicResource AccentBaseColorBrush}" />
+                                        <Setter Property="Foreground" Value="White" />
+                                    </Trigger>
+
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter Property="Foreground" Value="{DynamicResource AccentBaseColorBrush}" />
+                                    </Trigger>
+
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Title}" />
+                    </StackPanel>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <UserControl Content="{Binding Content.Value}" />
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </Grid>
+</UserControl>

@@ -1,0 +1,155 @@
+﻿<UserControl x:Class="FaceDominatorUI.CustomControl.MarketplaceFilterControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             xmlns:customControl1="clr-namespace:FaceDominatorUI.CustomControl"
+             xmlns:customControl2="clr-namespace:DominatorUIUtility.CustomControl.FacebookCustomControl;assembly=DominatorUIUtility"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{DynamicResource LangKeyMarketplaceFilter}" FontWeight="Bold"
+                           Foreground="{DynamicResource TextColorBrushAccordingTheme}" Margin="5" FontSize="16" />
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Vertical">
+                        <CheckBox Name="ChckLocation" Margin="5,5" Content="{DynamicResource LangKeyLocation}"
+                                  FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                  IsChecked="{Binding MarketplaceFilterModel.IsLocationFilterChecked}" />
+                        <customControl2:SelectOptionControl Margin="30,10" x:Name="CommentScraperInputBox"
+                                                            LstSelectedInput="{Binding MarketplaceFilterModel.LstLocation}"
+                                                            InputText="{Binding MarketplaceFilterModel.LocationText}"
+                                                            Visibility="{Binding MarketplaceFilterModel.IsLocationFilterChecked,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                            IsSelectButtonVisible="False" />
+                    </StackPanel>
+                    <CheckBox Name="ChckVerifiedPages" Margin="5,5"
+                              Content="{DynamicResource LangKeyOnlyShowFreeListings}" FontWeight="SemiBold"
+                              Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                              IsChecked="{Binding MarketplaceFilterModel.IsFreeListingsChecked}" />
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox Name="ChckSortBy" Margin="5,5" Content="{DynamicResource LangKeyOnlySortBy}"
+                                  FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                  IsChecked="{Binding MarketplaceFilterModel.IsSortByChecked}" />
+                        <ComboBox Name="ComboSortBy" Margin="103,5"
+                                  IsEnabled="{Binding MarketplaceFilterModel.IsSortByChecked}"
+                                  ItemsSource="{Binding MarketplaceFilterModel.MarketplaceSortOption}"
+                                  FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                  Width="165" SelectedIndex="0"
+                                  SelectedValue="{Binding MarketplaceFilterModel.SelectedSortOption}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox Name="ChckCategory" Margin="5,5" Content="{DynamicResource LangKeyCategory}"
+                                  FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                  IsChecked="{Binding MarketplaceFilterModel.IsCategoryChecked}" />
+                        <ComboBox Name="ComboCategory" Margin="93,5" SelectedIndex="0"
+                                  IsEnabled="{Binding MarketplaceFilterModel.IsCategoryChecked}"
+                                  ItemsSource="{Binding MarketplaceFilterModel.MarketplaceMainCategory}"
+                                  FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                  Width="165" SelectedValue="{Binding MarketplaceFilterModel.SelectedMainCategory}" />
+                    </StackPanel>
+                    <!--<StackPanel Orientation="Horizontal">
+                        <CheckBox Name="ChckSubCategory" Margin="5,5" Content="{DynamicResource LangKeySubCategory}" FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"  IsChecked="{Binding MarketplaceFilterModel.IsFanpageCategory}" />
+                        <ComboBox Name="ComboSubCategory" Margin="34,5" ItemsSource="{Binding MarketplaceFilterModel.ObjFanpageCategory}" FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}" Width="150" SelectedIndex="0" DropDownClosed="Combo_Category_SelectionChanged"/>
+                    </StackPanel>-->
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox Name="ChckLocationDistance" Margin="5,5"
+                                  Content="{DynamicResource LangKeyLocationDistance}" FontWeight="SemiBold"
+                                  Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                  IsChecked="{Binding MarketplaceFilterModel.IsLocationDistanceChecked}" />
+                        <ComboBox Name="ComboLocationDistance" Margin="46,5" SelectedIndex="0"
+                                  IsEnabled="{Binding MarketplaceFilterModel.IsLocationDistanceChecked}"
+                                  ItemsSource="{Binding MarketplaceFilterModel.MarketplaceLocationDistance}"
+                                  FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                  Width="165" SelectedValue="{Binding MarketplaceFilterModel.SelectedLocationDistance}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Visibility="{Binding MarketplaceFilterModel.IsHousingRentChecked,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <CheckBox Name="ChckTypeOfProperty" Margin="5,5"
+                                  Content="{DynamicResource LangKeyTypeOfProperyForRent}" FontWeight="SemiBold"
+                                  Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                  IsChecked="{Binding MarketplaceFilterModel.IsPropertyTypeChecked}" />
+                        <ComboBox Name="ComboTypeOfProperty" Margin="5,5"
+                                  IsEnabled="{Binding MarketplaceFilterModel.IsPropertyTypeChecked}"
+                                  ItemsSource="{Binding MarketplaceFilterModel.MarketplacePropertyTypeToRent}"
+                                  FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                  Width="165" SelectedIndex="0"
+                                  SelectedValue="{Binding MarketplaceFilterModel.SelectedPropertyTypeToRent}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical"
+                            Visibility="{Binding MarketplaceFilterModel.IsHousingRentChecked,Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <CheckBox Margin="5,5,15,5" Content="{DynamicResource LangKeyTotalNoOfBedrooms}"
+                                  FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                  FontSize="13" IsChecked="{Binding MarketplaceFilterModel.IsNoOfBedroomsChecked}" />
+                        <controls:NumericUpDown Value="{Binding MarketplaceFilterModel.NoOfBedrooms.StartValue}"
+                                                FontWeight="SemiBold"
+                                                Foreground="{DynamicResource TextColorBrushAccordingTheme}" Minimum="0"
+                                                IsEnabled="{Binding MarketplaceFilterModel.IsNoOfBedroomsChecked}" />
+                        <Label Content="{DynamicResource LangKeyAnd}" FontWeight="SemiBold" Margin="0,0,5,0"
+                               Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                        <controls:NumericUpDown Value="{Binding MarketplaceFilterModel.NoOfBedrooms.EndValue}"
+                                                Margin="0,0,10,0" FontWeight="SemiBold"
+                                                Foreground="{DynamicResource TextColorBrushAccordingTheme}" Minimum="0"
+                                                IsEnabled="{Binding MarketplaceFilterModel.IsNoOfBedroomsChecked}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <CheckBox Margin="5,5,11,5" Content="{DynamicResource LangKeyTotalNoOfBathrooms}"
+                                  FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                  FontSize="13" IsChecked="{Binding MarketplaceFilterModel.IsNoOfBathroomsChecked}" />
+                        <controls:NumericUpDown Value="{Binding MarketplaceFilterModel.NoOfBaths.StartValue}"
+                                                FontWeight="SemiBold"
+                                                Foreground="{DynamicResource TextColorBrushAccordingTheme}" Minimum="0"
+                                                IsEnabled="{Binding MarketplaceFilterModel.IsNoOfBathroomsChecked}" />
+                        <Label Content="{DynamicResource LangKeyAnd}" FontWeight="SemiBold" Margin="0,0,5,0"
+                               Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                        <controls:NumericUpDown Value="{Binding MarketplaceFilterModel.NoOfBaths.EndValue}"
+                                                Margin="0,0,10,0" FontWeight="SemiBold"
+                                                Foreground="{DynamicResource TextColorBrushAccordingTheme}" Minimum="0"
+                                                IsEnabled="{Binding MarketplaceFilterModel.IsNoOfBathroomsChecked}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <CheckBox Margin="5,5,15,5" Content="{DynamicResource LangKeyNoOfSquareFeetBetween}"
+                                  FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                  FontSize="13" IsChecked="{Binding MarketplaceFilterModel.IsSqureFeetBetweenChecked}" />
+                        <controls:NumericUpDown Value="{Binding MarketplaceFilterModel.NoOfSquraeFeet.StartValue}"
+                                                FontWeight="SemiBold"
+                                                Foreground="{DynamicResource TextColorBrushAccordingTheme}" Minimum="0"
+                                                IsEnabled="{Binding MarketplaceFilterModel.IsSqureFeetBetweenChecked}" />
+                        <Label Content="{DynamicResource LangKeyAnd}" FontWeight="SemiBold" Margin="0,0,5,0"
+                               Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                        <controls:NumericUpDown Value="{Binding MarketplaceFilterModel.NoOfSquraeFeet.EndValue}"
+                                                Margin="0,0,10,0" FontWeight="SemiBold"
+                                                Foreground="{DynamicResource TextColorBrushAccordingTheme}" Minimum="0"
+                                                IsEnabled="{Binding MarketplaceFilterModel.IsSqureFeetBetweenChecked}" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <CheckBox Margin="5,5,15,5" Content="{DynamicResource LangKeyOnlyScrapItemsWithPriceRangeBetween}"
+                              FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                              FontSize="13" IsChecked="{Binding MarketplaceFilterModel.IsPriceRangeChecked}" />
+                    <controls:NumericUpDown Value="{Binding MarketplaceFilterModel.PriceBetween.StartValue}"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}" Minimum="0"
+                                            IsEnabled="{Binding MarketplaceFilterModel.IsPriceRangeChecked}" />
+                    <Label Content="{DynamicResource LangKeyAnd}" FontWeight="SemiBold" Margin="0,0,5,0"
+                           Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                    <controls:NumericUpDown Value="{Binding MarketplaceFilterModel.PriceBetween.EndValue}"
+                                            Margin="0,0,10,0" FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}" Minimum="0"
+                                            IsEnabled="{Binding MarketplaceFilterModel.IsPriceRangeChecked}" />
+                </StackPanel>
+            </StackPanel>
+
+
+        </StackPanel>
+    </Grid>
+</UserControl>

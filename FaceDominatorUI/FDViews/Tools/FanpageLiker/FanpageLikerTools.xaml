@@ -1,0 +1,360 @@
+﻿<local:FanpageLikerToolsBase x:Class="FaceDominatorUI.FDViews.Tools.FanpageLiker.FanpageLikerTools"
+                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                             xmlns:local="clr-namespace:FaceDominatorUI.FDViews.Tools.FanpageLiker"
+                             mc:Ignorable="d" x:Name="FanpageLikerConfiguration"
+                             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+                             xmlns:customControl1="clr-namespace:FaceDominatorUI.CustomControl"
+                             xmlns:customControl2="clr-namespace:DominatorUIUtility.CustomControl.FacebookCustomControl;assembly=DominatorUIUtility"
+                             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+                             FontFamily="{DynamicResource GabaritoSemiBold}"
+                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=FanpageLikerConfiguration}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+
+        <customControl:AccountGrowthModeHeader VideoTutorialLink="{Binding VideoTutorialLink}" x:FieldModifier="public"
+                                               x:Name="AccountGrowthHeader"
+                                               VerticalAlignment="Top" SelectedIndex="0"
+                                               SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=FanpageLikerConfiguration}"
+                                               SaveCommand="{Binding SaveConfigurationsCommand}" />
+
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" VerticalAlignment="Center"
+                                   Margin="10,0,10,0" />
+                        <controls:ToggleSwitch x:Name="TglStatus" OnLabel="Active﻿" OffLabel="Stopped﻿"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                                               IsChecked="{Binding FanpageLikerModel.IsAccountGrowthActive}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=FanpageLikerConfiguration}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </controls:ToggleSwitch>
+
+                    </StackPanel>
+
+
+                    <StackPanel Orientation="Vertical">
+                        <Expander Header="{DynamicResource LangKeySearchQuery}" Margin="5,5"
+                                  IsExpanded="True">
+                            <customControl:SearchQueryControl
+                                IsExpanded="{Binding IsExpanded,ElementName=AccountGrowthHeader,UpdateSourceTrigger=Explicit}"
+                                Name="LikerSearchControl"
+                                ListQueryType="{Binding FanpageLikerModel.ListQueryType}"
+                                ListQueryInfo="{Binding FanpageLikerModel.SavedQueries}"
+                                AddQueryCommand="{Binding AddQueryCommand}"
+                                CommandParameter="{Binding ElementName=FanpageLikerConfiguration}"
+                                CustomFilterCommand="{Binding CustomFilterCommand}"
+                                DeleteQueryCommand="{Binding DeleteQueryCommand}"
+                                DeleteMulipleCommand="{Binding DeleteMulipleCommand}" />
+                        </Expander>
+                        <Expander Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5"
+                                  IsExpanded="true">
+                            <customControl:JobConfigControl
+                                JobConfiguration="{Binding FanpageLikerModel.JobConfiguration}" />
+                        </Expander>
+
+                        <!--Other Configurations filter Expender-->
+
+                        <!-- After User Filters Expender-->
+                        <Expander Header="{DynamicResource LangKeyLIKEFILTER}" Margin="5,5"
+                                  IsExpanded="true"
+                                  Visibility="{Binding FanpageLikerModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <customControl1:FanpageFilterControl x:Name="FanpageFilter"
+                                                                 FanpageFilter="{Binding FanpageLikerModel.FanpageFilterModel}"
+                                                                 IsSaveCloseButtonVisisble="False" />
+                        </Expander>
+                        <Expander Header="{DynamicResource LangKeyAfterLikeAction}" Margin="5,5"
+                                  IsExpanded="true" Visibility="Collapsed">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Name="LikePostOfPage" Content="{DynamicResource LangKeyLike}"
+                                              Margin="30,4,0,4"
+                                              Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                              FontWeight="SemiBold"
+                                              IsChecked="{Binding FanpageLikerModel.IsLikePostOfPage}" />
+                                    <controls:NumericUpDown
+                                        Value="{Binding FanpageLikerModel.LikePostsBetween.StartValue}"
+                                        FontWeight="SemiBold"
+                                        Foreground="{DynamicResource TextColorBrushAccordingTheme}" Margin="10,2"
+                                        IsEnabled="{Binding FanpageLikerModel.IsLikePostOfPage}" Interval="100" />
+                                    <Label Content="{DynamicResource LangKeyTo}" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                                    <controls:NumericUpDown
+                                        Value="{Binding FanpageLikerModel.LikePostsBetween.EndValue}"
+                                        FontWeight="SemiBold"
+                                        Foreground="{DynamicResource TextColorBrushAccordingTheme}" Margin="10,2"
+                                        IsEnabled="{Binding FanpageLikerModel.PostFilter.IsFilterByLikeCount}"
+                                        Interval="100" />
+                                    <Label
+                                        Content="{DynamicResource LangKeyALangKeyPostsAfterLikingAPagefterLikeAction}"
+                                        Margin="10,4,0,4" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                        FontWeight="SemiBold" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Name="CommentOnPostOfPage" Content="{DynamicResource LangKeyComment}"
+                                              Margin="30,4,0,4"
+                                              Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                              FontWeight="SemiBold"
+                                              IsChecked="{Binding FanpageLikerModel.IsCommentOnPostOfPage}" />
+                                    <Label Content="{DynamicResource LangKeyOn}" Margin="10,4,0,4"
+                                           Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                           FontWeight="SemiBold" />
+                                    <controls:NumericUpDown
+                                        Value="{Binding FanpageLikerModel.CommentOnPostBetween.StartValue}"
+                                        FontWeight="SemiBold"
+                                        Foreground="{DynamicResource TextColorBrushAccordingTheme}" Margin="10,2"
+                                        IsEnabled="{Binding FanpageLikerModel.PostFilter.IsFilterByLikeCount}"
+                                        Interval="100" />
+                                    <Label Content="{DynamicResource LangKeyTo}" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                                    <controls:NumericUpDown
+                                        Value="{Binding FanpageLikerModel.CommentOnPostBetween.EndValue}"
+                                        FontWeight="SemiBold"
+                                        Foreground="{DynamicResource TextColorBrushAccordingTheme}" Margin="10,2"
+                                        IsEnabled="{Binding FanpageLikerModel.PostFilter.IsFilterByLikeCount}"
+                                        Interval="100" />
+                                    <Label
+                                        Content="{DynamicResource LangKeyALangKeyPostsAfterLikingAPagefterLikeAction}"
+                                        Margin="10,4,0,4" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                        FontWeight="SemiBold" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Name="UnlikePage" Content="{DynamicResource LangKeyUnlikeThePageAfter}"
+                                              Margin="30,4,0,4"
+                                              Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                              FontWeight="SemiBold" IsChecked="{Binding IsUnlikePage}" />
+                                    <controls:NumericUpDown
+                                        Value="{Binding FanpageLikerModel.UnlikeBetween.StartValue}"
+                                        FontWeight="SemiBold"
+                                        Foreground="{DynamicResource TextColorBrushAccordingTheme}" Margin="24,2,10,2"
+                                        IsEnabled="{Binding FanpageLikerModel.PostFilter.IsFilterByLikeCount}"
+                                        Interval="100" />
+                                    <Label Content="{DynamicResource LangKeyTo}" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                                    <controls:NumericUpDown Value="{Binding FanpageLikerModel.UnlikeBetween.EndValue}"
+                                                            FontWeight="SemiBold"
+                                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                            Margin="10,2"
+                                                            IsEnabled="{Binding FanpageLikerModel.PostFilter.IsFilterByLikeCount}"
+                                                            Interval="100" />
+                                    <Label Content="{DynamicResource LangKeyHours}" Margin="10,4,0,4"
+                                           Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                           FontWeight="SemiBold" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>
+                    </StackPanel>
+
+                    <Expander Header="{DynamicResource LangKeyAfterLikeFanPageAction}" Margin="5,5"
+                              Visibility="{Binding FanpageLikerModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+
+                            <StackPanel Margin="0,0,0,5">
+
+                                <CheckBox Content="{DynamicResource LangKeyLikeFanPagesLatestPosts}"
+                                          FontWeight="SemiBold"
+                                          Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                          Name="ChkLikeUsersLatestPosts" Margin="5,0"
+                                          IsChecked="{Binding FanpageLikerModel.IsChkLikeFanPageLatestPost}" />
+                                <StackPanel Margin="15,0"
+                                            Visibility="{Binding FanpageLikerModel.IsChkLikeFanPageLatestPost,Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                                    <!--<StackPanel Orientation="Vertical" Margin="15,10">
+                                            <CheckBox IsChecked="{Binding FanpageLikerModel.IsLikeasOwnAccountChecked}" Margin="5" 
+                                          FontSize="12" FontWeight="SemiBold" Content="{DynamicResource LangKeyOwnAccount}"/>
+
+                                            <StackPanel Orientation="Vertical">
+                                                <CheckBox IsChecked="{Binding FanpageLikerModel.IsLikeasPageChecked}" Margin="5" FontSize="12" FontWeight="SemiBold" Content="{DynamicResource LangKeyOwnPage}"/>
+                                                <customControl1:SelectOptionControl x:Name="Btn_SelectOwnPages" SelectedInputOption="{DynamicResource LangKeySelectFriends}"
+                                                               LstSelectedInput="{Binding FanpageLikerModel.ListOwnPageUrl}" InputText="{Binding FanpageLikerModel.OwnPageUrl}" IsSelectButtonVisible="False"                                                                                                                          
+                                                               SelectedOptionDisplayName="{DynamicResource LangKeySelectFriends}" Margin="25,0" Visibility="{Binding FanpageLikerModel.IsLikeasPageChecked,Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                            </StackPanel>
+
+                                        </StackPanel>-->
+
+                                    <StackPanel Orientation="Horizontal" Margin="16,0">
+                                        <Label Content="{DynamicResource LangKeyLikeBetween}" FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               VerticalAlignment="Center" />
+                                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                                Value="{Binding FanpageLikerModel.LikeBetweenJobs.StartValue}"
+                                                                Name="LikeBetweenJobsStartValue" Minimum="1" />
+                                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                                               FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               Content="{DynamicResource LangKeyAnd}" />
+                                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                                Value="{Binding FanpageLikerModel.LikeBetweenJobs.EndValue}"
+                                                                Minimum="1" />
+                                        <Label VerticalAlignment="Center" Content="{DynamicResource LangKeyPost}"
+                                               FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="16,0">
+                                        <Label FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               Content="{DynamicResource LangKeyDelayBetween}"
+                                               VerticalAlignment="Center" />
+                                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                                Value="{Binding FanpageLikerModel.DelayBetweenLikesForAfterActivity.StartValue}"
+                                                                Name="DelayBetweenLikeActivityStartValue" Minimum="0" />
+                                        <Label FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                                               Content="{DynamicResource LangKeyTo}" />
+                                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                                Value="{Binding FanpageLikerModel.DelayBetweenLikesForAfterActivity.EndValue}"
+                                                                Minimum="0" />
+                                        <Label FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               VerticalAlignment="Center"
+                                               Content="{DynamicResource LangKeySecondsBetweenEachLike}" />
+                                    </StackPanel>
+
+                                </StackPanel>
+
+
+                            </StackPanel>
+
+                            <!--Comment on posts after Liking A post-->
+                            <StackPanel Margin="5,5,0,0">
+
+                                <CheckBox FontWeight="SemiBold"
+                                          Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                          Content="{DynamicResource LangKeyCommentOnUsersLatestPosts}"
+                                          Name="ChkCommentOnFanPageLatestPosts"
+                                          IsChecked="{Binding FanpageLikerModel.ChkCommentOnFanPageLatestPostsChecked}" />
+
+                                <StackPanel Margin="15,0"
+                                            Visibility="{Binding FanpageLikerModel.ChkCommentOnFanPageLatestPostsChecked,Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                                    <!--<StackPanel Orientation="Vertical" Margin="15,10">
+                                            <CheckBox IsChecked="{Binding FanpageLikerModel.IsCommentasOwnAccountChecked}" Margin="5" 
+                                          FontSize="12" FontWeight="SemiBold" Content="{DynamicResource LangKeyOwnAccount}"/>
+
+                                            <StackPanel Orientation="Vertical">
+                                                <CheckBox IsChecked="{Binding FanpageLikerModel.IsCommentasPageChecked}" Margin="5" FontSize="12" FontWeight="SemiBold" Content="{DynamicResource LangKeyOwnPage}"/>
+                                                <customControl1:SelectOptionControl x:Name="Btn_SelectOwnPage" SelectedInputOption="{DynamicResource LangKeySelectFriends}"
+                                                               LstSelectedInput="{Binding FanpageLikerModel.ListOwnPageUrl}" InputText="{Binding FanpageLikerModel.OwnPageUrl}" IsSelectButtonVisible="False"                                                                                                                          
+                                                               SelectedOptionDisplayName="{DynamicResource LangKeySelectFriends}" Margin="25,0" Visibility="{Binding FanpageLikerModel.IsCommentasPageChecked,Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                            </StackPanel>
+
+                                        </StackPanel>-->
+
+
+                                    <StackPanel Orientation="Horizontal" Margin="9,0">
+                                        <Label FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               Content="{DynamicResource LangKeyCommentAMaximumOf}" />
+                                        <controls:NumericUpDown Margin="5,5,5,0" Name="CommentPostStartValue"
+                                                                Value="{Binding FanpageLikerModel.CommentsPerFanPage.StartValue}"
+                                                                Minimum="1" />
+                                        <TextBlock FontWeight="SemiBold"
+                                                   Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                   Text="{DynamicResource LangKeyTo}" VerticalAlignment="Center" />
+                                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                                Value="{Binding FanpageLikerModel.CommentsPerFanPage.EndValue}"
+                                                                Minimum="1" />
+                                        <TextBlock FontWeight="SemiBold"
+                                                   Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                   Text="{DynamicResource LangKeyPost}" Margin="5" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="9,0,9,5">
+                                        <Label FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               Content="{DynamicResource LangKeyDelayBetween}"
+                                               VerticalAlignment="Center" />
+                                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                                Value="{Binding FanpageLikerModel.DelayBetweenCommentsForAfterActivity.StartValue}"
+                                                                Name="DelayBetweenCommentActivityStartValue"
+                                                                Minimum="0" />
+                                        <Label FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                                               Content="{DynamicResource LangKeyTo}" />
+                                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                                Value="{Binding FanpageLikerModel.DelayBetweenCommentsForAfterActivity.EndValue}"
+                                                                Minimum="0" />
+                                        <Label FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               VerticalAlignment="Center"
+                                               Content="{DynamicResource LangKeySecondsBetweenEachComment}" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Visibility="Collapsed">
+                                        <CheckBox FontWeight="SemiBold"
+                                                  Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                  Content="{DynamicResource LangKeyCommentPercentage}" Margin="12,0"
+                                                  IsChecked="{Binding FanpageLikerModel.IsChkCommentPercentage}" />
+                                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                                Value="{Binding FanpageLikerModel.CommentPercentage}"
+                                                                IsEnabled="{Binding FanpageLikerModel.IsChkCommentPercentage}"
+                                                                Minimum="0" />
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <Label FontWeight="SemiBold" Margin="20,0"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               Content="{DynamicResource LangKeyUploadCommentS}"
+                                               Name="ChkUploadComments" />
+                                        <customControl:InputBoxControl Margin="30,5,0,0" x:Name="UploadCommentInputBox"
+                                                                       InputText="{Binding FanpageLikerModel.UploadComment}"
+                                                                       InputCollection="{Binding FanpageLikerModel.ListComments}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                            <TextBlock Text="{DynamicResource LangKeyPagePostReactBy}"
+                                       Foreground="{DynamicResource TextColorBrushAccordingTheme}" Margin="10"
+                                       FontSize="14" FontWeight="SemiBold" />
+                            <StackPanel Orientation="Vertical" Margin="20,0">
+                                <CheckBox IsChecked="{Binding FanpageLikerModel.IsActionasOwnAccountChecked}"
+                                          Margin="10"
+                                          FontSize="12" FontWeight="SemiBold"
+                                          Content="{DynamicResource LangKeyOwnAccount}" />
+
+                                <StackPanel Orientation="Vertical">
+                                    <CheckBox IsChecked="{Binding FanpageLikerModel.IsActionasPageChecked}" Margin="10"
+                                              FontSize="12" FontWeight="SemiBold"
+                                              Command="{Binding CheckUncheckCommand}"
+                                              Content="{DynamicResource LangKeyOwnPage}" />
+                                    <customControl2:SelectOptionControl x:Name="BtnSelectOwnPages"
+                                                                        SelectedInputOption="{DynamicResource LangKeySelectFriends}"
+                                                                        LstSelectedInput="{Binding FanpageLikerModel.ListOwnPageUrl}"
+                                                                        InputText="{Binding FanpageLikerModel.OwnPageUrl}"
+                                                                        IsSelectButtonVisible="False"
+                                                                        SelectedOptionDisplayName="{DynamicResource LangKeySelectFriends}"
+                                                                        Margin="25,0"
+                                                                        Visibility="{Binding FanpageLikerModel.IsActionasPageChecked,Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                </StackPanel>
+                                <CheckBox IsChecked="{Binding FanpageLikerModel.IsActionasAllPageChecked}" Margin="10"
+                                          FontSize="12" FontWeight="SemiBold"
+                                          Content="{DynamicResource LangKeyActionByAllOwnPages}" />
+
+                            </StackPanel>
+
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+    </Grid>
+</local:FanpageLikerToolsBase>

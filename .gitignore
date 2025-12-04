@@ -1,0 +1,13 @@
+*.baml
+*.lref
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+FaceDominatorCore/bin/
+FaceDominatorCore/obj/
+FaceDominatorUI/bin/
+FaceDominatorUI/obj/
+/.vs
+/FaceDominatorCore/.vs

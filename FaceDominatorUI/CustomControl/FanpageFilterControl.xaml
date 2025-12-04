@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="FaceDominatorUI.CustomControl.FanpageFilterControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             FontFamily="{DynamicResource GabaritoSemiBold}"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical"
+                        Visibility="{Binding FanpageGroupFilter.IsFanpageFilterVisible,Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBlock Text="{DynamicResource LangKeyFanpageFilters}" FontWeight="Bold"
+                           Foreground="{DynamicResource TextColorBrushAccordingTheme}" Margin="5" />
+                <StackPanel Orientation="Vertical">
+                    <CheckBox Name="ChckVerifiedPages" Margin="5,5" Content="{DynamicResource LangKeyVerifiedPageS}"
+                              FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                              IsChecked="{Binding FanpageFilter.IsVerifiedPage}" />
+                    <CheckBox Name="ChckPagesLikedByFriend" Margin="5,5"
+                              Content="{DynamicResource LangKeyPagesLikedByMyFriendS}" FontWeight="SemiBold"
+                              Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                              IsChecked="{Binding FanpageFilter.IsLikedByMyFriends}" />
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox Name="ChckCategory" Margin="5,5" Content="{DynamicResource LangKeyCategory}"
+                                  FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                  IsChecked="{Binding FanpageFilter.IsFanpageCategory}" />
+                        <ComboBox Name="ComboCategory" Margin="20,5,5,5"
+                                  ItemsSource="{Binding FanpageFilter.ObjFanpageCategory}" FontWeight="SemiBold"
+                                  Foreground="{DynamicResource TextColorBrushAccordingTheme}" Width="150"
+                                  SelectedIndex="0" DropDownClosed="Combo_Category_SelectionChanged" />
+                        <TextBlock Text="{DynamicResource LangKeyExceptForPagesLikedByFriendsOption}"
+                                   FontWeight="SemiBold" Margin="0,10,5,0"
+                                   Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="5,5,15,5"
+                              Content="{DynamicResource LangKeyScrapThePagesWhichContainLikersBetween}"
+                              FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                              FontSize="13" IsChecked="{Binding FanpageFilter.IsLikersRangeChecked}" />
+                    <controls:NumericUpDown Value="{Binding FanpageFilter.LikersBetWeen.StartValue}"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}" Minimum="0"
+                                            IsEnabled="{Binding FanpageFilter.IsLikersRangeChecked}" />
+                    <Label Content="{DynamicResource LangKeyAnd}" FontWeight="SemiBold" Margin="0,0,5,0"
+                           Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                    <controls:NumericUpDown Value="{Binding FanpageFilter.LikersBetWeen.EndValue}" Margin="0,0,10,0"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}" Minimum="0"
+                                            IsEnabled="{Binding FanpageFilter.IsLikersRangeChecked}" />
+
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Margin="2" Orientation="Horizontal" HorizontalAlignment="Center"
+                        Visibility="{Binding IsSaveCloseButtonVisisble,Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Button x:Name="SaveButton" Foreground="White" x:FieldModifier="public"
+                        Margin="10,5,0,0" Background="{DynamicResource AccentColorBrush}"
+                        Height="25" HorizontalAlignment="Center" BorderThickness="1" FontSize="12"
+                        Content="{DynamicResource LangKeySave}" />
+
+
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

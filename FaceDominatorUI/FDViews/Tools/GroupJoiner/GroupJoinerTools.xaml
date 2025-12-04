@@ -1,0 +1,147 @@
+﻿<local:GroupJoinerToolsBase x:Class="FaceDominatorUI.FDViews.Tools.GroupJoiner.GroupJoinerTools"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:local="clr-namespace:FaceDominatorUI.FDViews.Tools.GroupJoiner"
+                            mc:Ignorable="d" x:Name="GroupJoinerConfiguration"
+                            xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                            xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+                            xmlns:customControl1="clr-namespace:FaceDominatorUI.CustomControl"
+                            FontFamily="{DynamicResource GabaritoSemiBold}"
+                            xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+                            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=GroupJoinerConfiguration}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+
+        <customControl:AccountGrowthModeHeader VideoTutorialLink="{Binding VideoTutorialLink}" x:FieldModifier="public"
+                                               x:Name="AccountGrowthHeader"
+                                               VerticalAlignment="Top" SelectedIndex="0"
+                                               SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=GroupJoinerConfiguration}"
+                                               SaveCommand="{Binding SaveConfigurationsCommand}" />
+
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" VerticalAlignment="Center"
+                                   Margin="10,0,10,0" />
+                        <controls:ToggleSwitch x:Name="TglStatus" OnLabel="Active﻿" OffLabel="Stopped﻿"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                                               IsChecked="{Binding GroupJoinerModel.IsAccountGrowthActive}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=GroupJoinerConfiguration}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </controls:ToggleSwitch>
+                    </StackPanel>
+                    <Expander Header="{DynamicResource LangKeySearchQuery}" Margin="5,5"
+                              IsExpanded="True">
+                        <customControl:SearchQueryControl
+                            IsExpanded="{Binding IsExpanded,ElementName=AccountGrowthHeader,UpdateSourceTrigger=Explicit}"
+                            Name="GroupsSearchControl"
+                            ListQueryType="{Binding GroupJoinerModel.ListQueryType}"
+                            ListQueryInfo="{Binding GroupJoinerModel.SavedQueries}"
+                            AddQueryCommand="{Binding AddQueryCommand}"
+                            CommandParameter="{Binding ElementName=GroupJoinerConfiguration}"
+                            CustomFilterCommand="{Binding CustomFilterCommand}"
+                            DeleteQueryCommand="{Binding DeleteQueryCommand}"
+                            DeleteMulipleCommand="{Binding DeleteMulipleCommand}" />
+                    </Expander>
+                    <!-- After JobConfiguration  Expender-->
+                    <Expander Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5"
+                              IsExpanded="true">
+                        <customControl:JobConfigControl JobConfiguration="{Binding GroupJoinerModel.JobConfiguration}" />
+                    </Expander>
+                    <Expander Header="{DynamicResource LangKeyGroupFilter}" Margin="5,5"
+                              IsExpanded="true"
+                              Visibility="{Binding GroupJoinerModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <customControl1:GroupFilterControl x:Name="GenderFilter"
+                                                           GroupFilter="{Binding GroupJoinerModel.GroupFilterModel}"
+                                                           IsSaveCloseButtonVisisble="False" IsUnjoinModel="True"
+                                                           IsSkipJoinedGroupsRequired="True"
+                                                           IsSourceTypeRequired="False" />
+                    </Expander>
+                    <Expander Header="{DynamicResource LangKeyOtherConfigurations}" Margin=" 5,5" IsExpanded="True"
+                              Visibility="{Binding GroupJoinerModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <CheckBox Name="ChckUniqueGroupsJoinedFromEachAccount" Margin="5,5"
+                                  Content="{DynamicResource LangKeyUniqueGroupsShouldBeJoinedFromEachAccount}"
+                                  FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                  IsChecked="{Binding GroupJoinerModel.IsUniqueGroupsShouldBeJoinedFromEachAccount}" />
+                    </Expander>
+
+
+                    <!--Other Configurations filter Expender-->
+                    <Expander Header="{DynamicResource LangKeyOtherConfigurations}" Margin="5,5" IsExpanded="True"
+                              Visibility="Collapsed">
+                        <StackPanel>
+
+                            <!--Enable auto Follow/Unfollow-->
+                            <StackPanel>
+                                <CheckBox Content="{DynamicResource LangKeyEnableAutoGroupJoiner/Unjoiner}"
+                                          Margin="10,0,0,0" Name="ChkEnableAutoFollowUnfollow" FontWeight="SemiBold"
+                                          Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                          IsChecked="{Binding IsChkEnableAutoGroupJoinerUnJoinerChecked}" />
+                                <StackPanel Margin="40,0,0,0"
+                                            Visibility="{Binding IsChkEnableAutoSendRequestWithdrawChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <StackPanel Margin="15,0" Orientation="Vertical" Name="AutoFollowUnfollowSection">
+                                        <StackPanel Orientation="Horizontal">
+                                            <CheckBox
+                                                Content="{DynamicResource LangKeyStartGroupUnjoinerToolAndStopGroupJoinerToolWhenReaching}"
+                                                FontWeight="SemiBold"
+                                                Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                IsChecked="{Binding IsChkStopGroupUnjoinerToolWhenReachChecked}" />
+                                            <controls:NumericUpDown Margin="10,5,5,0"
+                                                                    Value="{Binding StopFollowToolWhenReach.StartValue}"
+                                                                    Name="StopFollowStartValue"
+                                                                    IsEnabled="{Binding IsChkStopGroupUnjoinerToolWhenReachChecked}"
+                                                                    Minimum="0" />
+                                            <Label HorizontalAlignment="Center" FontWeight="SemiBold"
+                                                   Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                   VerticalAlignment="Center" Content="{DynamicResource LangKeyTo}" />
+                                            <controls:NumericUpDown Margin="10,5,10,0"
+                                                                    Minimum="{Binding StopFollowToolWhenReach.StartValue}"
+                                                                    Value="{Binding StopFollowToolWhenReach.EndValue}"
+                                                                    IsEnabled="{Binding IsChkStopFollowToolWhenReachChecked}" />
+                                            <Label HorizontalAlignment="Center" FontWeight="SemiBold"
+                                                   Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                   VerticalAlignment="Center" Content="{DynamicResource LangKeyGroups}" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </Expander>
+
+                    <!-- After User Filters Expender-->
+
+
+                    <!-- After Blacklists Expender-->
+
+
+                    <!-- After Post Filter Expender-->
+
+
+                    <!-- After Follow Action Expender-->
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+    </Grid>
+</local:GroupJoinerToolsBase>

@@ -1,0 +1,224 @@
+﻿<UserControl x:Class="FaceDominatorUI.CustomControl.GenderAndLocationFilter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             Loaded="InitializeLocation"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:customControl2="clr-namespace:DominatorUIUtility.CustomControl.FacebookCustomControl;assembly=DominatorUIUtility"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <StackPanel Orientation="Vertical" Margin="10">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical">
+                    <CheckBox Name="ChckGenderFilter" Margin="5,5,0,0" Content="{DynamicResource LangKeyGenders}"
+                              FontWeight="SemiBold" IsChecked="{Binding GenderandLocationFilter.IsFilterByGender}" />
+                    <StackPanel Name="GenderSection" Margin="0,5" Orientation="Horizontal"
+                                Visibility="{Binding GenderandLocationFilter.IsFilterByGender,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <CheckBox Margin="25,5,0,0" Content="{DynamicResource LangKeyMale}" FontWeight="SemiBold"
+                                  Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                  IsChecked="{Binding GenderandLocationFilter.SelectMaleUser}" />
+                        <CheckBox Margin="50,5,0,0" Content="{DynamicResource LangKeyFemale}" FontWeight="SemiBold"
+                                  IsChecked="{Binding GenderandLocationFilter.SelectFemaleUser}" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="0,0">
+                    <CheckBox Name="ChckLocation" Margin="5,5,0,0" Content="{DynamicResource LangKeyLocation}"
+                              FontWeight="SemiBold"
+                              IsChecked="{Binding GenderandLocationFilter.IsLocationFilterChecked}" />
+
+                    <StackPanel Orientation="Vertical"
+                                Visibility="{Binding GenderandLocationFilter.IsLocationFilterChecked,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid>
+                            <Grid Panel.ZIndex="1000"
+                                  Visibility="{Binding IsProgressActive,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <mah:ProgressRing IsActive="{Binding IsProgressActive}"
+                                                  Visibility="{Binding IsProgressActive,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                  HorizontalAlignment="Left" Margin="200,0" />
+                            </Grid>
+                            <Grid Panel.ZIndex="1000" Background="White" Opacity="0.1"
+                                  Visibility="{Binding IsProgressActive,Mode=OneWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <StackPanel Orientation="Horizontal" Margin="25,0">
+                                <StackPanel Orientation="Vertical">
+                                    <Label Content="{DynamicResource LangKeySelectCountry}" />
+                                    <ComboBox Margin="0" Height="30" Width="200"
+                                              DropDownOpened="ComboBox_SelectionChanged"
+                                              SelectedItem="{Binding SelectedCountry}"
+                                              ItemsSource="{Binding GenderandLocationFilter.ListCountry,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                        <ComboBox.Triggers>
+                                            <EventTrigger RoutedEvent="TextBoxBase.TextChanged">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <BooleanAnimationUsingKeyFrames
+                                                            Storyboard.TargetProperty="IsDropDownOpen">
+                                                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0" />
+                                                        </BooleanAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </ComboBox.Triggers>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                                    <Label Content="{DynamicResource LangKeySelectLocationByMultipleCities}" />
+                                    <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                                             Height="30" />
+                                    <Border BorderBrush="LightGray" Margin="0,5" BorderThickness="2" CornerRadius="2"
+                                            Visibility="{Binding IsCityListVisible,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <StackPanel Orientation="Vertical">
+                                            <StackPanel Orientation="Horizontal" Margin="5,2">
+                                                <CheckBox IsChecked="{Binding IsAllCitySelected}" />
+                                                <TextBlock Width="160" Text="Select All" FontWeight="SemiBold" />
+                                            </StackPanel>
+
+                                            <ListBox Name="CityCombo" Margin="0" MaxHeight="100" Width="200"
+                                                     VirtualizingPanel.IsVirtualizing="True"
+                                                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                                     VirtualizingPanel.VirtualizationMode="Recycling"
+                                                     ItemsSource="{Binding ListLocationModelView,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                                <ListBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <CheckBox IsChecked="{Binding IsSelected}" />
+                                                            <TextBlock Text="{Binding CityName}" />
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </ListBox.ItemTemplate>
+                                            </ListBox>
+                                        </StackPanel>
+
+                                    </Border>
+                                </StackPanel>
+                                <mah:ProgressRing IsActive="{Binding IsCitiesLoadProgressActive}"
+                                                  HorizontalAlignment="Left" Margin="10,0"
+                                                  Visibility="{Binding IsCitiesLoadProgressActive,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                  FontWeight="Thin" />
+                                <Button Cursor="Hand" Content="{DynamicResource LangKeySaveLocations}" Height="30"
+                                        Margin="10,25" Background="Green" VerticalAlignment="Top" Foreground="White"
+                                        Click="Button_Click" />
+                            </StackPanel>
+
+                        </Grid>
+
+                        <customControl2:SelectOptionControl Margin="25,10" x:Name="CommentScraperInputBox"
+                                                            LstSelectedInput="{Binding GenderandLocationFilter.ListLocationUrl}"
+                                                            InputText="{Binding GenderandLocationFilter.LocationText}"
+                                                            Visibility="{Binding GenderandLocationFilter.IsLocationFilterChecked,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                            IsSelectButtonVisible="False" />
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical"
+                                Visibility="{Binding IsMutualFriendFilterRequired,Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                        <CheckBox Name="ChckMutualFriend" Margin="5,5,0,0"
+                                  Content="{DynamicResource LangKeyMutualFriend}" FontWeight="SemiBold"
+                                  IsChecked="{Binding GenderandLocationFilter.IsMutualFriendFilterChecked}" />
+                        <StackPanel Orientation="Vertical" Margin="18,5"
+                                    Visibility="{Binding GenderandLocationFilter.IsMutualFriendFilterChecked,Converter={StaticResource BooleanToVisibilityConverter}}">
+
+
+                            <CheckBox Name="CheckMutualFriendsCount" Margin="5,10,0,0"
+                                      Content="{DynamicResource LangKeyFilterByMutualFriendsCount}"
+                                      FontWeight="SemiBold"
+                                      IsChecked="{Binding GenderandLocationFilter.IsMutualFriendsCountFilterSelected}" />
+                            <StackPanel
+                                Visibility="{Binding GenderandLocationFilter.IsMutualFriendsCountFilterSelected,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <StackPanel Orientation="Horizontal">
+                                    <RadioButton GroupName="{Binding RadioGroupName}" Name="ChckNoOfMutualFriend"
+                                                 Margin="10,10,0,0"
+                                                 Content="{DynamicResource LangKeyTotalNumberMutualFriendsShouldBeGreaterThan}"
+                                                 FontWeight="SemiBold"
+                                                 IsChecked="{Binding GenderandLocationFilter.IsNoOfMutualFriend}" />
+                                    <controls:NumericUpDown VerticalAlignment="Center"
+                                                            Value="{Binding GenderandLocationFilter.TotalNoOfMutualFriend}"
+                                                            FontWeight="SemiBold" Margin="10,10,0,5"
+                                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                            Minimum="0"
+                                                            IsEnabled="{Binding GenderandLocationFilter.IsNoOfMutualFriend}" />
+
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <RadioButton GroupName="{Binding RadioGroupName}"
+                                                 Name="ChckNoOfMutualFriendReverse" Margin="10,10,0,0"
+                                                 Content="{DynamicResource LangKeyTotalNumberMutualFriendsShouldBeSmallerThan}"
+                                                 FontWeight="SemiBold"
+                                                 IsChecked="{Binding GenderandLocationFilter.IsNoOfMutualFriendSmallerThan}" />
+                                    <controls:NumericUpDown
+                                        Value="{Binding GenderandLocationFilter.TotalNoOfMutualFriendSmallerThan}"
+                                        FontWeight="SemiBold" Margin="10,10,0,5"
+                                        Foreground="{DynamicResource TextColorBrushAccordingTheme}" Minimum="0"
+                                        IsEnabled="{Binding GenderandLocationFilter.IsNoOfMutualFriendSmallerThan}" />
+
+                                </StackPanel>
+                            </StackPanel>
+
+
+                            <CheckBox Name="ChckSpecialFriend" Margin="5,10,0,0"
+                                      Content="{DynamicResource LangKeyFriendOfASpecificFriend}" FontWeight="SemiBold"
+                                      IsChecked="{Binding GenderandLocationFilter.IsFriendOfFriend}" />
+                            <customControl2:SelectOptionControl Margin="25,10" x:Name="MutualFriendInputBox"
+                                                                LstSelectedInput="{Binding GenderandLocationFilter.ListFriends}"
+                                                                InputText="{Binding GenderandLocationFilter.FriendsText}"
+                                                                Visibility="{Binding GenderandLocationFilter.IsFriendOfFriend,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                                IsSelectButtonVisible="False" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"
+                                IsEnabled="{Binding GenderandLocationFilter.IsGroupCategoryEnabled}"
+                                Visibility="{Binding IsGroupMemberFilterNeeded,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <CheckBox Name="ChckCategory" Margin="5,5"
+                                  Content="{DynamicResource LangKeyGroupMemberCategory}" 
+                                  FontWeight="SemiBold"
+                                  VerticalAlignment="Center"
+                                  IsChecked="{Binding GenderandLocationFilter.IsGroupFilterChecked}" />
+                        <ComboBox Name="ComboCategory" Margin="20,5"
+                                  ItemsSource="{Binding GenderandLocationFilter.ObjGroupMemberCategory}"
+                                  SelectedIndex="{Binding GenderandLocationFilter.SelectedGroupMemberCategory}"
+                                  FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                  Width="235" DropDownClosed="Combo_Category_SelectionChanged" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"
+                                IsEnabled="{Binding GenderandLocationFilter.IsTimeLimitEnabled}"
+                                Visibility="{Binding IsInteractedDaysFilterNeeded,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <CheckBox Name="ChckTimeLimitFilter" Margin="5,5"
+                                  Content="{DynamicResource LangKeySendMessageToUserWhoHaveNotIntracted}"
+                                  VerticalAlignment="Center"
+                                  FontWeight="SemiBold"
+                                  IsChecked="{Binding GenderandLocationFilter.IsTimeLimitChecked}" />
+                        <controls:NumericUpDown Value="{Binding GenderandLocationFilter.TimeLimitOfDays}"
+                                                FontWeight="SemiBold" Margin="10,10,0,5"
+                                                Foreground="{DynamicResource TextColorBrushAccordingTheme}" Minimum="0"
+                                                IsEnabled="{Binding GenderandLocationFilter.IsTimeLimitChecked}" />
+                        <Label FontWeight="SemiBold" Margin="10,10,0,5">Days</Label>
+                    </StackPanel>
+
+                </StackPanel>
+
+                <StackPanel Margin="2" Orientation="Horizontal" HorizontalAlignment="Center"
+                            Visibility="{Binding IsSaveCloseButtonVisisble,Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Button x:Name="SaveButton" Foreground="White" x:FieldModifier="public"
+                            Margin="10,5,0,0" Background="{DynamicResource AccentColorBrush}"
+                            Height="25" HorizontalAlignment="Center" BorderThickness="1" FontSize="12"
+                            Content="{DynamicResource LangKeySave}" />
+
+
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

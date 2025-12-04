@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="FaceDominatorUI.CustomControl.GroupFilterControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical" Margin="10,10">
+                <CheckBox Name="ChckUniqueness" Margin="5,5" Content="{DynamicResource LangkeyScrapeUniqueGroups}"
+                          FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                          IsChecked="{Binding GroupFilter.IsUniqueGroupsChecked}" />
+
+                <StackPanel Orientation="Vertical">
+                    <CheckBox Name="ChckGroupType" Margin="5,5,0,0" Content="{DynamicResource LangKeyGroupType}"
+                              FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                              IsChecked="{Binding GroupFilter.IsGroupTypeChecked}" />
+
+                    <StackPanel Name="GroupType" Orientation="Horizontal"
+                                Visibility="{Binding GroupFilter.IsGroupTypeChecked,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <RadioButton Margin="27,5,0,0" Content="{DynamicResource LangKeyPublicGroup}"
+                                     FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                     IsChecked="{Binding GroupFilter.IsPublicGroup}" />
+                        <RadioButton Margin="50,5,0,0" Content="{DynamicResource LangKeyPrivateGroup}"
+                                     FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                     IsChecked="{Binding GroupFilter.IsPrivateGroup}" />
+                    </StackPanel>
+                </StackPanel>
+                <CheckBox Name="ChckGroupsJoinedByFriends" Margin="5,5"
+                          Content="{DynamicResource LangKeyGroupsJoinedByMyFriendS}" FontWeight="SemiBold"
+                          Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                          IsChecked="{Binding GroupFilter.IsGroupsJoinedByMyFriends}" />
+                <CheckBox Name="ChckSkipJoinedGroups" Margin="5,5"
+                          Content="{DynamicResource LangKeySkipGroupsIfAlreadyJoinedSendedRequestToJoin}"
+                          FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                          Visibility="{Binding IsSkipJoinedGroupsRequired,Converter={StaticResource BooleanToVisibilityConverter}}"
+                          IsChecked="{Binding GroupFilter.IsSkipJoinedGroups}" />
+
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Name="ChckMembersRange" Margin="5,5"
+                              Content="{DynamicResource LangKeyGroupsWhichContainMemberRangeBetween}"
+                              FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                              IsChecked="{Binding GroupFilter.IsGroupsBetweenChecked}" />
+                    <controls:NumericUpDown Value="{Binding GroupFilter.MemberCountBetween.StartValue}"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}" Minimum="0"
+                                            IsEnabled="{Binding GroupFilter.IsGroupsBetweenChecked}" />
+                    <Label Content="{DynamicResource LangKeyAnd}"
+                           Foreground="{DynamicResource TextColorBrushAccordingTheme}"/>
+                    <controls:NumericUpDown Value="{Binding GroupFilter.MemberCountBetween.EndValue}"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}" Minimum="0"
+                                            IsEnabled="{Binding GroupFilter.IsGroupsBetweenChecked}" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="2" Orientation="Horizontal" HorizontalAlignment="Center"
+                        Visibility="{Binding IsSaveCloseButtonVisisble,Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Button x:Name="SaveButton" Foreground="White" Click="SaveButton_OnClick" x:FieldModifier="public"
+                        Margin="10,5,0,0" Background="{DynamicResource AccentColorBrush}"
+                        Height="25" HorizontalAlignment="Center" BorderThickness="1" FontSize="12"
+                        Content="{DynamicResource LangKeySave}" />
+
+
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
