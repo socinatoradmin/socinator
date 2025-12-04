@@ -1,0 +1,85 @@
+﻿<local:BoardScraperConfigurationBase x:Class="PinDominator.PDViews.Tools.BoardScraper.BoardScraperConfiguration"
+                                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                     xmlns:local="clr-namespace:PinDominator.PDViews.Tools.BoardScraper"
+                                     mc:Ignorable="d" x:Name="BoardScraperConfigurationUserControl"
+                                     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                                     xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+                                     xmlns:customControl1="clr-namespace:PinDominator.CustomControl"
+                                     xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+                                     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=BoardScraperConfigurationUserControl}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <customControl:AccountGrowthModeHeader x:Name="AccountGrowthHeader"
+                                               VerticalAlignment="Top" SelectedIndex="0"
+                                               SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=BoardScraperConfigurationUserControl}"
+                                               SaveCommand="{Binding SaveConfigurationsCommand}"
+                                               VideoTutorialLink="{Binding VideoTutorialLink}" />
+        <ScrollViewer Grid.Row="1">
+            <Grid>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" HorizontalAlignment="Left"
+                                   Margin="5" />
+                        <controls:ToggleSwitch OnLabel="Active﻿" OffLabel="Stopped" x:Name="TglStatus"
+                                               FontSize="12" Margin="5"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                                               IsChecked="{Binding BoardScraperModel.IsAccountGrowthActive}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=BoardScraperConfigurationUserControl}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </controls:ToggleSwitch>
+                    </StackPanel>
+
+                    <Expander Header="{DynamicResource LangKeySearchQuery}" IsExpanded="True" Margin="5">
+                        <customControl:SearchQueryControl
+                            IsExpanded="{Binding IsExpanded,ElementName=AccountGrowthHeader,UpdateSourceTrigger=Explicit}"
+                            Name="BoardScraperConfigurationSearchControl"
+                            ListQueryInfo="{Binding BoardScraperModel.SavedQueries}"
+                            ListQueryType="{Binding BoardScraperModel.ListQueryType}"
+                            AddQueryCommand="{Binding AddQueryCommand}"
+                            CommandParameter="{Binding ElementName=BoardScraperConfigurationUserControl}"
+                            CustomFilterCommand="{Binding CustomFilterCommand}" />
+                    </Expander>
+
+                    <!-- After JobConfiguration  Expender-->
+
+                    <Expander Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+                        <customControl:JobConfigControl JobConfiguration="{Binding BoardScraperModel.JobConfiguration}"
+                                                        PerJobActivity="{DynamicResource LangKeyBoards}"
+                                                        PerHourActivity="{DynamicResource LangKeyBoards}"
+                                                        PerDayActivity="{DynamicResource LangKeyBoards}"
+                                                        PerWeekActivity="{DynamicResource LangKeyBoards}" />
+                    </Expander>
+
+                    <!-- After Pin Filter Expender-->
+
+                    <Expander Header="{DynamicResource LangKeyPinFilter}" Margin="5,5"
+                              Visibility="{Binding BoardScraperModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <customControl1:PostFilterControl PostFilter="{Binding BoardScraperModel.PostFilterModel}" />
+                    </Expander>
+
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</local:BoardScraperConfigurationBase>

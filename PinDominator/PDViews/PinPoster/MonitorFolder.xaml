@@ -1,0 +1,114 @@
+﻿<UserControl x:Class="PinDominator.PDViews.PinPoster.MonitorFolder"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PinDominator.PDViews.PinPoster"
+             mc:Ignorable="d" 
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility">
+    <Grid>
+        <StackPanel >
+            <StackPanel Orientation="Vertical">
+                <StackPanel Background="{DynamicResource AccentBaseColorBrush}" Height="35" >
+                    <Label Content="{DynamicResource PDlangSelectFolders}" Margin="5,5,0,0" FontSize="14" FontWeight="SemiBold" Foreground="White" VerticalContentAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                    <StackPanel Orientation="Vertical" Margin="10" >
+                        <TextBox Name="txt_BrowsePath"  Text="{Binding FolderPath}"  Controls:TextBoxHelper.Watermark="{DynamicResource PDlangEnterFolderPath}" Width="500" Height="50" FontSize="14" FontWeight="SemiBold"/>
+                        <TextBlock Text="{DynamicResource PDlangOR}" HorizontalAlignment="Center" Foreground="White" Margin="0,10,0,0"/>
+                        <Button Name="btn_BrowseButton"  Style="{StaticResource ButtonStyle}"  Background="#003569"  Margin="0,10,0,0"  Width="120" Height="30"  FontSize="13" >
+                            <Button.Content>
+                                <TextBlock Text="{DynamicResource PDlangBrowse}"/>
+                            </Button.Content>
+                        </Button>
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Visibility="Collapsed">
+                            <CheckBox Content="{DynamicResource PDlangUpdateEvery}" IsChecked="{Binding IsCheckBetweenMinutesChecked}" FontSize="13" FontWeight="SemiBold" Margin="0,3,0,3"/>
+                            <TextBox Margin="5,0,0,0"  Text="{Binding UpdateDelayCount}" Width="50" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                            <Label Content="{DynamicResource PDlangMinutesOnceTheFolder}" FontSize="13" FontWeight="SemiBold" VerticalContentAlignment="Center" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="10,10,10,0" >
+                        <TextBox  Text="{Binding PostTemplate}"  Controls:TextBoxHelper.Watermark="[FileName] [FileType] [FileTitle] [FileCreationDate] [FileTags] [FileComments]  Along with post description!" Controls:TextBoxHelper.UseFloatingWatermark="True"  TextWrapping="Wrap"   Width="500" Height="120" FontSize="14" FontWeight="SemiBold"/>
+
+                    </StackPanel>
+                </StackPanel>
+
+                <Button  Name="Btn_SaveFolder" Content="{DynamicResource PDlangSaveToFolderList}"  Margin="0,0,0,5" FontSize="14" FontWeight="SemiBold" Width="160" Height="30" Foreground="White"  Background="#003569">
+
+                </Button>
+
+            </StackPanel>
+            <StackPanel>
+                <StackPanel Background="{DynamicResource AccentBaseColorBrush}" Height="30" >
+                    <Label Margin="5,5,0,0" Content="{DynamicResource PDlangSavedFolderList}"  FontSize="14" FontWeight="SemiBold" Foreground="White" VerticalContentAlignment="Center"/>
+                </StackPanel>
+
+                <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1" Background="#EBF4FA">
+                    <Grid Grid.Row="1" HorizontalAlignment="Center" Background="#EBF4FA">
+
+                        <StackPanel>
+                            <DataGrid Name="dgv_SaveFolderDetails"  Background="White" HorizontalAlignment="Center" ItemsSource="{Binding lst_MonitorFolderArea}" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="false"  CanUserDeleteRows="False" SelectionUnit="FullRow">
+                                <DataGrid.Columns>
+
+                                    <DataGridTemplateColumn  Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBox Margin="10,5,0,3" Foreground="Black" IsReadOnly="True" Width="300" AcceptsReturn="True" Height="40" Grid.Row="1"  Text="{Binding FolderPath}" TextWrapping="Wrap" ToolTip="{DynamicResource PDlangFolderPathToolTip}" VerticalScrollBarVisibility="Auto"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                        <DataGridTemplateColumn.Header>
+                                            <TextBlock Text="{DynamicResource PDlangFolderUrl}"/>
+                                        </DataGridTemplateColumn.Header>
+                                    </DataGridTemplateColumn >
+
+                                    <DataGridTemplateColumn Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBox Margin="10,5,0,3" Foreground="Black" IsReadOnly="True" Width="300" AcceptsReturn="True" Height="40" Grid.Row="1"  Text="{Binding PostTemplate}" TextWrapping="Wrap" ToolTip="{DynamicResource PDlangFolderPathToolTip}" VerticalScrollBarVisibility="Auto"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                        <DataGridTemplateColumn.Header>
+                                            <TextBlock Text="{DynamicResource PDlangPostTemplate}"/>
+                                        </DataGridTemplateColumn.Header>
+                                    </DataGridTemplateColumn>
+
+                                    <DataGridTemplateColumn Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                                                    <Button Margin="10,0,10,0" Width="20" Height="24" HorizontalContentAlignment="Center"  HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="2" Background="Transparent" ToolTip="{DynamicResource PDlangViewEdit}" BorderBrush="Black" BorderThickness="0" Name="btnEdit" >
+                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Background="#003569">
+                                                            <Image Width="21" HorizontalAlignment="Left"  Margin="-21,-2,0,-2"  Height="25" Source="/DominatorUIUtility;component/Images/edit.png"  />
+                                                        </StackPanel>
+                                                    </Button>
+
+                                                    <Button  Width="20" Height="24" HorizontalContentAlignment="Center"  HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="2" ToolTip="To Delete" Background="Transparent" Margin="10,0,10,0"  BorderBrush="Black" BorderThickness="0" Name="btnDelete"  >
+                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Background="#003569">
+                                                            <!--<Image Width="21" HorizontalAlignment="Left"  Margin="-21,-2,0,-2"  Height="25" Source="/DominatorUIUtility;component/Images/black_deleteForever.png"  />-->
+                                                            <Rectangle Width="20" Height="20" Fill="White">
+                                                                <Rectangle.OpacityMask>
+                                                                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_delete}" />
+                                                                </Rectangle.OpacityMask>
+                                                            </Rectangle>
+                                                        </StackPanel>
+                                                    </Button>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                        <DataGridTemplateColumn.Header>
+                                            <TextBlock Text="{DynamicResource PDlangAction}"/>
+                                        </DataGridTemplateColumn.Header>
+                                    </DataGridTemplateColumn>
+
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

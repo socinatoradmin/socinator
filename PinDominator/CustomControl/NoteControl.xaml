@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="PinDominator.CustomControl.NoteControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:PinDominator.CustomControl"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+             xmlns:models="clr-namespace:DominatorHouseCore.Models;assembly=DominatorHouseCore"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:NoteControl}">
+    <StackPanel Name="MainGrid">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <TextBlock FontWeight="Bold" Margin="0,10" FontSize="16" Text="{DynamicResource LangKeyTryText}"
+                           VerticalAlignment="Center" />
+                <customControl:InputBoxControl x:Name="InputNote"
+                                               InputText="{Binding Notes.TryText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                               SaveVisiblity="Collapsed" />
+
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="BtnPhotos" Background="{DynamicResource AccentBaseColorBrush}" Height="30"
+                            HorizontalAlignment="Left" Foreground="White" Width="100" Click="btnPhotos_Click"
+                            Margin="5">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="15" Height="15" Fill="White">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Visual="{StaticResource appbar_image_export}" Stretch="Fill" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <TextBlock Text="{DynamicResource LangKeyPhoto}" Margin="6,0" />
+
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+
+                    <Image Source="{Binding Notes.MediaPath}" Height="Auto" MaxHeight="60" Margin="5"
+                           VerticalAlignment="Center">
+                        <Image.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="{DynamicResource LangKeyDelete}" Click="DeleteMedia_Click">
+                                    <MenuItem.Icon>
+                                        <Rectangle Width="15" Height="18" Fill="Black" Margin="0,0,0,3"
+                                                   VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_delete}" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </Image.ContextMenu>
+                    </Image>
+                </StackPanel>
+            </StackPanel>
+            <Grid Margin="10,30" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{DynamicResource LangKeyQueries}" VerticalAlignment="Center" />
+                <ComboBox Width="200" Margin="10" Grid.Row="0" Grid.Column="1" x:Name="ComboBoxQueries"
+                          x:FieldModifier="public"
+                          ItemsSource="{Binding Notes.LstQueries,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type models:QueryContent}">
+                            <CheckBox x:Name="chkQuery"
+                                      IsChecked="{Binding IsContentSelected}" Checked="chkQuery_Checked"
+                                      Unchecked="chkQuery_Unchecked">
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0} [ {1} ]">
+                                            <Binding Path="Content.QueryValue" />
+                                            <Binding Path="Content.QueryType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </CheckBox>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Text="{DynamicResource LangKeyFilterText}" Grid.Row="1" Grid.Column="0"
+                           VerticalAlignment="Center" />
+                <TextBox Width="200" x:Name="TextBoxFilter" Text="{Binding Notes.FilterText}" Grid.Row="1"
+                         Grid.Column="1" AcceptsReturn="True" />
+            </Grid>
+
+        </Grid>
+        <Button Content="{DynamicResource LangKeyAddNoteToList}" Width="200" x:Name="BtnAddNoteToList"
+                Click="btnAddNoteToList_Click"
+                Background="{DynamicResource AccentBaseColorBrush}" Foreground="White" Margin="10,30,0,0" />
+        <!--Command="{Binding AddNotesCommand}" CommandParameter="{Binding CommandParameter}"-->
+
+    </StackPanel>
+</UserControl>

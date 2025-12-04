@@ -1,0 +1,369 @@
+﻿<UserControl
+    x:Class="PinDominator.CustomControl.EditPins"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:PinDominator.CustomControl"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{DynamicResource GabaritoSemiBold}"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+
+        <Expander
+            Margin="5"
+            BorderThickness="2"
+            FontWeight="Bold"
+            Foreground="White"
+            Header="{DynamicResource LangKeyEditPin}"
+            IsExpanded="{Binding IsExpanded}"
+            Visibility="{Binding IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid>
+                <TabControl
+                    Name="PinsTab"
+                    Background="Transparent"
+                    SelectedIndex="{Binding CurrentPin.SelectedIndex, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                    <TabItem
+                        FontWeight="Bold"
+                        Header="{DynamicResource LangKeyPinSetting}"
+                        Style="{StaticResource TabItemStyle}">
+                        <Grid>
+                            <Border
+                                Padding="5"
+                                BorderBrush="{DynamicResource BlackBrush}"
+                                BorderThickness="2"
+                                CornerRadius="0 0 0 0">
+                                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Margin="30,10,0,0" Orientation="Horizontal">
+                                            <Label
+                                                Width="200"
+                                                Height="25"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Top"
+                                                Content="{DynamicResource LangKeyBoardUrl}" />
+                                            <TextBox
+                                                x:Name="TxtBoard"
+                                                Width="200"
+                                                Height="25"
+                                                VerticalAlignment="Top"
+                                                Text="{Binding CurrentPin.Board, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                TextWrapping="Wrap"
+                                                VerticalScrollBarVisibility="Auto" />
+                                        </StackPanel>
+                                        <StackPanel Margin="30,10,0,0" Orientation="Horizontal">
+                                            <Label
+                                                Width="200"
+                                                Height="25"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Top"
+                                                Content="{DynamicResource LangKeyTitle}" />
+                                            <TextBox
+                                                x:Name="Txttitle"
+                                                Width="200"
+                                                Height="25"
+                                                VerticalAlignment="Top"
+                                                Text="{Binding CurrentPin.Title, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                TextWrapping="Wrap"
+                                                VerticalScrollBarVisibility="Auto" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Margin="30,10,0,0" Orientation="Horizontal">
+                                            <Label
+                                                Width="200"
+                                                Height="25"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Top"
+                                                Content="{DynamicResource LangKeyPinIdToBeEdit}" />
+                                            <TextBox
+                                                x:Name="TxtPinToBeEdit"
+                                                Width="200"
+                                                Height="25"
+                                                VerticalAlignment="Top"
+                                                Text="{Binding CurrentPin.PinToBeEdit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                TextWrapping="Wrap"
+                                                VerticalScrollBarVisibility="Auto" />
+                                        </StackPanel>
+                                        <StackPanel Margin="30,10,0,0" Orientation="Horizontal">
+                                            <Label
+                                                Width="200"
+                                                Height="25"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Top"
+                                                Content="Section Name" />
+                                            <TextBox
+                                                x:Name="TxtSection"
+                                                Width="200"
+                                                Height="25"
+                                                VerticalAlignment="Top"
+                                                Text="{Binding CurrentPin.Section, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                TextWrapping="Wrap"
+                                                VerticalScrollBarVisibility="Auto" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Margin="30,10,0,0" Orientation="Horizontal">
+                                            <Label
+                                                Width="200"
+                                                Height="25"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Top"
+                                                Content="{DynamicResource LangKeyWebsiteUrl}" />
+                                            <TextBox
+                                                x:Name="TxtWebsiteUrl"
+                                                Width="200"
+                                                Height="25"
+                                                VerticalAlignment="Top"
+                                                Text="{Binding CurrentPin.WebsiteUrl, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                TextWrapping="Wrap"
+                                                VerticalScrollBarVisibility="Auto" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <StackPanel Margin="30,10,0,0" Orientation="Horizontal">
+                                                <Label
+                                                    Width="200"
+                                                    Height="25"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Top"
+                                                    Content="{DynamicResource LangKeyDescription}" />
+                                                <TextBox
+                                                    x:Name="TxtPinDescription"
+                                                    Width="200"
+                                                    Height="65"
+                                                    VerticalAlignment="Top"
+                                                    Text="{Binding CurrentPin.PinDescription, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                    TextWrapping="Wrap"
+                                                    VerticalScrollBarVisibility="Auto" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel
+                                        Margin="30,10,0,0"
+                                        HorizontalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        Visibility="{Binding SelectAccountVisibility, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <Label
+                                            Width="200"
+                                            Height="25"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            Content="{DynamicResource LangKeySelectAccount}" />
+                                        <ComboBox
+                                            x:Name="CmbboxAccountLists"
+                                            Width="200"
+                                            Height="25"
+                                            VerticalAlignment="Top"
+                                            IsEditable="True"
+                                            ItemsSource="{Binding ListAccounts}"
+                                            SelectedIndex="0"
+                                            SelectedItem="{Binding CurrentPin.Account, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                    </StackPanel>
+                                    <StackPanel
+                                        Margin="20,10,0,0"
+                                        HorizontalAlignment="Center"
+                                        Orientation="Horizontal">
+
+                                        <Button
+                                            Name="BtnImportQuery"
+                                            Width="100"
+                                            Height="25"
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Top"
+                                            Background="{DynamicResource AccentBaseColorBrush}"
+                                            Command="{Binding ImportFromCsvCommand}"
+                                            CommandParameter="{Binding CommandParameter}"
+                                            Style="{StaticResource ButtonStyle}"
+                                            ToolTip="{DynamicResource LangKeyImportFromCsvTxt}">
+                                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                                <Rectangle
+                                                    Width="15"
+                                                    Height="15"
+                                                    HorizontalAlignment="Center"
+                                                    Fill="White">
+                                                    <Rectangle.OpacityMask>
+                                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_page_upload}" />
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                            </StackPanel>
+                                        </Button>
+
+                                        <Button
+                                            x:Name="BtnAddToList"
+                                            Width="100"
+                                            Height="25"
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Top"
+                                            Background="{DynamicResource AccentBaseColorBrush}"
+                                            Command="{Binding AddPinCommand}"
+                                            CommandParameter="{Binding CommandParameter}"
+                                            Style="{StaticResource ButtonStyle}"
+                                            ToolTip="{DynamicResource LangKeyAddPinsToList}">
+                                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                                <Rectangle
+                                                    Width="15"
+                                                    Height="15"
+                                                    HorizontalAlignment="Center"
+                                                    Fill="White">
+                                                    <Rectangle.OpacityMask>
+                                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_add_multiple}" />
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                            </StackPanel>
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="{DynamicResource LangKeyPinList}" Style="{StaticResource TabItemStyle}">
+                        <Grid>
+                            <GroupBox
+                                BorderThickness="1"
+                                FontWeight="Bold"
+                                Foreground="white"
+                                Header="{DynamicResource LangKeyPinsList}">
+
+                                <DataGrid
+                                    Name="DataGridQueriesList"
+                                    Width="auto"
+                                    MinWidth="400"
+                                    MinHeight="150"
+                                    AutoGenerateColumns="False"
+                                    Background="White"
+                                    CanUserAddRows="false"
+                                    CanUserDeleteRows="False"
+                                    HorizontalScrollBarVisibility="Auto"
+                                    IsReadOnly="True"
+                                    ItemsSource="{Binding ListPinInfo}"
+                                    ScrollViewer.CanContentScroll="False"
+                                    ScrollViewer.IsDeferredScrollingEnabled="True"
+                                    SelectionMode="Single"
+                                    SelectionUnit="FullRow"
+                                    VerticalScrollBarVisibility="Auto"
+                                    VirtualizingPanel.IsContainerVirtualizable="True"
+                                    VirtualizingPanel.IsVirtualizing="True"
+                                    VirtualizingPanel.VirtualizationMode="Recycling">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn
+                                            MinWidth="120"
+                                            Binding="{Binding Board}"
+                                            FontSize="12">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Text="{DynamicResource LangKeyBoardUrl}" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn
+                                            MinWidth="120"
+                                            Binding="{Binding Title}"
+                                            FontSize="12">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Text="{DynamicResource LangKeyTitle}" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn
+                                            MinWidth="120"
+                                            Binding="{Binding PinDescription}"
+                                            FontSize="12">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Text="{DynamicResource LangKeyDescription}" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn
+                                            MinWidth="120"
+                                            Binding="{Binding Section}"
+                                            FontSize="12">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Text="{DynamicResource LangKeySection}" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn
+                                            MinWidth="120"
+                                            Binding="{Binding WebsiteUrl}"
+                                            FontSize="12">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Text="{DynamicResource LangKeyWebsiteUrl}" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn
+                                            MinWidth="120"
+                                            Binding="{Binding PinToBeEdit}"
+                                            FontSize="12">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Text="{DynamicResource LangKeyPinIdToBeEdit}" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn
+                                            MinWidth="120"
+                                            Binding="{Binding Account}"
+                                            FontSize="12">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Text="{DynamicResource LangKeyAccount}" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTemplateColumn>
+                                            <DataGridTemplateColumn.Header>
+                                                <TextBlock Text="{DynamicResource LangKeyAction}" />
+                                            </DataGridTemplateColumn.Header>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button
+                                                        Name="BtnDelete"
+                                                        Background="Transparent"
+                                                        Command="{Binding DataContext.DeletePinCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                        CommandParameter="{Binding}">
+                                                        <Button.Content>
+                                                            <Rectangle
+                                                                Name="DeleteSingle"
+                                                                Width="15"
+                                                                Height="20"
+                                                                Fill="Black">
+                                                                <Rectangle.OpacityMask>
+                                                                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_delete}" />
+                                                                </Rectangle.OpacityMask>
+                                                            </Rectangle>
+                                                        </Button.Content>
+                                                    </Button>
+
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+
+                            </GroupBox>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+
+
+            </Grid>
+        </Expander>
+    </Grid>
+</UserControl>
