@@ -1,0 +1,331 @@
+﻿<UserControl x:Class="YoutubeDominatorUI.CustomControl.SelectChannel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:YoutubeDominatorUI.CustomControl"
+             mc:Ignorable="d"
+             x:Name="ChannelSelect"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+             Loaded="SelectChannel_OnLoaded"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:enums="clr-namespace:DominatorHouseCore.Enums;assembly=DominatorHouseCore"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:utility="clr-namespace:DominatorHouseCore.Utility;assembly=DominatorHouseCore">
+    <UserControl.Resources>
+        <converters:ListViewItemIndexConverter x:Key="ListViewItemIndexConverter" />
+        <converters:BooleanToStringSelectConverter x:Key="BooleanToStringSelectConverter" />
+        <converters:PublisherSyncStringToBooleanConverter x:Key="SyncStringToBooleanConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+
+        <Grid Background="{DynamicResource AccentBaseColorBrush}" Name="HeaderGrid">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="White">
+                <Rectangle Width="30" Height="25" Fill="White" Margin="0,0,0,3" VerticalAlignment="Center"
+                           HorizontalAlignment="Center">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_list_up}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+                <Label Content="{Binding Title}" Foreground="White" FontSize="18" FontWeight="SemiBold"
+                       VerticalContentAlignment="Center" />
+
+            </TextBlock>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+
+                <Button x:Name="BtnSave" Cursor="Hand" Background="{DynamicResource AccentBaseColorBrush}"
+                        Foreground="White" VerticalAlignment="Center" Margin="5"
+                        Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Width="15" Height="15" Fill="White">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_save}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <Label Content="{DynamicResource LangKeySave}" Margin="0,0,0,0" Foreground="White"
+                                           FontSize="13" FontWeight="SemiBold" VerticalContentAlignment="Center" />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="BtnClear" Cursor="Hand" Command="{Binding ClearCommand}"
+                        Background="{DynamicResource AccentBaseColorBrush}" Foreground="White"
+                        VerticalAlignment="Center" Margin="5"
+                        Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Width="15" Height="15" Fill="White">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_clean}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <Label Content="{DynamicResource LangKeyClear}" Margin="0,0,0,0" Foreground="White"
+                                           FontSize="13" FontWeight="SemiBold" VerticalContentAlignment="Center" />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+
+                <Button Background="Transparent" Name="BtnSelect" Cursor="Hand" BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                        Command="{Binding OpenContextMenuCommand}" CommandParameter="{Binding ElementName=BtnSelect}"
+                        Margin="5">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="25" Height="25" Stretch="UniformToFill"
+                                           Source="/DominatorUIUtility;component/Images/Select.png" />
+                                    <Label Content="{DynamicResource LangKeySelect}" Margin="5,0,0,0"
+                                           Foreground="White" FontSize="13" FontWeight="SemiBold"
+                                           VerticalContentAlignment="Center" />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                    <Button.ContextMenu>
+                        <ContextMenu
+                            DataContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
+                            <MenuItem Header="{DynamicResource LangKeySelectAll}" Name="MenuSelectAllDestinations"
+                                      Command="{Binding SelectionCommand}" CommandParameter="MenuSelectAll">
+                                <MenuItem.Icon>
+                                    <Rectangle Width="15" Height="15" Fill="Black" Margin="0,0,0,3"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_checkmark}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="{DynamicResource LangKeySelectNone}" Name="MenuSelectNoneOfDestination"
+                                      Command="{Binding SelectionCommand}" CommandParameter="MenuSelectNone">
+                                <MenuItem.Icon>
+                                    <Rectangle Width="15" Height="15" Fill="Black" Margin="0,0,0,3"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill"
+                                                         Visual="{StaticResource appbar_checkmark_thick_unchecked}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{DynamicResource LangKeySelectDestinations}" VerticalAlignment="Center"
+                                   FontWeight="SemiBold" FontSize="14" />
+                        <Button Cursor="Hand" Margin="2" Command="{Binding AddFreshAccounts}"
+                                x:Name="ButtonAddFreshAccount"
+                                FontSize="12"
+                                Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                Background="Transparent">
+                            <TextBlock Text="{DynamicResource LangKeyClickToAddFreshAccounts}">
+                                <TextBlock.TextDecorations>
+                                    <TextDecoration Location="Underline" PenOffset="1" />
+                                </TextBlock.TextDecorations>
+                            </TextBlock>
+
+                        </Button>
+
+                    </StackPanel>
+
+                    <Grid Grid.Row="0" Background="{DynamicResource AccentBaseColorBrush}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.5*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--Groups combobox-->
+                        <Grid Height="40" VerticalAlignment="Center">
+                            <ComboBox x:Name="cmbAllGroups" DropDownOpened="CmbAllGroups_OnDropDownOpened"
+                                      Margin="10,0,0,0" ToolTip="Select accounts by group name"
+                                      Grid.Column="0" Text="{Binding SelectAccountModel.GroupText}"
+                                      Width="200" Height="30"
+                                      VerticalAlignment="Center" VerticalContentAlignment="Top"
+                                      FontSize="14"
+                                      IsEditable="True"
+                                      IsTextSearchEnabled="False"
+                                      ItemsSource="{Binding Groups}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <CheckBox Content="{Binding Content}" x:Name="chkgroup"
+                                                  IsChecked="{Binding IsContentSelected}" Checked="chkgroup_Checked"
+                                                  Unchecked="chkgroup_Unchecked" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+
+                        <!--Filter Section-->
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBox Controls:TextBoxHelper.Watermark="{DynamicResource LangKeySearch}"
+                                     VerticalAlignment="Center" Height="30" HorizontalAlignment="Left" Width="150"
+                                     Style="{StaticResource SearchMetroTextBox}" Name="TextSearch"
+                                     TextChanged="txtSearch_TextChanged" />
+                            <ComboBox Margin="10,0" Controls:TextBoxHelper.ClearTextButton="True" SelectedIndex="0"
+                                      Width="150" SelectionChanged="Filter"
+                                      VerticalAlignment="Center" HorizontalAlignment="Right" Height="30"
+                                      Name="ComboBoxSearchFilter">
+                                <ComboBoxItem Content="{DynamicResource LangKeyByGroupName}" />
+                                <ComboBoxItem Content="{DynamicResource LangKeyByAccount}" />
+                                <ComboBoxItem Content="{DynamicResource LangKeyByAccountNikeName}" />
+                            </ComboBox>
+                        </StackPanel>
+                    </Grid>
+
+                </StackPanel>
+            </Grid>
+
+            <ListView Grid.Row="1"
+                      x:Name="CampaignStatusList"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ItemsSource="{Binding DestinationCollectionView}"
+                      ItemContainerStyle="{DynamicResource ListViewItems}"
+                      VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <ListView.Resources>
+                    <Style TargetType="{x:Type GridViewColumnHeader}"
+                           BasedOn="{StaticResource {x:Type GridViewColumnHeader}}">
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Setter Property="Height" Value="30" />
+                        <Setter Property="Margin" Value="0,2,0,0" />
+                    </Style>
+                    <SolidColorBrush x:Key="ItemBackgroundHover" Color="Transparent" />
+                </ListView.Resources>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="80">
+                            <GridViewColumn.Header>
+                                <Border BorderBrush="LightGray" Margin="-6,-2,-6,-2">
+                                    <CheckBox x:Name="AllAccountsDestination" Margin="6,2,6,2"
+                                              IsChecked="{Binding IsAllDestinationSelected}" Content=" #"
+                                              Command="{Binding SelectionExecute}"
+                                              CommandParameter="{Binding IsAllDestinationSelected,Converter={StaticResource BooleanToStringSelectConverter}}" />
+                                </Border>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="1,1,0,0" BorderBrush="LightGray" Margin="-6,-2,-6,-2">
+                                        <CheckBox IsChecked="{Binding IsAccountSelected}"
+                                                  x:Name="ChkSingleCampaign"
+                                                  Margin="6,2,6,2"
+                                                  Content="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}},
+                                            Converter={StaticResource ListViewItemIndexConverter}}"
+                                                  Command="{Binding DataContext.SelectionCommand,
+                                      RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                                  CommandParameter="SelectManually" />
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="250">
+                            <GridViewColumn.Header>
+                                <TextBlock Text="{DynamicResource LangKeyAccountNikeName}" />
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="1,1,0,0" BorderBrush="LightGray" Margin="-6,-2,-6,-2">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding AccountNickName}" />
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="250">
+                            <GridViewColumn.Header>
+                                <TextBlock Text="{DynamicResource LangKeyNameOrUsername}" />
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="1,1,0,0" BorderBrush="LightGray" Margin="-6,-2,-6,-2">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding AccountName}" />
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="130">
+                            <GridViewColumn.Header>
+                                <TextBlock Text="{DynamicResource LangKeyChannels}" />
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="1,1,0,0" BorderBrush="LightGray" Margin="-6,-2,-6,-2">
+                                        <ComboBox IsEnabled="{Binding IsAccountSelected}"
+                                                  DropDownOpened="SwitchChannel_OnDropDownOpened"
+                                                  SelectedItem="{Binding SelectedChannel}" Name="switchChannel"
+                                                  ItemsSource="{Binding ListOfChannel}" />
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="150">
+                            <GridViewColumn.Header>
+                                <TextBlock Text="{DynamicResource LangKeyGroupName}" />
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="1,1,0,0" BorderBrush="LightGray" Margin="-6,-2,-6,-2">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding GroupName}" />
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                            <!--<GridViewColumn.Header>
+                                <TextBlock Text="{DynamicResource LangKeyStatus}"/>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="1,1,1,0" BorderBrush="LightGray" Margin="-6,-2,-6,-2">
+                                        <Button Cursor="Hand" Margin="6,2,6,2" IsEnabled="{Binding StatusSyncContent, Converter={StaticResource SyncStringToBooleanConverter}}"
+                                                Content="{Binding StatusSyncContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                x:Name="ButtonStatusSync" FontSize="12"   ToolTip="{DynamicResource LangKeyToolTipForSync}"                                            
+                                                Command="{Binding Path=DataContext.StatusSyncCommand,  RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding}"
+                                                Background="Transparent">
+                                        </Button>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>-->
+                        </GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Grid>
+</UserControl>

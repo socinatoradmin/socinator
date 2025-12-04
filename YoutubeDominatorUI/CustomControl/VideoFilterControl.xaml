@@ -1,0 +1,300 @@
+﻿<UserControl
+    x:Class="YoutubeDominatorUI.CustomControl.VideoFilterControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Name="VideoFilteringControl"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <StackPanel>
+
+            <!--  Searching videos by keywords filter  -->
+            <StackPanel Orientation="Vertical">
+                <CheckBox
+                    Margin="10,5,0,0"
+                    Content="{DynamicResource LangKeyFilterSearchingVideos}"
+                    IsChecked="{Binding VideoFilter.IsCheckedSearchVideoFilter}"
+                    ToolTip="{DynamicResource LangKeyApplicableOnKeywordQueries}" />
+                <StackPanel
+                    Margin="30,5,5,10"
+                    IsVisibleChanged="FilterSearchingVideos_IsVisibleChanged"
+                    Orientation="Horizontal"
+                    Visibility="{Binding VideoFilter.IsCheckedSearchVideoFilter, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <GroupBox>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <Label
+                                    Margin="0,5,0,0"
+                                    VerticalAlignment="Center"
+                                    Content="{DynamicResource LangKeyUploadDate}"
+                                    FontWeight="Bold" />
+                                <ComboBox
+                                    Name="UploadDateComboBox"
+                                    Width="200"
+                                    Height="25"
+                                    Margin="6,0,0,0"
+                                    VerticalAlignment="Top"
+                                    ItemsSource="{Binding ListUploadDateFilters}"
+                                    SelectionChanged="UploadDate_SelectionChanged" />
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <Label
+                                    Margin="0,5,0,0"
+                                    VerticalAlignment="Center"
+                                    Content="{DynamicResource LangKeyDuration}"
+                                    FontWeight="Bold" />
+                                <ComboBox
+                                    Name="DurationComboBox"
+                                    Width="200"
+                                    Height="25"
+                                    Margin="6,0,0,0"
+                                    VerticalAlignment="Top"
+                                    ItemsSource="{Binding ListDurationFilters}"
+                                    SelectionChanged="DurationComboBox_SelectionChanged" />
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <Label
+                                    Margin="0,5,0,0"
+                                    VerticalAlignment="Center"
+                                    Content="{DynamicResource LangKeySortByNoCollon}"
+                                    FontWeight="Bold" />
+                                <ComboBox
+                                    Name="SortByComboBox"
+                                    Width="200"
+                                    Height="25"
+                                    Margin="6,0,0,0"
+                                    VerticalAlignment="Top"
+                                    ItemsSource="{Binding ListSortByFilters}"
+                                    SelectionChanged="SortByComboBox_SelectionChanged" />
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </StackPanel>
+
+            <!--  ViewsCount  -->
+            <StackPanel Orientation="Horizontal">
+                <CheckBox
+                    Name="ChkIsViewsCountChecked"
+                    Margin="10,5,5,0"
+                    Content="{DynamicResource LangKeyViewsCount}"
+                    IsChecked="{Binding VideoFilter.IsViewsCountChecked}" />
+                <controls:NumericUpDown
+                    Margin="0,5,0,0"
+                    Minimum="1"
+                    Visibility="{Binding VideoFilter.IsViewsCountChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding VideoFilter.MinimumViewsCount}" />
+                <Label
+                    Margin="0,5,0,0"
+                    VerticalAlignment="Center"
+                    Content="{DynamicResource LangKeyTo}"
+                    Visibility="{Binding VideoFilter.IsViewsCountChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <controls:NumericUpDown
+                    Margin="0,5,0,0"
+                    Minimum="{Binding VideoFilter.MinimumViewsCount}"
+                    Visibility="{Binding VideoFilter.IsViewsCountChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding VideoFilter.MaximumViewsCount}" />
+            </StackPanel>
+            <!--  CommentsCount  -->
+            <StackPanel Orientation="Horizontal">
+                <CheckBox
+                    Name="ChkIsCommentsCountChecked"
+                    Margin="10,5,5,0"
+                    Content="{DynamicResource LangKeyCommentsCount}"
+                    IsChecked="{Binding VideoFilter.IsCommentsCountChecked}" />
+                <controls:NumericUpDown
+                    Margin="0,5,0,0"
+                    Minimum="1"
+                    Visibility="{Binding VideoFilter.IsCommentsCountChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding VideoFilter.MinimumCommentsCount}" />
+                <Label
+                    Margin="0,5,0,0"
+                    VerticalAlignment="Center"
+                    Content="{DynamicResource LangKeyTo}"
+                    Visibility="{Binding VideoFilter.IsCommentsCountChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <controls:NumericUpDown
+                    Margin="0,5,0,0"
+                    Minimum="{Binding VideoFilter.MinimumCommentsCount}"
+                    Visibility="{Binding VideoFilter.IsCommentsCountChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding VideoFilter.MaximumCommentsCount}" />
+            </StackPanel>
+            <!--  LikesCount  -->
+            <StackPanel Orientation="Horizontal">
+                <CheckBox
+                    Name="ChkIsLikesCountChecked"
+                    Margin="10,5,5,0"
+                    Content="{DynamicResource LangKeyLikesCount}"
+                    IsChecked="{Binding VideoFilter.IsLikesCountChecked}" />
+                <controls:NumericUpDown
+                    Margin="0,5,0,0"
+                    Minimum="1"
+                    Visibility="{Binding VideoFilter.IsLikesCountChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding VideoFilter.MinimumLikesCount}" />
+                <Label
+                    Margin="0,5,0,0"
+                    VerticalAlignment="Center"
+                    Content="{DynamicResource LangKeyTo}"
+                    Visibility="{Binding VideoFilter.IsLikesCountChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <controls:NumericUpDown
+                    Margin="0,5,0,0"
+                    Minimum="{Binding VideoFilter.MinimumLikesCount}"
+                    Visibility="{Binding VideoFilter.IsLikesCountChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding VideoFilter.MaximumLikesCount}" />
+            </StackPanel>
+            <!--  DislikesCount  -->
+            <StackPanel Orientation="Horizontal">
+                <CheckBox
+                    Name="ChkIsDislikesCountChecked"
+                    Margin="10,5,5,0"
+                    Content="{DynamicResource LangKeyDislikesCount}"
+                    IsChecked="{Binding VideoFilter.IsDislikesCountChecked}" />
+                <controls:NumericUpDown
+                    Margin="0,5,0,0"
+                    Minimum="1"
+                    Visibility="{Binding VideoFilter.IsDislikesCountChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding VideoFilter.MinimumDislikesCount}" />
+                <Label
+                    Margin="0,5,0,0"
+                    VerticalAlignment="Center"
+                    Content="{DynamicResource LangKeyTo}"
+                    Visibility="{Binding VideoFilter.IsDislikesCountChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <controls:NumericUpDown
+                    Margin="0,5,0,0"
+                    Minimum="{Binding VideoFilter.MinimumDislikesCount}"
+                    Visibility="{Binding VideoFilter.IsDislikesCountChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding VideoFilter.MaximumDislikesCount}" />
+            </StackPanel>
+
+            <!--  Video Length  -->
+            <StackPanel Orientation="Horizontal">
+                <CheckBox
+                    Name="ChkIsVideoLengthInSecondsChecked"
+                    Margin="10,5,5,0"
+                    Content="{DynamicResource LangKeyVideoLengthInSeconds}"
+                    IsChecked="{Binding VideoFilter.IsVideoLengthInSecondsChecked}" />
+                <controls:NumericUpDown
+                    Margin="0,5,0,0"
+                    Minimum="1"
+                    Visibility="{Binding VideoFilter.IsVideoLengthInSecondsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding VideoFilter.MinimumVideoLengthInSeconds}" />
+                <Label
+                    Margin="0,5,0,0"
+                    VerticalAlignment="Center"
+                    Content="{DynamicResource LangKeyTo}"
+                    Visibility="{Binding VideoFilter.IsVideoLengthInSecondsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <controls:NumericUpDown
+                    Margin="0,5,0,0"
+                    Minimum="{Binding VideoFilter.MinimumVideoLengthInSeconds}"
+                    Visibility="{Binding VideoFilter.IsVideoLengthInSecondsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding VideoFilter.MaximumVideoLengthInSeconds}" />
+            </StackPanel>
+
+            <!--  Video Length  -->
+            <StackPanel Orientation="Horizontal">
+                <CheckBox
+                    Margin="10,5,5,0"
+                    Content="{DynamicResource LangKeyShouldNotBePublishedOnDaysBefore}"
+                    IsChecked="{Binding VideoFilter.IsPublishedOnDaysBeforeChecked}" />
+                <controls:NumericUpDown
+                    Margin="0,5,0,0"
+                    Minimum="1"
+                    Visibility="{Binding VideoFilter.IsPublishedOnDaysBeforeChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding VideoFilter.PublishedOnDaysBefore}" />
+            </StackPanel>
+
+            <!--  Title Should Contains Words Or Phrases Like  -->
+            <StackPanel>
+                <CheckBox
+                    Name="ChkIsTitleShouldContainsWordPhraseChecked"
+                    Margin="10,5,0,0"
+                    IsChecked="{Binding VideoFilter.IsTitleShouldContainsWordPhraseChecked}">
+                    <CheckBox.Content>
+                        <TextBlock>
+                            <Run Text="Filter Videos" />
+                            <Run Text="{DynamicResource LangKeyTitleShouldContainsWordsOrPhrasesLike}" />
+                        </TextBlock>
+                    </CheckBox.Content>
+                </CheckBox>
+                <customControl:InputBoxControl
+                    x:Name="CaptionTitleShouldContainsWordPhrase"
+                    Margin="30,5"
+                    GetInputClick="CaptionTitleShouldContainsWordPhrase_OnGetInputClick"
+                    InputText="{Binding VideoFilter.TitleShouldContainsWordPhrase}"
+                    Visibility="{Binding VideoFilter.IsTitleShouldContainsWordPhraseChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </StackPanel>
+
+            <!--  Description Should Contains Words Or Phrases Like  -->
+            <StackPanel>
+                <CheckBox
+                    Name="ChkIsDescriptionShouldContainsWordPhraseChecked"
+                    Margin="10,5,0,0"
+                    IsChecked="{Binding VideoFilter.IsDescriptionShouldContainsWordPhraseChecked}">
+                    <CheckBox.Content>
+                        <TextBlock>
+                            <Run Text="Filter Videos" />
+                            <Run Text="{DynamicResource LangKeyDescriptionShouldContainsWordsOrPhrasesLike}" />
+                        </TextBlock>
+                    </CheckBox.Content>
+                </CheckBox>
+                <customControl:InputBoxControl
+                    x:Name="CaptionDescriptionShouldContainsWordPhrase"
+                    Margin="30,5"
+                    GetInputClick="CaptionDescriptionShouldContainsWordPhrase_OnGetInputClick"
+                    InputText="{Binding VideoFilter.DescriptionShouldContainsWordPhrase}"
+                    Visibility="{Binding VideoFilter.IsDescriptionShouldContainsWordPhraseChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            </StackPanel>
+
+            <!--  Title Should Contains Not Words Or Phrases Like  -->
+            <StackPanel>
+                <CheckBox
+                    Name="ChkIsTitleShouldNotContainsWordPhraseChecked"
+                    Margin="10,5,0,0"
+                    IsChecked="{Binding VideoFilter.IsTitleShouldNotContainsWordPhraseChecked}">
+                    <CheckBox.Content>
+                        <TextBlock>
+                            <Run Text="Filter Videos" />
+                            <Run Text="{DynamicResource LangKeyTitleShouldNotContainsWordsOrPhrasesLike}" />
+                        </TextBlock>
+                    </CheckBox.Content>
+                </CheckBox>
+                <customControl:InputBoxControl
+                    x:Name="CaptionTitleShouldNotContainsWordPhrase"
+                    Margin="30,5"
+                    GetInputClick="CaptionTitleShouldNotContainsWordPhrase_OnGetInputClick"
+                    InputText="{Binding VideoFilter.TitleShouldNotContainsWordPhrase}"
+                    Visibility="{Binding VideoFilter.IsTitleShouldNotContainsWordPhraseChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            </StackPanel>
+
+            <!--  Description Should Not Contains Words Or Phrases Like  -->
+            <StackPanel>
+                <CheckBox
+                    Name="ChkIsDescriptionShouldNotContainsWordPhraseChecked"
+                    Margin="10,5,0,0"
+                    IsChecked="{Binding VideoFilter.IsDescriptionShouldNotContainsWordPhraseChecked}">
+                    <CheckBox.Content>
+                        <TextBlock>
+                            <Run Text="Filter Videos" />
+                            <Run Text="{DynamicResource LangKeyDescriptionShouldNotContainsWordsOrPhrasesLike}" />
+                        </TextBlock>
+                    </CheckBox.Content>
+                </CheckBox>
+                <customControl:InputBoxControl
+                    x:Name="CaptionDescriptionShouldNotContainsWordPhrase"
+                    Margin="30,5"
+                    GetInputClick="CaptionDescriptionShouldNotContainsWordPhrase_OnGetInputClick"
+                    InputText="{Binding VideoFilter.DescriptionShouldNotContainsWordPhrase}"
+                    Visibility="{Binding VideoFilter.IsDescriptionShouldNotContainsWordPhraseChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

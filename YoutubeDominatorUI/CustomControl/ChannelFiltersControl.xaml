@@ -1,0 +1,161 @@
+﻿<UserControl
+    x:Class="YoutubeDominatorUI.CustomControl.ChannelFiltersControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:YoutubeDominatorUI.CustomControl"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <StackPanel>
+
+            <!--  SubscribersCount  -->
+            <StackPanel Orientation="Horizontal">
+                <CheckBox
+                    Name="ChkIsSubscribersCountChecked"
+                    Margin="10,5,5,0"
+                    Content="{DynamicResource LangKeySubscribersCount}"
+                    IsChecked="{Binding ChannelFilter.IsSubscribersCountChecked}" />
+                <controls:NumericUpDown
+                    Margin="0,5,0,0"
+                    Minimum="1"
+                    Visibility="{Binding ChannelFilter.IsSubscribersCountChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding ChannelFilter.MinimumSubscribersCount}" />
+                <Label
+                    Margin="0,5,0,0"
+                    VerticalAlignment="Center"
+                    Content="{DynamicResource LangKeyTo}"
+                    Visibility="{Binding ChannelFilter.IsSubscribersCountChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <controls:NumericUpDown
+                    Margin="0,5,0,0"
+                    Minimum="{Binding ChannelFilter.MinimumSubscribersCount}"
+                    Visibility="{Binding ChannelFilter.IsSubscribersCountChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding ChannelFilter.MaximumSubscribersCount}" />
+            </StackPanel>
+            <!--  ViewsCount  -->
+            <StackPanel Orientation="Horizontal">
+                <CheckBox
+                    Name="ChkIsViewsCountChecked"
+                    Margin="10,5,5,0"
+                    Content="{DynamicResource LangKeyViewsCount}"
+                    IsChecked="{Binding ChannelFilter.IsViewsCountChecked}" />
+                <controls:NumericUpDown
+                    Margin="0,5,0,0"
+                    Minimum="1"
+                    Visibility="{Binding ChannelFilter.IsViewsCountChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding ChannelFilter.MinimumViewsCount}" />
+                <Label
+                    Margin="0,5,0,0"
+                    VerticalAlignment="Center"
+                    Content="{DynamicResource LangKeyTo}"
+                    Visibility="{Binding ChannelFilter.IsViewsCountChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <controls:NumericUpDown
+                    Margin="0,5,0,0"
+                    Minimum="{Binding ChannelFilter.MinimumViewsCount}"
+                    Visibility="{Binding ChannelFilter.IsViewsCountChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding ChannelFilter.MaximumViewsCount}" />
+            </StackPanel>
+
+            <!--  Channel age  -->
+            <!--
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Margin="10,5,10,0" x:Name="ChkIsPublishedOnDaysBeforeChecked" Content="{DynamicResource LangKeyPublishedOnDaysBefore}"  IsChecked="{Binding ChannelFilter.IsPublishedOnDaysBeforeChecked}"/>
+                <controls:NumericUpDown   Margin="0,5,0,0" Visibility="{Binding ChannelFilter.IsPublishedOnDaysBeforeChecked,Converter={StaticResource BooleanToVisibilityConverter}}" Value="{Binding ChannelFilter.PublishedOnDaysBefore}" />
+            </StackPanel>-->
+
+            <!--  Title Should Contains Words Or Phrases Like  -->
+            <StackPanel>
+                <CheckBox
+                    Name="ChkIsTitleShouldContainsWordPhraseChecked"
+                    Margin="10,5,0,0"
+                    IsChecked="{Binding ChannelFilter.IsTitleShouldContainsWordPhraseChecked}">
+                    <CheckBox.Content>
+                        <TextBlock>
+                            <Run Text="Filter Channels" />
+                            <Run Text="{DynamicResource LangKeyTitleShouldContainsWordsOrPhrasesLike}" />
+                        </TextBlock>
+                    </CheckBox.Content>
+                </CheckBox>
+                <customControl:InputBoxControl
+                    x:Name="CaptionTitleShouldContainsWordPhrase"
+                    Margin="30,5"
+                    GetInputClick="CaptionTitleShouldContainsWordPhrase_OnGetInputClick"
+                    InputText="{Binding ChannelFilter.TitleShouldContainsWordPhrase}"
+                    Visibility="{Binding ChannelFilter.IsTitleShouldContainsWordPhraseChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            </StackPanel>
+
+            <!--  Description Should Contains Words Or Phrases Like  -->
+            <StackPanel>
+                <CheckBox
+                    Name="ChkIsDescriptionShouldContainsWordPhraseChecked"
+                    Margin="10,5,0,0"
+                    IsChecked="{Binding ChannelFilter.IsDescriptionShouldContainsWordPhraseChecked}">
+                    <CheckBox.Content>
+                        <TextBlock>
+                            <Run Text="Filter Channels" />
+                            <Run Text="{DynamicResource LangKeyDescriptionShouldContainsWordsOrPhrasesLike}" />
+                        </TextBlock>
+                    </CheckBox.Content>
+                </CheckBox>
+                <customControl:InputBoxControl
+                    x:Name="CaptionDescriptionShouldContainsWordsOrPhrasesLike"
+                    Margin="30,5"
+                    GetInputClick="CaptionDescriptionShouldContainsWordPhrase_OnGetInputClick"
+                    InputText="{Binding ChannelFilter.DescriptionShouldContainsWordPhrase}"
+                    Visibility="{Binding ChannelFilter.IsDescriptionShouldContainsWordPhraseChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            </StackPanel>
+
+            <!--  Title Should Contains Not Words Or Phrases Like  -->
+            <StackPanel>
+                <CheckBox
+                    Name="ChkTitleShouldNotContainsWordPhrase"
+                    Margin="10,5,0,0"
+                    IsChecked="{Binding ChannelFilter.IsTitleShouldNotContainsWordPhraseChecked}">
+                    <CheckBox.Content>
+                        <TextBlock>
+                            <Run Text="Filter Channels" />
+                            <Run Text="{DynamicResource LangKeyTitleShouldNotContainsWordsOrPhrasesLike}" />
+                        </TextBlock>
+                    </CheckBox.Content>
+                </CheckBox>
+                <customControl:InputBoxControl
+                    x:Name="CaptionTitleShouldNotContainsWordPhrase"
+                    Margin="30,5"
+                    GetInputClick="CaptionTitleShouldNotContainsWordPhrase_OnGetInputClick"
+                    InputText="{Binding ChannelFilter.TitleShouldNotContainsWordPhrase}"
+                    Visibility="{Binding ChannelFilter.IsTitleShouldNotContainsWordPhraseChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            </StackPanel>
+
+            <!--  Description Should Not Contains Words Or Phrases Like  -->
+            <StackPanel>
+                <CheckBox
+                    Name="ChkIsDescriptionShouldNotContainsWordPhraseChecked"
+                    Margin="10,5,0,0"
+                    IsChecked="{Binding ChannelFilter.IsDescriptionShouldNotContainsWordPhraseChecked}">
+                    <CheckBox.Content>
+                        <TextBlock>
+                            <Run Text="Filter Channels" />
+                            <Run Text="{DynamicResource LangKeyDescriptionShouldNotContainsWordsOrPhrasesLike}" />
+                        </TextBlock>
+                    </CheckBox.Content>
+                </CheckBox>
+                <customControl:InputBoxControl
+                    x:Name="CaptionDescriptionShouldNotContainsWordsOrPhrasesLike"
+                    Margin="30,5"
+                    GetInputClick="CaptionDescriptionShouldNotContainsWordsOrPhrasesLike_OnGetInputClick"
+                    InputText="{Binding ChannelFilter.DescriptionShouldNotContainsWordPhrase}"
+                    Visibility="{Binding ChannelFilter.IsDescriptionShouldNotContainsWordPhraseChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

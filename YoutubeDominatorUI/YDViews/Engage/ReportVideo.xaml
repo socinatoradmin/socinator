@@ -1,0 +1,281 @@
+﻿<local:ReportVideoBase
+    x:Class="YoutubeDominatorUI.YDViews.Engage.ReportVideo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:YDCustomControl="clr-namespace:DominatorUIUtility.CustomControl.YoutubeCutomControl;assembly=DominatorUIUtility"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:customControl1="clr-namespace:YoutubeDominatorUI.CustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:YoutubeDominatorUI.YDViews.Engage"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="ReportVideoUserControl"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <!--  Header Section  -->
+        <StackPanel VerticalAlignment="Top">
+            <customControl:HeaderControl
+                Name="HeaderGrid"
+                Grid.Row="0"
+                CampaignName="{Binding CampaignName}"
+                CancelEditCommand="{Binding CancelEditCommand}"
+                InfoCommand="{Binding InfoCommand}"
+                IsCampaignNameEditable="{Binding IsEditCampaignName}"
+                IsCancelEditVisible="{Binding CancelEditVisibility}" />
+        </StackPanel>
+
+        <!--  Filter section  -->
+        <Grid
+            Name="MainGrid"
+            Margin="0,40,0,80"
+            ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Expander
+                            Margin="5"
+                            Header="{DynamicResource LangKeySearchQuery}"
+                            IsExpanded="True">
+                            <customControl:SearchQueryControl
+                                Name="ReportVideoSearchControl"
+                                AddQueryCommand="{Binding AddQueryCommand}"
+                                CommandParameter="{Binding ElementName=ReportVideoUserControl}"
+                                CustomFilterCommand="{Binding CustomFilterCommand}"
+                                DeleteMulipleCommand="{Binding DeleteMulipleCommand}"
+                                DeleteQueryCommand="{Binding DeleteQueryCommand}"
+                                IsExpanded="{Binding IsExpanded, ElementName=HeaderGrid, UpdateSourceTrigger=Explicit}"
+                                ListQueryInfo="{Binding ReportVideoModel.SavedQueries}"
+                                ListQueryType="{Binding ReportVideoModel.ListQueryType}" />
+
+                        </Expander>
+
+                        <!--  Report Details Manager  -->
+                        <Expander Margin="5,5" Header="{DynamicResource LangKeyReportDetailsManager}">
+                            <StackPanel>
+                                <YDCustomControl:VideoReportContentControl
+                                    Name="CommentControl"
+                                    AddReportDetailsCommand="{Binding AddReportDetailsCommand}"
+                                    CommandParameter="{Binding ElementName=CommentControl}"
+                                    ReportDetails="{Binding ReportVideoModel.ManageReportDetailsModel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    SplitTextByNextLine="{Binding ReportVideoModel.SplitTextByNextLine, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                <YDCustomControl:ManageReportVideosAs ListReportDetailsModel="{Binding ReportVideoModel.ListReportDetailsModel}" />
+                            </StackPanel>
+                        </Expander>
+
+                        <!--  After JobConfiguration  Expender  -->
+                        <Expander Margin="5,5" Header="{DynamicResource LangKeyJobConfiguration}">
+                            <customControl:JobConfigControl
+                                JobConfiguration="{Binding ReportVideoModel.JobConfiguration}"
+                                PerDayActivity="{DynamicResource LangKeyVideos}"
+                                PerHourActivity="{DynamicResource LangKeyVideos}"
+                                PerJobActivity="{DynamicResource LangKeyVideos}"
+                                PerWeekActivity="{DynamicResource LangKeyVideos}" />
+                        </Expander>
+
+                        <Expander
+                            Margin="5,5"
+                            Header="{DynamicResource LangKeyChannelFilter}"
+                            Visibility="{Binding ReportVideoModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <customControl1:ChannelFiltersControl x:Name="ChannelFiltersControl" ChannelFilter="{Binding ReportVideoModel.ChannelFilterModel}" />
+                        </Expander>
+                        <Expander
+                            Margin="5,5"
+                            Header="{DynamicResource LangKeyVideoFilter}"
+                            Visibility="{Binding ReportVideoModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <customControl1:VideoFilterControl x:Name="VideoFilterControl" VideoFilter="{Binding ReportVideoModel.VideoFilterModel}" />
+                        </Expander>
+
+                        <!--  After Other Config Expender  -->
+                        <Expander
+                            Margin="5,5"
+                            Header="{DynamicResource LangKeyOtherConfigurations}"
+                            Visibility="{Binding ReportVideoModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel Margin="0,10">
+
+                                <CheckBox
+                                    Margin="0,5,10,5"
+                                    Content="{DynamicResource LangKeyUniqueTextInReport}"
+                                    IsChecked="{Binding ReportVideoModel.IsChkTextUnique}" />
+                                <StackPanel Orientation="Vertical" Visibility="{Binding ReportVideoModel.IsChkTextUnique, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <RadioButton
+                                        Margin="10,5,5,0"
+                                        Content="{DynamicResource LangKeyUniqueTextAddOnReportToSpecificPostFromEachAccount}"
+                                        GroupName="UniqueText"
+                                        IsChecked="{Binding ReportVideoModel.IsPostUniqueTextFromEachAccount}" />
+                                    <RadioButton
+                                        Margin="10,5,5,0"
+                                        Content="{DynamicResource LangKeyTextReportOnceFromEachAccount}"
+                                        GroupName="UniqueText"
+                                        IsChecked="{Binding ReportVideoModel.IsTextOnceFromEachAccount}" />
+                                    <StackPanel
+                                        Margin="10,5,5,0"
+                                        Orientation="Horizontal"
+                                        Visibility="Collapsed">
+                                        <CheckBox
+                                            Margin="0,5,0,0"
+                                            Content="{DynamicResource LangKeyAllow}"
+                                            IsChecked="{Binding ReportVideoModel.IsChkAllowMultipleTextsOnSamePost}" />
+                                        <controls:NumericUpDown
+                                            Margin="5,5,0,0"
+                                            IsEnabled="{Binding ReportVideoModel.IsChkAllowMultipleTextsOnSamePost}"
+                                            Minimum="1"
+                                            Value="{Binding ReportVideoModel.MultipleActionCount}" />
+                                        <Label Margin="5,5,0,0" Content="{DynamicResource LangKeyMultipleActivitiesOnPostFromAccount}" />
+                                        <Label Margin="0,5" Content="{DynamicResource LangKeyButUniquely}" />
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <!--  Apply Campaing Level Setting  -->
+                                <CheckBox
+                                    Name="ChkUniqueUserAccount"
+                                    Margin="0,0,10,0"
+                                    Content="{DynamicResource LangKeyPerformActionOnPostsOfUniqueUserFromEachAccountsInThisCampaign}"
+                                    FontWeight="SemiBold"
+                                    IsChecked="{Binding ReportVideoModel.IschkUniqueUserForAccount}" />
+                                <CheckBox
+                                    Name="ChkUniqueUserCampaign"
+                                    Margin="0,5,10,0"
+                                    Content="{DynamicResource LangKeyPerformActionOnPostsOfUniqueUserFromAllAccountsInThisCampaign}"
+                                    FontWeight="SemiBold"
+                                    IsChecked="{Binding ReportVideoModel.IschkUniqueUserForCampaign}" />
+                                <CheckBox
+                                    Name="ChkUniquePostCampaign"
+                                    Margin="0,5,10,0"
+                                    Content="{DynamicResource LangKeyPerformActionOnUniquePostFromAllAccountsInThisCampaign}"
+                                    FontWeight="SemiBold"
+                                    IsChecked="{Binding ReportVideoModel.IschkUniquePostForCampaign}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox
+                                        Name="ChkUpvoteFromRandomPercentageOfAccount"
+                                        Margin="0,5,10,0"
+                                        Content="{DynamicResource LangKeyPerformActionFromRandom}"
+                                        FontWeight="SemiBold"
+                                        IsChecked="{Binding ReportVideoModel.IsPerformActionFromRandomPercentageOfAccounts}" />
+                                    <controls:NumericUpDown
+                                        Margin="0,5,0,0"
+                                        IsEnabled="{Binding ReportVideoModel.IsPerformActionFromRandomPercentageOfAccounts}"
+                                        Minimum="10"
+                                        Value="{Binding ReportVideoModel.PerformActionFromRandomPercentage.StartValue}" />
+                                    <Label
+                                        Margin="0,5,0,0"
+                                        VerticalAlignment="Center"
+                                        Content="{DynamicResource LangKeyTo}" />
+                                    <controls:NumericUpDown
+                                        Margin="0,5,0,0"
+                                        IsEnabled="{Binding ReportVideoModel.IsPerformActionFromRandomPercentageOfAccounts}"
+                                        Minimum="{Binding ReportVideoModel.PerformActionFromRandomPercentage.StartValue}"
+                                        Value="{Binding ReportVideoModel.PerformActionFromRandomPercentage.EndValue}" />
+                                    <Label
+                                        Margin="0,5,0,0"
+                                        VerticalAlignment="Center"
+                                        Content="{DynamicResource LangKeyPercentageOfSelectedAccounts}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox
+                                        Name="ChkDelayBetweenUpvotesOnSamePost"
+                                        Margin="0,0,10,0"
+                                        Content="{DynamicResource LangKeyKeepDelayBetween}"
+                                        FontWeight="SemiBold"
+                                        IsChecked="{Binding ReportVideoModel.EnableDelayBetweenPerformingActionOnSamePost}" />
+                                    <controls:NumericUpDown
+                                        Margin="0,5,0,0"
+                                        IsEnabled="{Binding ReportVideoModel.EnableDelayBetweenPerformingActionOnSamePost}"
+                                        Minimum="10"
+                                        Value="{Binding ReportVideoModel.DelayBetweenPerformingActionOnSamePost.StartValue}" />
+                                    <Label
+                                        Margin="0,5,0,0"
+                                        VerticalAlignment="Center"
+                                        Content="{DynamicResource LangKeyTo}" />
+                                    <controls:NumericUpDown
+                                        Margin="0,5,0,0"
+                                        IsEnabled="{Binding ReportVideoModel.EnableDelayBetweenPerformingActionOnSamePost}"
+                                        Minimum="{Binding ReportVideoModel.DelayBetweenPerformingActionOnSamePost.StartValue}"
+                                        Value="{Binding ReportVideoModel.DelayBetweenPerformingActionOnSamePost.EndValue}" />
+                                    <Label
+                                        Margin="0,5,0,0"
+                                        VerticalAlignment="Center"
+                                        Content="{DynamicResource LangKeySecondsWhenPerformingActionOnASpecificPost}" />
+                                </StackPanel>
+
+                            </StackPanel>
+                        </Expander>
+
+                        <!--  Blacklists Expander  -->
+                        <Expander
+                            Margin="5,5"
+                            Header="{DynamicResource LangKeyManageBlacklistedUsers}"
+                            Visibility="{Binding ReportVideoModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel>
+                                <CheckBox
+                                    Margin="5,5"
+                                    Content="{DynamicResource LangKeySkipBlacklistedUsers}"
+                                    IsChecked="{Binding ReportVideoModel.SkipBlacklist.IsSkipBlackListUsers}" />
+                                <StackPanel
+                                    Margin="5,5"
+                                    Orientation="Horizontal"
+                                    Visibility="{Binding ReportVideoModel.SkipBlacklist.IsSkipBlackListUsers, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <CheckBox
+                                        Margin="5,5"
+                                        Content="{DynamicResource LangKeyUsePrivateBlacklist}"
+                                        IsChecked="{Binding ReportVideoModel.SkipBlacklist.IsSkipPrivateBlackListUser}" />
+                                    <CheckBox
+                                        Margin="5,5"
+                                        Content="{DynamicResource LangKeyUseGroupBlacklist}"
+                                        IsChecked="{Binding ReportVideoModel.SkipBlacklist.IsSkipGroupBlackListUsers}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>
+
+                    </StackPanel>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <!--  Create campaign and select account section  -->
+        <StackPanel VerticalAlignment="Bottom">
+            <Grid Name="FooterGrid" Margin="5,0">
+                <customControl:FooterControl
+                    x:Name="ReportVideoFooter"
+                    Height="96"
+                    VerticalAlignment="Top"
+                    CampaignManager="{Binding CampaignButtonContent}"
+                    CreateCampaignCommand="{Binding CreateCampaignCommand}"
+                    NoOfAccountsSelected="{Binding SelectedAccountCount, Mode=TwoWay}"
+                    SelectAccountCommand="{Binding SelectAccountCommand}" />
+            </Grid>
+        </StackPanel>
+
+        <!--  Help section  -->
+        <controls:FlyoutsControl>
+            <controls:Flyout
+                Name="HelpFlyout"
+                Width="300"
+                Background="{DynamicResource AccentBaseColorBrush}"
+                BorderBrush="Black"
+                BorderThickness="2"
+                DataContext="{Binding ElementName=ReportVideoFooter, Path=DataContext}"
+                FontSize="10"
+                FontWeight="Bold"
+                Foreground="White"
+                Header="{DynamicResource LangKeyModuleDescription}"
+                IsOpen="{Binding IsOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                IsPinned="False"
+                Position="Right"
+                Theme="Accent"
+                Visibility="Collapsed">
+                <customControl:HelpControl
+                    ContactSupportLink="{Binding ContactSupportLink}"
+                    DataContext="{Binding ElementName=ReportVideoFooter, Path=DataContext}"
+                    KnowledgeBaseLink="{Binding KnowledgeBaseLink}"
+                    ModuleDescription="{DynamicResource LangKeyModuleDescriptionYouTubeAutoReportVideo}"
+                    VideoTutorial="{Binding VideoTutorialLink}" />
+            </controls:Flyout>
+        </controls:FlyoutsControl>
+
+    </Grid>
+</local:ReportVideoBase>

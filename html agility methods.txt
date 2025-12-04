@@ -1,0 +1,142 @@
+﻿public static readonly string NotFound = "Not Found";
+
+
+        public static string GetHtmlInfoFromXpath(string pageSource, string XPath, bool InnerHtml = true, bool InnerText = false)
+        {
+            var htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(pageSource);
+            if (InnerHtml)
+            {
+                if (!InnerText)
+                {
+                    return htmlDoc.DocumentNode.SelectSingleNode(XPath).InnerHtml.ToString();
+                }
+                else
+                {
+                    return htmlDoc.DocumentNode.SelectSingleNode(XPath).InnerText.ToString();
+                }
+            }
+            else
+            {
+                return htmlDoc.DocumentNode.SelectSingleNode(XPath).OuterHtml.ToString();
+            }
+        }
+
+        public static string GetHtmlInfoFromTagName(string pageSource, string tagName, string attributeName,
+            string attributeValue, bool InnerHtml = true, bool InnerText = false)
+        {
+            var htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(pageSource);
+            if (InnerHtml)
+            {
+                if (!InnerText)
+                {
+                    return htmlDoc.DocumentNode.SelectSingleNode($"//{tagName}[@{attributeName}='{attributeValue}']").InnerHtml.ToString();
+                }
+                else
+                {
+                    return htmlDoc.DocumentNode.SelectSingleNode($"//{tagName}[@{attributeName}='{attributeValue}']").InnerText.ToString();
+                }
+            }
+            else
+            {
+                return htmlDoc.DocumentNode.SelectSingleNode($"//{tagName}[@{attributeName}='{attributeValue}']").OuterHtml.ToString();
+            }
+        }
+        public static List<string> GetListInnerHtmlFromTagName(string pageSource, string tagName, string attributeName,
+            string attributeValue, bool InnerHtml = true, bool InnerText = false)
+        {
+            var lstInnerhtml = new List<string>();
+            var htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(pageSource);
+            if (InnerHtml)
+            {
+                if (!InnerText)
+                {
+                    htmlDoc.DocumentNode.SelectNodes($"//{tagName}[@{attributeName}='{attributeValue}']").ForEach(x => { lstInnerhtml.Add(x.InnerHtml.ToString()); });
+                }
+                else
+                {
+                    htmlDoc.DocumentNode.SelectNodes($"//{tagName}[@{attributeName}='{attributeValue}']").ForEach(x => { lstInnerhtml.Add(x.OuterHtml.ToString()); });
+                }
+            }
+            else
+            {
+                htmlDoc.DocumentNode.SelectNodes($"//{tagName}[@{attributeName}='{attributeValue}']").ForEach(x => { lstInnerhtml.Add(x.OuterHtml.ToString()); });
+            }
+            return lstInnerhtml;
+        }
+        public static Tuple<string, List<string>> GetHtmlFromTagName(string pageSource, string tagName, string attributeName,
+            string attributeValue, bool InnerHtml = true, bool InnerText = false, bool? isNeededString = null)
+        {
+            var lstInnerhtml = new List<string>();
+            string textInnerhtml = "";
+            HtmlDocument htmlDoc = new HtmlDocument();
+            try
+            {
+                htmlDoc.LoadHtml(pageSource);
+                if (isNeededString == null || isNeededString == true)
+                {
+                    if (InnerHtml)
+                    {
+                        if (!InnerText)
+                        {
+                            textInnerhtml = htmlDoc.DocumentNode.SelectSingleNode($"//{tagName}[@{attributeName}='{attributeValue}']").InnerHtml.ToString();
+                        }
+                        else
+                        {
+                            textInnerhtml = htmlDoc.DocumentNode.SelectSingleNode($"//{tagName}[@{attributeName}='{attributeValue}']").InnerText.ToString();
+                        }
+                    }
+                    else
+                    {
+                        textInnerhtml = htmlDoc.DocumentNode.SelectSingleNode($"//{tagName}[@{attributeName}='{attributeValue}']").OuterHtml.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            { }
+            try
+            {
+                if (isNeededString == null || isNeededString == false)
+                {
+                    if (InnerHtml)
+                    {
+                        if (!InnerText)
+                        {
+                            htmlDoc.DocumentNode.SelectNodes($"//{tagName}[@{attributeName}='{attributeValue}']").ForEach(x => { lstInnerhtml.Add(x.InnerHtml.ToString()); });
+                        }
+                        else
+                        {
+                            htmlDoc.DocumentNode.SelectNodes($"//{tagName}[@{attributeName}='{attributeValue}']").ForEach(x => { lstInnerhtml.Add(x.OuterHtml.ToString()); });
+                        }
+                    }
+                    else
+                    {
+                        htmlDoc.DocumentNode.SelectNodes($"//{tagName}[@{attributeName}='{attributeValue}']").ForEach(x => { lstInnerhtml.Add(x.OuterHtml.ToString()); });
+                    }
+                }
+            }
+            catch (Exception ex)
+            { }
+            return new Tuple<string, List<string>>(textInnerhtml, lstInnerhtml);
+        }
+        public static void ForEach<T>(this IEnumerable<T> items, Action<T> action)
+        {
+            foreach (var item in items)
+            {
+                try
+                {
+                    action(item);
+                }
+                catch { }
+            }
+        }
+
+        public static string GetAttributeValueFromId(string pageSource, string idValue, string attributeName)
+        {
+            var htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(pageSource);
+            return htmlDoc.GetElementbyId(idValue).GetAttributeValue(attributeName, NotFound);
+
+        }

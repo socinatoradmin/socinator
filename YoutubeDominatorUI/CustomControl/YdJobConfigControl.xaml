@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="YoutubeDominatorUI.CustomControl.YdJobConfigControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:customcontrols="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d" 
+             >
+    <Grid Name="MainGrid">
+        <StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,8,0,0">
+                <TextBlock  VerticalAlignment="Center" Text="{StaticResource LangKeyDelayBetweenEachOperation}"  />
+                <controls:NumericUpDown Name="DelayOperationStartValue" Margin="5,5,5,0" Value="{Binding JobConfiguration.DelayBetweenActivity.StartValue}" />
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyTo}" />
+                <controls:NumericUpDown  Margin="5,5,5,0" Minimum="{Binding Value, ElementName=DelayOperationStartValue}" Value="{Binding JobConfiguration.DelayBetweenActivity.EndValue}" />
+                <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeySeconds}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,8,0,0">
+                <TextBlock    VerticalAlignment="Center" Text="{DynamicResource LangKeyDelayBetweenJobs}"  />
+                <controls:NumericUpDown Name="DelayJobStartValue" Margin="5,5,5,0" Value="{Binding JobConfiguration.DelayBetweenJobs.StartValue}" />
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyTo}" />
+                <controls:NumericUpDown  Margin="5,5,5,0" Minimum="{Binding Value, ElementName=DelayJobStartValue}" Value="{Binding JobConfiguration.DelayBetweenJobs.EndValue}" />
+                <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyMinutes}"  />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="5,8,0,0">
+                <Label   VerticalAlignment="Center" Content="{ Binding  JobConfiguration.ActivitiesPerWeekDisplayName}"  />
+                <controls:NumericUpDown Margin="5,5,5,0" Value="{Binding JobConfiguration.ActivitiesPerWeek.StartValue}" Name="CountPerWeekStartValue"/>
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center"   Content="{DynamicResource LangKeyTo}" />
+                <controls:NumericUpDown Margin="5,5,5,0" Value="{Binding JobConfiguration.ActivitiesPerWeek.EndValue}"  Minimum="{Binding Value, ElementName=CountPerWeekStartValue}"/>
+                <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyUsers}"  />
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="5,8,0,0">
+                <CheckBox  VerticalAlignment="Center" x:Name="chkIncreaseEachDay" Content="{DynamicResource LangKeyIncreaseEachDayWith}" IsChecked="{Binding JobConfiguration.IncreaseActivity.IsIncreaseCountChecked}"/>
+                <controls:NumericUpDown Margin="5,5,5,5" Value="{Binding JobConfiguration.IncreaseActivitiesEachDay.IncreaseActivityCount}" Name="IncreaseMaxActionsPerDays" 
+                                        IsEnabled="{Binding ElementName=chkIncreaseEachDay,Path=IsChecked}"/>
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyUntilItReaches}"  />
+                <controls:NumericUpDown Margin="5,5,5,5" Maximum="9999" 
+                                        Value="{Binding JobConfiguration.IncreaseActivitiesEachDay.UntilMaxCountReached}"
+                                        Minimum="{Binding Value, ElementName=IncreaseMaxActionsPerDays}" 
+                                        IsEnabled="{Binding ElementName=chkIncreaseEachDay,Path=IsChecked}"/>
+                <Label  VerticalAlignment="Center"  Content="{Binding  JobConfiguration.IncreaseActivityDisplayName}"  />
+            </StackPanel>
+
+            <StackPanel>
+                <Label Margin="0,5,0,0" FontWeight="Bold" Content="{DynamicResource LangKeyDayOfTheWeekWhenToOperate}"/>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel>
+                        <ListBox ItemsSource="{Binding JobConfiguration.RunningTime}">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <customcontrols:DayTimerControl RunningTimes="{Binding Path=.}"></customcontrols:DayTimerControl>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+
+                </StackPanel>
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

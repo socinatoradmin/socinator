@@ -1,0 +1,8 @@
+YoutubeDominatorCore/bin/
+YoutubeDominatorCore/obj/
+YoutubeDominatorUI/bin/
+YoutubeDominatorUI/obj/
+YoutubeDominatorCore.UnitTests/bin/
+YoutubeDominatorCore.UnitTests/obj/
+*.user
+/.vs

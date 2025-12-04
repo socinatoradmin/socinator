@@ -1,0 +1,37 @@
+﻿namespace YoutubeDominatorCore.YDEnums
+{
+    public enum BrowserFuncts
+    {
+        GetPageSourceNoCondition,
+        GetPageSource,
+        GetPageText,
+        GetPaginationData,
+        GoToUrl,
+        HitUrl,
+        Close,
+        GetBrowserCookies,
+        GetCurrentUrl,
+        PressKey,
+        MouseClick,
+        EnterChars,
+        BrowserAct,
+        GetElementValue,
+        GoBack,
+        Loading,
+        RefreshPage,
+        IsDisposed,
+        IsLoaded,
+        Scroll,
+        GetXY,
+        SelectFileFromDialog,
+        SaveCookies,
+        SelectAll,
+        CheckAd,
+        MouseScroll,
+        GetListInnerHtml,
+        GetCustomXY,
+        LoadSource,
+        ExecuteScript,
+        CopyPasteContent
+    }
+}
