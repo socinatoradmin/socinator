@@ -1,0 +1,333 @@
+﻿<UserControl x:Class="QuoraDominatorUI.CustomControl.UserFiltersControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Name="MainGrid" Margin="10">
+
+            <StackPanel>
+                <!-- To Filter User Who Do Not have Profile Picture -->
+                <CheckBox x:Name="UserHasProfileImageCheckbox" Margin="5,5,0,0"
+                          IsChecked="{Binding UserFilter.IgnoreNoProfilePicUsers}"
+                          Content="{DynamicResource LangKeyShouldHaveProfilePicture}" />
+
+
+                <!-- To Filter Users With Answers Count -->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="5,5,0,0" x:Name="UserHasMinimumAnswersCountCheckbox"
+                              IsChecked="{Binding UserFilter.FilterAnswersCount}"
+                              Content="{DynamicResource LangKeyAnswersCount}" />
+                    <Label Content="{DynamicResource LangKeyMinimum}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterAnswersCount}" TextAlignment="Center"
+                                            Name="MinimumAnswersCount" Margin="5,10,0,0"
+                                            Value="{Binding UserFilter.AnswersCount.StartValue}" Minimum="0" />
+                    <Label Content="{DynamicResource LangKeyMaximum}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterAnswersCount}"
+                                            Minimum="{Binding UserFilter.AnswersCount.StartValue}"
+                                            TextAlignment="Center" Margin="10,10,0,0"
+                                            Value="{Binding UserFilter.AnswersCount.EndValue}" />
+                </StackPanel>
+
+                <!-- To Filter Users With Questions Count -->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="5,5,0,0" x:Name="UserHasMinimumQuestionsCountCheckbox"
+                              IsChecked="{Binding UserFilter.FilterQuestionsCount}"
+                              Content="{DynamicResource LangKeyQuestionsCount}" />
+                    <Label Content="{DynamicResource LangKeyMinimum}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterQuestionsCount}"
+                                            TextAlignment="Center" Name="MinimumQuestionsCount" Margin="5,10,0,0"
+                                            Value="{Binding UserFilter.QuestionsCount.StartValue}" Minimum="0" />
+                    <Label Content="{DynamicResource LangKeyMaximum}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterQuestionsCount}"
+                                            Minimum="{Binding UserFilter.QuestionsCount.StartValue}"
+                                            TextAlignment="Center" Margin="10,10,0,0"
+                                            Value="{Binding UserFilter.QuestionsCount.EndValue}" />
+                </StackPanel>
+
+                <!-- To Filter Users With Posts Count -->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="5,5,0,0" x:Name="UserHasMinimumPostsCountCheckbox"
+                              IsChecked="{Binding UserFilter.FilterPostsCounts}"
+                              Content="{DynamicResource LangKeyPostsCount}" />
+                    <Label Content="{DynamicResource LangKeyMinimum}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterPostsCounts}" TextAlignment="Center"
+                                            Name="MinimumPostsCount" Margin="5,10,0,0"
+                                            Value="{Binding UserFilter.PostCounts.StartValue}" Minimum="0" />
+                    <Label Content="{DynamicResource LangKeyMaximum}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterPostsCounts}"
+                                            Minimum="{Binding UserFilter.PostCounts.StartValue}" TextAlignment="Center"
+                                            Margin="10,10,0,0" Value="{Binding UserFilter.PostCounts.EndValue}" />
+                </StackPanel>
+
+                <!-- To Filter Users With Blogs Count -->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="5,5,0,0" x:Name="UserHasMinimumBlogsCountCheckbox"
+                              IsChecked="{Binding UserFilter.FilterBlogsCounts}"
+                              Content="{DynamicResource LangKeyBlogsCount}" />
+                    <Label Content="{DynamicResource LangKeyMinimum}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterBlogsCounts}" TextAlignment="Center"
+                                            Name="MinimumBlogsCount" Margin="5,10,0,0"
+                                            Value="{Binding UserFilter.BlogsCounts.StartValue}" Minimum="0" />
+                    <Label Content="{DynamicResource LangKeyMaximum}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterBlogsCounts}"
+                                            Minimum="{Binding UserFilter.BlogsCounts.StartValue}"
+                                            TextAlignment="Center" Margin="10,10,0,0"
+                                            Value="{Binding UserFilter.BlogsCounts.EndValue}" />
+                </StackPanel>
+
+                <!-- To Filter Users With Topics Count -->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="5,5,0,0" x:Name="UserHasMinimumTopicsCountCheckbox"
+                              IsChecked="{Binding UserFilter.FilterTopicsCounts}"
+                              Content="{DynamicResource LangKeyTopicsCount}" />
+                    <Label Content="{DynamicResource LangKeyMinimum}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterTopicsCounts}" TextAlignment="Center"
+                                            Name="MinimumTopicsCount" Margin="5,10,0,0"
+                                            Value="{Binding UserFilter.TopicsCounts.StartValue}" Minimum="0" />
+                    <Label Content="{DynamicResource LangKeyMaximum}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterTopicsCounts}"
+                                            Minimum="{Binding UserFilter.TopicsCounts.StartValue}"
+                                            TextAlignment="Center" Margin="10,10,0,0"
+                                            Value="{Binding UserFilter.TopicsCounts.EndValue}" />
+                </StackPanel>
+
+                <!-- To Filter Users With Edits Count -->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="5,5,0,0" x:Name="UserHasMinimumEditsCountCheckbox"
+                              IsChecked="{Binding UserFilter.FilterEditsCounts}"
+                              Content="{DynamicResource LangKeyEditsCount}" />
+                    <Label Content="{DynamicResource LangKeyMinimum}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterEditsCounts}" TextAlignment="Center"
+                                            Name="MinimumEditsCount" Margin="5,10,0,0"
+                                            Value="{Binding UserFilter.EditsCounts.StartValue}" Minimum="0" />
+                    <Label Content="{DynamicResource LangKeyMaximum}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterEditsCounts}"
+                                            Minimum="{Binding UserFilter.EditsCounts.StartValue}"
+                                            TextAlignment="Center" Margin="10,10,0,0"
+                                            Value="{Binding UserFilter.EditsCounts.EndValue}" />
+                </StackPanel>
+
+                <!-- To Filter Users With Answer Views Count -->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="5,5,0,0" x:Name="UserHasMinimumAnswerViewsCountCheckbox"
+                              IsChecked="{Binding UserFilter.FilterAnswerViewsCounts}"
+                              Content="{DynamicResource LangKeyAnswerViewsCount}" />
+                    <Label Content="{DynamicResource LangKeyMinimum}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterAnswerViewsCounts}"
+                                            TextAlignment="Center" Name="MinimumAnswerViewsCount" Margin="5,10,0,0"
+                                            Value="{Binding UserFilter.AnswerViewsCounts.StartValue}" Minimum="0" />
+                    <Label Content="{DynamicResource LangKeyMaximum}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterAnswerViewsCounts}"
+                                            Minimum="{Binding UserFilter.AnswerViewsCounts.StartValue}"
+                                            TextAlignment="Center" Margin="10,10,0,0"
+                                            Value="{Binding UserFilter.AnswerViewsCounts.EndValue}" />
+                </StackPanel>
+
+                <!--To Filter Blacklisted Lives In Places-->
+                <StackPanel>
+                    <CheckBox Margin="5,5,0,0" Name="BlacklistedLivesInPlacesCheckBox"
+                              IsChecked="{Binding UserFilter.FilterBlacklistedLivesIn}"
+                              Content="{DynamicResource LangKeyUserShouldNotHaveLivedInSpecifiedPlaces}" />
+
+                    <customControl:InputBoxControl Margin="30,5" x:Name="BlacklistedLivesInPlacesInputBox"
+                                                   SaveCommand="{Binding SaveBlacklistLivedInCommand}"
+                                                   GetInputClick="BlacklistedLivesInPlacesInputBox_OnGetInputClick"
+                                                   Loaded="BlacklistedLivesInPlacesInputBox_Loaded"
+                                                   Visibility="{Binding UserFilter.FilterBlacklistedLivesIn,Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                </StackPanel>
+
+                <!--To Filter Blacklisted Studied In Places-->
+                <StackPanel>
+                    <CheckBox Margin="5,5,0,0" Name="BlacklistedStudiedPlacesCheckBox"
+                              IsChecked="{Binding UserFilter.FilterBlacklistedStudiedPlaces}"
+                              Content="{DynamicResource LangKeyUserShouldNotHaveStudiedInSpecifiedPlaces}"
+                              Loaded="BlacklistedStudiedPlacesCheckBox_Loaded" />
+
+                    <customControl:InputBoxControl Margin="30,5" x:Name="BlacklistedStudiedPlacesInputBox"
+                                                   SaveCommand="{Binding SaveBlacklistStudiedCommand}"
+                                                   GetInputClick="BlacklistedStudiedPlacesInputBox_OnGetInputClick"
+                                                   Visibility="{Binding UserFilter.FilterBlacklistedStudiedPlaces,Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                </StackPanel>
+
+                <!--To Filter Blacklisted Worked In Places-->
+                <StackPanel>
+                    <CheckBox Margin="5,5,0,0" Name="BlacklistedWorkPlacesCheckBox"
+                              IsChecked="{Binding UserFilter.FilterBlacklistedWorkPlaces}"
+                              Content="{DynamicResource LangKeyUserShouldNotHaveWorkedInSpecifiedPlaces}"
+                              Loaded="BlacklistedWorkPlacesCheckBox_Loaded" />
+
+                    <customControl:InputBoxControl Margin="30,5" x:Name="BlacklistedWorkPlacesInputBox"
+                                                   SaveCommand="{Binding SaveBlacklistWorkedInCommand}"
+                                                   GetInputClick="BlacklistedWorkPlacesInputBox_OnGetInputClick"
+                                                   Visibility="{Binding UserFilter.FilterBlacklistedWorkPlaces,Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                </StackPanel>
+
+                <!-- To Filter Users Having Less Characters than x in Bio -->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="5,5,0,0" x:Name="UserBioHasMinimumCharacters"
+                              IsChecked="{Binding UserFilter.FilterMinimumCharacterInBio}"
+                              Content="{DynamicResource LangKeyMinimumCharactersInBio}" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterMinimumCharacterInBio}"
+                                            Margin="10,5,0,0" Maximum="100"
+                                            Value="{Binding UserFilter.MinimumCharacterInBio}"
+                                            x:Name="UserBioMinimumCharactersTextBox" Minimum="0" />
+                </StackPanel>
+
+                <!-- To Filter Users With Followings Count -->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="5,5,0,0" x:Name="UserHasMinimumFollowingsCountCheckbox"
+                              IsChecked="{Binding UserFilter.FilterFollowingsCount}"
+                              Content="{DynamicResource LangKeyFollowingsCount}" />
+                    <Label Content="{DynamicResource LangKeyMinimum}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterFollowingsCount}"
+                                            TextAlignment="Center" Name="MinimumFollowingsCount" Margin="5,10,0,0"
+                                            Value="{Binding UserFilter.FollowingsCount.StartValue}" Minimum="0" />
+                    <Label Content="{DynamicResource LangKeyMaximum}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterFollowingsCount}"
+                                            Minimum="{Binding UserFilter.FollowingsCount.StartValue}"
+                                            TextAlignment="Center" Margin="10,10,0,0"
+                                            Value="{Binding UserFilter.FollowingsCount.EndValue}" />
+                </StackPanel>
+
+                <!-- To Filter Users With Followers Count -->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="5,5,0,0" x:Name="UserHasMinimumFollowersCountCheckbox"
+                              IsChecked="{Binding UserFilter.FilterFollowersCount}"
+                              Content="{DynamicResource LangKeyFollowersCount}" />
+                    <Label Content="{DynamicResource LangKeyMinimum}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterFollowersCount}"
+                                            TextAlignment="Center" Name="MinimumFollowersCount" Margin="5,10,0,0"
+                                            Value="{Binding UserFilter.FollowersCount.StartValue}" Minimum="0" />
+                    <Label Content="{DynamicResource LangKeyMaximum}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterFollowersCount}"
+                                            Minimum="{Binding UserFilter.FollowersCount.StartValue}"
+                                            TextAlignment="Center" Margin="10,10,0,0"
+                                            Value="{Binding UserFilter.FollowersCount.EndValue}" />
+                </StackPanel>
+
+                <!--To Filter Users Containing Blacklisted Words In Bio Description-->
+                <StackPanel>
+                    <CheckBox Margin="5,5,0,0" Name="BioRestrictedWordsCheckBox"
+                              IsChecked="{Binding UserFilter.FilterBioRestrictedWords}"
+                              Content="{DynamicResource LangKeyUserShouldNotHaveSpecifiedWordsInBioDescription}" />
+
+                    <customControl:InputBoxControl Margin="30,5" x:Name="BioRestrictedWordsInputBox"
+                                                   SaveCommand="{Binding SaveBioRestrictedWordsCommand}"
+                                                   GetInputClick="BioRestrictedWordsInputBox_OnGetInputClick"
+                                                   Visibility="{Binding UserFilter.FilterBioRestrictedWords,Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                </StackPanel>
+
+                <!--To Filter Users Containing Blacklisted Words In Username-->
+                <StackPanel>
+                    <CheckBox Margin="5,5,0,0" Name="UserNameRestrictedWordsCheckBox"
+                              IsChecked="{Binding UserFilter.FilterUserHasInvalidWord}"
+                              Content="{DynamicResource LangKeyUserShouldNotHaveSpecifiedWordsInUsername}" />
+
+                    <customControl:InputBoxControl Margin="30,5" x:Name="UserNameRestrictedWordsInputBox"
+                                                   SaveCommand="{Binding SaveUsernameRestrictedWordsCommand}"
+                                                   GetInputClick="UserRestrictedWordsInputBox_OnGetInputClick"
+                                                   Visibility="{Binding UserFilter.FilterUserHasInvalidWord,Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                </StackPanel>
+
+                <!-- To Filter Users With Follow Ratio Not In Specified Range -->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="5,5,0,0" x:Name="SpecificFollowRatioCountCheckbox"
+                              IsChecked="{Binding UserFilter.FilterSpecificFollowRatio}"
+                              Content="{DynamicResource LangKeyUserShouldHaveFollowRatioInSpecifiedRange}" />
+                    <Label Content="{DynamicResource LangKeyMinimum}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterSpecificFollowRatio}"
+                                            TextAlignment="Center" Name="MinimumSpecificFollowRatioCount"
+                                            Margin="5,10,0,0"
+                                            Value="{Binding UserFilter.SpecificFollowRatio.StartValue}" Minimum="0" />
+                    <Label Content="{DynamicResource LangKeyMaximum}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown IsEnabled="{Binding UserFilter.FilterSpecificFollowRatio}"
+                                            Minimum="{Binding UserFilter.SpecificFollowRatio.StartValue}"
+                                            TextAlignment="Center" Margin="10,10,0,0"
+                                            Value="{Binding UserFilter.SpecificFollowRatio.EndValue}" />
+                </StackPanel>
+
+                <!--To Filter Users who has not Answerd in Last X days -->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="5,5,0,0" x:Name="FilterAnsweredInRecentDays"
+                              IsChecked="{Binding UserFilter.FilterAnsweredInRecentDays}"
+                              Content="{DynamicResource LangKeyUserShouldHaveAnsweredInRecentlyIn}" />
+                    <controls:NumericUpDown x:Name="FilterAnsweredInRecentDaysTextbox" Margin="10,5,0,0"
+                                            Value="{Binding UserFilter.AnsweredInRecentDays.StartValue}"
+                                            IsEnabled="{Binding UserFilter.FilterAnsweredInRecentDays}" Minimum="0" />
+                    <Label x:Name="LastXDaysLabel" Content="{DynamicResource LangKeyDays}" VerticalAlignment="Center"
+                           Margin="10,5,0,0" />
+                </StackPanel>
+
+                <!-- To Ignore Users Who Are Already Following This User -->
+                <CheckBox x:Name="IgnoreCurrentUsersFollowersCheckbox" Margin="5,5,0,0"
+                          IsChecked="{Binding UserFilter.IgnoreCurrentUsersFollowers}"
+                          Content="{DynamicResource LangKeyIgnoreFollowers}" />
+
+                <!--To Filter Users by Gender-->
+                <StackPanel Visibility="Collapsed">
+                    <CheckBox Margin="5,5,0,0" Content="{DynamicResource LangKeyGenders}" Name="GenderCheckbox"
+                              IsChecked="{Binding UserFilter.GenderFilters.IsFilterByGender}" />
+                    <StackPanel Name="GenderSection" Orientation="Horizontal"
+                                Visibility="{Binding UserFilter.GenderFilters.IsFilterByGender,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <CheckBox Margin="30,5,0,0" Content="{DynamicResource LangKeyIgnoreMales}"
+                                  IsChecked="{Binding UserFilter.GenderFilters.IgnoreMalesUser}" />
+                        <CheckBox Margin="30,5,0,0" Content="{DynamicResource LangKeyIgnoreFemales}"
+                                  IsChecked="{Binding UserFilter.GenderFilters.IgnoreFemalesUser}" />
+                        <CheckBox Content="{DynamicResource LangKeyIgnoreUnknown}" Margin="30,5,0,0"
+                                  IsChecked="{Binding UserFilter.GenderFilters.IgnoreOthersUser}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- To Ignore Users Who Are Already Following This User -->
+                <CheckBox x:Name="IgnoreNonEnglishUserCheckbox" Margin="5,5,0,0"
+                          IsChecked="{Binding UserFilter.IgnoreNonEnglishUser}"
+                          Content="{DynamicResource LangKeyIgnoreNonEnglishUsers}" />
+
+
+                <!--For Saving Data -->
+                <StackPanel Margin="2" Orientation="Horizontal" HorizontalAlignment="Center"
+                            Visibility="{Binding UserFilter.SaveCloseButtonVisible,Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Button x:Name="SaveButton" Foreground="White" Click="SaveButton_OnClick" x:FieldModifier="public"
+                            Margin="10,5,0,0" Background="{DynamicResource AccentColorBrush}"
+                            Height="25" HorizontalAlignment="Center" BorderThickness="1" FontSize="12"
+                            Content="{DynamicResource LangKeySave}" />
+
+
+                </StackPanel>
+
+
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
+</UserControl>

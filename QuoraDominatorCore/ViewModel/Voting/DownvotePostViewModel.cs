@@ -1,0 +1,77 @@
+﻿using DominatorHouseCore;
+using DominatorHouseCore.Command;
+using DominatorHouseCore.Enums;
+using DominatorHouseCore.Enums.QdQuery;
+using DominatorHouseCore.Models;
+using DominatorHouseCore.Utility;
+using DominatorUIUtility.CustomControl;
+using QuoraDominatorCore.Models;
+using System;
+using System.Linq;
+using System.Windows;
+using System.Windows.Input;
+
+namespace QuoraDominatorCore.ViewModel.Voting
+{
+    public class DownvotePostViewModel : BindableBase
+    {
+        private DownvotePostModel _downvotePostModel = new DownvotePostModel();
+        public DownvotePostModel DownvotePostModel
+        {
+            get => _downvotePostModel;
+            set
+            {
+                if ((_downvotePostModel == null) & (_downvotePostModel == value))
+                    return;
+                SetProperty(ref _downvotePostModel, value);
+            }
+        }
+        public DownvotePostModel Model => DownvotePostModel;
+        public DownvotePostViewModel()
+        {
+            DownvotePostModel.JobConfiguration = new JobConfiguration
+            {
+                ActivitiesPerJobDisplayName =
+                    Application.Current.FindResource("LangKeyDownvoteNumberOfPostsPerJob")?.ToString(),
+                ActivitiesPerHourDisplayName = Application.Current.FindResource("LangKeyDownvoteNumberOfPostsPerHour")
+                    ?.ToString(),
+                ActivitiesPerDayDisplayName =
+                    Application.Current.FindResource("LangKeyDownvoteNumberOfPostsPerDay")?.ToString(),
+                ActivitiesPerWeekDisplayName = Application.Current.FindResource("LangKeyDownvoteNumberOfPostsPerWeek")
+                    ?.ToString(),
+                IncreaseActivityDisplayName =
+                    Application.Current.FindResource("LangKeyDownvoteNumberOfPostsPerDay")?.ToString(),
+                RunningTime = RunningTimes.DayWiseRunningTimes,
+                Speeds = Enum.GetNames(typeof(ActivitySpeed)).ToList()
+            };
+            DownvotePostModel.ListQueryType.Clear();
+            Enum.GetValues(typeof(PostQueryParameters)).Cast<PostQueryParameters>().ToList().ForEach(query =>
+            {
+                DownvotePostModel.ListQueryType.Add(Application.Current.FindResource(query.GetDescriptionAttr())
+                    ?.ToString());
+            });
+            AddQueryCommand = new BaseCommand<object>(sender => true, AddQuery);
+            CustomFilterCommand = new BaseCommand<object>(sender => true, CustomFilter);
+        }
+        public ICommand AddQueryCommand { get; set; }
+        public ICommand CustomFilterCommand { get; set; }
+        private void AddQuery(object sender)
+        {
+            try
+            {
+                var moduleSettingsUserControl =
+                    sender as ModuleSettingsUserControl<DownvotePostViewModel, DownvotePostModel>;
+                moduleSettingsUserControl?.AddQuery(typeof(PostQueryParameters));
+            }
+            catch (Exception ex)
+            {
+                ex.DebugLog();
+            }
+        }
+
+        private void CustomFilter(object sender)
+        {
+
+        }
+    }
+}

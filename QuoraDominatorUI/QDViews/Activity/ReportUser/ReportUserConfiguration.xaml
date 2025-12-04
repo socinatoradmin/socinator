@@ -1,0 +1,180 @@
+﻿<local:ReportUserConfigurationbase x:Class="QuoraDominatorUI.QDViews.Activity.ReportUser.ReportUserConfiguration"
+                                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                   xmlns:local="clr-namespace:QuoraDominatorUI.QDViews.Activity.ReportUser"
+                                   mc:Ignorable="d" x:Name="reportUserConfiguration"
+                                   xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                                   xmlns:DHCustomControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+                                   xmlns:QDcustomControl="clr-namespace:QuoraDominatorUI.CustomControl"
+                                   xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+                                   xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=reportUserConfiguration}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+
+        <DHCustomControl:AccountGrowthModeHeader Name="AccountGrowthHeader"
+                                                 VerticalAlignment="Top" SelectedIndex="0"
+                                                 SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=reportUserConfiguration}"
+                                                 SaveCommand="{Binding SaveConfigurationsCommand}" VideoTutorialLink="{Binding VideoTutorialLink}" />
+
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" VerticalAlignment="Center"
+                                   Margin="10,0,10,0" />
+                        <Controls:ToggleSwitch x:Name="TglStatus" OnLabel="Active﻿" OffLabel="Stopped﻿"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                                               IsChecked="{Binding ReportUserModel.IsAccountGrowthActive}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=reportUserConfiguration}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Controls:ToggleSwitch>
+                    </StackPanel>
+                    <StackPanel>
+
+                        <Expander Header="{DynamicResource LangKeySearchQuery}" IsExpanded="True" Margin="10,5">
+                            <DHCustomControl:SearchQueryControl
+                                IsExpanded="{Binding IsExpanded,ElementName=AccountGrowthHeader,UpdateSourceTrigger=Explicit}"
+                                Margin="5,5,5,0" x:Name="ReportUsersSearchControl"
+                                ListQueryInfo="{Binding ReportUserModel.SavedQueries}"
+                                ListQueryType="{Binding ReportUserModel.ListQueryType}"
+                                AddQueryCommand="{Binding AddQueryCommand}"
+                                CommandParameter="{Binding ElementName=reportUserConfiguration}"
+                                CustomFilterCommand="{Binding CustomFilterCommand}" />
+                        </Expander>
+                        <StackPanel Orientation="Vertical">
+
+                            <!--JobConfiguration  Expender-->
+                            <Expander IsExpanded="True" Header="{DynamicResource LangKeyJobConfiguration}"
+                                      Margin="10,5">
+                                <DHCustomControl:JobConfigControl
+                                    JobConfiguration="{Binding ReportUserModel.JobConfiguration}" />
+                            </Expander>
+
+                            <!--User Filters Expender-->
+
+                            <Expander IsExpanded="True" Header="{DynamicResource LangKeyUserFilters}" Margin="10 5"
+                                      Visibility="{Binding ReportUserModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <QDcustomControl:UserFiltersControl x:Name="ReportUsersFiltersControl"
+                                                                    UserFilter="{Binding ReportUserModel.UserFilterModel}" />
+
+                            </Expander>
+
+                            <!-- Blacklists Expender-->
+                            <Expander IsExpanded="True" Header="{DynamicResource LangKeyManageBlacklistedUsers}"
+                                      Margin="10,5"
+                                      Visibility="{Binding ReportUserModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <StackPanel>
+                                    <CheckBox Content="{DynamicResource LangKeyPrivateBlacklist}" Margin="10,5"
+                                              IsChecked="{Binding ReportUserModel.IsChkPrivateblacklisted}" />
+                                    <CheckBox Content="{DynamicResource LangKeyGroupBlacklist}" Margin="10,5"
+                                              IsChecked="{Binding ReportUserModel.IsChkGroupblacklisted}" />
+
+                                </StackPanel>
+                            </Expander>
+
+                            <!-- Other Configuration Expender-->
+
+                            <Expander
+                                Visibility="{Binding ReportUserModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                Header="{DynamicResource LangKeyOtherConfigurations}" Margin="5,5">
+                                <StackPanel Orientation="Vertical" Margin="10,5">
+                                    <CheckBox Name="ChkUniqueUserAccount"
+                                              Content="{DynamicResource LangKeyPerformActionOnPostsOfUniqueUserFromEachAccountsInThisCampaign}"
+                                              FontWeight="SemiBold" Foreground="Black" Margin="0,0,10,0"
+                                              IsChecked="{Binding ReportUserModel.IschkUniqueUserForAccount}" />
+                                    <CheckBox Name="ChkUniqueUserCampaign"
+                                              Content="{DynamicResource LangKeyPerformActionOnPostsOfUniqueUserFromAllAccountsInThisCampaign}"
+                                              FontWeight="SemiBold" Foreground="Black" Margin="0,0,10,0"
+                                              IsChecked="{Binding ReportUserModel.IschkUniqueUserForCampaign}" />
+                                    <CheckBox Name="ChkUniquePostCampaign"
+                                              Content="{DynamicResource LangKeyPerformActionOnUniquePostFromAllAccountsInThisCampaign}"
+                                              FontWeight="SemiBold" Foreground="Black" Margin="0,0,10,0"
+                                              IsChecked="{Binding ReportUserModel.IschkUniquePostForCampaign}" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox Name="ChkUpvoteFromRandomPercentageOfAccount"
+                                                  Content="{DynamicResource LangKeyPerformActionFromRandom}"
+                                                  FontWeight="SemiBold" Foreground="Black" Margin="0,0,10,0"
+                                                  IsChecked="{Binding ReportUserModel.IsPerformActionFromRandomPercentageOfAccounts}" />
+                                        <Controls:NumericUpDown Margin="0,5,0,0" Minimum="10"
+                                                                IsEnabled="{Binding ReportUserModel.IsPerformActionFromRandomPercentageOfAccounts}"
+                                                                Value="{Binding ReportUserModel.PerformActionFromRandomPercentage.StartValue}" />
+                                        <Label Content="{DynamicResource LangKeyTo}" VerticalAlignment="Center"
+                                               Margin="0,5,0,0" />
+                                        <Controls:NumericUpDown Margin="0,5,0,0"
+                                                                Minimum="{Binding PerformActionFromRandomPercentage.StartValue}"
+                                                                IsEnabled="{Binding ReportUserModel.IsPerformActionFromRandomPercentageOfAccounts}"
+                                                                Value="{Binding ReportUserModel.PerformActionFromRandomPercentage.EndValue}" />
+                                        <Label Content="{DynamicResource LangKeyPercentageOfSelectedAccounts}"
+                                               VerticalAlignment="Center" Margin="0,5,0,0" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox Name="ChkDelayBetweenUpvotesOnSamePost"
+                                                  Content="{DynamicResource LangKeyKeepDelayBetween}"
+                                                  FontWeight="SemiBold" Foreground="Black" Margin="0,0,10,0"
+                                                  IsChecked="{Binding ReportUserModel.EnableDelayBetweenPerformingActionOnSamePost}" />
+                                        <Controls:NumericUpDown Margin="0,5,0,0" Minimum="10"
+                                                                IsEnabled="{Binding ReportUserModel.EnableDelayBetweenPerformingActionOnSamePost}"
+                                                                Value="{Binding ReportUserModel.DelayBetweenPerformingActionOnSamePost.StartValue}" />
+                                        <Label Content="{DynamicResource LangKeyTo}" VerticalAlignment="Center"
+                                               Margin="0,5,0,0" />
+                                        <Controls:NumericUpDown Margin="0,5,0,0"
+                                                                Minimum="{Binding ReportUserModel.DelayBetweenPerformingActionOnSamePost.StartValue}"
+                                                                IsEnabled="{Binding ReportUserModel.EnableDelayBetweenPerformingActionOnSamePost}"
+                                                                Value="{Binding ReportUserModel.DelayBetweenPerformingActionOnSamePost.EndValue}" />
+                                        <Label
+                                            Content="{DynamicResource LangKeySecondsWhenPerformingActionOnASpecificPost}"
+                                            VerticalAlignment="Center" Margin="0,5,0,0" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Expander>
+
+
+                            <!--Report User Expander-->
+                            <!--<Expander IsExpanded="True"  Header="{DynamicResource LangKeyAfterReportUser}" Margin="10,5"
+                        Visibility="{Binding ReportUserModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel>
+                                <CheckBox Content="{DynamicResource LangKeyEnableFollowUser}" Name="ChkLikeUsersLatestPosts" IsChecked="{Binding ReportUserModel.EnableFollowUserer}"  Margin="5,0"/>
+                                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="10,8,0,0" Visibility="{Binding ReportUserModel.EnableFollowUserer, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <CheckBox IsChecked="{Binding ReportUserModel.IsChkFollowMax}"/>
+                                    <TextBlock  VerticalAlignment="Center" Text="{DynamicResource LangKeyFollowMaximumOf}"  />
+                                     <controls:NumericUpDown Minimum="0" Margin="5,5,5,0" Value="{Binding ReportUserModel.FollowMaxBetween.StartValue}" Name="FollowBetweenStartValue"/>
+                                    <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyTo}" />
+                                     <controls:NumericUpDown Margin="5,5,5,0" Value="{Binding ReportUserModel.FollowMaxBetween.EndValue}" Minimum="{Binding Value,ElementName=FollowMaxBetweenStartValue}"/>
+                                    <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyUserPerDay0NoLimit}"  />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="10,8,0,0" Visibility="{Binding ReportUserModel.EnableFollowUserer, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <CheckBox IsChecked="{Binding ReportUserModel.IsChkIncreaseEachDayFollow}"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{DynamicResource LangKeyIncreaseEachDayWith}"  />
+                                     <controls:NumericUpDown Minimum="0" Margin="5,5,5,0" Value="{Binding ReportUserModel.IncreaseEachDayFollow.StartValue}" Name="IncreaseEachDayStartValue"/>
+                                    <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyUntilItReaches}" />
+                                     <controls:NumericUpDown  Margin="5,5,5,0" Value="{Binding ReportUserModel.IncreaseEachDayFollow.EndValue}" Minimum="{Binding Value, ElementName=IncreaseEachDayFollowStartValue}"/>
+                                    <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyMaxFollowsPerDay}"  />
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>-->
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+    </Grid>
+
+
+</local:ReportUserConfigurationbase>

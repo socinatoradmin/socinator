@@ -1,0 +1,163 @@
+﻿<local:QuestionsScraperBase
+    x:Class="QuoraDominatorUI.QDViews.Scrape.QuestionsScraper"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:DHCustomControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:QDcustomControl="clr-namespace:QuoraDominatorUI.CustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:QuoraDominatorUI.QDViews.Scrape"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="Question"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+
+        <!--  Header Section  -->
+        <StackPanel VerticalAlignment="Top">
+            <DHCustomControl:HeaderControl
+                Name="QuestionsScraperHeader"
+                CampaignName="{Binding CampaignName}"
+                CancelEditCommand="{Binding CancelEditCommand}"
+                InfoCommand="{Binding InfoCommand}"
+                IsCampaignNameEditable="{Binding IsEditCampaignName}"
+                IsCancelEditVisible="{Binding CancelEditVisibility}" />
+        </StackPanel>
+
+        <Grid Margin="0,40,0,80" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel>
+                    <Expander
+                        Margin="5"
+                        Header="{DynamicResource LangKeySearchQuery}"
+                        IsExpanded="True">
+                        <!--  SearchQuery Control  -->
+                        <DHCustomControl:SearchQueryControl
+                            Name="QuestionsScraperSearchControl"
+                            AddQueryCommand="{Binding AddQueryCommand}"
+                            CommandParameter="{Binding ElementName=Question}"
+                            CustomFilterCommand="{Binding CustomFilterCommand}"
+                            IsExpanded="{Binding IsExpanded, ElementName=QuestionsScraperHeader, UpdateSourceTrigger=Explicit}"
+                            ListQueryInfo="{Binding QuestionsScraperModel.SavedQueries}"
+                            ListQueryType="{Binding QuestionsScraperModel.ListQueryType}" />
+                    </Expander>
+                    <StackPanel Orientation="Vertical">
+
+                        <!--  JobConfiguration  Expander  -->
+                        <Expander
+                            Margin="5,5"
+                            Header="{DynamicResource LangKeyJobConfiguration}"
+                            IsExpanded="True">
+                            <DHCustomControl:JobConfigControl JobConfiguration="{Binding QuestionsScraperModel.JobConfiguration}" />
+                        </Expander>
+
+                        <!--  Question Filters Expander  -->
+                        <Expander
+                            Margin="5,5"
+                            Header="{DynamicResource LangKeyQuestionFilters}"
+                            IsExpanded="True"
+                            Visibility="{Binding QuestionsScraperModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel>
+                                <QDcustomControl:QuestionFiltersControl QuestionFilter="{Binding QuestionsScraperModel.QuestionFilterModel}" />
+                                <QDcustomControl:TopicFilterControl IsEnableAnswerFilter="{Binding QuestionsScraperModel.TopicFilter.IsVisibleAnswerFilter}" TopicFilter="{Binding QuestionsScraperModel.TopicFilter}" />
+                            </StackPanel>
+                        </Expander>
+
+                        <!--  Blacklists Expender  -->
+
+                        <Expander
+                            Margin="5,5"
+                            Header="{DynamicResource LangKeyManageBlacklistedUsers}"
+                            IsExpanded="True"
+                            Visibility="{Binding QuestionsScraperModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel>
+                                <QDcustomControl:ManageBlacklistControl
+                                    IsChkGroupBlacklist="{Binding QuestionsScraperModel.IsChkQuestionScraperGroupBlacklist}"
+                                    IsChkPrivateBlacklist="{Binding QuestionsScraperModel.IsChkQuestionScraperPrivateBlacklist}"
+                                    IsChkSkipGroupBlacklist="{Binding QuestionsScraperModel.IsChkQuestionScraperSkipGroupBlacklist}"
+                                    IsChkSkipPrivateBlacklist="{Binding QuestionsScraperModel.IsChkQuestionScraperSkipPrivateBlacklist}" />
+
+                            </StackPanel>
+                        </Expander>
+
+                        <!--  After Questions Scraper Expander  -->
+                        <!--<Expander IsExpanded="True" Header="{DynamicResource LangKeyAfterQuestionsScraper}" Margin="5,5"
+                        Visibility="{Binding QuestionsScraperModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel>
+                                <CheckBox Content="{DynamicResource LangKeyEnableFollowUser}" Name="ChkLikeUsersLatestPosts" IsChecked="{Binding QuestionsScraperModel.EnableFollowUserer}"  Margin="5,0"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,8,0,0" Visibility="{Binding QuestionsScraperModel.EnableFollowUserer, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock  VerticalAlignment="Center" Text="{DynamicResource LangKeyFollowBetween}"  />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding QuestionsScraperModel.FollowBetweenJobs.StartValue}" Name="LikeBetweenJobsStartValue" Minimum="0"/>
+                                    <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyAnd}" />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding QuestionsScraperModel.FollowBetweenJobs.EndValue}" Minimum="{Binding Value,ElementName=LikeBetweenJobsStartValue}" />
+                                    <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyPost}"  />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="10,8,0,0">
+                                    <TextBlock  VerticalAlignment="Center" Text="{DynamicResource LangKeyFollowMaximumOf}"  />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding QuestionsScraperModel.FollowMaxBetween.StartValue}" Name="FollowBetweenStartValue" Minimum="0"/>
+                                    <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyTo}" />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding QuestionsScraperModel.FollowMaxBetween.EndValue}" Minimum="{Binding Value,ElementName=FollowMaxBetweenStartValue}"/>
+                                    <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyUserPerDay0NoLimit}"  />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="10,8,0,0">
+                                    <TextBlock VerticalAlignment="Center" Text="{DynamicResource LangKeyIncreaseEachDayWith}"  />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding QuestionsScraperModel.IncreaseEachDayFollow.StartValue}" Name="IncreaseEachDayStartValue" Minimum="0"/>
+                                    <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyUntilItReaches}" />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding QuestionsScraperModel.IncreaseEachDayFollow.EndValue}" Minimum="{Binding Value, ElementName=IncreaseEachDayFollowStartValue}"/>
+                                    <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyMaxFollowsPerDay}"  />
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>-->
+
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <!--  Create campaign and select account section  -->
+        <StackPanel VerticalAlignment="Bottom">
+            <Grid Name="FooterGrid" Margin="5,0">
+                <DHCustomControl:FooterControl
+                    x:Name="QuestionsScraperFooter"
+                    Height="96"
+                    VerticalAlignment="Top"
+                    CampaignManager="{Binding CampaignButtonContent}"
+                    CreateCampaignCommand="{Binding CreateCampaignCommand}"
+                    NoOfAccountsSelected="{Binding SelectedAccountCount, Mode=TwoWay}"
+                    SelectAccountCommand="{Binding SelectAccountCommand}" />
+            </Grid>
+        </StackPanel>
+
+
+        <!--  Help section  -->
+        <Controls:FlyoutsControl>
+            <Controls:Flyout
+                Name="HelpFlyout"
+                Width="300"
+                Background="{DynamicResource AccentBaseColorBrush}"
+                BorderBrush="Black"
+                BorderThickness="2"
+                DataContext="{Binding ElementName=QuestionsScraperFooter, Path=DataContext}"
+                FontSize="10"
+                FontWeight="Bold"
+                Foreground="White"
+                Header="{DynamicResource LangKeyModuleDescription}"
+                IsOpen="{Binding IsOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                Position="Right"
+                Theme="Accent"
+                Visibility="Collapsed">
+                <DHCustomControl:HelpControl
+                    ContactSupportLink="{Binding ContactSupportLink}"
+                    DataContext="{Binding ElementName=QuestionsScraperFooter, Path=DataContext}"
+                    KnowledgeBaseLink="{Binding KnowledgeBaseLink}"
+                    ModuleDescription="{DynamicResource LangKeyModuleDescriptionQuoraAutoScrapeQuestions}"
+                    VideoTutorial="{Binding VideoTutorialLink}" />
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+
+    </Grid>
+</local:QuestionsScraperBase>

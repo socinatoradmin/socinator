@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="QuoraDominatorUI.CustomControl.TopicFilterControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QuoraDominatorUI.CustomControl"
+             mc:Ignorable="d" 
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverters"/>
+    </UserControl.Resources>
+    <Grid x:Name="MainGrid">
+        <StackPanel Margin="5,10,0,0">
+            <CheckBox Content="Topic Filters" IsChecked="{Binding TopicFilter.IsCheckedTopicFilter}" x:Name="TopicFilterCheckBox"/>
+            <StackPanel Margin="10,0,0,0" Visibility="{Binding ElementName=TopicFilterCheckBox,Path=IsChecked,Converter={StaticResource BooleanToVisibilityConverters}}">
+                <!--Topics Range Filter-->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="5,5,0,0" x:Name="MinimumTopicsCheckBox"
+                              IsChecked="{Binding TopicFilter.FilterTopicsCount}"
+                              Content="Scrape Topics" />
+                    <Label Content="{DynamicResource LangKeyMinimum}" Margin="0,5,0,0" VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown x:Name="MinimumTopicsCount" TextAlignment="Center" Minimum="0"
+                             Margin="5,10,0,0" Value="{Binding TopicFilter.TopicsCount.StartValue}"
+                             IsEnabled="{Binding TopicFilter.FilterTopicsCount}" />
+                    <Label Content="{DynamicResource LangKeyMaximum}" x:Name="MinimumTopicsLabel" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown x:Name="MaxTopicsCount" TextAlignment="Center" Margin="10,10,0,0"
+                             Value="{Binding TopicFilter.TopicsCount.EndValue}"
+                             Minimum="{Binding Value, ElementName=MinimumTopicsCount}"
+                             IsEnabled="{Binding TopicFilter.FilterTopicsCount}" />
+                </StackPanel>
+
+                <!--Topics Questions Range Range Filter-->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="5,5,0,0" x:Name="MinimumQuestionsCheckBox"
+                              IsChecked="{Binding TopicFilter.FilterQuestions}"
+                              Content="Scrape Questions" />
+                    <Label Content="{DynamicResource LangKeyMinimum}" Margin="0,5,0,0" VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown x:Name="MinimumQuestionsCount" Minimum="0" TextAlignment="Center"
+                             Margin="5,10,0,0"
+                             Value="{Binding TopicFilter.QuestionsCount.StartValue}"
+                             IsEnabled="{Binding TopicFilter.FilterQuestions}" />
+                    <Label Content="{DynamicResource LangKeyMaximum}" x:Name="MinimumQuestionsLabel"
+                           Margin="0,5,0,0" VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown x:Name="MaxQuestionsCount" TextAlignment="Center" Margin="10,10,0,0"
+                             Value="{Binding TopicFilter.QuestionsCount.EndValue}"
+                             Minimum="{Binding Value, ElementName=MinimumQuestionsCount}"
+                             IsEnabled="{Binding TopicFilter.FilterQuestions}" />
+                    <Label Content="From Each Topic"
+                           Margin="0,5,0,0" VerticalContentAlignment="Center" />
+                </StackPanel>
+                <!--Topics Answers Range Range Filter-->
+                <StackPanel Orientation="Horizontal" Visibility="{Binding IsEnableAnswerFilter}">
+                    <CheckBox Margin="5,5,0,0" x:Name="MinimumAnswersCheckBox"
+                              IsChecked="{Binding TopicFilter.FilterAnswers}"
+                              Content="Scrape Answers" />
+                    <Label Content="{DynamicResource LangKeyMinimum}" Margin="0,5,0,0" VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown x:Name="MinimumAnswersCount" Minimum="0" TextAlignment="Center"
+                                            Margin="5,10,0,0"
+                                            Value="{Binding TopicFilter.AnswersCount.StartValue}"
+                                            IsEnabled="{Binding TopicFilter.FilterAnswers}" />
+                    <Label Content="{DynamicResource LangKeyMaximum}" x:Name="MinimumAnswersLabel"
+                           Margin="0,5,0,0" VerticalContentAlignment="Center" />
+                    <controls:NumericUpDown x:Name="MaxAnswersCount" TextAlignment="Center" Margin="10,10,0,0"
+                                            Value="{Binding TopicFilter.AnswersCount.EndValue}"
+                                            Minimum="{Binding Value, ElementName=MinimumAnswersCount}"
+                                            IsEnabled="{Binding TopicFilter.FilterAnswers}" />
+                    <Label Content="From Each Questions"
+                           Margin="0,5,0,0" VerticalContentAlignment="Center" />
+                </StackPanel>
+                <Label FontWeight="DemiBold" FontFamily="{DynamicResource GabaritoSemiBold}" Margin="5,5,0,0" Content="Note * Topic Filter Only Applicable With Topic List Query Type."/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
