@@ -1,0 +1,1296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1C0BEB70-F243-4A53-983E-CE25A1B722F6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FaceDominatorUI</RootNamespace>
+    <AssemblyName>FaceDominatorUI</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <SignManifests>true</SignManifests>
+    <CertificateThumbprint>b6d08bf4e7cfd123f1c279907063b78af25f9bb3</CertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>B6D08BF4E7CFD123F1C279907063B78AF25F9BB3</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <!--<PropertyGroup>
+    <ManifestTimestampUrl>http://timestamp.digicert.com</ManifestTimestampUrl>
+  </PropertyGroup>-->
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\CommonServiceLocator.2.0.5\lib\net48\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="Dragablz, Version=0.0.3.234, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Dragablz.0.0.3.234\lib\net45\Dragablz.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FirstFloor.ModernUI, Version=1.0.9.0, Culture=neutral, PublicKeyToken=bc9b0c37bf06c6a9, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\ModernUI.WPF.1.0.9\lib\net45\FirstFloor.ModernUI.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\MahApps.Metro.1.6.5\lib\net47\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Core.7.2.0.1422\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Unity.Wpf, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Unity.7.2.0.1422\lib\net45\Prism.Unity.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Wpf.7.2.0.1422\lib\net45\Prism.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.CodeFirst, Version=1.5.1.25, Culture=neutral, PublicKeyToken=eb96ba0a78d831a7, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\SQLite.CodeFirst.1.5.1.25\lib\net45\SQLite.CodeFirst.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Data.SQLite.EF6.1.0.108.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Data.SQLite.Linq.1.0.108.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Threading.Tasks.Extensions.4.5.3\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Windows.Controls.DataVisualization.Toolkit.4.0.0.0\lib\net40-Client\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Wpf.7.2.0.1422\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="ThreadUtils, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\ThreadUtils.1.0.1\lib\net461\ThreadUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.Abstractions.5.11.1\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.Container.5.11.1\lib\net47\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CustomControl\AccountReports.xaml.cs">
+      <DependentUpon>AccountReports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\CommentFilterControl.xaml.cs">
+      <DependentUpon>CommentFilterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\PlaceFilterControl.xaml.cs">
+      <DependentUpon>PlaceFilterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\FanpageFilterControl.xaml.cs">
+      <DependentUpon>FanpageFilterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\GenderAndLocationFilter.xaml.cs">
+      <DependentUpon>GenderAndLocationFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\GroupFilterControl.xaml.cs">
+      <DependentUpon>GroupFilterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\MarketplaceFilterControl.xaml.cs">
+      <DependentUpon>MarketplaceFilterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\SelectDetailsControl.xaml.cs">
+      <DependentUpon>SelectDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Factories\FacebookNetworkCollectionFactory.cs" />
+    <Compile Include="Factories\FacebookPublisherCollectionFactory.cs" />
+    <Compile Include="FdCoreLibrary\FdAccountSelectorFactory.cs" />
+    <Compile Include="FdCoreLibrary\FdAccountToolsFactory.cs" />
+    <Compile Include="FdCoreLibrary\FdCoreBuilder.cs" />
+    <Compile Include="FdCoreLibrary\FdInitialiser.cs" />
+    <Compile Include="FdCoreLibrary\FdPublisherCoreBuilder.cs" />
+    <Compile Include="FdCoreLibrary\FdTabHandlerFactory.cs" />
+    <Compile Include="FdCoreLibrary\FdViewCampaignsFactory.cs" />
+    <Compile Include="FDViews\FbFriends\CancelSentRequest.xaml.cs">
+      <DependentUpon>CancelSentRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbFriends\UnfollowFriend.xaml.cs">
+      <DependentUpon>UnfollowFriend.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbGroups\GroupUnjoinerNew.xaml.cs">
+      <DependentUpon>GroupUnjoinerNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbGroups\MakeGroupAdmin.xaml.cs">
+      <DependentUpon>MakeGroupAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbInviter\WatchPartyInviter.xaml.cs">
+      <DependentUpon>WatchPartyInviter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbLikerCommentor\CommentLiker.xaml.cs">
+      <DependentUpon>CommentLiker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbLikerCommentor\PostCommentor.xaml.cs">
+      <DependentUpon>PostCommentor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbLikerCommentor\PostLiker.xaml.cs">
+      <DependentUpon>PostLiker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbLikerCommentor\ReplyToComment.xaml.cs">
+      <DependentUpon>ReplyToComment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbLikerCommentor\WebPostCommentLiker.xaml.cs">
+      <DependentUpon>WebPostCommentLiker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbMessanger\AutoReplyMessage.xaml.cs">
+      <DependentUpon>AutoReplyMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbMessanger\MessageRecentFriends.xaml.cs">
+      <DependentUpon>MessageRecentFriends.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbMessanger\MessageToPlaces.xaml.cs">
+      <DependentUpon>MessageToPlaces.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbMessanger\MessageToFanpages.xaml.cs">
+      <DependentUpon>MessageToFanpages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbMessanger\SendGreetingsToFriends.xaml.cs">
+      <DependentUpon>SendGreetingsToFriends.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbScraper\CommnetrRepliesScraper.xaml.cs">
+      <DependentUpon>CommnetrRepliesScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbScraper\DownloadPhotos.xaml.cs">
+      <DependentUpon>DownloadPhotos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbScraper\MarketPlaceScraper.xaml.cs">
+      <DependentUpon>MarketPlaceScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbScraper\PlaceScraper.xaml.cs">
+      <DependentUpon>PlaceScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\CommnetrRepliesScraperConfiguration.xaml.cs">
+      <DependentUpon>CommnetrRepliesScraperConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\EventCreaterConfiguration.xaml.cs">
+      <DependentUpon>EventCreaterConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\MakeGroupAdminConfiguration.xaml.cs">
+      <DependentUpon>MakeGroupAdminConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\SendGreetingsToFriendsConfiguration.xaml.cs">
+      <DependentUpon>SendGreetingsToFriendsConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\AutoReplyMessageConfiguration.xaml.cs">
+      <DependentUpon>AutoReplyMessageConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\CancelSentRequestConfiguration.xaml.cs">
+      <DependentUpon>CancelSentRequestConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\CommentLikerConfiguration.xaml.cs">
+      <DependentUpon>CommentLikerConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\DOwnloadMediaConfiguration.xaml.cs">
+      <DependentUpon>DOwnloadMediaConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\EventInviterConfiguration.xaml.cs">
+      <DependentUpon>EventInviterConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\PlaceScraperConfiguration.xaml.cs">
+      <DependentUpon>PlaceScraperConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\SendMessageToPlacesConfiguration.xaml.cs">
+      <DependentUpon>SendMessageToPlacesConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\SendMessageToFanpagesConfiguration.xaml.cs">
+      <DependentUpon>SendMessageToFanpagesConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\WatchPartyInviterConfiguration.xaml.cs">
+      <DependentUpon>WatchPartyInviterConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\GroupInviterConfiguration.xaml.cs">
+      <DependentUpon>GroupInviterConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\IncommingFriendConfiguration.xaml.cs">
+      <DependentUpon>IncommingFriendConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\PageInviterConfiguration.xaml.cs">
+      <DependentUpon>PageInviterConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\PostCommentorConfiguration.xaml.cs">
+      <DependentUpon>PostCommentorConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\PostLikerConfiguration.xaml.cs">
+      <DependentUpon>PostLikerConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\PostScraperConfiguration.xaml.cs">
+      <DependentUpon>PostScraperConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\SendMessageToNewFriendsConfiguration.xaml.cs">
+      <DependentUpon>SendMessageToNewFriendsConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\FbCreaterTab.xaml.cs">
+      <DependentUpon>FbCreaterTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\AutoReplyToNewMessages\AutoReplyToMessageTools.xaml.cs">
+      <DependentUpon>AutoReplyToMessageTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\CancelsentRequest\CancelSentRequestTools.xaml.cs">
+      <DependentUpon>CancelSentRequestTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\CommentLikerTools\CommentLikerTools.xaml.cs">
+      <DependentUpon>CommentLikerTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\CommentRepliesScraper\CommnetrRepliesScraperTools.xaml.cs">
+      <DependentUpon>CommnetrRepliesScraperTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\DownloadMedia\DownloadMediaTools.xaml.cs">
+      <DependentUpon>DownloadMediaTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\EventCreater\EventCreaterTools.xaml.cs">
+      <DependentUpon>EventCreaterTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\MakeGroupAdmin\MakeGroupAdminTools.xaml.cs">
+      <DependentUpon>MakeGroupAdminTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\MarketPlaceScraper\MarketPlaceScraper.xaml.cs">
+      <DependentUpon>MarketPlaceScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\MessageToFnapages\MessageToFnapagesTools.xaml.cs">
+      <DependentUpon>MessageToFnapagesTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\MessageToPlaces\MessageToPlcaesTools.xaml.cs">
+      <DependentUpon>MessageToPlcaesTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\PlaceScraper\PlaceScraperTools.xaml.cs">
+      <DependentUpon>PlaceScraperTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\PostCommentor\PostCommentorTools.xaml.cs">
+      <DependentUpon>PostCommentorTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\PostLiker\PostLikerTools.xaml.cs">
+      <DependentUpon>PostLikerTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\ReplyToCommentTools\ReplyToCommentsModel.cs" />
+    <Compile Include="FDViews\Tools\SendGreetingToFriends\SendGreetingToFriendsTools.xaml.cs">
+      <DependentUpon>SendGreetingToFriendsTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\SendMessageToNewFriends\SendMessageToNewFriendsTools.xaml.cs">
+      <DependentUpon>SendMessageToNewFriendsTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\WatchPartyInviterTools\WatchPartyInviterTools.xaml.cs">
+      <DependentUpon>WatchPartyInviterTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IoC\FdContainerExtension.cs" />
+    <Compile Include="IoC\FdDominatorModule.cs" />
+    <Compile Include="FDViews\Tools\ReplyToCommentTools\ReplyToCommentConfiguration.xaml.cs">
+      <DependentUpon>ReplyToCommentConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\ReplyToCommentTab.xaml.cs">
+      <DependentUpon>ReplyToCommentTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\FacebookPrismModule.cs" />
+    <Compile Include="Utilities\Events\EventCreater\EventCreaterBaseFactory.cs" />
+    <Compile Include="Utilities\Events\EventCreater\EventCreaterReports.cs" />
+    <Compile Include="Utilities\Events\EventCreater\EventCreaterViewCampaign.cs" />
+    <Compile Include="Utilities\Friends\CancelSentRequest\CancelRequestBaseFactory.cs" />
+    <Compile Include="Utilities\Friends\CancelSentRequest\CancelRequestReports.cs" />
+    <Compile Include="Utilities\Friends\CancelSentRequest\CancelRequestViewCampaign.cs" />
+    <Compile Include="Utilities\Friends\IncommingFriendRequest\IncommingFriendRequestBaseFactory.cs" />
+    <Compile Include="Utilities\Friends\IncommingFriendRequest\IncommingFriendRequestReports.cs" />
+    <Compile Include="Utilities\Friends\IncommingFriendRequest\IncommingFriendRequestViewCampaign.cs" />
+    <Compile Include="Utilities\Friends\SendFriendRequest\SendFriendRequestReports.cs" />
+    <Compile Include="Utilities\Friends\SendFriendRequest\SendFriendRequestViewCampaign.cs" />
+    <Compile Include="FDViews\FbEvents\EventCreator.xaml.cs">
+      <DependentUpon>EventCreator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbFriends\IncommingFriendRequest.xaml.cs">
+      <DependentUpon>IncommingFriendRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbFriends\SendFriendRequest.xaml.cs">
+      <DependentUpon>SendFriendRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbFriends\Unfriend.xaml.cs">
+      <DependentUpon>Unfriend.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbGroups\GroupJoiner.xaml.cs">
+      <DependentUpon>GroupJoiner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbInviter\EventInviter.xaml.cs">
+      <DependentUpon>EventInviter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbInviter\GroupInviter.xaml.cs">
+      <DependentUpon>GroupInviter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbInviter\PageInviter.xaml.cs">
+      <DependentUpon>PageInviter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbLikerCommentor\FanapgeLiker.xaml.cs">
+      <DependentUpon>FanapgeLiker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbLikerCommentor\PostLikerCommentor.xaml.cs">
+      <DependentUpon>PostLikerCommentor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbMessanger\BrodcastMessage.xaml.cs">
+      <DependentUpon>BrodcastMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbScraper\CommentScraper.xaml.cs">
+      <DependentUpon>CommentScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbScraper\FanpageScraper.xaml.cs">
+      <DependentUpon>FanpageScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbScraper\GroupScraper.xaml.cs">
+      <DependentUpon>GroupScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbScraper\PostScraper.xaml.cs">
+      <DependentUpon>PostScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\FbScraper\ProfileScraper.xaml.cs">
+      <DependentUpon>ProfileScraper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\AccountTab.xaml.cs">
+      <DependentUpon>AccountTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\CampaignTab.xaml.cs">
+      <DependentUpon>CampaignTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\BrodcastMessageConfiguration.xaml.cs">
+      <DependentUpon>BrodcastMessageConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\CommentScraperConfiguration.xaml.cs">
+      <DependentUpon>CommentScraperConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\FanpageLikerConfiguration.xaml.cs">
+      <DependentUpon>FanpageLikerConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\FanpageScraperConfiguration.xaml.cs">
+      <DependentUpon>FanpageScraperConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\GroupJoinerTabs.xaml.cs">
+      <DependentUpon>GroupJoinerTabs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\GroupScarperConfiguration.xaml.cs">
+      <DependentUpon>GroupScarperConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\ProfileScraperConfigurationTabs.xaml.cs">
+      <DependentUpon>ProfileScraperConfigurationTabs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\SendRequestConfigurationTab.xaml.cs">
+      <DependentUpon>SendRequestConfigurationTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\UnfriendConfigurationTabs.xaml.cs">
+      <DependentUpon>UnfriendConfigurationTabs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ConfigurationTabs\UnjoinConfiguration.xaml.cs">
+      <DependentUpon>UnjoinConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\FbEventsTab.xaml.cs">
+      <DependentUpon>FbEventsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\FbFriendsTab.xaml.cs">
+      <DependentUpon>FbFriendsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\FbGroupsTab.xaml.cs">
+      <DependentUpon>FbGroupsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\FbInviterTab.xaml.cs">
+      <DependentUpon>FbInviterTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\FbLikerCommentorTab.xaml.cs">
+      <DependentUpon>FbLikerCommentorTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\FbMessangerTab.xaml.cs">
+      <DependentUpon>FbMessangerTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\FbScraperTab.xaml.cs">
+      <DependentUpon>FbScraperTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\SettingsTab.xaml.cs">
+      <DependentUpon>SettingsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\EventInviter\EventInviterTools.xaml.cs">
+      <DependentUpon>EventInviterTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\GroupInviter\GroupInviterTools.xaml.cs">
+      <DependentUpon>GroupInviterTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\IncommingFriendRequest\IncommingFriendRequestTools.xaml.cs">
+      <DependentUpon>IncommingFriendRequestTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\PageInviter\PageInviterTools.xaml.cs">
+      <DependentUpon>PageInviterTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Friends\SendFriendRequest\SendFriendRequestBaseFactory.cs" />
+    <Compile Include="Utilities\Friends\Unfollow\UnFollowRequestBaseFactory.cs" />
+    <Compile Include="Utilities\Friends\Unfollow\UnFollowRequestReports.cs" />
+    <Compile Include="Utilities\Friends\Unfollow\UnFollowRequestViewCampaign.cs" />
+    <Compile Include="Utilities\Friends\Unfriend\UnFriendRequestBaseFactory.cs" />
+    <Compile Include="Utilities\Friends\Unfriend\UnFriendRequestReports.cs" />
+    <Compile Include="Utilities\Friends\Unfriend\UnFriendRequestViewCampaign.cs" />
+    <Compile Include="Utilities\Groups\GroupJoiner\GroupJoinerBaseFactory.cs" />
+    <Compile Include="Utilities\Groups\GroupJoiner\GroupJoinerReports.cs" />
+    <Compile Include="Utilities\Groups\GroupJoiner\GroupJoinerViewCampaign.cs" />
+    <Compile Include="Utilities\Groups\GroupUnjoiner\GroupUnjoinerBaseFactory.cs" />
+    <Compile Include="Utilities\Groups\GroupUnjoiner\GroupUnJoinerReports.cs" />
+    <Compile Include="Utilities\Groups\GroupUnjoiner\GroupUnjoinerViewCampaign.cs" />
+    <Compile Include="Utilities\Groups\MakeGroupAdmin\MakeGroupAdminBaseFactory.cs" />
+    <Compile Include="Utilities\Groups\MakeGroupAdmin\MakeGroupAdminReport.cs" />
+    <Compile Include="Utilities\Groups\MakeGroupAdmin\MakeGroupAdminViewCampaign.cs" />
+    <Compile Include="Utilities\Inviter\EventInviter\EventInviterBaseFactory.cs" />
+    <Compile Include="Utilities\Inviter\EventInviter\EventInviterReports.cs" />
+    <Compile Include="Utilities\Inviter\EventInviter\EventInviterViewCampaign.cs" />
+    <Compile Include="Utilities\Inviter\GroupInviter\GroupInviterBaseFactory.cs" />
+    <Compile Include="Utilities\Inviter\GroupInviter\GroupInviterReports.cs" />
+    <Compile Include="Utilities\Inviter\GroupInviter\GroupInviterViewCampaign.cs" />
+    <Compile Include="Utilities\Inviter\PageInviter\FanpageInviterBaseFactory.cs" />
+    <Compile Include="Utilities\Inviter\PageInviter\FanpageInviterReports.cs" />
+    <Compile Include="Utilities\Inviter\PageInviter\FanpageInviterViewCampaign.cs" />
+    <Compile Include="Utilities\Inviter\WatchPartyInviter\WatchPartyInviterBaseFactory.cs" />
+    <Compile Include="Utilities\Inviter\WatchPartyInviter\WatchPartyInviterReports.cs" />
+    <Compile Include="Utilities\Inviter\WatchPartyInviter\WatchPartyInviterViewCampaign.cs" />
+    <Compile Include="Utilities\LikerCommentor\CommentLiker\CommentLikerBaseFactory.cs" />
+    <Compile Include="Utilities\LikerCommentor\CommentLiker\CommentLikerReports.cs" />
+    <Compile Include="Utilities\LikerCommentor\CommentLiker\CommentLikerViewCampaign.cs" />
+    <Compile Include="Utilities\LikerCommentor\FanpageLiker\FanpageLikerBaseFactory.cs" />
+    <Compile Include="Utilities\LikerCommentor\FanpageLiker\FanpageLikerReports.cs" />
+    <Compile Include="Utilities\LikerCommentor\FanpageLiker\FanpageLikerViewCampaign.cs" />
+    <Compile Include="Utilities\LikerCommentor\PostCommentor\PostCommentorBaseFactory.cs" />
+    <Compile Include="Utilities\LikerCommentor\PostCommentor\PostCommentorReports.cs" />
+    <Compile Include="Utilities\LikerCommentor\PostCommentor\PostCommmentorViewCampaign.cs" />
+    <Compile Include="Utilities\LikerCommentor\PostLikerCommentor\PostLikerCommentorBaseFactory.cs" />
+    <Compile Include="Utilities\LikerCommentor\PostLikerCommentor\PostLikerCommentorReports.cs" />
+    <Compile Include="Utilities\LikerCommentor\PostLikerCommentor\PostlikerCommmentorViewCampaign.cs" />
+    <Compile Include="Utilities\LikerCommentor\PostLiker\PostLikerBaseFactory.cs" />
+    <Compile Include="Utilities\LikerCommentor\PostLiker\PostLikerReports.cs" />
+    <Compile Include="Utilities\LikerCommentor\PostLiker\PostlikerViewCampaign.cs" />
+    <Compile Include="Utilities\LikerCommentor\ReplyToComment\ReplyToCommentBaseFactory.cs" />
+    <Compile Include="Utilities\LikerCommentor\ReplyToComment\ReplyToCommentReports.cs" />
+    <Compile Include="Utilities\LikerCommentor\ReplyToComment\ReplyToCommentViewCampain.cs" />
+    <Compile Include="Utilities\LikerCommentor\WebPostCommentLiker\WebPostCommentLikerBaseFactory.cs" />
+    <Compile Include="Utilities\LikerCommentor\WebPostCommentLiker\WebPostCommentLikerReports.cs" />
+    <Compile Include="Utilities\LikerCommentor\WebPostCommentLiker\WebPostCommentLikerViewCampaign.cs" />
+    <Compile Include="Utilities\Messanger\AutoReplyMessage\AutoReplyMessageBaseFactory.cs" />
+    <Compile Include="Utilities\Messanger\AutoReplyMessage\AutoReplyMessageReports.cs" />
+    <Compile Include="Utilities\Messanger\AutoReplyMessage\AutoReplyMessageViewCampaign.cs" />
+    <Compile Include="Utilities\Messanger\BrodcastMessageBaseFactory.cs" />
+    <Compile Include="Utilities\Messanger\BrodcastMessageReports.cs" />
+    <Compile Include="Utilities\Messanger\BrodcastMessageViewCampaign.cs" />
+    <Compile Include="Utilities\Messanger\MessageToPlaces\MessageToPlacesBaseFactory.cs" />
+    <Compile Include="Utilities\Messanger\MessageToPlaces\MessageToPlacesReport.cs" />
+    <Compile Include="Utilities\Messanger\MessageToPlaces\MessageToPlacesViewCampaign.cs" />
+    <Compile Include="Utilities\Messanger\MessageToFanpages\MessageToFanpagesBaseFactory.cs" />
+    <Compile Include="Utilities\Messanger\MessageToFanpages\MessageToFanpagesReport.cs" />
+    <Compile Include="Utilities\Messanger\MessageToFanpages\MessageToFanpagesViewCampaign.cs" />
+    <Compile Include="Utilities\Messanger\SendGreetingsToFriends\SendGreedingsToFriendsBaseFactory.cs" />
+    <Compile Include="Utilities\Messanger\SendGreetingsToFriends\SendGreetingsToFriendsReport.cs" />
+    <Compile Include="Utilities\Messanger\SendGreetingsToFriends\SendGreetingsToFriendsViewCampaign.cs" />
+    <Compile Include="Utilities\Messanger\SendMessageToNewFriends\SendMesageToNewFriendBaseFactory.cs" />
+    <Compile Include="Utilities\Messanger\SendMessageToNewFriends\SendMessageToNewFriendsReport.cs" />
+    <Compile Include="Utilities\Messanger\SendMessageToNewFriends\SendMessageToNewFriendsViewCampaign.cs" />
+    <Compile Include="Utilities\Scraper\CommentScraper\CommentScraperBaseFactory.cs" />
+    <Compile Include="Utilities\Scraper\CommentScraper\CommentScraperReports.cs" />
+    <Compile Include="Utilities\Scraper\CommentScraper\CommentScraperViewCampaign.cs" />
+    <Compile Include="Utilities\Scraper\CommnetrRepliesScraper\CommnetrRepliesScraperBaseFactory.cs" />
+    <Compile Include="Utilities\Scraper\CommnetrRepliesScraper\CommnetrRepliesScraperReports.cs" />
+    <Compile Include="Utilities\Scraper\CommnetrRepliesScraper\CommnetrRepliesScraperViewCampaign.cs" />
+    <Compile Include="Utilities\Scraper\DownloadMedia\DownloadMediaBaseFactory.cs" />
+    <Compile Include="Utilities\Scraper\DownloadMedia\DownloadMediaReports.cs" />
+    <Compile Include="Utilities\Scraper\DownloadMedia\DownloadMediaViewCampaign.cs" />
+    <Compile Include="Utilities\Scraper\FanpageScraper\FanpageScraperBaseFactory.cs" />
+    <Compile Include="Utilities\Scraper\FanpageScraper\FanpageScraperReports.cs" />
+    <Compile Include="Utilities\Scraper\FanpageScraper\FanpageScraperViewCampaign.cs" />
+    <Compile Include="Utilities\Scraper\GroupScraper\GroupScraperBaseFactory.cs" />
+    <Compile Include="Utilities\Scraper\GroupScraper\GroupScraperReports.cs" />
+    <Compile Include="Utilities\Scraper\GroupScraper\GroupScraperViewCampaign.cs" />
+    <Compile Include="Utilities\Scraper\MarketPlaceScaper\MarketPlaceScraperBaseFactory.cs" />
+    <Compile Include="Utilities\Scraper\MarketPlaceScaper\MarketPlaceScraperReport.cs" />
+    <Compile Include="Utilities\Scraper\MarketPlaceScaper\MarketPlaceScraperViewCampaign.cs" />
+    <Compile Include="Utilities\Scraper\PlaceScraper\PlaceScraperBaseFactory.cs" />
+    <Compile Include="Utilities\Scraper\PlaceScraper\PlaceScraperReport.cs" />
+    <Compile Include="Utilities\Scraper\PlaceScraper\PlaceScraperViewCampaign.cs" />
+    <Compile Include="Utilities\Scraper\PostScraper\PostScraperBaseFactory.cs" />
+    <Compile Include="Utilities\Scraper\PostScraper\PostScraperReports.cs" />
+    <Compile Include="Utilities\Scraper\PostScraper\PostScraperViewCampaign.cs" />
+    <Compile Include="Utilities\Scraper\ProfileScraper\ProfileScraperBaseFactory.cs" />
+    <Compile Include="Utilities\Scraper\ProfileScraper\ProfileScraperReports.cs" />
+    <Compile Include="Utilities\Scraper\ProfileScraper\ProfileScraperViewCampaign.cs" />
+    <Page Include="CustomControl\AccountReports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\CommentFilterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\PlaceFilterControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\FanpageFilterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\GenderAndLocationFilter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\GroupFilterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\MarketplaceFilterControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\PostFilterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\SelectDetailsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FDViews\FbEvents\EventCreator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbFriends\CancelSentRequest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbFriends\IncommingFriendRequest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbFriends\SendFriendRequest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbFriends\UnfollowFriend.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbFriends\Unfriend.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbGroups\GroupJoiner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbGroups\GroupUnjoinerNew.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbGroups\MakeGroupAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbInviter\EventInviter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbInviter\GroupInviter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbInviter\WatchPartyInviter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FDViews\FbInviter\PageInviter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbLikerCommentor\CommentLiker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbLikerCommentor\FanapgeLiker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbLikerCommentor\PostCommentor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbLikerCommentor\PostLiker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbLikerCommentor\PostLikerCommentor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbLikerCommentor\ReplyToComment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbLikerCommentor\WebPostCommentLiker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FDViews\FbMessanger\AutoReplyMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbMessanger\BrodcastMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbMessanger\MessageRecentFriends.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FDViews\FbMessanger\MessageToPlaces.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FDViews\FbMessanger\MessageToFanpages.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FDViews\FbMessanger\SendGreetingsToFriends.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbScraper\CommentScraper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbScraper\CommnetrRepliesScraper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbScraper\DownloadPhotos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbScraper\FanpageScraper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbScraper\GroupScraper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbScraper\PlaceScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FDViews\FbScraper\PostScraper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\FbScraper\MarketPlaceScraper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FDViews\FbScraper\ProfileScraper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\CommnetrRepliesScraperConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\EventCreaterConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\MakeGroupAdminConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\SendGreetingsToFriendsConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\AutoReplyMessageConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\BrodcastMessageConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\CancelSentRequestConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\CommentLikerConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\CommentScraperConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\DOwnloadMediaConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\EventInviterConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\FanpageLikerConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\FanpageScraperConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\PlaceScraperConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\SendMessageToPlacesConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\SendMessageToFanpagesConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\WatchPartyInviterConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\GroupInviterConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\GroupJoinerTabs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\GroupScarperConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\IncommingFriendConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\PageInviterConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\PostCommentorConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\PostLikerConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\PostScraperConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\ProfileScraperConfigurationTabs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\SendMessageToNewFriendsConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\SendRequestConfigurationTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\UnfriendConfigurationTabs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\UnjoinConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\FbCreaterTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ToolsTabs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\AutoReplyToNewMessages\AutoReplyToMessageTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\BrodcastMessage\BroadcastMessageTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\CancelsentRequest\CancelSentRequestTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\CommentLikerTools\CommentLikerTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\CommentRepliesScraper\CommnetrRepliesScraperTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\CommentScraper\CommentScraperTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\DownloadMedia\DownloadMediaTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\EventCreater\EventCreaterTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\EventInviter\EventInviterTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\FanpageLiker\FanpageLikerTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\FanpageScraper\FanpageScraperTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\GroupInviter\GroupInviterTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\GroupJoiner\GroupJoinerTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\GroupScraper\GroupScraperTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\GroupUnjoinerTools\GroupUnjoinerTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\IncommingFriendRequest\IncommingFriendRequestTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\MakeGroupAdmin\MakeGroupAdminTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\MarketPlaceScraper\MarketPlaceScraper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\MessageToFnapages\MessageToFnapagesTools.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FDViews\Tools\MessageToPlaces\MessageToPlcaesTools.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FDViews\Tools\PageInviter\PageInviterTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\PlaceScraper\PlaceScraperTools.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FDViews\Tools\PostCommentor\PostCommentorTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\PostLiker\PostLikerTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\PostScraper\PostScraperTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\ProfileScraper\ProfileScraperTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\ReplyToCommentTools\ReplyToCommentConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\ConfigurationTabs\ReplyToCommentTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\SendGreetingToFriends\SendGreetingToFriendsTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\SendMessageToNewFriends\SendMessageToNewFriendsTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\SendRequest\SendRequestTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\Unfriend\UnfriendTools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\Tools\WatchPartyInviterTools\WatchPartyInviterTools.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="CustomControl\PostFilterControl.xaml.cs">
+      <DependentUpon>PostFilterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\TabManager\ToolsTabs.xaml.cs">
+      <DependentUpon>ToolsTabs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\BrodcastMessage\BroadcastMessageTools.xaml.cs">
+      <DependentUpon>BroadcastMessageTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\CommentScraper\CommentScraperTools.xaml.cs">
+      <DependentUpon>CommentScraperTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\FanpageLiker\FanpageLikerTools.xaml.cs">
+      <DependentUpon>FanpageLikerTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\FanpageScraper\FanpageScraperTools.xaml.cs">
+      <DependentUpon>FanpageScraperTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\GroupJoiner\GroupJoinerTools.xaml.cs">
+      <DependentUpon>GroupJoinerTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\GroupScraper\GroupScraperTools.xaml.cs">
+      <DependentUpon>GroupScraperTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\GroupUnjoinerTools\GroupUnjoinerTools.xaml.cs">
+      <DependentUpon>GroupUnjoinerTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\PostScraper\PostScraperTools.xaml.cs">
+      <DependentUpon>PostScraperTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\ProfileScraper\ProfileScraperTools.xaml.cs">
+      <DependentUpon>ProfileScraperTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\SendRequest\SendRequestTools.xaml.cs">
+      <DependentUpon>SendRequestTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FDViews\Tools\Unfriend\UnfriendTools.xaml.cs">
+      <DependentUpon>UnfriendTools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Page Include="FDViews\TabManager\AccountTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\CampaignTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\FbEventsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\FbFriendsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\FbGroupsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\FbInviterTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\FbLikerCommentorTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\FbMessangerTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\FbScraperTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FDViews\TabManager\SettingsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\dominatorhouse-social\DominatorHouseCore\DominatorHouseCore.csproj">
+      <Project>{f40a5c83-8eda-43c5-88b9-dfaab492a497}</Project>
+      <Name>DominatorHouseCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dominatorhouse-social\DominatorUIUtility\DominatorUIUtility.csproj">
+      <Project>{e8d95af0-e99b-4059-9140-5c02b3f52e06}</Project>
+      <Name>DominatorUIUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FaceDominatorCore\FaceDominatorCore.csproj">
+      <Project>{36f8a922-028e-49dd-bbd6-d7daab339491}</Project>
+      <Name>FaceDominatorCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\AddMultiAccount.png" />
+    <Content Include="Images\AddSingleAccount.png" />
+    <Resource Include="Images\angry.png" />
+    <Content Include="Images\back.png" />
+    <Content Include="Images\black_Pause.png" />
+    <Content Include="Images\black_PostList.png" />
+    <Content Include="Images\black_Start.png" />
+    <Content Include="Images\black_Stop.png" />
+    <Content Include="Images\browsercheck.png" />
+    <Content Include="Images\campaignoptions.png" />
+    <Content Include="Images\check.png" />
+    <Content Include="Images\checkall.png" />
+    <Content Include="Images\clear.png" />
+    <Content Include="Images\close.png" />
+    <Content Include="Images\close_red.png" />
+    <Content Include="Images\delete.png" />
+    <Content Include="Images\deleteaccount.png" />
+    <Content Include="Images\DeleteAccounts.png" />
+    <Content Include="Images\deletenotworking.png" />
+    <Content Include="Images\deselect.png" />
+    <Content Include="Images\DOB.png" />
+    <Content Include="Images\drag drop.png" />
+    <Content Include="Images\duplicate.png" />
+    <Content Include="Images\duplicatecampaign.png" />
+    <Content Include="Images\duplicatesmall.png" />
+    <Content Include="Images\duplicateverysmall.png" />
+    <Content Include="Images\edit.png" />
+    <Content Include="Images\export.png" />
+    <Content Include="Images\fb-icon.png" />
+    <Content Include="Images\FB.png" />
+    <Content Include="Images\FDreset.png" />
+    <Content Include="Images\forward.png" />
+    <Content Include="Images\FriendBackward.png" />
+    <Content Include="Images\FriendFirstBackward.png" />
+    <Content Include="Images\FriendForward.png" />
+    <Content Include="Images\FriendFullForward.png" />
+    <Content Include="Images\friendupdate.png" />
+    <Content Include="Images\groupsearch.png" />
+    <Content Include="Images\groupupdate.png" />
+    <Resource Include="Images\haha.png" />
+    <Content Include="Images\imagenotfound.png" />
+    <Content Include="Images\insufficient.png" />
+    <Content Include="Images\IP Location.png" />
+    <Content Include="Images\IP.png" />
+    <Resource Include="Images\Like.png" />
+    <Content Include="Images\LikedPage.png" />
+    <Content Include="Images\loadaccouts.png" />
+    <Resource Include="Images\Love.png" />
+    <Content Include="Images\NotChecked.png" />
+    <Content Include="Images\notworking.png" />
+    <Content Include="Images\pageupdate.png" />
+    <Content Include="Images\Page_36dp.png" />
+    <Content Include="Images\ProfilePic.png" />
+    <Content Include="Images\refresh_white_24dp.png" />
+    <Content Include="Images\remove.png" />
+    <Resource Include="Images\sad.png" />
+    <Content Include="Images\Save.png" />
+    <Content Include="Images\search.png" />
+    <Content Include="Images\Search_white_24dp.png" />
+    <Content Include="Images\Select.png" />
+    <Content Include="Images\selectall.png" />
+    <Content Include="Images\SettingBlack.png" />
+    <Content Include="Images\settings.png" />
+    <Content Include="Images\singleaccount.png" />
+    <Content Include="Images\stop.png" />
+    <Content Include="Images\testsss.png" />
+    <Content Include="Images\Unblock.png" />
+    <Content Include="Images\unlock.png" />
+    <Content Include="Images\Updates.png" />
+    <Content Include="Images\video.png" />
+    <Content Include="Images\VideoFile.png" />
+    <Content Include="Images\whiteFB.png" />
+    <Content Include="Images\white_Back.png" />
+    <Content Include="Images\white_Back_24dp.png" />
+    <Content Include="Images\white_Forward.png" />
+    <Content Include="Images\white_Forward_24dp.png" />
+    <Content Include="Images\white_Start.png" />
+    <Content Include="Images\workingaccount.png" />
+    <Content Include="Images\workingAccounts.png" />
+    <Resource Include="Images\wow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if "$(Configuration)" == "Release" signtool sign /fd SHA256 /f "C:\Globussoft_Dotnet\code_signing_certificate_gbs.cer" "$(TargetDir)FaceDominatorUI.exe"</PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

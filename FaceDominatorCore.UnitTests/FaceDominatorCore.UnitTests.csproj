@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\dominatorhouse-social\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.props" Condition="Exists('..\..\dominatorhouse-social\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{723CF4EC-43A6-4FD4-A3BE-445685E32D09}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FaceDominatorCore.UnitTests</RootNamespace>
+    <AssemblyName>FaceDominatorCore.UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\CommonServiceLocator.2.0.5\lib\net46\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentAssertions, Version=5.10.3.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\FluentAssertions.5.10.3\lib\net45\FluentAssertions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\MSTest.TestFramework.2.1.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\MSTest.TestFramework.2.1.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NSubstitute, Version=4.2.0.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\NSubstitute.4.2.1\lib\net46\NSubstitute.dll</HintPath>
+    </Reference>
+    <Reference Include="ObjectsComparer, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\ObjectsComparer.1.1\lib\net45\ObjectsComparer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Office, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Prism, Version=7.2.0.1367, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Core.7.2.0.1367\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Threading.Tasks.Extensions.4.5.3\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Unity.Abstractions, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.5.11.1\lib\net46\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.5.11.1\lib\net46\Unity.Container.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise />
+  </Choose>
+  <ItemGroup>
+    <Compile Include="Tests\FdLibrary\FdLibraryTest.cs" />
+    <Compile Include="Tests\FdResponseHandlers\FdResponseHandlerTest.cs" />
+    <Compile Include="Tests\Processors\BaseFacebookProcessorTest.cs" />
+    <Compile Include="Tests\Processors\CommentProcessor\CustomCommentLikerProcessorTest.cs" />
+    <Compile Include="Tests\Processors\CommentProcessor\CustomWebPostCommentLikerProcessorTest.cs" />
+    <Compile Include="Tests\Processors\CommentProcessor\CustomWebPostReCommentLikerProcessorTest.cs" />
+    <Compile Include="Tests\Processors\CommentProcessor\GroupPostCommentLikerProcessorTest.cs" />
+    <Compile Include="Tests\Processors\CommentProcessor\NewsfeedPostCommentProcessorTest.cs" />
+    <Compile Include="Tests\Processors\CommentProcessor\PagePostCommentLikerProcessorTest.cs" />
+    <Compile Include="Tests\Processors\EventProcessors\EventCreatorProcessorsTest.cs" />
+    <Compile Include="Tests\Processors\FanpageProcessor\CustomFanpageProcessorTest.cs" />
+    <Compile Include="Tests\Processors\FanpageProcessor\GraphSearchFnapageProcessorTest.cs" />
+    <Compile Include="Tests\Processors\FanpageProcessor\KeywordFanpageProcessorTest.cs" />
+    <Compile Include="Tests\Processors\FriendsProcessor\IncommingFriendRequestProcessorTest.cs" />
+    <Compile Include="Tests\Processors\GroupProcessor\CustomGroupProcessorTest.cs" />
+    <Compile Include="Tests\Processors\GroupProcessor\GraphSearchGroupProcessorsTest.cs" />
+    <Compile Include="Tests\Processors\GroupProcessor\GroupUnjoinerProcessorTest.cs" />
+    <Compile Include="Tests\Processors\GroupProcessor\KeywordGroupProcessorTest.cs" />
+    <Compile Include="Tests\Processors\InviterProcessor\WPInviterForFriendsTest.cs" />
+    <Compile Include="Tests\Processors\InviterProcessor\WpInviterForGroupMembersTest.cs" />
+    <Compile Include="Tests\Processors\MarketplaceProcessor\KeywordMarketplaceScraperTest.cs" />
+    <Compile Include="Tests\Processors\UserProecessor\CustomUserProcessorTest.cs" />
+    <Compile Include="Tests\Processors\UserProecessor\EventsUserProcessorTest.cs" />
+    <Compile Include="Tests\Processors\UserProecessor\FanpageLikersProcessorTest.cs" />
+    <Compile Include="Tests\Processors\UserProecessor\FriendOFriendProcessorTest.cs" />
+    <Compile Include="Tests\Processors\UserProecessor\GraphSearchUserPrcessorTest.cs" />
+    <Compile Include="Tests\Processors\UserProecessor\GroupMembersProcessorTest.cs" />
+    <Compile Include="Tests\Processors\UserProecessor\GroupPostLikersProcessorTest.cs" />
+    <Compile Include="Tests\Processors\UserProecessor\KeywordUserProcessorTest.cs" />
+    <Compile Include="Tests\Processors\UserProecessor\LocationUserProcessorTest.cs" />
+    <Compile Include="Tests\Processors\UserProecessor\MessageToNewFriendsProcessorTest.cs" />
+    <Compile Include="Tests\Processors\UserProecessor\PagePostLikersProcessorTest.cs" />
+    <Compile Include="Tests\Processors\UserProecessor\PostCommentorProcessorTest.cs" />
+    <Compile Include="Tests\Processors\UserProecessor\PostLikersProcessorTest.cs" />
+    <Compile Include="Tests\Processors\UserProecessor\PostSharerProcessorTest.cs" />
+    <Compile Include="Tests\Processors\UserProecessor\SendBirthdayGreetingsProcessorTest.cs" />
+    <Compile Include="Tests\Processors\UserProecessor\SuggestedFriendsProcessorTest.cs" />
+    <Compile Include="Tests\Processors\UserProecessor\UnfriendUserProcessorTest.cs" />
+    <Compile Include="Tests\Processors\UserProecessor\UserFollowerProcessorTest.cs" />
+    <Compile Include="Tests\Processors\UserProecessor\UserFrinedsProcessorTest.cs" />
+    <Compile Include="Tests\Processors\UserProecessor\WithdrawRequestProcessorTest.cs" />
+    <Compile Include="Tests\Process\BaseFacebookProcessTest.cs" />
+    <Compile Include="Tests\Process\CancelFriendRequestProcessTest.cs" />
+    <Compile Include="Tests\Process\CommentLikerProcesssTest.cs" />
+    <Compile Include="Tests\Process\DownloadPhotosProcessTest.cs" />
+    <Compile Include="Tests\Process\EventInviterProcessTest.cs" />
+    <Compile Include="Tests\Process\FdAutoReplyMessageProcessTest.cs" />
+    <Compile Include="Tests\Process\FdBroadCastMessageProcessTest.cs" />
+    <Compile Include="Tests\Process\FdCommentScraperProcessTest.cs" />
+    <Compile Include="Tests\Process\FdFanpageLikerProcessTest.cs" />
+    <Compile Include="Tests\Process\FdFanpageScraperProcessTest.cs" />
+    <Compile Include="Tests\Process\FdGroupScraperProcessTest.cs" />
+    <Compile Include="Tests\Process\FdIncommingFriendProcessTest.cs" />
+    <Compile Include="Tests\Process\FdPostScraperProcessTest.cs" />
+    <Compile Include="Tests\Process\FdProfileScraperProcessTest.cs" />
+    <Compile Include="Tests\Process\FdReplyToCommentProcessTest.cs" />
+    <Compile Include="Tests\Process\FdWebpageLikerCommentorProcessTest.cs" />
+    <Compile Include="Tests\Process\GroupInviterProcessTest.cs" />
+    <Compile Include="Tests\Process\GroupJoinerProcessTest.cs" />
+    <Compile Include="Tests\Process\PageInviterProcessTest.cs" />
+    <Compile Include="Tests\Process\PostCommentorProcessTest.cs" />
+    <Compile Include="Tests\Process\PostLikerProcessTest.cs" />
+    <Compile Include="Tests\Process\SendFriendRequestProcessTest.cs" />
+    <Compile Include="Tests\Process\SendGreetingsToFriendsProcessTest.cs" />
+    <Compile Include="Tests\Process\SendMessageToNewFriendsProcessTest.cs" />
+    <Compile Include="Tests\Process\UnfriendProcessTest.cs" />
+    <Compile Include="Tests\Process\WatchPartyInviterProcssTest.cs" />
+    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TestData\FdResponseHandlersData\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GroupResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\FanPageResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GroupMemberResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\FriendProfileResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\FriendOfFriendResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GroupJoiningStatusResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GroupJoiningStatusPostResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GroupMemberCount.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GroupFriendMemberResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GroupTokenResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\IncomingFriendRequestResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\UserHomeResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\FriendAboutResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\IncomingMessageResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\CheckGroupJoinStatusResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetPageLikersResponse.html" />
+    <EmbeddedResource Include="TestData\FdLibraryData\GetPageResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetUserFollowersResponse.html" />
+    <EmbeddedResource Include="TestData\FdLibraryData\GetUserResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\SearchPeopleResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\LocationResponse.html" />
+    <EmbeddedResource Include="TestData\FdLibraryData\SearchPeopleByLocationResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetPostResponse.html" />
+    <EmbeddedResource Include="TestData\FdLibraryData\GetPostSharerResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetCommentResponseforVideosResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetVideoPostRespose.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetPostLikersRespose.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\SendFriendRequestRespose.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetFriendSuggestedByFacebookRespose.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetSentFriendRequestIdsNewRespose.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\CancelIncomingRequestRespose.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\cancelRequestResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\acceptFriendRequestResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetFanpageDetailsFromKeywordResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetFanpageDetailsFromGraphSearchResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetPostDetailsResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetPostDetailNewResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetVideoDetailsResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetPostDetailsNewDownloadMediaResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetFullSizeImagesResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\RedirectResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\ScrapGroupsResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\newsFeedResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetPostListFromFanpagesResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\PageUrlResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\timelineResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\LikeUnlikePostResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\LikeFanpageResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\CommentOnPostResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\UnjoinGroupResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\SendGroupInvittationTofriendsResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\SendPageInvittationTofriendsResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\SendEventInvittationTofriendsResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\InviteAsPersonalMessageResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\HomePageResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetRecentMessageDetailsResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetInterestedGuestsForEventsResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetInterestedGuestsForEventsUUserResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetAllMutualFriendsResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\ChangeActorResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\ReplyOnPostResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetPostListFromAlbumsResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetPostListFromKeyWordsResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetIpDetailsResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetDetailedInfoUserMobileScraperAsyncResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\getPostIdResponseResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\ownWallResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\eventResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\searchPeopleGraphResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetPostListFromGroupsNewResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\groupPageResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\ScrapGroupsNewAsyncResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\UpdateOwnPagesAsyncResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\UpdateFriendsNewResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\UpdateLikedPagesAsyncResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetUnfriendPaginationAsyncResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\UpdatePageResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\GetUsersBirtdayResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\WatchPartyResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\UpdateLinkAndGetShareIdResponse.html" />
+    <EmbeddedResource Include="TestData\FdLibraryData\ViewersDetailsParserResponse.html" />
+    <EmbeddedResource Include="TestData\FdLibraryData\newsFeedAdsResponse.html" />
+    <EmbeddedResource Include="TestData\FdLibraryData\messageResponse.html" />
+    <EmbeddedResource Include="TestData\FdLibraryData\GetMessageRequestDetailsResponse.html" />
+    <EmbeddedResource Include="TestData\FdLibraryData\InviteFriendOrPageResponse.html" />
+    <EmbeddedResource Include="TestData\FdLibraryData\GetPageDetailsResponse.html" />
+    <EmbeddedResource Include="TestData\FdLibraryData\postPageResponse.html" />
+    <EmbeddedResource Include="TestData\FdLibraryData\SaveDetailsInDbResponse.html" />
+    <EmbeddedResource Include="TestData\FdLibraryData\SendTextMessageResponse.html" />
+    <EmbeddedResource Include="TestData\FdLibraryData\SendTextMessageWithLinkPreviewResponse.html" />
+    <EmbeddedResource Include="TestData\FdLibraryData\GetScrapedLinkDetailsResponse.html" />
+    <EmbeddedResource Include="TestData\FdLibraryData\GetRecentFriendMessageDetailsResponse.html" />
+    <EmbeddedResource Include="TestData\FdLibraryData\UpdateFriendsFromPageResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\SendImageWithTextResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\UploadImageAndGetMediaIdForMessageResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\dominatorhouse-social\DominatorHouseCore\DominatorHouseCore.csproj">
+      <Project>{f40a5c83-8eda-43c5-88b9-dfaab492a497}</Project>
+      <Name>DominatorHouseCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dominatorhouse-social\Tests\Dominator.Tests.Utils\Dominator.Tests.Utils.csproj">
+      <Project>{3debdd7b-b004-4adb-bdf8-58d6d65b8e57}</Project>
+      <Name>Dominator.Tests.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FaceDominatorCore\FaceDominatorCore.csproj">
+      <Project>{36f8a922-028e-49dd-bbd6-d7daab339491}</Project>
+      <Name>FaceDominatorCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\EventCreatorResponse.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\FdLibraryData\NewsFeedPagination.html" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\dominatorhouse-social\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\dominatorhouse-social\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.props'))" />
+    <Error Condition="!Exists('..\..\dominatorhouse-social\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\dominatorhouse-social\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.targets'))" />
+  </Target>
+  <Import Project="..\..\dominatorhouse-social\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\..\dominatorhouse-social\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

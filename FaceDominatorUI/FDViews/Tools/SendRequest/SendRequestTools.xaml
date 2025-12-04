@@ -1,0 +1,333 @@
+﻿<local:SendRequestToolsBase x:Class="FaceDominatorUI.FDViews.Tools.SendRequest.SendRequestTools"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:local="clr-namespace:FaceDominatorUI.FDViews.Tools.SendRequest"
+                            mc:Ignorable="d" x:Name="SendRequestConfiguration"
+                            xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                            FontFamily="{DynamicResource GabaritoSemiBold}"
+                            xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+                            xmlns:customControl1="clr-namespace:FaceDominatorUI.CustomControl"
+                            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=SendRequestConfiguration}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid Name="MainGrid">
+
+        <customControl:AccountGrowthModeHeader VideoTutorialLink="{Binding VideoTutorialLink}" x:FieldModifier="public"
+                                               x:Name="AccountGrowthHeader"
+                                               VerticalAlignment="Top" SelectedIndex="0"
+                                               SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=SendRequestConfiguration}"
+                                               SaveCommand="{Binding SaveConfigurationsCommand}" />
+
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" VerticalAlignment="Center"
+                                   Margin="10,0,10,0" />
+                        <controls:ToggleSwitch x:Name="TglStatus" OnLabel="Active﻿" OffLabel="Stopped﻿"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                                               IsChecked="{Binding SendFriendRequestModel.IsAccountGrowthActive}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=SendRequestConfiguration}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </controls:ToggleSwitch>
+                    </StackPanel>
+                    <Expander Header="{DynamicResource LangKeySearchQuery}" Margin="5,5"
+                              IsExpanded="True">
+                        <customControl:SearchQueryControl
+                            IsExpanded="{Binding IsExpanded,ElementName=AccountGrowthHeader,UpdateSourceTrigger=Explicit}"
+                            Name="FindFriendsSearchControl"
+                            ListQueryType="{Binding SendFriendRequestModel.ListQueryType}"
+                            ListQueryInfo="{Binding SendFriendRequestModel.SavedQueries}"
+                            AddQueryCommand="{Binding AddQueryCommand}"
+                            CommandParameter="{Binding ElementName=SendRequestConfiguration}"
+                            CustomFilterCommand="{Binding CustomFilterCommand}"
+                            SelectionChangedCommandParameter="{Binding ElementName=FindFriendsSearchControl}"
+                            DeleteQueryCommand="{Binding DeleteQueryCommand}"
+                            QuryTypeSelectionChangedCommand="{Binding QuryTypeSelectionChangedCommand}"
+                            DeleteMulipleCommand="{Binding DeleteMulipleCommand}" />
+                    </Expander>
+                    <Expander Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5"
+                              IsExpanded="True">
+                        <customControl:JobConfigControl
+                            JobConfiguration="{Binding SendFriendRequestModel.JobConfiguration}" />
+                    </Expander>
+
+                    <Expander Header="{DynamicResource LangKeyUserFilters}" Margin="5,5"
+                              IsExpanded="True"
+                              Visibility="{Binding SendFriendRequestModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <customControl1:GenderAndLocationFilter IsGroupMemberFilterNeeded="True" x:Name="GenderFilter"
+                                                                GenderandLocationFilter="{Binding SendFriendRequestModel.GenderAndLocationFilter}"
+                                                                IsSaveCloseButtonVisisble="False" />
+
+                    </Expander>
+
+
+                    <!--Other Configurations filter Expender-->
+                    <Expander Header="{DynamicResource LangKeyOtherConfigurations}" Margin="5,5" IsExpanded="True"
+                              Visibility="Collapsed">
+                        <StackPanel>
+
+                            <!--Enable auto Follow/Unfollow-->
+                            <StackPanel>
+                                <CheckBox Content="{DynamicResource LangKeyEnableAutoSendFriendRequest/Unfriend}"
+                                          Margin="10,0,0,0" Name="ChkEnableAutoFollowUnfollow" FontWeight="SemiBold"
+                                          Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                          Visibility="Collapsed"
+                                          IsChecked="{Binding SendFriendRequestModel.IsChkEnableAutoSendRequestWithdrawChecked}" />
+                                <StackPanel Margin="40,0,0,0" Visibility="Collapsed">
+                                    <StackPanel Margin="15,0" Orientation="Vertical" Name="AutoFollowUnfollowSection">
+                                        <StackPanel Orientation="Horizontal">
+                                            <CheckBox
+                                                Content="{DynamicResource LangKeyStopSendingFriendRequestsWhenReached}"
+                                                FontWeight="SemiBold"
+                                                Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                IsChecked="{Binding SendFriendRequestModel.IsChkStopFriendToolWhenReachChecked}" />
+                                            <controls:NumericUpDown Margin="10,5,5,0"
+                                                                    Value="{Binding SendFriendRequestModel.StopFollowToolWhenReach.StartValue}"
+                                                                    Name="StopFollowStartValue"
+                                                                    IsEnabled="{Binding SendFriendRequestModel.IsChkStopFollowToolWhenReachChecked}"
+                                                                    Minimum="0" />
+                                            <Label HorizontalAlignment="Center" FontWeight="SemiBold"
+                                                   Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                   VerticalAlignment="Center" Content="{DynamicResource LangKeyTo}" />
+                                            <controls:NumericUpDown Margin="10,5,10,0"
+                                                                    Minimum="{Binding SendFriendRequestModel.StopFollowToolWhenReach.StartValue}"
+                                                                    Value="{Binding SendFriendRequestModel.StopFollowToolWhenReach.EndValue}"
+                                                                    IsEnabled="{Binding IsChkStopFollowToolWhenReachChecked}" />
+                                            <Label HorizontalAlignment="Center" FontWeight="SemiBold"
+                                                   Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                   VerticalAlignment="Center"
+                                                   Content="{DynamicResource LangKeyFriends}" />
+                                        </StackPanel>
+
+
+                                    </StackPanel>
+                                </StackPanel>
+
+
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="10,5">
+                                <CheckBox Name="ChckUnique"
+                                          Content="{DynamicResource LangKeySendRequestToUniqueUsersFromEachAccount}"
+                                          FontWeight="SemiBold"
+                                          Foreground="{DynamicResource TextColorBrushAccordingTheme}" Margin="0,0,10,0"
+                                          IsChecked="{Binding SendFriendRequestModel.IschkUniqueRequestChecked}" />
+
+                            </StackPanel>
+                        </StackPanel>
+                    </Expander>
+
+                    <Expander Header="{DynamicResource LangKeyManageBlacklistedUsers}" Margin="5,5" IsExpanded="True"
+                              Visibility="{Binding SendFriendRequestModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+                            <CheckBox Content="{DynamicResource LangKeySkipBlacklistedUsers}" FontWeight="SemiBold"
+                                      Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                      IsChecked="{Binding SendFriendRequestModel.SkipBlacklist.IsSkipBlackListUsers}"
+                                      Margin="5,5" />
+                            <StackPanel Orientation="Horizontal" Margin="5,5"
+                                        Visibility="{Binding SendFriendRequestModel.SkipBlacklist.IsSkipBlackListUsers,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <CheckBox Content="{DynamicResource LangKeyPrivateBlacklist}" Margin="25,5"
+                                          FontWeight="SemiBold"
+                                          Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                          IsChecked="{Binding SendFriendRequestModel.SkipBlacklist.IsSkipPrivateBlackListUser}" />
+                                <CheckBox Content="{DynamicResource LangKeyGroupBlacklist}" Margin="5,5"
+                                          FontWeight="SemiBold"
+                                          Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                          IsChecked="{Binding SendFriendRequestModel.SkipBlacklist.IsSkipGroupBlackListUsers}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Expander>
+
+                    <Expander Header="{DynamicResource LangKeyAfterSentRequestAction}" Margin="5,5"
+                              Visibility="{Binding SendFriendRequestModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+                            <StackPanel Margin="0,0,0,5">
+                                <CheckBox Content="{DynamicResource LangKeyLikeUsersLatestPosts}" FontWeight="SemiBold"
+                                          Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                          Name="ChkLikeUsersLatestPosts" Margin="5,0"
+                                          IsChecked="{Binding SendFriendRequestModel.IsChkLikeUsersLatestPost}" />
+                                <StackPanel Margin="15,0"
+                                            Visibility="{Binding SendFriendRequestModel.IsChkLikeUsersLatestPost,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <StackPanel Orientation="Horizontal" Margin="16,0">
+                                        <Label Content="{DynamicResource LangKeyLikeBetween}" FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               VerticalAlignment="Center" />
+                                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                                Value="{Binding SendFriendRequestModel.LikeBetweenJobs.StartValue}"
+                                                                Name="LikeBetweenJobsStartValue" Minimum="1" />
+                                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                                               FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               Content="{DynamicResource LangKeyAnd}" />
+                                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                                Value="{Binding SendFriendRequestModel.LikeBetweenJobs.EndValue}"
+                                                                Minimum="1" />
+                                        <Label VerticalAlignment="Center" Content="{DynamicResource LangKeyPost}"
+                                               FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="16,0">
+                                        <Label FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               Content="{DynamicResource LangKeyDelayBetween}"
+                                               VerticalAlignment="Center" />
+                                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                                Value="{Binding SendFriendRequestModel.DelayBetweenLikesForAfterActivity.StartValue}"
+                                                                Name="DelayBetweenLikeActivityStartValue" Minimum="0" />
+                                        <Label FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                                               Content="{DynamicResource LangKeyTo}" />
+                                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                                Value="{Binding SendFriendRequestModel.DelayBetweenLikesForAfterActivity.EndValue}"
+                                                                Minimum="0" />
+                                        <Label FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               VerticalAlignment="Center"
+                                               Content="{DynamicResource LangKeySecondsBetweenEachLike}" />
+                                    </StackPanel>
+
+
+                                </StackPanel>
+                            </StackPanel>
+
+                            <!--Comment on posts after following a user-->
+                            <StackPanel Margin="5,5,0,0">
+                                <CheckBox FontWeight="SemiBold"
+                                          Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                          Content="{DynamicResource LangKeyCommentOnUsersLatestPosts}"
+                                          Name="ChkCommentOnUserLatestPosts"
+                                          IsChecked="{Binding SendFriendRequestModel.ChkCommentOnUserLatestPostsChecked}" />
+                                <StackPanel Margin="15,0"
+                                            Visibility="{Binding SendFriendRequestModel.ChkCommentOnUserLatestPostsChecked,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <StackPanel Orientation="Horizontal" Margin="9,0">
+                                        <Label FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               Content="{DynamicResource LangKeyCommentAMaximumOf}" />
+                                        <controls:NumericUpDown Margin="5,5,5,0" Name="CommentPostStartValue"
+                                                                Value="{Binding SendFriendRequestModel.CommentsPerUser.StartValue}"
+                                                                Minimum="1" />
+                                        <TextBlock FontWeight="SemiBold"
+                                                   Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                   Text="{DynamicResource LangKeyTo}" VerticalAlignment="Center" />
+                                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                                Value="{Binding SendFriendRequestModel.CommentsPerUser.EndValue}"
+                                                                Minimum="1" />
+                                        <TextBlock FontWeight="SemiBold"
+                                                   Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                   Text="{DynamicResource LangKeyPost}" Margin="5" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="9,0,9,5">
+                                        <Label FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               Content="{DynamicResource LangKeyDelayBetween}"
+                                               VerticalAlignment="Center" />
+                                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                                Value="{Binding SendFriendRequestModel.DelayBetweenCommentsForAfterActivity.StartValue}"
+                                                                Name="DelayBetweenCommentActivityStartValue"
+                                                                Minimum="0" />
+                                        <Label FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                                               Content="{DynamicResource LangKeyTo}" />
+                                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                                Value="{Binding SendFriendRequestModel.DelayBetweenCommentsForAfterActivity.EndValue}"
+                                                                Minimum="0" />
+                                        <Label FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               VerticalAlignment="Center"
+                                               Content="{DynamicResource LangKeySecondsBetweenEachComment}" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Visibility="Collapsed">
+                                        <CheckBox FontWeight="SemiBold"
+                                                  Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                  Content="{DynamicResource LangKeyCommentPercentage}" Margin="12,0"
+                                                  IsChecked="{Binding SendFriendRequestModel.IsChkCommentPercentage}" />
+                                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                                Value="{Binding SendFriendRequestModel.CommentPercentage}"
+                                                                IsEnabled="{Binding SendFriendRequestModel.IsChkCommentPercentage}"
+                                                                Minimum="0" />
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <Label FontWeight="SemiBold" Margin="20,0"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               Content="{DynamicResource LangKeyUploadCommentS}"
+                                               Name="ChkUploadComments" />
+                                        <customControl:InputBoxControl Margin="30,5,0,0" x:Name="UploadCommentInputBox"
+                                                                       InputText="{Binding SendFriendRequestModel.UploadComment}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <!--Send direct message after following a user-->
+                            <StackPanel Margin="5,0,0,5">
+                                <CheckBox FontWeight="SemiBold"
+                                          Foreground="{DynamicResource TextColorBrushAccordingTheme}" Margin="0,10,0,0"
+                                          Content="{DynamicResource LangKeySendADirectMessageAfterFollow}"
+                                          Name="ChkSendDirectMessageAfterFollow"
+                                          IsChecked="{Binding SendFriendRequestModel.ChkSendDirectMessageAfterFollowChecked}" />
+                                <StackPanel Orientation="Vertical"
+                                            Visibility="{Binding SendFriendRequestModel.ChkSendDirectMessageAfterFollowChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <StackPanel Orientation="Horizontal" Margin="20,0">
+                                        <Label FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               Content="{DynamicResource LangKeyDelayBetween}"
+                                               VerticalAlignment="Center" />
+                                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                                Value="{Binding SendFriendRequestModel.DelayBetweenMessagesForAfterActivity.StartValue}"
+                                                                Name="DelayBetweenMessagesActivityStartValue"
+                                                                Minimum="0" />
+                                        <Label FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                                               Content="{DynamicResource LangKeyTo}" />
+                                        <controls:NumericUpDown Margin="5,5,5,0"
+                                                                Value="{Binding SendFriendRequestModel.DelayBetweenMessagesForAfterActivity.EndValue}"
+                                                                Minimum="0" />
+                                        <Label FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               VerticalAlignment="Center"
+                                               Content="{DynamicResource LangKeyAfterMessageAction}" />
+                                    </StackPanel>
+
+
+                                    <StackPanel Orientation="Vertical">
+                                        <Label FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                               Content="{DynamicResource LangKeyUploadMessageS}" Margin="20,0" />
+                                        <StackPanel Margin="0,15,0,0">
+                                            <CheckBox Name="ChckTag" Margin="30,5"
+                                                          Content="{DynamicResource LangKeyTag}" FontWeight="SemiBold"
+                                                          Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                          ToolTip="{StaticResource LangKeyMessageTextFormat}"
+                                                          IsChecked="{Binding SendFriendRequestModel.IsTagChecked}" />
+                                            <customControl:InputBoxControl Margin="30,5" x:Name="AddMessageInputBox"
+                                                                           InputText="{Binding SendFriendRequestModel.Message}" />
+                                        </StackPanel>
+
+                                    </StackPanel>
+                                </StackPanel>
+
+                            </StackPanel>
+
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+    </Grid>
+</local:SendRequestToolsBase>

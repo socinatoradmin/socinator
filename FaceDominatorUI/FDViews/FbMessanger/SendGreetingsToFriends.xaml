@@ -1,0 +1,332 @@
+﻿<local:SendGreetingsToFriendsBase
+    x:Class="FaceDominatorUI.FDViews.FbMessanger.SendGreetingsToFriends"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:customControl1="clr-namespace:FaceDominatorUI.CustomControl"
+    xmlns:customControl2="clr-namespace:DominatorUIUtility.CustomControl.FacebookCustomControl;assembly=DominatorUIUtility"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:local="clr-namespace:FaceDominatorUI.FDViews.FbMessanger"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{DynamicResource GabaritoSemiBold}"
+    mc:Ignorable="d">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding AddQueryCommand, ElementName=MainGrid}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <StackPanel VerticalAlignment="Top">
+            <customControl:HeaderControl
+                Name="SendRequestHeader"
+                CampaignName="{Binding CampaignName}"
+                CancelEditCommand="{Binding CancelEditCommand}"
+                InfoCommand="{Binding InfoCommand}"
+                IsCampaignNameEditable="{Binding IsEditCampaignName}"
+                IsCancelEditVisible="{Binding CancelEditVisibility}" />
+        </StackPanel>
+        <Grid Margin="0,40,0,90">
+            <Grid
+                Name="MainGrid"
+                Margin="0,5,0,0"
+                ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical">
+                        <Expander
+                            Margin="5,5"
+                            Header="{DynamicResource LangKeyManageMessages}"
+                            IsExpanded="true">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock
+                                        Margin="4,10,4,10"
+                                        FontSize="13"
+                                        FontWeight="Bold"
+                                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                        Text="{DynamicResource LangKeyGreetingOptions}" />
+                                    <StackPanel Orientation="Vertical">
+                                        <RadioButton
+                                            Margin="30,10"
+                                            Content="{DynamicResource LangKeyBirthdayGreeting}"
+                                            FontSize="13"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                            IsChecked="{Binding SendGreetingsToFriendsModel.IsSendBirthDayGreetings}" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock
+                                        Margin="4,10,4,5"
+                                        FontSize="13"
+                                        FontWeight="Bold"
+                                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                        Text="{DynamicResource LangKeySourceFilter}" />
+                                    <StackPanel Margin="0,10,15,5" Orientation="Horizontal">
+                                        <CheckBox
+                                            Name="ChckAgeFilter"
+                                            Margin="5,5,5,0"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                            IsChecked="{Binding SendGreetingsToFriendsModel.IsFilterByAge}" />
+                                        <TextBlock
+                                            Margin="10,5,15,5"
+                                            FontSize="13"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                            Text="{DynamicResource LangKeyUserAgeShouldBeBetween}" />
+                                        <controls:NumericUpDown
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                            Minimum="0"
+                                            Value="{Binding SendGreetingsToFriendsModel.UserAge.StartValue}" />
+                                        <Label
+                                            Content="{DynamicResource LangKeyTo}"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                                        <controls:NumericUpDown
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                            Minimum="0"
+                                            Value="{Binding SendGreetingsToFriendsModel.UserAge.EndValue}" />
+                                        <Label
+                                            Content="{DynamicResource LangKeyYears}"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                                    </StackPanel>
+                                    <StackPanel Margin="0,10,15,15" Orientation="Horizontal">
+                                        <CheckBox
+                                            Name="ChckDaysFilter"
+                                            Margin="5,5,5,0"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                            IsChecked="{Binding SendGreetingsToFriendsModel.IsFilterByDays}" />
+                                        <TextBlock
+                                            Margin="10,5,15,5"
+                                            FontSize="13"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                            Text="{DynamicResource LangKeyBirthdayShouldHaveBeenBetween}" />
+                                        <controls:NumericUpDown
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                            Minimum="0"
+                                            Value="{Binding SendGreetingsToFriendsModel.DaysBefore.StartValue}" />
+                                        <Label
+                                            Content="{DynamicResource LangKeyTo}"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                                        <controls:NumericUpDown
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                            Minimum="0"
+                                            Value="{Binding SendGreetingsToFriendsModel.DaysBefore.EndValue}" />
+                                        <Label
+                                            Content="{DynamicResource LangKeyDays}"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>
+                        <Expander
+                            Margin="5,5"
+                            Header="{DynamicResource LangKeyManageMessages}"
+                            IsExpanded="true">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox
+                                        Name="ChckAcceptFilter"
+                                        Margin="5,5,15,0"
+                                        Content="{DynamicResource LangKeySendMessageWithLinkAsPreview}"
+                                        FontWeight="SemiBold"
+                                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                        IsChecked="{Binding SendGreetingsToFriendsModel.IsMessageAsPreview}" />
+                                    <CheckBox
+                                        Name="ChckSpintax"
+                                        Margin="0,5,15,0"
+                                        Content="{DynamicResource LangKeySpintax}"
+                                        FontWeight="SemiBold"
+                                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                        IsChecked="{Binding SendGreetingsToFriendsModel.IsSpintaxChecked}"
+                                        ToolTip="{StaticResource LangKeyMessageSpintaxFormat}" />
+                                    <CheckBox
+                                        Name="ChckTag"
+                                        Margin="0,5,0,0"
+                                        Content="{DynamicResource LangKeyTag}"
+                                        FontWeight="SemiBold"
+                                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                        IsChecked="{Binding SendGreetingsToFriendsModel.IsTagChecked}"
+                                        ToolTip="{StaticResource LangKeyMessageTextFormat}" />
+                                </StackPanel>
+                                <StackPanel Margin="8,5" Orientation="Vertical">
+                                    <customControl:MessageMediaControl
+                                        x:Name="MessageControl"
+                                        AddMessagesCommand="{Binding AddMessagesCommand}"
+                                        CommandParameter="{Binding ElementName=MessageControl}"
+                                        Messages="{Binding SendGreetingsToFriendsModel.ManageMessagesModel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                    <customControl:ManageMediaMessages LstManageMessagesModel="{Binding SendGreetingsToFriendsModel.LstDisplayManageMessageModel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>
+                        <Expander
+                            Margin="5,5"
+                            Header="{DynamicResource LangKeyJobConfiguration}"
+                            IsExpanded="true">
+                            <customControl:JobConfigControl JobConfiguration="{Binding SendGreetingsToFriendsModel.JobConfiguration}" />
+                        </Expander>
+                        <Expander
+                            Margin="5,5"
+                            Header="{DynamicResource LangKeyUserSelectors}"
+                            IsExpanded="True"
+                            Visibility="{Binding SendGreetingsToFriendsModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <customControl1:GenderAndLocationFilter
+                                x:Name="GenderFilter"
+                                GenderandLocationFilter="{Binding SendGreetingsToFriendsModel.GenderAndLocationFilter}"
+                                IsSaveCloseButtonVisisble="False" />
+                        </Expander>
+                        <!--  Other Configurations filter Expender  -->
+
+                        <!--  After User Filters Expender  -->
+                        <Expander
+                            Margin="5,5"
+                            Header="{DynamicResource LangKeyAfterSendGreetingsOption}"
+                            Visibility="{Binding FanpageLikerModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel Orientation="Vertical">
+                                <CheckBox
+                                    Name="ChkPostToOwnWall"
+                                    Margin="5,0"
+                                    Content="{DynamicResource LangKeyPostGreetingsToTimeline}"
+                                    FontWeight="SemiBold"
+                                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                    IsChecked="{Binding SendGreetingsToFriendsModel.IsPostToOwnWallChecked}" />
+                                <StackPanel
+                                    Margin="30,5,0,0"
+                                    Orientation="Vertical"
+                                    Visibility="{Binding SendGreetingsToFriendsModel.IsPostToOwnWallChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox
+                                            Name="ChckTagForPost"
+                                            Margin="0,5,0,0"
+                                            Content="{DynamicResource LangKeyTag}"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                            IsChecked="{Binding SendGreetingsToFriendsModel.IsTagForPostChecked}"
+                                            ToolTip="{StaticResource LangKeyMessageTextFormat}" />
+                                        <CheckBox
+                                            Name="ChkAllowSpintaxForPost"
+                                            Margin="30,0"
+                                            Content="{DynamicResource LangKeySpintax}"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                            IsChecked="{Binding SendGreetingsToFriendsModel.IsSpintaxForPostChechked}" />
+                                    </StackPanel>
+                                    <customControl:InputBoxControl
+                                        x:Name="UploadGreetingsForPostBox"
+                                        Margin="0,5,0,0"
+                                        CommandParameter="{Binding}"
+                                        InputCollection="{Binding SendGreetingsToFriendsModel.ListPostDetails}"
+                                        InputText="{Binding SendGreetingsToFriendsModel.PostDetailsText}"
+                                        SaveCommand="{Binding SavePostDetailsCommand}" />
+
+                                    <customControl2:FbMultiMediaControl FbMultiMediaModel="{Binding SendGreetingsToFriendsModel.FbMultiMediaModel}" MediaHeight="40" />
+
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>
+
+                        <Expander
+                            Margin="5,20"
+                            Header="{DynamicResource LangKeyOtherConfigurations}"
+                            IsExpanded="True"
+                            Visibility="{Binding SendGreetingsToFriendsModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <CheckBox
+                                Name="ChckUnique"
+                                Margin="0,0,10,0"
+                                Content="{DynamicResource LangKeySendGreetingsToUniqueUsers}"
+                                FontWeight="SemiBold"
+                                Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                IsChecked="{Binding SendGreetingsToFriendsModel.IschkUniqueRequestChecked}" />
+                        </Expander>
+                        <!--  Blacklists Expander  -->
+                        <Expander
+                            Margin="5,5"
+                            Header="{DynamicResource LangKeyBlacklist}"
+                            IsExpanded="True"
+                            Visibility="{Binding SendGreetingsToFriendsModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel>
+                                <CheckBox
+                                    Margin="5,5"
+                                    Content="{DynamicResource LangKeySkipBlacklistedUsers}"
+                                    FontWeight="SemiBold"
+                                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                    IsChecked="{Binding SendGreetingsToFriendsModel.SkipBlacklist.IsSkipBlackListUsers}" />
+                                <StackPanel
+                                    Margin="5,5"
+                                    Orientation="Horizontal"
+                                    Visibility="{Binding SendGreetingsToFriendsModel.SkipBlacklist.IsSkipBlackListUsers, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <CheckBox
+                                        Margin="25,5"
+                                        Content="{DynamicResource LangKeyPrivateBlacklist}"
+                                        FontWeight="SemiBold"
+                                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                        IsChecked="{Binding SendGreetingsToFriendsModel.SkipBlacklist.IsSkipPrivateBlackListUser}" />
+                                    <CheckBox
+                                        Margin="5,5"
+                                        Content="{DynamicResource LangKeyGroupBlacklist}"
+                                        FontWeight="SemiBold"
+                                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                        IsChecked="{Binding SendGreetingsToFriendsModel.SkipBlacklist.IsSkipGroupBlackListUsers}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>
+                        <!--  Other Configurations filter Expender  -->
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+        <StackPanel Margin="5,35,5,0" VerticalAlignment="Bottom">
+            <customControl:FooterControl
+                x:Name="SendRequestFooter"
+                Height="96"
+                VerticalAlignment="Top"
+                CampaignManager="{Binding CampaignButtonContent}"
+                CreateCampaignCommand="{Binding CreateCampaignCommand}"
+                NoOfAccountsSelected="{Binding SelectedAccountCount, Mode=TwoWay}"
+                SelectAccountCommand="{Binding SelectAccountCommand}" />
+        </StackPanel>
+        <controls:FlyoutsControl Margin="0,-10,0,10">
+            <controls:Flyout
+                Name="HelpFlyout"
+                Width="300"
+                Background="{DynamicResource AccentBaseColorBrush}"
+                BorderBrush="Black"
+                BorderThickness="2"
+                DataContext="{Binding ElementName=SendRequestFooter, Path=DataContext}"
+                FontSize="10"
+                FontWeight="Bold"
+                Foreground="{DynamicResource IdealForegroundColorBrush}"
+                Header="{DynamicResource LangKeyModuleDescription}"
+                IsOpen="{Binding IsOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                Position="Right"
+                Theme="Accent"
+                Visibility="Collapsed">
+
+                <customControl:HelpControl
+                    ContactSupportLink="{Binding ContactSupportLink}"
+                    DataContext="{Binding ElementName=SendRequestFooter, Path=DataContext}"
+                    KnowledgeBaseLink="{Binding KnowledgeBaseLink}"
+                    ModuleDescription="{DynamicResource LangKeyModuleDescriptionFacebookAutoSendBithdayGreetingsToFriends}"
+                    VideoTutorial="{Binding VideoTutorialLink}" />
+            </controls:Flyout>
+        </controls:FlyoutsControl>
+
+    </Grid>
+</local:SendGreetingsToFriendsBase>

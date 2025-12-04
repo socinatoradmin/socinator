@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="FaceDominatorUI.FDViews.TabManager.ConfigurationTabs.SendMessageToNewFriendsConfiguration"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             FontFamily="{DynamicResource GabaritoSemiBold}"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+
+        <TabControl x:Name="SendRequesttabs" TabStripPlacement="Top"
+                    ItemContainerStyle="{StaticResource TabItemToolsStyle}">
+
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Title}" />
+                    </StackPanel>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <UserControl Content="{Binding Content.Value}" />
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </Grid>
+</UserControl>

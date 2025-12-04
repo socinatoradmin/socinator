@@ -1,0 +1,184 @@
+﻿<UserControl x:Class="FaceDominatorUI.CustomControl.PostFilterControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical">
+                    <CheckBox Name="ChckReactionCount" Margin="5,5"
+                              Content="{DynamicResource LangKeyFilterByReactionCount}" FontWeight="SemiBold"
+                              Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                              IsChecked="{Binding PostFilter.IsFilterByReactionCountChkd}" />
+                    <StackPanel Orientation="Vertical"
+                                Visibility="{Binding PostFilter.IsFilterByReactionCountChkd,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox Name="FilterByLikeCount"
+                                      Content="{DynamicResource LangKeyPostsWhichContainsProfileLikesBetween}"
+                                      Margin="30,4,0,4" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                      FontWeight="SemiBold" IsChecked="{Binding PostFilter.IsFilterByLikeCountChkd}" />
+                            <controls:NumericUpDown Value="{Binding PostFilter.PostLikerCount.StartValue}"
+                                                    FontWeight="SemiBold"
+                                                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                    Margin="10,2"
+                                                    IsEnabled="{Binding PostFilter.IsFilterByLikeCountChkd}"
+                                                    Maximum="100000" Minimum="0" Interval="25" />
+                            <Label Content="{DynamicResource LangKeyAnd}" VerticalAlignment="Center"
+                                   FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                            <controls:NumericUpDown Value="{Binding PostFilter.PostLikerCount.EndValue}"
+                                                    FontWeight="SemiBold"
+                                                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                    Margin="10,2"
+                                                    IsEnabled="{Binding PostFilter.IsFilterByLikeCountChkd}"
+                                                    Maximum="100000000" Minimum="0" Interval="25" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox Name="FilterByShareCount"
+                                      Content="{DynamicResource LangKeyPostsWhichContainsProfileSharesBetween}"
+                                      Margin="30,4,0,4" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                      FontWeight="SemiBold" IsChecked="{Binding PostFilter.IsFilterByShareCountChkd}" />
+                            <controls:NumericUpDown Value="{Binding PostFilter.PostSharerCount.StartValue}"
+                                                    FontWeight="SemiBold"
+                                                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                    Margin="10,2"
+                                                    IsEnabled="{Binding PostFilter.IsFilterByShareCountChkd}"
+                                                    Maximum="100000" Minimum="0" Interval="25" />
+                            <Label Content="{DynamicResource LangKeyAnd}" VerticalAlignment="Center"
+                                   FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                            <controls:NumericUpDown Value="{Binding PostFilter.PostSharerCount.EndValue}"
+                                                    FontWeight="SemiBold"
+                                                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                    Margin="10,2"
+                                                    IsEnabled="{Binding PostFilter.IsFilterByShareCountChkd}"
+                                                    Maximum="100000000" Minimum="0" Interval="25" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox Name="FilterByCommentCount"
+                                      Content="{DynamicResource LangKeyPostsWhichContainsProfileCommentsBetween}"
+                                      Margin="30,4,0,4" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                      FontWeight="SemiBold" IsChecked="{Binding PostFilter.IsFilterByCommentCountChkd}" />
+                            <controls:NumericUpDown Value="{Binding PostFilter.PostCommentorCount.StartValue}"
+                                                    FontWeight="SemiBold"
+                                                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                    Margin="10,2"
+                                                    IsEnabled="{Binding PostFilter.IsFilterByCommentCountChkd}"
+                                                    Maximum="100000" Minimum="0" Interval="25" />
+                            <Label Content="{DynamicResource LangKeyAnd}" VerticalAlignment="Center"
+                                   FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                            <controls:NumericUpDown Value="{Binding PostFilter.PostCommentorCount.EndValue}"
+                                                    FontWeight="SemiBold"
+                                                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                    Margin="10,2"
+                                                    IsEnabled="{Binding PostFilter.IsFilterByCommentCountChkd}"
+                                                    Maximum="100000000" Minimum="0" Interval="25" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Visibility="Visible">
+                <CheckBox Name="ChckPostedDateTime" Margin="5,5" Content="{DynamicResource LangKeyFilterByPostedDate}"
+                          FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                          IsChecked="{Binding PostFilter.IsFilterByPostedDateTimeChkd}" />
+                <StackPanel Orientation="Vertical"
+                            Visibility="{Binding PostFilter.IsFilterByPostedDateTimeChkd,Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Name="FilterByPostedDateTime"
+                               Content="{DynamicResource LangKeyPostsWhichWerePostedBetween}" Margin="25,4,0,4"
+                               Foreground="{DynamicResource TextColorBrushAccordingTheme}" FontWeight="SemiBold" />
+                        <controls:NumericUpDown Value="{Binding PostFilter.PostedDateTime.StartValue}"
+                                                FontWeight="SemiBold"
+                                                Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                Margin="10,2"
+                                                IsEnabled="{Binding PostFilter.IsFilterByPostedDateTimeChkd}"
+                                                Maximum="100000" Minimum="0" Interval="25" />
+                        <Label Content="{DynamicResource LangKeyAnd}" VerticalAlignment="Center" FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                        <controls:NumericUpDown Value="{Binding PostFilter.PostedDateTime.EndValue}"
+                                                FontWeight="SemiBold"
+                                                Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                Margin="10,2"
+                                                IsEnabled="{Binding PostFilter.IsFilterByPostedDateTimeChkd}"
+                                                Maximum="100000000" Minimum="0" Interval="25" />
+                        <Label Content="{DynamicResource LangKeyDays}" VerticalAlignment="Center" FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel>
+                    <StackPanel
+                        Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=PostTypeVisibility}">
+                        <CheckBox Margin="5,5" Name="PostTypeCheckBox" Content="{DynamicResource LangKeyPostType}"
+                                  FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                  IsChecked="{Binding PostFilter.IsFilterPostCategory}" />
+                        <StackPanel Name="PostTypeSection"
+                                    Visibility="{Binding PostFilter.IsFilterPostCategory,Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <CheckBox Margin="30,4,0,4" Name="IgnoreAlbumsCheckBox"
+                                      Content="{DynamicResource LangKeyIgnoreNoMedia}" FontWeight="SemiBold"
+                                      Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                      IsChecked="{Binding PostFilter.IgnoreNoMedia}"
+                                      IsEnabled="{Binding IsIgnoreWithoutMediaEnabled}" />
+                            <CheckBox Margin="30,4,0,4" Name="IgnoreImagesCheckBox"
+                                      Content="{DynamicResource LangKeyIgnoreImages}" FontWeight="SemiBold"
+                                      Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                      IsChecked="{Binding PostFilter.IgnorePostImages}" />
+                            <CheckBox Margin="30,4,0,4" Name="IgnoreVideosCheckBox"
+                                      Content="{DynamicResource LangKeyIgnoreVideos}" FontWeight="SemiBold"
+                                      Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                      IsChecked="{Binding PostFilter.IgnorePostVideos}" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Minimum Chatacter length in caption -->
+
+
+                    <StackPanel>
+                        <CheckBox Margin="5,5" FontWeight="SemiBold"
+                                  Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                  Name="ChkFilterByBlacklistedWhitelistedWords"
+                                  Content="{DynamicResource LangKeyFilterByBlacklisted/WhitelistedWordsInCaption}"
+                                  IsChecked="{Binding PostFilter.FilterByBlacklistedWhitelistedWordsInCaption}" />
+
+                        <!--BlackList-->
+                        <StackPanel
+                            Visibility="{Binding PostFilter.FilterByBlacklistedWhitelistedWordsInCaption,Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <RadioButton FontWeight="SemiBold"
+                                         Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                         GroupName="RadFilterByWhitelistBlacklist" Margin="30,4,0,4"
+                                         Name="CaptionBlacklistsCheckBox"
+                                         Content="{DynamicResource LangKeyAddBlacklistedWordsThatShouldNotContainInCaption}"
+                                         IsChecked="{Binding PostFilter.FilterRestrictedPostCaptionList}" />
+                            <customControl:InputBoxControl Margin="60,5" x:Name="CaptionBlacklistInputBox"
+                                                           GetInputClick="CaptionBlacklistInputBox_OnGetInputClick"
+                                                           InputText="{Binding PostFilter.CaptionBlacklists}"
+                                                           Visibility="{Binding PostFilter.FilterRestrictedPostCaptionList,Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                        </StackPanel>
+
+                        <!--WhiteList-->
+                        <StackPanel
+                            Visibility="{Binding PostFilter.FilterByBlacklistedWhitelistedWordsInCaption,Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <RadioButton FontWeight="SemiBold"
+                                         Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                         GroupName="RadFilterByWhitelistBlacklist" Margin="30,4,0,4"
+                                         Name="ChkCaptionWhitelist"
+                                         Content="{DynamicResource LangKeyAddWhitelistedWordsThatShouldContainInCaption}"
+                                         IsChecked="{Binding PostFilter.FilterAcceptedPostCaptionList}" />
+                            <customControl:InputBoxControl Margin="60,5" x:Name="CaptionWhitelistInputBox"
+                                                           GetInputClick="CaptionWhitelistInputBox_OnGetInputClick"
+                                                           InputText="{Binding PostFilter.CaptionWhitelist}"
+                                                           Visibility="{Binding PostFilter.FilterAcceptedPostCaptionList,Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
