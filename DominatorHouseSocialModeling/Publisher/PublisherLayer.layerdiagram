@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="0709bc22-5c6f-446a-8244-be9b164444c6" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <layers>
+    <layer Id="f46b69ce-bde6-4323-b33c-c8857a07db62" name="Publisher">
+      <childLayers>
+        <layer Id="9c9717a7-8c45-43f6-818d-c8415ba00ca3" name="Layer 2 : Manage Posts">
+          <childLayers>
+            <layer Id="2eb34860-1df6-48ac-8117-037b4149b6b7" name="Published Post lists" />
+            <layer Id="40eee76d-d767-4a1b-93c5-8e8c701235ee" name="Pending Post lists" />
+            <layer Id="549061fb-ae8f-4f80-bb82-e9257b0a56eb" name="Draft post lists" />
+          </childLayers>
+        </layer>
+        <layer Id="cb04bd5d-8a09-476d-b18e-cb1898fa5f76" name="Layer 3 : Manage Destinations">
+          <childLayers>
+            <layer Id="d0b0f6f4-02ae-4dfd-a1b3-84e7eebba80c" name="Edit Destinations" />
+            <layer Id="b6e5e2ae-e42e-414b-a117-e72c617155c4" name="Create Destinations" />
+          </childLayers>
+        </layer>
+        <layer Id="7357702f-e513-4eef-b687-7db08603e982" name="Layer 4 : Campaign Details">
+          <childLayers>
+            <layer Id="18c5dd4e-3ce7-482c-b6fa-eca395a57669" name="Select Destinations" />
+            <layer Id="591ee429-f656-464a-842f-89bc9f608a77" name="Job Configurations" />
+            <layer Id="36082cd5-39c6-4831-b8ef-c54ff475d21b" name="Create Posts">
+              <dependencyToLayers>
+                <dependencyFromLayerToLayer Id="0f06b629-bdf9-492c-bf86-bcd649f4aae6" direction="Forward">
+                  <layerMoniker Id="a7da0ffc-5bd9-4535-a2ea-87e15a2dbc75" />
+                </dependencyFromLayerToLayer>
+                <dependencyFromLayerToLayer Id="de872cac-da95-4980-9575-2a13ad087902" direction="Forward">
+                  <layerMoniker Id="9a796989-57e4-4abf-befc-92becb0fcf4f" />
+                </dependencyFromLayerToLayer>
+                <dependencyFromLayerToLayer Id="b6401b98-d8c5-488f-a6e6-78545d4cf060" direction="Forward">
+                  <layerMoniker Id="6946961d-29fa-4496-9c49-a247cb903938" />
+                </dependencyFromLayerToLayer>
+                <dependencyFromLayerToLayer Id="c9f8fb65-bec0-4017-8875-34aba3d3b08c" direction="Forward">
+                  <layerMoniker Id="c675378b-f07c-4ff1-9cff-c9606a2e5b33" />
+                </dependencyFromLayerToLayer>
+                <dependencyFromLayerToLayer Id="fc4d553e-89be-4a9e-8929-a72dc03bab49" direction="Forward">
+                  <layerMoniker Id="ed95a21a-dcca-4d8c-b4e9-8b676e62108a" />
+                </dependencyFromLayerToLayer>
+              </dependencyToLayers>
+            </layer>
+            <layer Id="a7da0ffc-5bd9-4535-a2ea-87e15a2dbc75" name="Direct Posts" />
+            <layer Id="c675378b-f07c-4ff1-9cff-c9606a2e5b33" name="Rss Feed" />
+            <layer Id="9a796989-57e4-4abf-befc-92becb0fcf4f" name="Scrape Posts" />
+            <layer Id="6946961d-29fa-4496-9c49-a247cb903938" name="Share Post" />
+            <layer Id="ed95a21a-dcca-4d8c-b4e9-8b676e62108a" name="Monitor Folder" />
+            <layer Id="b5034080-a46c-49c3-bfa8-24a8bfc6d93a" name="Other Configurations" />
+            <layer Id="9275ead4-7c71-49e3-b3eb-96af139bc4a9" name="Create Campaigns">
+              <dependencyToLayers>
+                <dependencyFromLayerToLayer Id="90200681-7cfc-4683-9cde-3d92b93c2fa5" direction="Forward">
+                  <layerMoniker Id="591ee429-f656-464a-842f-89bc9f608a77" />
+                </dependencyFromLayerToLayer>
+                <dependencyFromLayerToLayer Id="b171c0ce-3435-4e13-93b9-1325c5cd3b20" direction="Forward">
+                  <layerMoniker Id="36082cd5-39c6-4831-b8ef-c54ff475d21b" />
+                </dependencyFromLayerToLayer>
+                <dependencyFromLayerToLayer Id="75c9c228-b5ad-450c-bd71-8caa12249272" direction="Forward">
+                  <layerMoniker Id="b5034080-a46c-49c3-bfa8-24a8bfc6d93a" />
+                </dependencyFromLayerToLayer>
+                <dependencyFromLayerToLayer Id="38dd4627-15eb-4761-b3e7-6c0a7d510ed5" direction="Forward">
+                  <layerMoniker Id="18c5dd4e-3ce7-482c-b6fa-eca395a57669" />
+                </dependencyFromLayerToLayer>
+              </dependencyToLayers>
+            </layer>
+          </childLayers>
+        </layer>
+        <layer Id="0529eb38-1d2b-4757-80c3-5ca38c0cc236" name="Layer 1 : Saved Campaign">
+          <childLayers>
+            <layer Id="c1c5b940-373b-4898-80a9-e7a7dc48fc05" name="Display Campaign Details" />
+            <layer Id="738cdf22-62e5-4ee4-abef-ad09426001e1" name="Scheduling Campaign" />
+            <layer Id="af40c6e7-5809-448f-9512-8bc55d496644" name="Publisher Campaign's">
+              <dependencyToLayers>
+                <dependencyFromLayerToLayer Id="6293471d-29fd-4d16-91d4-3e8ac9c28662" direction="Forward">
+                  <layerMoniker Id="c1c5b940-373b-4898-80a9-e7a7dc48fc05" />
+                </dependencyFromLayerToLayer>
+                <dependencyFromLayerToLayer Id="1baae1d0-1587-46aa-92ff-ee071a18bfa2" direction="Forward">
+                  <layerMoniker Id="738cdf22-62e5-4ee4-abef-ad09426001e1" />
+                </dependencyFromLayerToLayer>
+                <dependencyFromLayerToLayer Id="b98ea1f0-646f-4e9b-a527-f3fa0eab8ac0" direction="Forward">
+                  <layerMoniker Id="e99acd33-b6cb-4db2-b5bf-84787df9e4f4" />
+                </dependencyFromLayerToLayer>
+              </dependencyToLayers>
+            </layer>
+            <layer Id="e99acd33-b6cb-4db2-b5bf-84787df9e4f4" name="Basic Operations&#xD;&#xA;(Updates, Delete)" />
+          </childLayers>
+        </layer>
+      </childLayers>
+    </layer>
+  </layers>
+</layerModel>

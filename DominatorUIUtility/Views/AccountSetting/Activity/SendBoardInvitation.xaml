@@ -1,0 +1,164 @@
+﻿<UserControl x:Class="DominatorUIUtility.Views.AccountSetting.Activity.SendBoardInvitation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:DominatorUIUtility.Views.AccountSetting.Activity"
+             mc:Ignorable="d" Name="ActivityControl"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl"
+             xmlns:actcustom="clr-namespace:DominatorUIUtility.Views.AccountSetting.CustomControl"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" CommandParameter="SendBoardInvitation" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Background="{DynamicResource AccentColorBrush}" Margin="5">
+            <actcustom:ModuleHeader Heading="{DynamicResource LangKeySendBoardInvitationSetting}" x:Name="header"
+                                    View="{Binding ElementName=ActivityControl}" />
+        </DockPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Grid.Row="1">
+            <StackPanel>
+                <TabControl Name="BoardCollaboratorTab"
+                            SelectedIndex="{Binding CurrentBoardCollaborator.SelectedIndex,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+                    <TabItem Header="{DynamicResource LangKeyBoardCollaboratorsSetting}" FontWeight="Bold">
+                        <Grid>
+
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+
+                                <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                                    <Label VerticalAlignment="Top" Width="200"
+                                           Content="{DynamicResource LangKeyBoardUrl}" HorizontalAlignment="Left"
+                                           Height="25" />
+                                    <TextBox x:Name="TxtBoardUrl" Width="200" TextWrapping="Wrap"
+                                             Text="{Binding CurrentBoardCollaborator.BoardUrl,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                             VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" Height="25" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                                    <Label VerticalAlignment="Top" Width="200" Content="{DynamicResource LangKeyEmail}"
+                                           HorizontalAlignment="Left" Height="25" />
+                                    <TextBox x:Name="TxtEmail" Width="200"
+                                             Text="{Binding CurrentBoardCollaborator.Email,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                             TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
+                                             VerticalAlignment="Top" Height="25" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20,10,0,0">
+
+                                    <Button Name="BtnImportQuery" Style="{StaticResource ButtonStyle}"
+                                            Background="{DynamicResource AccentBaseColorBrush}" Width="100" Height="25"
+                                            VerticalAlignment="Top" Margin="10,0,0,0"
+                                            ToolTip="{DynamicResource LangKeyImportFromCsvTxt}"
+                                            Command="{Binding ImportFromCsvCommand}"
+                                            CommandParameter="{Binding CommandParameter}">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                            <Rectangle Width="15" Height="15" Fill="White" HorizontalAlignment="Center">
+                                                <Rectangle.OpacityMask>
+                                                    <VisualBrush Stretch="Fill"
+                                                                 Visual="{StaticResource appbar_page_upload}" />
+                                                </Rectangle.OpacityMask>
+                                            </Rectangle>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button x:Name="BtnAddToList" Style="{StaticResource ButtonStyle}"
+                                            Background="{DynamicResource AccentBaseColorBrush}" Width="100" Height="25"
+                                            VerticalAlignment="Top" Margin="10,0,0,0"
+                                            ToolTip="{DynamicResource LangKeyAddBoardCollaboratorsToList}"
+                                            Command="{Binding AddBoardCollaboratorCommand}"
+                                            CommandParameter="{Binding CommandParameter}">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Rectangle Width="15" Height="15" Fill="White" HorizontalAlignment="Center">
+                                                <Rectangle.OpacityMask>
+                                                    <VisualBrush Stretch="Fill"
+                                                                 Visual="{StaticResource appbar_add_multiple}" />
+                                                </Rectangle.OpacityMask>
+                                            </Rectangle>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="{DynamicResource LangBoardCollaboratorsList}">
+                        <Grid>
+                            <GroupBox FontWeight="Bold" BorderThickness="1"
+                                      Header="{DynamicResource LangKeyBoardCollaboratorsList}" Foreground="white">
+
+                                <DataGrid Name="DataGridQueriesList" Width="auto" Background="White"
+                                          AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="false"
+                                          IsReadOnly="True" CanUserDeleteRows="False" SelectionUnit="FullRow"
+                                          MaxHeight="150" MinHeight="150" MinWidth="400" MaxWidth="800"
+                                          ItemsSource="{Binding BoardCollaboratorDetails}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Width="*" FontSize="12" Binding="{Binding BoardUrl}">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock Text="{DynamicResource LangKeyBoardUrl}"
+                                                           VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Width="*" FontSize="12" Binding="{Binding Email}">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock Text="{DynamicResource LangKeyEmail}"
+                                                           VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Width="*" FontSize="12" Binding="{Binding Account}">
+                                            <DataGridTextColumn.Header>
+                                                <TextBlock Text="{DynamicResource LangKeyAccount}"
+                                                           VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        <DataGridTemplateColumn Width="*">
+                                            <DataGridTemplateColumn.Header>
+                                                <TextBlock Text="{DynamicResource LangKeyAction}" />
+                                            </DataGridTemplateColumn.Header>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Background="Transparent" Name="BtnDelete"
+                                                            Command="{Binding DataContext.DeleteBoardCollaboratorCommand, 
+                                                        RelativeSource= {RelativeSource AncestorType= DataGrid}}"
+                                                            CommandParameter="{Binding}">
+                                                        <Button.Content>
+                                                            <Rectangle Width="15" Height="20" Fill="Black"
+                                                                       Name="DeleteSingle">
+                                                                <Rectangle.OpacityMask>
+                                                                    <VisualBrush Stretch="Fill"
+                                                                                 Visual="{StaticResource appbar_delete}" />
+                                                                </Rectangle.OpacityMask>
+                                                            </Rectangle>
+                                                        </Button.Content>
+                                                    </Button>
+
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+
+                            </GroupBox>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+                <Expander Header="{DynamicResource LangKeyJobConfiguration}" Margin="5"
+                          IsExpanded="{Binding ElementName=header,Path=IsExpanded,Mode=OneWay}">
+                    <actcustom:ActivityJobConfig JobConfiguration="{Binding JobConfiguration}" />
+                </Expander>
+            </StackPanel>
+        </ScrollViewer>
+
+        <DockPanel Grid.Row="2">
+            <actcustom:NextPreviousButton NextCommand="{Binding NextCommand}"
+                                          PreviousCommand="{Binding PreviousCommand}"
+                                          NextButtonContent="{Binding NextButtonContent}" />
+        </DockPanel>
+    </Grid>
+</UserControl>

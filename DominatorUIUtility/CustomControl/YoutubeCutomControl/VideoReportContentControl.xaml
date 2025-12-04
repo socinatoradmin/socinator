@@ -1,0 +1,133 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.CustomControl.YoutubeCutomControl.VideoReportContentControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:youtubeCutomControl="clr-namespace:DominatorUIUtility.CustomControl.YoutubeCutomControl"
+    d:DataContext="{d:DesignInstance youtubeCutomControl:VideoReportContentControl}"
+    mc:Ignorable="d">
+    <StackPanel Name="MainGrid" x:FieldModifier="public">
+        <StackPanel Margin="7,0" Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center" Text="{DynamicResource LangKeyQueries}" />
+            <ComboBox
+                x:Name="ComboBoxQueries"
+                Grid.Column="1"
+                Width="200"
+                Margin="10"
+                x:FieldModifier="public"
+                ItemsSource="{Binding ReportDetails.LstQueries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox
+                            x:Name="chkQuery"
+                            Checked="chkQuery_Checked"
+                            IsChecked="{Binding IsContentSelected}"
+                            Unchecked="chkQuery_Unchecked">
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} [ {1} ]">
+                                        <Binding Path="Content.QueryValue" />
+                                        <Binding Path="Content.QueryType" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </CheckBox>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Report Options" FontWeight="SemiBold" />
+            <ComboBox
+                Name="CmbReportOption"
+                Width="auto"
+                x:FieldModifier="public"
+                SelectedIndex="0"
+                SelectionChanged="CmbReportOption_SelectionChanged" />
+            <!--  Visibility="{Binding ElementName=CmbReportSubOption,Path=Visibility}"  -->
+            <Label
+                Content="Sub Options"
+                FontWeight="SemiBold"
+                Visibility="Collapsed" />
+            <ComboBox
+                Name="CmbReportSubOption"
+                Width="200"
+                x:FieldModifier="public"
+                SelectedIndex="0"
+                Visibility="Collapsed" />
+        </StackPanel>
+        <Expander
+            Margin="5,10"
+            Header="Optional report details"
+            IsExpanded="True">
+            <StackPanel Orientation="Vertical">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock
+                            Margin="0,5"
+                            VerticalAlignment="Center"
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Text="{DynamicResource LangKeyProvideAdditionalDetails}" />
+                        <customControl:InputBoxControl
+                            x:Name="InputComment"
+                            InputText="{Binding ReportDetails.CommentText}"
+                            SaveVisiblity="Collapsed" />
+                    </StackPanel>
+                    <StackPanel
+                        Grid.Column="1"
+                        Margin="10,10,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center">
+                        <TextBlock
+                            Margin="0,5"
+                            VerticalAlignment="Center"
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Text="Timestamp (in percentage of video length)" />
+                        <controls:NumericUpDown
+                            Width="60"
+                            Margin="5,2,0,0"
+                            HorizontalAlignment="Left"
+                            Maximum="100"
+                            Minimum="0"
+                            Value="{Binding ReportDetails.VideoTimestampPercentage}" />
+                    </StackPanel>
+
+                </Grid>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        Margin="15,2"
+                        Content="{DynamicResource LangKeySpintax}"
+                        FontSize="15"
+                        FontWeight="Bold"
+                        IsChecked="{Binding ReportDetails.IsSpinTax}"
+                        ToolTip="{DynamicResource LangKeyTextSpintaxFormat}" />
+                    <CheckBox
+                        Name="SplitByNextLine"
+                        Margin="15,2"
+                        Content="{DynamicResource LangKeyAddMultipleTextsSeparatedByNewLine}"
+                        IsChecked="{Binding SplitTextByNextLine}" />
+                </StackPanel>
+            </StackPanel>
+        </Expander>
+        <Button
+            x:Name="btnAddCommentToList"
+            Width="200"
+            Margin="10,0,0,0"
+            x:FieldModifier="public"
+            Background="{DynamicResource AccentBaseColorBrush}"
+            Command="{Binding AddReportDetailsCommand}"
+            CommandParameter="{Binding CommandParameter}"
+            Content="{DynamicResource LangKeyAddDetailsToList}"
+            Foreground="White" />
+
+    </StackPanel>
+</UserControl>

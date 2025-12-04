@@ -1,0 +1,3 @@
+﻿GroupName:Facebook:Facebookacc1:Password
+GroupName:Instagram:IGacc1:Password:192.168.0.2:90:tt:tt
+GroupName:Twitter:Twitteracc1:Password:192.168.0.2:90

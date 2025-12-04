@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="DominatorUIUtility.Views.AccountSetting.Activity.EventInviter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:DominatorUIUtility.Views.AccountSetting.Activity"
+             mc:Ignorable="d"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl"
+             xmlns:customControl1="clr-namespace:DominatorUIUtility.CustomControl.FacebookCustomControl"
+             xmlns:actcustom="clr-namespace:DominatorUIUtility.Views.AccountSetting.CustomControl"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" CommandParameter="EventInviter" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Background="{DynamicResource AccentColorBrush}" Margin="5">
+            <TextBlock Text="Event Inviter Setting" FontWeight="Bold" Margin="5,0" VerticalAlignment="Center"
+                       DockPanel.Dock="Top" Foreground="White" />
+        </DockPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Grid.Row="1">
+            <StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Row="1">
+                    <TextBlock Name="TxtblockLoadGroupUrl" Text="{DynamicResource LangKeyInviteForEventUrl}"
+                               Width="140" Margin="10,5" FontSize="13" FontWeight="SemiBold" Foreground="Black"
+                               VerticalAlignment="Top" HorizontalAlignment="Left" />
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                        <customControl:InputBoxControl x:Name="BtnSelectGroups"
+                                                       InputText="{Binding InviterDetailsModel.EventUrls}"
+                                                       InputCollection="{Binding InviterDetailsModel.ListEventUrl}"
+                                                       SaveCommand="{Binding SaveCommand}"
+                                                       Margin="35,0" HorizontalAlignment="Center" />
+
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="5" Grid.Row="2">
+                    <customControl1:InviterOptionsControl InviterOptionsModel="{Binding InviterOptionsModel}"
+                                                          IsInviteInMessageVisible="True" />
+                </StackPanel>
+                <actcustom:ActivityJobConfig JobConfiguration="{Binding JobConfiguration}" />
+            </StackPanel>
+        </ScrollViewer>
+        <DockPanel Grid.Row="2">
+            <actcustom:NextPreviousButton NextCommand="{Binding NextCommand}"
+                                          PreviousCommand="{Binding PreviousCommand}"
+                                          NextButtonContent="{Binding NextButtonContent}" />
+        </DockPanel>
+    </Grid>
+</UserControl>

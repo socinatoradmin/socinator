@@ -1,0 +1,47 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.Views.Publisher.Header"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    MinHeight="40"
+    mc:Ignorable="d">
+    <Grid Name="MainGrid" Background="{DynamicResource AccentBaseColorBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock
+            Margin="10,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            FontSize="18"
+            Foreground="White"
+            Text="{Binding HeaderText}" />
+        <StackPanel
+            Grid.Column="1"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <ComboBox
+                x:Name="cmbAccounts"
+                Width="200"
+                Margin="15,0"
+                VerticalAlignment="Center"
+                x:FieldModifier="public"
+                Background="Transparent"
+                BorderBrush="AntiqueWhite"
+                BorderThickness="1"
+                Foreground="White"
+                SelectedIndex="0"
+                Visibility="Collapsed" />
+            <Button
+                x:Name="BtnBackToCampaign"
+                VerticalAlignment="Center"
+                Background="{DynamicResource AccentBaseColorBrush}"
+                Click="BtnBackToCampaign_Click"
+                Content="{DynamicResource LangKeyBack}"
+                Foreground="White" />
+        </StackPanel>
+    </Grid>
+</UserControl>

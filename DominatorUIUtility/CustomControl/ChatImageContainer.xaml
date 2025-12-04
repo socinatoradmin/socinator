@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="DominatorUIUtility.CustomControl.ChatImageContainer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:DominatorUIUtility.CustomControl"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Name="ImageGrid">
+        <Border CornerRadius="4">
+            <ListView Background="{Binding ContolBackground}" BorderBrush="Transparent" x:Name="AccountListView"
+                      ScrollViewer.IsDeferredScrollingEnabled="True"
+                      VirtualizingPanel.IsContainerVirtualizable="True" Grid.Row="1"
+                      VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"
+                      AlternationCount="{Binding Items.Count, RelativeSource={RelativeSource Self}}"
+                      ItemsSource="{Binding List_SelectedImages}">
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Setter Property="Focusable" Value="False" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Background="Transparent" Orientation="Horizontal" Margin="10,0" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Name="ImageDetails">
+                            <!--<Border Height="250" Width="250" BorderBrush="Green" BorderThickness="4" CornerRadius="16">-->
+                            <Rectangle
+                                RadiusX="{Binding DataContext.RadiusX, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                RadiusY="{Binding DataContext.RadiusY, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                Width="{Binding DataContext.ImageWidth, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                Height="{Binding DataContext.ImageHeight, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                Margin="5">
+                                <Rectangle.Fill>
+                                    <ImageBrush x:Name="myImage" ImageSource="{Binding}" />
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <Button Name="CloseButton" Cursor="Hand" Width="20" Height="20" Foreground="White"
+                                    Content="X" Margin="15" HorizontalAlignment="Right" VerticalAlignment="Top"
+                                    Click="RemoveImageFromList">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Grid>
+                                            <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                                     Stroke="White" StrokeThickness="1px" />
+                                            <ContentPresenter Content="{TemplateBinding Content}"
+                                                              HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=ImageDetails}"
+                                                         Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=ImageDetails}"
+                                                         Value="True">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </Grid>
+                        <!--</Border>-->
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Border>
+    </Grid>
+</UserControl>

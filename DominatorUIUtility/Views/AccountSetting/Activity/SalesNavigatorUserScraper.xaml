@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="DominatorUIUtility.Views.AccountSetting.Activity.SalesNavigatorUserScraper"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:DominatorUIUtility.Views.AccountSetting.Activity"
+             mc:Ignorable="d"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl"
+             xmlns:actcustom="clr-namespace:DominatorUIUtility.Views.AccountSetting.CustomControl"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" CommandParameter="SalesNavigatorUserScraper" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid Margin="10">
+        <actcustom:ActivitySetting Heading="SalesNavigator User Scraper Setting"
+                                   JobConfiguration="{Binding JobConfiguration}"
+                                   IsUseGlobalQuery="{Binding IsUseGlobalQuery,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                   ListQueryType="{Binding ListQueryType}" SavedQueries="{Binding SavedQueries}"
+                                   NextCommand="{Binding NextCommand}" PreviousCommand="{Binding PreviousCommand}"
+                                   AddQueryCommand="{Binding AddQueryCommand}"
+                                   NextButtonContent="{Binding NextButtonContent}" />
+
+    </Grid>
+</UserControl>

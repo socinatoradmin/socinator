@@ -1,0 +1,261 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.Views.Publisher.AddPosts"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:DominatorUIUtility.Views.Publisher"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:socioPublisher="clr-namespace:DominatorUIUtility.Views.SocioPublisher"
+    x:Name="addPost"
+    mc:Ignorable="d">
+
+    <Grid x:Name="MainGrid" Height="400">
+        <ScrollViewer Margin="5" VerticalScrollBarVisibility="Auto">
+
+            <StackPanel>
+                <StackPanel x:Name="createCampaign">
+                    <Label
+                        Margin="5"
+                        Content="{DynamicResource LangKeyAddSinglePostToQueue}"
+                        FontWeight="SemiBold" />
+                    <TextBox
+                        x:Name="txtMessege"
+                        Width="300"
+                        Height="80"
+                        Margin="25,5"
+                        HorizontalAlignment="Left"
+                        controls:TextBoxHelper.Watermark="{DynamicResource LangKeyTypeYourMessageHere}"
+                        AcceptsReturn="True"
+                        Text="{Binding Messeges, Mode=TwoWay}"
+                        TextWrapping="Wrap"
+                        VerticalScrollBarVisibility="Auto" />
+                    <StackPanel Margin="5" Orientation="Horizontal">
+                        <Label Content="{DynamicResource LangKeyAttachPhotosToYourPost}" />
+                        <Button
+                            x:Name="btnPhotos"
+                            VerticalAlignment="Center"
+                            Background="{DynamicResource AccentBaseColorBrush}"
+                            Click="btnPhotos_Click"
+                            Foreground="White">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle
+                                        Width="15"
+                                        Height="15"
+                                        Fill="White">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_camera}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <TextBlock Margin="6,0" Text="{DynamicResource LangKeyPhoto}" />
+                                    <TextBlock Text="{Binding ImageCount, StringFormat={} ( {0} )}">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ImageCount}" Value="0">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button
+                            x:Name="btnVideo"
+                            Margin="10,0"
+                            VerticalAlignment="Center"
+                            Background="{DynamicResource AccentBaseColorBrush}"
+                            Click="btnVideo_Click"
+                            Foreground="White">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle
+                                        Width="15"
+                                        Height="15"
+                                        Fill="White">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_video}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <TextBlock Margin="6,0" Text="{DynamicResource LangKeyVideos}" />
+                                    <TextBlock Text="{Binding VideoCount, StringFormat={} ( {0} )}">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding VideoCount}" Value="0">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+
+                    <ListView
+                        Name="LstviewImages"
+                        Margin="10,5"
+                        ItemsSource="{Binding LstMediaSources}">
+                        <ListView.Style>
+                            <Style TargetType="{x:Type ListView}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=LstMediaSources.Count}" Value="0">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.Style>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel
+                                    IsItemsHost="True"
+                                    Orientation="Horizontal"
+                                    VirtualizationMode="Recycling" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="8" Orientation="Horizontal">
+                                    <MediaElement
+                                        Width="50"
+                                        Height="50"
+                                        Source="{Binding}">
+                                        <MediaElement.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem
+                                                    Name="MenuDeleteSingle"
+                                                    VerticalContentAlignment="Center"
+                                                    Click="MenuDeleteSingle_OnClick">
+                                                    <MenuItem.Header>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <Rectangle
+                                                                Width="15"
+                                                                Height="20"
+                                                                Fill="Black">
+                                                                <Rectangle.OpacityMask>
+                                                                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_delete}" />
+                                                                </Rectangle.OpacityMask>
+                                                            </Rectangle>
+                                                            <TextBlock Margin="5,0" Text="{DynamicResource LangKeyDelete}" />
+                                                        </StackPanel>
+                                                    </MenuItem.Header>
+                                                </MenuItem>
+                                            </ContextMenu>
+                                        </MediaElement.ContextMenu>
+                                    </MediaElement>
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <StackPanel Margin="5" Orientation="Horizontal">
+                        <Label Content="{DynamicResource LangKeyTitle}" />
+                        <TextBox
+                            x:Name="txtTitle"
+                            Width="400"
+                            HorizontalAlignment="Right"
+                            controls:TextBoxHelper.Watermark="{DynamicResource LangKeyThisIsUsedForInstagram}"
+                            Text="{Binding Titles}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox
+                            Margin="5"
+                            Content="{DynamicResource LangKeyUseFacebookSellPost}"
+                            IsChecked="{Binding IsUseFacebookSellPostChecked}" />
+                        <Rectangle
+                            Width="15"
+                            Height="15"
+                            Margin="5"
+                            Fill="#003569">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_social_facebook_variant}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox
+                            Margin="5"
+                            Content="{DynamicResource LangKeyUseInstagramStoryPoll}"
+                            IsChecked="{Binding IsUseInstagramStoryPollChecked}" />
+                        <Rectangle
+                            Width="15"
+                            Height="15"
+                            Margin="5"
+                            Fill="Red">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Fill" Visual="{StaticResource Instagram}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </StackPanel>
+                    <StackPanel Margin="5" Orientation="Horizontal">
+                        <Button
+                            x:Name="btnAddTokens"
+                            Margin="10,5"
+                            Background="Transparent"
+                            Content="{DynamicResource LangKeyAddMacros}"
+                            FontWeight="Bold"
+                            Foreground="{DynamicResource AccentBaseColorBrush}" />
+                        <Button
+                            x:Name="btnInstagramAdvancedOptions"
+                            Margin="10,5"
+                            Background="Transparent"
+                            Click="btnInstagramAdvancedOptions_Click"
+                            Content="{DynamicResource LangKeyInstagramAdvancedOptions}"
+                            FontWeight="Bold"
+                            Foreground="{DynamicResource AccentBaseColorBrush}" />
+                        <Button
+                            x:Name="btnAdvancedOptions"
+                            Margin="10,5"
+                            Background="Transparent"
+                            Click="btnAdvancedOptions_Click"
+                            Content="{DynamicResource LangKeyAdvancedOptions}"
+                            FontWeight="Bold"
+                            Foreground="{DynamicResource AccentBaseColorBrush}" />
+                    </StackPanel>
+                    <StackPanel
+                        Margin="5"
+                        DockPanel.Dock="Bottom"
+                        Orientation="Horizontal">
+                        <Button
+                            x:Name="btnAddToPostList"
+                            Margin="5"
+                            Background="{DynamicResource AccentBaseColorBrush}"
+                            Click="btnAddToPostList_Click"
+                            Content="{DynamicResource LangKeyAddToPostList}"
+                            Foreground="White" />
+                        <Button
+                            x:Name="btnAddToDrafts"
+                            Margin="10,5"
+                            Background="{DynamicResource AccentBaseColorBrush}"
+                            Click="btnAddToDrafts_Click"
+                            Content="{DynamicResource LangKeyAddToDrafts}"
+                            Foreground="White" />
+                        <Button
+                            x:Name="btnImportPostFromCsv"
+                            Margin="10,5"
+                            Background="{DynamicResource AccentBaseColorBrush}"
+                            Click="btnImportPostFromCsv_Click"
+                            Content="{DynamicResource LangKeyImportPostFromCsv}"
+                            Foreground="White" />
+                    </StackPanel>
+                    <Expander Margin="5" Header="{DynamicResource LangKeyJobConfiguration}">
+                        <socioPublisher:JobConfiguration JobConfigurations="{Binding JobConfigurations}" />
+                    </Expander>
+                    <Expander Margin="5" Header="{DynamicResource LangKeyOtherConfigurations}">
+                        <socioPublisher:OtherConfiguration OtherConfigurations="{Binding OtherConfiguration}" />
+                    </Expander>
+
+                </StackPanel>
+                <local:ManageDraft x:Name="manageDraft" Visibility="Collapsed" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</UserControl>

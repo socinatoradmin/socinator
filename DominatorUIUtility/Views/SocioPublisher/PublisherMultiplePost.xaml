@@ -1,0 +1,237 @@
+﻿<UserControl x:Class="DominatorUIUtility.Views.SocioPublisher.PublisherMultiplePost"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.Views.SocioPublisher.CustomControl"
+             mc:Ignorable="d" Name="MultiplePost"
+             Height="500" Width="600" Loaded="PublisherMultiplePost_OnLoaded"
+             xmlns:suggestions="clr-namespace:DominatorUIUtility.Views.SocioPublisher.Suggestions"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls">
+    <UserControl.Resources>
+        <suggestions:SuggestionProvider x:Key="MacrosSuggestionProvider" />
+        <DataTemplate x:Key="MacroTemplate">
+            <Grid>
+                <TextBlock Text="{Binding Path=Key}" />
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="1.5*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Visibility="{Binding IsProgressVisibile}"
+                            VerticalAlignment="Center" Margin="5">
+                    <mah:ProgressRing IsActive="{Binding IsProgressActive}" HorizontalAlignment="Left"
+                                      Margin="15,0,5,0" Height="25" Width="25" />
+                    <Button Background="Transparent" Margin="5,0" Command="{Binding StopLoadingPostCommand}"
+                            Cursor="Hand" Visibility="{Binding IsProgressVisibile}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Fill="Red" Height="17" Width="15">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Visual="{StaticResource appbar_control_stop}" Stretch="Fill" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <Label Content="{DynamicResource LangKeyStop}" FontWeight="SemiBold"
+                                           Foreground="Red" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+                <mah:Badged Badge="{Binding PostListsCollectionView.Count}" Margin="10,15,0,0">
+                    <Label Content="{DynamicResource LangKeyPosts}" FontWeight="Bold"
+                           Foreground="{DynamicResource AccentBaseColorBrush}" />
+                </mah:Badged>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,5,5"
+                        Width="343">
+
+                <Button Name="BtnDeleteAll" Foreground="White" Margin="2"
+                        Background="{DynamicResource AccentBaseColorBrush}"
+                        Cursor="Hand" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center"
+                        Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                        Command="{Binding DeletePostCommand}" CommandParameter="DeleteAll">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid Background="{DynamicResource AccentBaseColorBrush}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle Width="15" Height="18" Fill="White" Margin="4,0,0,0">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_delete}" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                        <Label Content="{DynamicResource LangKeyDeleteAll}" Margin="1,0,5,0"
+                                               HorizontalContentAlignment="Center" Foreground="White" FontSize="13"
+                                               FontWeight="SemiBold" VerticalContentAlignment="Center" />
+                                    </StackPanel>
+                                </Grid>
+
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button Name="ButtonCreateNewPost" Foreground="White" Margin="2"
+                        Background="{DynamicResource AccentBaseColorBrush}" Cursor="Hand" HorizontalAlignment="Center"
+                        Height="30" VerticalAlignment="Center"
+                        Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                        Command="{Binding CreateNewPost}" CommandParameter="{Binding ElementName=ButtonCreateNewPost}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid Background="{DynamicResource AccentBaseColorBrush}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle Width="15" Height="15" Fill="White" Margin="4,0,0,0">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_app_plus}" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                        <Label Content="{DynamicResource LangKeyCreatePost}" Margin="1,0,5,0"
+                                               HorizontalContentAlignment="Center" Foreground="White" FontSize="13"
+                                               FontWeight="SemiBold" VerticalContentAlignment="Center" />
+                                    </StackPanel>
+                                </Grid>
+
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button Name="ButtonImport" Foreground="White" Margin="2"
+                        Background="{DynamicResource AccentBaseColorBrush}" Cursor="Hand" HorizontalAlignment="Center"
+                        Height="30" VerticalAlignment="Center"
+                        Command="{Binding ImportFromCsvCommand}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid Background="{DynamicResource AccentBaseColorBrush}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle Width="15" Height="15" Fill="White" Margin="4,0,0,0">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_app_plus}" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                        <Label Content="{DynamicResource LangKeyImportFromCSV}" Margin="1,0,5,0"
+                                               HorizontalContentAlignment="Center" Foreground="White" FontSize="13"
+                                               FontWeight="SemiBold" VerticalContentAlignment="Center" />
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+            </StackPanel>
+
+        </Grid>
+
+        <ListView ScrollViewer.VerticalScrollBarVisibility="Auto" Width="500" BorderThickness="0"
+                  BorderBrush="Transparent"
+                  ItemsSource="{Binding PostListsCollectionView,IsAsync=True}" Margin="2" HorizontalAlignment="Center"
+                  VirtualizingStackPanel.IsVirtualizing="True" Name="posts" Grid.Row="1"
+                  VirtualizingStackPanel.VirtualizationMode="Standard">
+            <ListView.Resources>
+                <ContextMenu x:Key="ItemContextMenu">
+                    <MenuItem Name="DeletePost"
+                              Command="{Binding Path=DataContext.DeletePostCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListView}}"
+                              CommandParameter="{Binding}">
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="15" Height="20" Fill="Black" Margin="4,0,0,0">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_delete}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <Label Content="{DynamicResource LangKeyDelete}" Margin="1,0,5,0"
+                                       HorizontalContentAlignment="Center" FontSize="13" FontWeight="SemiBold"
+                                       VerticalContentAlignment="Center" />
+                            </StackPanel>
+                        </MenuItem.Header>
+                    </MenuItem>
+
+                </ContextMenu>
+            </ListView.Resources>
+            <ListView.Style>
+                <Style TargetType="ListView">
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+                    </Style.Resources>
+                    <Setter Property="IsEnabled" Value="True" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding LstPostDetailsModel.Count}" Value="0">
+                            <Setter Property="IsEnabled" Value="False" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.Style>
+
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="ContextMenu" Value="{StaticResource ItemContextMenu}" />
+                    <Setter Property="Margin" Value="20" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                </Style>
+            </ListView.ItemContainerStyle>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="1" Margin="6,2,6,2" BorderBrush="Gainsboro" Padding="30">
+                        <StackPanel>
+                            <TextBlock FontWeight="SemiBold" Foreground="Black"
+                                       Text="{DynamicResource LangKeyPostDescription}" VerticalAlignment="Center"
+                                       FontSize="12" />
+                            <customControl:SocinatorTextBox
+                                MacroTemplate="{StaticResource ResourceKey=MacroTemplate}"
+                                SuggestionProvider="{StaticResource ResourceKey=MacrosSuggestionProvider}"
+                                Watermark="{DynamicResource LangKeyWhatsOnYourMind}" Foreground="Black"
+                                Text="{Binding PostDescription, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                TextHeight="60" TextWidth="300" Margin="2" TextWrapping="Wrap"
+                                DisplayMember="Key">
+                                <customControl:SocinatorTextBox.LoadingContent>
+                                    <TextBlock Text="Loading Macros..." Margin="5" FontSize="14" />
+                                </customControl:SocinatorTextBox.LoadingContent>
+                            </customControl:SocinatorTextBox>
+                            <customControl:PostContent x:Name="PostContentControl" HorizontalAlignment="Center"
+                                                       Foreground="Black"
+                                                       PublisherPostSettings="{Binding PublisherPostSettings,Mode=TwoWay}"
+                                                       customControl:MediaViewerAssist.MediaList="{Binding MediaViewer.MediaList,Mode=TwoWay,IsAsync=True}"
+                                                       customControl:MediaViewerAssist.CurrentMediaUrl="{Binding MediaViewer.MediaUrl,Mode=TwoWay}"
+                                                       customControl:MediaViewerAssist.MediaHeight="75"
+                                                       customControl:MediaViewerAssist.MediaWidth="75"
+                                                       customControl:MediaViewerAssist.TotalMediaCount="{Binding MediaViewer.TotalItem}"
+                                                       customControl:MediaViewerAssist.CurrentMediaPointer="{Binding MediaViewer.CurrentItem}"
+                                                       PublisherInstagramTitle="{Binding PublisherInstagramTitle, Mode=TwoWay}"
+                                                       FdSellLocation="{Binding FdSellLocation, Mode=TwoWay}"
+                                                       FdSellPrice="{Binding FdSellPrice, Mode=TwoWay}"
+                                                       FdSellProductTitle="{Binding FdSellProductTitle, Mode=TwoWay}"
+                                                       FdCondition="{Binding FdCondition, Mode=TwoWay}"
+                                                       IsFdSellPost="{Binding IsFdSellPost, Mode=TwoWay}"
+                                                       PdSourceUrl="{Binding PdSourceUrl, Mode=TwoWay}" 
+                                                       IsSpinTax="{Binding IsSpinTax, Mode=TwoWay}"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</UserControl>

@@ -1,0 +1,34 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.CustomControl.AccountGrowthChartControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Template>
+        <ControlTemplate>
+            <Grid>
+                <wpf:CartesianChart
+                    Name="chart"
+                    LegendLocation="Right"
+                    Series="{Binding SeriesCollection, RelativeSource={RelativeSource TemplatedParent}}">
+                    <wpf:CartesianChart.AxisY>
+                        <wpf:Axis Title="Growth" />
+                    </wpf:CartesianChart.AxisY>
+                    <wpf:CartesianChart.AxisX>
+                        <wpf:Axis Title="{Binding AxisXTitle, RelativeSource={RelativeSource TemplatedParent}}" Labels="{Binding AxisXLabels, RelativeSource={RelativeSource TemplatedParent}}" />
+                    </wpf:CartesianChart.AxisX>
+                    <wpf:CartesianChart.DataTooltip>
+                        <wpf:DefaultTooltip Background="{DynamicResource TextColorBrushAccordingTheme1}" BulletSize="20" />
+                    </wpf:CartesianChart.DataTooltip>
+                    <wpf:CartesianChart.ChartLegend>
+                        <wpf:DefaultLegend BulletSize="20" Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                    </wpf:CartesianChart.ChartLegend>
+                </wpf:CartesianChart>
+            </Grid>
+        </ControlTemplate>
+    </UserControl.Template>
+</UserControl>

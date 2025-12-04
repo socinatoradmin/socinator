@@ -1,0 +1,330 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.CustomControl.FacebookCustomControl.PostOptionCustomControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl1="clr-namespace:DominatorUIUtility.CustomControl.FacebookCustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Expander
+            Grid.Row="0"
+            Margin="5,5"
+            Header="{DynamicResource LangKeySearchQuery}"
+            IsExpanded="true">
+            <StackPanel Orientation="Vertical">
+                <TextBlock
+                    Margin="4"
+                    FontSize="13"
+                    FontWeight="Bold"
+                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                    Text="{DynamicResource LangKeyEngageWithPostsFrom}" />
+
+                <StackPanel Orientation="Vertical">
+                    <!--  Own wall  -->
+                    <StackPanel Margin="0,4" Orientation="Vertical">
+                        <CheckBox
+                            x:Name="Ownwall"
+                            Margin="10,4"
+                            Command="{Binding PostOptionCheckedChangedCommand}"
+                            CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                            Content="{DynamicResource LangKeyTimeline}"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            IsChecked="{Binding PostLikeCommentorModel.IsOwnWallChecked}" />
+                    </StackPanel>
+                    <!--  NewsFeed  -->
+                    <StackPanel Margin="0,4" Orientation="Vertical">
+                        <CheckBox
+                            Name="Newsfeed"
+                            Margin="10,4"
+                            Command="{Binding PostOptionCheckedChangedCommand}"
+                            CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                            Content="{DynamicResource LangKeyNewsfeed}"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            IsChecked="{Binding PostLikeCommentorModel.IsNewsfeedChecked}" />
+                    </StackPanel>
+                    <!--  Friend Wall  -->
+                    <StackPanel Margin="0,4" Orientation="Vertical">
+                        <CheckBox
+                            Name="Friend"
+                            Margin="10,4"
+                            Command="{Binding PostOptionCheckedChangedCommand}"
+                            CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                            Content="{DynamicResource LangKeyFriendTimeline}"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            IsChecked="{Binding PostLikeCommentorModel.IsFriendTimeLineChecked}" />
+                        <StackPanel
+                            HorizontalAlignment="Left"
+                            Orientation="Vertical"
+                            Visibility="{Binding PostLikeCommentorModel.IsFriendTimeLineChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <customControl1:SelectOptionControl
+                                x:Name="BtnSelectFriends"
+                                Margin="35,0"
+                                ClearCommand="{Binding ClearCommand}"
+                                InputText="{Binding PostLikeCommentorModel.FriendProfileUrl}"
+                                IsSelectButtonVisible="False"
+                                LstSelectedInput="{Binding PostLikeCommentorModel.ListFriendProfileUrl}"
+                                SelectedInputOption="{DynamicResource LangKeySelectFriends}"
+                                SelectedOptionDisplayName="{DynamicResource LangKeySelectFriends}" />
+
+                        </StackPanel>
+                    </StackPanel>
+
+
+                    <StackPanel Margin="0,4" Orientation="Vertical">
+                        <CheckBox
+                            Name="Groups"
+                            Margin="10,4"
+                            Command="{Binding PostOptionCheckedChangedCommand}"
+                            CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                            Content="{DynamicResource LangKeyGroup}"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            IsChecked="{Binding PostLikeCommentorModel.IsGroupChecked}" />
+                        <StackPanel
+                            HorizontalAlignment="Left"
+                            Orientation="Vertical"
+                            Visibility="{Binding PostLikeCommentorModel.IsGroupChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <customControl1:SelectOptionControl
+                                x:Name="BtnSelectGroups"
+                                Margin="35,0"
+                                ClearCommand="{Binding ClearCommand}"
+                                InputText="{Binding PostLikeCommentorModel.GroupUrl}"
+                                IsSelectButtonVisible="False"
+                                LstSelectedInput="{Binding PostLikeCommentorModel.ListGroupUrl}"
+                                SelectedInputOption="{DynamicResource LangKeySelectGroups}"
+                                SelectedOptionDisplayName="{DynamicResource LangKeySelectGroups}" />
+
+                        </StackPanel>
+                    </StackPanel>
+                    <!--  Pages  -->
+                    <StackPanel Margin="0,4" Orientation="Vertical">
+                        <CheckBox
+                            Name="Pages"
+                            Margin="10,4"
+                            Command="{Binding PostOptionCheckedChangedCommand}"
+                            CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                            Content="{DynamicResource LangKeyPages}"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            IsChecked="{Binding PostLikeCommentorModel.IsPageChecked}" />
+                        <StackPanel
+                            HorizontalAlignment="Left"
+                            Orientation="Vertical"
+                            Visibility="{Binding PostLikeCommentorModel.IsPageChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <customControl1:SelectOptionControl
+                                x:Name="BtnSelectPages"
+                                Margin="35,0"
+                                ClearCommand="{Binding ClearCommand}"
+                                InputText="{Binding PostLikeCommentorModel.PageUrl}"
+                                IsSelectButtonVisible="False"
+                                LstSelectedInput="{Binding PostLikeCommentorModel.ListPageUrl}"
+                                SelectedInputOption="{DynamicResource LangKeySelectPages}"
+                                SelectedOptionDisplayName="{DynamicResource LangKeySelectPages}" />
+                        </StackPanel>
+
+
+                        <StackPanel Margin="0,4" Orientation="Vertical">
+                            <CheckBox
+                                Name="PostList"
+                                Margin="10,4"
+                                Command="{Binding PostOptionCheckedChangedCommand}"
+                                CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                                Content="{DynamicResource LangKeyCustomPostsList}"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                IsChecked="{Binding PostLikeCommentorModel.IsCustomPostListChecked}" />
+                            <StackPanel Orientation="Vertical" Visibility="{Binding PostLikeCommentorModel.IsCustomPostListChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <customControl1:SelectOptionControl
+                                    x:Name="BtnCustomPostList"
+                                    Margin="35,0"
+                                    ClearCommand="{Binding ClearCommand}"
+                                    InputText="{Binding PostLikeCommentorModel.CustomPostList}"
+                                    IsSelectButtonVisible="False"
+                                    LstSelectedInput="{Binding PostLikeCommentorModel.ListCustomPostList}"
+                                    SelectedInputOption="{DynamicResource LangKeyCustomPostsList}"
+                                    SelectedOptionDisplayName="{DynamicResource LangKeyCustomPostsList}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Margin="0,4" Orientation="Vertical">
+                            <CheckBox
+                                Name="ChkCampaign"
+                                Margin="10,4"
+                                Command="{Binding PostOptionCheckedChangedCommand}"
+                                CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                                Content="{DynamicResource LangKeyPublisherCampaigns}"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                IsChecked="{Binding PostLikeCommentorModel.IsCampaignChecked}" />
+                            <StackPanel
+                                HorizontalAlignment="Left"
+                                Orientation="Vertical"
+                                Visibility="{Binding PostLikeCommentorModel.IsCampaignChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <customControl1:SelectOptionControl
+                                    x:Name="BtnSelectCampaign"
+                                    Margin="35,0"
+                                    ClearCommand="{Binding ClearCommand}"
+                                    InputText="{Binding PostLikeCommentorModel.Campaign}"
+                                    IsSelectButtonVisible="False"
+                                    LstSelectedInput="{Binding PostLikeCommentorModel.ListFaceDominatorCampaign}"
+                                    SelectedInputOption="{DynamicResource LangKeySelectCampaign}"
+                                    SelectedOptionDisplayName="{DynamicResource LangKeySelectCampaign}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel
+                            Margin="0,4"
+                            Orientation="Vertical"
+                            Visibility="{Binding IsAlbumsNeeded, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <CheckBox
+                                Name="ChkAlbums"
+                                Margin="10,4"
+                                Command="{Binding PostOptionCheckedChangedCommand}"
+                                CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                                Content="{DynamicResource LangKeyAlbums}"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                IsChecked="{Binding PostLikeCommentorModel.IsAlbumsChecked}" />
+                            <StackPanel
+                                HorizontalAlignment="Left"
+                                Orientation="Vertical"
+                                Visibility="{Binding PostLikeCommentorModel.IsAlbumsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <customControl1:SelectOptionControl
+                                    x:Name="BtnSelectAlbums"
+                                    Margin="35,0"
+                                    ClearCommand="{Binding ClearCommand}"
+                                    InputText="{Binding PostLikeCommentorModel.Albums}"
+                                    IsSelectButtonVisible="False"
+                                    LstSelectedInput="{Binding PostLikeCommentorModel.ListAlbums}"
+                                    SelectedInputOption="{DynamicResource LangKeySelectCampaign}"
+                                    SelectedOptionDisplayName="{DynamicResource LangKeySelectCampaign}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel
+                            Margin="0,4"
+                            Orientation="Vertical"
+                            Visibility="Visible">
+                            <CheckBox
+                                Name="ChkKeyword"
+                                Margin="10,4"
+                                Command="{Binding PostOptionCheckedChangedCommand}"
+                                CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                                Content="{DynamicResource LangKeyKeywords}"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                IsChecked="{Binding PostLikeCommentorModel.IsKeywordChecked}" />
+                            <StackPanel
+                                HorizontalAlignment="Left"
+                                Orientation="Vertical"
+                                Visibility="{Binding PostLikeCommentorModel.IsKeywordChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <customControl1:SelectOptionControl
+                                    x:Name="BtnSelectKeyword"
+                                    Margin="35,0"
+                                    ClearCommand="{Binding ClearCommand}"
+                                    InputText="{Binding PostLikeCommentorModel.Keyword}"
+                                    IsSelectButtonVisible="False"
+                                    LstSelectedInput="{Binding PostLikeCommentorModel.ListKeywords}"
+                                    SelectedInputOption="{DynamicResource LangKeySelectCampaign}"
+                                    SelectedOptionDisplayName="{DynamicResource LangKeySelectCampaign}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel
+                            Margin="0,4"
+                            Orientation="Vertical"
+                            Visibility="Visible">
+                            <CheckBox
+                                Name="ChkNrlCampaign"
+                                Margin="10,4"
+                                Command="{Binding PostOptionCheckedChangedCommand}"
+                                CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                                Content="{DynamicResource LangKeyProfileScraperCampaigns}"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                IsChecked="{Binding PostLikeCommentorModel.IsCampaignChked}" />
+                            <StackPanel
+                                HorizontalAlignment="Left"
+                                Orientation="Vertical"
+                                Visibility="{Binding PostLikeCommentorModel.IsCampaignChked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <customControl1:SelectOptionControl
+                                    x:Name="BtnSelectCampagn"
+                                    Margin="35,0"
+                                    ClearCommand="{Binding ClearCommand}"
+                                    InputText="{Binding PostLikeCommentorModel.NrlCampaign}"
+                                    IsSelectButtonVisible="False"
+                                    LstSelectedInput="{Binding PostLikeCommentorModel.ListCampaign}"
+                                    SelectedInputOption="{DynamicResource LangKeySelectCampaign}"
+                                    SelectedOptionDisplayName="{DynamicResource LangKeySelectCampaign}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel
+                            Margin="0,4"
+                            Orientation="Vertical"
+                            Visibility="Visible">
+                            <CheckBox
+                                Name="ChkHashtag"
+                                Margin="10,4"
+                                Command="{Binding PostOptionCheckedChangedCommand}"
+                                CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource self}}"
+                                Content="{DynamicResource LangKeyHashtag}"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                IsChecked="{Binding PostLikeCommentorModel.IsHashtagChecked}" />
+                            <StackPanel
+                                HorizontalAlignment="Left"
+                                Orientation="Vertical"
+                                Visibility="{Binding PostLikeCommentorModel.IsHashtagChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <customControl1:SelectOptionControl
+                                    x:Name="BtnSelectHashtag"
+                                    Margin="35,0"
+                                    ClearCommand="{Binding ClearCommand}"
+                                    InputText="{Binding PostLikeCommentorModel.HashtagUrl}"
+                                    IsSelectButtonVisible="False"
+                                    LstSelectedInput="{Binding PostLikeCommentorModel.ListHashtags}"
+                                    SelectedInputOption="{DynamicResource LangKeySelectHashtag}"
+                                    SelectedOptionDisplayName="{DynamicResource LangKeySelectFriends}" />
+
+                            </StackPanel>
+
+                        </StackPanel>
+                        <StackPanel Margin="0,4" Orientation="Vertical">
+                            <CheckBox
+                                Name="ChkPostSharer"
+                                Margin="10,4"
+                                Command="{Binding PostOptionCheckedChangedCommand}"
+                                CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                                Content="{DynamicResource LangKeyPostSharer}"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                IsChecked="{Binding PostLikeCommentorModel.IsPostSharerChecked}" />
+                            <StackPanel Orientation="Vertical" Visibility="{Binding PostLikeCommentorModel.IsPostSharerChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <customControl1:SelectOptionControl
+                                    x:Name="BtnSharerPostList"
+                                    Margin="35,0"
+                                    ClearCommand="{Binding ClearCommand}"
+                                    InputText="{Binding PostLikeCommentorModel.PostSharerUrl}"
+                                    IsSelectButtonVisible="False"
+                                    LstSelectedInput="{Binding PostLikeCommentorModel.ListPostSharer}"
+                                    SelectedInputOption="{DynamicResource LangKeySelectPostSharer}"
+                                    SelectedOptionDisplayName="{DynamicResource LangKeyCustomPostSharer}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+            </StackPanel>
+
+        </Expander>
+
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,1129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F40A5C83-8EDA-43C5-88B9-DFAAB492A497}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DominatorHouseCore</RootNamespace>
+    <AssemblyName>DominatorHouseCore</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug-fast-test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug-fast-test\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SKIP_DELAYS</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug-fast-test|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug-fast-test\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SKIP_DELAYS</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoItX3.Assembly">
+      <HintPath>..\packages\AutoItX.Dotnet.3.3.14.5\lib\AutoItX3.Assembly.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="BrotliSharpLib, Version=0.3.2.0, Culture=neutral, PublicKeyToken=3f4e2a1cd615fcb7, processorArchitecture=MSIL">
+      <HintPath>..\packages\BrotliSharpLib.0.3.3\lib\net451\BrotliSharpLib.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.5\lib\net46\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper, Version=33.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.33.1.0\lib\net48\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ExcelDataReader, Version=3.7.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.3.7.0\lib\net462\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentScheduler, Version=5.3.0.0, Culture=neutral, PublicKeyToken=b76503528a14ebd1, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentScheduler.5.3.0\lib\net40\FluentScheduler.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.8.5.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.8.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="imagetyperzapi">
+      <HintPath>..\packages\imagetyperz-api-latest.1.0.3\lib\net40\imagetyperzapi.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.WindowsInstaller">
+      <HintPath>..\libs\WindowsInstaller\Interop.WindowsInstaller.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.6.5\lib\net47\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.8.0.0\lib\net462\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.0\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.8.0.0\lib\net462\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.8.0.0\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.8.0.0\lib\net462\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.8.0.0\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NReco.VideoConverter, Version=1.1.2.0, Culture=neutral, PublicKeyToken=395ccb334978a0cd, processorArchitecture=MSIL">
+      <HintPath>..\packages\NReco.VideoConverter.1.1.2\lib\net20\NReco.VideoConverter.dll</HintPath>
+    </Reference>
+    <Reference Include="ObjectsComparer, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ObjectsComparer.1.4.1\lib\net45\ObjectsComparer.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenPop, Version=2.0.6.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenPop.2.0.6.2\lib\net20\OpenPop.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.7.2.0.1422\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Unity.Wpf, Version=7.2.0.1367, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Prism.Unity.7.2.0.1422\lib\net45\Prism.Unity.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf">
+      <HintPath>..\packages\Prism.Wpf.7.2.0.1422\lib\net45\Prism.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.3.7.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\packages\protobuf-net.2.3.7\lib\net40\protobuf-net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PuppeteerSharp, Version=20.2.4.0, Culture=neutral, PublicKeyToken=db12f80f85d8ba23, processorArchitecture=MSIL">
+      <HintPath>..\packages\PuppeteerSharp.20.2.4\lib\netstandard2.0\PuppeteerSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog, Version=4.3.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.4.3.0\lib\net471\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.Console, Version=6.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.Console.6.0.0\lib\net471\Serilog.Sinks.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.EventLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.EventLog.4.0.0\lib\net471\Serilog.Sinks.EventLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.File, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.File.7.0.0\lib\net471\Serilog.Sinks.File.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.8.0.1\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net46\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net46\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=8.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.8.0.5\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Channels, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Channels.8.0.0\lib\net462\System.Threading.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Dataflow, Version=4.6.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Dataflow.4.9.0\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net462\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ThreadUtils, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ThreadUtils.1.0.1\lib\net461\ThreadUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="ToastNotifications, Version=2.3.1.0, Culture=neutral, PublicKeyToken=e89d9d7314a7c797, processorArchitecture=MSIL">
+      <HintPath>..\packages\ToastNotifications.2.3.1\lib\net40\ToastNotifications.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ToastNotifications.Messages, Version=2.3.1.0, Culture=neutral, PublicKeyToken=e89d9d7314a7c797, processorArchitecture=MSIL">
+      <HintPath>..\packages\ToastNotifications.Messages.2.3.1\lib\net40\ToastNotifications.Messages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Abstractions.5.11.1\lib\net46\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Container.5.11.1\lib\net46\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Interception.5.11.1\lib\net46\Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="WPFFolderBrowser, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFFolderBrowser.1.0.2\lib\WPFFolderBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="Zstandard.Net, Version=1.1.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zstandard.Net.1.1.7\lib\net45\Zstandard.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="ZstdNet, Version=1.4.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZstdNet.1.4.5\lib\net45\ZstdNet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessLogic\ActivitiesWorkflow\ILoginProcessAsync.cs" />
+    <Compile Include="BusinessLogic\Factories\DominatorAccountCountFactory.cs" />
+    <Compile Include="BusinessLogic\GlobalRoutines\CampaignGlobalRoutines.cs" />
+    <Compile Include="BusinessLogic\Scheduler\DominatorJobProcessFactory.cs" />
+    <Compile Include="BusinessLogic\Scheduler\DominatorScheduler.cs" />
+    <Compile Include="BusinessLogic\Scheduler\IPublisherJobProcessFactory.cs" />
+    <Compile Include="BusinessLogic\Scheduler\JobProcessScopeFactory.cs" />
+    <Compile Include="BusinessLogic\Scheduler\RunningActivityManager.cs" />
+    <Compile Include="BusinessLogic\Scheduler\SchedulerProxy.cs" />
+    <Compile Include="BusinessLogic\Scraper\IQueryScraperFactory.cs" />
+    <Compile Include="BusinessLogic\Scraper\DominatorScraperFactory.cs" />
+    <Compile Include="BusinessLogic\Scraper\QueryScraper.cs" />
+    <Compile Include="Command\BaseCommand.cs" />
+    <Compile Include="Converters\AccountsFilterConverter.cs" />
+    <Compile Include="Converters\AccountStatusToLangKeyConverter.cs" />
+    <Compile Include="Converters\AverageConverter.cs" />
+    <Compile Include="Converters\BooleanToAutomationStatusConverter.cs" />
+    <Compile Include="Converters\BooleanToStringSelectConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\BoolToValueConverter.cs" />
+    <Compile Include="Converters\BrowserAutomationConverter.cs" />
+    <Compile Include="Converters\CaptchaStatusToVisibilityConverter.cs" />
+    <Compile Include="Converters\ChatImageCountToColumnConverter.cs" />
+    <Compile Include="Converters\ChatImageCountToHeightConverter.cs" />
+    <Compile Include="Converters\EnumDescriptionConverter.cs" />
+    <Compile Include="Converters\EpochToDateTimeConverter.cs" />
+    <Compile Include="Converters\FeatureVisibilityConverter.cs" />
+    <Compile Include="Converters\ImageConverter.cs" />
+    <Compile Include="Converters\ImageCountToRowHeightConverter.cs" />
+    <Compile Include="Converters\IndexToReportOptionConverter.cs" />
+    <Compile Include="Converters\IndexToRowNoConverter.cs" />
+    <Compile Include="Converters\IntToDateTimeConverter.cs" />
+    <Compile Include="Converters\IntToVisibilityConverter.cs" />
+    <Compile Include="Converters\InvokeCommandWithArgsAction.cs" />
+    <Compile Include="Converters\IsPositiveValueConvertor.cs" />
+    <Compile Include="Converters\ListCountVisiblityConverter.cs" />
+    <Compile Include="Converters\ListViewItemIndexConverter.cs" />
+    <Compile Include="Converters\ActivityTypesSourceConverter.cs" />
+    <Compile Include="Converters\MessageTypeToColorConverter.cs" />
+    <Compile Include="Converters\MessageTypeTovisibilityConverter.cs" />
+    <Compile Include="Converters\MessegeTypeToHorizontalAlignmentConverter.cs" />
+    <Compile Include="Converters\PinterestAccountTypeToStatusConverter.cs" />
+    <Compile Include="Converters\PinterestAccountTypeToVisibilityConverter.cs" />
+    <Compile Include="Converters\PositiveValueConvertor.cs" />
+    <Compile Include="Converters\PublisherSyncStringToBooleanConverter.cs" />
+    <Compile Include="Converters\SelectedNetworkToVisibilityConverter.cs" />
+    <Compile Include="Converters\SocialNetworkToLinkConverter.cs" />
+    <Compile Include="Converters\SocialNetworkToColorBrushConverter.cs" />
+    <Compile Include="Converters\SocialNetworkToVisualBrushConverter.cs" />
+    <Compile Include="Converters\StringLengthToBooleanConverter.cs" />
+    <Compile Include="Converters\StringToBooleanConverter.cs" />
+    <Compile Include="Converters\StringToResourceConverter.cs" />
+    <Compile Include="Converters\VisibleIfEqualConverter.cs" />
+    <Compile Include="Converters\WorkingStringToVisibilityConverter.cs" />
+    <Compile Include="CoreUnityExtension.cs" />
+    <Compile Include="Dal\DbConnection.cs" />
+    <Compile Include="Dal\DbMigrations\GlobalDatabaseBlackListMigrations.cs" />
+    <Compile Include="Dal\DbMigrations\GlobalDatabaseMigrations.cs" />
+    <Compile Include="Dal\DbMigrationUnityExtension.cs" />
+    <Compile Include="DatabaseHandler\Common\AccountsSessionsTable.cs" />
+    <Compile Include="DatabaseHandler\Common\EntityCounters\CounterKeyFactory.cs" />
+    <Compile Include="DatabaseHandler\Common\EntityCounters\EntityCounterFunction.cs" />
+    <Compile Include="DatabaseHandler\Common\EntityCounters\EntityCounterFunctionInstagramRegisterUnityExtension.cs" />
+    <Compile Include="DatabaseHandler\Common\EntityCounters\EntityCounterFunctionLinkedinRegisterUnityExtension.cs" />
+    <Compile Include="DatabaseHandler\Common\EntityCounters\EntityCounterFunctionPinterestRegisterUnityExtension.cs" />
+    <Compile Include="DatabaseHandler\Common\EntityCounters\EntityCounterFunctionTikTokRegisterUnityExtension.cs" />
+    <Compile Include="DatabaseHandler\Common\EntityCounters\EntityCounterFunctionTumblrRegisterUnityExtension.cs" />
+    <Compile Include="DatabaseHandler\Common\EntityCounters\EntityCounterFunctionQuoraRegisterUnityExtension.cs" />
+    <Compile Include="DatabaseHandler\Common\EntityCounters\EntityCounterFunctionRedditRegisterUnityExtension.cs" />
+    <Compile Include="DatabaseHandler\Common\EntityCounters\EntityCounterFunctionFaceBookRegisterUnityExtension.cs" />
+    <Compile Include="DatabaseHandler\Common\EntityCounters\EntityCounterFunctionYoutubeRegisterUnityExtension.cs" />
+    <Compile Include="DatabaseHandler\Common\EntityCounters\EntityCounterFunctionTwitterRegisterUnityExtension.cs" />
+    <Compile Include="DatabaseHandler\Common\EntityCounters\EntityCounterUnityExtension.cs" />
+    <Compile Include="DatabaseHandler\Common\Entity.cs" />
+    <Compile Include="DatabaseHandler\Common\EntityCounters\FilterPredicate.cs" />
+    <Compile Include="DatabaseHandler\Common\IActivityTypeEntity.cs" />
+    <Compile Include="DatabaseHandler\Common\IPrimaryKey.cs" />
+    <Compile Include="DatabaseHandler\CoreModels\DbVersions.cs" />
+    <Compile Include="DatabaseHandler\DHTables\AccountDetails.cs" />
+    <Compile Include="DatabaseHandler\DHTables\BlackListUser.cs" />
+    <Compile Include="DatabaseHandler\DHTables\BlackWhiteListUser.cs" />
+    <Compile Include="DatabaseHandler\DHTables\InstaAccountBackup.cs" />
+    <Compile Include="DatabaseHandler\DHTables\LocationList.cs" />
+    <Compile Include="DatabaseHandler\DHTables\WhiteListUser.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Accounts\DailyStatitics.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Accounts\FeedInfo.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Accounts\Friends.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Accounts\InteractedCommentReplies.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Accounts\InteractedComments.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Accounts\InteractedEvents.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Accounts\InteractedGroups.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Accounts\InteractedMarketPlaces.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Accounts\InteractedPages.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Accounts\InteractedPosts.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Accounts\InteractedUsers.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Accounts\LikedPages.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Accounts\MarketplaceDetails.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Accounts\OwnGroups.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Accounts\OwnPages.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Accounts\PrivateBlacklist.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Accounts\PrivateWhitelist.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Campaigns\InteractedCommentReplies.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Campaigns\InteractedComments.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Campaigns\InteractedEvents.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Campaigns\InteractedGroups.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Campaigns\InteractedMarketPlaces.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Campaigns\InteractedPages.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Campaigns\InteractedPosts.cs" />
+    <Compile Include="DatabaseHandler\FdTables\Campaigns\InteractedUsers.cs" />
+    <Compile Include="DatabaseHandler\FdTables\FdGlobals\FdAccountDetails.cs" />
+    <Compile Include="DatabaseHandler\GdTables\Accounts\MakeCloseFriendAccount.cs" />
+    <Compile Include="DatabaseHandler\GdTables\Accounts\PrivateBlacklist.cs" />
+    <Compile Include="DatabaseHandler\GdTables\Accounts\PrivateWhitelist.cs" />
+    <Compile Include="DatabaseHandler\GdTables\Accounts\UserConversation.cs" />
+    <Compile Include="DatabaseHandler\GdTables\Campaigns\HashtagScrape.cs" />
+    <Compile Include="DatabaseHandler\GdTables\Campaigns\InteractedPosts.cs" />
+    <Compile Include="DatabaseHandler\GdTables\Campaigns\InteractedUsers.cs" />
+    <Compile Include="DatabaseHandler\GdTables\Campaigns\MakeCloseFriendCampaign.cs" />
+    <Compile Include="DatabaseHandler\GdTables\Campaigns\UnfollowedUsers.cs" />
+    <Compile Include="DatabaseHandler\GdTables\FollowType.cs" />
+    <Compile Include="DatabaseHandler\GdTables\Accounts\DailyStatitics.cs" />
+    <Compile Include="DatabaseHandler\GdTables\Accounts\FeedInfo.cs" />
+    <Compile Include="DatabaseHandler\GdTables\Accounts\Friendship.cs" />
+    <Compile Include="DatabaseHandler\GdTables\Accounts\HashtagScrape.cs" />
+    <Compile Include="DatabaseHandler\GdTables\Accounts\InteractedPosts.cs" />
+    <Compile Include="DatabaseHandler\GdTables\Accounts\InteractedUsers.cs" />
+    <Compile Include="DatabaseHandler\GdTables\Accounts\UnfollowedUsers.cs" />
+    <Compile Include="DatabaseHandler\GplusTables\Accounts\Communities.cs" />
+    <Compile Include="DatabaseHandler\GplusTables\Accounts\Friendship.cs" />
+    <Compile Include="DatabaseHandler\GplusTables\Accounts\InteractedPosts.cs" />
+    <Compile Include="DatabaseHandler\GplusTables\Accounts\InteractedUsers.cs" />
+    <Compile Include="DatabaseHandler\GplusTables\Accounts\PrivateBlacklist.cs" />
+    <Compile Include="DatabaseHandler\GplusTables\Accounts\PrivateWhitelist.cs" />
+    <Compile Include="DatabaseHandler\GplusTables\Accounts\UnfollowedUsers.cs" />
+    <Compile Include="DatabaseHandler\GplusTables\Campaigns\InteractedPostsReport.cs" />
+    <Compile Include="DatabaseHandler\GplusTables\Campaigns\InteractedUsersReport.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Account\Connections.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Account\DailyStatitics.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Account\FeedInfo.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Account\Groups.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Account\InteractedCompanies.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Account\InteractedGroups.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Account\InteractedJobs.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Account\InteractedPage.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Account\InteractedPosts.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Account\InteractedUsers.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Account\InvitationsSent.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Account\Pages.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Account\PrivateBlacklist.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Account\PrivateWhitelist.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Account\RemovedConnections.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Account\SkipInteractedAttachments.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Account\UnjoinedGroups.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Campaign\InteractedCompanies.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Campaign\InteractedGroups.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Campaign\InteractedJobs.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Campaign\InteractedPage.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Campaign\InteractedPosts.cs" />
+    <Compile Include="DatabaseHandler\LdTables\Campaign\InteractedUsers.cs" />
+    <Compile Include="DatabaseHandler\PdTables\Accounts\CreateAccount.cs" />
+    <Compile Include="DatabaseHandler\PdTables\Accounts\DailyStatitics.cs" />
+    <Compile Include="DatabaseHandler\PdTables\Accounts\FeedInfo.cs" />
+    <Compile Include="DatabaseHandler\PdTables\Accounts\Friendship.cs" />
+    <Compile Include="DatabaseHandler\PdTables\Accounts\InteractedBoards.cs" />
+    <Compile Include="DatabaseHandler\PdTables\Accounts\InteractedPosts.cs" />
+    <Compile Include="DatabaseHandler\PdTables\Accounts\InteractedUsers.cs" />
+    <Compile Include="DatabaseHandler\PdTables\Accounts\OwnBoards.cs" />
+    <Compile Include="DatabaseHandler\PdTables\Accounts\PrivateBlacklist.cs" />
+    <Compile Include="DatabaseHandler\PdTables\Accounts\PrivateWhitelist.cs" />
+    <Compile Include="DatabaseHandler\PdTables\Accounts\ScrapBoards.cs" />
+    <Compile Include="DatabaseHandler\PdTables\Accounts\ScrapPins.cs" />
+    <Compile Include="DatabaseHandler\PdTables\Accounts\UnfollowedUsers.cs" />
+    <Compile Include="DatabaseHandler\PdTables\Campaigns\CreateAccount.cs" />
+    <Compile Include="DatabaseHandler\PdTables\Campaigns\InteractedBoards.cs" />
+    <Compile Include="DatabaseHandler\PdTables\Campaigns\InteractedPosts.cs" />
+    <Compile Include="DatabaseHandler\PdTables\Campaigns\InteractedUsers.cs" />
+    <Compile Include="DatabaseHandler\PdTables\Campaigns\UnfollowedUsers.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Accounts\DailyStatitics.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Accounts\FeedInfo.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Accounts\Friendship.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Accounts\InteractedAnswers.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Accounts\InteractedMessage.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Accounts\InteractedPosts.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Accounts\InteractedQuestion.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Accounts\InteractedSpaces.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Accounts\InteractedTopics.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Accounts\InteractedUsers.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Accounts\PrivateBlacklist.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Accounts\PrivateWhitelist.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Accounts\UnFollowedInteractedSpace.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Accounts\UnfollowedUsers.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Campaigns\InteractedAnswers.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Campaigns\InteractedMessage.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Campaigns\InteractedPosts.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Campaigns\InteractedQuestion.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Campaigns\InteractedSpace.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Campaigns\InteractedTopic.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Campaigns\InteractedUsers.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Campaigns\UnFollowedInteractedSpaces.cs" />
+    <Compile Include="DatabaseHandler\QdTables\Campaigns\UnfollowedUsers.cs" />
+    <Compile Include="DatabaseHandler\RdTables\Accounts\DailyStatitics.cs" />
+    <Compile Include="DatabaseHandler\RdTables\Accounts\InteractedAutoActivityPost.cs" />
+    <Compile Include="DatabaseHandler\RdTables\Accounts\InteractedPost.cs" />
+    <Compile Include="DatabaseHandler\RdTables\Accounts\InteractedSubreddit.cs" />
+    <Compile Include="DatabaseHandler\RdTables\Accounts\InteractedUsers.cs" />
+    <Compile Include="DatabaseHandler\RdTables\Accounts\OwnCommunities.cs" />
+    <Compile Include="DatabaseHandler\RdTables\Accounts\PrivateBlacklist.cs" />
+    <Compile Include="DatabaseHandler\RdTables\Accounts\PrivateWhitelist.cs" />
+    <Compile Include="DatabaseHandler\RdTables\Accounts\UnfollowedUsers.cs" />
+    <Compile Include="DatabaseHandler\RdTables\Campaigns\InteractedAutoActivityPostCampaign.cs" />
+    <Compile Include="DatabaseHandler\RdTables\Campaigns\InteractedPost.cs" />
+    <Compile Include="DatabaseHandler\RdTables\Campaigns\InteractedSubreddit.cs" />
+    <Compile Include="DatabaseHandler\RdTables\Campaigns\InteractedUsers.cs" />
+    <Compile Include="DatabaseHandler\RdTables\Campaigns\UnfollowedUsers.cs" />
+    <Compile Include="DatabaseHandler\TdTables\Accounts\DailyStatitics.cs" />
+    <Compile Include="DatabaseHandler\TdTables\Accounts\FeedInfo.cs" />
+    <Compile Include="DatabaseHandler\TdTables\Accounts\Friendship.cs" />
+    <Compile Include="DatabaseHandler\TdTables\Accounts\InteractedPosts.cs" />
+    <Compile Include="DatabaseHandler\TdTables\Accounts\InteractedUsers.cs" />
+    <Compile Include="DatabaseHandler\TdTables\Accounts\PrivateBlacklist.cs" />
+    <Compile Include="DatabaseHandler\TdTables\Accounts\PrivateWhitelist.cs" />
+    <Compile Include="DatabaseHandler\TdTables\Accounts\UnfollowedUsers.cs" />
+    <Compile Include="DatabaseHandler\TdTables\Campaign\InteractedPosts.cs" />
+    <Compile Include="DatabaseHandler\TdTables\Campaign\InteractedUsers.cs" />
+    <Compile Include="DatabaseHandler\TdTables\Campaign\UnfollowedUsers.cs" />
+    <Compile Include="DatabaseHandler\TtdTables\Accounts\FeedInfoes.cs" />
+    <Compile Include="DatabaseHandler\TtdTables\Accounts\Friendships.cs" />
+    <Compile Include="DatabaseHandler\TtdTables\Accounts\InteractedHashTags.cs" />
+    <Compile Include="DatabaseHandler\TtdTables\Accounts\InteractedPosts.cs" />
+    <Compile Include="DatabaseHandler\TtdTables\Accounts\InteractedUsers.cs" />
+    <Compile Include="DatabaseHandler\TtdTables\Accounts\PrivateBlacklist.cs" />
+    <Compile Include="DatabaseHandler\TtdTables\Accounts\PrivateWhitelist.cs" />
+    <Compile Include="DatabaseHandler\TtdTables\Accounts\UnfollowedUsers.cs" />
+    <Compile Include="DatabaseHandler\TtdTables\Campaigns\InteractedHashTags.cs" />
+    <Compile Include="DatabaseHandler\TtdTables\Campaigns\InteractedPosts.cs" />
+    <Compile Include="DatabaseHandler\TtdTables\Campaigns\InteractedUsers.cs" />
+    <Compile Include="DatabaseHandler\TtdTables\Campaigns\UnfollowedUsers.cs" />
+    <Compile Include="DatabaseHandler\TtdTables\FollowType.cs" />
+    <Compile Include="DatabaseHandler\TumblrTables\Account\DailyStatitics.cs" />
+    <Compile Include="DatabaseHandler\TumblrTables\Account\FeedInfo.cs" />
+    <Compile Include="DatabaseHandler\TumblrTables\Account\FollowType.cs" />
+    <Compile Include="DatabaseHandler\TumblrTables\Account\Friendships.cs" />
+    <Compile Include="DatabaseHandler\TumblrTables\Account\InteractedPosts.cs" />
+    <Compile Include="DatabaseHandler\TumblrTables\Account\InteractedUser.cs" />
+    <Compile Include="DatabaseHandler\TumblrTables\Account\OwnBlogs.cs" />
+    <Compile Include="DatabaseHandler\TumblrTables\Account\PrivateBlacklist.cs" />
+    <Compile Include="DatabaseHandler\TumblrTables\Account\PrivateWhitelist.cs" />
+    <Compile Include="DatabaseHandler\TumblrTables\Account\UnFollowedUser.cs" />
+    <Compile Include="DatabaseHandler\TumblrTables\Account\UnLikedPosts.cs" />
+    <Compile Include="DatabaseHandler\TumblrTables\Campaign\InteractedPosts.cs" />
+    <Compile Include="DatabaseHandler\TumblrTables\Campaign\InteractedUser.cs" />
+    <Compile Include="DatabaseHandler\TumblrTables\Campaign\UnFollowedUser.cs" />
+    <Compile Include="Dal\DbMigrations\BaseDbMigrations.cs" />
+    <Compile Include="DatabaseHandler\TumblrTables\Campaign\UnLikedPosts.cs" />
+    <Compile Include="DatabaseHandler\Utility\DbAccountServiceBase.cs" />
+    <Compile Include="DatabaseHandler\Utility\DbOperations.cs" />
+    <Compile Include="DatabaseHandler\Utility\GlobalDatabaseConnection.cs" />
+    <Compile Include="DatabaseHandler\YdTables\Accounts\DailyStatitics.cs" />
+    <Compile Include="DatabaseHandler\YdTables\Accounts\FeedInfos.cs" />
+    <Compile Include="DatabaseHandler\YdTables\Accounts\Friendships.cs" />
+    <Compile Include="DatabaseHandler\YdTables\Accounts\InteractedChannels.cs" />
+    <Compile Include="DatabaseHandler\YdTables\Accounts\InteractedPosts.cs" />
+    <Compile Include="DatabaseHandler\YdTables\Accounts\OwnChannels.cs" />
+    <Compile Include="DatabaseHandler\YdTables\Accounts\PrivateBlacklist.cs" />
+    <Compile Include="DatabaseHandler\YdTables\Accounts\PrivateWhitelist.cs" />
+    <Compile Include="DatabaseHandler\YdTables\Campaign\InteractedChannels.cs" />
+    <Compile Include="DatabaseHandler\YdTables\Campaign\InteractedPosts.cs" />
+    <Compile Include="Dal\DbMigrations\GlobalDatabaseWhiteListMigrations.cs" />
+    <Compile Include="Dal\VersionedDbConnection.cs" />
+    <Compile Include="Diagnostics\AesDecryption.cs" />
+    <Compile Include="Diagnostics\Exceptions\ExceptionExtensions.cs" />
+    <Compile Include="Diagnostics\Exceptions\GlobusExceptionHandler.cs" />
+    <Compile Include="Diagnostics\Exceptions\ThreadFactory.cs" />
+    <Compile Include="Diagnostics\Helpers\ConsoleManager.cs" />
+    <Compile Include="Diagnostics\NetworkCoreLibraryBuilder.cs" />
+    <Compile Include="Diagnostics\PublisherInitialize.cs" />
+    <Compile Include="Diagnostics\SocinatorAccountBuilder.cs" />
+    <Compile Include="Diagnostics\UtilityManager.cs" />
+    <Compile Include="EmailService\MailCredentials.cs" />
+    <Compile Include="Enums\AccountStatus.cs" />
+    <Compile Include="Enums\ActivitySpeed.cs" />
+    <Compile Include="Enums\ActivityTypeExtensions.cs" />
+    <Compile Include="Enums\DatabaseType.cs" />
+    <Compile Include="Enums\DHEnum\GrowthChartPeriod.cs" />
+    <Compile Include="Enums\DHEnum\GrowthPeriod.cs" />
+    <Compile Include="Enums\DHEnum\UserType.cs" />
+    <Compile Include="Enums\FdQuery\AdUpdationType.cs" />
+    <Compile Include="Enums\FdQuery\EventType.cs" />
+    <Compile Include="Enums\FdQuery\FacebookQueryParameters.cs" />
+    <Compile Include="Enums\FdQuery\FbEntityTypes.cs" />
+    <Compile Include="Enums\FdQuery\FdSellPostCondition.cs" />
+    <Compile Include="Enums\FdQuery\PlaceQueryParameters.cs" />
+    <Compile Include="Enums\FdQuery\PostOptions.cs" />
+    <Compile Include="Enums\FdQuery\ReactionType.cs" />
+    <Compile Include="Enums\GdQuery\GdPostQuery.cs" />
+    <Compile Include="Enums\GdQuery\GdUserQuery.cs" />
+    <Compile Include="Enums\LdQuery\LDEngageQueryParameters.cs" />
+    <Compile Include="Enums\LdQuery\LDMessengerQueryParameters.cs" />
+    <Compile Include="Enums\LoginType.cs" />
+    <Compile Include="Enums\MimeType.cs" />
+    <Compile Include="Enums\MouseKeys.cs" />
+    <Compile Include="Enums\PdQuery\PDPinQueries.cs" />
+    <Compile Include="Enums\PdQuery\PDUsersQueries.cs" />
+    <Compile Include="Enums\PostType.cs" />
+    <Compile Include="Enums\QdQuery\BroadcastMessageQuery.cs" />
+    <Compile Include="Enums\QdQuery\FollowerQuery.cs" />
+    <Compile Include="Enums\QdQuery\PostQueryParameters.cs" />
+    <Compile Include="Enums\QdQuery\SpaceQueryParameter.cs" />
+    <Compile Include="Enums\QdQuery\TopicQueryParameter.cs" />
+    <Compile Include="Enums\QueryType.cs" />
+    <Compile Include="Enums\RdQuery\CommunityQuery.cs" />
+    <Compile Include="Enums\RdQuery\PostQuery.cs" />
+    <Compile Include="Enums\RdQuery\UserQuery.cs" />
+    <Compile Include="Enums\ReportType.cs" />
+    <Compile Include="Enums\TdQuery\TdTweetInteractionQueryEnum.cs" />
+    <Compile Include="Enums\TdQuery\TdUserInteractionQueryEnum.cs" />
+    <Compile Include="Enums\TtdQuery\TtdPostQuery.cs" />
+    <Compile Include="Enums\TtdQuery\TtdUserQuery.cs" />
+    <Compile Include="Enums\TumblrQuery\TumblrBroadcastMessageQuery.cs" />
+    <Compile Include="Enums\TumblrQuery\TumblrQuery.cs" />
+    <Compile Include="Enums\UserType.cs" />
+    <Compile Include="Enums\VerificationType.cs" />
+    <Compile Include="Enums\YdQuery\YdScraperParameters.cs" />
+    <Compile Include="Extensions\AggregateExceptionExtensions.cs" />
+    <Compile Include="Extensions\ConcurrentQueueExtension.cs" />
+    <Compile Include="FileManagers\AccountsCacheService.cs" />
+    <Compile Include="FileManagers\CampaignInteractionDetails.cs" />
+    <Compile Include="FileManagers\FBFileManager.cs" />
+    <Compile Include="FileManagers\GenericFileManager.cs" />
+    <Compile Include="FileManagers\GlobalInteractionDetails.cs" />
+    <Compile Include="FileManagers\ManageDestinationFileManager.cs" />
+    <Compile Include="FileManagers\PostlistFileManager.cs" />
+    <Compile Include="FileManagers\PostListSettingsFileManager.cs" />
+    <Compile Include="FileManagers\OtherConfigFileManager.cs" />
+    <Compile Include="FileManagers\SocinatorKeyHelper.cs" />
+    <Compile Include="FileManagers\SoftwareSettingsFileManager.cs" />
+    <Compile Include="FileManagers\TemplatesCacheService.cs" />
+    <Compile Include="Interfaces\ChatFactory.cs" />
+    <Compile Include="Interfaces\ColumnSpecificationAdapter.cs" />
+    <Compile Include="Interfaces\IAccountSyncManager.cs" />
+    <Compile Include="Interfaces\IAdScraperFactory.cs" />
+    <Compile Include="Interfaces\IBrowserManager.cs" />
+    <Compile Include="Interfaces\ICampaignInteractionDetails.cs" />
+    <Compile Include="Interfaces\ICampaignStatusChange.cs" />
+    <Compile Include="Interfaces\IChannel.cs" />
+    <Compile Include="Interfaces\IComments.cs" />
+    <Compile Include="Interfaces\ICommunity.cs" />
+    <Compile Include="Interfaces\ICompany.cs" />
+    <Compile Include="Interfaces\ICustomDialogue.cs" />
+    <Compile Include="Interfaces\IDestinationSelectors.cs" />
+    <Compile Include="Interfaces\IDatabaseConnection.cs" />
+    <Compile Include="Interfaces\IEntity.cs" />
+    <Compile Include="Interfaces\IEvent.cs" />
+    <Compile Include="Interfaces\IGlobalInteractionDetails.cs" />
+    <Compile Include="Interfaces\IHashTag.cs" />
+    <Compile Include="Interfaces\IJob.cs" />
+    <Compile Include="Interfaces\INetworkCollectionFactory.cs" />
+    <Compile Include="Interfaces\INetworkCoreFactory.cs" />
+    <Compile Include="Diagnostics\SocinatorInitialize.cs" />
+    <Compile Include="Diagnostics\UI\UIDiagnostic.cs" />
+    <Compile Include="Enums\ActivityType.cs" />
+    <Compile Include="Enums\Gender.cs" />
+    <Compile Include="Enums\LdQuery\LDGroupQueryParameters.cs" />
+    <Compile Include="Enums\LdQuery\LDGrowConnectionUserQueryParameters.cs" />
+    <Compile Include="Enums\LdQuery\LDScraperUserQueryParameters.cs" />
+    <Compile Include="Enums\MediaType.cs" />
+    <Compile Include="Enums\QdQuery\AnswerQueryParameters.cs" />
+    <Compile Include="Enums\QdQuery\QuestionQueryParameters.cs" />
+    <Compile Include="Enums\QdQuery\UserQueryParameters.cs" />
+    <Compile Include="FileManagers\AccountsFileManager.cs" />
+    <Compile Include="FileManagers\CampaignsFileManager.cs" />
+    <Compile Include="FileManagers\ConfigFileManager.cs" />
+    <Compile Include="FileManagers\PostFileManager.cs" />
+    <Compile Include="FileManagers\ProxyFileManager.cs" />
+    <Compile Include="FileManagers\TemplatesFileManager.cs" />
+    <Compile Include="Interfaces\IAccountCountFactory.cs" />
+    <Compile Include="Interfaces\IAccountGrowthModeHeader.cs" />
+    <Compile Include="Interfaces\IAccountUpdateFactory.cs" />
+    <Compile Include="Interfaces\IAccountToolsFactory.cs" />
+    <Compile Include="Interfaces\IGroup.cs" />
+    <Compile Include="Interfaces\IJobConfiguration.cs" />
+    <Compile Include="Interfaces\IGeneralSettings.cs" />
+    <Compile Include="BusinessLogic\Scheduler\IJobProcessFactory.cs" />
+    <Compile Include="Interfaces\IPage.cs" />
+    <Compile Include="Interfaces\IPostComment.cs" />
+    <Compile Include="Interfaces\IPostScraperConstants.cs" />
+    <Compile Include="Interfaces\IPublisherCollectionFactory.cs" />
+    <Compile Include="Interfaces\IPublisherCoreFactory.cs" />
+    <Compile Include="Interfaces\IPublisherPostScraper.cs" />
+    <Compile Include="Interfaces\IQueryFollowedControl.cs" />
+    <Compile Include="Interfaces\IReportFactory.cs" />
+    <Compile Include="Interfaces\ISocialBrowserManager.cs" />
+    <Compile Include="Interfaces\ITabHandlerFactory.cs" />
+    <Compile Include="Interfaces\IPost.cs" />
+    <Compile Include="Interfaces\IUser.cs" />
+    <Compile Include="Diagnostics\LogHelper\GlobusLogHelper.cs" />
+    <Compile Include="Diagnostics\LogHelper\NlogUiTarget.cs" />
+    <Compile Include="Interfaces\IViewCampaignsFactory.cs" />
+    <Compile Include="Interfaces\PostScraper.cs" />
+    <Compile Include="Interfaces\SocioPublisher\IGeneralPostSettings.cs" />
+    <Compile Include="Interfaces\SocioPublisher\IRedditSettings.cs" />
+    <Compile Include="Interfaces\StartUp\INetwork.cs" />
+    <Compile Include="Interfaces\StartUp\IStartupJobConfiguration.cs" />
+    <Compile Include="Interfaces\StartUp\IStartUpSearchQuery.cs" />
+    <Compile Include="Models\AccessLogModel.cs" />
+    <Compile Include="Models\AccessorStrategies.cs" />
+    <Compile Include="Models\AddPostModel.cs" />
+    <Compile Include="Models\Config\FunCaptchaServiceModel.cs" />
+    <Compile Include="Models\DeletedCampaignTempModel.cs" />
+    <Compile Include="Models\FacebookModels\EventCreaterManagerModel.cs" />
+    <Compile Include="Models\FacebookModels\FbMultiMediaModel.cs" />
+    <Compile Include="Models\FacebookModels\InviterDetails.cs" />
+    <Compile Include="Models\FacebookModels\InviterOptions.cs" />
+    <Compile Include="Models\FacebookModels\LikerCommentorConfigModel.cs" />
+    <Compile Include="Models\FacebookModels\ManageCustomCommentsModel.cs" />
+    <Compile Include="Models\FacebookModels\ManageFriends.cs" />
+    <Compile Include="Models\FacebookModels\MultiMediaValueModel.cs" />
+    <Compile Include="Models\FacebookModels\PostLikeCommentorModel.cs" />
+    <Compile Include="Models\FacebookModels\UnfriendOption.cs" />
+    <Compile Include="Models\IModuleSetting.cs" />
+    <Compile Include="Models\BlacklistUserModel.cs" />
+    <Compile Include="Models\CampaignDetails.cs" />
+    <Compile Include="Models\CampaignInteractionDataModel.cs" />
+    <Compile Include="Models\Config\CaptchaServicesModel.cs" />
+    <Compile Include="Models\Config\ImageCaptchaServicesModel.cs" />
+    <Compile Include="Models\Config\URLShortnerServicesModel.cs" />
+    <Compile Include="Models\EditProfileModel.cs" />
+    <Compile Include="Models\GlobalInteractionDataModel.cs" />
+    <Compile Include="Models\JobActivityConfigurationManager.cs" />
+    <Compile Include="Models\LinkedinModels\ManagePersonalNoteModel.cs" />
+    <Compile Include="Models\LocationModel.cs" />
+    <Compile Include="Models\LoggerModel.cs" />
+    <Compile Include="Models\ManageReportVideosContentModel.cs" />
+    <Compile Include="Models\MessageMediaInfo.cs" />
+    <Compile Include="Models\MenuHandlerModel.cs" />
+    <Compile Include="Models\NetworkActivitySetting\ActivityChecked.cs" />
+    <Compile Include="Models\NetworkActivitySetting\SelectActivityModel.cs" />
+    <Compile Include="Models\NetworksActivityCustomizeModel.cs" />
+    <Compile Include="Models\PinterestOtherConfigModel.cs" />
+    <Compile Include="Models\PrivateBlacklistUserModel.cs" />
+    <Compile Include="Models\PrivateWhitelistUserModel.cs" />
+    <Compile Include="Models\ProcessScopeModel.cs" />
+    <Compile Include="Models\ProxyManagerSettings.cs" />
+    <Compile Include="Models\Publisher\CampaignsAdvanceSetting\FacebookModel.cs" />
+    <Compile Include="Models\Publisher\CampaignsAdvanceSetting\GooglePlusModel.cs" />
+    <Compile Include="Models\Publisher\CampaignsAdvanceSetting\InstagramModel.cs" />
+    <Compile Include="Models\Publisher\CampaignsAdvanceSetting\PinterestModel.cs" />
+    <Compile Include="Models\Publisher\CampaignsAdvanceSetting\RedditModel.cs" />
+    <Compile Include="Models\Publisher\CampaignsAdvanceSetting\TikTokModel.cs" />
+    <Compile Include="Models\Publisher\CampaignsAdvanceSetting\TumblrModel.cs" />
+    <Compile Include="Models\Publisher\CampaignsAdvanceSetting\TwitterModel.cs" />
+    <Compile Include="Models\QuoraModel.cs" />
+    <Compile Include="Models\RevisionHistoryModel.cs" />
+    <Compile Include="Models\SelectAccountModel.cs" />
+    <Compile Include="Models\SocioPublisher\CustomPostDetail.cs" />
+    <Compile Include="Models\SocioPublisher\DetailedFileInfo.cs" />
+    <Compile Include="Interfaces\SocioPublisher\IPublisherDestinationDetailsModel.cs" />
+    <Compile Include="Models\SocioPublisher\MonitorFolderModel.cs" />
+    <Compile Include="Models\SocioPublisher\PostDeletionModel.cs" />
+    <Compile Include="Models\SocioPublisher\PublishedPostDetailsModel.cs" />
+    <Compile Include="Models\SocioPublisher\PublisherCustomDestinationModel.cs" />
+    <Compile Include="Models\SocioPublisher\PublisherPostFetchModel.cs" />
+    <Compile Include="Models\SocioPublisher\PublisherProcessedDestinationModel.cs" />
+    <Compile Include="Models\SocioPublisher\SelctAccountDetailsModel.cs" />
+    <Compile Include="Models\SocioPublisher\Settings\RedditPostSetting.cs" />
+    <Compile Include="Models\SocioPublisher\Settings\YTPostSettings.cs" />
+    <Compile Include="Models\SubscribtionPopUpModel.cs" />
+    <Compile Include="Process\ExecutionCounters\InteractedEntityCounterKey.cs" />
+    <Compile Include="Process\ExecutionCounters\EntityCounter.cs" />
+    <Compile Include="Process\ExecutionCounters\InteractionPerActivityCounterKey.cs" />
+    <Compile Include="Process\ExecutionCounters\JobCountersManager.cs" />
+    <Compile Include="Process\JobConfigurations\CommonJobConfiguration.cs" />
+    <Compile Include="Process\JobLimits\ExecutionLimitsManager.cs" />
+    <Compile Include="Process\JobConfigurations\JobConfigurationProvider.cs" />
+    <Compile Include="Process\JobKey.cs" />
+    <Compile Include="Process\ExecutionCounters\EntityCountersManager.cs" />
+    <Compile Include="Process\JobLimits\JobLimits.cs" />
+    <Compile Include="Process\JobLimits\JobLimitsHolder.cs" />
+    <Compile Include="Process\JobLimits\ReachedLimitInfo.cs" />
+    <Compile Include="Process\JobProcessUnityExtension.cs" />
+    <Compile Include="Process\PublisherPostFetcher.cs" />
+    <Compile Include="AppResources\ApplicationResourceProvider.cs" />
+    <Compile Include="Process\RunningJobsHolder.cs" />
+    <Compile Include="ProxyServerManagment\Models\ProxyParsingResult.cs" />
+    <Compile Include="ProxyServerManagment\ProxyManagmentUnityExtension.cs" />
+    <Compile Include="ProxyServerManagment\ProxyServerParserService.cs" />
+    <Compile Include="ProxyServerManagment\ProxyValidationService.cs" />
+    <Compile Include="PuppeteerBrowser\IPuppeteerPage.cs" />
+    <Compile Include="PuppeteerBrowser\PuppeteerJavascriptResponse.cs" />
+    <Compile Include="PuppeteerBrowser\KeyCodeHelper.cs" />
+    <Compile Include="PuppeteerBrowser\PuppeteerMemoryStreamResponseFilter.cs" />
+    <Compile Include="PuppeteerBrowser\PuppeteerBrowserActivity.cs" />
+    <Compile Include="PuppeteerBrowser\PuppeteerBrowserManager.cs" />
+    <Compile Include="PuppeteerBrowser\PuppeteerEnums.cs" />
+    <Compile Include="PuppeteerBrowser\PuppeteerHandler.cs" />
+    <Compile Include="PuppeteerBrowser\PuppeteerWIN32.cs" />
+    <Compile Include="PuppeteerBrowser\StealthPlugin.cs" />
+    <Compile Include="Settings\SoftwareSettings.cs" />
+    <Compile Include="SQLite.cs" />
+    <Compile Include="SQLiteAsync.cs" />
+    <Compile Include="StartupActivity\BaseActivity.cs" />
+    <Compile Include="StartupActivity\Instagram\InstagramActivity.cs" />
+    <Compile Include="StartupActivity\Instagram\InstagramPostActivity.cs" />
+    <Compile Include="StartupActivity\Instagram\InstagramUserActivity.cs" />
+    <Compile Include="StartupActivity\Linkedin\LinkedinActivity.cs" />
+    <Compile Include="StartupActivity\Linkedin\LinkedinConnectionActivity.cs" />
+    <Compile Include="StartupActivity\Linkedin\LinkedinEngageActivity.cs" />
+    <Compile Include="StartupActivity\Linkedin\LinkedinGroupActivity.cs" />
+    <Compile Include="StartupActivity\Linkedin\LinkedinMessageActivity.cs" />
+    <Compile Include="StartupActivity\Linkedin\LinkedinScraperActivity.cs" />
+    <Compile Include="StartupActivity\Pinterest\PinterestActivity.cs" />
+    <Compile Include="StartupActivity\Pinterest\PinterestPinActivity.cs" />
+    <Compile Include="StartupActivity\Pinterest\PinterestUserActivity.cs" />
+    <Compile Include="StartupActivity\Quora\QuoraActivity.cs" />
+    <Compile Include="StartupActivity\Quora\QuoraAnswerActivity.cs" />
+    <Compile Include="StartupActivity\Quora\QuoraBroadcastMessagesActivity.cs" />
+    <Compile Include="StartupActivity\Quora\QuoraFollowActivity.cs" />
+    <Compile Include="StartupActivity\Quora\QuoraQuestionActivity.cs" />
+    <Compile Include="StartupActivity\Quora\QuoraUserActivity.cs" />
+    <Compile Include="StartupActivity\Reddit\RedditActivity.cs" />
+    <Compile Include="StartupActivity\Reddit\RedditCommunityActivity.cs" />
+    <Compile Include="StartupActivity\Reddit\RedditPostActivity.cs" />
+    <Compile Include="StartupActivity\Reddit\RedditUserActivity.cs" />
+    <Compile Include="StartupActivity\Tumblr\TumblrActivity.cs" />
+    <Compile Include="StartupActivity\Tumblr\TumblrBroadcastMessageActivity.cs" />
+    <Compile Include="StartupActivity\Tumblr\TumblrPostActivity.cs" />
+    <Compile Include="StartupActivity\Tumblr\TumblrUserActivity.cs" />
+    <Compile Include="StartupActivity\Twitter\TwitterActivity.cs" />
+    <Compile Include="StartupActivity\Twitter\TwitterTweetActivity.cs" />
+    <Compile Include="StartupActivity\Twitter\TwitterUserActivity.cs" />
+    <Compile Include="StartupActivity\Youtube\YoutubeActivity.cs" />
+    <Compile Include="StartupActivity\Youtube\YoutubeChannelActivity.cs" />
+    <Compile Include="UIExtensions\GridViewExtension.cs" />
+    <Compile Include="Utility\AccountGrowthPropertiesProvider.cs" />
+    <Compile Include="Utility\AccountScopeFactory.cs" />
+    <Compile Include="Utility\AutoItTool.cs" />
+    <Compile Include="Utility\CacheText.cs" />
+    <Compile Include="Utility\CodeConstants.cs" />
+    <Compile Include="Utility\DateProvider.cs" />
+    <Compile Include="Utility\DispatcherUtility.cs" />
+    <Compile Include="Utility\FileSystemProvider.cs" />
+    <Compile Include="Utility\InstanceProvider.cs" />
+    <Compile Include="Utility\JsonHandler.cs" />
+    <Compile Include="Utility\LockFileConfigProvider.cs" />
+    <Compile Include="Utility\MacrosHelper.cs" />
+    <Compile Include="Utility\MediaFetcherUtilities.cs" />
+    <Compile Include="Utility\MonitorFolderUtilites.cs" />
+    <Compile Include="Models\SocioPublisher\PostDetailsModel.cs" />
+    <Compile Include="Models\SocioPublisher\PublisherMonitorFolderModel.cs" />
+    <Compile Include="Models\SocioPublisher\PublisherRssFeedModel.cs" />
+    <Compile Include="Models\SocioPublisher\ScrapePostModel.cs" />
+    <Compile Include="Models\SocioPublisher\Settings\FdPostSettings.cs" />
+    <Compile Include="Models\SocioPublisher\Settings\GdPostSettings.cs" />
+    <Compile Include="Interfaces\SocioPublisher\IFdPostSettings.cs" />
+    <Compile Include="Interfaces\SocioPublisher\IGdPostSettings.cs" />
+    <Compile Include="Interfaces\SocioPublisher\ILdPostSettings.cs" />
+    <Compile Include="Interfaces\SocioPublisher\ITdPostSettings.cs" />
+    <Compile Include="Interfaces\SocioPublisher\ITumblrSettings.cs" />
+    <Compile Include="Enums\SocioPublisher\LdGroupPostType.cs" />
+    <Compile Include="Models\SocioPublisher\Settings\GeneralPostSettings.cs" />
+    <Compile Include="Models\SocioPublisher\Settings\LdPostSettings.cs" />
+    <Compile Include="Models\SocioPublisher\Settings\PublisherPostSettings.cs" />
+    <Compile Include="Models\SocioPublisher\SharePostModel.cs" />
+    <Compile Include="Models\SocioPublisher\SocinatorIntellisenseModel.cs" />
+    <Compile Include="Models\SocioPublisher\Settings\TdPostSettings.cs" />
+    <Compile Include="Models\SocioPublisher\Settings\TumberPostSettings.cs" />
+    <Compile Include="Process\PublisherJobProcess.cs" />
+    <Compile Include="Process\PublishScheduler.cs" />
+    <Compile Include="Utility\ImageExtracter.cs" />
+    <Compile Include="Models\InstagramModel.cs" />
+    <Compile Include="Utility\NonStaticUtilities.cs" />
+    <Compile Include="Utility\ObjectComparer.cs" />
+    <Compile Include="Utility\PerfCounterService.cs" />
+    <Compile Include="Utility\PlaceholderService.cs" />
+    <Compile Include="Utility\ReachedLimitType.cs" />
+    <Compile Include="Utility\RssFeedUtilities.cs" />
+    <Compile Include="Utility\SpinTexHelper.cs" />
+    <Compile Include="Utility\TiktokDeviceGenerator.cs" />
+    <Compile Include="Utility\ToasterNotification.cs" />
+    <Compile Include="Utility\WebService.cs" />
+    <Compile Include="ViewModel\AdvancedSettings\GeneralViewModel.cs" />
+    <Compile Include="ViewModel\AdvancedSettings\GooglePlusViewModel.cs" />
+    <Compile Include="ViewModel\AdvancedSettings\InstagramViewModel.cs" />
+    <Compile Include="ViewModel\AdvancedSettings\PinterestViewModel.cs" />
+    <Compile Include="ViewModel\AdvancedSettings\RedditViewModel.cs" />
+    <Compile Include="ViewModel\AdvancedSettings\TumblrViewModel.cs" />
+    <Compile Include="ViewModel\AdvancedSettings\TwitterViewModel.cs" />
+    <Compile Include="ViewModel\CampaignInteractionViewModel.cs" />
+    <Compile Include="Models\Configuration.cs" />
+    <Compile Include="Models\ContentSelectGroup.cs" />
+    <Compile Include="Models\CookieHelper.cs" />
+    <Compile Include="Models\DominatorAccountBaseModel.cs" />
+    <Compile Include="Models\DominatorAccountModel.cs" />
+    <Compile Include="Models\EmailNotificationsModel.cs" />
+    <Compile Include="Models\EmbeddedBrowserSettingsModel.cs" />
+    <Compile Include="Models\ConfigFacebookModel.cs" />
+    <Compile Include="Models\GenderFilter.cs" />
+    <Compile Include="Models\IncreaseActivityRange.cs" />
+    <Compile Include="Models\JobActivityManager.cs" />
+    <Compile Include="Models\JobConfiguration.cs" />
+    <Compile Include="Models\FatalErrorHandler.cs" />
+    <Compile Include="Models\LiveChatModel.cs" />
+    <Compile Include="Models\ManageCommentModel.cs" />
+    <Compile Include="Models\ManageDestinationModel.cs" />
+    <Compile Include="Models\ManageMessagesModel.cs" />
+    <Compile Include="Models\MultiMessagesModel.cs" />
+    <Compile Include="Models\OtherConfigModel.cs" />
+    <Compile Include="Models\PinterestModel.cs" />
+    <Compile Include="Models\ProxyManagerModel.cs" />
+    <Compile Include="Models\PublisherAccountDetails.cs" />
+    <Compile Include="Models\Publisher\CampaignsAdvanceSetting\GeneralModel.cs" />
+    <Compile Include="Models\Publisher\JobConfigurationModel.cs" />
+    <Compile Include="Models\Publisher\OtherConfigurationModel.cs" />
+    <Compile Include="Models\ReportDetails.cs" />
+    <Compile Include="Models\ReportModel.cs" />
+    <Compile Include="Models\RunningTimes.cs" />
+    <Compile Include="Models\ScrapeResultNew.cs" />
+    <Compile Include="Models\SocioPublisher\AccountDetailsSelectorModel.cs" />
+    <Compile Include="Models\SocioPublisher\IdNameBinderModel.cs" />
+    <Compile Include="Enums\SocioPublisher\PostCategory.cs" />
+    <Compile Include="Enums\SocioPublisher\PostQueuedStatus.cs" />
+    <Compile Include="Enums\SocioPublisher\PostRunningStatus.cs" />
+    <Compile Include="Enums\SocioPublisher\PostSource.cs" />
+    <Compile Include="Models\SocioPublisher\PublisherCampaignDetailsModel.cs" />
+    <Compile Include="Models\SocioPublisher\PublisherCampaignStatus.cs" />
+    <Compile Include="Models\SocioPublisher\PublisherCampaignStatusModel.cs" />
+    <Compile Include="Models\SocioPublisher\PublisherCreateCampaignModel.cs" />
+    <Compile Include="Models\SocioPublisher\PublisherCreateDestinationModel.cs" />
+    <Compile Include="Models\SocioPublisher\PublisherCreateDestinationSelectModel.cs" />
+    <Compile Include="Models\SocioPublisher\PublisherDestinationDetails.cs" />
+    <Compile Include="Models\SocioPublisher\PublisherHomeModel.cs" />
+    <Compile Include="Models\SocioPublisher\PublisherManageDestinationModel.cs" />
+    <Compile Include="ViewModel\Common\SynchronizedViewModel.cs" />
+    <Compile Include="ViewModel\Common\SelectableViewModel.cs" />
+    <Compile Include="ViewModel\DashboardVms\IDashboardViewModel.cs" />
+    <Compile Include="ViewModel\GrowthProperty.cs" />
+    <Compile Include="Models\SocioPublisher\PublisherMediaViewerModel.cs" />
+    <Compile Include="Utility\MediaUtilites.cs" />
+    <Compile Include="ViewModel\EditProfileViewModel.cs" />
+    <Compile Include="ViewModel\GlobalInteractionViewModel.cs" />
+    <Compile Include="ViewModel\IMainViewModel.cs" />
+    <Compile Include="ViewModel\ISelectedNetworkViewModel.cs" />
+    <Compile Include="ViewModel\ITabViewModel.cs" />
+    <Compile Include="ViewModel\DashboardVms\RevisionHistoryViewModel.cs" />
+    <Compile Include="Converters\ProxyManagerSourceConverter.cs" />
+    <Compile Include="Models\SocioPublisher\PublisherPostlistModel.cs" />
+    <Compile Include="Models\SocioPublisher\PublisherPostlistSettingsModel.cs" />
+    <Compile Include="Models\SoftwareSettingsModel.cs" />
+    <Compile Include="Models\TabItem.cs" />
+    <Compile Include="Models\TimingRange.cs" />
+    <Compile Include="BusinessLogic\ActivitiesWorkflow\ILoginProcess.cs" />
+    <Compile Include="Models\TumblrModel.cs" />
+    <Compile Include="Models\TwitterModel.cs" />
+    <Compile Include="Models\WhitelistUserModel.cs" />
+    <Compile Include="Models\YoutubeModel.cs" />
+    <Compile Include="Patterns\PrototypeBase.cs" />
+    <Compile Include="Process\JobProcess.cs" />
+    <Compile Include="Process\JobProcessResult.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Request\FileData.cs" />
+    <Compile Include="Request\HttpHelper.cs" />
+    <Compile Include="Interfaces\IHttpHelper.cs" />
+    <Compile Include="Interfaces\IRequestHelper.cs" />
+    <Compile Include="Interfaces\IRequestParameters.cs" />
+    <Compile Include="Interfaces\IResponseParameter.cs" />
+    <Compile Include="Request\RequestParameters.cs" />
+    <Compile Include="Request\ResponseParameter.cs" />
+    <Compile Include="Request\WebHelper.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\BlacklistSettings.cs" />
+    <Compile Include="Interfaces\IFooterControl.cs" />
+    <Compile Include="Interfaces\IHeaderControl.cs" />
+    <Compile Include="Interfaces\IHelpControl.cs" />
+    <Compile Include="Interfaces\ISearchControl.cs" />
+    <Compile Include="Interfaces\ISearchQueryControl.cs" />
+    <Compile Include="Settings\Queries.cs" />
+    <Compile Include="Models\QueryInfo.cs" />
+    <Compile Include="Models\UserFilterModel.cs" />
+    <Compile Include="Utility\BinFileHelper.cs" />
+    <Compile Include="Utility\Constants.cs" />
+    <Compile Include="DatabaseHandler\CoreModels\DataBaseHandler.cs" />
+    <Compile Include="Utility\Dialog.cs" />
+    <Compile Include="Utility\EnumUtility.cs" />
+    <Compile Include="Utility\FeatureFlags.cs" />
+    <Compile Include="Utility\GridViewColumns.cs" />
+    <Compile Include="Utility\HtmlParseUtility.cs" />
+    <Compile Include="Utility\IEnumerableExtensions.cs" />
+    <Compile Include="Utility\ListHelper.cs" />
+    <Compile Include="Utility\Log.cs" />
+    <Compile Include="Utility\ModuleConfiguration.cs" />
+    <Compile Include="Utility\ObservableCollectionCustom.cs" />
+    <Compile Include="Models\TemplateModel.cs" />
+    <Compile Include="Utility\GenderGuesser.cs" />
+    <Compile Include="Utility\BindableBase.cs" />
+    <Compile Include="Utility\ConstantVariable.cs" />
+    <Compile Include="Utility\DateTimeUtilities.cs" />
+    <Compile Include="Utility\DeviceGenerator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\DirectoryUtilities.cs" />
+    <Compile Include="Utility\FileUtilities.cs" />
+    <Compile Include="Utility\MoreEnumerable.cs" />
+    <Compile Include="Utility\ObservableCollectionBase.cs" />
+    <Compile Include="Utility\ProtoBuffBase.cs" />
+    <Compile Include="Models\Proxy.cs" />
+    <Compile Include="Utility\RandomUtilties.cs" />
+    <Compile Include="Utility\RangeUtilities.cs" />
+    <Compile Include="Utility\Resources.cs" />
+    <Compile Include="Enums\SocialNetworks.cs" />
+    <Compile Include="Utility\SelectedDominatorAccounts.cs" />
+    <Compile Include="Utility\StringHelper.cs" />
+    <Compile Include="Utility\TabSwitcher.cs" />
+    <Compile Include="Utility\Utilities.cs" />
+    <Compile Include="Utility\ValidationHelper.cs" />
+    <Compile Include="ViewModel\AddPostViewModel.cs" />
+    <Compile Include="ViewModel\CreateDestination.cs" />
+    <Compile Include="ViewModel\DestinationCollection.cs" />
+    <Compile Include="ViewModel\DestinationDetailsCollection.cs" />
+    <Compile Include="ViewModel\DestinationSelectionList.cs" />
+    <Compile Include="ViewModel\LiveChatViewModel.cs" />
+    <Compile Include="ViewModel\DailyStatisticsViewModel.cs" />
+    <Compile Include="ViewModel\BaseTabViewModel.cs" />
+    <Compile Include="ViewModel\TablifiedContentControlViewModel.cs" />
+    <Compile Include="ViewModel\LogViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelUnityExtension.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\libs\sqlite-dll-win32-x86-3250200\sqlite3.def">
+      <Link>sqlite3.def</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\libs\sqlite-dll-win32-x86-3250200\sqlite3.dll">
+      <Link>sqlite3.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Shell32">
+      <Guid>{50A7E9B0-70EF-11D1-B75A-00A0C90564FE}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utility\CaptchaSolverUtilities\" />
+    <Folder Include="ViewModel\SocioPublisher\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if "$(Configuration)" == "Release" signtool sign /fd SHA256 /f "C:\Globussoft_Dotnet\code_signing_certificate_gbs.cer" "$(TargetDir)DominatorHouseCore.dll"</PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\packages\Serilog.4.3.0\build\Serilog.targets" Condition="Exists('..\packages\Serilog.4.3.0\build\Serilog.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Serilog.4.3.0\build\Serilog.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Serilog.4.3.0\build\Serilog.targets'))" />
+    <Error Condition="!Exists('..\packages\Zstandard.Net.1.1.7\build\Zstandard.Net.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Zstandard.Net.1.1.7\build\Zstandard.Net.targets'))" />
+    <Error Condition="!Exists('..\packages\ZstdNet.1.4.5\build\ZstdNet.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ZstdNet.1.4.5\build\ZstdNet.targets'))" />
+  </Target>
+  <Import Project="..\packages\Zstandard.Net.1.1.7\build\Zstandard.Net.targets" Condition="Exists('..\packages\Zstandard.Net.1.1.7\build\Zstandard.Net.targets')" />
+  <Import Project="..\packages\ZstdNet.1.4.5\build\ZstdNet.targets" Condition="Exists('..\packages\ZstdNet.1.4.5\build\ZstdNet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

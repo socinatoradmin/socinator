@@ -1,0 +1,12 @@
+{
+    //Version should the same as Selenium.WebDriver.ChromeDriver
+    //"ChromeDriverVersion": "111.0.5563.19",
+    "ChromeDriverVersion": "114.0.5735.90",
+    "ChromeDriverDownloadUrl": "https://chromedriver.storage.googleapis.com/",
+    "ChromeDriverArchiveName": "chromedriver_win32.zip",
+    "ChromeDriverWinName": "chromedriver.exe",
+    "ChromeDriverName": "chromedriver",
+    "ChromeBinaryDownloadUrl": "https://github.com/Hibbiki/chromium-win64/releases/download/v114.0.5735.199-r1135570/chrome.sync.7z",
+    //"ChromeBinaryDownloadUrl": "https://github.com/Hibbiki/chromium-win64/releases/download/v111.0.5563.65-r1097615/chrome.sync.7z",
+    "ChromeBinaryName": "chrome.exe"
+}

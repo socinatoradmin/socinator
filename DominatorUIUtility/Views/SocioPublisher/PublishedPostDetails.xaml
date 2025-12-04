@@ -1,0 +1,92 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.Views.SocioPublisher.PublishedPostDetails"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviours="clr-namespace:DominatorUIUtility.Behaviours"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:IndexToRowNoConverter x:Key="IndexToRowNoConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <ListView
+            AlternationCount="{Binding Items.Count, RelativeSource={RelativeSource Self}}"
+            ItemContainerStyle="{DynamicResource ListViewItems}"
+            ItemsSource="{Binding PublisherPostlist.LstPublishedPostDetailsModels}">
+            <ListView.CommandBindings>
+                <CommandBinding
+                    CanExecute="CopyCanExecute"
+                    Command="ApplicationCommands.Copy"
+                    Executed="CopyExecuted" />
+            </ListView.CommandBindings>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding (ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ListViewItem}, Converter={StaticResource IndexToRowNoConverter}}" Header="{DynamicResource LangKeySrNo}" />
+                    <GridViewColumn DisplayMemberBinding="{Binding AccountName}" Header="{DynamicResource LangKeyAccounts}" />
+                    <GridViewColumn Header="{DynamicResource LangKeyDestination}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox
+                                    Width="250"
+                                    AcceptsReturn="True"
+                                    BorderThickness="0"
+                                    IsReadOnly="True"
+                                    Text="{Binding Destination}"
+                                    TextWrapping="Wrap" />
+                                <!--<TextBlock Text="{Binding Destination}" TextTrimming="CharacterEllipsis"/>-->
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <behaviours:FixedWidthGridViewColumn FixedWidth="300" Header="{DynamicResource LangKeyDescription}">
+                        <behaviours:FixedWidthGridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox
+                                    Width="250"
+                                    AcceptsReturn="True"
+                                    BorderThickness="0"
+                                    IsReadOnly="True"
+                                    Text="{Binding Description}"
+                                    TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </behaviours:FixedWidthGridViewColumn.CellTemplate>
+                    </behaviours:FixedWidthGridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding IsPublished}" Header="{DynamicResource LangKeyPublished}" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Successful}" Header="{DynamicResource LangKeySuccessful}" />
+                    <GridViewColumn DisplayMemberBinding="{Binding PublishedDate}" Header="{DynamicResource LangKeyPublishedDate}" />
+                    <GridViewColumn Header="{DynamicResource LangKeyLink}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Link}" TextTrimming="CharacterEllipsis" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="{DynamicResource LangKeyDestinationURL}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DestinationUrl}" TextTrimming="CharacterEllipsis" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding ErrorDetails}" Header="{DynamicResource LangKeyErrorDetails}" />
+                    <GridViewColumn Header="{DynamicResource LangKeyActions}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
+                                    x:Name="BtnViewInBrowser"
+                                    Background="Transparent"
+                                    Command="{Binding Path=DataContext.ViewInBrowserCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                    CommandParameter="{Binding}"
+                                    Content="{DynamicResource LangKeyViewInBrowser}"
+                                    Cursor="Hand"
+                                    FontWeight="SemiBold"
+                                    Foreground="{DynamicResource TextColorBrushAccordingTheme1}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

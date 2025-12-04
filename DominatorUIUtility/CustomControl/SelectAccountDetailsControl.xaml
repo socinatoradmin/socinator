@@ -1,0 +1,418 @@
+﻿<UserControl x:Class="DominatorUIUtility.CustomControl.SelectAccountDetailsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             x:Name="SelectDetails"
+             mc:Ignorable="d"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+             Loaded="PublisherCreateDestination_OnLoaded">
+    <UserControl.Resources>
+        <converters:ListViewItemIndexConverter x:Key="ListViewItemIndexConverter" />
+        <converters:BooleanToStringSelectConverter x:Key="BooleanToStringSelectConverter" />
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converters:PublisherSyncStringToBooleanConverter x:Key="SyncStringToBooleanConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+
+        <Grid Background="{DynamicResource AccentBaseColorBrush}" Name="HeaderGrid"
+              Visibility="{Binding IsHeaderNeeded,Converter={StaticResource BooleanToStringSelectConverter}}"
+              Height="45">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+
+
+            <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+
+                <Button x:Name="BtnSave" x:FieldModifier="public" Cursor="Hand"
+                        Background="{DynamicResource AccentBaseColorBrush}" Foreground="White"
+                        VerticalAlignment="Center" Margin="5"
+                        Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                        Click="Btn_SaveClick">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Width="15" Height="15" Fill="White">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_save}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <Label Content="{DynamicResource LangKeySave}" Margin="0,0,0,0" Foreground="White"
+                                           FontSize="13" FontWeight="SemiBold" VerticalContentAlignment="Center" />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="BtnClear" Cursor="Hand" Background="{DynamicResource AccentBaseColorBrush}"
+                        Foreground="White" VerticalAlignment="Center" Margin="5"
+                        Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                        Command="{Binding ClearCommand}" CommandParameter="{Binding ElementName=BtnClear}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Width="15" Height="15" Fill="White">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_clean}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <Label Content="{DynamicResource LangKeyClear}" Margin="0,0,0,0" Foreground="White"
+                                           FontSize="13" FontWeight="SemiBold" VerticalContentAlignment="Center" />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+
+                <Button Background="Transparent" Name="BtnSelect" Cursor="Hand" BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                        Command="{Binding OpenContextMenuCommand}" CommandParameter="{Binding ElementName=BtnSelect}"
+                        Margin="5">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="25" Height="25" Stretch="UniformToFill"
+                                           Source="/DominatorUIUtility;component/Images/Select.png" />
+                                    <Label Content="{DynamicResource LangKeySelect}" Margin="5,0,0,0"
+                                           Foreground="White" FontSize="13" FontWeight="SemiBold"
+                                           VerticalContentAlignment="Center" />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                    <Button.ContextMenu>
+                        <ContextMenu
+                            DataContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
+                            <MenuItem Header="{DynamicResource LangKeySelectAll}" Name="MenuSelectAllDestinations"
+                                      Command="{Binding SelectionCommand}" CommandParameter="MenuSelectAll">
+                                <MenuItem.Icon>
+                                    <Rectangle Width="15" Height="15" Fill="Black" Margin="0,0,0,3"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_checkmark}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="{DynamicResource LangKeySelectNone}" Name="MenuSelectNoneOfDestination"
+                                      Command="{Binding SelectionCommand}" CommandParameter="MenuSelectNone">
+                                <MenuItem.Icon>
+                                    <Rectangle Width="15" Height="15" Fill="Black" Margin="0,0,0,3"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill"
+                                                         Visual="{StaticResource appbar_checkmark_thick_unchecked}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="{DynamicResource LangKeySelectFriendsAll}"
+                                      Name="MenuSelectAllWallsProfiles"
+                                      Visibility="{Binding FriendMenuVisible,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                      Command="{Binding SelectAllAccountDetailsCommand}" CommandParameter="OwnProfile">
+                                <MenuItem.Icon>
+                                    <Rectangle Width="15" Height="15" Fill="Black" Margin="0,0,0,3"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_people_profile}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="{DynamicResource LangKeySelectPagesBoardsAll}"
+                                      Name="MenuSelectPagesBoards"
+                                      Visibility="{Binding PageMenuVisible,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                      Command="{Binding SelectAllAccountDetailsCommand}" CommandParameter="Pages">
+                                <MenuItem.Icon>
+                                    <Rectangle Width="15" Height="15" Fill="Black" Margin="0,0,0,3"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_newspaper}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="{DynamicResource LangKeySelectGroupsAll}" Name="MenuSelectGroups"
+                                      Visibility="{Binding GroupMenuVisible,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                      Command="{Binding SelectAllAccountDetailsCommand}" CommandParameter="Groups">
+                                <MenuItem.Icon>
+                                    <Rectangle Width="15" Height="15" Fill="Black" Margin="0,0,0,3"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill"
+                                                         Visual="{StaticResource appbar_people_multiple}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{DynamicResource LangKeySelectDestinations}" VerticalAlignment="Center"
+                                   FontWeight="SemiBold" FontSize="14" />
+                        <Button Cursor="Hand" Margin="2"
+                                x:Name="ButtonAddFreshAccount"
+                                FontSize="12"
+                                Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                Command="{Binding AddFreshAccounts}"
+                                CommandParameter="{Binding ElementName=ButtonAddFreshAccount}"
+                                Background="Transparent">
+                            <TextBlock Text="{DynamicResource LangKeyClickToAddFreshAccounts}">
+                                <TextBlock.TextDecorations>
+                                    <TextDecoration Location="Underline" PenOffset="1" />
+                                </TextBlock.TextDecorations>
+                            </TextBlock>
+                        </Button>
+                    </StackPanel>
+
+                </StackPanel>
+
+
+            </Grid>
+
+            <ListView Grid.Row="1"
+                      x:Name="CampaignStatusList"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ItemsSource="{Binding DestinationCollectionView}"
+                      VerticalAlignment="Stretch">
+                <ListView.Resources>
+                    <Style TargetType="{x:Type GridViewColumnHeader}"
+                           BasedOn="{StaticResource {x:Type GridViewColumnHeader}}">
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Setter Property="Height" Value="30" />
+                        <Setter Property="Margin" Value="0,2,0,0" />
+                    </Style>
+                    <SolidColorBrush x:Key="ItemBackgroundHover" Color="Transparent" />
+                </ListView.Resources>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                        <Setter Property="Height" Value="30" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource ItemBackgroundHover}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="80">
+                            <GridViewColumn.Header>
+                                <Border BorderBrush="LightGray" Margin="-6,-2,-6,-2">
+                                    <CheckBox x:Name="AllAccountsDestination" Margin="6,2,6,2"
+                                              IsChecked="{Binding IsAllDestinationSelected}" Content=" #"
+                                              Command="{Binding SelectionExecute}"
+                                              CommandParameter="{Binding IsAllDestinationSelected,Converter={StaticResource BooleanToStringSelectConverter}}" />
+                                </Border>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="1,1,0,0" BorderBrush="LightGray" Margin="-6,-2,-6,-2">
+                                        <CheckBox IsChecked="{Binding IsAccountSelected}"
+                                                  x:Name="ChkSingleCampaign"
+                                                  Margin="6,2,6,2"
+                                                  Content="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}},
+                                            Converter={StaticResource ListViewItemIndexConverter}}"
+                                                  Command="{Binding DataContext.SelectionCommand,
+                                      RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                                  CommandParameter="SelectManually" />
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="250">
+                            <GridViewColumn.Header>
+                                <TextBlock Text="{DynamicResource LangKeyNameOrUsername}" />
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="1,1,0,0" BorderBrush="LightGray" Margin="-6,-2,-6,-2">
+                                        <TextBlock Margin="6,2,6,2" Text="{Binding AccountName}"
+                                                   Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+
+                        <GridViewColumn Width="{Binding GroupColWidth,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                            <GridViewColumn.Header>
+                                <TextBlock Text="{DynamicResource  LangKeySelectGroup}" />
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="1,1,0,0" BorderBrush="LightGray" Margin="-6,-2,-6,-2">
+                                        <Button Cursor="Hand" Margin="6,2,6,2" IsEnabled="{Binding IsGroupsAvailable}"
+                                                Content="{Binding GroupSelectorText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                x:Name="ButtonSelectGroups"
+                                                FontWeight="SemiBold"
+                                                Command="{Binding Path=DataContext.GetSingleAccountGroupsCommand,  RelativeSource={RelativeSource AncestorType=ListView}}"
+                                                CommandParameter="{Binding}"
+                                                Background="Transparent"
+                                                Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+
+                        <GridViewColumn Width="{Binding PageColWidth,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                            <GridViewColumn.Header>
+                                <TextBlock
+                                    Text="{Binding InviteForPagesText ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="1,1,0,0" BorderBrush="LightGray" Margin="-6,-2,-6,-2">
+                                        <Button Cursor="Hand" Margin="6,2,6,2"
+                                                Content="{Binding PagesOrBoardsSelectorText}"
+                                                x:Name="ButtonSelectGroups"
+                                                FontWeight="SemiBold"
+                                                Command="{Binding Path=DataContext.GetSingleAccountPagesOrBoardsCommand,  RelativeSource={RelativeSource AncestorType=ListView}}"
+                                                CommandParameter="{Binding}"
+                                                Background="Transparent"
+                                                Foreground="{DynamicResource TextColorBrushAccordingTheme}">
+                                            <Button.Style>
+                                                <Style BasedOn="{StaticResource {x:Type Button}}"
+                                                       TargetType="{x:Type Button}">
+                                                    <Setter Property="IsEnabled" Value="false" />
+                                                    <Setter Property="Foreground"
+                                                            Value="{DynamicResource AccentBaseColorBrush}" />
+                                                    <Style.Triggers>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding IsAccountSelected}"
+                                                                           Value="true" />
+                                                                <Condition Binding="{Binding IsPagesOrBoardsAvailable}"
+                                                                           Value="true" />
+                                                            </MultiDataTrigger.Conditions>
+                                                            <Setter Property="IsEnabled" Value="True" />
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn
+                            Width="{Binding FriendColWidth,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                            <GridViewColumn.Header>
+                                <TextBlock Text="{DynamicResource LangKeyFriendsSelect}" />
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="1,1,0,0" BorderBrush="LightGray" Margin="-6,-2,-6,-2">
+                                        <Button Cursor="Hand" Margin="6,2,6,2"
+                                                Content="{Binding FriendsSelectorText}"
+                                                x:Name="ButtonSelectFriends"
+                                                FontWeight="SemiBold"
+                                                Command="{Binding Path=DataContext.GetSingleAccountFriendsCommand,  RelativeSource={RelativeSource AncestorType=ListView}}"
+                                                CommandParameter="{Binding}"
+                                                Background="Transparent">
+                                            <Button.Style>
+                                                <Style BasedOn="{StaticResource {x:Type Button}}"
+                                                                    TargetType="{x:Type Button}">
+                                                    <Setter Property="IsEnabled" Value="false" />
+                                                    <Setter Property="Foreground"
+                                                            Value="{DynamicResource AccentBaseColorBrush}" />
+                                                    <Style.Triggers>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding IsAccountSelected}"
+                                                                                        Value="true" />
+                                                                <Condition Binding="{Binding IsFriendsAvailable}"
+                                                                                        Value="true" />
+                                                            </MultiDataTrigger.Conditions>
+                                                            <Setter Property="IsEnabled" Value="True" />
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn
+                            Width="{Binding CustomColumnWidth,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                            <GridViewColumn.Header>
+                                <TextBlock Text="{DynamicResource LangKeyCustomFriendList}" />
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="1,1,0,0" BorderBrush="LightGray" Margin="-6,-2,-6,-2">
+                                        <Button Cursor="Hand" Margin="6,2,6,2"
+                                                Content="{Binding CustomDestinationSelectorText}"
+                                                x:Name="ButtonSelectGroups"
+                                                FontWeight="SemiBold"
+                                                Command="{Binding Path=DataContext.AddCustomDestinationCommand,  RelativeSource={RelativeSource AncestorType=ListView}}"
+                                                CommandParameter="{Binding}"
+                                                Background="Transparent"
+                                                Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="150">
+                            <GridViewColumn.Header>
+                                <TextBlock Text="{DynamicResource LangKeyStatus}" />
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="1,1,1,0" BorderBrush="LightGray" Margin="-6,-2,-6,-2">
+                                        <Button Cursor="Hand" Margin="6,2,6,2"
+                                                IsEnabled="{Binding StatusSyncContent, Converter={StaticResource SyncStringToBooleanConverter}}"
+                                                Content="{Binding StatusSyncContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                x:Name="ButtonStatusSync" FontSize="12"
+                                                ToolTip="{DynamicResource LangKeyToolTipForSync}"
+                                                Command="{Binding Path=DataContext.StatusSyncCommand,  RelativeSource={RelativeSource AncestorType=ListView}}"
+                                                CommandParameter="{Binding}"
+                                                Background="Transparent"
+                                                Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                                    </Border>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,149 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls">
+    <ControlTemplate x:Key="YoutubeControlTemplate">
+        <GroupBox Background="Transparent" BorderThickness="0">
+            <GroupBox.Header>
+                <Border Background="{DynamicResource AccentBaseColorBrush}" CornerRadius="8,8,0,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Grid.Column="0"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource LangKeyConfiguration}"
+                            FontSize="20"
+                            Foreground="White" />
+                        <Button
+                            Grid.Column="1"
+                            Margin="0,0,8,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Command="{Binding SaveCmd}"
+                            Cursor="Hand"
+                            Foreground="White">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Border
+                                        x:Name="SaveBtnBorder"
+                                        Background="Green"
+                                        CornerRadius="4">
+                                        <StackPanel Margin="5,3" Orientation="Horizontal">
+                                            <Rectangle
+                                                Width="15"
+                                                Height="15"
+                                                Fill="White">
+                                                <Rectangle.OpacityMask>
+                                                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_save}" />
+                                                </Rectangle.OpacityMask>
+                                            </Rectangle>
+                                            <AccessText Margin="6,0,0,0" Text="{DynamicResource LangKey_Save}" />
+                                        </StackPanel>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="SaveBtnBorder" Property="Background" Value="LimeGreen" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+
+                        </Button>
+                    </Grid>
+                </Border>
+            </GroupBox.Header>
+            <StackPanel>
+                <StackPanel
+                    Margin="5"
+                    DataContext="{Binding YoutubeModel}"
+                    Orientation="Horizontal">
+                    <Label Margin="5" Content="{DynamicResource LangKeyLimitTheNumberOfSimultaneousWatchVideosTo}" />
+                    <controls:NumericUpDown
+                        Maximum="10"
+                        Minimum="2"
+                        Value="{Binding LimitNumberOfSimultaneousWatchVideos}" />
+                </StackPanel>
+                <StackPanel
+                    Margin="5"
+                    DataContext="{Binding YoutubeModel}"
+                    Orientation="Horizontal">
+                    <Label Margin="5" Content="{DynamicResource LangUseUniqueFeatureAs}" />
+                    <RadioButton
+                        Margin="5"
+                        Content="{DynamicResource LangCampaignWise}"
+                        IsChecked="{Binding IsCampainWiseUnique}" />
+                    <RadioButton
+                        Margin="5"
+                        Content="{DynamicResource LangAccountWise}"
+                        IsChecked="{Binding IsAccountWiseUnique}" />
+                </StackPanel>
+                <StackPanel
+                    Margin="5"
+                    DataContext="{Binding YoutubeModel}"
+                    Orientation="Horizontal">
+                    <Label Margin="5" Content="{DynamicResource LangKeyStopQueryIfFailedTillN}" />
+                    <controls:NumericUpDown
+                        Maximum="500"
+                        Minimum="1"
+                        Value="{Binding StopRunQueryIfNActivityFailed}" />
+                </StackPanel>
+                <StackPanel
+                    Margin="5"
+                    DataContext="{Binding YoutubeModel}"
+                    Orientation="Horizontal">
+                    <Label Margin="5" Content="{DynamicResource LangKeyCaptchaSolvingManuallyTimeout}" />
+                    <controls:NumericUpDown
+                        Maximum="60"
+                        Minimum="10"
+                        Value="{Binding TimeoutToSolveCaptchaManually}" />
+                </StackPanel>
+                <StackPanel
+                    Margin="5"
+                    DataContext="{Binding YoutubeModel}"
+                    Orientation="Horizontal">
+                    <CheckBox
+                        Margin="0,5,0,0"
+                        Content="{DynamicResource LangKeyPerAccountsActivitiesOn}"
+                        IsChecked="{Binding IsCheckActivitiesOnNPost}" />
+                    <controls:NumericUpDown
+                        Margin="5,5,0,0"
+                        IsEnabled="{Binding IsCheckActivitiesOnNPost}"
+                        Minimum="1"
+                        Value="{Binding ActivitiesOnNPost.StartValue}" />
+                    <Label Margin="5,5,0,0" Content="{DynamicResource LangKeyTo}" />
+                    <controls:NumericUpDown
+                        Margin="5,5,0,0"
+                        IsEnabled="{Binding IsCheckActivitiesOnNPost}"
+                        Minimum="{Binding ActivitiesOnNPost.StartValue}"
+                        Value="{Binding ActivitiesOnNPost.EndValue}" />
+                    <Label Margin="5,5,0,0" Content="{DynamicResource LangKeyResultsFromQueryOnEachRun}" />
+                </StackPanel>
+                <!--  Old Config (Implement it later)  -->
+                <!--<StackPanel Margin="10" x:Name="MainGrid">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Margin="5" Content="{DynamicResource LangKeyWaitAMinimumOf}"/>
+                        <controls:NumericUpDown Minimum="0" Margin="5" Value="{Binding WaitMinimumOf}"/>
+                        <Label Content="{DynamicResource LangKeyHoursBeforeRefreshingTheFriendListForAYoutubeAccountFriendBackupOrInviteToolsMustBeStarted}"/>
+                    </StackPanel>
+
+                    <CheckBox Margin="5" Content="{DynamicResource LangKeyDisableSyncForNewAccounts}"
+                                                   IsChecked="{Binding IsDisableSyncForNewAccountsChecked}"/>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Margin="5" Content="{DynamicResource LangKeyAllowSyncsToExecuteOnAMaximumOf}"/>
+                        <controls:NumericUpDown Minimum="0" Margin="5" Value="{Binding MaxOfFbAccount}"/>
+                        <Label Content="{DynamicResource LangKeyYoutubeAccountsAtTheSameTime}"/>
+                    </StackPanel>
+                -->
+                <!--<Label Margin="5" Content="{DynamicResource LangKeyLimitTheNumberOfSimultaneousWatchVideosTo}"/>
+-            <controls:NumericUpDown Minimum="0" Margin="5" VerticalAlignment="top" Value="{Binding LimitNumberOfSimultaneousWatchVideos}" />-->
+                <!--
+                </StackPanel>-->
+
+            </StackPanel>
+        </GroupBox>
+    </ControlTemplate>
+</ResourceDictionary>

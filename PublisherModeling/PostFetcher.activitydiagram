@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="f849c47a-406e-458d-a859-c827b1c44ebb" name="PostFetcher" linkedPackageId="be6eb6f6-da7b-47ad-9358-95c21d3b15d8" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="ce2aac2f-8001-4df6-b636-93b4c0d86a11">
+      <elementDefinition Id="dfc5b472-6cc6-4f3a-81b9-b9bbca86e768" />
+      <body>Read all Details of Image with Shell32</body>
+      <annotatedElements>
+        <sendSignalActionMoniker Id="33bedcb1-b457-49bb-b792-1ae6fcbf1d21" LastKnownName="Read All Files Details" />
+      </annotatedElements>
+    </comment>
+    <comment Id="1dea5804-5c23-472e-8f61-fed8a4a6524c">
+      <elementDefinition Id="4452c161-55da-4d41-96f1-f1a1546fe29b" />
+      <body>Check whether already present or not, If not present add to bin file, otherwise next item in list</body>
+      <annotatedElements>
+        <mergeNodeMoniker Id="8387d253-f6d8-4f11-a0b3-41aa4e63a394" LastKnownName="Merge1" />
+      </annotatedElements>
+    </comment>
+    <comment Id="984aeece-7c9d-4849-840f-617506aaba7f">
+      <elementDefinition Id="cb8e17fa-c7d5-4488-ada3-b868bfd188c4" />
+      <body>Check whether already present or not, If not present add to bin file, otherwise next item in list</body>
+      <annotatedElements>
+        <mergeNodeMoniker Id="4e7e3910-d96c-4682-b819-549060900607" LastKnownName="Merge11" />
+      </annotatedElements>
+    </comment>
+    <comment Id="dd337247-1617-4a7a-8ac2-510965381c2f">
+      <elementDefinition Id="bf5bf476-a825-42ca-be2a-51307fe5c749" />
+      <body>Give Http Request for Each Rss Feed Url</body>
+      <annotatedElements>
+        <sendSignalActionMoniker Id="62ab66c2-312f-44f8-9c10-6aa6d21f1ca6" LastKnownName="Get the Response from http Request" />
+      </annotatedElements>
+    </comment>
+    <comment Id="0ae507bc-12c0-4ddb-9eb4-f6f5ee1efdaf">
+      <elementDefinition Id="7fcab881-331d-45c5-8c96-702301fb8e02" />
+      <body>Its an abstract method</body>
+      <annotatedElements>
+        <opaqueActionMoniker Id="2a2cba43-f6df-4054-a92f-aedf530f109c" LastKnownName="Post Scraper" />
+        <opaqueActionMoniker Id="3aa969ed-034b-439a-8a3e-2e649e494845" LastKnownName="Facebook Share Post" />
+        <activityFinalNodeMoniker Id="ad289f21-5917-4097-a8d4-7e338a8b97fb" LastKnownName="ActivityFinal2" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="0c8d1d30-e225-4161-828a-a9c1de26c535" name="PostFetcher" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="d4bff0df-1ea6-43c1-93f3-373778ef5301" />
+        <nodes>
+          <initialNode Id="cea52494-bd7b-4e0f-87ac-0f4394382d9f" name="Initial1" isLeaf="false">
+            <elementDefinition Id="d028b017-1d78-4b6a-8e42-a492ea5145bc" />
+            <flowNodeTargets>
+              <controlFlow Id="e1c1898c-6dd6-4f87-aca6-3562e3bfadca" isLeaf="false">
+                <opaqueActionMoniker Id="48d3f493-dfaf-4262-879b-92a64817d9c0" LastKnownName="Post Fetcher" />
+                <elementDefinition Id="e3b52549-454a-4197-903a-6718b044976f" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="48d3f493-dfaf-4262-879b-92a64817d9c0" name="Post Fetcher" isLeaf="false">
+            <elementDefinition Id="21c7b3ba-63ae-4090-9e60-5175cd459d74" />
+            <flowNodeTargets>
+              <controlFlow Id="979b0802-68b0-482b-8705-58fcaa8d8628" isLeaf="false">
+                <opaqueActionMoniker Id="2a2cba43-f6df-4054-a92f-aedf530f109c" LastKnownName="Post Scraper" />
+                <elementDefinition Id="eec8666d-d574-4ee6-a164-1a059c212d33" />
+              </controlFlow>
+              <controlFlow Id="947a54bb-9a1a-44c8-b9de-87f173b744a9" isLeaf="false">
+                <opaqueActionMoniker Id="3aa969ed-034b-439a-8a3e-2e649e494845" LastKnownName="Facebook Share Post" />
+                <elementDefinition Id="2ebc9a18-2a75-442c-ade9-2ed39189645f" />
+              </controlFlow>
+              <controlFlow Id="75b4cadb-9097-47d8-ad4f-c42a226ee07c" isLeaf="false">
+                <opaqueActionMoniker Id="f1178c77-b079-4bbc-a054-1a7b853ce2db" LastKnownName="Rss Feed Scraper" />
+                <elementDefinition Id="d9054582-44aa-4c37-a91b-747651c2d0f5" />
+              </controlFlow>
+              <controlFlow Id="eb9ebfc8-b395-4d39-949f-d8c9d11d3229" isLeaf="false">
+                <opaqueActionMoniker Id="56b49958-4652-4eee-a714-10b3ac50e284" LastKnownName="Monitor Folders" />
+                <elementDefinition Id="a01a6e62-9e68-4fb9-868d-621d406e881d" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="2a2cba43-f6df-4054-a92f-aedf530f109c" name="Post Scraper" isLeaf="false">
+            <elementDefinition Id="da814d0b-f27d-4a2c-a85f-69f1398307a5" />
+          </opaqueAction>
+          <opaqueAction Id="3aa969ed-034b-439a-8a3e-2e649e494845" name="Facebook Share Post" isLeaf="false">
+            <elementDefinition Id="dafd7927-f45e-429a-a38a-4fa8ec20ef14" />
+          </opaqueAction>
+          <opaqueAction Id="f1178c77-b079-4bbc-a054-1a7b853ce2db" name="Rss Feed Scraper" isLeaf="false">
+            <elementDefinition Id="10c23c16-dc4b-4217-8752-89b8b2eb705b" />
+            <flowNodeTargets>
+              <controlFlow Id="4ac05ffe-efe7-4c3a-81e3-6cee5efcab1e" isLeaf="false">
+                <forkNodeMoniker Id="6e499681-1be4-4e6b-8c1c-86977699cea4" LastKnownName="Fork2" />
+                <elementDefinition Id="d15d2b50-ddae-4c8f-a88e-c18bbaf3004f" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <forkNode Id="620d9f83-e464-4c91-ad53-2ce667ddc409" name="Fork1" isLeaf="false">
+            <elementDefinition Id="c805efca-b4a8-4805-887f-e5e3c3f2d723" />
+            <objectFlowTargets>
+              <objectFlow Id="880cfacd-b5aa-4d32-ba64-24fc99052222" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="51ef7408-546c-4938-8a63-36f79e2480f4" LastKnownName="Folder Path" />
+                <elementDefinition Id="76b71f1a-8ea9-4605-8da7-345d3fb90d46" />
+              </objectFlow>
+            </objectFlowTargets>
+          </forkNode>
+          <objectNode Id="51ef7408-546c-4938-8a63-36f79e2480f4" name="Folder Path" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="db9e638e-5532-4099-a9f2-fac9a0b7539d" />
+            <objectFlowTargets>
+              <objectFlow Id="7507fd50-a072-4be1-9c14-ac6172ca8aa9" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <sendSignalActionMoniker Id="33bedcb1-b457-49bb-b792-1ae6fcbf1d21" LastKnownName="Read All Files Details" />
+                <elementDefinition Id="b0594ddd-eda0-4b09-add6-95adfe11b4bc" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="52d96b16-18e3-4cbe-939c-a0bd434855d1" name="2147483647" value="2147483647">
+                <elementDefinition Id="b9810433-b9ff-4fd7-9d7e-177dde6804ce" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <sendSignalAction Id="33bedcb1-b457-49bb-b792-1ae6fcbf1d21" name="Read All Files Details" isLeaf="false">
+            <elementDefinition Id="90bfb897-d4f8-498f-bdba-df540dc93cda" />
+            <flowNodeTargets>
+              <controlFlow Id="18830aae-9f04-465f-ab21-a27b9940d954" isLeaf="false">
+                <acceptEventActionMoniker Id="e864a6d5-f8a3-4e35-a3d0-93f882be9dcc" LastKnownName="Receive all Media Details" />
+                <elementDefinition Id="50e73309-ffec-4131-9565-285d1ded2358" />
+              </controlFlow>
+            </flowNodeTargets>
+          </sendSignalAction>
+          <acceptEventAction Id="e864a6d5-f8a3-4e35-a3d0-93f882be9dcc" name="Receive all Media Details" isLeaf="false" isUnmarshall="false">
+            <elementDefinition Id="afb4c753-51a2-42fa-bf8c-65e89b9f3d00" />
+            <pins>
+              <acceptEventActionHasResults>
+                <outputPin Id="4efab2dc-2e7f-4fcf-ab33-3e4753a70f0c" name="All Media Files" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="111196a2-5f20-4003-af47-b8f55d865ca2" />
+                  <objectFlowTargets>
+                    <objectFlow Id="962d344b-8504-4221-b35f-2c9bb8fb2a93" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <activityParameterNodeMoniker Id="da63b0af-a0a2-4323-a7b2-61a9c6f0ed17" LastKnownName="All New Media Files into Post list Model" />
+                      <elementDefinition Id="f6b48768-4b7b-4024-a545-dc6d2c038349" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="c328cc5c-6c53-4aa1-8cbc-34490e757e91" name="2147483647" value="2147483647">
+                      <elementDefinition Id="1b05fc40-740f-471c-b7cf-5299526afcaf" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </acceptEventActionHasResults>
+            </pins>
+          </acceptEventAction>
+          <activityParameterNode Id="da63b0af-a0a2-4323-a7b2-61a9c6f0ed17" name="All New Media Files into Post list Model" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="744869c4-b76c-4572-9910-9a6503c2eb6e" />
+            <objectFlowTargets>
+              <objectFlow Id="50b36929-9dd8-45a4-9af9-a80e69212fc1" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <mergeNodeMoniker Id="8387d253-f6d8-4f11-a0b3-41aa4e63a394" LastKnownName="Merge1" />
+                <elementDefinition Id="3d9c2760-467f-44d6-b3a5-052570df0563" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="8f8105ec-5a15-4e7b-9188-91247134c61d" name="2147483647" value="2147483647">
+                <elementDefinition Id="9844edea-6bb8-4ae0-b4e6-264c600ac4bb" />
+              </literalInteger>
+            </upperBound>
+          </activityParameterNode>
+          <opaqueAction Id="90c9fe1a-325d-41c4-b314-da222cadf099" name="Update Campaigns Bin Files" isLeaf="false">
+            <elementDefinition Id="1e3449ce-6348-4680-8e5e-7ed5a0f48f73" />
+            <flowNodeTargets>
+              <controlFlow Id="0674c292-9c6e-44e7-ac77-46fd0a128b40" isLeaf="false">
+                <decisionNodeMoniker Id="33216320-aaf5-467f-aae8-c89eb1447759" LastKnownName="Decision1" />
+                <elementDefinition Id="6fc8d858-1e57-4d39-8a52-a50bed09f453" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="33216320-aaf5-467f-aae8-c89eb1447759" name="Decision1" isLeaf="false">
+            <elementDefinition Id="9a1f12a0-c0cd-4b7b-b81f-071284ab3c73" />
+            <flowNodeTargets>
+              <controlFlow Id="765ac58d-2349-4a75-a59f-ddd11d5e32ac" guard="Readd Post If Needed" isLeaf="false">
+                <mergeNodeMoniker Id="8387d253-f6d8-4f11-a0b3-41aa4e63a394" LastKnownName="Merge1" />
+                <elementDefinition Id="8bc21525-5d1d-4362-9027-b0f510034039" />
+              </controlFlow>
+              <controlFlow Id="a16b6a2b-1854-4654-aecc-bc7070591853" isLeaf="false">
+                <joinNodeMoniker Id="8336e1b8-5a7c-4797-a49e-5a9079ede1b4" LastKnownName="Join1" />
+                <elementDefinition Id="1dd27418-8bf7-44eb-9f5f-a2651d5f9177" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <mergeNode Id="8387d253-f6d8-4f11-a0b3-41aa4e63a394" name="Merge1" isLeaf="false">
+            <elementDefinition Id="da1ecc85-8181-4673-bcc1-b8b62a7282ee" />
+            <flowNodeTargets>
+              <controlFlow Id="d5954b60-b244-45b0-a0c4-9a6eb9bee98c" isLeaf="false">
+                <opaqueActionMoniker Id="90c9fe1a-325d-41c4-b314-da222cadf099" LastKnownName="Update Campaigns Bin Files" />
+                <elementDefinition Id="f632e215-d57d-46b9-bfb9-3ab0720b210b" />
+              </controlFlow>
+            </flowNodeTargets>
+          </mergeNode>
+          <joinNode Id="8336e1b8-5a7c-4797-a49e-5a9079ede1b4" name="Join1" isLeaf="false">
+            <elementDefinition Id="74a6fd58-b7ef-4632-ade6-35c1d3555a67" />
+            <flowNodeTargets>
+              <controlFlow Id="1dedb618-c0f6-4e53-b21a-acb057cb8048" isLeaf="false">
+                <activityFinalNodeMoniker Id="5db02d32-ef63-4c24-832a-0fa9cd6e67ec" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="4d1b9b61-57c6-4b99-84c8-5232954633be" />
+              </controlFlow>
+            </flowNodeTargets>
+          </joinNode>
+          <activityFinalNode Id="5db02d32-ef63-4c24-832a-0fa9cd6e67ec" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="2cfe04c4-5b65-4eb9-a7d2-5a558e048f0a" />
+          </activityFinalNode>
+          <opaqueAction Id="56b49958-4652-4eee-a714-10b3ac50e284" name="Monitor Folders" isLeaf="false">
+            <elementDefinition Id="c707b3d6-190f-479c-a110-190d4b24c300" />
+            <flowNodeTargets>
+              <controlFlow Id="42b89cf3-3254-4a8f-8a5d-a0a583b68d31" isLeaf="false">
+                <forkNodeMoniker Id="620d9f83-e464-4c91-ad53-2ce667ddc409" LastKnownName="Fork1" />
+                <elementDefinition Id="9910fa8e-64c3-4579-9490-115c6f610101" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <forkNode Id="6e499681-1be4-4e6b-8c1c-86977699cea4" name="Fork2" isLeaf="false">
+            <elementDefinition Id="9f24feed-0e8d-4113-99e8-85690d0eef1b" />
+            <objectFlowTargets>
+              <objectFlow Id="c99b3328-9d96-4486-ab9d-89a3add4f795" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <activityParameterNodeMoniker Id="ad14ce4a-28b4-4e9a-b2a7-1a3b585ddb18" LastKnownName="Feed Url Collections" />
+                <elementDefinition Id="ee46d625-2dd2-4a04-b3d2-17ae290c440a" />
+              </objectFlow>
+            </objectFlowTargets>
+          </forkNode>
+          <activityParameterNode Id="ad14ce4a-28b4-4e9a-b2a7-1a3b585ddb18" name="Feed Url Collections" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="60e5c01f-a74a-40b7-bbfe-e78fd58a7425" />
+            <objectFlowTargets>
+              <objectFlow Id="ec746ce0-ace0-4459-970f-ef386d201edd" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <sendSignalActionMoniker Id="62ab66c2-312f-44f8-9c10-6aa6d21f1ca6" LastKnownName="Get the Response from http Request" />
+                <elementDefinition Id="3e933e3a-463d-45f8-8672-a28b54381e4a" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="6ebfe676-3dce-49f2-817d-06d8cb6ad7ca" name="2147483647" value="2147483647">
+                <elementDefinition Id="ae68a6fe-991d-405a-aed1-304c5590a467" />
+              </literalInteger>
+            </upperBound>
+          </activityParameterNode>
+          <sendSignalAction Id="62ab66c2-312f-44f8-9c10-6aa6d21f1ca6" name="Get the Response from http Request" isLeaf="false">
+            <elementDefinition Id="9eda65bc-2c83-4647-9170-66b9d1dcfb6d" />
+            <flowNodeTargets>
+              <controlFlow Id="2253b6bf-c680-4df1-9194-af1ce9d45b52" isLeaf="false">
+                <acceptEventActionMoniker Id="1a7c1b10-53c5-4fc0-8020-5ec897dd0a6f" LastKnownName="Fetch the neccessary Post Details" />
+                <elementDefinition Id="3275e515-1cfc-4f07-bb8a-251fbc40aaeb" />
+              </controlFlow>
+            </flowNodeTargets>
+          </sendSignalAction>
+          <acceptEventAction Id="1a7c1b10-53c5-4fc0-8020-5ec897dd0a6f" name="Fetch the neccessary Post Details" isLeaf="false" isUnmarshall="false">
+            <elementDefinition Id="b650183c-3beb-42d8-85e4-0832b0e4e4dc" />
+            <pins>
+              <acceptEventActionHasResults>
+                <outputPin Id="57875fde-44b0-4453-baef-42c0851cbd43" name="Rss Feed" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="bcb483e2-1e32-449e-9cfa-0d17ad32e1c8" />
+                  <objectFlowTargets>
+                    <objectFlow Id="42674a49-8096-454a-b65a-6c24200d7acb" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <activityParameterNodeMoniker Id="e5947086-2a9b-4e3b-9b40-310afeed75b2" LastKnownName="All New Rss feeds into Post list Model" />
+                      <elementDefinition Id="292c59ff-2256-47a7-9748-dd4d97a14370" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="8adb264d-774e-40ce-99bc-6f80f286a511" name="2147483647" value="2147483647">
+                      <elementDefinition Id="e311bc1e-cb67-4bd3-9cdc-e896dd9be293" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </acceptEventActionHasResults>
+            </pins>
+          </acceptEventAction>
+          <activityParameterNode Id="e5947086-2a9b-4e3b-9b40-310afeed75b2" name="All New Rss feeds into Post list Model" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="c24e1a94-fbd2-4bea-aa7a-f04fd220f35f" />
+            <objectFlowTargets>
+              <objectFlow Id="0da923d1-2ddf-4577-955b-1569260415fd" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <mergeNodeMoniker Id="4e7e3910-d96c-4682-b819-549060900607" LastKnownName="Merge11" />
+                <elementDefinition Id="c5c239a8-933a-483c-8e3c-a37967ded4b6" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="27d5058b-cb04-45aa-92e6-38762c5ec726" name="2147483647" value="2147483647">
+                <elementDefinition Id="2aa76fec-901b-4029-96d9-290d4d6210fd" />
+              </literalInteger>
+            </upperBound>
+          </activityParameterNode>
+          <opaqueAction Id="67547cb7-9fb4-4a77-93c8-4cb5d2c12606" name="Update Campaigns Bin Files1" isLeaf="false">
+            <elementDefinition Id="d45f0f1f-1534-4766-a37a-4f2407f32e50" />
+            <flowNodeTargets>
+              <controlFlow Id="03c39072-305a-4980-808d-866c5b1f0b90" isLeaf="false">
+                <decisionNodeMoniker Id="d8c579cc-e97e-4da0-a349-9896d76c16c3" LastKnownName="Decision11" />
+                <elementDefinition Id="59a30fd4-0812-4f55-a393-d61af4ce27dd" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="d8c579cc-e97e-4da0-a349-9896d76c16c3" name="Decision11" isLeaf="false">
+            <elementDefinition Id="6dd5492e-6e70-41cc-b96b-c3af5c1f0636" />
+            <flowNodeTargets>
+              <controlFlow Id="84e41419-4b4d-4b1b-a800-82a92982f9c5" guard="Readd Post If Needed" isLeaf="false">
+                <mergeNodeMoniker Id="4e7e3910-d96c-4682-b819-549060900607" LastKnownName="Merge11" />
+                <elementDefinition Id="0e2f14e7-fd1a-4552-a21d-d4fa76ef1497" />
+              </controlFlow>
+              <controlFlow Id="a6f4958a-9783-4924-8483-30af82f1e6cb" isLeaf="false">
+                <joinNodeMoniker Id="8c6ef0a6-30a5-48f5-a6b3-d44b0c18ad3e" LastKnownName="Join11" />
+                <elementDefinition Id="62f7d2b1-fe87-4268-8d91-012fc45a4441" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <mergeNode Id="4e7e3910-d96c-4682-b819-549060900607" name="Merge11" isLeaf="false">
+            <elementDefinition Id="a1178c62-6c4e-4888-b1bb-877e8f031427" />
+            <flowNodeTargets>
+              <controlFlow Id="e6ede4ed-2936-4a9f-8767-e7954e6ff57a" isLeaf="false">
+                <opaqueActionMoniker Id="67547cb7-9fb4-4a77-93c8-4cb5d2c12606" LastKnownName="Update Campaigns Bin Files1" />
+                <elementDefinition Id="5a4fc36e-c41c-4aac-9a95-a64770d6137e" />
+              </controlFlow>
+            </flowNodeTargets>
+          </mergeNode>
+          <joinNode Id="8c6ef0a6-30a5-48f5-a6b3-d44b0c18ad3e" name="Join11" isLeaf="false">
+            <elementDefinition Id="019ebaf9-d42c-42ac-b64c-5fa3948679ed" />
+            <flowNodeTargets>
+              <controlFlow Id="a6e576b5-8edb-4491-899b-d63be38895b8" isLeaf="false">
+                <activityFinalNodeMoniker Id="ed0e4afc-4e07-49d2-93fc-fcb0a198ece7" LastKnownName="ActivityFinal11" />
+                <elementDefinition Id="c6760bb4-1f01-44aa-a81b-b11374d58ae9" />
+              </controlFlow>
+            </flowNodeTargets>
+          </joinNode>
+          <activityFinalNode Id="ed0e4afc-4e07-49d2-93fc-fcb0a198ece7" name="ActivityFinal11" isLeaf="false">
+            <elementDefinition Id="1f5ab16f-22ef-43d4-8be3-9c03a839e829" />
+          </activityFinalNode>
+          <activityFinalNode Id="ad289f21-5917-4097-a8d4-7e338a8b97fb" name="ActivityFinal2" isLeaf="false">
+            <elementDefinition Id="9d5cb6af-bcbd-40c1-869e-32a631ee2a7b" />
+          </activityFinalNode>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="be6eb6f6-da7b-47ad-9358-95c21d3b15d8" name="PublisherModeling">
+    <elementDefinition Id="461f95fb-a490-473e-9092-0edc6d3d12bc" />
+    <profileInstances>
+      <packageHasProfileInstances Id="b0b4e168-8c3a-4768-9015-b4c5c82ccee2">
+        <profileInstance Id="a9c5626c-fac6-4f5c-9fc2-27cc17cbf927" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="4fc07ac5-d334-44be-9063-a01dac216fa0">
+        <profileInstance Id="dde6097c-aac5-406e-9acd-003045e7267a" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</activityRootModel>

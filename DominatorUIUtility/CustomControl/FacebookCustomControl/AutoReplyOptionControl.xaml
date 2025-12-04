@@ -1,0 +1,107 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.CustomControl.FacebookCustomControl.AutoReplyOptionControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical">
+                <TextBlock
+                    Margin="4"
+                    FontSize="13"
+                    FontWeight="Bold"
+                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                    Text="{Binding AutoReplyOptionModel.SourceDisplayName}" />
+                <StackPanel Orientation="Vertical">
+                    <CheckBox
+                        Margin="30,5"
+                        Command="{Binding CheckedChangedCommand}"
+                        CommandParameter="{Binding CommandParameter}"
+                        Content="{Binding AutoReplyOptionModel.BySoftwareDisplayName}"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        IsChecked="{Binding AutoReplyOptionModel.IsMessageRequestChecked}" />
+                    <CheckBox
+                        Margin="30,5"
+                        Command="{Binding CheckedChangedCommand}"
+                        CommandParameter="{Binding CommandParameter}"
+                        Content="{Binding AutoReplyOptionModel.OutsideSoftwareDisplayName}"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        IsChecked="{Binding AutoReplyOptionModel.IsFriendsMessageChecked}" />
+                    <!--<CheckBox Margin="30,5" Content="{DynamicResource LangKeyReplyToPendingPageMessages}" FontSize="12" FontWeight="SemiBold" IsChecked="{Binding AutoReplyOptionModel.IsReplyToPageMessagesChecked}" Command="{Binding CheckedChangedCommand}" CommandParameter="{Binding CommandParameter}"/>-->
+                    <customControl:InputBoxControl
+                        x:Name="OwnPageUrls"
+                        Margin="35,5"
+                        InputText="{Binding AutoReplyOptionModel.OwnPages}"
+                        Visibility="{Binding AutoReplyOptionModel.IsReplyToPageMessagesChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                    <CheckBox
+                        Margin="30,5"
+                        Command="{Binding CheckedChangedCommand}"
+                        CommandParameter="{Binding CommandParameter}"
+                        Content="{DynamicResource LangKeyCustomUsersList}"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        IsChecked="{Binding AutoReplyOptionModel.CustomUserList}"
+                        Visibility="Collapsed" />
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock
+                    Margin="4,30,4,10"
+                    FontSize="13"
+                    FontWeight="Bold"
+                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                    Text="{DynamicResource LangKeySourceFilter}" />
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        Margin="30,5,15,5"
+                        Content="{DynamicResource LangKeyMessageShouldHaveBeenSentBefore}"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        IsChecked="{Binding AutoReplyOptionModel.IsFilterApplied}" />
+                    <controls:NumericUpDown
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        IsEnabled="{Binding AutoReplyOptionModel.IsFilterApplied}"
+                        Minimum="0"
+                        Value="{Binding AutoReplyOptionModel.DaysBefore}" />
+                    <Label
+                        Content="{DynamicResource LangKeyDays}"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                    <Label
+                        Margin="0,0,5,0"
+                        Content="{DynamicResource LangKeyAnd}"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                    <controls:NumericUpDown
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        IsEnabled="{Binding AutoReplyOptionModel.IsFilterApplied}"
+                        Maximum="23"
+                        Minimum="0"
+                        Value="{Binding AutoReplyOptionModel.HoursBefore}" />
+                    <Label
+                        Content="{DynamicResource LangKeyHours}"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

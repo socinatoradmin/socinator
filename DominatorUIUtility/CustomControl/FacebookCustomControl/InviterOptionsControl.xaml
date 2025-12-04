@@ -1,0 +1,102 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.CustomControl.FacebookCustomControl.InviterOptionsControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <StackPanel
+            Name="NoteandMessageSection"
+            Orientation="Vertical"
+            Visibility="Visible">
+            <TextBlock
+                Margin="8,10,0,0"
+                FontSize="12"
+                FontWeight="Bold"
+                Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                Text="{DynamicResource LangKeyInviterOptions}" />
+
+            <StackPanel
+                Margin="10,5,0,0"
+                Orientation="Vertical"
+                Visibility="{Binding IsInviteInMessageVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <CheckBox
+                    Name="ChkboxSendAsMessage"
+                    Margin="4"
+                    Content="{DynamicResource LangKeySendInvitationInMessanger}"
+                    FontWeight="SemiBold"
+                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                    IsChecked="{Binding InviterOptionsModel.IsSendInvitationInMessanger}"
+                    ToolTip="{DynamicResource LnagKeySendInMessageTooltip}" />
+            </StackPanel>
+
+            <StackPanel
+                Margin="10,5"
+                Orientation="Vertical"
+                Visibility="{Binding InviterOptionsModel.IsInviteWithNoteOptionVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <CheckBox
+                    Name="ChkboxInviteWithNote"
+                    Margin="4"
+                    Content="{DynamicResource LangKeyWriteANote}"
+                    FontWeight="SemiBold"
+                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                    IsChecked="{Binding InviterOptionsModel.IsSendInvitationWithNote}"
+                    ToolTip="{DynamicResource LangKeyInviteWithNoteTooltip}" />
+                <customControl:InputBoxControl
+                    Margin="20,10"
+                    InputText="{Binding InviterOptionsModel.Note}"
+                    ToolTip="{DynamicResource LangKeyAddNote}"
+                    Visibility="{Binding InviterOptionsModel.IsSendInvitationWithNote, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </StackPanel>
+            <StackPanel
+                Margin="10,5"
+                Orientation="Vertical"
+                Visibility="{Binding InviterOptionsModel.IsInviteWithNoteOptionVisibleEvent, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <CheckBox
+                    Name="ChkboxInviteWithNoteEvent"
+                    Margin="4"
+                    Content="{DynamicResource LangKeyWriteANoteEvent}"
+                    FontWeight="SemiBold"
+                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                    IsChecked="{Binding InviterOptionsModel.IsSendInvitationWithNote}"
+                    IsEnabled="{Binding InviterOptionsModel.IsSendInvitationInMessanger}"
+                    ToolTip="{DynamicResource LangKeyInviteWithNoteTooltip}" />
+                <customControl:InputBoxControl
+                    Margin="20,10"
+                    InputText="{Binding InviterOptionsModel.Note}"
+                    ToolTip="{DynamicResource LangKeyAddNote}"
+                    Visibility="{Binding InviterOptionsModel.IsSendInvitationWithNote, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </StackPanel>
+            <StackPanel
+                Margin="10,5"
+                Orientation="Horizontal"
+                Visibility="{Binding IsReinviteOptionNeeded, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <CheckBox
+                    Name="ChkboxReInviteInMessanger"
+                    Margin="4"
+                    Content="{DynamicResource LangKeyReinviteInMessanger}"
+                    FontWeight="SemiBold"
+                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                    IsChecked="{Binding InviterOptionsModel.IsReinvite}"
+                    ToolTip="{DynamicResource LangKeyInviteWithNoteTooltip}" />
+                <controls:NumericUpDown
+                    Margin="10,0"
+                    Minimum="0"
+                    Value="{Binding InviterOptionsModel.SendMessageAfterDays}" />
+                <Label
+                    Content="{StaticResource LangKeyDays}"
+                    FontWeight="SemiBold"
+                    Foreground="{DynamicResource TextColorBrushAccordingTheme}" />
+            </StackPanel>
+
+        </StackPanel>
+
+    </Grid>
+</UserControl>

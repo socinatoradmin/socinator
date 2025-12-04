@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="DominatorUIUtility.Views.AccountSetting.Activity.Reply"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:DominatorUIUtility.Views.AccountSetting.Activity"
+             mc:Ignorable="d" Name="ActivityControl"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl"
+             xmlns:actcustom="clr-namespace:DominatorUIUtility.Views.AccountSetting.CustomControl"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" CommandParameter="Reply" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Background="{DynamicResource AccentColorBrush}" Margin="5">
+            <actcustom:ModuleHeader Heading="Reply Setting" x:Name="header"
+                                    View="{Binding ElementName=ActivityControl}" />
+        </DockPanel>
+        <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" Grid.Row="1">
+            <StackPanel>
+                <actcustom:ActivitySettingWithoutButton x:Name="Activity"
+                                                        IsExpanded="{Binding ElementName=header,Path=IsExpanded,Mode=OneWay}"
+                                                        IsJobExpanded="{Binding ElementName=header,Path=IsExpanded,Mode=OneWay}"
+                                                        JobConfiguration="{Binding JobConfiguration}"
+                                                        IsUseGlobalQuery="{Binding IsUseGlobalQuery,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                        ListQueryType="{Binding ListQueryType}"
+                                                        SavedQueries="{Binding SavedQueries}"
+                                                        AddQueryCommand="{Binding AddQueryCommentCommand}"
+                                                        DeleteQueryCommand="{Binding DeleteQueryCommand}"
+                                                        DeleteMulipleCommand="{Binding DeleteMultipleCommand}" />
+
+                <!-- Comments manager Expender-->
+                <Expander Header="{DynamicResource LangKeyReply}" Margin="5,5" Grid.Row="1"
+                          IsExpanded="{Binding ElementName=header,Path=IsExpanded,Mode=OneWay}">
+                    <StackPanel Orientation="Vertical">
+                        <CheckBox x:Name="ChkboxSpinText" Content="{StaticResource LangKeyMakeCommentAsSpinText}"
+                                  IsChecked="{Binding ReplyModel.MakeReplyAsSpinText}" FontSize="15"
+                                  FontWeight="SemiBold"
+                                  Margin="5,5" />
+                        <customControl:CommentControl x:Name="CommentControl"
+                                                      Comments="{Binding ManageCommentModel, UpdateSourceTrigger=PropertyChanged ,Mode=TwoWay}"
+                                                      AddCommentsCommand="{Binding AddCommentsCommand}"
+                                                      CommandParameter="{Binding ElementName=CommentControl}" />
+                        <customControl:ManageComment x:Name="ManageComments"
+                                                     LstManageCommentModel="{Binding LstManageCommentModel,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+        </ScrollViewer>
+        <DockPanel Grid.Row="2">
+            <actcustom:NextPreviousButton NextCommand="{Binding NextCommand}"
+                                          PreviousCommand="{Binding PreviousCommand}"
+                                          NextButtonContent="{Binding NextButtonContent}" />
+        </DockPanel>
+    </Grid>
+</UserControl>

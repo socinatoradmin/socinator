@@ -1,0 +1,259 @@
+﻿<UserControl x:Class="DominatorUIUtility.Views.SocioPublisher.JobConfiguration"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:control="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converters:BooleanToVisibilityConverter IsInversed="True" x:Key="BooleanToInverseVisibilityConverter" />
+
+        <!--<ControlTemplate x:Key="ErrorTemplate">
+            <StackPanel>
+                <AdornedElementPlaceholder x:Name="ErrorHolder" >
+                    <Border BorderBrush="red" BorderThickness="1" />
+                </AdornedElementPlaceholder>
+                <TextBlock  VerticalAlignment="Center" FontWeight="Bold" Text="{Binding ElementName=ErrorHolder, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
+            </StackPanel>
+        </ControlTemplate>-->
+
+
+    </UserControl.Resources>
+    <StackPanel x:Name="MainGrid">
+
+        <TextBlock Text="{DynamicResource LangKeySettings}" FontWeight="Bold" Margin="5" />
+
+        <StackPanel Orientation="Horizontal" Margin="10,0">
+            <TextBlock Text="{DynamicResource LangKeyTheCampaignWillPublish}" VerticalAlignment="Center" Margin="5" />
+            <control:NumericUpDown x:Name="numericMaxPost" Minimum="1" ValueChanged="PostCountChanged"
+                                   Value="{Binding MaxPost,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                   VerticalAlignment="Center" Margin="5" />
+
+            <TextBlock Text="{DynamicResource LangKeyPostsPerDayBetween}" VerticalAlignment="Center" Margin="5" />
+
+            <!--<validation:ValidationBinding In="{Binding TimeRange.StartTime, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                           Out="{Binding ElementName=endtime, Path=Min,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+            <validation:ValidationBinding In="{Binding TimeRange.EndTime, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                          Out="{Binding ElementName=starttime, Path=Max,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />-->
+
+            <control:TimePicker x:Name="PostingStartTime" SelectedTimeChanged="OnSelectedTimeChanged"
+                                VerticalAlignment="Center" Margin="5" IsClockVisible="False">
+                <control:TimePicker.SelectedTime>
+                    <Binding Path="TimeRange.StartTime" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" />
+                </control:TimePicker.SelectedTime>
+            </control:TimePicker>
+            <TextBlock Text="{DynamicResource LangKeyAnd}" VerticalAlignment="Center" Margin="5" />
+            <control:TimePicker x:Name="PostingEndTime" SelectedTimeChanged="OnSelectedTimeChanged"
+                                VerticalAlignment="Center" Margin="5" IsClockVisible="False">
+                <control:TimePicker.SelectedTime>
+                    <Binding Path="TimeRange.EndTime" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" />
+                </control:TimePicker.SelectedTime>
+            </control:TimePicker>
+            <TextBlock
+                Text="{DynamicResource LangKeyEachPostWillBePublishedToAllSelectedDestinationsIncludingGroupsPagesWalls}"
+                VerticalAlignment="Center" Margin="5" />
+        </StackPanel>
+
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <RadioButton Content="{DynamicResource LangKeyDelayBetweenPost}"
+                             Name="DelayBetweenPost"
+                             VerticalAlignment="Center" GroupName="postGroup" Margin="5"
+                             IsChecked="{Binding IsDelayPostChecked}" />
+                <control:NumericUpDown Minimum="0"
+                                       IsEnabled="{Binding ElementName=DelayBetweenPost,Path=IsChecked}"
+                                       Value="{Binding DelayBetweenEachPost.StartValue}"
+                                       VerticalAlignment="Center" Margin="5" />
+                <TextBlock Text="{DynamicResource LangKeyTo}" VerticalAlignment="Center" Margin="5" />
+                <control:NumericUpDown Minimum="{Binding DelayBetweenEachPost.StartValue}"
+                                       IsEnabled="{Binding ElementName=DelayBetweenPost,Path=IsChecked}"
+                                       Value="{Binding DelayBetweenEachPost.EndValue}" VerticalAlignment="Center"
+                                       Margin="5" />
+                <TextBlock Text="{DynamicResource LangKeyMinutes}" VerticalAlignment="Center" Margin="5" />
+            </StackPanel>
+            <RadioButton GroupName="postGroup" IsChecked="{Binding IsSpecifyPostingIntervalChecked}"
+                         Content="{DynamicResource LangKeyConfigurePostingIntervalForEachTimer}" Margin="5"
+                         x:Name="ChkPostingInterval" />
+            <!--Click="ChkPostingInterval_OnClick" />-->
+            <ItemsControl ItemsSource="{Binding LstTimer,IsAsync=True}" Margin="5"
+                          Visibility="{Binding IsSpecifyPostingIntervalChecked,
+            Converter={StaticResource BooleanToVisibilityConverter}}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="4" IsItemsHost="True" HorizontalAlignment="Stretch" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <StackPanel>
+                                <control:TimePicker SelectedTimeChanged="OnSelectedTimeChanged" x:Name="StartTime"
+                                                    Margin="2"
+                                                    SelectedTime="{Binding StartTime ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                    IsClockVisible="False" />
+                                <control:TimePicker SelectedTimeChanged="OnSelectedTimeChanged" x:Name="EndTime"
+                                                    Margin="2"
+                                                    SelectedTime="{Binding EndTime ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                    IsClockVisible="False" />
+                            </StackPanel>
+                            <control:TimePicker x:Name="MidTime" VerticalAlignment="Center" Margin="2"
+                                                SelectedTime="{Binding MidTime
+                                ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                IsClockVisible="False" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <RadioButton GroupName="postGroup" IsChecked="{Binding IsRandomizePublishingTimerChecked}"
+                         Content="{DynamicResource LangKeyUseRandomPublishingTimeEveryday}" Margin="5"
+                         Name="ChkRandomizePublishing" />
+            <!--Click="ChkRandomizePublishing_OnClick" />-->
+            <ItemsControl ItemsSource="{Binding LstTimer,IsAsync=True}" Margin="5"
+                          Visibility="{Binding IsRandomizePublishingTimerChecked,
+                 Converter={StaticResource BooleanToVisibilityConverter}}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="7" IsItemsHost="True" HorizontalAlignment="Stretch" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <control:TimePicker x:Name="lstTime"
+                                                SelectedTime="{Binding MidTime
+                        ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                IsClockVisible="False" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+        <!--<CheckBox IsChecked="{Binding IsRandomizeNumberOfPostsChecked}" Content="{DynamicResource LangKeyPublishRandomNumberOfPostsEachDay}"  Margin="5"/>
+        <StackPanel Orientation="Horizontal"  Margin="30,5"
+                    Visibility="{Binding IsRandomizeNumberOfPostsChecked,
+                    Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBlock Text="{DynamicResource LangKeySharePostsHaveBetween}" VerticalAlignment="Center"  Margin="5"/>
+            <control:NumericUpDown Minimum="0"
+                    Value="{Binding PostBetween.StartValue}"
+                    VerticalAlignment="Center"  Margin="5"/>
+            <TextBlock Text="{DynamicResource LangKeyTo}"  VerticalAlignment="Center" Margin="5"/>
+            <control:NumericUpDown Minimum="{Binding PostBetween.StartValue}" Value="{Binding PostBetween.EndValue}" VerticalAlignment="Center"  Margin="5"/>
+            <TextBlock Text="{DynamicResource LangKeyNumberOfPostsInADay}"  VerticalAlignment="Center" Margin="5"/>
+            <TextBlock Text="{DynamicResource LangKeyIncreaseEachDayWith}"  VerticalAlignment="Center" Margin="0,5"/>
+            <control:NumericUpDown Value="{Binding IncreaseEachDay.StartValue}"
+                                   VerticalAlignment="Center"  Margin="5" Minimum="0"/>
+            <TextBlock Text="{DynamicResource LangKeyUntilItReaches}"  VerticalAlignment="Center" Margin="5"/>
+            <control:NumericUpDown Minimum="{Binding IncreaseEachDay.StartValue}" 
+                                   Value="{Binding IncreaseEachDay.EndValue}" VerticalAlignment="Center"  Margin="5"/>
+            <TextBlock Text="{DynamicResource LangKeyMaxPostsPerDay}"  VerticalAlignment="Center" Margin="5"/>
+
+        </StackPanel>-->
+
+        <GroupBox Margin="5" Header="{DynamicResource LangKeyPostDestinationConfiguration}">
+            <StackPanel Orientation="Vertical" Margin="5">
+                <CheckBox Content="{DynamicResource LangKeyPublishAPostListItemOnAllSelectedDestinations}"
+                          IsChecked="{Binding IsPublishPostOnDestinationsChecked}" Margin="5" />
+
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Content="{DynamicResource LangKeyPublishOn}"
+                              IsChecked="{Binding IsPublishPostOnRandomNDestinationsChecked}" Margin="5" />
+                    <control:NumericUpDown Minimum="0" IsEnabled="{Binding IsPublishPostOnRandomNDestinationsChecked}"
+                                           Value="{Binding RandomDestinationCount}"
+                                           VerticalAlignment="Center" Margin="5" />
+                    <TextBlock Text="{DynamicResource LangKeyRandomDestinationsWithAMaximumOf}"
+                               VerticalAlignment="Center" Margin="5" />
+                    <control:NumericUpDown Minimum="0" Value="{Binding PostBetween.EndValue}"
+                                           IsEnabled="{Binding IsPublishPostOnRandomNDestinationsChecked}"
+                                           VerticalAlignment="Center" Margin="5" />
+                    <TextBlock Text="{DynamicResource LangKeyDestinationsFromEachAccount0ForNoLimits}"
+                               VerticalAlignment="Center" Margin="5" />
+                </StackPanel>
+                <CheckBox Content="{DynamicResource LangKeyWhenPublishingSendOnePostForEachDestination}"
+                          VerticalAlignment="Center" Margin="5"
+                          IsChecked="{Binding IsWhenPublishingSendOnePostChecked}" />
+            </StackPanel>
+        </GroupBox>
+
+        <CheckBox Content="{DynamicResource LangKeyAddDelayBetweenPublishingMultiplePosts}"
+                  IsChecked="{Binding IsAddDelayBetweenPublishingPost}" Margin="5" />
+        <StackPanel Orientation="Horizontal" Margin="30,5"
+                    Visibility="{Binding IsAddDelayBetweenPublishingPost,
+                    Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBlock Text="{DynamicResource LangKeyDelayBetween}" VerticalAlignment="Center" Margin="5" />
+            <control:NumericUpDown Minimum="0"
+                                   Value="{Binding DelayBetween.StartValue}"
+                                   VerticalAlignment="Center" Margin="5" />
+            <TextBlock Text="{DynamicResource LangKeyAnd}" VerticalAlignment="Center" Margin="5" />
+            <control:NumericUpDown Minimum="{Binding DelayBetween.StartValue}"
+                                   Value="{Binding DelayBetween.EndValue}" VerticalAlignment="Center" Margin="5" />
+            <TextBlock Text="{DynamicResource LangKeyMinutesAfterPublishing}" VerticalAlignment="Center" Margin="5" />
+            <control:NumericUpDown Minimum="0"
+                                   Value="{Binding PostRange.StartValue}"
+                                   VerticalAlignment="Center" Margin="5" />
+            <TextBlock Text="{DynamicResource LangKeyTo}" VerticalAlignment="Center" Margin="5" />
+            <control:NumericUpDown Minimum="{Binding PostRange.StartValue}" Value="{Binding PostRange.EndValue}"
+                                   VerticalAlignment="Center" Margin="5" />
+            <TextBlock Text="{DynamicResource LangKeyPost}" VerticalAlignment="Center" Margin="5" />
+        </StackPanel>
+        <CheckBox Content="{DynamicResource LangKeyCampaignHasStartDate}"
+                  IsChecked="{Binding IsCampaignHasStartDateChecked}" Margin="5" />
+        <StackPanel Orientation="Horizontal" Margin="30,5"
+                    Visibility="{Binding IsCampaignHasStartDateChecked,Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBlock Text="{DynamicResource LangKeyStartDate}" VerticalAlignment="Center" Margin="5" />
+            <control:DateTimePicker VerticalAlignment="Center" DisplayDateStart="{x:Static sys:DateTime.Today}"
+                                    Margin="5" IsClockVisible="False"
+                                    SelectedDate="{Binding CampaignStartDate}" />
+        </StackPanel>
+        <CheckBox IsChecked="{Binding IsCampaignHasEndDateChecked}"
+                  Content="{DynamicResource LangKeyCampaignHasEndDate}" Margin="5" />
+        <StackPanel Orientation="Horizontal" Margin="30,5"
+                    Visibility="{Binding IsCampaignHasEndDateChecked,Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBlock Text="{DynamicResource LangKeyEndDate}" VerticalAlignment="Center" Margin="5" />
+            <control:DateTimePicker VerticalAlignment="Center" DisplayDateStart="{x:Static sys:DateTime.Today}"
+                                    Margin="5" IsClockVisible="False"
+                                    SelectedDate="{Binding CampaignEndDate}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="5,0">
+            <CheckBox IsChecked="{Binding IsAccountDelayChecked}"
+                      Name="DelayBetweenAccount"
+                  Content="{DynamicResource LangKeyDelayBetweenEachAccountPost}"/>
+
+
+            <control:NumericUpDown Minimum="0"
+                                   IsEnabled="{Binding ElementName=DelayBetweenAccount,Path=IsChecked}"
+                                   Value="{Binding DelayBetweenPost.StartValue}"
+                                   VerticalAlignment="Center" Margin="5" />
+            <TextBlock Text="{DynamicResource LangKeyTo}" VerticalAlignment="Center" Margin="5" />
+            <control:NumericUpDown Minimum="{Binding DelayBetweenPost.StartValue}"
+                                   IsEnabled="{Binding ElementName=DelayBetweenAccount,Path=IsChecked}"
+                                   Value="{Binding DelayBetweenPost.EndValue}" VerticalAlignment="Center" Margin="5" />
+            <TextBlock Text="{DynamicResource LangKeyMinutes}" VerticalAlignment="Center" Margin="5" />
+        </StackPanel>
+
+        <Label Margin="0,5,0,0" FontWeight="Bold" Content="{DynamicResource LangKeySelectDaysOfTheWeekToPublish}" />
+        <ItemsControl ItemsSource="{Binding Weekday}" Margin="5">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Content="{Binding Content}" Margin="5"
+                              IsChecked="{Binding IsContentSelected}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <CheckBox Content="{DynamicResource LangKeyRotateDays}"
+                  IsChecked="{Binding IsRotateDayChecked}" Margin="10,5" />
+
+    </StackPanel>
+
+</UserControl>

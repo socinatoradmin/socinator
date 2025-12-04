@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="DominatorUIUtility.Views.AccountSetting.Activity.DeletePost"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:DominatorUIUtility.Views.AccountSetting.Activity"
+             mc:Ignorable="d"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl"
+             xmlns:actcustom="clr-namespace:DominatorUIUtility.Views.AccountSetting.CustomControl"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+             Name="ActivityControl">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" CommandParameter="DeletePost" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverters" />
+    </UserControl.Resources>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Background="{DynamicResource AccentColorBrush}" Margin="5">
+            <actcustom:ModuleHeader Heading="Delete Post Setting" x:Name="header"
+                                    View="{Binding ElementName=ActivityControl}" />
+        </DockPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Grid.Row="1">
+            <StackPanel>
+                <RadioButton IsChecked="{Binding IsCheckedDeleteAllPosts,Mode=TwoWay}" Margin="5"
+                             Content="Delete Posts" Name="IsDeleteAllPosts" />
+                <StackPanel Margin="15,0"
+                            Visibility="{Binding IsCheckedDeleteAllPosts,Converter={StaticResource BooleanToVisibilityConverters}}">
+                    <StackPanel Orientation="Vertical" Margin="5,5">
+                        <CheckBox Margin="5" Content="{DynamicResource LangKeyDeletePostWhichIsPostedBySoftware}"
+                                  Name="Chk_DeletePostWhichIsPostedBySoftware"
+                                  IsChecked="{Binding ChkDeletePostWhichIsPostedBySoftware}" />
+                        <CheckBox Margin="5"
+                                  Content="{DynamicResource LangKeyDeletePostWhichIsPostedByOutsideSoftware}"
+                                  Name="Chk_DeletePostWhichIsPostedByOutsideSoftware"
+                                  IsChecked="{Binding ChkDeletePostWhichIsPostedByOutsideSoftware}" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Margin="5,5">
+                    <Expander Header="{DynamicResource LangKeyJobConfiguration}"
+                              IsExpanded="{Binding ElementName=header,Path=IsExpanded,Mode=OneWay}">
+                        <actcustom:ActivityJobConfig JobConfiguration="{Binding JobConfiguration}" />
+                    </Expander>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+        <DockPanel Grid.Row="2">
+            <actcustom:NextPreviousButton NextCommand="{Binding NextCommand}"
+                                          PreviousCommand="{Binding PreviousCommand}"
+                                          NextButtonContent="{Binding NextButtonContent}" />
+        </DockPanel>
+    </Grid>
+</UserControl>

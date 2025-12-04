@@ -1,0 +1,685 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm12="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="af8f8c98-d710-4f87-a630-16cd102b610e" name="ManagePosts" linkedPackageId="add9940b-3c41-4a70-8a7d-60a108225ae3" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
+  <appliedStereotypesInternal>
+    <stereotypeInstance Id="1f579deb-2679-4844-b782-a5ca777fca4c" name="namespace" profile="CSharpProfile">
+      <elementDefinition Id="8adae484-baf2-4c1b-9b39-977f8a2ba1ec" />
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="7ee33cb8-34fb-444f-ba8b-3ac60f10aa1c">
+          <propertyInstance Id="1c71f13a-931a-4fe5-b827-24abc5ffe0f1" name="BaseName">
+            <elementDefinition Id="0f41da63-46f0-4926-9017-b5c8c3fad72f" />
+          </propertyInstance>
+          <elementDefinition Id="af0a5cbc-ec64-4313-8278-1c86da700ac0" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="a3079c9a-3201-4778-8a30-ea0d8fa8b804">
+          <propertyInstance Id="eb19fb42-0e0a-49da-bd6c-8f5217b48135" name="ClrAttributes">
+            <elementDefinition Id="6d114f75-2178-45eb-a336-6937e89a259a" />
+          </propertyInstance>
+          <elementDefinition Id="7fbc7984-23c1-4dc6-ae82-6a1fbeb585a9" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="72ca0011-5e46-4da9-8213-42a5c626d046">
+          <propertyInstance Id="71e7bf7e-1ec7-4a9f-9ee1-42e3f1c27f74" name="Usings">
+            <elementDefinition Id="8dbd23a1-759b-448e-b3c5-319b3680a6b6" />
+          </propertyInstance>
+          <elementDefinition Id="007dad1e-fc03-499a-964a-f4dd4a6383e6" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+    <stereotypeInstance Id="e71838a0-56d7-4270-b9f1-a5b7eb07294b" name="TextTemplateBindings" profile="TextTemplateBindings">
+      <elementDefinition Id="12ade86c-6850-43b9-84db-205ac0440c6a" />
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="c53b5264-4f41-4202-8cc7-2d277a9d1e98">
+          <propertyInstance Id="e6274857-537e-4ce4-b8db-e85128edfc62" name="Alias" value="ClassTemplate|EnumTemplate|InterfaceTemplate|StructTemplate">
+            <elementDefinition Id="4660c147-d919-4b99-8791-9a99fd9390e4" />
+          </propertyInstance>
+          <elementDefinition Id="f8279097-10fa-47c9-9059-18864df9e016" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="ec88731f-e2c5-40ec-8bfd-71224ac0f2a5">
+          <propertyInstance Id="0a9fd22a-895a-408c-913e-04db55bc9dbb" name="TemplateFilePath" value="ClassTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4|EnumTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\EnumTemplate.t4|InterfaceTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\InterfaceTemplate.t4|StructTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4">
+            <elementDefinition Id="b313329b-15bb-46b0-9a86-4d51ce239981" />
+          </propertyInstance>
+          <elementDefinition Id="286eeab3-9df0-4be2-a1a0-49aa966a6ad2" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="ad07a905-86d3-42df-ba4c-b4dd6dcbd61d">
+          <propertyInstance Id="fdcba15b-f2c6-40cc-85aa-248d75fa754a" name="ProjectPath" value="ClassTemplate=..\DominatorHouseSocialModelingLib\DominatorHouseSocialModelingLib.csproj|EnumTemplate=..\DominatorHouseSocialModelingLib\DominatorHouseSocialModelingLib.csproj|InterfaceTemplate=..\DominatorHouseSocialModelingLib\DominatorHouseSocialModelingLib.csproj|StructTemplate=..\DominatorHouseSocialModelingLib\DominatorHouseSocialModelingLib.csproj">
+            <elementDefinition Id="0a3743bf-eeb2-4780-80c1-4dcd38f6e2ee" />
+          </propertyInstance>
+          <elementDefinition Id="abe99e85-3005-4b2f-8827-dcce60f94682" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="f52fd0ce-458e-446d-9484-1d9ea507fe87">
+          <propertyInstance Id="6701e4bf-5f91-470a-b04a-0bb365cf0f76" name="TargetDirectory" value="ClassTemplate=GeneratedCode\{PackageStructure}|EnumTemplate=GeneratedCode\{PackageStructure}|InterfaceTemplate=GeneratedCode\{PackageStructure}|StructTemplate=GeneratedCode\{PackageStructure}">
+            <elementDefinition Id="864cec6c-99a1-4bf0-b832-4869064c4009" />
+          </propertyInstance>
+          <elementDefinition Id="173e6699-d5a6-40fa-b17b-e58449baf577" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="bc4fcf59-462f-43e4-a7a6-629b34a197da">
+          <propertyInstance Id="170c91db-56d7-4cd0-858f-abd47e86049a" name="TargetName" value="ClassTemplate={Name}|EnumTemplate={Name}|InterfaceTemplate={Name}|StructTemplate={Name}">
+            <elementDefinition Id="759bb1aa-1801-433f-95ab-0b872d631e82" />
+          </propertyInstance>
+          <elementDefinition Id="1d9db066-4174-4967-99c8-9366a1a38d63" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="c03b7ba2-b1fd-48df-8d0a-8c3af882d774">
+          <propertyInstance Id="290321f1-6c95-4e9a-978e-4f822c085960" name="Overwrite" value="ClassTemplate=True|EnumTemplate=True|InterfaceTemplate=True|StructTemplate=True">
+            <elementDefinition Id="0113d5f3-7e27-4dd5-8e68-b17fc103cb26" />
+          </propertyInstance>
+          <elementDefinition Id="0dd09f3b-c24f-42e5-a144-5ce44923d2ef" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="591ec16d-f534-487b-ade9-126c005a6c8b">
+          <propertyInstance Id="cc4c1c9d-61e8-4dc5-87bf-7b5c51cb8a9e" name="Parameters">
+            <elementDefinition Id="218709c4-4aa1-4a25-aabc-d521a96d0a0a" />
+          </propertyInstance>
+          <elementDefinition Id="40e94879-bf3f-46d4-83ff-384c58bdd648" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+  </appliedStereotypesInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="c7f67f2a-f15d-41ae-ac26-479d08d1b93a">
+      <profileInstance Id="900dc291-6c6d-4d46-aa2e-00fbf19c8012" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="91fdca28-8b9f-494b-b5a8-444782445666">
+      <profileInstance Id="4c0118c7-0aba-4367-8d4d-ce93636482dd" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="c90a9540-ded0-4064-9987-ae36a506ca58">
+      <profileInstance Id="6adb96cd-03eb-4e98-89ad-7514992c02f8" name="CSharpProfile">
+        <elementDefinition Id="0495bffe-9d9b-4661-8ddb-8e8d661a9fd6" />
+      </profileInstance>
+      <elementDefinition Id="9c1acb66-46a1-41ba-8238-70b7a7927211" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="3d936281-a0e9-4b93-b121-325e95334001">
+      <profileInstance Id="2f04e520-57f9-4d82-96bb-d94fb42c951f" name="TextTemplateBindings">
+        <elementDefinition Id="4f2e9847-44f7-4536-8aab-e8cf5e10aac1" />
+      </profileInstance>
+      <elementDefinition Id="b7c807f7-51ed-491e-9a75-4a5c99b92a63" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <interaction Id="583b2330-c24b-4735-a270-4b4bb92f3120" name="ManagePosts" collapseFragmentsFlag="false" isActiveClass="false" isAbstract="false" isLeaf="false" isReentrant="false">
+        <ownedCommentsInternal>
+          <comment Id="02767743-2094-4f2b-baf4-4ae747fea237">
+            <elementDefinition Id="4428917a-0569-4472-8124-f3e087160510" />
+            <body>End user can query for all following queued status
+1. Draft
+2. Pending
+3. Published</body>
+          </comment>
+          <comment Id="3a9ab862-72fe-49fb-866a-63ec8248f89d">
+            <elementDefinition Id="a52deeeb-a0cf-4a17-9e8d-4a3f174d0fba" />
+            <body>All calls are asynchronous in posts manager</body>
+          </comment>
+        </ownedCommentsInternal>
+        <elementDefinition Id="df7d1350-a419-48db-8cf3-07f14002af12" />
+        <fragments>
+          <behaviorExecutionSpecification Id="d879fe70-1777-4175-8643-e3fd096ec0fa" name="BehaviorExecutionSpecification1">
+            <elementDefinition Id="82a09c0a-29ad-4704-abe3-74e9e09efff6" />
+            <coveredLifelines>
+              <lifelineMoniker Id="64efb438-23fe-4746-8ac5-75413cb50943" LastKnownName="Socio Publisher" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="941f6c9d-69cc-4560-97cf-58ffaf510107" LastKnownName="ExecutionOccurrenceSpecification2" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="2c2765bd-90a1-4b56-8a6e-f4fca40ffeca" LastKnownName="ExecutionOccurrenceSpecification1" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="3f71757a-a1b3-43f1-966c-2147b6b137a2" LastKnownName="MessageOccurrenceSpecification1" />
+              <messageOccurrenceSpecificationMoniker Id="6eed7624-4d4f-453d-ae8a-342b51148c09" LastKnownName="MessageOccurrenceSpecification2" />
+              <messageOccurrenceSpecificationMoniker Id="ffa21b02-5453-427e-b624-683f06dbe03b" LastKnownName="MessageOccurrenceSpecification5" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="2c2765bd-90a1-4b56-8a6e-f4fca40ffeca" name="ExecutionOccurrenceSpecification1">
+            <elementDefinition Id="ecdf338c-9d0a-4c73-9aa5-7c58dc6cf5b1" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="2888cbe4-f1ba-4670-a341-17ccac57b6c3" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="64efb438-23fe-4746-8ac5-75413cb50943" LastKnownName="Socio Publisher" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <lostFoundTarget Id="bf39daef-efb2-4717-b880-1856d7bf15e5" name="LostFoundTarget1">
+            <elementDefinition Id="dec25869-d5aa-45b9-93b0-157ddf8fc1c8" />
+          </lostFoundTarget>
+          <messageOccurrenceSpecification Id="3f71757a-a1b3-43f1-966c-2147b6b137a2" name="MessageOccurrenceSpecification1">
+            <elementDefinition Id="074c12b1-eae1-48b6-aded-5790e9cad999" />
+            <covered>
+              <lifelineMoniker Id="64efb438-23fe-4746-8ac5-75413cb50943" LastKnownName="Socio Publisher" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="c416e423-0f6c-44a2-a81e-e6a5de055f20" name="BehaviorExecutionSpecification2">
+            <elementDefinition Id="905348a5-ed21-485c-a583-d88e9586ed1c" />
+            <coveredLifelines>
+              <lifelineMoniker Id="9efd3262-4dc0-4813-9361-598b6791f58e" LastKnownName="Manage Posts" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="afac91a1-8217-470b-90b3-ab8b1a9cadc2" LastKnownName="ExecutionOccurrenceSpecification4" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="4fb3699c-2978-4c87-af3b-6c76ea340903" LastKnownName="ExecutionOccurrenceSpecification3" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="1c74a676-827e-4169-a7b8-05c8d19baea3" LastKnownName="MessageOccurrenceSpecification3" />
+              <messageOccurrenceSpecificationMoniker Id="4db999e2-2c1b-47fc-ad21-3dcba7dffa3a" LastKnownName="MessageOccurrenceSpecification6" />
+              <executionOccurrenceSpecificationMoniker Id="459d8c86-a3f9-4a9c-8fec-f2d87f4c4033" LastKnownName="ExecutionOccurrenceSpecification7" />
+              <executionOccurrenceSpecificationMoniker Id="e47f8989-6d83-4deb-a9e6-14485324a8d3" LastKnownName="ExecutionOccurrenceSpecification8" />
+              <messageOccurrenceSpecificationMoniker Id="7cf83600-8678-410c-b623-f02c26ab9b32" LastKnownName="MessageOccurrenceSpecification12" />
+              <messageOccurrenceSpecificationMoniker Id="8f053160-8b3f-4a89-9384-59fab2f8ab89" LastKnownName="MessageOccurrenceSpecification15" />
+              <messageOccurrenceSpecificationMoniker Id="20efc4ef-8639-44f3-9e3b-bd712488eafd" LastKnownName="MessageOccurrenceSpecification4" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="4fb3699c-2978-4c87-af3b-6c76ea340903" name="ExecutionOccurrenceSpecification3">
+            <elementDefinition Id="da76f416-7b1b-4c9e-b26a-8f908021a359" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="3d3a074d-9efb-498b-83e6-47554c007b3d" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="9efd3262-4dc0-4813-9361-598b6791f58e" LastKnownName="Manage Posts" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="6eed7624-4d4f-453d-ae8a-342b51148c09" name="MessageOccurrenceSpecification2">
+            <elementDefinition Id="a72cca26-3bbe-4147-b8fc-0f24171f1325" />
+            <covered>
+              <lifelineMoniker Id="64efb438-23fe-4746-8ac5-75413cb50943" LastKnownName="Socio Publisher" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="1c74a676-827e-4169-a7b8-05c8d19baea3" name="MessageOccurrenceSpecification3">
+            <elementDefinition Id="a6207c09-9534-4aa8-b546-fab461313c66" />
+            <covered>
+              <lifelineMoniker Id="9efd3262-4dc0-4813-9361-598b6791f58e" LastKnownName="Manage Posts" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="7f5f043c-75f1-42fe-8df4-9eda6fd461af" name="BehaviorExecutionSpecification3">
+            <elementDefinition Id="2211eee3-775f-41e6-941a-ecd55142dc66" />
+            <coveredLifelines>
+              <lifelineMoniker Id="16118545-b4f4-4c67-9740-a7b88634a767" LastKnownName="Posts Manager" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="b1dbc942-acfb-4dbe-a098-ec4c72f03f79" LastKnownName="ExecutionOccurrenceSpecification6" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="06c69e2f-e79e-42a1-a3e3-a25aeb41f80c" LastKnownName="ExecutionOccurrenceSpecification5" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="3c04f4d3-0e60-467e-913e-013fa7095d33" LastKnownName="MessageOccurrenceSpecification7" />
+              <messageOccurrenceSpecificationMoniker Id="1a8b0b4f-6bbd-46d2-b0cd-49e4bc3b7e55" LastKnownName="MessageOccurrenceSpecification8" />
+              <messageOccurrenceSpecificationMoniker Id="c0ee3156-83f5-43b5-a93b-9ac91cca77ce" LastKnownName="MessageOccurrenceSpecification11" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="06c69e2f-e79e-42a1-a3e3-a25aeb41f80c" name="ExecutionOccurrenceSpecification5">
+            <elementDefinition Id="5e1f95b8-0989-4b44-85bd-d950898672c0" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="3aa643f6-f9c5-415b-91a4-6d7ebc03a46d" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="16118545-b4f4-4c67-9740-a7b88634a767" LastKnownName="Posts Manager" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="4db999e2-2c1b-47fc-ad21-3dcba7dffa3a" name="MessageOccurrenceSpecification6">
+            <elementDefinition Id="6f571e9d-721a-40e9-be02-b3f659b82ae5" />
+            <covered>
+              <lifelineMoniker Id="9efd3262-4dc0-4813-9361-598b6791f58e" LastKnownName="Manage Posts" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="3c04f4d3-0e60-467e-913e-013fa7095d33" name="MessageOccurrenceSpecification7">
+            <elementDefinition Id="b61ed980-97ef-4a7e-a426-ca2a93a59d08" />
+            <covered>
+              <lifelineMoniker Id="16118545-b4f4-4c67-9740-a7b88634a767" LastKnownName="Posts Manager" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="b2ed577d-62ad-4292-8232-9e6bfd0fe79d" name="BehaviorExecutionSpecification4">
+            <elementDefinition Id="256648fa-afa4-418a-b18b-be34730741ce" />
+            <coveredLifelines>
+              <lifelineMoniker Id="9efd3262-4dc0-4813-9361-598b6791f58e" LastKnownName="Manage Posts" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="e47f8989-6d83-4deb-a9e6-14485324a8d3" LastKnownName="ExecutionOccurrenceSpecification8" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="459d8c86-a3f9-4a9c-8fec-f2d87f4c4033" LastKnownName="ExecutionOccurrenceSpecification7" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="f617ad71-b3db-49f7-84a8-9980aa15dc9b" LastKnownName="MessageOccurrenceSpecification9" />
+              <messageOccurrenceSpecificationMoniker Id="c4606a03-a378-4cc4-8743-bb82479732cb" LastKnownName="MessageOccurrenceSpecification10" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="459d8c86-a3f9-4a9c-8fec-f2d87f4c4033" name="ExecutionOccurrenceSpecification7">
+            <elementDefinition Id="6c750551-f2b0-4642-9ce4-fb212bc60ef0" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="881218c8-a96e-4a7a-bc8c-40991418895a" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="9efd3262-4dc0-4813-9361-598b6791f58e" LastKnownName="Manage Posts" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="f617ad71-b3db-49f7-84a8-9980aa15dc9b" name="MessageOccurrenceSpecification9">
+            <elementDefinition Id="3f0daab9-aac0-4c7d-a2b9-f3b39f38ab27" />
+            <covered>
+              <lifelineMoniker Id="9efd3262-4dc0-4813-9361-598b6791f58e" LastKnownName="Manage Posts" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="1a8b0b4f-6bbd-46d2-b0cd-49e4bc3b7e55" name="MessageOccurrenceSpecification8">
+            <elementDefinition Id="fbc0bd95-5c59-4d02-a71c-71fc379a86b5" />
+            <covered>
+              <lifelineMoniker Id="16118545-b4f4-4c67-9740-a7b88634a767" LastKnownName="Posts Manager" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="c0ee3156-83f5-43b5-a93b-9ac91cca77ce" name="MessageOccurrenceSpecification11">
+            <elementDefinition Id="50948dbb-7301-4207-857b-9bf663d2af5c" />
+            <covered>
+              <lifelineMoniker Id="16118545-b4f4-4c67-9740-a7b88634a767" LastKnownName="Posts Manager" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="c4606a03-a378-4cc4-8743-bb82479732cb" name="MessageOccurrenceSpecification10">
+            <elementDefinition Id="60b67cec-6e80-44a4-b0e5-0f23364c57fa" />
+            <covered>
+              <lifelineMoniker Id="9efd3262-4dc0-4813-9361-598b6791f58e" LastKnownName="Manage Posts" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="e47f8989-6d83-4deb-a9e6-14485324a8d3" name="ExecutionOccurrenceSpecification8">
+            <elementDefinition Id="df29ab80-3688-4ce9-aa6b-82061b631626" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="e018c973-abf6-4111-bcd6-4156bfc9f8dd" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="9efd3262-4dc0-4813-9361-598b6791f58e" LastKnownName="Manage Posts" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="b1dbc942-acfb-4dbe-a098-ec4c72f03f79" name="ExecutionOccurrenceSpecification6">
+            <elementDefinition Id="fb1ce4db-1053-4bac-9c51-8d22242b30e9" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="46004153-04da-4e37-bc67-fe6cacbfb813" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="16118545-b4f4-4c67-9740-a7b88634a767" LastKnownName="Posts Manager" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="38e63619-d29f-414f-8960-e4f40f4b94a5" name="BehaviorExecutionSpecification5">
+            <elementDefinition Id="58996158-6779-4b84-a1a6-619e5ee280cc" />
+            <coveredLifelines>
+              <lifelineMoniker Id="16118545-b4f4-4c67-9740-a7b88634a767" LastKnownName="Posts Manager" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="fee2fb1e-22a6-4b3f-8861-e7247ea4ba7a" LastKnownName="ExecutionOccurrenceSpecification10" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="3f53f7e0-1b56-46b4-adc0-b05b2cac74bc" LastKnownName="ExecutionOccurrenceSpecification9" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="de34cd64-643c-47d3-a098-54e0cfd8b5b8" LastKnownName="MessageOccurrenceSpecification13" />
+              <messageOccurrenceSpecificationMoniker Id="c7efec6e-119e-42a3-a914-00600140af13" LastKnownName="MessageOccurrenceSpecification14" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="3f53f7e0-1b56-46b4-adc0-b05b2cac74bc" name="ExecutionOccurrenceSpecification9">
+            <elementDefinition Id="8b0d3ba3-4634-4946-ad54-c6e31d90c4bb" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="cc503cbf-14c5-4976-a8e8-9046b80d5692" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="16118545-b4f4-4c67-9740-a7b88634a767" LastKnownName="Posts Manager" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="7cf83600-8678-410c-b623-f02c26ab9b32" name="MessageOccurrenceSpecification12">
+            <elementDefinition Id="cc2c55ce-0c94-4dc7-9726-feeb8c5683fe" />
+            <covered>
+              <lifelineMoniker Id="9efd3262-4dc0-4813-9361-598b6791f58e" LastKnownName="Manage Posts" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="de34cd64-643c-47d3-a098-54e0cfd8b5b8" name="MessageOccurrenceSpecification13">
+            <elementDefinition Id="adf77071-10c5-4cb6-8b5d-9433726b14f5" />
+            <covered>
+              <lifelineMoniker Id="16118545-b4f4-4c67-9740-a7b88634a767" LastKnownName="Posts Manager" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="7d9419d3-ddb2-4f6d-ae84-9a7b7a8b4b21" name="LostFoundTarget2">
+            <elementDefinition Id="b3b60d97-0084-416a-bbe0-fe6fe5b32f1c" />
+          </lostFoundTarget>
+          <messageOccurrenceSpecification Id="c7efec6e-119e-42a3-a914-00600140af13" name="MessageOccurrenceSpecification14">
+            <elementDefinition Id="8c007e28-676b-4605-8dfd-cf2680b05b10" />
+            <covered>
+              <lifelineMoniker Id="16118545-b4f4-4c67-9740-a7b88634a767" LastKnownName="Posts Manager" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="fee2fb1e-22a6-4b3f-8861-e7247ea4ba7a" name="ExecutionOccurrenceSpecification10">
+            <elementDefinition Id="c10c9232-f2fb-439f-bb22-262dee4acb90" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="5ad66edb-2081-4c1b-826e-3d8bae22f46c" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="16118545-b4f4-4c67-9740-a7b88634a767" LastKnownName="Posts Manager" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="ece5a508-abef-42d8-b906-4d8f96ea7f12" name="BehaviorExecutionSpecification6">
+            <elementDefinition Id="3f38aa3c-c1cd-4a42-8615-184ea249c5f8" />
+            <coveredLifelines>
+              <lifelineMoniker Id="16118545-b4f4-4c67-9740-a7b88634a767" LastKnownName="Posts Manager" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="5396b2a4-0568-437e-b843-39dbbce23a16" LastKnownName="ExecutionOccurrenceSpecification12" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="e899df90-4c86-4de2-bbbb-296a93c45466" LastKnownName="ExecutionOccurrenceSpecification11" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="449d851e-2e6f-4d3d-9388-9ac1a634ceeb" LastKnownName="MessageOccurrenceSpecification16" />
+              <messageOccurrenceSpecificationMoniker Id="6098b25f-1d2c-4a6b-a035-3b310de2e4d1" LastKnownName="MessageOccurrenceSpecification17" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="e899df90-4c86-4de2-bbbb-296a93c45466" name="ExecutionOccurrenceSpecification11">
+            <elementDefinition Id="d40e59db-6c00-4186-9e5e-e6afd772f093" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="a95b1372-20ab-4a91-9aa9-cfa8ffb4913b" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="16118545-b4f4-4c67-9740-a7b88634a767" LastKnownName="Posts Manager" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="8f053160-8b3f-4a89-9384-59fab2f8ab89" name="MessageOccurrenceSpecification15">
+            <elementDefinition Id="2e2f0337-d27d-4fa5-92e9-10967afe6911" />
+            <covered>
+              <lifelineMoniker Id="9efd3262-4dc0-4813-9361-598b6791f58e" LastKnownName="Manage Posts" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="449d851e-2e6f-4d3d-9388-9ac1a634ceeb" name="MessageOccurrenceSpecification16">
+            <elementDefinition Id="44793990-2339-4e9b-9e9e-62b27cb70272" />
+            <covered>
+              <lifelineMoniker Id="16118545-b4f4-4c67-9740-a7b88634a767" LastKnownName="Posts Manager" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="95ac8d84-81bb-462f-89e4-2975c37036b5" name="LostFoundTarget3">
+            <elementDefinition Id="313ccafe-8508-42c1-818d-a674792d5a9c" />
+          </lostFoundTarget>
+          <messageOccurrenceSpecification Id="6098b25f-1d2c-4a6b-a035-3b310de2e4d1" name="MessageOccurrenceSpecification17">
+            <elementDefinition Id="e6b95088-61cc-4470-9e49-11b4ec1ab5a5" />
+            <covered>
+              <lifelineMoniker Id="16118545-b4f4-4c67-9740-a7b88634a767" LastKnownName="Posts Manager" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="ffa21b02-5453-427e-b624-683f06dbe03b" name="MessageOccurrenceSpecification5">
+            <elementDefinition Id="50effb67-3afb-408b-b7b6-339a3a8e9b5c" />
+            <covered>
+              <lifelineMoniker Id="64efb438-23fe-4746-8ac5-75413cb50943" LastKnownName="Socio Publisher" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="20efc4ef-8639-44f3-9e3b-bd712488eafd" name="MessageOccurrenceSpecification4">
+            <elementDefinition Id="73f96089-dc5e-46a2-9eac-5a90fe6950da" />
+            <covered>
+              <lifelineMoniker Id="9efd3262-4dc0-4813-9361-598b6791f58e" LastKnownName="Manage Posts" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="afac91a1-8217-470b-90b3-ab8b1a9cadc2" name="ExecutionOccurrenceSpecification4">
+            <elementDefinition Id="2fcba233-98f1-440f-958d-bf638a4751b7" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="facff979-669c-40f5-9c9d-cbcb51b38d20" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="9efd3262-4dc0-4813-9361-598b6791f58e" LastKnownName="Manage Posts" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="5396b2a4-0568-437e-b843-39dbbce23a16" name="ExecutionOccurrenceSpecification12">
+            <elementDefinition Id="da515108-30aa-462f-9edf-1888317a97d8" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="e7694d03-253c-4420-a500-1f54737abc78" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="16118545-b4f4-4c67-9740-a7b88634a767" LastKnownName="Posts Manager" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="941f6c9d-69cc-4560-97cf-58ffaf510107" name="ExecutionOccurrenceSpecification2">
+            <elementDefinition Id="3b8b4abc-b85a-472d-a589-468aa8664c82" />
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="579bc339-858f-444f-be71-b69158c858ef" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="64efb438-23fe-4746-8ac5-75413cb50943" LastKnownName="Socio Publisher" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <interactionUse Id="4232445b-673f-4372-9d01-21bea57670fc" name="Keep Fetching and added to user interface">
+            <elementDefinition Id="d0c75bb2-164d-47b8-8351-664c5f38ba65" />
+            <coveredLifelines>
+              <lifelineMoniker Id="64efb438-23fe-4746-8ac5-75413cb50943" LastKnownName="Socio Publisher" />
+              <lifelineMoniker Id="9efd3262-4dc0-4813-9361-598b6791f58e" LastKnownName="Manage Posts" />
+              <lifelineMoniker Id="16118545-b4f4-4c67-9740-a7b88634a767" LastKnownName="Posts Manager" />
+            </coveredLifelines>
+            <interactionUseOccurrenceSpecifications>
+              <interactionUseOccurrenceSpecificationMoniker Id="cefcf97f-339a-4952-b3aa-0872ffc2670a" LastKnownName="InteractionUseOccurrenceSpecification1" />
+              <interactionUseOccurrenceSpecificationMoniker Id="e7e96ed5-e642-4d40-bfcd-d6fe926c7e7d" LastKnownName="InteractionUseOccurrenceSpecification2" />
+              <interactionUseOccurrenceSpecificationMoniker Id="0e4b3665-238a-42ea-a98f-7eeffc194cb2" LastKnownName="InteractionUseOccurrenceSpecification3" />
+            </interactionUseOccurrenceSpecifications>
+          </interactionUse>
+          <interactionUseOccurrenceSpecification Id="e7e96ed5-e642-4d40-bfcd-d6fe926c7e7d" name="InteractionUseOccurrenceSpecification2">
+            <elementDefinition Id="17b5fffe-7ecc-483e-b231-221ed3e0bc0e" />
+            <covered>
+              <lifelineMoniker Id="9efd3262-4dc0-4813-9361-598b6791f58e" LastKnownName="Manage Posts" />
+            </covered>
+          </interactionUseOccurrenceSpecification>
+          <interactionUseOccurrenceSpecification Id="cefcf97f-339a-4952-b3aa-0872ffc2670a" name="InteractionUseOccurrenceSpecification1">
+            <elementDefinition Id="355c3aef-00ea-4f24-8865-88df844c61ea" />
+            <covered>
+              <lifelineMoniker Id="64efb438-23fe-4746-8ac5-75413cb50943" LastKnownName="Socio Publisher" />
+            </covered>
+          </interactionUseOccurrenceSpecification>
+          <interactionUseOccurrenceSpecification Id="0e4b3665-238a-42ea-a98f-7eeffc194cb2" name="InteractionUseOccurrenceSpecification3">
+            <elementDefinition Id="6a53eb3e-6ab4-4e55-b7b9-c45d9be02d5a" />
+            <covered>
+              <lifelineMoniker Id="16118545-b4f4-4c67-9740-a7b88634a767" LastKnownName="Posts Manager" />
+            </covered>
+          </interactionUseOccurrenceSpecification>
+        </fragments>
+        <lifelines>
+          <lifeline Id="64efb438-23fe-4746-8ac5-75413cb50943" name="Socio Publisher" isActor="true" lifelineDisplayName="Socio Publisher">
+            <elementDefinition Id="806217da-93ad-4e9c-b006-34641e1426a0" />
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="2c2765bd-90a1-4b56-8a6e-f4fca40ffeca" LastKnownName="ExecutionOccurrenceSpecification1" />
+              <executionOccurrenceSpecificationMoniker Id="941f6c9d-69cc-4560-97cf-58ffaf510107" LastKnownName="ExecutionOccurrenceSpecification2" />
+              <interactionUseOccurrenceSpecificationMoniker Id="cefcf97f-339a-4952-b3aa-0872ffc2670a" LastKnownName="InteractionUseOccurrenceSpecification1" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="9efd3262-4dc0-4813-9361-598b6791f58e" name="Manage Posts" isActor="false" lifelineDisplayName="Manage Posts">
+            <elementDefinition Id="2c2684ba-305e-41eb-a4dc-e07470375835" />
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="4fb3699c-2978-4c87-af3b-6c76ea340903" LastKnownName="ExecutionOccurrenceSpecification3" />
+              <executionOccurrenceSpecificationMoniker Id="afac91a1-8217-470b-90b3-ab8b1a9cadc2" LastKnownName="ExecutionOccurrenceSpecification4" />
+              <interactionUseOccurrenceSpecificationMoniker Id="e7e96ed5-e642-4d40-bfcd-d6fe926c7e7d" LastKnownName="InteractionUseOccurrenceSpecification2" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="16118545-b4f4-4c67-9740-a7b88634a767" name="Posts Manager" isActor="false" lifelineDisplayName="Posts Manager">
+            <elementDefinition Id="e61ebec5-2479-4a23-aeb2-7f5930a9c1af" />
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="06c69e2f-e79e-42a1-a3e3-a25aeb41f80c" LastKnownName="ExecutionOccurrenceSpecification5" />
+              <executionOccurrenceSpecificationMoniker Id="b1dbc942-acfb-4dbe-a098-ec4c72f03f79" LastKnownName="ExecutionOccurrenceSpecification6" />
+              <executionOccurrenceSpecificationMoniker Id="3f53f7e0-1b56-46b4-adc0-b05b2cac74bc" LastKnownName="ExecutionOccurrenceSpecification9" />
+              <executionOccurrenceSpecificationMoniker Id="fee2fb1e-22a6-4b3f-8861-e7247ea4ba7a" LastKnownName="ExecutionOccurrenceSpecification10" />
+              <executionOccurrenceSpecificationMoniker Id="e899df90-4c86-4de2-bbbb-296a93c45466" LastKnownName="ExecutionOccurrenceSpecification11" />
+              <executionOccurrenceSpecificationMoniker Id="5396b2a4-0568-437e-b843-39dbbce23a16" LastKnownName="ExecutionOccurrenceSpecification12" />
+              <interactionUseOccurrenceSpecificationMoniker Id="0e4b3665-238a-42ea-a98f-7eeffc194cb2" LastKnownName="InteractionUseOccurrenceSpecification3" />
+            </topLevelOccurrences>
+          </lifeline>
+        </lifelines>
+        <messages>
+          <message Id="bb0c1895-44df-4dc4-aecf-9d19b6f17a13" name="End User" messageKind="Found" messageSort="AsynchCall" createSelfMessage="false">
+            <elementDefinition Id="997364aa-274c-4ab7-80d0-1dfe7c5b790a" />
+            <sendEvent>
+              <lostFoundTargetMoniker Id="bf39daef-efb2-4717-b880-1856d7bf15e5" LastKnownName="LostFoundTarget1" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="3f71757a-a1b3-43f1-966c-2147b6b137a2" LastKnownName="MessageOccurrenceSpecification1" />
+            </receiveEvent>
+          </message>
+          <message Id="7fddccbb-5f65-4ee8-ba49-aeb4860ff618" name="Get the posts of campaign X" messageKind="Complete" messageSort="CreateMessage" createSelfMessage="false">
+            <elementDefinition Id="53e596df-f0b7-4f98-a573-8d5fe0789a75" />
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="6eed7624-4d4f-453d-ae8a-342b51148c09" LastKnownName="MessageOccurrenceSpecification2" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="1c74a676-827e-4169-a7b8-05c8d19baea3" LastKnownName="MessageOccurrenceSpecification3" />
+            </receiveEvent>
+          </message>
+          <message Id="50790a28-1351-417d-baff-9024a377bf21" name="Get all posts of specified PostQueuedStatus" messageKind="Complete" messageSort="AsynchCall" createSelfMessage="false">
+            <elementDefinition Id="bd3de1fe-3555-4d3b-b56f-e2b3daafa9ed" />
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="4db999e2-2c1b-47fc-ad21-3dcba7dffa3a" LastKnownName="MessageOccurrenceSpecification6" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="3c04f4d3-0e60-467e-913e-013fa7095d33" LastKnownName="MessageOccurrenceSpecification7" />
+            </receiveEvent>
+          </message>
+          <message Id="6ffffbe2-1f3a-4bec-a7ce-f94b485feb49" name="Add to User Interface" messageKind="Complete" messageSort="CreateMessage" createSelfMessage="false">
+            <elementDefinition Id="1fca8420-c93f-4594-8fbb-abf97e3ca1fa" />
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="1a8b0b4f-6bbd-46d2-b0cd-49e4bc3b7e55" LastKnownName="MessageOccurrenceSpecification8" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="f617ad71-b3db-49f7-84a8-9980aa15dc9b" LastKnownName="MessageOccurrenceSpecification9" />
+            </receiveEvent>
+          </message>
+          <message Id="0b104eb3-0980-41f1-bb8f-556e06eb0ff6" name="Added Confirmation" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <elementDefinition Id="68301174-03c6-4ee3-83c3-401acaa479e9" />
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="c4606a03-a378-4cc4-8743-bb82479732cb" LastKnownName="MessageOccurrenceSpecification10" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="c0ee3156-83f5-43b5-a93b-9ac91cca77ce" LastKnownName="MessageOccurrenceSpecification11" />
+            </receiveEvent>
+          </message>
+          <message Id="6c651d16-c50d-4e89-8ada-0ab2ff613fcb" name="Send to Publish Now" messageKind="Complete" messageSort="AsynchCall" createSelfMessage="false">
+            <elementDefinition Id="0fd039c8-bfc2-4f0b-b1fc-41d9bd617bb7" />
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="7cf83600-8678-410c-b623-f02c26ab9b32" LastKnownName="MessageOccurrenceSpecification12" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="de34cd64-643c-47d3-a098-54e0cfd8b5b8" LastKnownName="MessageOccurrenceSpecification13" />
+            </receiveEvent>
+          </message>
+          <message Id="38f6e85e-9910-44b2-be53-ba305b41dad6" name="Call to Publisher Job Process" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <elementDefinition Id="162023ee-c865-41d1-a6f3-2d643b82f386" />
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="c7efec6e-119e-42a3-a914-00600140af13" LastKnownName="MessageOccurrenceSpecification14" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="7d9419d3-ddb2-4f6d-ae84-9a7b7a8b4b21" LastKnownName="LostFoundTarget2" />
+            </receiveEvent>
+          </message>
+          <message Id="c1f2a73a-0181-4a73-8b34-1ebce8e5fd3d" name="Readd Or Delete Or Edit Posts" messageKind="Complete" messageSort="AsynchCall" createSelfMessage="false">
+            <elementDefinition Id="0ca0c4db-74b0-472e-ac72-f0913ebe1f6d" />
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="8f053160-8b3f-4a89-9384-59fab2f8ab89" LastKnownName="MessageOccurrenceSpecification15" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="449d851e-2e6f-4d3d-9388-9ac1a634ceeb" LastKnownName="MessageOccurrenceSpecification16" />
+            </receiveEvent>
+          </message>
+          <message Id="6e0c488a-8554-46ac-9bfb-45fdc2c026e4" name="Update Bin files" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <elementDefinition Id="5195924e-796b-4ec1-a954-7646a3776a3b" />
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="6098b25f-1d2c-4a6b-a035-3b310de2e4d1" LastKnownName="MessageOccurrenceSpecification17" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="95ac8d84-81bb-462f-89e4-2975c37036b5" LastKnownName="LostFoundTarget3" />
+            </receiveEvent>
+          </message>
+          <message Id="4239a271-9b41-47e6-84fc-3d3b229dc881" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <elementDefinition Id="c88e391f-dec3-4728-a2c7-a2d464a18b66" />
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="20efc4ef-8639-44f3-9e3b-bd712488eafd" LastKnownName="MessageOccurrenceSpecification4" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="ffa21b02-5453-427e-b624-683f06dbe03b" LastKnownName="MessageOccurrenceSpecification5" />
+            </receiveEvent>
+          </message>
+        </messages>
+      </interaction>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="2888cbe4-f1ba-4670-a341-17ccac57b6c3" name="ExecutionEvent">
+        <elementDefinition Id="3e36e425-c4df-4065-a749-749df7eaf099" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="579bc339-858f-444f-be71-b69158c858ef" name="ExecutionEvent">
+        <elementDefinition Id="9f600755-6a42-4c6f-82c5-97126d03247c" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="3d3a074d-9efb-498b-83e6-47554c007b3d" name="ExecutionEvent">
+        <elementDefinition Id="6acec1db-772a-4a06-9558-9eac72f48c07" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="facff979-669c-40f5-9c9d-cbcb51b38d20" name="ExecutionEvent">
+        <elementDefinition Id="e1007b9f-00d9-46f9-859f-c9f4d9d29877" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="3aa643f6-f9c5-415b-91a4-6d7ebc03a46d" name="ExecutionEvent">
+        <elementDefinition Id="a7669fc1-bb79-4933-88d7-e9759bd1191f" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="46004153-04da-4e37-bc67-fe6cacbfb813" name="ExecutionEvent">
+        <elementDefinition Id="98550ea0-f4ca-4625-a206-106d19d7419c" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="881218c8-a96e-4a7a-bc8c-40991418895a" name="ExecutionEvent">
+        <elementDefinition Id="c14b172a-bb28-45f7-8c16-148ab47a891d" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="e018c973-abf6-4111-bcd6-4156bfc9f8dd" name="ExecutionEvent">
+        <elementDefinition Id="93d429e3-9483-42f9-861a-2125bc7d7647" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="cc503cbf-14c5-4976-a8e8-9046b80d5692" name="ExecutionEvent">
+        <elementDefinition Id="b39e23b4-3813-45c1-a752-55a8a17ec525" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="5ad66edb-2081-4c1b-826e-3d8bae22f46c" name="ExecutionEvent">
+        <elementDefinition Id="ac98a57f-d68e-4640-9f52-1b318b0a8d2c" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="a95b1372-20ab-4a91-9aa9-cfa8ffb4913b" name="ExecutionEvent">
+        <elementDefinition Id="2a0ec6d3-fcc5-4eba-97c8-6b57e6f38c2f" />
+      </executionEvent>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="e7694d03-253c-4420-a500-1f54737abc78" name="ExecutionEvent">
+        <elementDefinition Id="9e70a799-2d18-4cfb-a461-957102f23e3e" />
+      </executionEvent>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="add9940b-3c41-4a70-8a7d-60a108225ae3" name="DominatorHouseSocialModeling">
+    <elementDefinition Id="684edace-4e6a-4e55-aaa6-c524a34915f1" />
+  </package>
+</SequenceDesignerModel>

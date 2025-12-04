@@ -1,0 +1,102 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.CustomControl.FooterControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Border
+        VerticalAlignment="Center"
+        BorderBrush="Gray"
+        BorderThickness="1"
+        CornerRadius="10">
+        <Border.Effect>
+            <DropShadowEffect
+                BlurRadius="10"
+                Direction="270"
+                ShadowDepth="5"
+                Color="{DynamicResource AccentBaseColor}" />
+        </Border.Effect>
+        <Grid Name="mainGrid" Margin="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Border
+                Grid.Column="0"
+                Margin="2"
+                HorizontalAlignment="Left"
+                BorderBrush="Gray"
+                BorderThickness="1"
+                CornerRadius="10">
+                <Button
+                    Name="btnSelectAccount"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Command="{Binding SelectAccountCommand}"
+                    Cursor="Hand"
+                    Style="{StaticResource ButtonStyle}"
+                    Visibility="{Binding SelectAccountVisibility, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle
+                                Width="15"
+                                Height="15"
+                                Fill="{DynamicResource TextColorBrushAccordingTheme}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_group_add}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                            <TextBlock
+                                Margin="6,0"
+                                Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                Text="{DynamicResource LangKeySelectAccountS}" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </Border>
+
+            <Border
+                Grid.Column="2"
+                Margin="2"
+                Padding="9"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                BorderBrush="Gray"
+                BorderThickness="1"
+                CornerRadius="10">
+                <TextBlock
+                    Name="txtblkSelectedAccountCount"
+                    Background="Transparent"
+                    FontSize="16"
+                    FontWeight="SemiBold"
+                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                    Text="{Binding NoOfAccountsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </Border>
+            <Border
+                Grid.Column="1"
+                Width="160"
+                Margin="2"
+                BorderBrush="Gray"
+                BorderThickness="1"
+                CornerRadius="10">
+                <Button
+                    Name="btnCampaignManager"
+                    Background="Transparent"
+                    Command="{Binding CreateCampaignCommand}"
+                    CommandParameter="{Binding}"
+                    Cursor="Hand"
+                    Style="{StaticResource ButtonStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <AccessText Foreground="{DynamicResource TextColorBrushAccordingTheme}" Text="{Binding CampaignManager}" />
+                    </StackPanel>
+                </Button>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

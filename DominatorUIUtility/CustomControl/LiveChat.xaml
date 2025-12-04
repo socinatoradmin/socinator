@@ -1,0 +1,460 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.CustomControl.LiveChat"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviour="clr-namespace:DominatorUIUtility.Behaviours"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converter="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControls="clr-namespace:DominatorUIUtility.CustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:enums="clr-namespace:DominatorHouseCore.Enums;assembly=DominatorHouseCore"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converter:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
+        <converter:MessegeTypeToHorizontalAlignmentConverter x:Key="MessegeTypeToHorizontalAlignmentConverter" />
+        <converter:EpochToDateTimeConverter x:Key="EpochToDateTimeConverter" />
+        <converter:ImageCountToRowHeightConverter x:Key="ImageCountToRowHeightConverter" />
+        <converter:MessageTypeTovisibilityConverter x:Key="MessageTypeTovisibilityConverter" />
+        <converter:MessageTypeTovisibilityConverter x:Key="MessageTypeTovisibilityConverterInverted" IsReversed="True" />
+        <converter:MessageTypeToColorConverter x:Key="MessageTypeToColorConverter" />
+        <converter:ChatImageCountToColumnConverter x:Key="ChatImageCountToColumnConverter" />
+        <converter:ChatImageCountToHeightConverter x:Key="ChatImageCountToHeightConverter" />
+    </UserControl.Resources>
+
+    <Grid x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Background="{DynamicResource AccentBaseColorBrush}">
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    Command="{Binding ClearChatListCommand}"
+                    Cursor="Hand"
+                    Foreground="White">
+                    <Button.Content>
+                        <TextBlock Text="{DynamicResource LangKeyClearChatList}">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="TextDecorations" Value="Underline" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Button.Content>
+                </Button>
+                <Button
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    Command="{Binding FriendSelectionChangedCommand}"
+                    Cursor="Hand"
+                    Foreground="White">
+                    <Button.Content>
+                        <TextBlock Text="{DynamicResource LangKeyRefreshChat}">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="TextDecorations" Value="Underline" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Button.Content>
+
+                </Button>
+
+                <ComboBox
+                    x:Name="Accounts"
+                    Width="200"
+                    Margin="20,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    behaviour:SelectionChangedBehaviour.Command="{Binding UserSelectionChangedCommand}"
+                    ItemsSource="{Binding LiveChatModel.AccountNames}"
+                    SelectedIndex="0"
+                    SelectedItem="{Binding LiveChatModel.SelectedAccount}" />
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="Auto"
+                    MinWidth="350"
+                    MaxWidth="420" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*" MinWidth="400" />
+            </Grid.ColumnDefinitions>
+            <ListBox
+                x:Name="Senders"
+                Margin="0,5"
+                behaviour:SelectionChangedBehaviour.Command="{Binding FriendSelectionChangedCommand}"
+                ItemsSource="{Binding LiveChatModel.LstSender}"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                SelectedItem="{Binding LiveChatModel.SenderDetails}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Ellipse
+                                Width="60"
+                                Height="60"
+                                Margin="5">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding SenderImage}" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <StackPanel Grid.Column="1" Margin="5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="150" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock
+                                        x:Name="Sender"
+                                        FontWeight="Bold"
+                                        Text="{Binding SenderName}"
+                                        TextTrimming="CharacterEllipsis" />
+                                    <TextBlock
+                                        x:Name="LastMessegeDate"
+                                        Grid.Column="1"
+                                        Margin="10,0"
+                                        HorizontalAlignment="Right"
+                                        Text="{Binding LastMessegedate, Converter={StaticResource EpochToDateTimeConverter}}"
+                                        TextTrimming="WordEllipsis" />
+                                </Grid>
+                                <TextBlock
+                                    x:Name="LastMessege"
+                                    Height="30"
+                                    Margin="0,5,0,0"
+                                    Text="{Binding LastMesseges}"
+                                    TextTrimming="CharacterEllipsis" />
+                                <Separator Margin="0,20,0,0" />
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <GridSplitter
+                Grid.Column="1"
+                Width="5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Stretch"
+                Background="Gainsboro"
+                ResizeBehavior="PreviousAndNext"
+                ResizeDirection="Columns">
+                <GridSplitter.Style>
+                    <Style TargetType="GridSplitter">
+                        <Setter Property="Visibility" Value="Visible" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding LiveChatModel.LstSender.Count}" Value="0">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </GridSplitter.Style>
+            </GridSplitter>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="{Binding LiveChatModel.ImageCount, Converter={StaticResource ImageCountToRowHeightConverter}}" />
+                </Grid.RowDefinitions>
+                <!--<ScrollViewer>-->
+                <ListBox
+                    ItemsSource="{Binding LiveChatModel.LstChat}"
+                    ScrollViewer.CanContentScroll="False"
+                    ScrollViewer.VerticalScrollBarVisibility="Visible"
+                    Visibility="{Binding ElementName=Senders, Path=SelectedIndex, Converter={StaticResource IntToVisibilityConverter}}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Focusable" Value="False" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="0,15" Padding="5">
+                                <Grid>
+                                    <Grid HorizontalAlignment="{Binding Type, Converter={StaticResource MessegeTypeToHorizontalAlignmentConverter}}">
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <StackPanel>
+                                            <Border CornerRadius="4" Visibility="{Binding MessegeType, Converter={StaticResource MessageTypeTovisibilityConverterInverted}}">
+                                                <ListView
+                                                    x:Name="AccountListView"
+                                                    Grid.Row="1"
+                                                    AlternationCount="{Binding Items.Count, RelativeSource={RelativeSource Self}}"
+                                                    BorderBrush="Transparent"
+                                                    ItemsSource="{Binding ListMediaUrls}"
+                                                    ScrollViewer.CanContentScroll="False"
+                                                    ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                                    <ListView.Resources>
+                                                        <SolidColorBrush x:Key="ItemBackgroundHover" Color="Transparent" />
+                                                    </ListView.Resources>
+                                                    <ListView.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <UniformGrid Columns="{Binding ListMediaUrls, Converter={StaticResource ChatImageCountToColumnConverter}}" />
+                                                        </ItemsPanelTemplate>
+                                                    </ListView.ItemsPanel>
+                                                    <ListView.ItemContainerStyle>
+                                                        <Style TargetType="ListViewItem">
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="{StaticResource ItemBackgroundHover}" />
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </ListView.ItemContainerStyle>
+                                                    <ListView.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <!--<Border Height="60" Width="60" BorderBrush="Green" BorderThickness="4" CornerRadius="16">-->
+                                                            <Rectangle
+                                                                Width="{Binding DataContext.ListMediaUrls, RelativeSource={RelativeSource AncestorType=ListView}, Converter={StaticResource ChatImageCountToHeightConverter}}"
+                                                                Height="{Binding DataContext.ListMediaUrls, RelativeSource={RelativeSource AncestorType=ListView}, Converter={StaticResource ChatImageCountToHeightConverter}}"
+                                                                Margin="5"
+                                                                Cursor="Hand"
+                                                                RadiusX="10"
+                                                                RadiusY="10">
+                                                                <Rectangle.Fill>
+                                                                    <!--<Grid Background="Red">-->
+                                                                    <ImageBrush x:Name="myImage" ImageSource="{Binding}" />
+                                                                    <!--</Grid>-->
+                                                                </Rectangle.Fill>
+                                                            </Rectangle>
+                                                            <!--</Border>-->
+                                                        </DataTemplate>
+                                                    </ListView.ItemTemplate>
+                                                </ListView>
+                                            </Border>
+
+                                            <Border
+                                                Padding="10"
+                                                Background="{Binding MessegeType, Converter={StaticResource MessageTypeToColorConverter}}"
+                                                CornerRadius="10"
+                                                Visibility="{Binding MessegeType, Converter={StaticResource MessageTypeTovisibilityConverter}}">
+                                                <Grid>
+                                                    <TextBox
+                                                        x:Name="Messege"
+                                                        MaxWidth="200"
+                                                        Margin="10,5"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Background="Transparent"
+                                                        BorderThickness="0"
+                                                        FontSize="13"
+                                                        FontWeight="SemiBold"
+                                                        Foreground="White"
+                                                        IsReadOnly="True"
+                                                        Text="{Binding Messeges}"
+                                                        Visibility="{Binding MessegeType, Converter={StaticResource MessageTypeTovisibilityConverter}}" />
+
+
+                                                    <!--<customControls:ChatMediaContainer ScrollViewer.CanContentScroll="False" ListMediaUrls="{Binding LiveChatModel.ListMediaUrls}" Visibility="{Binding MessegeType, Converter={StaticResource MessageTypeTovisibilityConverterInverted}}"/>-->
+                                                </Grid>
+                                            </Border>
+                                        </StackPanel>
+
+
+                                        <!--  Chat bubble  -->
+                                        <Path
+                                            Grid.Row="1"
+                                            Margin="15,-1,15,0"
+                                            HorizontalAlignment="{Binding Type, Converter={StaticResource MessegeTypeToHorizontalAlignmentConverter}}"
+                                            Panel.ZIndex="1"
+                                            Data="M 0,0 L 10,10 L 20,0 L 0,0"
+                                            Fill="{Binding MessegeType, Converter={StaticResource MessageTypeToColorConverter}}"
+                                            Stroke="Black"
+                                            StrokeThickness="0" />
+
+                                        <!--  Time containers  -->
+                                        <StackPanel
+                                            Name="ExtraDetails"
+                                            Grid.Row="2"
+                                            HorizontalAlignment="{Binding Type, Converter={StaticResource MessegeTypeToHorizontalAlignmentConverter}}"
+                                            Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Time, Converter={StaticResource EpochToDateTimeConverter}}" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <!--</ScrollViewer>-->
+
+
+                <Border
+                    Grid.Row="1"
+                    Margin="5,0,0,0"
+                    BorderBrush="Gainsboro"
+                    BorderThickness="2"
+                    Visibility="{Binding ElementName=Senders, Path=SelectedIndex, Converter={StaticResource IntToVisibilityConverter}}">
+                    <StackPanel Orientation="Vertical">
+
+                        <!--<Grid.RowDefinitions>
+                            <RowDefinition MinHeight="105" MaxHeight="110"/>
+                            <RowDefinition MinHeight="50" MaxHeight="114"/>
+                        </Grid.RowDefinitions>-->
+
+                        <customControls:ChatImageContainer
+                            ContolBackground="White"
+                            ImageHeight="100"
+                            ImageWidth="100"
+                            List_SelectedImages="{Binding LiveChatModel.LstImages}"
+                            RadiusX="20"
+                            RadiusY="20"
+                            Visibility="Visible" />
+                        <Grid
+                            MinHeight="50"
+                            MaxHeight="114"
+                            Background="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+
+                            <!--  Attach button  -->
+
+                            <Button
+                                VerticalAlignment="Center"
+                                Background="White"
+                                Command="{Binding AttachFileCommand}">
+                                <Button.Content>
+                                    <Rectangle
+                                        Width="15"
+                                        Height="25"
+                                        HorizontalAlignment="Center"
+                                        Fill="Gray">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_paperclip}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                </Button.Content>
+                                <Button.Style>
+                                    <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="Button">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=SocialNetworks}" Value="{x:Static enums:SocialNetworks.Quora}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+
+
+                            <!--  Message box  -->
+
+                            <TextBox
+                                x:Name="TxtMessege"
+                                Grid.Column="1"
+                                Height="40"
+                                VerticalAlignment="Center"
+                                controls:TextBoxHelper.Watermark="{DynamicResource LangKeyWriteAMessage}"
+                                AcceptsReturn="True"
+                                AcceptsTab="True"
+                                BorderThickness="0"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Text="{Binding LiveChatModel.TextMessage, Mode=TwoWay}"
+                                TextWrapping="Wrap"
+                                VerticalScrollBarVisibility="Auto" />
+
+
+                            <StackPanel
+                                Grid.Column="2"
+                                Margin="0,0,8,0"
+                                VerticalAlignment="Top"
+                                Orientation="Horizontal">
+
+
+                                <!--  Emoji button  -->
+                                <!--<Button Background="Transparent" Command="{Binding EmojiCommand}" Content="😄" FontWeight="Bold" FontSize="30" Name="BtnEmoji"/>
+                            <Popup IsOpen="{Binding IsPopupOpen}" Name="LstEmoji"  MaxHeight="300"   AllowsTransparency="True"
+                                   PopupAnimation="Fade"  Focusable="False" PlacementTarget="{Binding ElementName=BtnEmoji}"
+                                   Placement="Top">
+
+                                <Border BorderThickness="1" BorderBrush="Gainsboro"  CornerRadius="3" Padding="2" Margin="0,0,12,0">
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="5" Opacity="0.4"/>
+                                    </Border.Effect>
+                                    <ListBox Focusable="False" Foreground="Black" BorderThickness="0"
+                                                 ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding LstEmojiSmileysAndPeople}">
+                                        <ListBox.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <UniformGrid Columns="5" />
+                                            </ItemsPanelTemplate>
+                                        </ListBox.ItemsPanel>
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Background="Transparent" ToolTipService.ToolTip="{Binding Name}" Text="{Binding Value}"/>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+
+
+                                </Border>
+                            </Popup>-->
+                                <!--  Send button  -->
+
+                                <Button
+                                    x:Name="BtnSend"
+                                    Padding="8"
+                                    Background="Transparent"
+                                    Command="{Binding SendMessageCommand}">
+                                    <Button.Content>
+                                        <Rectangle
+                                            Width="30"
+                                            Height="30"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Fill="Gray">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Stretch="Fill">
+                                                    <VisualBrush.Visual>
+                                                        <Path
+                                                            Canvas.Left="11.0833"
+                                                            Canvas.Top="17.4167"
+                                                            Data="M17.218,2.268L2.477,8.388C2.13,8.535,2.164,9.05,2.542,9.134L9.33,10.67l1.535,6.787c0.083,0.377,0.602,0.415,0.745,0.065l6.123-14.74C17.866,2.46,17.539,2.134,17.218,2.268 M3.92,8.641l11.772-4.89L9.535,9.909L3.92,8.641z M11.358,16.078l-1.268-5.613l6.157-6.157L11.358,16.078z"
+                                                            Fill="Gainsboro"
+                                                            Stretch="Fill" />
+
+                                                    </VisualBrush.Visual>
+                                                </VisualBrush>
+                                            </Rectangle.OpacityMask>
+                                            <Rectangle.LayoutTransform>
+                                                <RotateTransform Angle="45" />
+                                            </Rectangle.LayoutTransform>
+                                        </Rectangle>
+                                    </Button.Content>
+
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                </Border>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

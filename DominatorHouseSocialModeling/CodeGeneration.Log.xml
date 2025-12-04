@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///C:/PROGRAM FILES (X86)/MICROSOFT VISUAL STUDIO 14.0/COMMON7/IDE/EXTENSIONS/MICROSOFT/ARCHITECTURE TOOLS/EXTENSIBILITY/Logging/CodeGenLog.xslt"?>
+<Log xmlns="http://schemas.microsoft.com/VisualStudio/2010/CodeGen.RE.Log" Label="Code Generation/Text Transformation Log">
+  <MessageClass Name="Message" Label="Message" Option="Show informational messages" />
+  <MessageClass Name="Warning" Label="Warning" Option="Show warnings" />
+  <MessageClass Name="Error" Label="Error" Option="Show errors" />
+  <MessageClass Name="Property" Label="Property" Option="Show metadata" />
+  <MessageClass Name="Diagnostic" Label="Message" Option="Show diagnostic messages" />
+  <Message Timestamp="2018-07-25T17:37:58" Importance="High" Text="Code generation or text transformation started." />
+  <Message Timestamp="2018-07-25T17:37:59" Importance="Diagnostic" Text="Name = EnumTemplate" />
+  <Message Timestamp="2018-07-25T17:37:59" Importance="Diagnostic" Text="Overwrite = True" />
+  <Message Timestamp="2018-07-25T17:37:59" Importance="Diagnostic" Text="ProjectPath = ..\DominatorHouseSocialModelingLib\DominatorHouseSocialModelingLib.csproj" />
+  <Message Timestamp="2018-07-25T17:37:59" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
+  <Message Timestamp="2018-07-25T17:37:59" Importance="Diagnostic" Text="TargetName = {Name}" />
+  <Message Timestamp="2018-07-25T17:37:59" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\EnumTemplate.t4" />
+  <Message Timestamp="2018-07-25T17:37:59" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\EnumTemplate.t4" />
+  <Message Timestamp="2018-07-25T17:37:59" Importance="Medium" Text="DominatorHouseSocialModeling's Text Template Binding: 'EnumTemplate' will apply EnumTemplate.t4 to: 'DominatorHouseSocialModeling::Social Networks' -  (Enumeration) " />
+  <Message Timestamp="2018-07-25T17:38:27" Importance="Medium" Text="Project Added: D:\2018\Projects\DominatorHouse\dominatorhouse-social\DominatorHouseSocialModelingLib\DominatorHouseSocialModelingLib.csproj" />
+  <Message Timestamp="2018-07-25T17:38:27" Importance="Medium" Text="'DominatorHouseSocialModeling::Social Networks' -  (Enumeration) : success (file created) - D:\2018\Projects\DominatorHouse\dominatorhouse-social\DominatorHouseSocialModelingLib\GeneratedCode\Social Networks.cs" />
+  <Message Timestamp="2018-07-25T17:38:27" Importance="High" Text="Code generation complete. Errors: 0. Warnings: 0." />
+</Log>

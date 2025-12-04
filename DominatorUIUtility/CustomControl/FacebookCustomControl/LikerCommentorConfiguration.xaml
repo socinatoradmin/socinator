@@ -1,0 +1,232 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.CustomControl.FacebookCustomControl.LikerCommentorConfiguration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <StackPanel Name="MainGrid" Orientation="Vertical">
+        <StackPanel Visibility="{Binding IsLikeOptionVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox
+                    Name="ChckLikeFilters"
+                    Margin="5,5,0,5"
+                    Content="{DynamicResource LangKeyLike}"
+                    FontSize="13"
+                    FontWeight="SemiBold"
+                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                    IsChecked="{Binding LikerCommentorConfig.IsLikeTypeFilterChkd}" />
+                <TextBlock
+                    Margin="4"
+                    FontSize="13"
+                    FontWeight="SemiBold"
+                    Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                    Text="{DynamicResource LangKeySelectDesiredReactionsBelow}"
+                    Visibility="{Binding IsLikeTypeFilterRequired, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Visibility="{Binding IsLikeTypeFilterRequired, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel
+                    Margin="25,0"
+                    Orientation="Horizontal"
+                    Visibility="{Binding LikerCommentorConfig.IsLikeTypeFilterChkd, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <RadioButton
+                        Name="Like"
+                        Margin="5,5,0,5"
+                        Checked="Liketype_checked"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        GroupName="ReactionType"
+                        IsChecked="{Binding LikerCommentorConfig.IsLikeFilterChkd}"
+                        Unchecked="Liketype_Unchecked">
+                        <RadioButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Height="30" Source="/DominatorUIUtility;component/Images/Like.png" />
+                                <TextBlock
+                                    Name="TxtBlkLike"
+                                    VerticalAlignment="Center"
+                                    FontWeight="SemiBold"
+                                    Text="{DynamicResource LangKeyLike}" />
+                            </StackPanel>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    <RadioButton
+                        Name="Love"
+                        Margin="25,5,0,5"
+                        Checked="Liketype_checked"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        GroupName="ReactionType"
+                        IsChecked="{Binding LikerCommentorConfig.IsLoveFilterChkd}"
+                        Unchecked="Liketype_Unchecked">
+                        <RadioButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Height="30" Source="/DominatorUIUtility;component/Images/Love.png" />
+                                <TextBlock
+                                    Name="TxtBlkLove"
+                                    VerticalAlignment="Center"
+                                    FontWeight="SemiBold"
+                                    Text="{DynamicResource LangKeyLove}" />
+                            </StackPanel>
+                        </RadioButton.Content>
+                    </RadioButton>
+
+                    <RadioButton
+                        Name="Care"
+                        Margin="25,5,0,5"
+                        Checked="Liketype_checked"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        GroupName="ReactionType"
+                        IsChecked="{Binding LikerCommentorConfig.IsCareFilterChkd}"
+                        Unchecked="Liketype_Unchecked">
+                        <RadioButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Height="30" Source="/DominatorUIUtility;component/Images/Care.png" />
+                                <TextBlock
+                                    Name="TxtBlkCare"
+                                    VerticalAlignment="Center"
+                                    FontWeight="SemiBold"
+                                    Text="{DynamicResource LangKeyCare}" />
+                            </StackPanel>
+                        </RadioButton.Content>
+                    </RadioButton>
+
+                    <RadioButton
+                        Name="Haha"
+                        Margin="25,5,0,5"
+                        Checked="Liketype_checked"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        GroupName="ReactionType"
+                        IsChecked="{Binding LikerCommentorConfig.IsHahaFilterChkd}"
+                        Unchecked="Liketype_Unchecked">
+                        <RadioButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Height="30" Source="/DominatorUIUtility;component/Images/haha.png" />
+                                <TextBlock
+                                    Name="TxtBlkHaha"
+                                    VerticalAlignment="Center"
+                                    FontWeight="SemiBold"
+                                    Text="{DynamicResource LangKeyHaha}" />
+                            </StackPanel>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    <RadioButton
+                        Name="Wow"
+                        Margin="25,5,0,5"
+                        Checked="Liketype_checked"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        GroupName="ReactionType"
+                        IsChecked="{Binding LikerCommentorConfig.IsWowFilterChkd}"
+                        Unchecked="Liketype_Unchecked">
+                        <RadioButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Height="30" Source="/DominatorUIUtility;component/Images/wow.png" />
+                                <TextBlock
+                                    Name="TxtBlkWow"
+                                    VerticalAlignment="Center"
+                                    FontWeight="SemiBold"
+                                    Text="{DynamicResource LangKeyWow}" />
+                            </StackPanel>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    <RadioButton
+                        Name="Sad"
+                        Margin="25,5,0,5"
+                        Checked="Liketype_checked"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        GroupName="ReactionType"
+                        IsChecked="{Binding LikerCommentorConfig.IsSadFilterChkd}"
+                        Unchecked="Liketype_Unchecked">
+                        <RadioButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Height="30" Source="/DominatorUIUtility;component/Images/sad.png" />
+                                <TextBlock
+                                    Name="TxtBlkSad"
+                                    VerticalAlignment="Center"
+                                    FontWeight="SemiBold"
+                                    Text="{DynamicResource LangKeySad}" />
+                            </StackPanel>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    <RadioButton
+                        Name="Angry"
+                        Margin="25,5,0,5"
+                        Checked="Liketype_checked"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        GroupName="ReactionType"
+                        IsChecked="{Binding UserFilter.GenderFilters.IsAngryFilterChkd}"
+                        Unchecked="Liketype_Unchecked">
+                        <RadioButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Height="30" Source="/DominatorUIUtility;component/Images/angry.png" />
+                                <TextBlock
+                                    Name="TxtBlkAngry"
+                                    VerticalAlignment="Center"
+                                    FontWeight="SemiBold"
+                                    Text="{DynamicResource LangKeyAngry}" />
+                            </StackPanel>
+                        </RadioButton.Content>
+                    </RadioButton>
+                </StackPanel>
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Visibility="{Binding IsCommentOptionVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+            <CheckBox
+                Name="ChckCommentFilters"
+                Margin="5,5"
+                Content="{DynamicResource LangKeyComment}"
+                FontSize="13"
+                FontWeight="SemiBold"
+                Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                IsChecked="{Binding LikerCommentorConfig.IsCommentFilterChecked}" />
+
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        Name="ChckSpintax"
+                        Margin="25,5,15,0"
+                        Content="{DynamicResource LangKeySpintax}"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        IsChecked="{Binding LikerCommentorConfig.IsSpintaxChecked}"
+                        ToolTip="{StaticResource LangKeyMessageSpintaxFormat}"
+                        Visibility="{Binding LikerCommentorConfig.IsCommentFilterChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <CheckBox
+                        Name="ChckNewLineComment"
+                        Margin="25,5,15,0"
+                        Content="{DynamicResource LangKeyAddMultipleCommentsSeparatedByNewLine}"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                        IsChecked="{Binding LikerCommentorConfig.IsNewLineSepratedCommentsChecked}"
+                        Visibility="{Binding LikerCommentorConfig.IsCommentFilterChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </StackPanel>
+                <customControl:CommentControl
+                    x:Name="CommentorConfigControl"
+                    Margin="20,5"
+                    HorizontalAlignment="Left"
+                    AddCommentToListChanged="Comment_AddCommentToListChanged"
+                    AddCommentsCommand="{Binding AddCommentsBindCommand}"
+                    CommandParameter="{Binding ElementName=CommentorConfigControl}"
+                    Comments="{Binding LikerCommentorConfig.ManageCommentModel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Loaded="CommentorConfigControl_Loaded"
+                    Visibility="{Binding LikerCommentorConfig.IsCommentFilterChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <customControl:ManageComment LstManageCommentModel="{Binding LikerCommentorConfig.LstManageCommentModel}" Visibility="{Binding LikerCommentorConfig.IsCommentFilterChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            </StackPanel>
+        </StackPanel>
+
+    </StackPanel>
+
+</UserControl>

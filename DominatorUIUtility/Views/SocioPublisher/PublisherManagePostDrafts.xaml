@@ -1,0 +1,535 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.Views.SocioPublisher.PublisherManagePostDrafts"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviours="clr-namespace:DominatorUIUtility.Behaviours"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customcontrol="clr-namespace:DominatorUIUtility.Views.SocioPublisher.CustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:socioPublisher="clr-namespace:DominatorHouseCore.Enums.SocioPublisher;assembly=DominatorHouseCore"
+    x:Name="DraftPostList"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:IndexToRowNoConverter x:Key="IndexToRowNoConverter" />
+        <converters:BooleanToStringSelectConverter x:Key="BooleanToStringSelectConverter" />
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal">
+                <Rectangle
+                    Width="15"
+                    Height="15"
+                    Fill="{DynamicResource AccentBaseColorBrush}">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_pin}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+                <Label
+                    Margin="0,0,5,0"
+                    VerticalContentAlignment="Center"
+                    Content="{DynamicResource LangKeyDraftPostlists}"
+                    FontSize="16"
+                    FontWeight="Regular"
+                    Foreground="{DynamicResource AccentBaseColorBrush}" />
+                <mah:ProgressRing
+                    Width="30"
+                    Height="30"
+                    Margin="0,0,50,0"
+                    HorizontalAlignment="Left"
+                    Foreground="{DynamicResource AccentBaseColorBrush}"
+                    IsActive="{Binding IsProgressRingActive}"
+                    Visibility="{Binding IsProgressRingActive, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </StackPanel>
+
+            <StackPanel
+                Grid.Column="1"
+                Margin="5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Orientation="Horizontal">
+
+                <Button
+                    Name="BtnSelect"
+                    Margin="5"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    BorderThickness="0"
+                    Command="{Binding OpenContextMenuCommand}"
+                    CommandParameter="{Binding ElementName=BtnSelect}"
+                    Cursor="Hand"
+                    Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle
+                                    Width="15"
+                                    Height="15"
+                                    Fill="{DynamicResource AccentBaseColorBrush}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_checkmark_thick}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <Label
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    Content="{DynamicResource LangKeySelect}"
+                                    FontSize="12"
+                                    FontWeight="Regular"
+                                    Foreground="{DynamicResource AccentBaseColorBrush}" />
+                            </StackPanel>
+
+                        </ControlTemplate>
+                    </Button.Template>
+
+                    <Button.ContextMenu>
+                        <ContextMenu DataContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
+                            <MenuItem
+                                Name="MenuSelectAllPosts"
+                                Command="{Binding SelectCommand}"
+                                CommandParameter="MenuSelectAll"
+                                Header="{DynamicResource LangKeySelectAll}">
+                                <MenuItem.Icon>
+                                    <Rectangle
+                                        Width="15"
+                                        Height="15"
+                                        Margin="0,0,0,3"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Fill="Black">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_checkmark}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem
+                                Name="MenuSelectNoneOfPost"
+                                Command="{Binding SelectCommand}"
+                                CommandParameter="MenuSelectNone"
+                                Header="{DynamicResource LangKeySelectNone}">
+                                <MenuItem.Icon>
+                                    <Rectangle
+                                        Width="15"
+                                        Height="15"
+                                        Margin="0,0,0,3"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Fill="Black">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_checkmark_thick_unchecked}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+
+                <Button
+                    Name="EditPosts"
+                    Margin="5"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    BorderThickness="0"
+                    Command="{Binding EditCommand}"
+                    CommandParameter="{Binding ElementName=EditPosts}"
+                    Cursor="Hand"
+                    Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                    <Button.Template>
+                        <ControlTemplate>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle
+                                    Width="15"
+                                    Height="15"
+                                    Fill="{DynamicResource AccentBaseColorBrush}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_edit_box}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <Label
+                                    Margin="0,0,0,0"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    Content="{DynamicResource LangKeyEdit}"
+                                    FontSize="12"
+                                    FontWeight="Regular"
+                                    Foreground="{DynamicResource AccentBaseColorBrush}" />
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button
+                    Name="DeletePosts"
+                    Margin="5"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    BorderThickness="0"
+                    Command="{Binding DeleteCommand}"
+                    CommandParameter="DeletePosts"
+                    Cursor="Hand"
+                    Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                    <Button.Template>
+                        <ControlTemplate>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle
+                                    Width="12"
+                                    Height="15"
+                                    Margin="0,0,0,0"
+                                    Fill="{DynamicResource AccentBaseColorBrush}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_delete}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <Label
+                                    Margin="0,0,0,0"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    Content="{DynamicResource LangKeyDelete}"
+                                    FontSize="12"
+                                    FontWeight="Regular"
+                                    Foreground="{DynamicResource AccentBaseColorBrush}" />
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button
+                    x:Name="BtnSettings"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Background="{DynamicResource AccentBaseColorBrush}"
+                    Command="{Binding SettingsCommand}"
+                    CommandParameter="{Binding ElementName=BtnSettings}"
+                    Cursor="Hand"
+                    Foreground="White"
+                    Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                    Visibility="Collapsed">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle
+                                    Width="15"
+                                    Height="15"
+                                    Fill="{DynamicResource AccentBaseColorBrush}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_settings}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <Label
+                                    Margin="0,0,0,0"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    Content="{DynamicResource LangKeySettings}"
+                                    FontSize="12"
+                                    FontWeight="Regular"
+                                    Foreground="{DynamicResource AccentBaseColorBrush}" />
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button
+                    x:Name="BtnRefresh"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Background="{DynamicResource AccentBaseColorBrush}"
+                    Command="{Binding RefreshCommand}"
+                    CommandParameter="{x:Static socioPublisher:PostQueuedStatus.Draft}"
+                    Cursor="Hand"
+                    Foreground="White"
+                    Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle
+                                    Width="15"
+                                    Height="15"
+                                    Fill="{DynamicResource AccentBaseColorBrush}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_refresh}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <Label
+                                    Margin="0,0,0,0"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    Content="{DynamicResource LangKeyRefresh}"
+                                    FontSize="12"
+                                    FontWeight="Regular"
+                                    Foreground="{DynamicResource AccentBaseColorBrush}" />
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+            </StackPanel>
+        </Grid>
+
+        <ListView
+            x:Name="PostListview"
+            Grid.Row="1"
+            VerticalAlignment="Stretch"
+            AlternationCount="{Binding Items.Count, RelativeSource={RelativeSource Self}}"
+            Background="Transparent"
+            ItemsSource="{Binding PostCollectionView, IsAsync=True}"
+            ScrollViewer.IsDeferredScrollingEnabled="True"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            VirtualizingStackPanel.IsVirtualizing="True"
+            VirtualizingStackPanel.VirtualizationMode="Recycling">
+            <ListView.Resources>
+                <Style BasedOn="{StaticResource {x:Type GridViewColumnHeader}}" TargetType="{x:Type GridViewColumnHeader}">
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="Height" Value="30" />
+                    <Setter Property="Margin" Value="0,2,0,0" />
+                </Style>
+                <SolidColorBrush x:Key="ItemBackgroundHover" Color="Transparent" />
+            </ListView.Resources>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                    <Setter Property="Height" Value="35" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource ListItemsMouseHoverColorAccordingTheme}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background" Value="Transparent" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="80">
+                        <GridViewColumn.Header>
+                            <Border Margin="-6,-2,-6,-2" BorderBrush="LightGray">
+                                <CheckBox
+                                    x:Name="SelectAllPostView"
+                                    Margin="6,2,6,2"
+                                    Background="Transparent"
+                                    Command="{Binding SelectCommand}"
+                                    CommandParameter="{Binding IsSelectAllPostList, Converter={StaticResource BooleanToStringSelectConverter}}"
+                                    Content=" #"
+                                    IsChecked="{Binding IsSelectAllPostList}" />
+                            </Border>
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <CheckBox
+                                        x:Name="ChkSingleCampaign"
+                                        Margin="6,2,6,2"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Background="Transparent"
+                                        Command="{Binding DataContext.SelectCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                        CommandParameter="SelectManually"
+                                        Content="{Binding (ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ListViewItem}, Converter={StaticResource IndexToRowNoConverter}}"
+                                        IsChecked="{Binding IsPostlistSelected}" />
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <behaviours:FixedWidthGridViewColumn FixedWidth="300" Header="{DynamicResource LangKeyTitle}">
+                        <behaviours:FixedWidthGridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <TextBlock
+                                        Margin="6,2,6,2"
+                                        VerticalAlignment="Center"
+                                        Text="{Binding PublisherInstagramTitle}"
+                                        TextTrimming="CharacterEllipsis" />
+                                </Border>
+                            </DataTemplate>
+                        </behaviours:FixedWidthGridViewColumn.CellTemplate>
+                    </behaviours:FixedWidthGridViewColumn>
+
+                    <behaviours:FixedWidthGridViewColumn FixedWidth="300" Header="{DynamicResource LangKeyDescription}">
+                        <behaviours:FixedWidthGridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <TextBlock
+                                        Margin="6,2,6,2"
+                                        VerticalAlignment="Center"
+                                        Text="{Binding PostDescription}"
+                                        TextTrimming="CharacterEllipsis" />
+                                </Border>
+                            </DataTemplate>
+                        </behaviours:FixedWidthGridViewColumn.CellTemplate>
+                    </behaviours:FixedWidthGridViewColumn>
+                    <GridViewColumn Width="180">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyImage}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <customcontrol:MediaViewer
+                                        Width="180"
+                                        CurrentMediaPointer="{Binding MediaCurrentPointer}"
+                                        CurrentMediaUrl="{Binding CurrentMediaUrl, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, IsAsync=True}"
+                                        ImagePointer="{Binding ImagePointer}"
+                                        IsEnableNextPointer="{Binding NextImageEnable}"
+                                        IsEnablePreviousPointer="{Binding PreviousImageEnable}"
+                                        IsPostDataPresent="{Binding IsPostListPresent}"
+                                        MediaList="{Binding MediaList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        TotalMediaCount="{Binding TotalMediaCount}" />
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Width="180">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyShareUrl}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <TextBlock
+                                        Margin="6,2,6,2"
+                                        VerticalAlignment="Center"
+                                        Text="{Binding ShareUrl}" />
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Width="180">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeySourceUrl}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <TextBlock
+                                        Margin="6,2,6,2"
+                                        VerticalAlignment="Center"
+                                        Text="{Binding PdSourceUrl}" />
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Width="180">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyCreatedDate}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,0,0">
+                                    <TextBlock
+                                        Margin="6,2,6,2"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Text="{Binding CreatedTime}" />
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Width="Auto">
+                        <GridViewColumn.Header>
+                            <TextBlock Text="{DynamicResource LangKeyActions}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="-6,-2,-6,-2"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1,1,1,0">
+                                    <StackPanel
+                                        Margin="6,2,6,2"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+
+                                        <Button
+                                            x:Name="ButtonDuplicatePosts"
+                                            Background="Transparent"
+                                            Command="{Binding Path=DataContext.DuplicateCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                            CommandParameter="{Binding}"
+                                            Content="{DynamicResource LangKeyDuplicate}"
+                                            Cursor="Hand"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme1}" />
+
+                                        <Button
+                                            x:Name="ButtonSendtoPendingPosts"
+                                            Background="Transparent"
+                                            Command="{Binding Path=DataContext.ChangePostStatusCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                            CommandParameter="{Binding ElementName=ButtonSendtoPendingPosts}"
+                                            Content="{DynamicResource LangKeySendToPending}"
+                                            Cursor="Hand"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme1}" />
+
+                                        <Button
+                                            x:Name="ButtonEditPosts"
+                                            Background="Transparent"
+                                            Command="{Binding Path=DataContext.EditSinglePostCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                            CommandParameter="{Binding}"
+                                            Content="{DynamicResource LangKeyEdit}"
+                                            Cursor="Hand"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme1}" />
+
+                                        <Button
+                                            x:Name="ButtonDeletePosts"
+                                            Background="Transparent"
+                                            Command="{Binding Path=DataContext.DeleteSinglePostCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                            CommandParameter="{Binding}"
+                                            Content="{DynamicResource LangKeyDelete}"
+                                            Cursor="Hand"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource TextColorBrushAccordingTheme1}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,114 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.Views.SocioPublisher.CustomControl.PublisherEditPost"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.Views.SocioPublisher.CustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:suggestions="clr-namespace:DominatorUIUtility.Views.SocioPublisher.Suggestions"
+    Name="EditPost"
+    Loaded="PublisherEditPost_OnLoaded"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <suggestions:SuggestionProvider x:Key="MacrosSuggestionProvider" />
+        <DataTemplate x:Key="MacroTemplate">
+            <TextBlock Text="{Binding Path=Key}" />
+        </DataTemplate>
+    </UserControl.Resources>
+    <StackPanel
+        Margin="0,10,0,10"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center">
+        <TextBlock
+            VerticalAlignment="Center"
+            FontSize="12"
+            FontWeight="SemiBold"
+            Text="{DynamicResource LangKeyPostDescription}" />
+        <customControl:SocinatorTextBox
+            Margin="2"
+            DisplayMember="Key"
+            MacroTemplate="{StaticResource ResourceKey=MacroTemplate}"
+            SuggestionProvider="{StaticResource ResourceKey=MacrosSuggestionProvider}"
+            Text="{Binding PostDescription, Mode=TwoWay}"
+            TextHeight="60"
+            TextWidth="300"
+            TextWrapping="Wrap"
+            Watermark="{DynamicResource LangKeyWhatsOnYourMind}">
+            <customControl:SocinatorTextBox.LoadingContent>
+                <TextBlock
+                    Margin="5"
+                    FontSize="14"
+                    Text="Loading Macros..." />
+            </customControl:SocinatorTextBox.LoadingContent>
+        </customControl:SocinatorTextBox>
+        <customControl:PostContent
+            x:Name="PostContentControl"
+            HorizontalAlignment="Center"
+            customControl:MediaViewerAssist.CurrentMediaPointer="{Binding MediaCurrentPointer}"
+            customControl:MediaViewerAssist.CurrentMediaUrl="{Binding CurrentMediaUrl, Mode=TwoWay}"
+            customControl:MediaViewerAssist.MediaHeight="75"
+            customControl:MediaViewerAssist.MediaList="{Binding MediaList, Mode=TwoWay}"
+            customControl:MediaViewerAssist.MediaWidth="75"
+            customControl:MediaViewerAssist.TotalMediaCount="{Binding TotalMediaCount}"
+            FdCondition="{Binding FdCondition, Mode=TwoWay}"
+            FdSellLocation="{Binding FdSellLocation, Mode=TwoWay}"
+            FdSellPrice="{Binding FdSellPrice, Mode=TwoWay}"
+            FdSellProductTitle="{Binding FdSellProductTitle, Mode=TwoWay}"
+            Foreground="Black"
+            IsFdSellPost="{Binding IsFdSellPost, Mode=TwoWay}"
+            IsSpinTax="{Binding IsSpinTax, Mode=TwoWay}"
+            PdSourceUrl="{Binding PdSourceUrl, Mode=TwoWay}"
+            PublisherInstagramTitle="{Binding PublisherInstagramTitle, Mode=TwoWay}"
+            PublisherPostSettings="{Binding PublisherPostSettings, Mode=TwoWay}" />
+        <StackPanel
+            Margin="10"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                Name="BtnSave"
+                Width="80"
+                Background="{DynamicResource AccentBaseColorBrush}"
+                Click="BtnSave_OnClick">
+                <Button.Content>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Rectangle
+                            Width="15"
+                            Height="15"
+                            Fill="White">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_save}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <TextBlock
+                            Margin="5,0"
+                            Foreground="White"
+                            Text="{DynamicResource LangKeySave}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button
+                Name="BtnCancel"
+                Width="100"
+                Margin="10,0,0,0"
+                Background="#ef1d1d"
+                Click="BtnCancel_OnClick">
+                <Button.Content>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Rectangle
+                            Width="15"
+                            Height="15"
+                            Fill="White">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_cancel}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <TextBlock
+                            Margin="5,0"
+                            Foreground="White"
+                            Text="{DynamicResource LangKeyCancel}" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

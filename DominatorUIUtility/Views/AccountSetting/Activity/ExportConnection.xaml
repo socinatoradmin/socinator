@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="DominatorUIUtility.Views.AccountSetting.Activity.ExportConnection"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:DominatorUIUtility.Views.AccountSetting.Activity"
+             mc:Ignorable="d" Name="ActivityControl"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl"
+             xmlns:actcustom="clr-namespace:DominatorUIUtility.Views.AccountSetting.CustomControl"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" CommandParameter="ExportConnection" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Background="{DynamicResource AccentColorBrush}" Margin="5">
+            <actcustom:ModuleHeader Heading="Export Connection Setting" x:Name="header"
+                                    View="{Binding ElementName=ActivityControl}" />
+        </DockPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Grid.Row="1">
+            <StackPanel>
+                <!--Connected or requested user sources-->
+                <Label Content="{DynamicResource LangKeyConnectionSources}" FontWeight="Bold" Margin="5,10,0,0" />
+                <StackPanel Margin="15,0,0,5">
+                    <CheckBox Content="{DynamicResource LangKeyBySoftware}" Margin="5"
+                              IsChecked="{Binding IsCheckedBySoftware}" />
+                    <CheckBox Content="{DynamicResource LangKeyOutsideSoftware}" Margin="5"
+                              IsChecked="{Binding IsCheckedOutSideSoftware}" />
+                    <CheckBox Content="{DynamicResource LangKeyCustomUsersList}" Margin="5"
+                              IsChecked="{Binding IsCheckedLangKeyCustomUserList}" />
+                    <customControl:InputBoxControl Margin="25,5" x:Name="CustomUserListInputBox"
+                                                   InputText="{Binding UrlInput}"
+                                                   SaveCommand="{Binding SaveCustomUserListCommand}"
+                                                   WaterMarkText="{DynamicResource LangKeyEnterProfileUrlS}"
+                                                   Visibility="{Binding IsCheckedLangKeyCustomUserList,Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </StackPanel>
+
+                <Label Content="{DynamicResource LangKeySourceFilter}" FontWeight="Bold" Margin="5,10,0,0" />
+                <StackPanel Orientation="Horizontal" Margin="15,0,0,5">
+                    <CheckBox Content="{DynamicResource LangKeyConnectedWithin}" Margin="5"
+                              IsChecked="{Binding IsCheckedConnectedBefore}" />
+                    <controls:NumericUpDown Value="{Binding Days}" Minimum="0"
+                                            IsEnabled="{Binding IsCheckedConnectedBefore}" />
+                    <Label Content="{DynamicResource LangKeyDays}" />
+                    <Label Content="{DynamicResource LangKeyAnd}" />
+                    <controls:NumericUpDown Value="{Binding Hours}" Minimum="0" Maximum="24"
+                                            IsEnabled="{Binding IsCheckedConnectedBefore}" />
+                    <Label Content="{DynamicResource LangKeyHours}" />
+                </StackPanel>
+                <Expander Header="{DynamicResource LangKeyJobConfiguration}"
+                          IsExpanded="{Binding ElementName=header,Path=IsExpanded,Mode=OneWay}">
+                    <actcustom:ActivityJobConfig JobConfiguration="{Binding JobConfiguration}" />
+                </Expander>
+            </StackPanel>
+        </ScrollViewer>
+        <DockPanel Grid.Row="2">
+            <actcustom:NextPreviousButton NextCommand="{Binding NextCommand}"
+                                          PreviousCommand="{Binding PreviousCommand}"
+                                          NextButtonContent="{Binding NextButtonContent}" />
+        </DockPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,842 @@
+﻿<Window
+    x:Class="DominatorUIUtility.CustomControl.AddUpdateAccountControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:enums="clr-namespace:DominatorHouseCore.Enums;assembly=DominatorHouseCore"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:passwordHelper="clr-namespace:DominatorUIUtility.Behaviours"
+    xmlns:validation="clr-namespace:DominatorHouseCore.Utility;assembly=DominatorHouseCore"
+    x:Name="UserControlAddUpdateAccount"
+    Title="Add / Update Account"
+    HorizontalAlignment="Center"
+    VerticalAlignment="Center"
+    AllowsTransparency="True"
+    Background="Transparent"
+    MouseLeftButtonDown="TitleBar_MouseLeftButtonDown"
+    ResizeMode="NoResize"
+    SizeToContent="WidthAndHeight"
+    WindowStartupLocation="CenterOwner"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converters:StringLengthToBooleanConverter x:Key="LengthToBooleanConverter" />
+    </Window.Resources>
+    <Border
+        Padding="10,0,10,10"
+        Background="#065265"
+        BorderBrush="White"
+        BorderThickness="1.4"
+        CornerRadius="16"
+        SnapsToDevicePixels="True">
+        <Border.Effect>
+            <DropShadowEffect
+                BlurRadius="15"
+                Direction="270"
+                Opacity="0"
+                ShadowDepth="0"
+                Color="Transparent" />
+        </Border.Effect>
+
+        <Grid>
+            <!--  Custom Title Bar  -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border
+                Grid.Row="0"
+                Height="40"
+                Margin="0,5,0,0"
+                HorizontalAlignment="Stretch"
+                BorderThickness="0"
+                CornerRadius="10">
+                <DockPanel Background="Transparent">
+                    <TextBlock
+                        x:Name="TitleTextBlock"
+                        Margin="15,0,0,0"
+                        VerticalAlignment="Center"
+                        DockPanel.Dock="Left"
+                        FontSize="18"
+                        FontWeight="Bold"
+                        Foreground="White" />
+                    <StackPanel
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        DockPanel.Dock="Right"
+                        Orientation="Horizontal">
+                        <Button
+                            Width="40"
+                            Background="Transparent"
+                            Click="Minimize_Click"
+                            Content="—"
+                            Cursor="Hand"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Foreground="White" />
+                        <Button
+                            Width="40"
+                            Background="Transparent"
+                            Click="Close_Click"
+                            Content="✕"
+                            Cursor="Hand"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Foreground="White" />
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+            <!--  Body  -->
+            <ScrollViewer
+                Grid.Row="1"
+                Margin="5,0"
+                VerticalScrollBarVisibility="Auto">
+                <Grid VerticalAlignment="Top">
+                    <Grid.Resources>
+                        <ControlTemplate x:Key="ErrorTemplate">
+                            <StackPanel Orientation="Vertical">
+                                <AdornedElementPlaceholder x:Name="ErrorHolder">
+                                    <Border BorderBrush="red" BorderThickness="1" />
+                                </AdornedElementPlaceholder>
+                                <TextBlock
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontWeight="Bold"
+                                    Foreground="Red"
+                                    Text="{Binding ElementName=ErrorHolder, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" />
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Grid.Resources>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="5*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1" Margin="0,10,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2.5*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Name="TxtblockSelectNetWork"
+                            Width="120"
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            Foreground="White"
+                            Text="{DynamicResource LangKeySocialNetwork}" />
+                        <ComboBox
+                            Name="ComboBoxSocialNetworks"
+                            Grid.Column="1"
+                            Width="230"
+                            Height="30"
+                            Background="Transparent"
+                            BorderThickness="1"
+                            Foreground="White"
+                            SelectedIndex="0"
+                            SelectedItem="{Binding AccountNetwork}" />
+                    </Grid>
+                    <Grid Grid.Row="2" Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2.5*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Name="txtblockGroupName"
+                            Width="120"
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            Foreground="White"
+                            Text="{DynamicResource LangKeyGroupName}" />
+                        <TextBox
+                            Name="txtGroupName"
+                            Grid.Column="1"
+                            Width="230"
+                            Height="30"
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            controls:TextBoxHelper.Watermark="{DynamicResource LangKeyEnterGroupName}"
+                            Background="Transparent"
+                            BorderThickness="1"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            Foreground="White"
+                            KeyDown="OnKeyDown"
+                            Text="{Binding AccountGroup.Content}" />
+                    </Grid>
+
+                    <Grid Grid.Row="3" Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2.5*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Name="txtblockAccountName"
+                            Width="120"
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            Foreground="White"
+                            Text="{DynamicResource LangKeyAccountName}" />
+                        <TextBox
+                            Name="txtAccountName"
+                            Grid.Column="1"
+                            Width="230"
+                            Height="30"
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            controls:TextBoxHelper.Watermark="{DynamicResource LangKeyAccountNikeName}"
+                            Background="Transparent"
+                            BorderThickness="1"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            Foreground="White"
+                            KeyDown="OnKeyDown"
+                            Text="{Binding AccountName}" />
+                    </Grid>
+
+                    <Grid Grid.Row="4" Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2.5*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Name="txtblockUserName"
+                            Width="120"
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            Foreground="White"
+                            Text="{DynamicResource LangKeyEmailIdUsername}" />
+                        <TextBox
+                            Name="txtUserName"
+                            Grid.Column="1"
+                            Width="230"
+                            Height="30"
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            controls:TextBoxHelper.Watermark="{DynamicResource LangKeyEnterUserName}"
+                            Background="Transparent"
+                            BorderThickness="1"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            Foreground="White"
+                            KeyDown="OnKeyDown"
+                            Validation.ErrorTemplate="{StaticResource ErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="UserName" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <validation:ValidationHelper Sender="txtUserName" ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </Grid>
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2.5*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Name="txtblockPassword"
+                            Width="120"
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            Foreground="White"
+                            Text="{DynamicResource LangKeyPassword}" />
+                        <PasswordBox
+                            Name="txtPassword"
+                            Grid.Column="1"
+                            Width="230"
+                            Height="30"
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            controls:TextBoxHelper.Watermark="{DynamicResource LangKeyEnterPassword}"
+                            passwordHelper:PasswordBoxHelper.Attach="True"
+                            Background="Transparent"
+                            BorderThickness="1"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            Foreground="White"
+                            KeyDown="OnKeyDown"
+                            Style="{StaticResource MetroButtonRevealedPasswordBox}"
+                            Validation.ErrorTemplate="{StaticResource ErrorTemplate}">
+                            <passwordHelper:PasswordBoxHelper.Password>
+                                <Binding
+                                    Mode="TwoWay"
+                                    Path="Password"
+                                    UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <validation:ValidationHelper Sender="txtPassword" ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </passwordHelper:PasswordBoxHelper.Password>
+
+                        </PasswordBox>
+
+                    </Grid>
+                    <Grid Grid.Row="6" Margin="0,5,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2.5*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding AccountNetwork}" Value="{x:Static enums:SocialNetworks.YouTube}">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                    <!--<DataTrigger Binding="{Binding AccountNetwork}"  Value="{x:Static enums:SocialNetworks.Gplus}" >
+                        <Setter Property="Visibility" Value="Visible" />
+                    </DataTrigger>-->
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+                        <TextBlock
+                            Width="120"
+                            Margin="5,15,5,5"
+                            VerticalAlignment="Center"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            Foreground="White"
+                            Text="{DynamicResource LangKeyAlternateEmail}" />
+                        <TextBox
+                            Grid.Column="1"
+                            Width="230"
+                            Height="30"
+                            Margin="5,15,5,5"
+                            VerticalAlignment="Center"
+                            controls:TextBoxHelper.Watermark="{DynamicResource LangKeyAlternateEmail}"
+                            Background="Transparent"
+                            BorderThickness="1"
+                            FontWeight="SemiBold"
+                            Foreground="White"
+                            KeyDown="OnKeyDown"
+                            Text="{Binding AlternateEmail}" />
+                        <!--<TextBox controls:TextBoxHelper.Watermark="{DynamicResource LangKeyAlternateEmail}" Width="230" FontSize="13" FontWeight="SemiBold"
+                 Margin="5" Foreground="{DynamicResource TextColorBrushAccordingTheme}" VerticalAlignment="Center"  Height="30" Text="{Binding AlternateEmail}" Grid.Column="1"
+                 KeyDown="OnKeyDown"/>-->
+                    </Grid>
+                    <Grid Grid.Row="7">
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding AccountNetwork}" Value="{x:Static enums:SocialNetworks.Instagram}">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+                        <CheckBox
+                            Width="180"
+                            Margin="6,10,0,5"
+                            HorizontalAlignment="Left"
+                            Background="Transparent"
+                            BorderThickness="1"
+                            Content="{DynamicResource LangKeyTwoFactorLoginRequired}"
+                            FontWeight="SemiBold"
+                            Foreground="White"
+                            IsChecked="{Binding IsChkTwoFactorLogin}"
+                            Style="{DynamicResource MetroCheckBox}" />
+                    </Grid>
+                    <CheckBox
+                        Name="CheckBoxShowAdvance"
+                        Grid.Row="8"
+                        Width="120"
+                        Margin="6,5,0,5"
+                        HorizontalAlignment="Left"
+                        Checked="showAdvancebuttonClicked"
+                        Content="{DynamicResource LangKeyShowAdvance}"
+                        Cursor="Hand"
+                        FontWeight="SemiBold"
+                        Foreground="White"
+                        IsChecked="False"
+                        Style="{DynamicResource MetroCheckBox}"
+                        Unchecked="showAdvancebuttonUnClicked" />
+                    <Grid
+                        Name="GridAdvanceOption"
+                        Grid.Row="9"
+                        Height="Auto"
+                        Margin="0,0,0,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.5*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Name="txtblockProxyGroup"
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                Foreground="White"
+                                Text="{DynamicResource LangKeyProxyGroup}" />
+                            <TextBox
+                                Name="txtProxyGroup"
+                                Grid.Column="1"
+                                Width="230"
+                                Height="30"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                controls:TextBoxHelper.Watermark="{DynamicResource LangKeyTypeProxyGroup}"
+                                Background="Transparent"
+                                BorderThickness="1"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                Foreground="White"
+                                KeyDown="OnKeyDown"
+                                Text="{Binding AccountProxy.ProxyGroup}"
+                                Validation.ErrorTemplate="{StaticResource ErrorTemplate}" />
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.5*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Name="txtblockProxyAddress"
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                Foreground="White"
+                                Text="{DynamicResource LangKeyProxyAddress}" />
+                            <TextBox
+                                Name="txtProxyAddress"
+                                Grid.Column="1"
+                                Width="230"
+                                Height="30"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                controls:TextBoxHelper.Watermark="{DynamicResource LangKeyTypeProxyIp}"
+                                Background="Transparent"
+                                BorderThickness="1"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                Foreground="White"
+                                KeyDown="OnKeyDown"
+                                Text="{Binding AccountProxy.ProxyIp}"
+                                Validation.ErrorTemplate="{StaticResource ErrorTemplate}" />
+
+
+                            <!--<TextBox Name="txtProxyAddress" Validation.ErrorTemplate="{StaticResource ErrorTemplate}"  KeyDown="OnKeyDown"
+                     controls:TextBoxHelper.Watermark="Format:{255.255.255.255}" Width="230" FontSize="13" Margin="5" FontWeight="SemiBold" Foreground="{DynamicResource TextColorBrushAccordingTheme}" VerticalAlignment="Center"  Height="30" Grid.Column="1">
+                <TextBox.Text>
+                    <Binding Path="AccountProxy.ProxyIp" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <validation:ValidationHelper Sender="txtProxyAddress" ValidatesOnTargetUpdated="True"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>-->
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.5*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Name="txtblockProxyPort"
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                Foreground="White"
+                                Text="{DynamicResource LangKeyProxyPort}" />
+                            <TextBox
+                                Name="txtProxyPort"
+                                Grid.Column="1"
+                                Width="230"
+                                Height="30"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                controls:TextBoxHelper.Watermark="{DynamicResource LangKeyTypeProxyPort}"
+                                Background="Transparent"
+                                BorderThickness="1"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                Foreground="White"
+                                KeyDown="OnKeyDown"
+                                Validation.ErrorTemplate="{StaticResource ErrorTemplate}">
+                                <TextBox.Text>
+                                    <Binding Path=" AccountProxy.ProxyPort" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <validation:ValidationHelper Sender="txtProxyPort" ValidatesOnTargetUpdated="True" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+
+                        </Grid>
+                        <Grid Grid.Row="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.5*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Name="txtblockProxyUserName"
+                                Width="120"
+                                Margin="5,15,5,5"
+                                VerticalAlignment="Center"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                Foreground="White"
+                                Text="{DynamicResource LangKeyProxyUsername}" />
+                            <TextBox
+                                Name="txtProxyUserName"
+                                Grid.Column="1"
+                                Width="230"
+                                Height="30"
+                                Margin="5,15,5,5"
+                                VerticalAlignment="Center"
+                                controls:TextBoxHelper.Watermark="{DynamicResource LangKeyTypeProxyUsername}"
+                                Background="Transparent"
+                                BorderThickness="1"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                Foreground="White"
+                                KeyDown="OnKeyDown"
+                                Text="{Binding AccountProxy.ProxyUsername}">
+                                <TextBox.Style>
+                                    <Style BasedOn="{StaticResource {x:Type TextBox}}" TargetType="TextBox">
+                                        <Setter Property="IsEnabled" Value="false" />
+                                        <Style.Triggers>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding ElementName=txtProxyAddress, Path=(Validation.HasError)}" Value="false" />
+                                                    <Condition Binding="{Binding ElementName=txtProxyPort, Path=(Validation.HasError)}" Value="false" />
+                                                    <Condition Binding="{Binding ElementName=txtProxyAddress, Path=Text.Length, Converter={StaticResource LengthToBooleanConverter}}" Value="true" />
+                                                    <Condition Binding="{Binding ElementName=txtProxyPort, Path=Text.Length, Converter={StaticResource LengthToBooleanConverter}}" Value="true" />
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="IsEnabled" Value="true" />
+                                            </MultiDataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </Grid>
+                        <Grid Grid.Row="4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.5*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Name="txtblockProxyPassword"
+                                Width="120"
+                                Margin="5,11"
+                                VerticalAlignment="Center"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                Foreground="White"
+                                Text="{DynamicResource LangKeyProxyPassword}" />
+                            <PasswordBox
+                                Name="txtProxyPassword"
+                                Grid.Column="1"
+                                Grid.ColumnSpan="1"
+                                Width="230"
+                                Height="30"
+                                Margin="5,5,4.693,5"
+                                VerticalAlignment="Center"
+                                controls:TextBoxHelper.Watermark="{DynamicResource LangKeyTypeProxyPassword}"
+                                passwordHelper:PasswordBoxHelper.Attach="True"
+                                Background="Transparent"
+                                BorderThickness="1"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                Foreground="White"
+                                KeyDown="OnKeyDown">
+                                <!--<PasswordBox.Style>
+                    <Style BasedOn="{StaticResource MetroButtonRevealedPasswordBox}" TargetType="PasswordBox">
+                        <Setter Property="IsEnabled" Value="false" />
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding ElementName=txtProxyAddress, Path=(Validation.HasError)}" Value="false" />
+                                    <Condition Binding="{Binding ElementName=txtProxyPort, Path=(Validation.HasError)}" Value="false" />
+                                    <Condition Binding="{Binding ElementName=txtProxyAddress,
+                                        Path=Text.Length,Converter={StaticResource LengthToBooleanConverter}}" Value="true" />
+                                    <Condition Binding="{Binding ElementName=txtProxyPort, Path=Text.Length,
+                                        Converter={StaticResource LengthToBooleanConverter}}" Value="true" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="true" />
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </PasswordBox.Style>-->
+                                <passwordHelper:PasswordBoxHelper.Password>
+                                    <Binding
+                                        Mode="TwoWay"
+                                        Path="AccountProxy.ProxyPassword"
+                                        UpdateSourceTrigger="PropertyChanged" />
+                                </passwordHelper:PasswordBoxHelper.Password>
+                            </PasswordBox>
+                        </Grid>
+                        <Grid Grid.Row="5">
+                            <CheckBox
+                                x:Name="RunThroughBrowserAutomation"
+                                Margin="15,5,0,0"
+                                Background="Transparent"
+                                Content="{StaticResource LangKeyRunAllActivityThroughBrowser}"
+                                Cursor="Hand"
+                                Foreground="White">
+                                <CheckBox.Style>
+                                    <Style BasedOn="{StaticResource MetroCheckBox}" TargetType="CheckBox">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding DominatorAccountModel.AccountBaseModel.AccountNetwork}" Value="{x:Static enums:SocialNetworks.Instagram}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding DominatorAccountModel.AccountBaseModel.AccountNetwork}" Value="{x:Static enums:SocialNetworks.TikTok}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding DominatorAccountModel.AccountBaseModel.AccountNetwork}" Value="{x:Static enums:SocialNetworks.Facebook}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding DominatorAccountModel.AccountBaseModel.AccountNetwork}" Value="{x:Static enums:SocialNetworks.YouTube}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </CheckBox.Style>
+                            </CheckBox>
+                        </Grid>
+                        <Grid x:Name="CopyJsonCookieGrid" Grid.Row="6">
+                            <StackPanel
+                                Margin="15,10,0,0"
+                                HorizontalAlignment="Left"
+                                Orientation="Vertical">
+                                <StackPanel.Style>
+                                    <Style TargetType="StackPanel">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding DominatorAccountModel.AccountBaseModel.AccountNetwork}" Value="{x:Static enums:SocialNetworks.Instagram}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding DominatorAccountModel.AccountBaseModel.AccountNetwork}" Value="{x:Static enums:SocialNetworks.TikTok}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </StackPanel.Style>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox
+                                        x:Name="copyJsonCookieCheckBox"
+                                        Background="Transparent"
+                                        Content="{StaticResource LangKeyPasteJsonCookiesLogin}"
+                                        Cursor="Hand"
+                                        Foreground="White"
+                                        Style="{DynamicResource MetroCheckBox}" />
+                                    <Rectangle
+                                        Width="16"
+                                        Height="16"
+                                        Margin="5,0"
+                                        Fill="IndianRed"
+                                        ToolTip="{StaticResource LangKeyStepsToGetJsonCookies}"
+                                        ToolTipService.ShowDuration="60000">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_book_perspective_help}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Visibility="{Binding ElementName=copyJsonCookieCheckBox, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBox
+                                        Name="CopiedJsonCookies"
+                                        Width="300"
+                                        MaxHeight="80"
+                                        Margin="0,5,0,5"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Bottom"
+                                        AcceptsReturn="True"
+                                        Background="Transparent"
+                                        BorderThickness="1.5"
+                                        Foreground="White"
+                                        TextWrapping="Wrap"
+                                        VerticalScrollBarVisibility="Auto" />
+                                    <Border
+                                        Height="30"
+                                        MinWidth="100"
+                                        Margin="5,3,0,0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Background="DarkGreen"
+                                        BorderThickness="1"
+                                        CornerRadius="5"
+                                        Cursor="Hand">
+                                        <Button
+                                            x:Name="SaveCopiedCookies"
+                                            Background="Transparent"
+                                            BorderThickness="0"
+                                            Click="SaveCopiedCookies_Click"
+                                            ToolTipService.Placement="Right">
+                                            <Button.Content>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Rectangle
+                                                        Width="12"
+                                                        Height="12"
+                                                        Margin="1,1,4,1"
+                                                        Fill="White">
+                                                        <Rectangle.OpacityMask>
+                                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_save}" />
+                                                        </Rectangle.OpacityMask>
+                                                    </Rectangle>
+                                                    <TextBlock
+                                                        VerticalAlignment="Center"
+                                                        Foreground="White"
+                                                        Text="{DynamicResource LangKeyAdd}" />
+                                                </StackPanel>
+                                            </Button.Content>
+                                        </Button>
+                                    </Border>
+                                    <Border
+                                        Height="30"
+                                        MinWidth="100"
+                                        Margin="5,3,0,0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Background="IndianRed"
+                                        BorderThickness="1"
+                                        CornerRadius="5"
+                                        Cursor="Hand">
+                                        <Button
+                                            x:Name="ClearCopiedCookies"
+                                            Background="Transparent"
+                                            BorderThickness="0"
+                                            Click="ClearCopiedCookies_Click"
+                                            ToolTipService.Placement="Right">
+                                            <Button.Content>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Rectangle
+                                                        Width="12"
+                                                        Height="12"
+                                                        Margin="1,1,4,1"
+                                                        Fill="White">
+                                                        <Rectangle.OpacityMask>
+                                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_clear}" />
+                                                        </Rectangle.OpacityMask>
+                                                    </Rectangle>
+                                                    <TextBlock
+                                                        VerticalAlignment="Center"
+                                                        Foreground="White"
+                                                        Text="{DynamicResource LangKeyRemove}" />
+                                                </StackPanel>
+                                            </Button.Content>
+                                        </Button>
+                                    </Border>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+
+                    </Grid>
+                    <Grid Grid.Row="10" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel
+                            Grid.Column="1"
+                            HorizontalAlignment="Stretch"
+                            Orientation="Horizontal">
+                            <Border
+                                MinWidth="100"
+                                Margin="10,10,0,10"
+                                VerticalAlignment="Center"
+                                BorderThickness="1"
+                                CornerRadius="7">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="IsEnabled" Value="false" />
+                                        <Setter Property="Cursor" Value="Hand" />
+                                        <Setter Property="Background" Value="Gray" />
+                                        <Style.Triggers>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding ElementName=txtUserName, Path=(Validation.HasError)}" Value="false" />
+                                                    <Condition Binding="{Binding ElementName=txtPassword, Path=(Validation.HasError)}" Value="false" />
+                                                    <!--<Condition Binding="{Binding ElementName=txtProxyAddress, Path=(Validation.HasError)}" Value="false" />-->
+                                                    <Condition Binding="{Binding ElementName=txtProxyPort, Path=(Validation.HasError)}" Value="false" />
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="IsEnabled" Value="true" />
+                                                <Setter Property="Control.Background" Value="Green" />
+                                            </MultiDataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <Button
+                                    x:Name="btnSave"
+                                    x:FieldModifier="public"
+                                    Background="Transparent"
+                                    Foreground="White" />
+                            </Border>
+                            <Border
+                                MinWidth="100"
+                                Margin="10,10,0,10"
+                                VerticalAlignment="Center"
+                                Background="#ef1d1d"
+                                BorderThickness="1"
+                                CornerRadius="7">
+                                <Button
+                                    x:Name="btnCancel"
+                                    x:FieldModifier="public"
+                                    Background="Transparent"
+                                    Cursor="Hand"
+                                    IsCancel="True">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Rectangle
+                                                Width="15"
+                                                Height="15"
+                                                Fill="White">
+                                                <Rectangle.OpacityMask>
+                                                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_cancel}" />
+                                                </Rectangle.OpacityMask>
+                                            </Rectangle>
+                                            <TextBlock
+                                                Margin="6,0"
+                                                Foreground="White"
+                                                Text="{DynamicResource LangKeyCancel}" />
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                            </Border>
+
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</Window>

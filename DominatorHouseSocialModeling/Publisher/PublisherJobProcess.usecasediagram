@@ -1,0 +1,813 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="84fc2c04-bb5c-4863-b328-bd86cfbff774" name="PublisherJobProcess" linkedPackageId="758441b0-9938-40b4-a605-b12f11f8e1f0" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <ownedCommentsInternal>
+    <comment Id="1ce44501-e813-4a47-8bce-7e249e4c132b">
+      <elementDefinition Id="a4f56673-a655-46fc-b505-7fbcb91208b7" />
+      <body>Trigger to publish a post list model to respective networks based on selected destinations. For Publishing, need to pass account Id, destiantion type , destination Url and Post list model as a Parameter. Destination details aren't need for own wall/profile. 
+
+Please Note : These all virtual methods, In respective networks need to implement the functionality</body>
+      <annotatedElements>
+        <useCaseMoniker Id="b005fd53-48f8-40ed-827f-a3dae3ae9b5e" LastKnownName="Publish on Groups" />
+        <useCaseMoniker Id="38094a4f-cd97-449c-9ffa-e02429f931c2" LastKnownName="Publish on Ownwall" />
+        <useCaseMoniker Id="6500a3a4-fedd-4cec-aa40-32117c686364" LastKnownName="Publish on Pages or Boards" />
+        <useCaseMoniker Id="c67c5dc3-36cf-4730-b41a-1a55b262f940" LastKnownName="Publish on Custom Destination" />
+      </annotatedElements>
+    </comment>
+    <comment Id="70bbb1f7-ebb1-4dfe-9060-b14f412832da">
+      <elementDefinition Id="8600a363-0d8b-42a9-ab42-73f65b5c13a3" />
+      <body> Delay has two types.
+
+1. Delay after every single post with x seconds delay 
+2. Delay after y posts with x minute delay. In this case between post its will take delay as per point 1.</body>
+      <annotatedElements>
+        <useCaseMoniker Id="88f19ad9-1c1b-49b6-87e9-beb886393f7a" LastKnownName="Delay to publish next post" />
+      </annotatedElements>
+    </comment>
+    <comment Id="30efc911-f309-4bb6-811f-ca0e0a7cbf3c">
+      <elementDefinition Id="dc2a9628-d971-430e-bd89-631d0c865a48" />
+      <body>If end user needs to delete a post x hours from post has been published.</body>
+      <annotatedElements>
+        <useCaseMoniker Id="9ab4073e-8c3f-4218-b987-bafa2dea028a" LastKnownName="Enable Delete Post After Published" />
+      </annotatedElements>
+    </comment>
+    <comment Id="b164a5ae-4eef-4060-85dc-7cec217b4ab7">
+      <elementDefinition Id="acb5e17a-7789-427f-b079-665f5f0155da" />
+      <body>Once post has published on destinations, Need to update in bin files with respective status. </body>
+      <annotatedElements>
+        <useCaseMoniker Id="229645af-47a9-4106-a7a5-4d382fd8bd3c" LastKnownName="Published&#xD;&#xA;Success" />
+        <useCaseMoniker Id="dc92a9c5-f3b3-485b-9c15-9c217b1617d5" LastKnownName="Published Failed" />
+      </annotatedElements>
+    </comment>
+    <comment Id="a9cb3d10-c672-4fc5-a9fc-dff98d58d922">
+      <elementDefinition Id="b4ac4619-cd9c-4790-b7f6-f1ab8989d45c" />
+      <body>General setting take responsible for following.
+1. Filtering Media
+2. Macro Substitution
+3. Spin Text Substitution
+4. Remove link from Post Descriptions
+5. Convert long url into Shorten Url
+6. Adding Signature</body>
+      <annotatedElements>
+        <useCaseMoniker Id="43e10ac3-adec-4ee3-b287-c8f890c35bf8" LastKnownName="Perform Generel Settings" />
+      </annotatedElements>
+    </comment>
+    <comment Id="7483dc77-342a-4c94-ae81-b6d8d9e77d48">
+      <elementDefinition Id="a80037cd-340a-4627-9e80-213b074dc751" />
+      <body>If end user needs to publish a particular post to all destinations. Its calling directly from manage posts pending post items. 
+This process will start parallely (If user saved with default settings).</body>
+      <annotatedElements>
+        <useCaseMoniker Id="b1179a5d-51c9-41e0-8a28-3a1a22c7b511" LastKnownName="Start Publishing With Publish Now Options" />
+      </annotatedElements>
+    </comment>
+    <comment Id="7ecbd109-8896-458f-916d-9d34153543e0">
+      <elementDefinition Id="bc49b464-f7e8-4a6c-8f7e-10c647fc0057" />
+      <body>Get post has following responsibility.
+1.Pick random post from pending list (If user needs)
+2. Sending Unique posts for every time
+3. Trigger Notification when post contains lesser than specified value</body>
+      <annotatedElements>
+        <useCaseMoniker Id="f0e1b305-b6ef-48b8-92a4-7a69c938b0fd" LastKnownName="Get Post list model" />
+      </annotatedElements>
+    </comment>
+    <comment Id="b02b5831-577d-49e0-92a9-654c887723d2">
+      <elementDefinition Id="ee4bb05d-1461-4f35-b121-1199362fa399" />
+      <body>Validate post list has following responsibility.
+
+1. Check whether post published already on given destinations
+2. If not update the bin file with increasing Tried count of the post.
+3. Evluate the Expire date</body>
+      <annotatedElements>
+        <useCaseMoniker Id="dc3175b6-706a-4ff8-b60f-46d4f3d45f3e" LastKnownName="Validate  post list" />
+      </annotatedElements>
+    </comment>
+    <comment Id="c866fe8a-c5cd-4072-b994-4ef5d2571f36">
+      <elementDefinition Id="013a776d-11ef-45ed-bd09-7a910a8c74aa" />
+      <body>To stop all publishing posts, when campaigns deleted. or changed to pause state</body>
+      <annotatedElements>
+        <useCaseMoniker Id="9f21f806-9035-4e08-baaf-49c0a5e896ec" LastKnownName="Stop Publishing" />
+      </annotatedElements>
+    </comment>
+    <comment Id="84dbe59d-2cfd-406a-ae91-89de3ed6ce50">
+      <elementDefinition Id="c7b24f6d-f9f5-4069-a822-50d566e26219" />
+      <body>If campaign's saved time arrived, application will begins a process from here.
+This process will start parallely (If user saved with default settings).
+
+</body>
+      <annotatedElements>
+        <useCaseMoniker Id="2fe3c563-5951-4061-a0e1-116f9098e56e" LastKnownName="Start Publishing" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <appliedStereotypesInternal>
+    <stereotypeInstance Id="38d2c2f0-a94a-4124-b4c1-913ede3f3b1a" name="namespace" profile="CSharpProfile">
+      <elementDefinition Id="8adae484-baf2-4c1b-9b39-977f8a2ba1ec" />
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="6de9cf57-b2de-4ba3-b0c8-bc11a8fa97dd">
+          <propertyInstance Id="621433c8-1830-4faf-ac81-080b79662066" name="BaseName">
+            <elementDefinition Id="0f41da63-46f0-4926-9017-b5c8c3fad72f" />
+          </propertyInstance>
+          <elementDefinition Id="af0a5cbc-ec64-4313-8278-1c86da700ac0" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="9c92f5fb-e8f9-497d-a0bc-806db0cacfa0">
+          <propertyInstance Id="07569175-cf92-469c-bfe5-da81f551f7f8" name="ClrAttributes">
+            <elementDefinition Id="6d114f75-2178-45eb-a336-6937e89a259a" />
+          </propertyInstance>
+          <elementDefinition Id="7fbc7984-23c1-4dc6-ae82-6a1fbeb585a9" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="beb8cced-5193-4cea-8333-91893769adb8">
+          <propertyInstance Id="cc4aba7f-5589-48fd-b5d3-f839f4a562fa" name="Usings">
+            <elementDefinition Id="8dbd23a1-759b-448e-b3c5-319b3680a6b6" />
+          </propertyInstance>
+          <elementDefinition Id="007dad1e-fc03-499a-964a-f4dd4a6383e6" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+    <stereotypeInstance Id="89db3c63-9472-493b-96c5-c6fb501df377" name="TextTemplateBindings" profile="TextTemplateBindings">
+      <elementDefinition Id="12ade86c-6850-43b9-84db-205ac0440c6a" />
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="bfd9881a-fc80-4ef2-9e55-5fe71cd6cbaf">
+          <propertyInstance Id="83b8c607-447b-491e-8706-c7009ea6681a" name="Alias" value="ClassTemplate|EnumTemplate|InterfaceTemplate|StructTemplate">
+            <elementDefinition Id="4660c147-d919-4b99-8791-9a99fd9390e4" />
+          </propertyInstance>
+          <elementDefinition Id="f8279097-10fa-47c9-9059-18864df9e016" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="dddb4b79-b71e-4ccc-be16-cf2efc451c67">
+          <propertyInstance Id="f63d2b62-8aac-4416-963c-4b3d6635b08f" name="TemplateFilePath" value="ClassTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4|EnumTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\EnumTemplate.t4|InterfaceTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\InterfaceTemplate.t4|StructTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4">
+            <elementDefinition Id="b313329b-15bb-46b0-9a86-4d51ce239981" />
+          </propertyInstance>
+          <elementDefinition Id="286eeab3-9df0-4be2-a1a0-49aa966a6ad2" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="b4d634c0-6d5f-486c-b5e3-650d22883b7c">
+          <propertyInstance Id="06b0242f-76f4-4443-884d-d95b01ed7c30" name="ProjectPath" value="ClassTemplate=..\DominatorHouseSocialModelingLib\DominatorHouseSocialModelingLib.csproj|EnumTemplate=..\DominatorHouseSocialModelingLib\DominatorHouseSocialModelingLib.csproj|InterfaceTemplate=..\DominatorHouseSocialModelingLib\DominatorHouseSocialModelingLib.csproj|StructTemplate=..\DominatorHouseSocialModelingLib\DominatorHouseSocialModelingLib.csproj">
+            <elementDefinition Id="0a3743bf-eeb2-4780-80c1-4dcd38f6e2ee" />
+          </propertyInstance>
+          <elementDefinition Id="abe99e85-3005-4b2f-8827-dcce60f94682" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="d396e4c2-0eb8-457b-9ce6-affe28c5d363">
+          <propertyInstance Id="f8d3e060-81a3-4f8d-bd3d-0a1aca663dd0" name="TargetDirectory" value="ClassTemplate=GeneratedCode\{PackageStructure}|EnumTemplate=GeneratedCode\{PackageStructure}|InterfaceTemplate=GeneratedCode\{PackageStructure}|StructTemplate=GeneratedCode\{PackageStructure}">
+            <elementDefinition Id="864cec6c-99a1-4bf0-b832-4869064c4009" />
+          </propertyInstance>
+          <elementDefinition Id="173e6699-d5a6-40fa-b17b-e58449baf577" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="28113396-e120-4909-89cf-9b1c03659b14">
+          <propertyInstance Id="6ee5ffdc-1370-4014-a581-001ba7ac35e7" name="TargetName" value="ClassTemplate={Name}|EnumTemplate={Name}|InterfaceTemplate={Name}|StructTemplate={Name}">
+            <elementDefinition Id="759bb1aa-1801-433f-95ab-0b872d631e82" />
+          </propertyInstance>
+          <elementDefinition Id="1d9db066-4174-4967-99c8-9366a1a38d63" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="faf81528-6ce1-4147-8402-747568c87593">
+          <propertyInstance Id="d2d1cdd2-54ac-44b7-874e-e80f8157e04c" name="Overwrite" value="ClassTemplate=True|EnumTemplate=True|InterfaceTemplate=True|StructTemplate=True">
+            <elementDefinition Id="0113d5f3-7e27-4dd5-8e68-b17fc103cb26" />
+          </propertyInstance>
+          <elementDefinition Id="0dd09f3b-c24f-42e5-a144-5ce44923d2ef" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="326e9c50-9bab-4ad0-9417-8116794044e0">
+          <propertyInstance Id="f34ac2a1-42bc-4c81-8421-2e2c9bebee8a" name="Parameters">
+            <elementDefinition Id="218709c4-4aa1-4a25-aabc-d521a96d0a0a" />
+          </propertyInstance>
+          <elementDefinition Id="40e94879-bf3f-46d4-83ff-384c58bdd648" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+  </appliedStereotypesInternal>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="699ff461-98e8-43d9-8f2d-05885aa9689c" name="Publisher Job Process" isAbstract="true" isLeaf="false">
+        <elementDefinition Id="513b80c5-bc6a-42ac-9cb9-5fa78ed5ef83" />
+        <targetEnds>
+          <association Id="3a59f131-3a45-40a7-a9d4-4bfacd94ff9f" isDerived="false" sourceEndRoleName="Publisher Job Process" targetEndRoleName="Start Publishing" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="2fe3c563-5951-4061-a0e1-116f9098e56e" LastKnownName="Start Publishing" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="b1b1f3e6-e8cb-4f87-a070-b237ba6e6979" name="Publisher Job Process" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="890f805f-0625-41ae-8b98-c9bd71d98a98" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a1596bd2-fc6e-469a-adfd-e73f8f49df32" name="Start Publishing" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="85a31fb7-468b-4ffe-9aaa-e675318eeee0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="a2c9b38f-7d71-469f-b005-719b39677bd4" />
+          </association>
+          <association Id="8617d10e-040b-4488-9936-78cecf815c43" isDerived="false" sourceEndRoleName="Publisher Job Process" targetEndRoleName="Start Publishing With Publish Now Options" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="b1179a5d-51c9-41e0-8a28-3a1a22c7b511" LastKnownName="Start Publishing With Publish Now Options" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="473c3a0c-1c6c-4ba5-8abd-4086261cb90a" name="Publisher Job Process" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="fe4a44fe-779c-4e98-88fb-47757a088556" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2ab783d5-761d-40da-8216-0b3773178dbe" name="Start Publishing With Publish Now Options" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="ffdddcff-9f64-4bf4-99c6-9891ebbb3c45" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="4313173c-efe5-4cfc-9c86-ad0dafb6ac18" />
+          </association>
+          <association Id="9bf0f309-7a70-4e9b-9d0c-f89bb7788221" isDerived="false" sourceEndRoleName="Publisher Job Process" targetEndRoleName="Stop Publishing" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="9f21f806-9035-4e08-baaf-49c0a5e896ec" LastKnownName="Stop Publishing" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="74fa12b5-d5b6-4812-aa3d-8aa31a41ca65" name="Publisher Job Process" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="d707d868-4a3d-4a19-a9a3-3dfd1080ee82" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="156747da-7981-4c6f-ab55-2daba7ff2d5c" name="Stop Publishing" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="c53ddc2c-4dcc-4a06-a1ee-88b01fd35d5c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="d1de7f12-3c4b-4b57-b6f6-5aba5754bbc7" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="b005fd53-48f8-40ed-827f-a3dae3ae9b5e" name="Publish on Groups" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="44af9b22-e5e5-41b1-bd84-d22dcffdcb91" />
+        <targetEnds>
+          <association Id="4484921b-7bef-4a59-a349-090b07cb974e" isDerived="false" sourceEndRoleName="Publish on Groups" targetEndRoleName="Perform Generel Settings" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="43e10ac3-adec-4ee3-b287-c8f890c35bf8" LastKnownName="Perform Generel Settings" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e0201bb6-54bc-46d2-9109-fee6a8a33939" name="Publish on Groups" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="e7960d61-cf1f-4b63-89f8-cf9060608b2b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8b003082-b8ca-4b7c-973e-36fdd4d1ad9a" name="Perform Generel Settings" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="a010ca8a-3118-4419-afea-c688b28e1c88" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="21fd0959-ab22-4944-8ecd-0a41f589390a" />
+          </association>
+          <association Id="24879539-d30e-474d-bbf5-55ee347a273d" isDerived="false" sourceEndRoleName="Publish on Groups" targetEndRoleName="Published&#xD;&#xA;Success" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="229645af-47a9-4106-a7a5-4d382fd8bd3c" LastKnownName="Published&#xD;&#xA;Success" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="485acb3d-1fcc-4d9d-b374-6bf146d55484" name="Publish on Groups" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="9570972d-9751-4976-b724-6380e0e19998" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="795e5cb9-116a-4a1c-ad57-6ff809241f0f" name="Published&#xD;&#xA;Success" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="71f7a44d-8f7f-4e07-90c4-e6bdc6a815fd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="43c9c8e9-bd66-494a-97e0-65cf0ea7fa17" />
+          </association>
+          <association Id="f90a3127-650a-42af-af47-be2d9aea7d6d" isDerived="false" sourceEndRoleName="Publish on Groups" targetEndRoleName="Enable Delete Post After Published" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="9ab4073e-8c3f-4218-b987-bafa2dea028a" LastKnownName="Enable Delete Post After Published" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="fe43adc5-d8a7-476e-81ea-fb66f1490a0b" name="Publish on Groups" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="0a3f4161-6fed-42bb-9921-6bf23c67bfc4" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="40251506-643c-4f84-88ce-fe2e339c7b4b" name="Enable Delete Post After Published" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="c97c140c-3033-4897-b8b9-4af5a4ab069f" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="530e813d-0f5d-459e-846c-67dd82fa87cf" />
+          </association>
+          <association Id="0c2a3ce1-97ff-40c2-a35f-3a35e6df3ae8" isDerived="false" sourceEndRoleName="Publish on Groups" targetEndRoleName="Delay to publish next post" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="88f19ad9-1c1b-49b6-87e9-beb886393f7a" LastKnownName="Delay to publish next post" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c9a3eb9f-ad09-43e6-a869-02a3fadfa28f" name="Publish on Groups" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="b972e872-1907-441f-b07a-667d97eb2b82" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a9d66fea-a63d-4e9f-98fd-9907fd6f0141" name="Delay to publish next post" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="466a6dbe-a5a3-4c1d-9942-46c018b2b1ee" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="4cd7f66a-58fc-4168-864d-7d5727a13cf1" />
+          </association>
+          <association Id="aa7d2c68-ef63-482b-b963-a9696afffd27" isDerived="false" sourceEndRoleName="Publish on Groups" targetEndRoleName="Published Failed" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="dc92a9c5-f3b3-485b-9c15-9c217b1617d5" LastKnownName="Published Failed" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="1a9bfd48-1c0d-4aa3-b38e-5ec7fd4525b6" name="Publish on Groups" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="a28b2be7-9fd1-42f8-930f-891f2accbd43" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="1e060bec-32bf-4a82-a571-6388aafac4f2" name="Published Failed" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="4a666be2-abec-47cb-9035-70e9fc98db7f" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="4b17cadd-0499-4b23-bd82-a41320f29dc7" />
+          </association>
+        </targetEnds>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="38094a4f-cd97-449c-9ffa-e02429f931c2" name="Publish on Ownwall" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="89ec6c73-df5b-4aed-9b93-1eee6e1627c6" />
+        <targetEnds>
+          <association Id="3420d8df-1b66-43dd-887e-4cf335290108" isDerived="false" sourceEndRoleName="Publish on Ownwall" targetEndRoleName="Perform Generel Settings" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="43e10ac3-adec-4ee3-b287-c8f890c35bf8" LastKnownName="Perform Generel Settings" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5a46271c-eec3-404f-ad1f-cceb31b2374c" name="Publish on Ownwall" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="0be9f4a0-2d69-4602-ab81-c39a39f052d4" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="af5c85db-d0ab-4202-80a7-2a116b0fe5ad" name="Perform Generel Settings" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="bf3623e4-7fa4-46c0-b9b3-203935aa8548" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="564c80ab-a5a7-4c55-b3d3-7b0b6ecfc322" />
+          </association>
+          <association Id="f4e410d7-766b-4396-bead-6ad8e8724f7a" isDerived="false" sourceEndRoleName="Publish on Ownwall" targetEndRoleName="Published&#xD;&#xA;Success" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="229645af-47a9-4106-a7a5-4d382fd8bd3c" LastKnownName="Published&#xD;&#xA;Success" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="bc918de6-ec3b-4115-b121-140ae9071e1d" name="Publish on Ownwall" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="fa1f6d90-4df9-4c3a-890a-e385b7927801" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f5058d29-5292-46a3-8cc0-b2d2406db501" name="Published&#xD;&#xA;Success" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="6912ae22-7f89-48b7-b964-cbdbaa43203d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="e6f96f3f-8e6e-47d8-a51b-e7f74667c2b1" />
+          </association>
+          <association Id="a32530ee-ebd2-4fb5-bc8f-5f7e47c407df" isDerived="false" sourceEndRoleName="Publish on Ownwall" targetEndRoleName="Enable Delete Post After Published" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="9ab4073e-8c3f-4218-b987-bafa2dea028a" LastKnownName="Enable Delete Post After Published" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a01cd150-4ee3-4f06-8fb9-fb668807f964" name="Publish on Ownwall" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="4a5e78b8-2a71-4cbb-bfa5-4f98912205e9" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="b1f85c10-05d7-4fca-a281-ae83428bdf3a" name="Enable Delete Post After Published" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="1e8d0b28-d075-415e-b03e-4d1100da30f8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="c9f36f4d-3b8a-41eb-be2c-8a5e2ab41c27" />
+          </association>
+          <association Id="13bbc3cc-1ded-47e5-84b4-3f71d946aed2" isDerived="false" sourceEndRoleName="Publish on Ownwall" targetEndRoleName="Delay to publish next post" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="88f19ad9-1c1b-49b6-87e9-beb886393f7a" LastKnownName="Delay to publish next post" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="47ab5b71-90df-45c6-9da2-69df0306125c" name="Publish on Ownwall" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="ed11985a-537e-4dd1-8675-001183e3c747" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="1f99bd46-2e73-47fd-8075-bb2720d26d5e" name="Delay to publish next post" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="6f97aa7e-1182-4523-9027-85a22759ee87" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="95ce6990-05ee-43c2-a3c9-36716682554e" />
+          </association>
+          <association Id="414adae9-0c50-4f85-9933-2ad227a0cf26" isDerived="false" sourceEndRoleName="Publish on Ownwall" targetEndRoleName="Published Failed" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="dc92a9c5-f3b3-485b-9c15-9c217b1617d5" LastKnownName="Published Failed" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3ce59189-d8dd-4dd3-92d5-6b8613678b27" name="Publish on Ownwall" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="0f4b0ee1-eca8-4db8-8738-522bf3da5a95" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="32b02f4b-7306-4383-9a49-7f2c7162da52" name="Published Failed" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="c9fb5c45-8b90-4f2d-8fa7-ab75957bf192" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="286fec08-ee6a-48cc-938f-1269f3438030" />
+          </association>
+        </targetEnds>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="6500a3a4-fedd-4cec-aa40-32117c686364" name="Publish on Pages or Boards" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="b37047a0-23b1-4ee3-9a18-eb1730bfc88f" />
+        <targetEnds>
+          <association Id="baf3ef36-c56b-4693-824a-da22982c2076" isDerived="false" sourceEndRoleName="Publish on Pages or Boards" targetEndRoleName="Perform Generel Settings" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="43e10ac3-adec-4ee3-b287-c8f890c35bf8" LastKnownName="Perform Generel Settings" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3b65c369-bc3d-4937-836a-67938fc24cd6" name="Publish on Pages or Boards" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="c06d53e0-10de-41d0-8208-e5c29f70ea44" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="73c88ec6-abc4-4b94-b137-98d6298e4ab1" name="Perform Generel Settings" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="f313ad33-d4f1-4b9a-8857-b1a2b5bae6de" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="3acc6329-4a19-4c95-b183-4140947ba28e" />
+          </association>
+          <association Id="8b04f53b-8ccc-49f9-9457-ecf0812cb1d7" isDerived="false" sourceEndRoleName="Publish on Pages or Boards" targetEndRoleName="Published&#xD;&#xA;Success" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="229645af-47a9-4106-a7a5-4d382fd8bd3c" LastKnownName="Published&#xD;&#xA;Success" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="134a9758-f366-4647-b501-3014ffea0a98" name="Publish on Pages or Boards" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="175d4242-4a46-47ea-9246-39c508024f37" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e8f238fe-a10a-4708-844c-1d6168402f18" name="Published&#xD;&#xA;Success" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="8cc0ce8c-89c1-4db1-a713-2b91eca986bd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="72bd35f5-9445-4420-94a2-c00be79889b7" />
+          </association>
+          <association Id="2732e874-3998-41b6-9c89-f24ea72fa368" isDerived="false" sourceEndRoleName="Publish on Pages or Boards" targetEndRoleName="Enable Delete Post After Published" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="9ab4073e-8c3f-4218-b987-bafa2dea028a" LastKnownName="Enable Delete Post After Published" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="378d2dae-4804-48f0-8107-0957d3226e4f" name="Publish on Pages or Boards" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="707c72c8-83a6-46bd-b34b-c417317da535" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="58bba476-0ced-4da5-b297-bd1777af4b52" name="Enable Delete Post After Published" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="eb35e6fa-9d44-4920-9ca5-5f0a56c5ce00" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="90dc11e0-3f95-43d7-9512-154005ad2df6" />
+          </association>
+          <association Id="1077d0a1-eeee-411b-a4c9-4bb1d8b2e345" isDerived="false" sourceEndRoleName="Publish on Pages or Boards" targetEndRoleName="Delay to publish next post" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="88f19ad9-1c1b-49b6-87e9-beb886393f7a" LastKnownName="Delay to publish next post" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="492f8bba-773e-40c7-9a6d-f62e654a6349" name="Publish on Pages or Boards" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="ab72918e-fd60-465c-8ad1-2af71f08ea13" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a4f7eb33-045e-4966-b528-dcf4f8ac3853" name="Delay to publish next post" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="cf9df7c0-7276-4e90-884d-1cc184a22277" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="2de3b2ef-fcea-49a1-8a3e-1cd6a7f18855" />
+          </association>
+          <association Id="065b6e74-58ab-4c9b-bddf-6565b2a65f44" isDerived="false" sourceEndRoleName="Publish on Pages or Boards" targetEndRoleName="Published Failed" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="dc92a9c5-f3b3-485b-9c15-9c217b1617d5" LastKnownName="Published Failed" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="970c07c7-10ac-4ef0-8d83-d71e07643fc3" name="Publish on Pages or Boards" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="50621842-8e5e-49b4-9efc-649d5bc48b12" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7a7d66a7-8505-4422-9bdd-c9d3b99c9eb9" name="Published Failed" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="e7eb4e73-19ec-40ca-89f1-15f072b71f2e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="190aa02a-cb27-4751-a7c6-3af01205d45e" />
+          </association>
+        </targetEnds>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="c67c5dc3-36cf-4730-b41a-1a55b262f940" name="Publish on Custom Destination" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="0bddbb22-5240-4044-ae06-687d63132132" />
+        <targetEnds>
+          <association Id="5e2da5f9-831b-43af-9d42-01665bb255c9" isDerived="false" sourceEndRoleName="Publish on Custom Destination" targetEndRoleName="Perform Generel Settings" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="43e10ac3-adec-4ee3-b287-c8f890c35bf8" LastKnownName="Perform Generel Settings" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e40ffb32-c22a-412c-ab1f-97fd447ce55d" name="Publish on Custom Destination" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="3144721b-726c-4260-b536-836526d29f7e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e6412b7d-7669-49f0-9ec8-43deb8277d29" name="Perform Generel Settings" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="1aa2ef87-77d4-419e-9940-0d97ab3e92bd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="52225c5d-c189-4def-a90d-4cd5adb191cf" />
+          </association>
+          <association Id="f7fe2011-0ae4-47d8-8711-6d4eca5563fc" isDerived="false" sourceEndRoleName="Publish on Custom Destination" targetEndRoleName="Published&#xD;&#xA;Success" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="229645af-47a9-4106-a7a5-4d382fd8bd3c" LastKnownName="Published&#xD;&#xA;Success" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="faf6a20c-da2a-4d4a-9db0-d7c16d008376" name="Publish on Custom Destination" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="27b2cba3-6007-4ac6-80a8-6662d0827a03" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="47759ed6-315b-415b-8ea1-681d85bf19ff" name="Published&#xD;&#xA;Success" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="618a7bc0-e738-4d85-9dc7-2f26b39927bb" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="4706e5b3-b5e5-433b-bed1-fe6ad8f3ac3b" />
+          </association>
+          <association Id="c0d86d85-ab02-4a86-932f-c02a56b79319" isDerived="false" sourceEndRoleName="Publish on Custom Destination" targetEndRoleName="Delay to publish next post" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="88f19ad9-1c1b-49b6-87e9-beb886393f7a" LastKnownName="Delay to publish next post" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9ed3c67d-b393-40f7-b681-81d8365bd2a2" name="Publish on Custom Destination" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="f853cc0f-8d19-4607-9120-8da45eb793a0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d0101732-d458-46c8-91bd-4f5cf64bc147" name="Delay to publish next post" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="fe27facd-b1e2-49ed-9608-c8b5d02541ff" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="70e951db-1b21-4827-97b3-461bd63e6aa1" />
+          </association>
+          <association Id="e87bc9db-d282-4adb-a668-ad83e9ac4d80" isDerived="false" sourceEndRoleName="Publish on Custom Destination" targetEndRoleName="Enable Delete Post After Published" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="9ab4073e-8c3f-4218-b987-bafa2dea028a" LastKnownName="Enable Delete Post After Published" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e0da6ffb-6e32-4cb4-8928-0370f646ff8b" name="Publish on Custom Destination" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="de805ca7-0b36-4f04-ba1d-68a873624630" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="56e8af7e-0313-4ed1-9986-99552bfb5daa" name="Enable Delete Post After Published" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="360d97b8-3fa4-4607-9c6c-5b725e8ad2fd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="c0ad8059-4d41-4149-91b2-100f43aa5e60" />
+          </association>
+          <association Id="8128dd49-82c0-4bab-82ab-e6839b20a09f" isDerived="false" sourceEndRoleName="Publish on Custom Destination" targetEndRoleName="Published Failed" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="dc92a9c5-f3b3-485b-9c15-9c217b1617d5" LastKnownName="Published Failed" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="dfe5d92c-4766-4c13-a5ae-a4a48cf0faf7" name="Publish on Custom Destination" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="ceb7985f-5489-4c11-a5d1-ddb83bda7e31" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3191c1bd-47de-42eb-b982-73c22c21d9f3" name="Published Failed" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="2dadfa94-693f-4ead-b9a3-8f0d7e227194" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="6735a98e-9254-464d-a0b0-b418c8b1c50d" />
+          </association>
+        </targetEnds>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="f0e1b305-b6ef-48b8-92a4-7a69c938b0fd" name="Get Post list model" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="d372f1ad-2a52-4ede-9fc8-b06149dd84c7" />
+        <suppliersInternal>
+          <dependency Id="d4b33602-ae64-4b5f-bd87-341e31ab1ca3">
+            <useCaseMoniker Id="dc3175b6-706a-4ff8-b60f-46d4f3d45f3e" LastKnownName="Validate  post list" />
+            <elementDefinition Id="2f7091c7-9f6a-4e31-a01c-231802b64250" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="dc3175b6-706a-4ff8-b60f-46d4f3d45f3e" name="Validate  post list" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="340fe7dc-f57f-4b16-9f97-b4a2b85df765" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="b1179a5d-51c9-41e0-8a28-3a1a22c7b511" name="Start Publishing With Publish Now Options" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e35e2f2a-db9f-4f3f-b4e3-ba9239336cf2" />
+        <suppliersInternal>
+          <dependency Id="2dfb0cab-b19b-4300-86e9-e97ab16e28c2">
+            <useCaseMoniker Id="dc3175b6-706a-4ff8-b60f-46d4f3d45f3e" LastKnownName="Validate  post list" />
+            <elementDefinition Id="9ba8cdad-918a-4b7f-b33f-504d0d609893" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association Id="e909b8d5-2695-41f0-b79c-66d67ef06392" isDerived="false" sourceEndRoleName="Start Publishing With Publish Now Options" targetEndRoleName="Publish on Custom Destination" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="c67c5dc3-36cf-4730-b41a-1a55b262f940" LastKnownName="Publish on Custom Destination" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f3d812c5-68bd-400f-ac0c-13694b73a6b9" name="Start Publishing With Publish Now Options" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="9e7a2025-6233-48e4-94c1-6375aff480e2" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c3f265d1-85af-4c60-8264-76eebb89c3de" name="Publish on Custom Destination" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="54e12b7e-d82d-4a42-a23a-ba3d0f029735" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="fe470356-7582-41f3-9545-37464f471d25" />
+          </association>
+          <association Id="e503d05e-58f3-43c0-b748-aca4042d271e" isDerived="false" sourceEndRoleName="Start Publishing With Publish Now Options" targetEndRoleName="Publish on Pages or Boards" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="6500a3a4-fedd-4cec-aa40-32117c686364" LastKnownName="Publish on Pages or Boards" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="25e8ecb8-0fa2-43e3-a0f5-1a1bce926a9b" name="Start Publishing With Publish Now Options" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="c88f9760-9443-44c2-8648-f9e52e6c31a4" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="86ffb23c-d35e-4944-9ee1-f6c0d2cd1a47" name="Publish on Pages or Boards" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="dc2880ee-19b2-422b-a15c-34abd3f805f6" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="0b07ce2f-2f2d-40aa-a874-817f1397f097" />
+          </association>
+          <association Id="6ab8de7d-0be2-460f-ad7d-70f640d724ef" isDerived="false" sourceEndRoleName="Start Publishing With Publish Now Options" targetEndRoleName="Publish on Ownwall" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="38094a4f-cd97-449c-9ffa-e02429f931c2" LastKnownName="Publish on Ownwall" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0689e10e-5171-4881-9209-f80437bcc34b" name="Start Publishing With Publish Now Options" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="61a68376-8a44-4268-bf1b-f385cbbc4768" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="cec6e3c5-52d7-4c0b-b854-07af842cb5c9" name="Publish on Ownwall" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="1eb008a6-31e2-4cdc-b8eb-ca46b0e52fcd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="616d63e0-cb3f-4ec1-822f-e0150bccf1aa" />
+          </association>
+          <association Id="2545885e-e988-48d4-bb1f-dd5ca6e89965" isDerived="false" sourceEndRoleName="Start Publishing With Publish Now Options" targetEndRoleName="Publish on Groups" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="b005fd53-48f8-40ed-827f-a3dae3ae9b5e" LastKnownName="Publish on Groups" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="48354adf-03da-4a7b-bdff-52d9ee70e5b1" name="Start Publishing With Publish Now Options" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="ae06404a-1056-4788-b953-63b9dcebfc75" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="bb6c1224-554e-4774-bace-7505918ae836" name="Publish on Groups" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="991b5f0f-4896-4d33-be61-8bd2a6892422" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="9aa28ec6-6b41-47ad-a249-2e716f3cd3a3" />
+          </association>
+        </targetEnds>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="2fe3c563-5951-4061-a0e1-116f9098e56e" name="Start Publishing" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="1dec19a0-fc0b-452c-8e57-499a39f981e9" />
+        <suppliersInternal>
+          <dependency Id="b0231889-eff1-40af-8e73-00937a8114b3">
+            <useCaseMoniker Id="f0e1b305-b6ef-48b8-92a4-7a69c938b0fd" LastKnownName="Get Post list model" />
+            <elementDefinition Id="510c004e-c443-41e3-8a69-c2dedea23ec7" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association Id="88a80ac3-10c2-4aa9-852b-2bf4d6d12160" isDerived="false" sourceEndRoleName="Start Publishing" targetEndRoleName="Publish on Groups" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="b005fd53-48f8-40ed-827f-a3dae3ae9b5e" LastKnownName="Publish on Groups" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0bcec381-9fcd-4865-9ad9-f6a6824fdd40" name="Start Publishing" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="45229435-a2a8-4fd0-9b01-99db491b4e80" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7f45e5d2-d31f-4271-be8c-7f207d441915" name="Publish on Groups" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="af94884a-d853-43a1-bd9d-5778684f1bff" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="f6e093d5-9176-4014-890e-65ff90c600d2" />
+          </association>
+          <association Id="97758387-f3f8-410b-93fc-ea4315545e00" isDerived="false" sourceEndRoleName="Start Publishing" targetEndRoleName="Publish on Ownwall" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="38094a4f-cd97-449c-9ffa-e02429f931c2" LastKnownName="Publish on Ownwall" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="da9c2134-dbf7-4afc-8748-bed9ef1fd64a" name="Start Publishing" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="ee41e1c1-6c03-4ca6-a950-abe6ab1dca70" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f136b0b0-87ae-4a6b-9da7-95c1121198d9" name="Publish on Ownwall" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="6a739353-259e-499c-a506-03c09590f713" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="0083ed64-6181-40fd-a6ce-724e9f91f772" />
+          </association>
+          <association Id="91964c2b-44e9-4a98-92e9-829604c470e2" isDerived="false" sourceEndRoleName="Start Publishing" targetEndRoleName="Publish on Pages or Boards" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="6500a3a4-fedd-4cec-aa40-32117c686364" LastKnownName="Publish on Pages or Boards" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="32ef0fa4-e6e1-4651-8832-71f25eba62d4" name="Start Publishing" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="3f147ec5-baaf-4390-92dc-bed8105567b3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0a2a3f37-0e04-4260-bdb9-485cc7b9c5f7" name="Publish on Pages or Boards" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="e802cc35-7254-4147-85aa-974881681585" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="1de19c41-ddcb-405a-b7b2-a0b0cb1b9870" />
+          </association>
+          <association Id="60d981e8-a0cf-4046-b0ef-ff960be9a0cf" isDerived="false" sourceEndRoleName="Start Publishing" targetEndRoleName="Publish on Custom Destination" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="c67c5dc3-36cf-4730-b41a-1a55b262f940" LastKnownName="Publish on Custom Destination" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a8dd5778-b030-438c-97de-8d6c6ba554a9" name="Start Publishing" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="cb1840b8-4e44-4ce0-a088-db089b8bbf4d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e4891277-bf63-4073-aa42-715b01eccd93" name="Publish on Custom Destination" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="a459e9c3-b2b9-4a5a-9dcc-acae74b9d4d0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="7e2a8819-e4ee-438b-bf07-058dd71bb712" />
+          </association>
+        </targetEnds>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="229645af-47a9-4106-a7a5-4d382fd8bd3c" name="Published&#xD;&#xA;Success" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="19b6dd8f-3f85-4ca2-8bdd-232dc238ae01" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="dc92a9c5-f3b3-485b-9c15-9c217b1617d5" name="Published Failed" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e8a83c5b-4e9b-43dc-95d9-1baede595bf0" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="9ab4073e-8c3f-4218-b987-bafa2dea028a" name="Enable Delete Post After Published" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="0a7d2637-868b-445e-b170-5368c487fb42" />
+        <suppliersInternal>
+          <dependency Id="3fea4147-6591-4fc9-8f60-939efecea2b7">
+            <useCaseMoniker Id="229645af-47a9-4106-a7a5-4d382fd8bd3c" LastKnownName="Published&#xD;&#xA;Success" />
+            <elementDefinition Id="f077ba39-f5af-4578-a63b-0283d31ec82c" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="43e10ac3-adec-4ee3-b287-c8f890c35bf8" name="Perform Generel Settings" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="5b018cff-6127-47b4-b5a4-3d73453e908c" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="9f21f806-9035-4e08-baaf-49c0a5e896ec" name="Stop Publishing" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="7e82b7e8-7e6a-46d2-b3c9-d57cf2d24c97" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="88f19ad9-1c1b-49b6-87e9-beb886393f7a" name="Delay to publish next post" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c1789780-e22c-41ae-b8a7-801dbf6b53d5" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="758441b0-9938-40b4-a605-b12f11f8e1f0" name="DominatorHouseSocialModeling">
+    <elementDefinition Id="684edace-4e6a-4e55-aaa6-c524a34915f1" />
+    <profileInstances>
+      <packageHasProfileInstances Id="0ea47d70-cc41-4e6c-83d9-9ba2203cc158">
+        <profileInstance Id="fcee35fa-dfe1-41ae-a0eb-777058354a85" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="0adb705b-4094-4319-a7a7-b5428b5505c7">
+        <profileInstance Id="84c543d4-0588-4794-913d-8e9d7acbeeb4" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="0f51998b-fdc2-487a-b6b5-fda25780d005">
+        <profileInstance Id="c849351d-6551-4b93-9ae8-e275e859e07c" name="CSharpProfile">
+          <elementDefinition Id="0495bffe-9d9b-4661-8ddb-8e8d661a9fd6" />
+        </profileInstance>
+        <elementDefinition Id="9c1acb66-46a1-41ba-8238-70b7a7927211" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="77efe4c7-e36e-41a7-b769-a1a17f5223bf">
+        <profileInstance Id="74c3d9a6-c1a7-4797-8482-b5db3086ed49" name="TextTemplateBindings">
+          <elementDefinition Id="4f2e9847-44f7-4536-8aab-e8cf5e10aac1" />
+        </profileInstance>
+        <elementDefinition Id="b7c807f7-51ed-491e-9a75-4a5c99b92a63" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</useCaseModelRoot>

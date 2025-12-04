@@ -1,0 +1,586 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.CustomControl.AccountGrowthControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:enums="clr-namespace:DominatorHouseCore.Enums.DHEnum;assembly=DominatorHouseCore"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:DominatorUIUtility.CustomControl"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="clr-namespace:DominatorHouseCore.ViewModel;assembly=DominatorHouseCore"
+    Name="AccountModule"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:IndexToRowNoConverter x:Key="IndexToRowNoConverter" />
+        <converters:IsPositiveValueConvertor x:Key="objNegationConvertor" />
+        <converters:PositiveValueConvertor x:Key="objPositiveValueConvertor" />
+        <converters:SocialNetworkToVisualBrushConverter x:Key="SocialNetworkToVisualBrushConverter" />
+        <converters:SocialNetworkToColorBrushConverter x:Key="SocialNetworkToColorBrushConverter" />
+        <SolidColorBrush x:Key="GreenBrush" Color="#28A745" />
+        <SolidColorBrush x:Key="RedBrush" Color="#DC3545" />
+        <VisualBrush
+            x:Key="ArrowUpVisualBrush"
+            Stretch="Fill"
+            Visual="{StaticResource appbar_up_arrow}" />
+        <VisualBrush
+            x:Key="ArrowDownVisualBrush"
+            Stretch="Fill"
+            Visual="{StaticResource appbar_down_arrow}" />
+        <converters:BoolToValueConverter
+            x:Key="BoolToValueConverterArrowBrush"
+            FalseValue="{StaticResource RedBrush}"
+            NullValue="{StaticResource RedBrush}"
+            TrueValue="{StaticResource GreenBrush}" />
+        <converters:BoolToValueConverter
+            x:Key="BoolToValueConverterArrowType"
+            FalseValue="{StaticResource ArrowDownVisualBrush}"
+            NullValue="{StaticResource ArrowDownVisualBrush}"
+            TrueValue="{StaticResource ArrowUpVisualBrush}" />
+        <!--<ObjectDataProvider x:Key="dataFromEnum" MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="dhenums:GrowthPeriod"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>-->
+        <ControlTemplate x:Key="ArrowCellControlTemplate">
+            <Rectangle
+                Width="20"
+                Height="20"
+                Fill="{Binding Converter={StaticResource BoolToValueConverterArrowBrush}}"
+                OpacityMask="{Binding Converter={StaticResource BoolToValueConverterArrowType}}" />
+        </ControlTemplate>
+        <Style x:Key="ArrowCellStyle" TargetType="{x:Type UserControl}">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Template" Value="{StaticResource ArrowCellControlTemplate}" />
+        </Style>
+        <converters:AccountsFilterConverter x:Key="AccountsFilterConverter" />
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <TabControl Background="Transparent" ItemContainerStyle="{StaticResource TabItemStyle}">
+            <TabItem Header="{DynamicResource LangKeyTableView}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="42" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Border
+                        Grid.Row="0"
+                        Background="{DynamicResource AccentColorBrush}"
+                        CornerRadius="8,8,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.35*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+
+                            <StackPanel Orientation="Horizontal">
+                                <Label
+                                    Margin="5,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    Content="{DynamicResource LangKeyAccountGrowth}"
+                                    FontSize="16"
+                                    FontWeight="SemiBold"
+                                    Foreground="White" />
+                            </StackPanel>
+
+
+                            <Grid Grid.Column="1">
+                                <StackPanel
+                                    Margin="0,0,15,0"
+                                    HorizontalAlignment="Right"
+                                    Background="{DynamicResource AccentColorBrush}"
+                                    Orientation="Horizontal">
+                                    <StackPanel Margin="0,5,0,10" Orientation="Horizontal">
+                                        <Label
+                                            Height="25"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Top"
+                                            Content="{DynamicResource LangKeyFilterBy}"
+                                            Foreground="White" />
+
+                                        <ComboBox
+                                            Width="200"
+                                            Height="25"
+                                            Margin="6,0,0,0"
+                                            VerticalAlignment="Top"
+                                            BorderBrush="White"
+                                            DataContext="{Binding GrowthPeriods}"
+                                            Foreground="White"
+                                            ItemsSource="{Binding ItemsCollection}"
+                                            SelectedIndex="0"
+                                            SelectedItem="{Binding Selected}">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock>
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding}" Value="{x:Static enums:GrowthPeriod.NoPeriod}">
+                                                                        <Setter Property="Text" Value="{DynamicResource LangKeyNoPeriod}" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding}" Value="{x:Static enums:GrowthPeriod.Daily}">
+                                                                        <Setter Property="Text" Value="{DynamicResource LangKeyDaily}" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding}" Value="{x:Static enums:GrowthPeriod.Weekly}">
+                                                                        <Setter Property="Text" Value="{DynamicResource LangKeyWeekly}" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding}" Value="{x:Static enums:GrowthPeriod.Monthly}">
+                                                                        <Setter Property="Text" Value="{DynamicResource LangKeyMonthly}" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding}" Value="{x:Static enums:GrowthPeriod.LifeTime}">
+                                                                        <Setter Property="Text" Value="{DynamicResource LangKeyLifeTime}" />
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                    </StackPanel>
+
+                                </StackPanel>
+                            </Grid>
+
+                        </Grid>
+                    </Border>
+                    <!--  Account List View  -->
+                    <Grid Grid.Row="1">
+                        <ListView
+                            x:Name="AccountListView"
+                            Margin="0,2,0,0"
+                            AlternationCount="{Binding Items.Count, RelativeSource={RelativeSource Self}}"
+                            Background="Transparent"
+                            Foreground="{DynamicResource AccentBaseColorBrush}"
+                            ItemContainerStyle="{StaticResource ListViewItems}"
+                            VirtualizingPanel.IsContainerVirtualizable="True"
+                            VirtualizingPanel.IsVirtualizing="True"
+                            VirtualizingPanel.VirtualizationMode="Recycling">
+                            <ListView.ItemsSource>
+                                <MultiBinding Converter="{StaticResource AccountsFilterConverter}">
+                                    <Binding IsAsync="True" Path="Accounts" />
+                                    <Binding Path="SelectedNetworkViewModel.Selected" />
+                                </MultiBinding>
+                            </ListView.ItemsSource>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="{DynamicResource LangKeySocialNetwork}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                                    <ContentControl>
+                                                        <ContentControl.Style>
+                                                            <Style TargetType="{x:Type ContentControl}">
+                                                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                                                <Setter Property="Content">
+                                                                    <Setter.Value>
+                                                                        <Rectangle
+                                                                            Width="20"
+                                                                            Height="20"
+                                                                            Fill="{Binding AccountBaseModel.AccountNetwork, Converter={StaticResource SocialNetworkToColorBrushConverter}}">
+                                                                            <Rectangle.OpacityMask>
+                                                                                <VisualBrush Stretch="Fill" Visual="{Binding AccountBaseModel.AccountNetwork, Converter={StaticResource SocialNetworkToVisualBrushConverter}}" />
+                                                                            </Rectangle.OpacityMask>
+                                                                        </Rectangle>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </Style>
+                                                        </ContentControl.Style>
+                                                    </ContentControl>
+                                                    <CheckBox
+                                                        Margin="10,0"
+                                                        Content="{Binding (ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ListViewItem}, Converter={StaticResource IndexToRowNoConverter}}"
+                                                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                        IsChecked="{Binding IsAccountManagerAccountSelected}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding AccountBaseModel.UserName}" Header="{DynamicResource LangKeyUsername}" />
+                                    <GridViewColumn Header="{DynamicResource LangKeyGrowthColumn1}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border
+                                                    Margin="-6,-2,-6,-2"
+                                                    BorderBrush="LightGray"
+                                                    BorderThickness="1,1,0,0">
+                                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                                        <Label
+                                                            Name="oldfollowerCountLabel"
+                                                            Margin="10,0,10,0"
+                                                            HorizontalContentAlignment="Left"
+                                                            Content="{Binding DisplayColumnValue1}" />
+                                                        <UserControl DataContext="{Binding DisplayColumnValue6, Converter={StaticResource objNegationConvertor}}" Style="{StaticResource ArrowCellStyle}" />
+                                                        <Label
+                                                            Name="newFollowerCountLabel"
+                                                            Margin="10,0,10,0"
+                                                            HorizontalContentAlignment="Left"
+                                                            Content="{Binding Path=DisplayColumnValue6, Converter={StaticResource objPositiveValueConvertor}}" />
+                                                    </StackPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="{DynamicResource LangKeyGrowthColumn2}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border
+                                                    Margin="-6,-2,-6,-2"
+                                                    BorderBrush="LightGray"
+                                                    BorderThickness="1,1,0,0">
+                                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                                        <Label
+                                                            Name="oldfollowerCountLabel"
+                                                            Margin="10,0,10,0"
+                                                            HorizontalContentAlignment="Left"
+                                                            Content="{Binding DisplayColumnValue2}" />
+                                                        <UserControl DataContext="{Binding DisplayColumnValue7, Converter={StaticResource objNegationConvertor}}" Style="{StaticResource ArrowCellStyle}" />
+                                                        <Label
+                                                            Name="newFollowerCountLabel"
+                                                            Margin="10,0,10,0"
+                                                            HorizontalContentAlignment="Left"
+                                                            Content="{Binding Path=DisplayColumnValue7, Converter={StaticResource objPositiveValueConvertor}}" />
+                                                    </StackPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="{DynamicResource LangKeyGrowthColumn3}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border
+                                                    Margin="-6,-2,-6,-2"
+                                                    BorderBrush="LightGray"
+                                                    BorderThickness="1,1,0,0">
+                                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                                        <Label
+                                                            Name="oldfollowerCountLabel"
+                                                            Margin="10,0,10,0"
+                                                            HorizontalContentAlignment="Left"
+                                                            Content="{Binding DisplayColumnValue3}" />
+                                                        <UserControl DataContext="{Binding DisplayColumnValue8, Converter={StaticResource objNegationConvertor}}" Style="{StaticResource ArrowCellStyle}" />
+                                                        <Label
+                                                            Name="newFollowerCountLabel"
+                                                            Margin="10,0,10,0"
+                                                            HorizontalContentAlignment="Left"
+                                                            Content="{Binding Path=DisplayColumnValue8, Converter={StaticResource objPositiveValueConvertor}}" />
+                                                    </StackPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="{DynamicResource LangKeyGrowthColumn4}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border
+                                                    Margin="-6,-2,-6,-2"
+                                                    BorderBrush="LightGray"
+                                                    BorderThickness="1,1,0,0">
+                                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                                        <Label
+                                                            Name="oldfollowerCountLabel"
+                                                            Margin="10,0,10,0"
+                                                            HorizontalContentAlignment="Left"
+                                                            Content="{Binding DisplayColumnValue3}" />
+                                                        <UserControl DataContext="{Binding DisplayColumnValue9, Converter={StaticResource objNegationConvertor}}" Style="{StaticResource ArrowCellStyle}" />
+                                                        <Label
+                                                            Name="newFollowerCountLabel"
+                                                            Margin="10,0,10,0"
+                                                            HorizontalContentAlignment="Left"
+                                                            Content="{Binding Path=DisplayColumnValue9, Converter={StaticResource objPositiveValueConvertor}}" />
+                                                    </StackPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="{DynamicResource LangKeyGrowthColumn5}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border
+                                                    Margin="-6,-2,-6,-2"
+                                                    BorderBrush="LightGray"
+                                                    BorderThickness="1,1,0,0">
+                                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                                        <Label
+                                                            Name="oldfollowerCountLabel"
+                                                            Margin="10,0,10,0"
+                                                            HorizontalContentAlignment="Left"
+                                                            Content="{Binding DisplayColumnValue3}" />
+                                                        <UserControl DataContext="{Binding DisplayColumnValue10, Converter={StaticResource objNegationConvertor}}" Style="{StaticResource ArrowCellStyle}" />
+                                                        <Label
+                                                            Name="newFollowerCountLabel"
+                                                            Margin="10,0,10,0"
+                                                            HorizontalContentAlignment="Left"
+                                                            Content="{Binding Path=DisplayColumnValue10, Converter={StaticResource objPositiveValueConvertor}}" />
+                                                    </StackPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <!--  Help section  -->
+                        <Controls:FlyoutsControl>
+                            <Controls:Flyout
+                                x:Name="HelpFlyout"
+                                Width="300"
+                                Background="{DynamicResource AccentBaseColorBrush}"
+                                BorderBrush="Black"
+                                BorderThickness="2"
+                                FontSize="10"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                Header="{DynamicResource LangKeyModuleDescription}"
+                                IsOpen="{Binding IsOpenHelpControl}"
+                                Position="Right"
+                                Theme="Accent"
+                                Visibility="Collapsed">
+                                <local:HelpControl
+                                    ContactSupportLink="{Binding ContactSupportLink}"
+                                    KnowledgeBaseLink="{Binding KnowledgeBaseLink}"
+                                    ModuleDescription="{DynamicResource LangKeyTableViewDescription}"
+                                    VideoTutorial="{Binding VideoTutorialLink}" />
+                            </Controls:Flyout>
+                        </Controls:FlyoutsControl>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="{DynamicResource LangKeyChartsView}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Border
+                        Grid.Row="0"
+                        Background="{DynamicResource AccentColorBrush}"
+                        CornerRadius="8,8,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.35*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+
+                            <StackPanel Orientation="Horizontal">
+                                <Label
+                                    Margin="5,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    Content="{DynamicResource LangKeyAccountGrowthCharts}"
+                                    FontSize="16"
+                                    FontWeight="SemiBold"
+                                    Foreground="White" />
+                            </StackPanel>
+
+
+                            <Grid Grid.Column="1">
+
+                                <StackPanel
+                                    Margin="0,0,10,0"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <Label
+                                        Height="25"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Top"
+                                        Content="{DynamicResource LangKeySelectAccount}"
+                                        Foreground="White" />
+
+                                    <ComboBox
+                                        Width="200"
+                                        Height="25"
+                                        Margin="6,0,0,0"
+                                        VerticalAlignment="Top"
+                                        BorderBrush="White"
+                                        Foreground="White"
+                                        SelectedIndex="0"
+                                        SelectedItem="{Binding SelectedAccount}">
+                                        <ComboBox.ItemsSource>
+                                            <MultiBinding Converter="{StaticResource AccountsFilterConverter}">
+                                                <Binding Path="Accounts" />
+                                                <Binding Path="SelectedNetworkViewModel.Selected" />
+                                            </MultiBinding>
+                                        </ComboBox.ItemsSource>
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Rectangle
+                                                        Width="12"
+                                                        Height="12"
+                                                        Margin="5,0"
+                                                        VerticalAlignment="Center"
+                                                        Fill="{Binding AccountBaseModel.AccountNetwork, Converter={StaticResource SocialNetworkToColorBrushConverter}}">
+                                                        <Rectangle.OpacityMask>
+                                                            <VisualBrush Stretch="Fill" Visual="{Binding AccountBaseModel.AccountNetwork, Converter={StaticResource SocialNetworkToVisualBrushConverter}}" />
+                                                        </Rectangle.OpacityMask>
+                                                    </Rectangle>
+                                                    <TextBlock
+                                                        FontWeight="SemiBold"
+                                                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                                        Text="{Binding AccountBaseModel.UserName}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding AccountSelectionChangedCmd}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </ComboBox>
+
+
+                                    <Label
+                                        Height="25"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Top"
+                                        Content="{DynamicResource LangKeySelectPeriod}"
+                                        Foreground="White" />
+
+                                    <ComboBox
+                                        Width="200"
+                                        Height="25"
+                                        Margin="6,0,0,0"
+                                        VerticalAlignment="Top"
+                                        BorderBrush="White"
+                                        DataContext="{Binding GrowthChartPeriods}"
+                                        Foreground="White"
+                                        ItemsSource="{Binding ItemsCollection}"
+                                        SelectedIndex="0"
+                                        SelectedItem="{Binding Selected}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding}" Value="{x:Static enums:GrowthChartPeriod.PastDay}">
+                                                                    <Setter Property="Text" Value="{DynamicResource LangKeyPastDay}" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding}" Value="{x:Static enums:GrowthChartPeriod.PastWeek}">
+                                                                    <Setter Property="Text" Value="{DynamicResource LangKeyPastWeek}" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding}" Value="{x:Static enums:GrowthChartPeriod.Past30Days}">
+                                                                    <Setter Property="Text" Value="{DynamicResource LangKeyPast30Days}" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding}" Value="{x:Static enums:GrowthChartPeriod.Past3Months}">
+                                                                    <Setter Property="Text" Value="{DynamicResource LangKeyPast3Months}" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding}" Value="{x:Static enums:GrowthChartPeriod.Past6Months}">
+                                                                    <Setter Property="Text" Value="{DynamicResource LangKeyPast6Months}" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding}" Value="{x:Static enums:GrowthChartPeriod.AllTime}">
+                                                                    <Setter Property="Text" Value="{DynamicResource LangKeyAllTime}" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                    <Label
+                                        Height="25"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Top"
+                                        Content="{DynamicResource LangKeySelectType}"
+                                        Foreground="White" />
+
+                                    <ComboBox
+                                        Width="100"
+                                        Height="25"
+                                        Margin="6,0,0,0"
+                                        VerticalAlignment="Top"
+                                        BorderBrush="White"
+                                        DataContext="{Binding GrowthChartTypes}"
+                                        Foreground="White"
+                                        ItemsSource="{Binding ItemsCollection}"
+                                        SelectedItem="{Binding Selected}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding}" Value="{x:Static enums:GrowthChartType.Gain}">
+                                                                    <Setter Property="Text" Value="{DynamicResource LangKeyGain}" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding}" Value="{x:Static enums:GrowthChartType.Total}">
+                                                                    <Setter Property="Text" Value="{DynamicResource LangKeyTotal}" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding}" Value="{x:Static enums:GrowthChartType.Both}">
+                                                                    <Setter Property="Text" Value="{DynamicResource LangKeyBoth}" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+
+                                </StackPanel>
+
+                            </Grid>
+
+                        </Grid>
+                    </Border>
+                    <Grid Grid.Row="1">
+                        <StackPanel
+                            Margin="0,0,15,0"
+                            HorizontalAlignment="Left"
+                            Orientation="Horizontal">
+                            <StackPanel Margin="0,0,0,0" Orientation="Horizontal">
+                                <ScrollViewer Margin="5" VerticalScrollBarVisibility="Hidden">
+                                    <ItemsControl
+                                        x:Name="list"
+                                        Background="Transparent"
+                                        Focusable="False"
+                                        Foreground="{DynamicResource TextColorBrushAccordingTheme}"
+                                        ItemsSource="{Binding GrowthProperties, IsAsync=True}"
+                                        VirtualizingPanel.IsContainerVirtualizable="True"
+                                        VirtualizingPanel.IsVirtualizing="True"
+                                        VirtualizingPanel.VirtualizationMode="Recycling">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <VirtualizingStackPanel Orientation="Horizontal" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate DataType="{x:Type viewModel:GrowthProperty}">
+                                                <CheckBox
+                                                    Name="CheckBoxZone"
+                                                    Margin="0,5,5,0"
+                                                    Command="{Binding DataContext.GrowthPropertyCheckedCmd, Source={x:Reference list}}"
+                                                    CommandParameter="{Binding}"
+                                                    Content="{Binding PropertyName}"
+                                                    IsChecked="{Binding IsChecked}" />
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </ScrollViewer>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <local:AccountGrowthChartControl
+                            AxisXLabels="{Binding AxisXLabels}"
+                            AxisXTitle="{Binding AxisXTitle}"
+                            GrowthChartPeriod="{Binding GrowthChartPeriods.Selected}"
+                            GrowthList="{Binding GrowthList}"
+                            SeriesCollection="{Binding SeriesCollection}" />
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

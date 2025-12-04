@@ -1,0 +1,119 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls">
+    <ControlTemplate x:Key="EmbeddedBrowserControlTemplate">
+        <GroupBox Background="{DynamicResource AccentBaseColorBrush}">
+            <GroupBox.Header>
+                <Grid>
+                    <Label
+                        HorizontalAlignment="Left"
+                        Content="{DynamicResource LangKeyConfiguration}"
+                        Foreground="White" />
+                    <Button
+                        Name="BtnSave"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Background="{DynamicResource AccentBaseColorBrush}"
+                        Command="{Binding SaveCmd}"
+                        CommandParameter="{Binding}"
+                        Foreground="White"
+                        Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle
+                                    Width="15"
+                                    Height="15"
+                                    Fill="White">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_save}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <AccessText Margin="6,0" Text="{DynamicResource LangKey_Save}" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </Grid>
+            </GroupBox.Header>
+            <StackPanel x:Name="MainGrid" Margin="10">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="{DynamicResource LangKeyMaximumNumberOfSimultaneousConnections}" />
+                    <controls:NumericUpDown
+                        Margin="5"
+                        Minimum="0"
+                        Value="{Binding EmbeddedBrowserModel.MaxSemultaneousConnections}" />
+                </StackPanel>
+                <CheckBox
+                    Margin="5"
+                    Content="{DynamicResource LangKeyMaximizeTheEmbaddedBrowserWindowWhenTheyAreOpen}"
+                    IsChecked="{Binding EmbeddedBrowserModel.IsMaximizeEmbaddedBrowserChecked}" />
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        Margin="5"
+                        Content="{DynamicResource LangKeyWaitAMinimumOf}"
+                        IsChecked="{Binding EmbeddedBrowserModel.IsWaitMinOfChecked}" />
+                    <controls:NumericUpDown
+                        Margin="5"
+                        IsEnabled="{Binding EmbeddedBrowserModel.IsWaitMinOfChecked}"
+                        Minimum="0"
+                        Value="{Binding EmbeddedBrowserModel.WaitMinOf}" />
+                    <Label Content="{DynamicResource LangKeySecondsBeforeIssuingA505Error}" />
+                </StackPanel>
+                <CheckBox
+                    Margin="5"
+                    Content="{DynamicResource LangKeyForceKillEmbeddedBrowsersExperimentalUseWhenEmbeddedBrowserProcessesAreNotCorrectlyKilled}"
+                    IsChecked="{Binding EmbeddedBrowserModel.IsForceKillEmbeddedBrowserChecked}" />
+                <CheckBox
+                    Margin="5"
+                    Content="{DynamicResource LangKeyAllowTheEmbeddedBrowserToDownloadFiles}"
+                    IsChecked="{Binding EmbeddedBrowserModel.IsAllowEmbeddedBrowserToDownloadFilesChecked}" />
+                <CheckBox
+                    Margin="5"
+                    Content="{DynamicResource LangKeyPreventTheEmbeddedBrowserFromOpeningPopupWindow}"
+                    IsChecked="{Binding EmbeddedBrowserModel.IsPreventEmbeddedBrowserFromOpeningPopupChecked}" />
+                <CheckBox
+                    Margin="5"
+                    Content="{DynamicResource LangKeyUseNewTextWritingSystemForFacebookExperimental}"
+                    IsChecked="{Binding EmbeddedBrowserModel.IsUseNewTextWritingSystemForFacebookChecked}" />
+                <CheckBox
+                    Margin="5"
+                    Content="{DynamicResource LangKeyStopSavingEmbeddedBrowserScreenshotsWhenErrorOccurToSaveDiskSpace}"
+                    IsChecked="{Binding EmbeddedBrowserModel.IsStopSavingEmbeddedBrowserSSChecked}" />
+                <CheckBox
+                    Margin="5"
+                    Content="{DynamicResource LangKeyDisableGPUAccelerationImprovesPerformanceOnMachinesWithNoDedicatedVideoCard}"
+                    IsChecked="{Binding EmbeddedBrowserModel.IsDisableGPUAccelerationChecked}" />
+                <CheckBox
+                    Margin="5"
+                    Content="{DynamicResource LangKeyKeepALowFramerateForEmbeddedBrowserWhenNotVisibleCanImprovePerformance}"
+                    IsChecked="{Binding EmbeddedBrowserModel.IsKeepLowFramerateChecked}" />
+                <CheckBox
+                    Margin="5"
+                    Content="{DynamicResource LangKeyStartEmbeddedBrowserProcessesWithLowPriority}"
+                    IsChecked="{Binding EmbeddedBrowserModel.IsStartEmbeddedBrowserProcessesChecked}" />
+
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        Margin="5"
+                        Content="{DynamicResource LangKeyOpenAMaximumOf}"
+                        IsChecked="{Binding EmbeddedBrowserModel.IsOpenMaxOfChecked}" />
+                    <controls:NumericUpDown
+                        Margin="5"
+                        IsEnabled="{Binding EmbeddedBrowserModel.IsOpenMaxOfChecked}"
+                        Minimum="0"
+                        Value="{Binding EmbeddedBrowserModel.OpenMaxOf}" />
+                    <Label Content="{DynamicResource LangKeyEmbeddedBrowserAtTheSameTimeWhenUsingTheOptionFromSocialProfiles}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Margin="5" Content="{DynamicResource LangKeyDeleteUpTo}" />
+                    <controls:NumericUpDown
+                        Margin="5"
+                        Minimum="0"
+                        Value="{Binding EmbeddedBrowserModel.DeleteupTo}" />
+                    <Label Margin="5" Content="{DynamicResource LangKeyKCookieCacheFilesWithEveryRestart}" />
+                </StackPanel>
+                <!--<Button Content="{DynamicResource langDeleteAll}" Margin="10,0" Background="{DynamicResource AccentBaseColorBrush}" Foreground="White" HorizontalAlignment="Left"/>-->
+            </StackPanel>
+        </GroupBox>
+    </ControlTemplate>
+</ResourceDictionary>

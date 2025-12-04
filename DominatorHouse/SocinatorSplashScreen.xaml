@@ -1,0 +1,155 @@
+﻿<Window
+    x:Class="DominatorHouse.SocinatorSplashScreen"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:DominatorHouse"
+    xmlns:lottie="clr-namespace:LottieSharp.WPF;assembly=LottieSharp"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="690"
+    Height="350"
+    HorizontalAlignment="Center"
+    VerticalAlignment="Center"
+    AllowsTransparency="True"
+    Background="Transparent"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <Storyboard
+            x:Key="GradientColorAnimation"
+            AutoReverse="True"
+            RepeatBehavior="Forever">
+            <ColorAnimation
+                Storyboard.TargetName="Stop1"
+                Storyboard.TargetProperty="Color"
+                From="#FFFF00FF"
+                To="#FFFFFF00"
+                Duration="0:0:2" />
+            <ColorAnimation
+                Storyboard.TargetName="Stop2"
+                Storyboard.TargetProperty="Color"
+                From="#FFFF0080"
+                To="#FFFF0000"
+                Duration="0:0:2" />
+            <ColorAnimation
+                Storyboard.TargetName="Stop3"
+                Storyboard.TargetProperty="Color"
+                From="#FF8A2BE2"
+                To="#FF00FF00"
+                Duration="0:0:2" />
+            <ColorAnimation
+                Storyboard.TargetName="Stop4"
+                Storyboard.TargetProperty="Color"
+                From="#FF00CFFF"
+                To="#FF0000FF"
+                Duration="0:0:2" />
+        </Storyboard>
+    </Window.Resources>
+    <Border
+        x:Name="MyBorder"
+        BorderThickness="1.8"
+        CornerRadius="10">
+        <Border.Background>
+            <LinearGradientBrush Opacity="1" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0.0" Color="#064236" />
+                <GradientStop Offset="1.0" Color="#063042" />
+            </LinearGradientBrush>
+        </Border.Background>
+        <Border.Triggers>
+            <EventTrigger RoutedEvent="Border.Loaded">
+                <BeginStoryboard Storyboard="{StaticResource GradientColorAnimation}" />
+            </EventTrigger>
+        </Border.Triggers>
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                <GradientStop x:Name="Stop1" Offset="0.0" Color="#00CFFF" />
+                <!--  Orange  -->
+                <GradientStop x:Name="Stop2" Offset="0.3" Color="#E8E8E8" />
+                <!--  Pink  -->
+                <GradientStop x:Name="Stop3" Offset="0.6" Color="#147B60" />
+                <!--  Purple  -->
+                <GradientStop x:Name="Stop4" Offset="1.0" Color="#00CFFF" />
+                <!--  Light Blue  -->
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Border BorderThickness="2" CornerRadius="50">
+                <lottie:LottieAnimationView
+                    Width="200"
+                    Height="150"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    AutoPlay="True"
+                    RepeatCount="-1"
+                    ResourcePath="pack://application:,,,/SocinatorAnimation.json" />
+            </Border>
+            <TextBlock
+                Margin="0,0,0,20"
+                HorizontalAlignment="Center"
+                FontSize="28"
+                FontWeight="Bold"
+                Text="Welcome to Socinator">
+                <TextBlock.Effect>
+                    <DropShadowEffect
+                        BlurRadius="10"
+                        Opacity="0.5"
+                        ShadowDepth="7"
+                        Color="Black" />
+                </TextBlock.Effect>
+                <TextBlock.Foreground>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Offset="0.1" Color="#FFFF" />
+                        <!--  FF6A00  -->
+                        <!--  Orange  -->
+                        <GradientStop Offset="0.5" Color="#0ACCAD" />
+                        <!--  #FF0080  -->
+                        <!--  Pink  -->
+                        <GradientStop Offset="0.7" Color="#83F6AD" />
+                        <!--  Purple  -->
+                        <GradientStop Offset="0.9" Color="#BDBDBD" />
+                        <!--  #00CFFF  -->
+                        <!--  Light Blue  -->
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+            </TextBlock>
+            <TextBlock
+                x:Name="InitializingText"
+                HorizontalAlignment="Center"
+                FontSize="24"
+                FontWeight="SemiBold"
+                Foreground="White"
+                Text="Getting things ready...">
+                <TextBlock.Effect>
+                    <DropShadowEffect
+                        BlurRadius="10"
+                        Opacity="0.5"
+                        ShadowDepth="7"
+                        Color="Black" />
+                </TextBlock.Effect>
+                <!--<TextBlock.Foreground>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Offset="0.0" Color="#FFFF" />
+                -->
+                <!--  FF6A00  -->
+                <!--  Orange  -->
+                <!--
+                        <GradientStop Offset="0.3" Color="#FF0080" />
+                -->
+                <!--  Pink  -->
+                <!--
+                        <GradientStop Offset="0.6" Color="#8A2BE2" />
+                -->
+                <!--  Purple  -->
+                <!--
+                        <GradientStop Offset="1.0" Color="#FFFF" />
+                -->
+                <!--  #00CFFF  -->
+                <!--  Light Blue  -->
+                <!--
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>-->
+            </TextBlock>
+        </StackPanel>
+    </Border>
+</Window>

@@ -1,0 +1,491 @@
+﻿<UserControl
+    x:Class="DominatorUIUtility.CustomControl.JobConfigControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converter="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:enums="clr-namespace:DominatorHouseCore.Enums;assembly=DominatorHouseCore"
+    xmlns:local="clr-namespace:DominatorUIUtility.CustomControl"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Loaded="JobConfigControl_Loaded"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converter:AverageConverter x:Key="AverageConverter" />
+        <converter:NumberConverter x:Key="NumberConverter" />
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <StackPanel>
+            <CheckBox
+                Name="ChkAdvance"
+                Margin="5"
+                Content="{DynamicResource LangKeyAdvancedSettings}"
+                IsChecked="{Binding JobConfiguration.IsAdvanceSetting}"
+                Visibility="{Binding EnableAdvance}" />
+
+            <Border BorderBrush="Transparent" BorderThickness="2">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=ChkAdvance, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=ChkAdvance, Path=IsChecked}" Value="False">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel>
+                    <StackPanel
+                        Margin="5"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+
+                        <Rectangle Width="53" Height="33">
+                            <Rectangle.Style>
+                                <Style TargetType="Rectangle">
+                                    <Setter Property="Fill">
+                                        <Setter.Value>
+                                            <VisualBrush Stretch="Fill">
+                                                <VisualBrush.Visual>
+                                                    <Path
+                                                        Canvas.Left="11.0833"
+                                                        Canvas.Top="17.4167"
+                                                        Data="F1 M 22.1667,44.3333L 11.0833,44.3333C 11.0833,29.4677 23.1343,17.4167 38,17.4167C 52.8656,17.4167 64.9166,29.4677 64.9166,44.3333L 53.8333,44.3333C 53.8333,44.0678 53.8268,43.8039 52.25,43.5417C 52.25,35.6716 45.87,29.2917 38,29.2917C 30.1299,29.2917 23.75,35.6716 23.75,43.5417L 22.1667,44.3333 Z M 36.2808,20.6446C 30.966,21.0248 26.135,23.1539 22.3603,26.4594L 25.4882,30.0342C 28.508,27.3897 32.3728,25.6865 36.6246,25.3824L 36.2808,20.6446 Z M 53.6396,26.4594C 49.8649,23.1539 45.034,21.0248 39.7192,20.6446L 39.3753,25.3824C 43.6272,25.6865 47.492,27.3897 50.5117,30.0342L 53.6396,26.4594 Z M 55.8739,28.6937L 52.2991,31.8216C 54.8225,34.7031 56.4889,38.3541 56.9004,42.3766L 61.6255,41.8874C 61.1111,36.8593 59.0281,32.2956 55.8739,28.6937 Z M 20.1261,28.6937C 16.9718,32.2956 14.8888,36.8593 14.3744,41.8874L 19.0995,42.3766C 19.511,38.3541 21.1774,34.7031 23.7008,31.8216L 20.1261,28.6937 Z M 37.4902,50.5544L 25.6575,43.4343L 39.8405,42.8671C 41.9632,43.5161 43.158,45.7631 42.509,47.8859C 41.86,50.0086 39.613,51.2034 37.4902,50.5544 Z "
+                                                        Fill="#4F4E4A"
+                                                        Stretch="Fill" />
+                                                </VisualBrush.Visual>
+                                            </VisualBrush>
+                                        </Setter.Value>
+                                    </Setter>
+
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=Speed, Path=SelectedItem}" Value="Slow">
+                                            <Setter Property="Fill">
+                                                <Setter.Value>
+                                                    <VisualBrush Stretch="Fill">
+                                                        <VisualBrush.Visual>
+                                                            <Path
+                                                                Canvas.Left="11.0833"
+                                                                Canvas.Top="17.4167"
+                                                                Data="F1 M 22.1667,44.3333L 11.0833,44.3333C 11.0833,29.4677 23.1343,17.4167 38,17.4167C 52.8656,17.4167 64.9166,29.4677 64.9166,44.3333L 53.8333,44.3333C 53.8333,44.0678 53.8268,43.8039 52.25,43.5417C 52.25,35.6716 45.87,29.2917 38,29.2917C 30.1299,29.2917 23.75,35.6716 23.75,43.5417L 22.1667,44.3333 Z M 36.2808,20.6446C 30.966,21.0248 26.135,23.1539 22.3603,26.4594L 25.4882,30.0342C 28.508,27.3897 32.3728,25.6865 36.6246,25.3824L 36.2808,20.6446 Z M 53.6396,26.4594C 49.8649,23.1539 45.034,21.0248 39.7192,20.6446L 39.3753,25.3824C 43.6272,25.6865 47.492,27.3897 50.5117,30.0342L 53.6396,26.4594 Z M 55.8739,28.6937L 52.2991,31.8216C 54.8225,34.7031 56.4889,38.3541 56.9004,42.3766L 61.6255,41.8874C 61.1111,36.8593 59.0281,32.2956 55.8739,28.6937 Z M 20.1261,28.6937C 16.9718,32.2956 14.8888,36.8593 14.3744,41.8874L 19.0995,42.3766C 19.511,38.3541 21.1774,34.7031 23.7008,31.8216L 20.1261,28.6937 Z M 41.5558,44.2313C 43.0121,45.9066 42.8346,48.4452 41.1593,49.9015C 39.484,51.3578 36.9454,51.1803 35.4891,49.505L 30.2385,36.3175L 41.5558,44.2313 Z "
+                                                                Fill="#16C72E"
+                                                                Stretch="Fill" />
+                                                        </VisualBrush.Visual>
+                                                    </VisualBrush>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=Speed, Path=SelectedItem}" Value="Medium">
+                                            <Setter Property="Fill">
+                                                <Setter.Value>
+                                                    <VisualBrush Stretch="Fill">
+                                                        <VisualBrush.Visual>
+                                                            <Path
+                                                                Canvas.Left="11.0833"
+                                                                Canvas.Top="17.4167"
+                                                                Data="F1 M 42.0192,46.6474C 42.0192,48.8672 40.2198,50.6667 38,50.6667C 35.7802,50.6667 33.9808,48.8672 33.9808,46.6474L 38.6699,33.25L 42.0192,46.6474 Z M 22.1667,44.3333L 11.0833,44.3333C 11.0833,29.4677 23.1343,17.4167 38,17.4167C 52.8656,17.4167 64.9166,29.4677 64.9166,44.3333L 53.8333,44.3333C 53.8333,44.0679 53.8268,43.8039 52.25,43.5417C 52.25,35.6716 45.87,29.2917 38,29.2917C 30.1299,29.2917 23.75,35.6716 23.75,43.5417L 22.1667,44.3333 Z M 36.2808,20.6446C 30.966,21.0248 26.135,23.1539 22.3603,26.4594L 25.4882,30.0342C 28.508,27.3897 32.3728,25.6865 36.6246,25.3824L 36.2808,20.6446 Z M 53.6396,26.4594C 49.8649,23.1539 45.034,21.0248 39.7192,20.6446L 39.3753,25.3824C 43.6272,25.6865 47.492,27.3897 50.5117,30.0342L 53.6396,26.4594 Z M 55.8739,28.6937L 52.2991,31.8216C 54.8225,34.7031 56.4889,38.3541 56.9004,42.3766L 61.6255,41.8874C 61.1111,36.8593 59.0281,32.2956 55.8739,28.6937 Z M 20.1261,28.6937C 16.9718,32.2956 14.8888,36.8593 14.3744,41.8874L 19.0995,42.3766C 19.511,38.3541 21.1774,34.7031 23.7008,31.8216L 20.1261,28.6937 Z "
+                                                                Fill="#FFD500"
+                                                                Stretch="Fill" />
+                                                        </VisualBrush.Visual>
+                                                    </VisualBrush>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=Speed, Path=SelectedItem}" Value="Fast">
+                                            <Setter Property="Fill">
+                                                <Setter.Value>
+                                                    <VisualBrush Stretch="Fill">
+                                                        <VisualBrush.Visual>
+                                                            <Path
+                                                                Canvas.Left="11.0833"
+                                                                Canvas.Top="17.4167"
+                                                                Data="F1 M 22.1667,44.3333L 11.0833,44.3333C 11.0833,29.4677 23.1343,17.4167 38,17.4167C 52.8656,17.4167 64.9166,29.4677 64.9166,44.3333L 53.8333,44.3333C 53.8333,44.0678 53.8268,43.8039 52.25,43.5417C 52.25,35.6716 45.87,29.2917 38,29.2917C 30.1299,29.2917 23.75,35.6716 23.75,43.5417L 22.1667,44.3333 Z M 36.2808,20.6446C 30.966,21.0248 26.135,23.1539 22.3603,26.4594L 25.4882,30.0342C 28.508,27.3897 32.3728,25.6865 36.6246,25.3824L 36.2808,20.6446 Z M 53.6396,26.4594C 49.8649,23.1539 45.034,21.0248 39.7192,20.6446L 39.3753,25.3824C 43.6272,25.6865 47.492,27.3897 50.5117,30.0342L 53.6396,26.4594 Z M 55.8739,28.6937L 52.2991,31.8216C 54.8225,34.7031 56.4889,38.3541 56.9004,42.3766L 61.6255,41.8874C 61.1111,36.8593 59.0281,32.2956 55.8739,28.6937 Z M 20.1261,28.6937C 16.9718,32.2956 14.8888,36.8593 14.3744,41.8874L 19.0995,42.3766C 19.511,38.3541 21.1774,34.7031 23.7008,31.8216L 20.1261,28.6937 Z M 34.4442,44.2313L 45.7615,36.3175L 40.5109,49.505C 39.0546,51.1803 36.516,51.3578 34.8407,49.9015C 33.1654,48.4452 32.9879,45.9066 34.4442,44.2313 Z "
+                                                                Fill="#FF7B00"
+                                                                Stretch="Fill" />
+                                                        </VisualBrush.Visual>
+                                                    </VisualBrush>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=Speed, Path=SelectedItem}" Value="Superfast">
+                                            <Setter Property="Fill">
+                                                <Setter.Value>
+                                                    <VisualBrush Stretch="Fill">
+                                                        <VisualBrush.Visual>
+                                                            <Path
+                                                                Canvas.Left="11.0833"
+                                                                Canvas.Top="17.4167"
+                                                                Data="F1 M 22.1667,44.3333L 11.0833,44.3333C 11.0833,29.4677 23.1343,17.4167 38,17.4167C 52.8656,17.4167 64.9166,29.4677 64.9166,44.3333L 53.8333,44.3333C 53.8333,44.0678 53.8268,43.8039 52.25,43.5417C 52.25,35.6716 45.87,29.2917 38,29.2917C 30.1299,29.2917 23.75,35.6716 23.75,43.5417L 22.1667,44.3333 Z M 36.2808,20.6446C 30.966,21.0248 26.135,23.1539 22.3603,26.4594L 25.4882,30.0342C 28.508,27.3897 32.3728,25.6865 36.6246,25.3824L 36.2808,20.6446 Z M 53.6396,26.4594C 49.8649,23.1539 45.034,21.0248 39.7192,20.6446L 39.3753,25.3824C 43.6272,25.6865 47.492,27.3897 50.5117,30.0342L 53.6396,26.4594 Z M 55.8739,28.6937L 52.2991,31.8216C 54.8225,34.7031 56.4889,38.3541 56.9004,42.3766L 61.6255,41.8874C 61.1111,36.8593 59.0281,32.2956 55.8739,28.6937 Z M 20.1261,28.6937C 16.9718,32.2956 14.8888,36.8593 14.3744,41.8874L 19.0995,42.3766C 19.511,38.3541 21.1774,34.7031 23.7008,31.8216L 20.1261,28.6937 Z M 38.5097,50.5544C 36.387,51.2034 34.14,50.0086 33.491,47.8859C 32.842,45.7631 34.0367,43.5161 36.1595,42.8671L 50.3425,43.4343L 38.5097,50.5544 Z "
+                                                                Fill="#ED1C24"
+                                                                Stretch="Fill" />
+                                                        </VisualBrush.Visual>
+                                                    </VisualBrush>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Rectangle.Style>
+                        </Rectangle>
+                        <Label
+                            Content="{DynamicResource LangKeyActivitySpeed}"
+                            FontSize="20"
+                            FontWeight="Bold" />
+                    </StackPanel>
+                    <Label
+                        HorizontalAlignment="Center"
+                        Content="{DynamicResource LangKeySuperfastNotRecommended}"
+                        FontSize="16"
+                        Foreground="#F28383">
+                        <Label.Style>
+                            <Style TargetType="Label">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding JobConfiguration.SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="Superfast">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Label.Style>
+                    </Label>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Label
+                            HorizontalAlignment="Center"
+                            Content="{DynamicResource LangKeyAverageDailyActivities}"
+                            FontSize="14"
+                            FontWeight="SemiBold" />
+                        <Label
+                            HorizontalAlignment="Center"
+                            FontSize="14"
+                            FontWeight="SemiBold">
+                            <Label.Content>
+                                <MultiBinding Converter="{StaticResource AverageConverter}">
+                                    <Binding Converter="{StaticResource NumberConverter}" Path="JobConfiguration.ActivitiesPerDay.StartValue" />
+                                    <Binding Converter="{StaticResource NumberConverter}" Path="JobConfiguration.ActivitiesPerDay.EndValue" />
+                                </MultiBinding>
+                            </Label.Content>
+                        </Label>
+                    </StackPanel>
+                    <StackPanel
+                        Margin="0,0,0,10"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Label
+                            Content="{DynamicResource LangKeySelectSpeed}"
+                            FontSize="15"
+                            FontWeight="SemiBold" />
+                        <ComboBox
+                            Name="Speed"
+                            Width="150"
+                            ItemsSource="{Binding JobConfiguration.Speeds}"
+                            SelectedIndex="0"
+                            SelectedItem="{Binding JobConfiguration.SelectedItem, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            SelectionChanged="Selector_OnSelectionChanged">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding}" Value="Slow">
+                                                        <Setter Property="Text" Value="{DynamicResource LangKeySlow}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding}" Value="Medium">
+                                                        <Setter Property="Text" Value="{DynamicResource LangKeyMedium}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding}" Value="Fast">
+                                                        <Setter Property="Text" Value="{DynamicResource LangKeyFast}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding}" Value="Superfast">
+                                                        <Setter Property="Text" Value="{DynamicResource LangKeySuperfast}" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                <StackPanel Visibility="{Binding ElementName=ChkAdvance, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                    <StackPanel
+                        Margin="10,8,0,0"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal"
+                        Visibility="{Binding EnableOperationDelay}">
+                        <TextBlock VerticalAlignment="Center" Text="{StaticResource LangKeyDelayBetweenEachOperation}" />
+                        <controls:NumericUpDown
+                            Name="DelayOperationStartValue"
+                            Margin="5,5,5,0"
+                            Minimum="0"
+                            Value="{Binding JobConfiguration.DelayBetweenActivity.StartValue}" />
+                        <Label
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{DynamicResource LangKeyTo}" />
+                        <controls:NumericUpDown
+                            Margin="5,5,5,0"
+                            Minimum="{Binding Value, ElementName=DelayOperationStartValue}"
+                            Value="{Binding JobConfiguration.DelayBetweenActivity.EndValue}" />
+                        <Label VerticalAlignment="Center" Content="{DynamicResource LangKeySeconds}" />
+                    </StackPanel>
+                    <StackPanel
+                        Margin="10,8,0,0"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal"
+                        Visibility="{Binding EnableAccountDelay}">
+                        <TextBlock VerticalAlignment="Center" Text="{StaticResource LangKeyDelayBetweenEachAccount}" />
+                        <controls:NumericUpDown
+                            Name="DelayAccountStartValue"
+                            Margin="5,5,5,0"
+                            Minimum="0"
+                            Value="{Binding JobConfiguration.DelayBetweenAccounts.StartValue}" />
+                        <Label
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{DynamicResource LangKeyTo}" />
+                        <controls:NumericUpDown
+                            Margin="5,5,5,0"
+                            Minimum="{Binding Value, ElementName=DelayAccountStartValue}"
+                            Value="{Binding JobConfiguration.DelayBetweenAccounts.EndValue}" />
+                        <Label VerticalAlignment="Center" Content="{DynamicResource LangKeySeconds}" />
+                    </StackPanel>
+
+                    <StackPanel
+                        Margin="10,8,0,0"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal"
+                        Visibility="{Binding EnableJobDelay}">
+                        <TextBlock VerticalAlignment="Center" Text="{DynamicResource LangKeyDelayBetweenJobs}" />
+                        <controls:NumericUpDown
+                            Name="DelayJobStartValue"
+                            Margin="5,5,5,0"
+                            Minimum="0"
+                            Value="{Binding JobConfiguration.DelayBetweenJobs.StartValue}" />
+                        <Label
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{DynamicResource LangKeyTo}" />
+                        <controls:NumericUpDown
+                            Margin="5,5,5,0"
+                            Minimum="{Binding Value, ElementName=DelayJobStartValue}"
+                            Value="{Binding JobConfiguration.DelayBetweenJobs.EndValue}" />
+                        <Label VerticalAlignment="Center" Content="{DynamicResource LangKeyMinutes}" />
+                    </StackPanel>
+
+                    <StackPanel
+                        Margin="5,8,0,0"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal"
+                        Visibility="{Binding PerJobEnable}">
+                        <Label Content="{Binding JobConfiguration.ActivitiesPerJobDisplayName}" />
+                        <controls:NumericUpDown
+                            Name="MinJobFollowCount"
+                            Margin="5,5,5,0"
+                            Minimum="1"
+                            Value="{Binding JobConfiguration.ActivitiesPerJob.StartValue, UpdateSourceTrigger=PropertyChanged}" />
+                        <Label
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{DynamicResource LangKeyTo}" />
+                        <controls:NumericUpDown
+                            Name="MaxActivitiesPerJob"
+                            Margin="5,5,5,0"
+                            Minimum="{Binding Value, ElementName=MinJobFollowCount, UpdateSourceTrigger=PropertyChanged}"
+                            Value="{Binding JobConfiguration.ActivitiesPerJob.EndValue, UpdateSourceTrigger=PropertyChanged}" />
+                        <Label VerticalAlignment="Center" Content="{Binding PerJobActivity}" />
+                    </StackPanel>
+
+                    <StackPanel
+                        Margin="5,8,0,0"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal"
+                        Visibility="{Binding PerHourEnable}">
+                        <Label VerticalAlignment="Center" Content="{Binding JobConfiguration.ActivitiesPerHourDisplayName}" />
+                        <controls:NumericUpDown
+                            Name="MinActivitiesPerHour"
+                            Margin="5,5,5,0"
+                            Maximum="{Binding ElementName=MaxActionsPerDay, Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                            Minimum="1"
+                            Value="{Binding JobConfiguration.ActivitiesPerHour.StartValue, UpdateSourceTrigger=PropertyChanged}" />
+                        <Label
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{DynamicResource LangKeyTo}" />
+                        <controls:NumericUpDown
+                            Margin="5,5,5,0"
+                            Maximum="{Binding JobConfiguration.ActivitiesPerDay.StartValue, UpdateSourceTrigger=PropertyChanged}"
+                            Minimum="{Binding ElementName=MinActivitiesPerHour, Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                            Value="{Binding JobConfiguration.ActivitiesPerHour.EndValue, UpdateSourceTrigger=PropertyChanged}" />
+                        <Label VerticalAlignment="Center" Content="{Binding PerHourActivity}" />
+
+                    </StackPanel>
+
+                    <StackPanel
+                        Margin="5,8,0,0"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal"
+                        Visibility="{Binding PerDayEnable}">
+                        <Label VerticalAlignment="Center" Content="{Binding JobConfiguration.ActivitiesPerDayDisplayName}" />
+                        <controls:NumericUpDown
+                            Name="MinActionsPerDay"
+                            Margin="5,5,5,0"
+                            Minimum="{Binding Value, ElementName=MaxActivitiesPerJob, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Value="{Binding JobConfiguration.ActivitiesPerDay.StartValue, UpdateSourceTrigger=PropertyChanged}" />
+                        <Label
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{DynamicResource LangKeyTo}" />
+                        <controls:NumericUpDown
+                            Name="MaxActionsPerDay"
+                            Margin="5,5,5,0"
+                            Minimum="{Binding Value, ElementName=MinActionsPerDay, UpdateSourceTrigger=PropertyChanged}"
+                            Value="{Binding JobConfiguration.ActivitiesPerDay.EndValue, UpdateSourceTrigger=PropertyChanged}" />
+                        <Label VerticalAlignment="Center" Content="{Binding PerDayActivity}" />
+
+                    </StackPanel>
+
+
+                    <StackPanel
+                        Margin="5,8,0,0"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal"
+                        Visibility="{Binding PerWeekEnable}">
+                        <Label VerticalAlignment="Center" Content="{Binding JobConfiguration.ActivitiesPerWeekDisplayName}" />
+                        <controls:NumericUpDown
+                            Name="CountPerWeekStartValue"
+                            Margin="5,5,5,0"
+                            Minimum="{Binding Value, ElementName=MaxActionsPerDay, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Value="{Binding JobConfiguration.ActivitiesPerWeek.StartValue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                        <Label
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{DynamicResource LangKeyTo}" />
+                        <controls:NumericUpDown
+                            Margin="5,5,5,0"
+                            Minimum="{Binding Value, ElementName=CountPerWeekStartValue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Value="{Binding JobConfiguration.ActivitiesPerWeek.EndValue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                        <Label VerticalAlignment="Center" Content="{Binding PerWeekActivity}" />
+
+                    </StackPanel>
+
+                    <StackPanel
+                        Margin="5,8,0,0"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal"
+                        Visibility="{Binding EnableIncreasePerDay}">
+                        <CheckBox
+                            x:Name="chkIncreaseEachDay"
+                            VerticalAlignment="Center"
+                            Content="{DynamicResource LangKeyIncreaseEachDayWith}"
+                            IsChecked="{Binding JobConfiguration.IncreaseActivitiesEachDay.IsIncreaseCountChecked}" />
+                        <controls:NumericUpDown
+                            Name="IncreaseMaxActionsPerDays"
+                            Margin="5,5,5,5"
+                            IsEnabled="{Binding ElementName=chkIncreaseEachDay, Path=IsChecked}"
+                            Minimum="0"
+                            Value="{Binding JobConfiguration.IncreaseActivitiesEachDay.IncreaseActivityCount}" />
+                        <Label
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{DynamicResource LangKeyUntilItReaches}" />
+                        <controls:NumericUpDown
+                            Margin="5,5,5,5"
+                            IsEnabled="{Binding ElementName=chkIncreaseEachDay, Path=IsChecked}"
+                            Maximum="9999"
+                            Minimum="{Binding Value, ElementName=IncreaseMaxActionsPerDays}"
+                            Value="{Binding JobConfiguration.IncreaseActivitiesEachDay.UntilMaxCountReached}" />
+                        <Label VerticalAlignment="Center" Content="{Binding JobConfiguration.IncreaseActivityDisplayName}" />
+                    </StackPanel>
+
+
+                    <StackPanel Visibility="{Binding EnableFavTime}">
+                        <Label
+                            Margin="0,5,0,0"
+                            Content="{DynamicResource LangKeyDayOfTheWeekWhenToOperate}"
+                            FontWeight="Bold" />
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <ListBox ItemsSource="{Binding JobConfiguration.RunningTime}">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <local:DayTimerControl RunningTimes="{Binding Path=.}" />
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:DropDownButton
+                                Height="30"
+                                Margin="5,0"
+                                Background="{DynamicResource AccentBaseColorBrush}"
+                                Content="{DynamicResource LangKeySelectFavoriteTime}"
+                                Foreground="White"
+                                ItemsSource="{Binding LstFavoriteTime, Mode=OneWay}">
+                                <controls:DropDownButton.ItemContainerStyle>
+                                    <Style BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="MenuItem">
+                                        <Setter Property="Header" Value="{Binding FavoriteTimeName}" />
+                                        <Setter Property="Command" Value="{Binding DataContext.SelectFavoriteTime, RelativeSource={RelativeSource FindAncestor, AncestorType=StackPanel}}" />
+                                        <Setter Property="CommandParameter" Value="{Binding}" />
+                                    </Style>
+                                </controls:DropDownButton.ItemContainerStyle>
+                                <controls:DropDownButton.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                Background="Transparent"
+                                                Command="{Binding Source={x:Reference MainGrid}, Path=DataContext.RemoveFavoriteTimeCommand}"
+                                                CommandParameter="{Binding}"
+                                                Foreground="{DynamicResource TextColorBrushAccordingTheme1}">
+                                                <Button.Content>
+                                                    <Rectangle
+                                                        Width="15"
+                                                        Height="20"
+                                                        Fill="IndianRed">
+                                                        <Rectangle.OpacityMask>
+                                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_delete}" />
+                                                        </Rectangle.OpacityMask>
+                                                    </Rectangle>
+                                                </Button.Content>
+                                            </Button>
+                                            <TextBlock
+                                                VerticalAlignment="Center"
+                                                Foreground="{DynamicResource TextColorBrushAccordingTheme1}"
+                                                Text="{Binding DataContext.FavoriteTimeName, RelativeSource={RelativeSource FindAncestor, AncestorType=MenuItem}}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </controls:DropDownButton.ItemTemplate>
+                            </controls:DropDownButton>
+                            <Button
+                                Name="BtnCreateFavorite"
+                                Height="30"
+                                Background="{DynamicResource AccentBaseColorBrush}"
+                                Click="BtnCreateFavorite_OnClick"
+                                Content="{DynamicResource LangKeyCreateFavorite}"
+                                Foreground="White" />
+                        </StackPanel>
+                    </StackPanel>
+
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</UserControl>
