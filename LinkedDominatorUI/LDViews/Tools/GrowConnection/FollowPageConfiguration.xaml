@@ -1,0 +1,108 @@
+﻿<local:FollowPageConfigurationBase
+    x:Class="LinkedDominatorUI.LDViews.Tools.GrowConnection.FollowPageConfiguration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:LinkedDominatorUI.LDViews.Tools.GrowConnection"
+    x:Name="FollowPageConfigurations"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:LdCustomControl="clr-namespace:LinkedDominatorUI.CustomControl"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    mc:Ignorable="d"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=FollowPageConfigurations}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+        <StackPanel>
+            <customControl:AccountGrowthModeHeader x:FieldModifier="public"
+                                                   Name="AccountGrowthHeader"
+                                                   VerticalAlignment="Top"
+                                                   VideoTutorialLink="{Binding VideoTutorialLink}"
+                                                   SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=FollowPageConfigurations}"
+                                                   SaveCommand="{Binding SaveConfigurationsCommand}" />
+        </StackPanel>
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" VerticalAlignment="Center"
+                                   Margin="10,0,10,0" />
+                        <Controls:ToggleSwitch x:Name="TglStatus"
+                                               IsChecked="{Binding FollowPagesModel.IsAccountGrowthActive}"
+                                               OnLabel="Active﻿" OffLabel="Stopped﻿"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=FollowPageConfigurations}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Controls:ToggleSwitch>
+                    </StackPanel>
+
+                    <Expander Header="{DynamicResource LangKeySearchQuery}" IsExpanded="True" Margin="5">
+                        <customControl:SearchQueryControl x:Name="FollowSearchControl"
+                                                          ListQueryType="{Binding FollowPagesModel.ListQueryType}"
+                                                          ListQueryInfo="{Binding FollowPagesModel.SavedQueries}"
+                                                          AddQueryCommand="{Binding AddQueryCommand}"
+                                                          CommandParameter="{Binding ElementName=FollowPageConfigurations}"
+                                                          CustomFilterCommand="{Binding CustomFilterCommand}"
+                                                          DeleteQueryCommand="{Binding DeleteQueryCommand}"
+                                                          DeleteMulipleCommand="{Binding DeleteMulipleCommand}" />
+                    </Expander>
+
+                    <!--InputPersonalNote-->
+
+                    <!-- After JobConfiguration  Expander-->
+
+                    <Expander IsExpanded="True" Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+                        <customControl:JobConfigControl JobConfiguration="{Binding FollowPagesModel.JobConfiguration}" />
+                    </Expander>
+
+
+                    <!-- OtherConfigurations-->
+                    <Expander Header="{DynamicResource LangKeyOtherConfigurations}" Margin="5,5" IsExpanded="True"
+                              Visibility="{Binding FollowPagesModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                        <StackPanel>
+                            <CheckBox Content="{DynamicResource LangKeyUniqueOperations}"
+                                      Margin="10,0,0,0"
+                                      Name="UniqueOperationChk"
+                                      IsChecked="{Binding FollowPagesModel.IsUniqueOperationChecked}" />
+
+
+                            <!--<StackPanel Margin="15,0" Visibility="{Binding FollowPagesModel.IsCheckedEnableAutoWithdrawConnectionRequest,Converter={StaticResource BooleanToVisibilityConverter}}" Orientation="Horizontal">
+                                <CheckBox Content="{DynamicResource LangKeyStartWithdrawConnectionRequestToolBetween}"  Margin="0,5,0,0" IsChecked="{Binding FollowPagesModel.IsCheckedStartWithdrawConnectionRequestBetween}"/>
+                                <Controls:NumericUpDown Margin="5,5,5,0"   Minimum="1" Value="{Binding FollowPagesModel.StartWithdrawConnectionRequestAfter.StartValue}" 
+                                                                        IsEnabled="{Binding FollowPagesModel.IsCheckedStartWithdrawConnectionRequestBetween}" Name="StartWithdrawConnectionRequestStartValue"/>
+                                <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{DynamicResource LangKeyTo}" />
+                                <Controls:NumericUpDown Margin="5,5,5,0"  Minimum="1"
+                                                                        Value="{Binding FollowPagesModel.StartWithdrawConnectionRequestAfter.EndValue}" IsEnabled="{Binding FollowPagesModel.IsCheckedStartWithdrawConnectionRequestBetween}"/>
+                                <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyMinutesAfter}" />
+                            </StackPanel>-->
+                        </StackPanel>
+                    </Expander>
+
+                    <!--Manage Blacklist Users  expander-->
+
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+
+
+</local:FollowPageConfigurationBase>

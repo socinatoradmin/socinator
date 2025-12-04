@@ -1,0 +1,163 @@
+﻿<UserControl x:Class="LinkedDominatorUI.LDViews.GrowConnection.RemoveConnections"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LinkedDominatorUI.LDViews.GrowConnection"
+             mc:Ignorable="d" 
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+            >
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.8*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <customControl:HeaderControl Grid.Row="0" CampaignName="{Binding CampaignName}" Name="HeaderGrid"
+                                              IsCampaignNameEditable="{Binding IsEditCampaignName}"
+                                              IsCancelEditVisible="{Binding CancelEditVisibility}" CancelEditClick="HeaderGrid_OnCancelEditClick"
+                                              InfoChanged="HeaderControl_OnInfoChanged"/>
+            <ScrollViewer Grid.Row="1">
+                <Grid Name="MainGrid">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <StackPanel>
+                            <Label Content="{DynamicResource LDlangRemoveConnectionSource}" FontWeight="Bold" Margin="5,10,0,0"/>
+
+                            <StackPanel  Margin="15,0,0,5" >
+
+                                <RadioButton Content="{DynamicResource LDlangByKeywordOrJoTitle}" Margin="5" IsChecked="{Binding IsChkPeopleFollowedOutsideSoftwareChecked}"/>
+                                <RadioButton Content="{DynamicResource LDlangByCustomFirstConnectionList}" Margin="5" IsChecked="{Binding IsChkCustomUsersListChecked}"/>
+                                <customControl:InputBoxControl Margin="25,5" x:Name="CustomUsersListInputBox" InputText="{Binding CustomUsersList}" GetInputClick="InputBoxControl_OnGetInputClick" Visibility="{Binding IsChkCustomUsersListChecked,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            </StackPanel>
+
+                            <Label  Content="{DynamicResource langSourceFilter}" FontWeight="Bold" Margin="5,10,0,0"/>
+                            <StackPanel Orientation="Horizontal"  Margin="15,0,0,5">
+                                <CheckBox Content="{DynamicResource LDlangConnectedBefore}" Margin="5" IsChecked="{Binding IsUserFollowedBeforeChecked}"/>
+                                <Controls:NumericUpDown Value="{Binding FollowedBeforeDay}" IsEnabled="{Binding IsUserFollowedBeforeChecked}"/>
+                                <Label Content="{DynamicResource langDays}"/>
+                                <Label Content="{DynamicResource langAnd}"/>
+                                <Controls:NumericUpDown Value="{Binding FollowedBeforeHour}" Maximum="24" IsEnabled="{Binding IsUserFollowedBeforeChecked}"/>
+                                <Label Content="{DynamicResource langHours}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Grid.Row="2" Margin="0,5,0,0">
+                        <StackPanel Orientation="Vertical">
+                            <!-- After JobConfiguration  Expender-->
+                            <Expander Header="{DynamicResource langJobConfiguration}" Margin="5,5">
+                                <customControl:JobConfigControl JobConfiguration="{Binding JobConfiguration}" />
+                            </Expander>
+
+                            <!--Other Configurations filter Expender-->
+                            <!--<Expander Header="{DynamicResource langOtherConfigurations}" Margin="5,5">
+                                <StackPanel>
+                                    <StackPanel>
+                                        <CheckBox Content="{DynamicResource langEnableAutoFollowUnfollow}" Margin="10,0,0,0" Name="chkEnableAutoFollowUnfollow" IsChecked="{Binding IsChkEnableAutoFollowUnfollowChecked}"/>
+                                        <StackPanel Orientation="Vertical" Name="AutoFollowUnfollowSection" Visibility="{Binding IsChkEnableAutoFollowUnfollowChecked,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <StackPanel Orientation="Horizontal" >
+                                                <CheckBox Content="{DynamicResource langStopunFollowToolWhenReach}" IsChecked="{Binding IsChkStopFollowToolWhenReachChecked}" Margin="40,0,0,0"   />
+                                                <Controls:NumericUpDown Margin="5,5,5,0" IsEnabled="{Binding IsChkStopFollowToolWhenReachChecked}" Value="{Binding StopFollowToolWhenReachValue.StartValue}" />
+                                                <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{DynamicResource langTo}" />
+                                                <Controls:NumericUpDown Margin="5,5,5,0" IsEnabled="{Binding IsChkStopFollowToolWhenReachChecked}" Value="{Binding StopFollowToolWhenReachValue.EndValue}" />
+                                                <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource langFollowings}" />
+                                            </StackPanel>
+
+                                            <StackPanel Orientation="Horizontal" Margin="0,5">
+                                                <CheckBox Content="{DynamicResource langWhenFollowerFollowingsIsGreaterThan}" Margin="40,0,0,0" IsChecked="{Binding IsChkWhenFollowerFollowingsGreater}" />
+                                                <Controls:NumericUpDown Margin="3,0,0,0" IsEnabled="{Binding IsChkWhenFollowerFollowingsGreater}" Value="{Binding FollowerFollowingsGreaterThanValue}"/>
+                                            </StackPanel>
+                                            <CheckBox Margin="40,0,0,10" Content="{DynamicResource langWhenThereAreNoUsersToUnfollow}" IsChecked="{Binding IsChkWhenNoUsersToUnfollow}"/>
+                                            <StackPanel Orientation="Horizontal" >
+                                                <CheckBox Content="{DynamicResource langStartFollowToolBetween}" Margin="40,0,0,0" IsChecked="{Binding IsChkStartFollowBetween}"/>
+                                                <Controls:NumericUpDown Margin="5,5,5,0" IsEnabled="{Binding IsChkStartFollowBetween}" Value="{Binding StartFollowToolBetwen.StartValue}" />
+                                                <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{DynamicResource langTo}" />
+                                                <Controls:NumericUpDown Margin="5,5,5,0" IsEnabled="{Binding IsChkStartFollowBetween}"  Value="{Binding StartFollowToolBetwen.EndValue}" />
+                                                <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{DynamicResource langMinutesAfter}" />
+
+
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+
+
+                                    <StackPanel  Margin="5,0,5,0">
+                                        <CheckBox    Margin="5,5,0,0" Content="{DynamicResource langDoNotStopUnfollowToolJustStartFollowTool}" IsChecked="{Binding IsChkStartFollowWithoutStoppingUnfollow}" />
+                                        <CheckBox  Margin="5,5,0,5"  Content="{DynamicResource langLikeWhileUnfollowing}" IsChecked="{Binding IsChkLikeWhileUnfollowing}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Expander>-->
+
+                            <!-- After User Filters Expender-->
+
+                            <!--<Expander Header="{DynamicResource langUserFilters}" Margin="5,5">
+                                <customControl1:UserFiltersControl x:Name="UserFiltersControl" UserFilter="{Binding UserFilterModel}" />
+                            </Expander>-->
+
+                            <!-- After Blacklists Expender-->
+
+                            <Expander Header="{DynamicResource langBlacklists}" Margin="5,5">
+                                <StackPanel>
+                                    <StackPanel Margin="10,5">
+                                        <CheckBox Content="{DynamicResource langPrivateBlacklists}"/>
+
+                                        <!--<Button Content="{DynamicResource langAddPrivateBlacklists}" Background="{DynamicResource AccentBaseColorBrush}"  Height="25" VerticalContentAlignment="Center" Foreground="White" Margin="10,0"/>-->
+                                    </StackPanel>
+                                    <StackPanel  Margin="10,5">
+                                        <CheckBox Content="{DynamicResource langGroupBlacklists}" />
+
+
+                                        <!--<Button Background="{DynamicResource AccentBaseColorBrush}"  Content="{DynamicResource langAddGroupBlacklists}" Foreground="White" Margin="10,0"/>-->
+                                    </StackPanel>
+                                </StackPanel>
+                            </Expander>
+
+
+                            <!--after unfollow action  expander-->
+
+                            <Expander Header="{DynamicResource LDlangWithdrawConnectionRequestAction}" Margin="5,5" >
+                                <StackPanel>
+                                    <CheckBox Content="{DynamicResource langAddToBlackList}"  Margin="5,0" IsChecked="{Binding IsChkAddToBlackList}"/>
+
+                                </StackPanel>
+                            </Expander>
+
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+
+            <Grid Grid.Row="2" Margin="5,0" Name="FooterGrid">
+                <customControl:FooterControl x:Name="RemoveConnectionFooter"
+                                             CampaignManager="{Binding CampaignButtonContent}"
+                                             NoOfAccountsSelected="{Binding SelectedAccountCount}" 
+                                             SelectAccountChanged="RemoveConnectionFooter_SelectAccountChanged"
+                                             CreateCampaignChanged="RemoveConnectionFooter_CreateCampaignChanged"
+                                             UpdateCampaignChanged="RemoveConnectionFooter_UpdateCampaignChanged"/>
+            </Grid>
+
+        </Grid>
+
+        <Controls:FlyoutsControl >
+            <Controls:Flyout Header="{DynamicResource langModuleDescription}" Position="Right" Visibility="Collapsed"  Name="HelpFlyout" Theme="Accent" FontWeight="Bold"
+                           Foreground="White"  Width="300" BorderBrush="Black" BorderThickness="2"   IsOpen="False"  Background="{DynamicResource AccentBaseColorBrush}" FontSize="10" >
+                <customControl:HelpControl ModuleDescription="{DynamicResource langUserControlUnFollowerSliderText}"
+                                           VideoTutorial="{Binding VideoTutorialLink}" KnowledgeBaseLink="{Binding KnowledgeBaseLink}" 
+                                           ContactSupportLink="{Binding ContactSupportLink}" />
+            </Controls:Flyout>
+        </Controls:FlyoutsControl >
+
+    </Grid>
+</UserControl>

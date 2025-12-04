@@ -1,0 +1,193 @@
+﻿<local:AutoReplyToNewMessagesConfigurationBase
+    x:Class="LinkedDominatorUI.LDViews.Tools.Messenger.AutoReplyToNewMessagesConfiguration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:LinkedDominatorUI.LDViews.Tools.Messenger"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:DHCustomControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:LdCustomControl="clr-namespace:LinkedDominatorUI.CustomControl"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    mc:Ignorable="d"
+    x:Name="autoReplyToNewMessagesConfiguration"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=autoReplyToNewMessagesConfiguration}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+        <StackPanel>
+            <DHCustomControl:AccountGrowthModeHeader x:FieldModifier="public"
+                                                     Name="AccountGrowthHeader"
+                                                     VerticalAlignment="Top"
+                                                     VideoTutorialLink="{Binding VideoTutorialLink}"
+                                                     SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=autoReplyToNewMessagesConfiguration}"
+                                                     SaveCommand="{Binding SaveConfigurationsCommand}" />
+        </StackPanel>
+
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" VerticalAlignment="Center"
+                                   Margin="10,0,10,0" />
+                        <Controls:ToggleSwitch x:Name="TglStatus"
+                                               IsChecked="{Binding AutoReplyToNewMessageModel.IsAccountGrowthActive}"
+                                               OnLabel="Active﻿"
+                                               OffLabel="Stopped﻿"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=autoReplyToNewMessagesConfiguration}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Controls:ToggleSwitch>
+                    </StackPanel>
+
+                    <!--  Messages filter  Expender-->
+                    <Expander IsExpanded="True" Header="{DynamicResource LangKeyMessageFilter}" Margin="5,5">
+                        <StackPanel>
+                            <!--<RadioButton Content="{DynamicResource LangKeyReplyToPendingMessages}"
+                                         VerticalAlignment="Center" Margin="5"
+                                         IsChecked="{Binding IsReplyToPendingMessagesChecked}"/>-->
+                            <CheckBox Name="CheckBox_ReplyToAllMessages"
+                                      Content="{DynamicResource LangKeyReplyToAllMessages}"
+                                      VerticalAlignment="Center" Margin="5"
+                                      IsChecked="{Binding AutoReplyToNewMessageModel.IsReplyToAllMessagesChecked}" />
+                            <CheckBox Name="CheckBox_ReplyToMessagesThatContainSpecificWord"
+                                      Content="{DynamicResource LangKeyReplyToMessagesThatContainsSpecificWord}"
+                                      VerticalAlignment="Center" Margin="5"
+                                      IsChecked="{Binding AutoReplyToNewMessageModel.IsReplyToMessagesThatContainSpecificWordChecked}"
+                                      Command="{Binding ReplyToMessagesThatContainSpecificWordCommand}"
+                                      CommandParameter="{Binding IsChecked,RelativeSource={RelativeSource Self}}" />
+                            <DHCustomControl:InputBoxControl
+                                Margin="30,5"
+                                x:Name="TextBox_SpecificWords"
+                                WaterMarkText="{DynamicResource LangKeySeparateTheWordsUsingCommaEGHiHello}"
+                                SaveCommand="{Binding SaveSpecificWordCommand}"
+                                InputText="{Binding AutoReplyToNewMessageModel.SpecificWord}"
+                                Visibility="{Binding AutoReplyToNewMessageModel.IsReplyToMessagesThatContainSpecificWordChecked,
+                                                   Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                            <CheckBox Name="CheckBox_ReplyToAllUserMessagesWhodidnotReply"
+                                      Content="{DynamicResource LangKeyReplyToAllUserMessageWhodidnotreply}"
+                                      VerticalAlignment="Center" Margin="5"
+                                      IsChecked="{Binding AutoReplyToNewMessageModel.IsReplyToAllUserMessagesWhodidnotReply}" />
+                            <StackPanel Orientation="Horizontal"
+                                        Visibility="{Binding AutoReplyToNewMessageModel.IsReplyToAllUserMessagesWhodidnotReply,
+                                Converter={StaticResource BooleanToVisibilityConverter }}">
+                                <CheckBox Content="{DynamicResource LangKeyBySoftware}" Margin="20,5,0,5"
+                                  IsChecked="{Binding AutoReplyToNewMessageModel.IsCheckedBySoftware}"   />
+                                <Label Padding="5" Content="{DynamicResource LangKeySendLastMessageNote}"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="15,0,0,5" Visibility="{Binding AutoReplyToNewMessageModel.IsReplyToAllUserMessagesWhodidnotReply,
+                                Converter={StaticResource BooleanToVisibilityConverter }}">
+                                <CheckBox Content="{DynamicResource LangKeyWhodidnotreplyfrom}" Margin="5"
+                                  IsChecked="{Binding AutoReplyToNewMessageModel.IsCheckedLastSendMessageFrom}" />
+                                <Controls:NumericUpDown Value="{Binding AutoReplyToNewMessageModel.Days}" Minimum="0"
+                                                IsEnabled="{Binding AutoReplyToNewMessageModel.IsCheckedLastSendMessageFrom}" />
+                                <Label Content="{DynamicResource LangKeyDays}" />
+                                <Label Content="{DynamicResource LangKeyAnd}" />
+                                <Controls:NumericUpDown Value="{Binding AutoReplyToNewMessageModel.Hours}" Minimum="0"
+                                                Maximum="24"
+                                                IsEnabled="{Binding AutoReplyToNewMessageModel.IsCheckedLastSendMessageFrom}" />
+                                <Label Content="{DynamicResource LangKeyHours}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="15,0,0,0" Visibility="{Binding AutoReplyToNewMessageModel.IsReplyToAllUserMessagesWhodidnotReply,
+                                Converter={StaticResource BooleanToVisibilityConverter }}">
+                                <CheckBox Content="{DynamicResource LangKeyIgnoreAlreadySentMessage}" Margin="5"
+                                          IsChecked="{Binding AutoReplyToNewMessageModel.IsCheckedIgnoreAlreadySendMessage}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        
+
+                    </Expander>
+
+
+                    <!--Input Messages-->
+                    <Expander IsExpanded="True" Header="{DynamicResource LangKeyInputMessageS}" Margin="5,5">
+                        <!--<DHCustomControl:InputBoxControl Margin="30,5" x:Name="AutoReplyMessageInputBox" GetInputClick="AutoReplyMessageInputBox_OnGetInputClick"
+                                                         Visibility="{Binding UserFilter.UserHasInvalidWord,Converter={StaticResource BooleanToVisibilityConverter}}"/>-->
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Content="{DynamicResource LangKeySpintax}"
+                                          Margin="32,5,0,0"
+                                          Name="chkSpintax"
+                                          ToolTip="Format : (Message 1|Message 2|Message 3|Message 4) Note: add any number of messages each separated by |"
+                                          IsChecked="{Binding AutoReplyToNewMessageModel.IsChkSpintaxChecked}"
+                                          Visibility="Visible" />
+                                <CheckBox Content="{DynamicResource LangKeyTag}"
+                                          Margin="10,5,0,0"
+                                          Name="chkTag"
+                                          ToolTip="Format : &lt;First Name&gt;, &lt;Last Name&gt;, &lt;Full Name&gt;,&lt;From First Name&gt;,&lt;From Last Name&gt;,&lt;From Full Name&gt;"
+                                          IsChecked="{Binding AutoReplyToNewMessageModel.IsChkTagChecked}"
+                                          Visibility="Visible" />
+
+                            </StackPanel>
+                            <StackPanel>
+                                <DHCustomControl:MessageMediaControl
+                                    Messages="{Binding AutoReplyToNewMessageModel.ManageMessagesModel}"
+                                    Name="MessageMediaControl"
+                                    AddMessagesCommand="{Binding AddMessagesCommand}"
+                                    CommandParameter="{Binding ElementName=MessageMediaControl}" />
+                                <DHCustomControl:ManageMediaMessages
+                                    LstManageMessagesModel="{Binding AutoReplyToNewMessageModel.LstDisplayManageMessagesModel}" />
+                            </StackPanel>
+
+                        </StackPanel>
+
+                    </Expander>
+
+                    <!-- After JobConfiguration  Expender-->
+                    <Expander IsExpanded="True" Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                            <DHCustomControl:JobConfigControl
+                                JobConfiguration="{Binding AutoReplyToNewMessageModel.JobConfiguration}" />
+                        </ScrollViewer>
+                    </Expander>
+
+                    <!--Other Configurations filter Expender-->
+                    <!--<Expander IsExpanded="{Binding IsExpanded,ElementName=HeaderControl}"  Header="{DynamicResource LangKeyOtherConfigurations}" Margin="5,5">
+                        <DHCustomControl:OtherConfig OtherConfigFilter="{Binding OtherConfigModel}"/>
+                    </Expander>-->
+
+                    <!-- After User Filters Expender-->
+
+                    <Expander IsExpanded="True" Header="{DynamicResource LangKeyUserFilters}" Margin="5,5"
+                              Visibility="{Binding IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <LdCustomControl:UserFiltersControl x:Name="UserFiltersControl"
+                                                            LDUserFilter="{Binding AutoReplyToNewMessageModel.LDUserFilterModel}" />
+                    </Expander>
+
+                    <!--Manage Blacklist Users  expander-->
+
+                    <Expander Header="{DynamicResource LangKeyManageBlacklistedUsers}" Margin="5,5"
+                              Visibility="{Binding AutoReplyToNewMessageModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+                            <CheckBox Content="{DynamicResource LangKeySkipBlacklistedUsers}" Margin="10,5"
+                                      IsChecked="{Binding AutoReplyToNewMessageModel.IsChkSkipBlackListedUser}" />
+                            <StackPanel Margin="25,5"
+                                        Visibility="{Binding AutoReplyToNewMessageModel.IsChkSkipBlackListedUser, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Orientation="Horizontal">
+                                <CheckBox Content="{DynamicResource LangKeyPrivateBlacklist}" Margin="5,0"
+                                          IsChecked="{Binding AutoReplyToNewMessageModel.IsChkPrivateBlackList}" />
+                                <CheckBox Content="{DynamicResource LangKeyGroupBlacklist}" Margin="5,0"
+                                          IsChecked="{Binding AutoReplyToNewMessageModel.IsChkGroupBlackList}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</local:AutoReplyToNewMessagesConfigurationBase>

@@ -1,0 +1,158 @@
+﻿<UserControl
+    x:Class="LinkedDominatorUI.CustomControl.UserFiltersControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:LinkedDominatorUI.CustomControl"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Name="MainGrid" Margin="10">
+
+            <StackPanel>
+                <!--  ProfileImageCheckbox  -->
+                <CheckBox
+                    x:Name="ProfileImageCheckbox"
+                    Margin="5,5,0,0"
+                    Content="{DynamicResource LangKeyMustHaveProfilePicture}"
+                    IsChecked="{Binding LDUserFilter.IsCheckedFilterProfileImageCheckbox}" />
+                <!--  MinimumConnections  -->
+                <CheckBox
+                    x:Name="MinimumConnectionsCheckbox"
+                    Margin="5,5,0,0"
+                    Content="{DynamicResource LangKeyMustHave500Connections}"
+                    IsChecked="{Binding LDUserFilter.IsCheckedMinimumConnectionsCheckbox}" />
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        Name="chkbox_minimumConnectionCount"
+                        Margin="5,5,0,0"
+                        VerticalAlignment="Center"
+                        Content="{DynamicResource LangKeyMustHaveConnectionsCount}"
+                        IsChecked="{Binding LDUserFilter.IsCheckedRangeofConnectionsCheckbox}" />
+                    <Label
+                        Margin="0,5,0,0"
+                        VerticalContentAlignment="Center"
+                        Content="{DynamicResource LangKeyMinimum}" />
+                    <StackPanel>
+                        <controls:NumericUpDown
+                            Name="txtMinimumFollowerCount"
+                            Margin="10,10,0,0"
+                            IsEnabled="{Binding LDUserFilter.IsCheckedRangeofConnectionsCheckbox}"
+                            Minimum="1"
+                            TextAlignment="Center"
+                            Value="{Binding LDUserFilter.MinimumConnections}" />
+                    </StackPanel>
+                    <Label
+                        Name="lbltxtMinimumFollower"
+                        Margin="0,5,0,0"
+                        VerticalContentAlignment="Center"
+                        Content="{DynamicResource LangKeyMaximum}" />
+                    <StackPanel>
+                        <controls:NumericUpDown
+                            Name="txtMaxFollowerCount"
+                            Margin="5,10,0,0"
+                            IsEnabled="{Binding LDUserFilter.IsCheckedRangeofConnectionsCheckbox}"
+                            Minimum="0"
+                            TextAlignment="Center"
+                            Value="{Binding LDUserFilter.MaximumConnections}" />
+                    </StackPanel>
+
+
+                </StackPanel>
+                <!--  MinimumCharactersInBioCheckBox  -->
+
+                <CheckBox
+                    Margin="5,5,0,0"
+                    Content="{DynamicResource LangKeyEnableAdvanceBioAndSkills}"
+                    IsChecked="{Binding LDUserFilter.IsEnableAdvanceBioAndSkills}" />
+
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        x:Name="MinimumCharactersInBioCheckBox"
+                        Margin="5,5,0,0"
+                        Content="{DynamicResource LangKeyMinimumCharactersInBio}"
+                        IsChecked="{Binding LDUserFilter.IscheckedFilterMinimumCharacterInBio}" />
+                    <controls:NumericUpDown
+                        x:Name="UserBioMinimumCharactersTextBox"
+                        Margin="10,0,0,0"
+                        IsEnabled="{Binding LDUserFilter.IscheckedFilterMinimumCharacterInBio}"
+                        Maximum="1999"
+                        Minimum="0"
+                        Value="{Binding LDUserFilter.MinimumCharacterInBio}" />
+                </StackPanel>
+
+                <StackPanel>
+                    <CheckBox
+                        Margin="5,5,0,0"
+                        Content="{DynamicResource LangKeyMustContainSpecificWords}"
+                        IsChecked="{Binding LDUserFilter.IsCheckedHasValidWordsCheckBox}" />
+
+                    <customControl:InputBoxControl
+                        x:Name="ValidWordsInputBox"
+                        Margin="30,5"
+                        InputText="{Binding LDUserFilter.ValidWords}"
+                        SaveCommand="{Binding SaveValidWordCommand}"
+                        Visibility="{Binding LDUserFilter.IsCheckedHasValidWordsCheckBox, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        WaterMarkText="{DynamicResource LangKeyUserShouldHaveSpecifiedWordsInBioDescription}" />
+
+                    <!--  HasInvalidWordsCheckBox  -->
+                    <StackPanel>
+                        <CheckBox
+                            Name="HasInvalidWordsCheckBox"
+                            Margin="5,5,0,0"
+                            Content="{DynamicResource LangKeyMustNotContainSpecificWords}"
+                            IsChecked="{Binding LDUserFilter.IsCheckedHasInvalidWordsCheckBox}" />
+
+                        <customControl:InputBoxControl
+                            x:Name="InvalidWordsInputBox"
+                            Margin="30,5"
+                            InputText="{Binding LDUserFilter.InvalidWords}"
+                            SaveCommand="{Binding SaveInvalidWordCommand}"
+                            Visibility="{Binding LDUserFilter.IsCheckedHasInvalidWordsCheckBox, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            WaterMarkText="{DynamicResource LangKeyUserShouldNotHaveSpecifiedWordsInBioDescription}" />
+
+                    </StackPanel>
+
+
+                </StackPanel>
+                <!--  AcceptPendingFriendRequest  -->
+                <!--
+                <CheckBox Margin="5,5,0,0" Name="AcceptPendingConnectionRequestCheckBox" IsChecked="{Binding UserFilter.IgnorePrivateUser}"  Content="{DynamicResource LangKeyAcceptpendingfriendrequests}" />-->
+                <!--  MinimumSkillsCountCheckBox  -->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        x:Name="MinimumSkillsCountCheckBox"
+                        Margin="5,5,0,0"
+                        Content="{DynamicResource LangKeyMinimumSkillsCount}"
+                        IsChecked="{Binding LDUserFilter.IscheckedMinimumSkillsCount}" />
+                    <controls:NumericUpDown
+                        x:Name="MinimumSkillsCountTextBox"
+                        Margin="10,0,0,0"
+                        IsEnabled="{Binding LDUserFilter.IscheckedMinimumSkillsCount}"
+                        Maximum="50"
+                        Minimum="0"
+                        Value="{Binding LDUserFilter.MinimumSkillsCount}" />
+                </StackPanel>
+                <!--  ExperienceCheckbox  -->
+                <CheckBox
+                    x:Name="ExperienceCheckbox"
+                    Margin="5,5,0,0"
+                    Content="{DynamicResource LangKeyMustHaveExperienceDetails}"
+                    IsChecked="{Binding LDUserFilter.IsCheckedExperienceCheckbox}" />
+                <!--  EducationCheckbox  -->
+                <CheckBox
+                    x:Name="EducationCheckbox"
+                    Margin="5,5,0,0"
+                    Content="{DynamicResource LangKeyMustHaveEducationDetails}"
+                    IsChecked="{Binding LDUserFilter.IsCheckedEducationCheckbox}" />
+
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

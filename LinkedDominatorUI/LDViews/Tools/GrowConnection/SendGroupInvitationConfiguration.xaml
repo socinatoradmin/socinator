@@ -1,0 +1,94 @@
+﻿<local:SendGroupInvitationConfigurationBase 
+             x:Class="LinkedDominatorUI.LDViews.Tools.GrowConnection.SendGroupInvitationConfiguration"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:DHCustomControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:local="clr-namespace:LinkedDominatorUI.LDViews.Tools.GrowConnection"
+    mc:Ignorable="d"
+    x:Name="sendGroupInvitationConfiguration">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=sendGroupInvitationConfiguration}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <StackPanel>
+            <customControl:AccountGrowthModeHeader x:FieldModifier="public"
+                                                   Name="AccountGrowthHeader"
+                                                   VerticalAlignment="Top"
+                                                   VideoTutorialLink="{Binding VideoTutorialLink}"
+                                                   SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=sendGroupInvitationConfiguration}"
+                                                   SaveCommand="{Binding SaveConfigurationsCommand}" />
+        </StackPanel>
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" VerticalAlignment="Center"
+                                   Margin="10,0,10,0" />
+                        <Controls:ToggleSwitch x:Name="TglStatus"
+                                               IsChecked="{Binding SendInvitationToGroupMemberModel.IsAccountGrowthActive}"
+                                               OnLabel="Active﻿" OffLabel="Stopped﻿"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=sendGroupInvitationConfiguration}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Controls:ToggleSwitch>
+                    </StackPanel>
+                    <RadioButton GroupName="SourceType" Content="Group Source"
+                                 IsChecked="{Binding SendInvitationToGroupMemberModel.IsCheckedGroupSource}"
+                                 FontWeight="Bold" Margin="5,10,0,0" />
+                    <StackPanel Margin="15,0,0,5"
+                                Visibility="{Binding SendInvitationToGroupMemberModel.IsCheckedGroupSource,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <CheckBox Content="Custom group Admin Url" Margin="5"
+                                  IsChecked="{Binding SendInvitationToGroupMemberModel.IsCheckedLangKeyCustomAdminGroupList}" />
+                        <DHCustomControl:InputBoxControl Margin="25,5" x:Name="CustomGroupAdminListInputBox"
+                                                         InputText="{Binding SendInvitationToGroupMemberModel.UrlInput}"
+                                                         SaveCommand="{Binding SaveCustomUserListCommand}"
+                                                         WaterMarkText="Enter Admin Group Url"
+                                                         Visibility="{Binding SendInvitationToGroupMemberModel.IsCheckedLangKeyCustomAdminGroupList,Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    </StackPanel>
+
+                    <!-- After JobConfiguration  Expander-->
+                    <Expander IsExpanded="True" Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                            <DHCustomControl:JobConfigControl
+                                JobConfiguration="{Binding SendInvitationToGroupMemberModel.JobConfiguration}" />
+                        </ScrollViewer>
+                    </Expander>
+                    <!--Manage Blacklist Users  Expander-->
+
+                    <Expander Header="{DynamicResource LangKeyManageBlacklistedUsers}" Margin="5,5"
+                              Visibility="{Binding SendInvitationToGroupMemberModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+                            <CheckBox Content="{DynamicResource LangKeySkipBlacklistedUsers}" Margin="10,5"
+                                      IsChecked="{Binding SendInvitationToGroupMemberModel.IsChkSkipBlackListedUser}" />
+                            <StackPanel Margin="25,5"
+                                        Visibility="{Binding SendInvitationToGroupMemberModel.IsChkSkipBlackListedUser, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Orientation="Horizontal">
+                                <CheckBox Content="{DynamicResource LangKeyPrivateBlacklist}" Margin="5,0"
+                                          IsChecked="{Binding SendInvitationToGroupMemberModel.IsChkPrivateBlackList}" />
+                                <CheckBox Content="{DynamicResource LangKeyGroupBlacklist}" Margin="5,0"
+                                          IsChecked="{Binding SendInvitationToGroupMemberModel.IsChkGroupBlackList}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</local:SendGroupInvitationConfigurationBase>

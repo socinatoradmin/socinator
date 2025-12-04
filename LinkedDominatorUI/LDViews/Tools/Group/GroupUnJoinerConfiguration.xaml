@@ -1,0 +1,122 @@
+﻿<local:GroupUnJoinerConfigurationBase x:Class="LinkedDominatorUI.LDViews.Tools.Group.GroupUnJoinerConfiguration"
+                                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                      xmlns:local="clr-namespace:LinkedDominatorUI.LDViews.Tools.Group"
+                                      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                                      xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+                                      xmlns:customControl1="clr-namespace:LinkedDominatorUI.CustomControl"
+                                      xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+                                      mc:Ignorable="d"
+                                      x:Name="groupUnJoinerConfiguration"
+                                      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=groupUnJoinerConfiguration}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+        <StackPanel>
+            <customControl:AccountGrowthModeHeader x:FieldModifier="public"
+                                                   Name="AccountGrowthHeader"
+                                                   VerticalAlignment="Top"
+                                                   VideoTutorialLink="{Binding VideoTutorialLink}"
+                                                   SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=groupUnJoinerConfiguration}"
+                                                   SaveCommand="{Binding SaveConfigurationsCommand}" />
+        </StackPanel>
+
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" VerticalAlignment="Center"
+                                   Margin="10,0,10,0" />
+                        <Controls:ToggleSwitch x:Name="TglStatus"
+                                               IsChecked="{Binding GroupUnJoinerModel.IsAccountGrowthActive}"
+                                               OnLabel="Active﻿"
+                                               OffLabel="Stopped﻿"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=groupUnJoinerConfiguration}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Controls:ToggleSwitch>
+                    </StackPanel>
+                    <!--Group Sources-->
+                    <StackPanel>
+                        <CheckBox Content="{DynamicResource LangKeyBySoftware}" Margin="5"
+                                  IsChecked="{Binding GroupUnJoinerModel.IsCheckedBySoftware}" />
+                        <CheckBox Content="{DynamicResource LangKeyOutsideSoftware}" Margin="5"
+                                  IsChecked="{Binding GroupUnJoinerModel.IsCheckedOutSideSoftware}" />
+                        <CheckBox Content="{DynamicResource LangKeyCustomGroupList}" Margin="5"
+                                  IsChecked="{Binding GroupUnJoinerModel.IsCheckedCustomGroupList}" />
+                        <customControl:InputBoxControl Margin="25,5" x:Name="CustomGroupListInputBox"
+                                                       InputText="{Binding GroupUnJoinerModel.UrlInput}"
+                                                       SaveCommand="{Binding SaveCommand}"
+                                                       WaterMarkText="{DynamicResource LangKeyEnterYourGroupUrlS}"
+                                                       Visibility="{Binding GroupUnJoinerModel.IsCheckedCustomGroupList,Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    </StackPanel>
+
+                    <!-- After JobConfiguration  Expender-->
+                    <Expander IsExpanded="True" Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+                        <customControl:JobConfigControl
+                            JobConfiguration="{Binding GroupUnJoinerModel.JobConfiguration}" />
+                    </Expander>
+
+                    <!--OtherConfigurations-->
+                    <Expander Header="{DynamicResource LangKeyOtherConfigurations}" Margin="5,5" IsExpanded="True"
+                              Visibility="{Binding GroupUnJoinerModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+                            <CheckBox Content="{DynamicResource LangKeyEnableAutoGroupJoiner}" Margin="10,0,0,0"
+                                      Name="chkEnableAutoGroupJoinert"
+                                      IsChecked="{Binding GroupUnJoinerModel.IsCheckedEnableAutoGroupJoiner}" />
+                            <StackPanel Margin="15,0"
+                                        Visibility="{Binding GroupUnJoinerModel.IsCheckedEnableAutoGroupJoiner,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Orientation="Vertical" Name="AutoEnableAutoGroupJoiner">
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Content="{DynamicResource LangKeyWhenReaching}"
+                                              IsChecked="{Binding GroupUnJoinerModel.IsCheckedStartGroupJoinerWhenLimitReach}" />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" Minimum="1"
+                                                            Value="{Binding GroupUnJoinerModel.StartGroupJoinerWhenLimitReach.StartValue}"
+                                                            Name="StartGroupJoinerStartValue"
+                                                            IsEnabled="{Binding GroupUnJoinerModel.IsCheckedStartGroupJoinerWhenLimitReach}" />
+                                    <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           Content="{DynamicResource LangKeyTo}" />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" Minimum="1"
+                                                            Value="{Binding GroupUnJoinerModel.StartGroupJoinerWhenLimitReach.EndValue}"
+                                                            IsEnabled="{Binding GroupUnJoinerModel.IsCheckedStartGroupJoinerWhenLimitReach}" />
+                                    <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           Content="{DynamicResource LangKeyGroupUnJoins}" />
+                                </StackPanel>
+                                <CheckBox Margin="0,5,0,0"
+                                          Content="{DynamicResource LangKeyWhenTheGroupUnjoinerToolGetsTemporaryBlocked}"
+                                          IsChecked="{Binding GroupUnJoinerModel.IsCheckedGroupUnJoinerToolGetsTemporaryBlocked}" />
+                            </StackPanel>
+                            <!--<StackPanel Margin="15,0" Visibility="{Binding GroupUnJoinerModel.IsCheckedEnableAutoGroupJoiner,Converter={StaticResource BooleanToVisibilityConverter}}" Orientation="Horizontal">
+                                <CheckBox Content="{DynamicResource LangKeyStartGroupJoinerToolBetween}"  Margin="0,5,0,0" IsChecked="{Binding GroupUnJoinerModel.IsCheckedStartGroupJoinerBetween}"/>
+                                <Controls:NumericUpDown Margin="5,5,5,0"   Minimum="1" Value="{Binding GroupUnJoinerModel.StartGroupJoinerAfter.StartValue}" 
+                                                                        IsEnabled="{Binding GroupUnJoinerModel.IsCheckedStartGroupJoinerBetween}" Name="StartGroupJoinerBetweenStartValue"/>
+                                <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{DynamicResource LangKeyTo}" />
+                                <Controls:NumericUpDown Margin="5,5,5,0"  Minimum="1"
+                                                                        Value="{Binding GroupUnJoinerModel.StartGroupJoinerAfter.EndValue}" IsEnabled="{Binding GroupUnJoinerModel.IsCheckedStartGroupJoinerBetween}"/>
+                                <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyMinutesAfter}" />
+                            </StackPanel>-->
+                        </StackPanel>
+                    </Expander>
+
+
+                </StackPanel>
+
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</local:GroupUnJoinerConfigurationBase>

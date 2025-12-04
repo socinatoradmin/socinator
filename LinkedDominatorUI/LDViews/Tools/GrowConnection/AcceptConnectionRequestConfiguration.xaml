@@ -1,0 +1,98 @@
+﻿<local:AcceptConnectionRequestConfigurationBase
+    x:Class="LinkedDominatorUI.LDViews.Tools.GrowConnection.AcceptConnectionRequestConfiguration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:LinkedDominatorUI.LDViews.Tools.GrowConnection"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:customControl1="clr-namespace:LinkedDominatorUI.CustomControl"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    mc:Ignorable="d"
+    x:Name="acceptConnectionRequestConfiguration"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=acceptConnectionRequestConfiguration}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+        <StackPanel>
+            <customControl:AccountGrowthModeHeader x:FieldModifier="public"
+                                                   Name="AccountGrowthHeader"
+                                                   VerticalAlignment="Top"
+                                                   VideoTutorialLink="{Binding VideoTutorialLink}"
+                                                   SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=acceptConnectionRequestConfiguration}"
+                                                   SaveCommand="{Binding SaveConfigurationsCommand}" />
+        </StackPanel>
+
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" VerticalAlignment="Center"
+                                   Margin="10,0,10,0" />
+                        <Controls:ToggleSwitch x:Name="TglStatus"
+                                               IsChecked="{Binding AcceptConnectionRequestModel.IsAccountGrowthActive}"
+                                               OnLabel="Active﻿"
+                                               OffLabel="Stopped﻿" VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=acceptConnectionRequestConfiguration}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Controls:ToggleSwitch>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <Label Content="{DynamicResource LangKeyAcceptConnectionSource}" FontWeight="Bold"
+                               Margin="5,10,0,0" />
+                        <RadioButton GroupName="ConnectionRequest" Content="{DynamicResource LangKeyAllInvitations}"
+                                     Margin="15,15,0,5"
+                                     IsChecked="{Binding AcceptConnectionRequestModel.IsChkAllInvitations}" />
+
+                        <Label Content="{DynamicResource LangKeyIgnoreConnectionSource}" FontWeight="Bold"
+                               Margin="5,10,0,0" />
+                        <RadioButton GroupName="ConnectionRequest" Content="{DynamicResource LangKeyAllInvitations}"
+                                     Margin="15,15,0,5"
+                                     IsChecked="{Binding AcceptConnectionRequestModel.IsChkIgnoreAllInvitations}" />
+                    </StackPanel>
+
+                    <!-- After JobConfiguration  Expender-->
+
+                    <Expander IsExpanded="True" Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+                        <customControl:JobConfigControl
+                            JobConfiguration="{Binding AcceptConnectionRequestModel.JobConfiguration}" />
+                    </Expander>
+
+                    <!--Manage Blacklist Users  expander-->
+
+                    <Expander Header="{DynamicResource LangKeyManageBlacklistedUsers}" Margin="5,5"
+                              Visibility="{Binding AcceptConnectionRequestModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+                            <CheckBox Content="{DynamicResource LangKeySkipBlacklistedUsers}" Margin="10,5"
+                                      IsChecked="{Binding AcceptConnectionRequestModel.IsChkSkipBlackListedUser}" />
+                            <StackPanel Margin="25,5"
+                                        Visibility="{Binding AcceptConnectionRequestModel.IsChkSkipBlackListedUser, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Orientation="Horizontal">
+                                <CheckBox Content="{DynamicResource LangKeyPrivateBlacklist}" Margin="5,0"
+                                          IsChecked="{Binding AcceptConnectionRequestModel.IsChkPrivateBlackList}" />
+                                <CheckBox Content="{DynamicResource LangKeyGroupBlacklist}" Margin="5,0"
+                                          IsChecked="{Binding AcceptConnectionRequestModel.IsChkGroupBlackList}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Expander>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</local:AcceptConnectionRequestConfigurationBase>

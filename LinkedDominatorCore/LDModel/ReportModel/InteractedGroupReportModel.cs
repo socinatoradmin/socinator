@@ -1,0 +1,18 @@
+﻿using System;
+
+namespace LinkedDominatorCore.LDModel.ReportModel
+{
+    public class InteractedGroupReportModel
+    {
+        public int Id { get; set; }
+        public string AccountEmail { get; set; }
+        public string QueryType { get; set; }
+        public string QueryValue { get; set; }
+        public string ActivityType { get; set; }
+        public string GroupName { get; set; }
+        public string GroupUrl { get; set; }
+        public string TotalMembers { get; set; }
+        public string CommunityType { get; set; }
+        public DateTime InteractionDateTime { get; set; }
+    }
+}

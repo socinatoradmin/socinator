@@ -1,0 +1,83 @@
+﻿<local:EventInviterBase x:Class="LinkedDominatorUI.LDViews.GrowConnection.EventInviter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:DHCustomControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+             xmlns:LdCustomControl="clr-namespace:LinkedDominatorUI.CustomControl"
+             xmlns:local="clr-namespace:LinkedDominatorUI.LDViews.GrowConnection"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+             mc:Ignorable="d"
+             FontFamily="{DynamicResource GabaritoSemiBold}"
+             x:Name="SendEventInvitationBase">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid x:Name="MainGrid">
+        <!--Header Section-->
+        <StackPanel VerticalAlignment="Top">
+            <DHCustomControl:HeaderControl CampaignName="{Binding CampaignName}" Name="HeaderControl"
+                                       IsCampaignNameEditable="{Binding IsEditCampaignName}"
+                                       IsCancelEditVisible="{Binding CancelEditVisibility}"
+                                       CancelEditCommand="{Binding CancelEditCommand}"
+                                       InfoCommand="{Binding InfoCommand}" />
+        </StackPanel>
+        <!--Filter section-->
+        <Grid Margin="0,40,0,100" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <RadioButton GroupName="SourceType" Content="Event Source"
+                             IsChecked="{Binding InviteMemberToFollowPageModel.IsCheckedPageSource}"
+                             FontWeight="Bold" Margin="5,10,0,0" />
+                    <StackPanel Margin="15,0,0,5"
+                            Visibility="{Binding InviteMemberToFollowPageModel.IsCheckedPageSource,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <CheckBox Content="Custom Event Url" Margin="5"
+                              IsChecked="{Binding InviteMemberToFollowPageModel.IsCheckedLangKeyCustomAdminPageList}" />
+                        <DHCustomControl:InputBoxControl Margin="25,5" x:Name="CustomPageAdminListInputBox"
+                                                     InputText="{Binding InviteMemberToFollowPageModel.UrlInput}"
+                                                     SaveCommand="{Binding SaveCustomUserListCommand}"
+                                                     WaterMarkText="Enter Event Url"
+                                                     Visibility="{Binding InviteMemberToFollowPageModel.IsCheckedLangKeyCustomAdminPageList,Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <Label Visibility="{Binding InviteMemberToFollowPageModel.IsCheckedLangKeyCustomAdminPageList,Converter={StaticResource BooleanToVisibilityConverter}}" Content="Note **  You Can Only Send Invitation On Your Own Event" FontWeight="SemiBold"/>
+                    </StackPanel>
+                    <!-- After JobConfiguration  Expander-->
+                    <Expander IsExpanded="True" Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                            <DHCustomControl:JobConfigControl
+                            JobConfiguration="{Binding InviteMemberToFollowPageModel.JobConfiguration}" />
+                        </ScrollViewer>
+                    </Expander>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <!--Create campaign and select account section-->
+        <StackPanel VerticalAlignment="Bottom">
+            <Grid Margin="5,0">
+                <DHCustomControl:FooterControl x:Name="SendEventInvitationFooter"
+                                           CampaignManager="{Binding CampaignButtonContent}"
+                                           NoOfAccountsSelected="{Binding SelectedAccountCount,Mode=TwoWay}"
+                                           Height="96" VerticalAlignment="Top"
+                                           SelectAccountCommand="{Binding SelectAccountCommand}"
+                                           CreateCampaignCommand="{Binding CreateCampaignCommand}" />
+            </Grid>
+        </StackPanel>
+        <!--Help section-->
+        <Controls:FlyoutsControl>
+            <Controls:Flyout Header="{DynamicResource LangKeyModuleDescription }" Position="Right"
+                         Visibility="Collapsed" Name="HelpFlyout" Theme="Accent" FontWeight="Bold"
+                         Foreground="White" Width="300" BorderBrush="Black" BorderThickness="2"
+                         IsOpen="{Binding IsOpen,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                         DataContext="{Binding ElementName=SendEventInvitationFooter,Path=DataContext}"
+                         Background="{DynamicResource AccentBaseColorBrush}" FontSize="10">
+
+                <DHCustomControl:HelpControl
+                ModuleDescription="{DynamicResource LangKeyModuleDescriptionLinkedInAutoEventInviter}"
+                DataContext="{Binding ElementName=SendEventInvitationFooter,Path=DataContext}"
+                VideoTutorial="{Binding VideoTutorialLink}" KnowledgeBaseLink="{Binding KnowledgeBaseLink}"
+                ContactSupportLink="{Binding ContactSupportLink}" />
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+    </Grid>
+</local:EventInviterBase>

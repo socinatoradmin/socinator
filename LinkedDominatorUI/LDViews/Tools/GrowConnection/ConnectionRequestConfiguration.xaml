@@ -1,0 +1,205 @@
+﻿<local:ConnectionRequestConfigurationBase
+    x:Class="LinkedDominatorUI.LDViews.Tools.GrowConnection.ConnectionRequestConfiguration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:LinkedDominatorUI.LDViews.Tools.GrowConnection"
+    x:Name="connectionRequestConfiguration"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:customControlLinkedin="clr-namespace:DominatorUIUtility.CustomControl.LinkedinCustomControl;assembly=DominatorUIUtility"
+    xmlns:LdCustomControl="clr-namespace:LinkedDominatorUI.CustomControl"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    mc:Ignorable="d"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=connectionRequestConfiguration}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <StackPanel>
+            <customControl:AccountGrowthModeHeader x:FieldModifier="public"
+                                                   Name="AccountGrowthHeader"
+                                                   VerticalAlignment="Top"
+                                                   VideoTutorialLink="{Binding VideoTutorialLink}"
+                                                   SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=connectionRequestConfiguration}"
+                                                   SaveCommand="{Binding SaveConfigurationsCommand}" />
+        </StackPanel>
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" VerticalAlignment="Center"
+                                   Margin="10,0,10,0" />
+                        <Controls:ToggleSwitch x:Name="TglStatus"
+                                               IsChecked="{Binding ConnectionRequestModel.IsAccountGrowthActive}"
+                                               OnLabel="Active﻿" OffLabel="Stopped﻿"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=connectionRequestConfiguration}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Controls:ToggleSwitch>
+                    </StackPanel>
+
+                    <Expander Header="{DynamicResource LangKeySearchQuery}" IsExpanded="True" Margin="5">
+                        <customControl:SearchQueryControl x:Name="ConnectionSearchControl"
+                                                          ListQueryType="{Binding ConnectionRequestModel.ListQueryType}"
+                                                          ListQueryInfo="{Binding ConnectionRequestModel.SavedQueries}"
+                                                          AddQueryCommand="{Binding AddQueryCommand}"
+                                                          CommandParameter="{Binding ElementName=connectionRequestConfiguration}"
+                                                          CustomFilterCommand="{Binding CustomFilterCommand}"
+                                                          DeleteQueryCommand="{Binding DeleteQueryCommand}"
+                                                          DeleteMulipleCommand="{Binding DeleteMulipleCommand}" />
+                    </Expander>
+
+                    <!--InputPersonalNote-->
+                        <Expander Header="{DynamicResource LangKeyInputPersonalNote}" Margin="5,5" IsExpanded="True">
+                            <StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <CheckBox Content="{DynamicResource LangKeyAddPersonalNote}" Margin="10,0,0,0"
+                                          Name="chkAddPersonalNote"
+                                          IsChecked="{Binding ConnectionRequestModel.IsChkAddPersonalNoteChecked}" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox Content="{DynamicResource LangKeySpintax}"
+                                              Margin="32,5,0,0"
+                                              Name="chkSpintax"
+                                              ToolTip="Format : (Message 1|Message 2|Message 3|Message 4) Note: add any number of messages each separated by |"
+                                              IsChecked="{Binding ConnectionRequestModel.IsChkSpintaxChecked}"
+                                              Visibility="{Binding ConnectionRequestModel.IsChkAddPersonalNoteChecked,Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                        <CheckBox Content="{DynamicResource LangKeyTag}"
+                                              Margin="10,5,0,0"
+                                              Name="chkTag"
+                                              ToolTip="Format : &lt;First Name&gt;, &lt;Last Name&gt;, &lt;Full Name&gt;,&lt;From First Name&gt;,&lt;From Last Name&gt;,&lt;From Full Name&gt;,&lt;JobPosterFirstName&gt;,&lt;JobTitle&gt;,&lt;JobLocation&gt;"
+                                              IsChecked="{Binding ConnectionRequestModel.IsChkTagChecked}"
+                                              Visibility="{Binding ConnectionRequestModel.IsChkAddPersonalNoteChecked,Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                    <CheckBox Content="{DynamicResource LangKeyMultilineMessage}"
+                                              Margin="10,5,0,0"
+                                              Name="chkMultilineMessage"
+                                              IsChecked="{Binding ConnectionRequestModel.IsChkMultilineMessage}"
+                                              Visibility="{Binding ConnectionRequestModel.IsChkAddPersonalNoteChecked,Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                                </StackPanel>
+                                    <customControlLinkedin:ConnectionRequestPersonalNoteControl
+                                    PersonalNote="{Binding ConnectionRequestModel.ManagePersonalNoteModel,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                    Name="ConnectionRequestPersonalNoteControl"
+                                    AddPersonalNoteCommand="{Binding SaveCommand}"
+                                    CommandParameter="{Binding ElementName=ConnectionRequestPersonalNoteControl}" />
+                                    <customControlLinkedin:ManagePersonalNote
+                                    LstManagePersonalNoteModel="{Binding ConnectionRequestModel.LstDisplayManagePersonalNoteModel}" />
+                                </StackPanel>
+                                <Label HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"
+                                   Content="{DynamicResource LangKeyPersonalNoteNotApplicableForQueryTypeEmail}" />
+                                <Label HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"
+                                   Content="{DynamicResource LangKeyTagJobDeatilsOnlyApplicableForQueryTypeJobScarperCampaign}" />
+                            </StackPanel>
+
+                        </Expander>
+                        <!-- After JobConfiguration  Expander-->
+
+                    <Expander IsExpanded="True" Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+                        <customControl:JobConfigControl
+                            JobConfiguration="{Binding ConnectionRequestModel.JobConfiguration}" />
+                    </Expander>
+
+                    <!-- After User Filters Expander-->
+
+                    <Expander Header="{DynamicResource LangKeyUserFilters}" Margin="5,5" IsExpanded="True"
+                              Visibility="{Binding ConnectionRequestModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel Orientation="Vertical">
+                            <LdCustomControl:UserFiltersControl x:Name="UserFiltersControl"
+                                                                LDUserFilter="{Binding ConnectionRequestModel.LDUserFilterModel}" />
+                            <Label HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"
+                                   Content="{DynamicResource LangKeyFiltersNotApplicableForQueryTypeEmail}" />
+                        </StackPanel>
+                    </Expander>
+
+                    <!-- OtherConfigurations-->
+                    <Expander Header="{DynamicResource LangKeyOtherConfigurations}" Margin="5,5" IsExpanded="True"
+                              Visibility="{Binding ConnectionRequestModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                        <StackPanel>
+                            <CheckBox Content="{DynamicResource LangKeyUniqueOperations}"
+                                      Margin="10,0,0,0"
+                                      Name="UniqueOperationChk"
+                                      IsChecked="{Binding ConnectionRequestModel.IsUniqueOperationChecked}" />
+                            <CheckBox Content="{DynamicResource LangKeyEnableAutoWithdrawConnectionRequest}"
+                                      Margin="10,5,0,0" Name="chkEnableAutoConnectionRequestWithdrawConnectionRequest"
+                                      IsChecked="{Binding ConnectionRequestModel.IsCheckedEnableAutoWithdrawConnectionRequest}" />
+                            <StackPanel Margin="15,0"
+                                        Visibility="{Binding ConnectionRequestModel.IsCheckedEnableAutoWithdrawConnectionRequest,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Orientation="Vertical" Name="AutoEnableWithdrawConnectionRequestSection">
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Content="{DynamicResource LangKeyWhenReaching}"
+                                              IsChecked="{Binding ConnectionRequestModel.IsCheckedStartWithdrawConnectionRequestWhenLimitReach}" />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" Minimum="1"
+                                                            Value="{Binding ConnectionRequestModel.StartWithdrawConnectionRequestWhenLimitReach.StartValue}"
+                                                            Name="StopConnectionRequestStartValue"
+                                                            IsEnabled="{Binding ConnectionRequestModel.IsCheckedStartWithdrawConnectionRequestWhenLimitReach}" />
+                                    <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           Content="{DynamicResource LangKeyTo}" />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" Minimum="1"
+                                                            Value="{Binding ConnectionRequestModel.StartWithdrawConnectionRequestWhenLimitReach.EndValue}"
+                                                            IsEnabled="{Binding ConnectionRequestModel.IsCheckedStartWithdrawConnectionRequestWhenLimitReach}" />
+                                    <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           Content="{DynamicResource LangKeyPendingConnectionRequests}" />
+                                </StackPanel>
+                                <CheckBox Margin="0,5,0,0"
+                                          Content="{DynamicResource LangKeyWhenTheConnectionRequestToolGetsTemporaryBlocked}"
+                                          IsChecked="{Binding ConnectionRequestModel.IsCheckedConnectionRequestToolGetsTemporaryBlocked}" />
+                            </StackPanel>
+
+                            <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                                <CheckBox Content="{DynamicResource LangKeyStopActivityOnContinuousFailsCount}"
+                                          IsChecked="{Binding ConnectionRequestModel.IsStopSendConnectionRequestOnFailed}" />
+                                <Controls:NumericUpDown Margin="5"
+                                                        IsEnabled="{Binding ConnectionRequestModel.IsStopSendConnectionRequestOnFailed}"
+                                                        Minimum="1"
+                                                        Value="{Binding ConnectionRequestModel.StopSendConnectionRequestOnCount}" />
+                            </StackPanel>
+
+
+                            <!--<StackPanel Margin="15,0" Visibility="{Binding ConnectionRequestModel.IsCheckedEnableAutoWithdrawConnectionRequest,Converter={StaticResource BooleanToVisibilityConverter}}" Orientation="Horizontal">
+                                <CheckBox Content="{DynamicResource LangKeyStartWithdrawConnectionRequestToolBetween}"  Margin="0,5,0,0" IsChecked="{Binding ConnectionRequestModel.IsCheckedStartWithdrawConnectionRequestBetween}"/>
+                                <Controls:NumericUpDown Margin="5,5,5,0"   Minimum="1" Value="{Binding ConnectionRequestModel.StartWithdrawConnectionRequestAfter.StartValue}" 
+                                                                        IsEnabled="{Binding ConnectionRequestModel.IsCheckedStartWithdrawConnectionRequestBetween}" Name="StartWithdrawConnectionRequestStartValue"/>
+                                <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{DynamicResource LangKeyTo}" />
+                                <Controls:NumericUpDown Margin="5,5,5,0"  Minimum="1"
+                                                                        Value="{Binding ConnectionRequestModel.StartWithdrawConnectionRequestAfter.EndValue}" IsEnabled="{Binding ConnectionRequestModel.IsCheckedStartWithdrawConnectionRequestBetween}"/>
+                                <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyMinutesAfter}" />
+                            </StackPanel>-->
+                        </StackPanel>
+                    </Expander>
+
+                    <!--Manage Blacklist Users  expander-->
+
+                    <Expander Header="{DynamicResource LangKeyManageBlacklistedUsers}" Margin="5,5"
+                              Visibility="{Binding ConnectionRequestModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+                            <CheckBox Content="{DynamicResource LangKeySkipBlacklistedUsers}" Margin="10,5"
+                                      IsChecked="{Binding ConnectionRequestModel.IsChkSkipBlackListedUser}" />
+                            <StackPanel Margin="25,5"
+                                        Visibility="{Binding ConnectionRequestModel.IsChkSkipBlackListedUser, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Orientation="Horizontal">
+                                <CheckBox Content="{DynamicResource LangKeyPrivateBlacklist}" Margin="5,0"
+                                          IsChecked="{Binding ConnectionRequestModel.IsChkPrivateBlackList}" />
+                                <CheckBox Content="{DynamicResource LangKeyGroupBlacklist}" Margin="5,0"
+                                          IsChecked="{Binding ConnectionRequestModel.IsChkGroupBlackList}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Expander>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</local:ConnectionRequestConfigurationBase>

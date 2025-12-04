@@ -1,0 +1,9 @@
+﻿Tracking all conversation
+===========================
+1) hit url  https://www.linkedin.com/in/narendra-mehta-38046114b to get badgeId >>  get between (urn:li:fs_memberBadges: , ")
+2) hit https://www.linkedin.com/voyager/api/messaging/conversations?keyVersion=LEGACY_INBOX&q=participants&recipients=List(ACoAACQyTtAB7rgrK1wXFI_Rm1yZZ_5kbIkA7P0) to get conversation id
+3) hit url to get conversation https://www.linkedin.com/voyager/api/messaging/conversations/6481393000219054080/events?nc=1545292292790
+4) elements >> (0,1,2...)
+4.1) createdAt (time)
+4.2) from >> miniProfile >> firstName   (get name to check who send message)
+4.13) eventContent>>com.linkedin.voyager.messaging.event.MessageEvent>>body		(text message)

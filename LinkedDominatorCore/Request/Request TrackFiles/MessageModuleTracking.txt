@@ -1,0 +1,21 @@
+﻿﻿Tracking all conversation
+======================================================
+1) Hit url  https://www.linkedin.com/in/narendra-mehta-38046114b to get badgeId >>  get between (urn:li:fs_memberBadges: , ")  => ACoAACQyTtAB7rgrK1wXFI_Rm1yZZ_5kbIkA7P0
+2) Hit https://www.linkedin.com/voyager/api/messaging/conversations?keyVersion=LEGACY_INBOX&q=participants&recipients=List(ACoAACQyTtAB7rgrK1wXFI_Rm1yZZ_5kbIkA7P0) to get conversation id    ''
+3) Hit url to get conversation https://www.linkedin.com/voyager/api/messaging/conversations/6481393000219054080/events?nc=1545292292790
+4) Json fetching  elements >> (0,1,2...)
+4.1) createdAt (time)
+4.2) from >> miniProfile >> firstName   (get name to check who send message)
+4.13) eventContent>>com.linkedin.voyager.messaging.event.MessageEvent>>body        (text message)
+
+
+
+
+
+
+
+
+
+post data of like before(Jan 2019)
+//{"threadId":"urn:li:activity:6488090457527189504","actor":{"com.linkedin.voyager.feed.MemberActor":{"id":"ACoAACROPQcB0FSUOZGZ1nmZSvkh-96nK6iMgTY","showFollowAction":false,"miniProfile":{"id":"ACoAACROPQcB0FSUOZGZ1nmZSvkh-96nK6iMgTY","trackingId":"gdPYmaZqRCeueVtlZOsqXg==","objectUrn":"urn:li:member:609107207","entityUrn":"urn:li:fs_miniProfile:ACoAACROPQcB0FSUOZGZ1nmZSvkh-96nK6iMgTY","firstName":"Michael ","lastName":"Doyle","occupation":"Physical Therapist at SmartDoctor","publicIdentifier":"michael-doyle-71bba414b","picture":{"com.linkedin.common.VectorImage":{"id":"ACoAACROPQcB0FSUOZGZ1nmZSvkh-96nK6iMgTY,picture,com.linkedin.common.VectorImage","rootUrl":"https://media.licdn.com/dms/image/C5603AQEw8BfpnMOlOw/profile-displayphoto-shrink_","artifacts":[{"id":"ACoAACROPQcB0FSUOZGZ1nmZSvkh-96nK6iMgTY,picture,com.linkedin.common.VectorImage,artifacts,bf7401c4-2bbe-42e5-8bac-eca067657f65-0","fileIdentifyingUrlPathSegment":"100_100/0?e=1552521600&v=beta&t=RlCHeXpgGKkR7wH0li0qvn7jdPpu8yhTGR0fVA2UXTc","height":100,"width":100},{"id":"ACoAACROPQcB0FSUOZGZ1nmZSvkh-96nK6iMgTY,picture,com.linkedin.common.VectorImage,artifacts,bf7401c4-2bbe-42e5-8bac-eca067657f65-1","fileIdentifyingUrlPathSegment":"200_200/0?e=1552521600&v=beta&t=mZGhe9G3gGhTZFPMgQZF1wCZ2YaJLbq0i8gxJLVrO8Y","height":200,"width":200},{"id":"ACoAACROPQcB0FSUOZGZ1nmZSvkh-96nK6iMgTY,picture,com.linkedin.common.VectorImage,artifacts,bf7401c4-2bbe-42e5-8bac-eca067657f65-2","fileIdentifyingUrlPathSegment":"400_400/0?e=1552521600&v=beta&t=-mgE7kJ58Utpm8bzE_BntHEdg8M-joa_4qRy-wWe8JA","height":400,"width":400},{"id":"ACoAACROPQcB0FSUOZGZ1nmZSvkh-96nK6iMgTY,picture,com.linkedin.common.VectorImage,artifacts,bf7401c4-2bbe-42e5-8bac-eca067657f65-3","fileIdentifyingUrlPathSegment":"800_800/0?e=1552521600&v=beta&t=YvYT7eRGbRBlLwIKAje-UOsrDRihEMWrcqtUY2vgi44","height":800,"width":800}]}}},"skillNames":[]}}}
+

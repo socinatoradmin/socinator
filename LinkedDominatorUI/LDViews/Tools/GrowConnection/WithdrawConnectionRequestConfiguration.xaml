@@ -1,0 +1,172 @@
+﻿<local:WithdrawConnectionRequestConfigurationBase
+    x:Class="LinkedDominatorUI.LDViews.Tools.GrowConnection.WithdrawConnectionRequestConfiguration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:LinkedDominatorUI.LDViews.Tools.GrowConnection"
+    mc:Ignorable="d"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:customControl1="clr-namespace:LinkedDominatorUI.CustomControl"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    x:Name="withdrawConnectionRequestConfiguration"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=withdrawConnectionRequestConfiguration}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+        <StackPanel>
+            <customControl:AccountGrowthModeHeader x:FieldModifier="public"
+                                                   Name="AccountGrowthHeader"
+                                                   VideoTutorialLink="{Binding VideoTutorialLink}"
+                                                   VerticalAlignment="Top"
+                                                   SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=withdrawConnectionRequestConfiguration}"
+                                                   SaveCommand="{Binding SaveConfigurationsCommand}" />
+        </StackPanel>
+
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" VerticalAlignment="Center"
+                                   Margin="10,0,10,0" />
+                        <Controls:ToggleSwitch x:Name="TglStatus"
+                                               IsChecked="{Binding WithdrawConnectionRequestModel.IsAccountGrowthActive}"
+                                               OnLabel="Active﻿" OffLabel="Stopped﻿" VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=withdrawConnectionRequestConfiguration}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Controls:ToggleSwitch>
+                    </StackPanel>
+                    <!--Requested user sources-->
+                    <Label Content="{DynamicResource LangKeyRequestedUserSources}" FontWeight="Bold" Margin="5,10,0,0" />
+                    <StackPanel Margin="15,0,0,5">
+                        <CheckBox Content="{DynamicResource LangKeyBySoftware}" Margin="5"
+                                  IsChecked="{Binding WithdrawConnectionRequestModel.IsCheckedBySoftware}" />
+                        <CheckBox Content="{DynamicResource LangKeyOutsideSoftware}" Margin="5"
+                                  IsChecked="{Binding WithdrawConnectionRequestModel.IsCheckedOutSideSoftware}" />
+                        <CheckBox Content="{DynamicResource LangKeyCustomUsersList}" Margin="5"
+                                  IsChecked="{Binding WithdrawConnectionRequestModel.IsCheckedLangKeyCustomUserList}" />
+                        <customControl:InputBoxControl Margin="25,5" x:Name="CustomUserListInputBox"
+                                                       InputText="{Binding WithdrawConnectionRequestModel.UrlInput}"
+                                                       SaveCommand="{Binding SaveCustomUserListCommand}"
+                                                       WaterMarkText="{DynamicResource LangKeyEnterProfileUrlS}"
+                                                       Visibility="{Binding WithdrawConnectionRequestModel.IsCheckedLangKeyCustomUserList,Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    </StackPanel>
+                    <!--<Label Content="{DynamicResource LangKeySourceType}" FontWeight="Bold" Margin="5,10,0,0"></Label>
+                    <StackPanel  Margin="15,0,0,5" >
+                        <CheckBox Content="{DynamicResource LangKeyPendingConnectionRequest}" Margin="5" IsChecked="{Binding IsCheckedPendingConnectionRequest}"/>
+                        <CheckBox Content="{DynamicResource LangKeyAlreadyConnected}" Margin="5" IsChecked="{Binding IsCheckedAlreadyConnected}"/>
+                    </StackPanel>-->
+                    <Label Content="{DynamicResource LangKeySourceFilter}" FontWeight="Bold" Margin="5,10,0,0" />
+                    <StackPanel Orientation="Horizontal" Margin="15,0,0,5">
+                        <CheckBox Content="{DynamicResource LangKeyRequestedBefore}" Margin="5"
+                                  IsChecked="{Binding WithdrawConnectionRequestModel.IsCheckedRequestedBefore}" />
+                        <Controls:NumericUpDown Value="{Binding WithdrawConnectionRequestModel.Days}" Minimum="0"
+                                                IsEnabled="{Binding WithdrawConnectionRequestModel.IsCheckedRequestedBefore}" />
+                        <Label Content="{DynamicResource LangKeyDays}" />
+                        <Label Content="{DynamicResource LangKeyAnd}" />
+                        <Controls:NumericUpDown Value="{Binding WithdrawConnectionRequestModel.Hours}" Minimum="0"
+                                                Maximum="24"
+                                                IsEnabled="{Binding WithdrawConnectionRequestModel.IsCheckedRequestedBefore}" />
+                        <Label Content="{DynamicResource LangKeyHours}" />
+                    </StackPanel>
+
+
+                    <!-- After JobConfiguration  Expender-->
+
+                    <Expander IsExpanded="True" Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+                        <customControl:JobConfigControl
+                            JobConfiguration="{Binding WithdrawConnectionRequestModel.JobConfiguration}" />
+                    </Expander>
+
+                    <!-- OtherConfigurations-->
+                    <Expander Header="{DynamicResource LangKeyOtherConfigurations}" Margin="5,5" IsExpanded="True"
+                              Visibility="{Binding WithdrawConnectionRequestModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+                            <CheckBox Content="{DynamicResource LangKeyEnableAutoConnectionRequest}" Margin="10,0,0,0"
+                                      Name="chkEnableAutoConnectionRequest"
+                                      IsChecked="{Binding WithdrawConnectionRequestModel.IsCheckedEnableAutoConnectionRequest}" />
+                            <StackPanel Margin="15,0"
+                                        Visibility="{Binding WithdrawConnectionRequestModel.IsCheckedEnableAutoConnectionRequest,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Orientation="Vertical" Name="AutoEnableConnectionRequestSection">
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Content="{DynamicResource LangKeyWhenReaching}"
+                                              IsChecked="{Binding WithdrawConnectionRequestModel.IsCheckedStartConnectionRequestWhenLimitReach}" />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" Minimum="1"
+                                                            Value="{Binding WithdrawConnectionRequestModel.StartConnectionRequestWhenLimitReach.StartValue}"
+                                                            Name="StartConnectionRequestWhenLimitReachStartValue"
+                                                            IsEnabled="{Binding WithdrawConnectionRequestModel.IsCheckedStartConnectionRequestWhenLimitReach}" />
+                                    <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           Content="{DynamicResource LangKeyTo}" />
+                                    <Controls:NumericUpDown Margin="5,5,5,0" Minimum="1"
+                                                            Value="{Binding WithdrawConnectionRequestModel.StartConnectionRequestWhenLimitReach.EndValue}"
+                                                            IsEnabled="{Binding WithdrawConnectionRequestModel.IsCheckedStartConnectionRequestWhenLimitReach}" />
+                                    <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           Content="{DynamicResource LangKeyConnectionWithdraws}" />
+                                </StackPanel>
+                                <CheckBox Margin="0,5,0,0"
+                                          Content="{DynamicResource LangKeyWhenTheWithdrawConnectionRequestToolGetsTemporaryBlocked}"
+                                          IsChecked="{Binding WithdrawConnectionRequestModel.IsCheckedWithdrawConnectionRequestToolGetsTemporaryBlocked}" />
+                            </StackPanel>
+                            <!--<StackPanel Margin="15,0" Visibility="{Binding WithdrawConnectionRequestModel.IsCheckedEnableAutoConnectionRequest,Converter={StaticResource BooleanToVisibilityConverter}}" Orientation="Horizontal">
+                                <CheckBox Content="{DynamicResource LangKeyStartConnectionRequestToolBetween}"  Margin="0,5,0,0" IsChecked="{Binding WithdrawConnectionRequestModel.IsCheckedStartConnectionRequestBetween}"/>
+                                <Controls:NumericUpDown Margin="5,5,5,0"   Minimum="1" Value="{Binding WithdrawConnectionRequestModel.StartConnectionRequestAfter.StartValue}" 
+                                                                        IsEnabled="{Binding WithdrawConnectionRequestModel.IsCheckedStartConnectionRequestBetween}" Name="StartConnectionRequestBetweenStartValue"/>
+                                <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{DynamicResource LangKeyTo}" />
+                                <Controls:NumericUpDown Margin="5,5,5,0"  Minimum="1"
+                                                                        Value="{Binding WithdrawConnectionRequestModel.StartConnectionRequestAfter.EndValue}" IsEnabled="{Binding WithdrawConnectionRequestModel.IsCheckedStartConnectionRequestBetween}"/>
+                                <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyMinutesAfter}" />
+                            </StackPanel>-->
+                        </StackPanel>
+                    </Expander>
+
+                    <!--Manage Blacklist Whitelist Users  expander-->
+
+                    <Expander Header="{DynamicResource LangKeyManageBlacklistAndWhitelistUsers}" Margin="5,5"
+                              Visibility="{Binding WithdrawConnectionRequestModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+                            <CheckBox Content="{DynamicResource LangKeySkipWhitelistedUsers}" Margin="10,5"
+                                      IsChecked="{Binding WithdrawConnectionRequestModel.IsChkSkipWhiteListedUser}" />
+                            <StackPanel Margin="25,5"
+                                        Visibility="{Binding WithdrawConnectionRequestModel.IsChkSkipWhiteListedUser, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Orientation="Horizontal">
+                                <CheckBox Content="{DynamicResource LangKeyUsePrivateWhitelist}" Margin="5,0"
+                                          IsChecked="{Binding WithdrawConnectionRequestModel.IsChkUsePrivateWhiteList}" />
+                                <CheckBox Content="{DynamicResource LangKeyUseGroupWhitelist}" Margin="5,0"
+                                          IsChecked="{Binding WithdrawConnectionRequestModel.IsChkUseGroupWhiteList}" />
+                            </StackPanel>
+
+                            <CheckBox Content="{DynamicResource LangKeyAddToBlacklist}" Margin="10,5"
+                                      IsChecked="{Binding WithdrawConnectionRequestModel.IsChkAddToBlackList}" />
+                            <StackPanel Margin="25,5"
+                                        Visibility="{Binding WithdrawConnectionRequestModel.IsChkAddToBlackList, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Orientation="Horizontal">
+                                <CheckBox Content="{DynamicResource LangKeyAddToPrivateBlacklist}" Margin="5,0"
+                                          IsChecked="{Binding WithdrawConnectionRequestModel.IsChkAddToPrivateBlackList}" />
+                                <CheckBox Content="{DynamicResource LangKeyAddToGroupBlacklist}" Margin="5,0"
+                                          IsChecked="{Binding WithdrawConnectionRequestModel.IsChkAddToGroupBlackList}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Expander>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</local:WithdrawConnectionRequestConfigurationBase>

@@ -1,0 +1,131 @@
+﻿<local:UserScraperConfigurationBase x:Class="LinkedDominatorUI.LDViews.Tools.Scraper.UserScraperConfiguration"
+                                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                    xmlns:local="clr-namespace:LinkedDominatorUI.LDViews.Tools.Scraper"
+                                    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                                    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+                                    xmlns:LdCustomControl="clr-namespace:LinkedDominatorUI.CustomControl"
+                                    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+                                    mc:Ignorable="d"
+                                    x:Name="userScraperConfiguration"
+                                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=userScraperConfiguration}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+        <StackPanel>
+            <customControl:AccountGrowthModeHeader x:FieldModifier="public"
+                                                   Name="AccountGrowthHeader"
+                                                   VideoTutorialLink="{Binding VideoTutorialLink}"
+                                                   VerticalAlignment="Top"
+                                                   SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=userScraperConfiguration}"
+                                                   SaveCommand="{Binding SaveConfigurationsCommand}" />
+        </StackPanel>
+
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" VerticalAlignment="Center"
+                                   Margin="10,0,10,0" />
+                        <Controls:ToggleSwitch x:Name="TglStatus"
+                                               IsChecked="{Binding UserScraperModel.IsAccountGrowthActive}"
+                                               OnLabel="Active﻿"
+                                               OffLabel="Stopped﻿"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=userScraperConfiguration}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Controls:ToggleSwitch>
+                    </StackPanel>
+
+                    <Expander Header="{DynamicResource LangKeySearchQuery}" IsExpanded="True" Margin="5">
+                        <customControl:SearchQueryControl Name="UserScraperSearchControl"
+                                                          ListQueryType="{Binding UserScraperModel.ListQueryType}"
+                                                          ListQueryInfo="{Binding UserScraperModel.SavedQueries}"
+                                                          AddQueryCommand="{Binding AddQueryCommand}"
+                                                          CommandParameter="{Binding ElementName=userScraperConfiguration}"
+                                                          CustomFilterCommand="{Binding CustomFilterCommand}"
+                                                          DeleteQueryCommand="{Binding DeleteQueryCommand}"
+                                                          DeleteMulipleCommand="{Binding DeleteMulipleCommand}" />
+                    </Expander>
+
+
+                    <!--  JobConfiguration  Expender-->
+
+                    <Expander IsExpanded="True" Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+                        <customControl:JobConfigControl JobConfiguration="{Binding UserScraperModel.JobConfiguration}" />
+                    </Expander>
+
+                    <!--Other Configurations-->
+                    <Expander Header="{DynamicResource LangKeyOtherConfigurations}" Margin="5,5"
+                              Visibility="{Binding UserScraperModel.IsEnabledAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+                            <RadioButton GroupName="ViewType" Content="{DynamicResource LangKeyVisiting}"
+                                         Name="CheckBox_Visiting"
+                                         Margin="10,0,0,0"
+                                         IsChecked="{Binding UserScraperModel.IsCheckedVisiting,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+                            <RadioButton GroupName="ViewType" Content="{DynamicResource LangKeyWithoutVisiting}"
+                                         Name="CheckBox_WithoutVisiting"
+                                         Margin="10,5,0,0"
+                                         IsChecked="{Binding UserScraperModel.IsCheckedWithoutVisiting,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+
+                            <StackPanel Orientation="Horizontal" Margin="10,5,0,0">
+                                <RadioButton GroupName="ViewType" Content="View Profile"
+                                             IsChecked="{Binding UserScraperModel.IsViewProfileUsingEmbeddedBrowser,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+                                <TextBlock Padding="5,0" Text="*Not applicable for 1stConnection and Joined Group Url"
+                                           FontWeight="SemiBold" />
+                            </StackPanel>
+
+                            <!--<RadioButton Content="{DynamicResource LangKeyVisitOnly}"
+                                  Name="CheckBox_VisitOnly"
+                                  Margin="10,5,0,0"
+                                  IsChecked="{Binding IsCheckedVisitOnly,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                  />-->
+                        </StackPanel>
+                    </Expander>
+
+                    <!-- After User Filters Expender-->
+
+                    <Expander IsExpanded="True" Header="{DynamicResource LangKeyUserFilters}" Margin="5,5"
+                              Visibility="{Binding UserScraperModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <LdCustomControl:UserFiltersControl x:Name="UserFiltersControl"
+                                                            LDUserFilter="{Binding UserScraperModel.LDUserFilterModel}" />
+                    </Expander>
+
+                    <!--Manage Blacklist Users  expander-->
+
+                    <Expander Header="{DynamicResource LangKeyManageBlacklistedUsers}" Margin="5,5"
+                              Visibility="{Binding UserScraperModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+                            <CheckBox Content="{DynamicResource LangKeySkipBlacklistedUsers}" Margin="10,5"
+                                      IsChecked="{Binding UserScraperModel.IsChkSkipBlackListedUser}" />
+                            <StackPanel Margin="25,5"
+                                        Visibility="{Binding UserScraperModel.IsChkSkipBlackListedUser, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Orientation="Horizontal">
+                                <CheckBox Content="{DynamicResource LangKeyPrivateBlacklist}" Margin="5,0"
+                                          IsChecked="{Binding UserScraperModel.IsChkPrivateBlackList}" />
+                                <CheckBox Content="{DynamicResource LangKeyGroupBlacklist}" Margin="5,0"
+                                          IsChecked="{Binding UserScraperModel.IsChkGroupBlackList}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Expander>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</local:UserScraperConfigurationBase>

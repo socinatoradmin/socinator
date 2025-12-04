@@ -1,0 +1,152 @@
+﻿<local:SendMessageToNewConnectionConfigurationBase
+    x:Class="LinkedDominatorUI.LDViews.Tools.Messenger.SendMessageToNewConnectionConfiguration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:LinkedDominatorUI.LDViews.Tools.Messenger"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:DHCustomControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:LdCustomControl="clr-namespace:LinkedDominatorUI.CustomControl"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    mc:Ignorable="d"
+    x:Name="sendMessageToNewConnectionConfiguration"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction
+                Command="{Binding LoadedCommand,ElementName=sendMessageToNewConnectionConfiguration}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+        <StackPanel>
+            <DHCustomControl:AccountGrowthModeHeader x:FieldModifier="public"
+                                                     Name="AccountGrowthHeader"
+                                                     VerticalAlignment="Top"
+                                                     VideoTutorialLink="{Binding VideoTutorialLink}"
+                                                     SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=sendMessageToNewConnectionConfiguration}"
+                                                     SaveCommand="{Binding SaveConfigurationsCommand}" />
+        </StackPanel>
+
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" VerticalAlignment="Center"
+                                   Margin="10,0,10,0" />
+                        <Controls:ToggleSwitch x:Name="TglStatus"
+                                               IsChecked="{Binding SendMessageToNewConnectionModel.IsAccountGrowthActive}"
+                                               OnLabel="Active﻿"
+                                               OffLabel="Stopped﻿"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=sendMessageToNewConnectionConfiguration}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Controls:ToggleSwitch>
+                    </StackPanel>
+                    <Label Content="{DynamicResource LangKeySourceFilter}" FontWeight="Bold" Margin="5,10,0,0" />
+                    <StackPanel Orientation="Horizontal" Margin="15,0,0,5">
+                        <CheckBox Content="{DynamicResource LangKeyConnectedWithin}" Margin="5"
+                                  IsChecked="{Binding SendMessageToNewConnectionModel.IsCheckedConnectedBefore}" />
+                        <Controls:NumericUpDown Value="{Binding SendMessageToNewConnectionModel.Days}" Minimum="0"
+                                                IsEnabled="{Binding SendMessageToNewConnectionModel.IsCheckedConnectedBefore}" />
+                        <Label Content="{DynamicResource LangKeyDays}" />
+                        <Label Content="{DynamicResource LangKeyAnd}" />
+                        <Controls:NumericUpDown Value="{Binding SendMessageToNewConnectionModel.Hours}" Minimum="0"
+                                                Maximum="24"
+                                                IsEnabled="{Binding SendMessageToNewConnectionModel.IsCheckedConnectedBefore}" />
+                        <Label Content="{DynamicResource LangKeyHours}" />
+                    </StackPanel>
+                    <!--Input Messages-->
+                    <Expander IsExpanded="True" Header="{DynamicResource LangKeyInputMessageS}" Margin="5,5">
+                        <!--<DHCustomControl:InputBoxControl Margin="30,5" x:Name="AutoReplyMessageInputBox" GetInputClick="AutoReplyMessageInputBox_OnGetInputClick"
+                                                         Visibility="{Binding UserFilter.UserHasInvalidWord,Converter={StaticResource BooleanToVisibilityConverter}}"/>-->
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Content="{DynamicResource LangKeySpintax}"
+                                          Margin="32,5,0,0"
+                                          Name="chkSpintax"
+                                          ToolTip="Format : (Message 1|Message 2|Message 3|Message 4) Note: add any number of messages each separated by |"
+                                          IsChecked="{Binding SendMessageToNewConnectionModel.IsChkSpintaxChecked}"
+                                          Visibility="Visible" />
+                                <CheckBox Content="{DynamicResource LangKeyTag}"
+                                          Margin="10,5,0,0"
+                                          Name="chkTag"
+                                          ToolTip="Format : &lt;First Name&gt;, &lt;Last Name&gt;, &lt;Full Name&gt;,&lt;From First Name&gt;,&lt;From Last Name&gt;,&lt;From Full Name&gt;"
+                                          IsChecked="{Binding SendMessageToNewConnectionModel.IsChkTagChecked}"
+                                          Visibility="Visible" />
+
+                            </StackPanel>
+                            <StackPanel>
+                                <DHCustomControl:MessageMediaControl
+                                    Messages="{Binding SendMessageToNewConnectionModel.ManageMessagesModel}"
+                                    Name="MessageMediaControl"
+                                    AddMessagesCommand="{Binding AddMessagesCommand}"
+                                    CommandParameter="{Binding ElementName=MessageMediaControl}" />
+                                <DHCustomControl:ManageMediaMessages
+                                    LstManageMessagesModel="{Binding SendMessageToNewConnectionModel.LstDisplayManageMessagesModel}" />
+                            </StackPanel>
+
+                        </StackPanel>
+
+                    </Expander>
+
+                    <!-- After JobConfiguration  Expender-->
+
+                    <Expander IsExpanded="True" Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                            <DHCustomControl:JobConfigControl
+                                JobConfiguration="{Binding SendMessageToNewConnectionModel.JobConfiguration}" />
+                        </ScrollViewer>
+
+                    </Expander>
+
+                    <!--Other Configurations filter Expender-->
+
+                    <!--<Expander IsExpanded="True" Header="{DynamicResource LangKeyOtherConfigurations}" Margin="5,5">
+                        <DHCustomControl:OtherConfig OtherConfigFilter="{Binding OtherConfigModel}"/>
+                    </Expander>-->
+
+
+                    <!-- After User Filters Expender-->
+
+                    <Expander IsExpanded="True" Header="{DynamicResource LangKeyUserFilters}" Margin="5,5"
+                              Visibility="{Binding SendMessageToNewConnectionModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <LdCustomControl:UserFiltersControl x:Name="UserFiltersControl"
+                                                            LDUserFilter="{Binding SendMessageToNewConnectionModel.LDUserFilterModel}" />
+                    </Expander>
+
+                    <!--Manage Blacklist Users  expander-->
+
+                    <Expander Header="{DynamicResource LangKeyManageBlacklistedUsers}" Margin="5,5"
+                              Visibility="{Binding SendMessageToNewConnectionModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+                            <CheckBox Content="{DynamicResource LangKeySkipBlacklistedUsers}" Margin="10,5"
+                                      IsChecked="{Binding SendMessageToNewConnectionModel.IsChkSkipBlackListedUser}" />
+                            <StackPanel Margin="25,5"
+                                        Visibility="{Binding SendMessageToNewConnectionModel.IsChkSkipBlackListedUser, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Orientation="Horizontal">
+                                <CheckBox Content="{DynamicResource LangKeyPrivateBlacklist}" Margin="5,0"
+                                          IsChecked="{Binding SendMessageToNewConnectionModel.IsChkPrivateBlackList}" />
+                                <CheckBox Content="{DynamicResource LangKeyGroupBlacklist}" Margin="5,0"
+                                          IsChecked="{Binding SendMessageToNewConnectionModel.IsChkGroupBlackList}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Expander>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</local:SendMessageToNewConnectionConfigurationBase>

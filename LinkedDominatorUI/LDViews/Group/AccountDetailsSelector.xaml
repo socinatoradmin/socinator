@@ -1,0 +1,126 @@
+﻿<UserControl x:Class="LinkedDominatorUI.LDViews.Group.AccountDetailsSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:LinkedDominatorUI.LDViews.Group"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d" x:Name="AccountDetailsSelectors"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:ListViewItemIndexConverter x:Key="ListViewItemIndexConverter" />
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Border BorderBrush="{DynamicResource AccentBaseColorBrush}" BorderThickness="1" Margin="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.8*" />
+                <RowDefinition Height="10*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Background="{DynamicResource AccentBaseColorBrush}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!--Filter Section-->
+
+                <StackPanel Orientation="Horizontal">
+                    <mah:ProgressRing IsActive="{Binding IsProgressRingActive}" HorizontalAlignment="Left"
+                                      Visibility="{Binding IsProgressRingActive,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                      Foreground="White" Height="30" Width="30" />
+                    <TextBlock Text="{Binding StatusText}" Foreground="White" HorizontalAlignment="Center"
+                               VerticalAlignment="Center" FontSize="13" FontWeight="SemiBold" />
+                </StackPanel>
+
+
+                <!--<TextBox Margin="5" mah:TextBoxHelper.Watermark="{DynamicResource LangKeySearch}"
+                         Text="{Binding TextSearch,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                         VerticalAlignment="Center" Height="28" Grid.Column="1" HorizontalAlignment="Right" Width="250"
+                         Style="{StaticResource SearchMetroTextBox}" Name="TextSearch"
+                         mah:TextBoxHelper.ButtonCommand="{Binding TextSearchCommand,Mode=OneWay}" />-->
+
+            </Grid>
+
+
+            <!--Account detail list-->
+            <Grid Grid.Row="1" Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="0.8*" />
+                </Grid.RowDefinitions>
+
+
+                <ListView Grid.Row="0" Name="LstBoards" ItemsSource="{Binding AccountDetailsSelectorView}"
+                          ItemContainerStyle="{StaticResource ListViewItems}"
+                          mah:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="False">
+                    <ListView.Resources>
+                        <Style TargetType="{x:Type GridViewColumnHeader}"
+                               BasedOn="{StaticResource {x:Type GridViewColumnHeader}}">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </ListView.Resources>
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="False">
+                            <GridViewColumn Width="100">
+                                <CheckBox x:Name="AllAccount" Content=" #" IsChecked="{Binding IsAllCampaignSelected}" />
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <CheckBox IsChecked="{Binding IsSelected}"
+                                                      x:Name="SingleAccount"
+                                                      Margin="5,0,0,0" />
+                                            <Label
+                                                Content="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                                   AncestorType={x:Type ListViewItem}}, 
+                                                   Converter={StaticResource ListViewItemIndexConverter}}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Header="{Binding DetailsNameHeader}"
+                                            DisplayMemberBinding="{Binding DetailName}" Width="150" />
+                            <GridViewColumn Header="{Binding DetailsUrlHeader}"
+                                            DisplayMemberBinding="{Binding DetailUrl}" Width="150" />
+                            <GridViewColumn Header="{Binding DetailsQueryTypeHeader}" Width="200">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox ItemsSource="{Binding QueryType}">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox x:Name="chkQuery" IsChecked="{Binding IsContentSelected}"
+                                                              Checked="chkQuery_Checked" Unchecked="chkQuery_Unchecked">
+                                                        <TextBlock Text="{Binding Content}" />
+                                                    </CheckBox>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <!--<GridViewColumn Header="{Binding DetailsLabelHeader}" Width="150">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox
+                                            Text="{Binding Label, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>-->
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
+                    <Button Height="30" Content="{DynamicResource LangKeySave}" Name="BtnSave" x:FieldModifier="public"
+                            HorizontalAlignment="Center" Margin="0,0,10,0"
+                            Background="{DynamicResource AccentBaseColorBrush}" Foreground="White" />
+                    <Button Height="30" Content="{DynamicResource LangKeyCancel}" Name="BtnCancel"
+                            x:FieldModifier="public" HorizontalAlignment="Center" Margin="0,0,10,0"
+                            Background="{DynamicResource AccentBaseColorBrush}" Foreground="White" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
