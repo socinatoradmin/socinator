@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwtDominatorCore", "TwtDominatorCore\TwtDominatorCore.csproj", "{E41BF7D2-231F-4D58-AD45-95F7146E1979}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwtDominatorUI", "TwtDominatorUI\TwtDominatorUI.csproj", "{B91D5616-EAFD-4BF8-AAF5-051675592714}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Debug-fast-test|Any CPU = Debug-fast-test|Any CPU
+		Debug-fast-test|x86 = Debug-fast-test|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E41BF7D2-231F-4D58-AD45-95F7146E1979}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E41BF7D2-231F-4D58-AD45-95F7146E1979}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E41BF7D2-231F-4D58-AD45-95F7146E1979}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E41BF7D2-231F-4D58-AD45-95F7146E1979}.Debug|x86.Build.0 = Debug|Any CPU
+		{E41BF7D2-231F-4D58-AD45-95F7146E1979}.Debug-fast-test|Any CPU.ActiveCfg = Debug-fast-test|Any CPU
+		{E41BF7D2-231F-4D58-AD45-95F7146E1979}.Debug-fast-test|Any CPU.Build.0 = Debug-fast-test|Any CPU
+		{E41BF7D2-231F-4D58-AD45-95F7146E1979}.Debug-fast-test|x86.ActiveCfg = Debug-fast-test|Any CPU
+		{E41BF7D2-231F-4D58-AD45-95F7146E1979}.Debug-fast-test|x86.Build.0 = Debug-fast-test|Any CPU
+		{E41BF7D2-231F-4D58-AD45-95F7146E1979}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E41BF7D2-231F-4D58-AD45-95F7146E1979}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E41BF7D2-231F-4D58-AD45-95F7146E1979}.Release|x86.ActiveCfg = Release|Any CPU
+		{E41BF7D2-231F-4D58-AD45-95F7146E1979}.Release|x86.Build.0 = Release|Any CPU
+		{B91D5616-EAFD-4BF8-AAF5-051675592714}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B91D5616-EAFD-4BF8-AAF5-051675592714}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B91D5616-EAFD-4BF8-AAF5-051675592714}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B91D5616-EAFD-4BF8-AAF5-051675592714}.Debug|x86.Build.0 = Debug|Any CPU
+		{B91D5616-EAFD-4BF8-AAF5-051675592714}.Debug-fast-test|Any CPU.ActiveCfg = Debug-fast-test|Any CPU
+		{B91D5616-EAFD-4BF8-AAF5-051675592714}.Debug-fast-test|Any CPU.Build.0 = Debug-fast-test|Any CPU
+		{B91D5616-EAFD-4BF8-AAF5-051675592714}.Debug-fast-test|x86.ActiveCfg = Debug-fast-test|Any CPU
+		{B91D5616-EAFD-4BF8-AAF5-051675592714}.Debug-fast-test|x86.Build.0 = Debug-fast-test|Any CPU
+		{B91D5616-EAFD-4BF8-AAF5-051675592714}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B91D5616-EAFD-4BF8-AAF5-051675592714}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B91D5616-EAFD-4BF8-AAF5-051675592714}.Release|x86.ActiveCfg = Release|Any CPU
+		{B91D5616-EAFD-4BF8-AAF5-051675592714}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {42D3AB0F-993C-438A-9005-C5D788268AAC}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,335 @@
+﻿<local:RetweetConfigurationBase x:Class="TwtDominatorUI.TDViews.Tools.Retweet.RetweetConfiguration"
+                                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                xmlns:local="clr-namespace:TwtDominatorUI.TDViews.Tools.Retweet"
+                                mc:Ignorable="d" x:Name="RetweetConfigurationUserControl"
+                                xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                                xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+                                xmlns:customControl1="clr-namespace:TwtDominatorUI.CustomControl"
+                                xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+                                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand,ElementName=RetweetConfigurationUserControl}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <StackPanel VerticalAlignment="Top">
+
+            <customControl:AccountGrowthModeHeader x:FieldModifier="public" x:Name="AccountGrowthHeader"
+                                                   VerticalAlignment="Top" SelectedIndex="0"
+                                                   VideoTutorialLink="{Binding VideoTutorialLink}"
+                                                   SelectionChangedCommand="{Binding SelectionChangedCommand,ElementName=RetweetConfigurationUserControl}"
+                                                   SaveCommand="{Binding SaveConfigurationsCommand}" />
+        </StackPanel>
+        <Grid Name="MainGrid" Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="{DynamicResource LangKeyStatus}" FontWeight="Bold" VerticalAlignment="Center"
+                                   Margin="10,0,10,0" />
+                        <Controls:ToggleSwitch x:Name="TglStatus" OnLabel="Active﻿"
+                                               IsChecked="{Binding RetweetModel.IsAccountGrowthActive}"
+                                               OffLabel="Stopped﻿" VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                        Command="{Binding StatusChangedCommand,ElementName=RetweetConfigurationUserControl}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Controls:ToggleSwitch>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Expander Header="{DynamicResource LangKeySearchQuery}" IsExpanded="True" Margin="5">
+                            <customControl:SearchQueryControl IsExpanded="True"
+                                                              Name="RetweetConfigurationSearchControl"
+                                                              ListQueryInfo="{Binding RetweetModel.SavedQueries}"
+                                                              ListQueryType="{Binding RetweetModel.ListQueryType}"
+                                                              AddQueryCommand="{Binding AddQueryCommand}"
+                                                              CommandParameter="{Binding ElementName=RetweetConfigurationUserControl}"
+                                                              CustomFilterCommand="{Binding CustomFilterCommand}"
+                                                              DeleteQueryCommand="{Binding DeleteQueryCommand}"
+                                                              DeleteMulipleCommand="{Binding DeleteMulipleCommand}" />
+                            <!--AddQuery="RetweetSearchControl_OnAddQuery" 
+                                                      CustomFilterChanged="RetweetSearchControl_OnCustomFilterChanged"/>-->
+                        </Expander>
+                        <Expander Header="{DynamicResource LangKeyQuoteTweet}" IsExpanded="True" Margin="5">
+                            <StackPanel>
+                                <CheckBox Content="{DynamicResource LangKeyQuoteTweet}"
+                                          IsChecked="{Binding RetweetModel.IsChkQuoteTweet}"/>
+                                <StackPanel Visibility="{Binding RetweetModel.IsChkQuoteTweet, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <customControl:InputBoxControl Margin="0,5" x:Name="QuoteTweets"
+                                                                   SaveCommand="{Binding UploadQuoteTweets}"
+                                                                   InputText="{Binding RetweetModel.UploadQuotesTweets}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>
+
+
+                        <!-- JobConfiguration  Expander-->
+                        <Expander Header="{DynamicResource LangKeyJobConfiguration}" Margin="5,5">
+                            <customControl:JobConfigControl JobConfiguration="{Binding RetweetModel.JobConfiguration}" />
+                        </Expander>
+
+                        <!--TweetFilterControl Expander-->
+
+                        <Expander Header="{DynamicResource LangKeyTweetFilter}"
+                                  Visibility="{Binding RetweetModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  Margin="5,5">
+                            <customControl1:TweetFiltersControl x:Name="TweetFilterControl"
+                                                                TweetFilter="{Binding RetweetModel.TweetFilterModel}" />
+                        </Expander>
+
+
+                        <!--After Retweet Action-->
+                        <Expander Header="{DynamicResource LangKeyAfterRetweetAction}"
+                                  Visibility="{Binding RetweetModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  Margin="5,5">
+                            <StackPanel>
+                                <StackPanel Margin="5,5,0,0">
+                                    <CheckBox
+                                        Content="{DynamicResource LangKeyEnableLikeCommentsAfterPostsIsRetweeted}"
+                                        IsChecked="{Binding RetweetModel.IsChkEnableLikeComments}" />
+                                    <StackPanel Margin="20,0,0,0"
+                                                Visibility="{Binding RetweetModel.IsChkEnableLikeComments,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                                            <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                   Content="{DynamicResource LangKeyLikeBetween}" />
+                                            <Controls:NumericUpDown Margin="5,5,5,0"
+                                                                    Value="{Binding RetweetModel.LikeCommentRange.StartValue}"
+                                                                    Name="CommentToBeLikeAfterEachLikedPostStartValue" />
+                                            <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                   Content="{DynamicResource LangKeyTo}" />
+                                            <Controls:NumericUpDown Margin="5,5,5,0"
+                                                                    Value="{Binding RetweetModel.LikeCommentRange.EndValue}"
+                                                                    Minimum="{Binding RetweetModel.LikeCommentRange.StartValue}" />
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" Margin="5,0">
+                                            <Label Content="{DynamicResource LangKeyDelayBetween}"
+                                                   VerticalAlignment="Center" />
+                                            <Controls:NumericUpDown Minimum="1" Margin="5,5,5,0"
+                                                                    Value="{Binding RetweetModel.DelayBetweenLikeTweetRange.StartValue}"
+                                                                    Name="LikeDelayBetweenJobsStartValue" />
+                                            <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                   Content="{DynamicResource LangKeyAnd}" />
+                                            <Controls:NumericUpDown Margin="5,5,5,0"
+                                                                    Value="{Binding RetweetModel.DelayBetweenLikeTweetRange.EndValue}"
+                                                                    Minimum="{Binding Value,ElementName=LikeDelayBetweenJobsStartValue}" />
+                                        </StackPanel>
+
+                                        <!--<StackPanel Orientation="Horizontal" Margin="5,0">
+                                            <CheckBox Content="{DynamicResource LangKeyLikeAMaximumOf}" VerticalAlignment="Center" IsChecked="{Binding IsChkMaxLike}"/>
+                                            <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding LikeMaxRange.StartValue}" Name="LikeMaxBetweenStartValue" IsEnabled="{Binding IsChkMaxLike}"/>
+                                            <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyTo}" />
+                                            <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding LikeMaxRange.EndValue}" Minimum="{Binding Value,ElementName=LikeMaxBetweenStartValue}" IsEnabled="{Binding IsChkMaxLike}"/>
+                                            <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyCommentPerDay}"  />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="5,0">
+                                            <CheckBox Content="{DynamicResource LangKeyIncreaseEachDayWith}" VerticalAlignment="Center"  IsChecked="{Binding IsChkIncreaseEachDayLike}"/>
+                                            <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding IncreaseEachDayLike.StartValue}" Name="IncreaseEachDayStartValue" IsEnabled="{Binding IsChkIncreaseEachDayLike}"/>
+                                            <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyUntilItReaches}" />
+                                            <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding IncreaseEachDayLike.EndValue}" Minimum="{Binding Value, ElementName=IncreaseEachDayStartValue}" IsEnabled="{Binding IsChkIncreaseEachDayLike}"/>
+                                            <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyMaxLikesPerDay}"  />
+                                        </StackPanel>-->
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <StackPanel Margin="5,5,0,0">
+                                    <CheckBox
+                                        Content="{DynamicResource LangKeyEnableRetweetCommentsAfterPostsIsRetweeted}"
+                                        IsChecked="{Binding RetweetModel.IsChkEnableRetweetComments}" />
+                                    <StackPanel Margin="20,0,0,0"
+                                                Visibility="{Binding RetweetModel.IsChkEnableRetweetComments,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <StackPanel Orientation="Horizontal"
+                                                    IsEnabled="{Binding RetweetModel.IsChkEnableRetweetComments}">
+                                            <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                   Content="{DynamicResource LangKeyRetweetBetween}" />
+                                            <Controls:NumericUpDown Margin="5,5,5,0"
+                                                                    IsEnabled="{Binding RetweetModel.IsChkEnableRetweetComments}"
+                                                                    Value="{Binding RetweetModel.RetweetCommentRange.StartValue}"
+                                                                    Name="CommentToBeRetweetAfterEachLikedPostStartValue" />
+                                            <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                   Content="{DynamicResource LangKeyTo}" />
+                                            <Controls:NumericUpDown Margin="5,5,5,0"
+                                                                    IsEnabled="{Binding RetweetModel.IsChkEnableRetweetComments}"
+                                                                    Value="{Binding RetweetModel.RetweetCommentRange.EndValue}"
+                                                                    Minimum="{Binding RetweetCommentRange.StartValue}" />
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" Margin="5,0">
+                                            <Label Content="{DynamicResource LangKeyDelayBetween}"
+                                                   VerticalAlignment="Center" />
+                                            <Controls:NumericUpDown Minimum="1" Margin="5,5,5,0"
+                                                                    Value="{Binding RetweetModel.DelayBetweenRetweetRange.StartValue}"
+                                                                    Name="RetweetDelayBetweenJobsStartValue" />
+                                            <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                   Content="{DynamicResource LangKeyAnd}" />
+                                            <Controls:NumericUpDown Margin="5,5,5,0"
+                                                                    Value="{Binding RetweetModel.DelayBetweenRetweetRange.EndValue}"
+                                                                    Minimum="{Binding Value,ElementName=RetweetDelayBetweenJobsStartValue}" />
+                                        </StackPanel>
+                                        <!--<StackPanel Orientation="Horizontal" Margin="5,0">
+                                            <CheckBox Content="{DynamicResource LangKeyRetweetAMaximumOf}" VerticalAlignment="Center" IsChecked="{Binding IsChkMaxRetweet}"/>
+                                            <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding RetweetMaxRange.StartValue}"  IsEnabled="{Binding IsChkMaxRetweet}"/>
+                                            <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyTo}" />
+                                            <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding RetweetMaxRange.EndValue}" Minimum="{Binding RetweetMaxRange.StartValue}" IsEnabled="{Binding IsChkMaxRetweet}"/>
+                                            <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyTweetPerDay}"  />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="5,0">
+                                            <CheckBox Content="{DynamicResource LangKeyIncreaseEachDayWith}" VerticalAlignment="Center"  IsChecked="{Binding IsChkIncreaseEachDayRetweet}"/>
+                                            <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding IncreaseEachDayRetweet.StartValue}"  IsEnabled="{Binding IsChkIncreaseEachDayRetweet}"/>
+                                            <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyUntilItReaches}" />
+                                            <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding IncreaseEachDayRetweet.EndValue}" Minimum="{Binding IncreaseEachDayRetweet.StartValue}" IsEnabled="{Binding IsChkIncreaseEachDayRetweet}"/>
+                                            <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyMaxRetweetPerDay}"  />
+                                        </StackPanel>-->
+                                    </StackPanel>
+
+                                </StackPanel>
+
+                                <StackPanel Margin="0,5,0,0">
+                                    <CheckBox Content="{DynamicResource LangKeyUploadCommentS}"
+                                              Name="ChkUploadComments" Margin="5,5"
+                                              IsChecked="{Binding RetweetModel.IsChkUploadComments}" />
+                                    <StackPanel Margin="30,5"
+                                                Visibility="{Binding RetweetModel.IsChkUploadComments,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <CheckBox Content="{DynamicResource LangKeySpintax}"
+                                                  IsChecked="{Binding RetweetModel.IsSpintax}" Margin="15,2"
+                                                  ToolTip="{DynamicResource LangKeyCommentSpintaxFormat}"
+                                                  FontWeight="Bold" />
+
+                                        <customControl:InputBoxControl Margin="0,5" x:Name="UploadCommentInputBox"
+                                                                       SaveCommand="{Binding SplitCommentInputToListCommand}"
+                                                                       InputText="{Binding RetweetModel.UploadedCommentInput}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <CheckBox Content="{DynamicResource LangKeyCommentBetween}"
+                                                      VerticalAlignment="Center"
+                                                      IsChecked="{Binding RetweetModel.IsChkMaxComment}" />
+                                            <Controls:NumericUpDown Margin="5,5,5,0"
+                                                                    Value="{Binding RetweetModel.CommentMaxRange.StartValue}"
+                                                                    Name="MaxTweetRangeStartValue"
+                                                                    IsEnabled="{Binding RetweetModel.IsChkMaxComment}" />
+                                            <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                   Content="{DynamicResource LangKeyTo}" />
+                                            <Controls:NumericUpDown Margin="5,5,5,0"
+                                                                    Value="{Binding RetweetModel.CommentMaxRange.EndValue}"
+                                                                    Minimum="{Binding RetweetModel.CommentMaxRange.StartValue}"
+                                                                    IsEnabled="{Binding RetweetModel.IsChkMaxComment}" />
+                                            <!--<Label Content="{DynamicResource LangKeyTweetPerDay}" HorizontalAlignment="Center" VerticalAlignment="Center" />-->
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" Margin="5,0">
+                                            <Label Content="{DynamicResource LangKeyDelayBetween}"
+                                                   VerticalAlignment="Center" />
+                                            <Controls:NumericUpDown Minimum="1" Margin="5,5,5,0"
+                                                                    Value="{Binding RetweetModel.DelayBetweenCommentRange.StartValue}"
+                                                                    Name="CommentDelayBetweenJobsStartValue" />
+                                            <Label HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                   Content="{DynamicResource LangKeyAnd}" />
+                                            <Controls:NumericUpDown Margin="5,5,5,0"
+                                                                    Value="{Binding RetweetModel.DelayBetweenCommentRange.EndValue}"
+                                                                    Minimum="{Binding Value,ElementName=CommentDelayBetweenJobsStartValue}" />
+                                        </StackPanel>
+
+                                        <!--<StackPanel Orientation="Horizontal">
+                                            <CheckBox Content="{DynamicResource LangKeyIncreaseEachDayWith}"  VerticalAlignment="Center"  IsChecked="{Binding IsChkIncreaseEachDayComment}"/>
+                                            <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding IncreaseEachDayComment.StartValue}" Name="IncreaseEachDayTweetStartValue" IsEnabled="{Binding IsChkIncreaseEachDayComment}"/>
+                                            <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyUntilItReaches}" />
+                                            <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding IncreaseEachDayComment.EndValue}" Minimum="{Binding IncreaseEachDayComment.StartValue}" IsEnabled="{Binding IsChkIncreaseEachDayComment}"/>
+                                            <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyMaxCommentPerDay}"  />
+                                        </StackPanel>-->
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <StackPanel Margin="5,5,0,0">
+                                    <CheckBox Content="{DynamicResource LangKeyFollowTweetOwner}"
+                                              IsChecked="{Binding RetweetModel.IsChkFollowTWeetOwner}" />
+                                    <CheckBox Content="{DynamicResource LangKeyLikeTweets}"
+                                              IsChecked="{Binding RetweetModel.IsChkLikeTweet}" Margin="0,5" />
+                                    <!--<StackPanel Margin="20,0,0,0" Visibility="{Binding IsChkFollowTWeetOwner,Converter={StaticResource BooleanToVisibilityConverter}}" >
+                                        <CheckBox Content="{DynamicResource LangKeyOnlyFollowUsersWhoAreInFollowersList }" IsChecked="{Binding IsChkOnlyFollowFollowers}"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0,0">
+                                            <CheckBox Content="{DynamicResource LangKeyFollowAMaximumOf}" VerticalAlignment="Center" IsChecked="{Binding IsChkMaxFollow}"/>
+                                            <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding FollowMaxRange.StartValue}"  IsEnabled="{Binding IsChkMaxFollow}"/>
+                                            <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyTo}" />
+                                            <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding FollowMaxRange.EndValue}" Minimum="{Binding FollowMaxRange.StartValue}" IsEnabled="{Binding IsChkMaxFollow}"/>
+                                            <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyUsersPerDay}"  />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="0,0">
+                                            <CheckBox Content="{DynamicResource LangKeyIncreaseEachDayWith}" VerticalAlignment="Center"  IsChecked="{Binding IsChkIncreaseEachDayFollow}"/>
+                                            <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding IncreaseEachDayFollow.StartValue}"  IsEnabled="{Binding IsChkIncreaseEachDayFollow}"/>
+                                            <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyUntilItReaches}" />
+                                            <Controls:NumericUpDown Margin="5,5,5,0" Value="{Binding IncreaseEachDayFollow.EndValue}" Minimum="{Binding IncreaseEachDayFollow.StartValue}" IsEnabled="{Binding IsChkIncreaseEachDayFollow}"/>
+                                            <Label  VerticalAlignment="Center" Content="{DynamicResource LangKeyMaxFollowsPerDay}"  />
+                                        </StackPanel>
+                                    </StackPanel>-->
+
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>
+
+
+                        <!-- OtherConfiguration  Expander-->
+                        <Expander Header="{DynamicResource LangKeyOtherConfigurations}"
+                                  Visibility="{Binding RetweetModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  Margin="5,5">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="10,5,0,0">
+                                    <CheckBox IsChecked="{Binding RetweetModel.IsChkActionTweetPerUser}">
+                                        <CheckBox.Content>
+                                            <TextBlock>
+                                                <TextBlock Text="{DynamicResource LangKeyMaximum}" />
+                                                <TextBlock
+                                                    Text="{DynamicResource LangKeyNumberOfTweetsToBeRetweetedPerUser}" />
+                                            </TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <Controls:NumericUpDown Minimum="1" Margin="5,5,5,0"
+                                                            IsEnabled="{Binding RetweetModel.IsChkActionTweetPerUser}"
+                                                            Value="{Binding RetweetModel.NoOfActionTweetPerUser.StartValue}" />
+                                </StackPanel>
+                                <!--<CheckBox Margin="0,0,0,5" Content="{DynamicResource LangKeyAutoSchedule}" IsChecked="{Binding RetweetModel.IsNeedToStart}"/>-->
+                                <!--<StackPanel Orientation="Horizontal" Margin="5,5" ToolTip="It run after given hour even showing no more data in 'Specific users tweet'">
+                                    <CheckBox Content="{DynamicResource LangKeyAutoActivity}" Margin="5,5" IsChecked="{Binding RetweetModel.IsRunAfterSomeHour}"  />
+                                    <Controls:NumericUpDown Minimum="1"  IsEnabled="{Binding RetweetModel.IsRunAfterSomeHour}" Value="{Binding RetweetModel.RunAfterSomeHour}" TextAlignment="Center" Margin="5,10,0,0"  />
+                                    <Label Content="Hour"/>
+                                </StackPanel>-->
+                            </StackPanel>
+
+
+                        </Expander>
+
+                        <!-- Manage Blacklists Expander-->
+
+                        <Expander Header="{DynamicResource LangKeyManageBlacklistedUsers}"
+                                  Visibility="{Binding RetweetModel.IsEnableAdvancedUserMode,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  Margin="5,5">
+                            <StackPanel>
+                                <CheckBox Content="{DynamicResource LangKeySkipBlacklistedUsers}"
+                                          IsChecked="{Binding RetweetModel.SkipBlacklist.IsSkipBlackListUsers}"
+                                          Margin="5,5" />
+                                <StackPanel Orientation="Horizontal" Margin="5,5"
+                                            Visibility="{Binding RetweetModel.SkipBlacklist.IsSkipBlackListUsers,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <CheckBox Content="{DynamicResource LangKeyUsePrivateBlacklist}" Margin="5,5"
+                                              IsChecked="{Binding RetweetModel.SkipBlacklist.IsSkipPrivateBlackListUser}" />
+                                    <CheckBox Content="{DynamicResource LangKeyUseGroupBlacklist}" Margin="5,5"
+                                              IsChecked="{Binding RetweetModel.SkipBlacklist.IsSkipGroupBlackListUsers}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Expander>
+
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</local:RetweetConfigurationBase>

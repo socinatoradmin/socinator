@@ -1,0 +1,27 @@
+﻿<Application
+    x:Class="TwtDominatorUI.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:TwtDominatorUI"
+    StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/DominatorUIUtility;component/Resources/Languages/English.xaml" />
+                <ResourceDictionary Source="/DominatorUIUtility;component/Styles/BaseStyles.xaml" />
+                <ResourceDictionary Source="/DominatorUIUtility;component/Resources/Icons.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
+                <ResourceDictionary Source="/DominatorUIUtility;component/Themes/PrussianBlue.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <FontFamily x:Key="GabaritoBold">/DominatorUIUtility;component/Resources/Fonts/Gabarito-Bold.ttf#Gabarito</FontFamily>
+            <FontFamily x:Key="GabaritoBlack">/DominatorUIUtility;component/Resources/Fonts/Gabarito-Black.ttf#Gabarito Black</FontFamily>
+            <FontFamily x:Key="GabaritoExtraBold">/DominatorUIUtility;component/Resources/Fonts/Gabarito-ExtraBold.ttf#Gabarito ExtraBold</FontFamily>
+            <FontFamily x:Key="GabaritoRegular">/DominatorUIUtility;component/Resources/Fonts/Gabarito-Regular.ttf#Gabarito</FontFamily>
+            <FontFamily x:Key="GabaritoSemiBold">/DominatorUIUtility;component/Resources/Fonts/Gabarito-SemiBold.ttf#Gabarito SemiBold</FontFamily>
+            <FontFamily x:Key="GabaritoMedium">/DominatorUIUtility;component/Resources/Fonts/Gabarito-Medium.ttf#Gabarito Medium</FontFamily>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

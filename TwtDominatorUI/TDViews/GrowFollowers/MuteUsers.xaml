@@ -1,0 +1,172 @@
+﻿<local:MuteUsersBase
+    x:Class="TwtDominatorUI.TDViews.GrowFollowers.MuteUsers"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:customControl1="clr-namespace:TwtDominatorUI.CustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TwtDominatorUI.TDViews.GrowFollowers"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="MuteUsersUserControl"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel VerticalAlignment="Top">
+            <customControl:HeaderControl
+                Name="MuteHeader"
+                Grid.Row="0"
+                CampaignName="{Binding CampaignName}"
+                CancelEditCommand="{Binding CancelEditCommand}"
+                InfoCommand="{Binding InfoCommand}"
+                IsCampaignNameEditable="{Binding IsEditCampaignName}"
+                IsCancelEditVisible="{Binding CancelEditVisibility}" />
+        </StackPanel>
+
+        <Grid
+            Name="MainGrid"
+            Margin="0,40,0,80"
+            ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <Expander
+                        Margin="5"
+                        Header="{DynamicResource LangKeySearchQuery}"
+                        IsExpanded="True">
+                        <customControl:SearchQueryControl
+                            Name="MuteSearchControl"
+                            AddQueryCommand="{Binding AddQueryCommand}"
+                            CommandParameter="{Binding ElementName=MuteUsersUserControl}"
+                            CustomFilterCommand="{Binding CustomFilterCommand}"
+                            DeleteMulipleCommand="{Binding DeleteMulipleCommand}"
+                            DeleteQueryCommand="{Binding DeleteQueryCommand}"
+                            IsExpanded="True"
+                            ListQueryInfo="{Binding MuteModel.SavedQueries}"
+                            ListQueryType="{Binding Model.ListQueryType}" />
+                        <!--
+                            AddQuery="MuteSearchControl_AddQuery"
+                            CustomFilterChanged="MuteSearchControl_CustomFilterChanged"/>
+                        -->
+                    </Expander>
+                    <!--  JobConfiguration  Expander  -->
+                    <Expander Margin="5,5" Header="{DynamicResource LangKeyJobConfiguration}">
+                        <customControl:JobConfigControl JobConfiguration="{Binding MuteModel.JobConfiguration}" />
+                    </Expander>
+
+                    <!--  UserFilterControl Expander  -->
+
+                    <Expander
+                        Margin="5,5"
+                        Header="{DynamicResource LangKeyUserFilters}"
+                        Visibility="{Binding MuteModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <customControl1:UserFiltersControl x:Name="UserFilterControl" UserFilter="{Binding MuteModel.UserFilterModel}" />
+                    </Expander>
+
+                    <!--  OtherConfigurations Expander  -->
+                    <Expander
+                        Margin="5,5"
+                        Header="{DynamicResource LangKeyOtherConfigurations}"
+                        Visibility="{Binding MuteModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel Margin="5,5,0,5">
+                            <CheckBox Content="{DynamicResource LangKeyMuteUniqueUsersFromEachAccount}" IsChecked="{Binding MuteModel.IsCampaignWiseUniqueChecked}" />
+                            <CheckBox Content="{DynamicResource LangKeySavePagination}" IsChecked="{Binding MuteModel.IsSavePagination}" />
+                        </StackPanel>
+                    </Expander>
+
+
+                    <Expander
+                        Margin="5,5"
+                        Header="{DynamicResource LangKeyManageBlacklistAndWhitelistUsers}"
+                        Visibility="{Binding MuteModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+                            <!--<CheckBox Content="{DynamicResource LangKeyAddToBlacklist}"  Margin="5,0" IsChecked="{Binding IsChkAddToBlackList}"/>-->
+                            <CheckBox
+                                Margin="5,5"
+                                Content="{DynamicResource LangKeySkipWhitelistedUsers}"
+                                IsChecked="{Binding MuteModel.ManageBlackWhiteListModel.IsSkipWhiteListUsers}" />
+                            <StackPanel
+                                Margin="20,5"
+                                Orientation="Horizontal"
+                                Visibility="{Binding MuteModel.ManageBlackWhiteListModel.IsSkipWhiteListUsers, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <CheckBox
+                                    Margin="5,0"
+                                    Content="{DynamicResource LangKeyPrivateWhitelist}"
+                                    IsChecked="{Binding MuteModel.ManageBlackWhiteListModel.IsUsePrivateWhiteList}" />
+                                <CheckBox
+                                    Margin="15,0"
+                                    Content="{DynamicResource LangKeyGroupWhitelist}"
+                                    IsChecked="{Binding MuteModel.ManageBlackWhiteListModel.IsUseGroupWhiteList}" />
+                            </StackPanel>
+
+                            <CheckBox
+                                Margin="5,5"
+                                Content="{DynamicResource LangKeyAddToBlacklist}"
+                                IsChecked="{Binding MuteModel.ManageBlackWhiteListModel.IsAddToBlackListOnceUnfollowed}" />
+                            <StackPanel
+                                Margin="20,2"
+                                Orientation="Horizontal"
+                                Visibility="{Binding MuteModel.ManageBlackWhiteListModel.IsAddToBlackListOnceUnfollowed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <CheckBox
+                                    Margin="5,5"
+                                    Content="{DynamicResource LangKeyAddToPrivateBlacklist}"
+                                    IsChecked="{Binding MuteModel.ManageBlackWhiteListModel.IsAddToPrivateBlackList}" />
+                                <CheckBox
+                                    Margin="15,0"
+                                    Content="{DynamicResource LangKeyAddToGroupBlacklist}"
+                                    IsChecked="{Binding MuteModel.ManageBlackWhiteListModel.IsAddToGroupBlackList}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Expander>
+
+                </StackPanel>
+
+            </ScrollViewer>
+        </Grid>
+
+
+        <StackPanel VerticalAlignment="Bottom">
+            <customControl:FooterControl
+                x:Name="MuteFooter"
+                Height="96"
+                VerticalAlignment="Top"
+                CampaignManager="{Binding CampaignButtonContent}"
+                CreateCampaignCommand="{Binding CreateCampaignCommand}"
+                NoOfAccountsSelected="{Binding SelectedAccountCount, Mode=TwoWay}"
+                SelectAccountCommand="{Binding SelectAccountCommand}" />
+
+        </StackPanel>
+
+        <!--  Create campaign and select account section  -->
+        <!--  Help section  -->
+        <Controls:FlyoutsControl>
+            <Controls:Flyout
+                Name="HelpFlyout"
+                Width="300"
+                Background="{DynamicResource AccentBaseColorBrush}"
+                BorderBrush="Black"
+                BorderThickness="2"
+                DataContext="{Binding ElementName=MuteFooter, Path=DataContext}"
+                FontSize="10"
+                FontWeight="Bold"
+                Foreground="White"
+                Header="{DynamicResource LangKeyModuleDescription}"
+                IsOpen="{Binding IsOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                Position="Right"
+                Theme="Accent"
+                Visibility="Collapsed">
+
+                <customControl:HelpControl
+                    ContactSupportLink="{Binding ContactSupportLink}"
+                    DataContext="{Binding ElementName=MuteFooter, Path=DataContext}"
+                    KnowledgeBaseLink="{Binding KnowledgeBaseLink}"
+                    ModuleDescription="{DynamicResource LangKeyModuleDescriptionTwitterAutoMute}"
+                    VideoTutorial="{Binding VideoTutorialLink}" />
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+
+
+    </Grid>
+</local:MuteUsersBase>

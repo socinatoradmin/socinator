@@ -1,0 +1,647 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B91D5616-EAFD-4BF8-AAF5-051675592714}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TwtDominatorUI</RootNamespace>
+    <AssemblyName>TwtDominatorUI</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ContentSQLiteInteropFiles>true</ContentSQLiteInteropFiles>
+    <CopySQLiteInteropFiles>false</CopySQLiteInteropFiles>
+    <CleanSQLiteInteropFiles>false</CleanSQLiteInteropFiles>
+    <CollectSQLiteInteropFiles>false</CollectSQLiteInteropFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug-fast-test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug-fast-test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>B7EB2305FB56220BF55A0B312DE907F5DC6498B4</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomControl\AccountWiseReport.xaml.cs">
+      <DependentUpon>AccountWiseReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\AfterFollowActionUserControl.xaml.cs">
+      <DependentUpon>AfterFollowActionUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\OtherConfiguration.xaml.cs">
+      <DependentUpon>OtherConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\TweetFiltersControl.xaml.cs">
+      <DependentUpon>TweetFiltersControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\TwtManageMessages.xaml.cs">
+      <DependentUpon>TwtManageMessages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\TwtMessagesControl.xaml.cs">
+      <DependentUpon>TwtMessagesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\UserFiltersControl.xaml.cs">
+      <DependentUpon>UserFiltersControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Factories\TwitterPublisherCollectionFactory.cs" />
+    <Compile Include="IoC\TwtContainerExtension.cs" />
+    <Compile Include="IoC\TwtDominatorModule.cs" />
+    <Compile Include="Modules\TwtPrismModule.cs" />
+    <Compile Include="TabManager\TwitterNetworkCollectionFactory.cs" />
+    <Compile Include="TabManager\AccountTab.xaml.cs">
+      <DependentUpon>AccountTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\CampaignTab.xaml.cs">
+      <DependentUpon>CampaignTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\GrowFollowersTab.xaml.cs">
+      <DependentUpon>GrowFollowersTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\ScraperTab.xaml.cs">
+      <DependentUpon>ScraperTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\SettingsTab.xaml.cs">
+      <DependentUpon>SettingsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\ToolsTab.xaml.cs">
+      <DependentUpon>ToolsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\TweetTab.xaml.cs">
+      <DependentUpon>TweetTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\TwtBlasterTab.xaml.cs">
+      <DependentUpon>TwtBlasterTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\TwtEngageTab.xaml.cs">
+      <DependentUpon>TwtEngageTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabManager\TwtMessengerTab.xaml.cs">
+      <DependentUpon>TwtMessengerTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TdCoreLibrary\TdPublisherCoreBuilder.cs" />
+    <Compile Include="TdCoreLibrary\TDViewCampaignsFactory.cs" />
+    <Compile Include="TdCoreLibrary\TdAccountToolsFactory.cs" />
+    <Compile Include="TdCoreLibrary\TdCoreBuilder.cs" />
+    <Compile Include="TdCoreLibrary\TDInitialiser.cs" />
+    <Compile Include="TdCoreLibrary\TdNetworkCoreFactory.cs" />
+    <Compile Include="TdCoreLibrary\TdTabHandlerFactory.cs" />
+    <Compile Include="TDViews\GrowFollowers\FollowBack.xaml.cs">
+      <DependentUpon>FollowBack.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\GrowFollowers\Follower.xaml.cs">
+      <DependentUpon>Follower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\GrowFollowers\MuteUsers.xaml.cs">
+      <DependentUpon>MuteUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\GrowFollowers\Unfollower.xaml.cs">
+      <DependentUpon>Unfollower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Scraper\ScrapeTweet.xaml.cs">
+      <DependentUpon>ScrapeTweet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Scraper\ScrapeUser.xaml.cs">
+      <DependentUpon>ScrapeUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\AutoReplyTab.xaml.cs">
+      <DependentUpon>AutoReplyTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\BroadcastMessageTab.xaml.cs">
+      <DependentUpon>BroadcastMessageTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\CommentTab.xaml.cs">
+      <DependentUpon>CommentTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\Comment\CommentConfiguration.xaml.cs">
+      <DependentUpon>CommentConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\DeleteTab.xaml.cs">
+      <DependentUpon>DeleteTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\Delete\DeleteConfiguration.xaml.cs">
+      <DependentUpon>DeleteConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\DownloadTab.xaml.cs">
+      <DependentUpon>DownloadTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\Download\DownloadScraperConfig.xaml.cs">
+      <DependentUpon>DownloadScraperConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\FollowBackTab.xaml.cs">
+      <DependentUpon>FollowBackTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\FollowBack\FollowBackConfiguration.xaml.cs">
+      <DependentUpon>FollowBackConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\FollowTab.xaml.cs">
+      <DependentUpon>FollowTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\Follow\FollowConfiguration.xaml.cs">
+      <DependentUpon>FollowConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\LikeTab.xaml.cs">
+      <DependentUpon>LikeTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\Like\LikeConfiguration.xaml.cs">
+      <DependentUpon>LikeConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\MessageTab.xaml.cs">
+      <DependentUpon>MessageTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\MessageToNewFollowerTab.xaml.cs">
+      <DependentUpon>MessageToNewFollowerTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\Message\AutoReplyConfig.xaml.cs">
+      <DependentUpon>AutoReplyConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\Message\BroadCastMessageConfig.xaml.cs">
+      <DependentUpon>BroadCastMessageConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\Message\MessageToNewFollowersConfig.xaml.cs">
+      <DependentUpon>MessageToNewFollowersConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\MuteTab.xaml.cs">
+      <DependentUpon>MuteTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\Mute\MuteConfiguration.xaml.cs">
+      <DependentUpon>MuteConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\TweetToTab.xaml.cs">
+      <DependentUpon>TweetToTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\Tweet\TweetToConfiguration.xaml.cs">
+      <DependentUpon>TweetToConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\Tweet\WelcomeTweetConfiguration.xaml.cs">
+      <DependentUpon>WelcomeTweetConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\UnLikeTab.xaml.cs">
+      <DependentUpon>UnLikeTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\UnLike\UnLikeConfiguration.xaml.cs">
+      <DependentUpon>UnLikeConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\WelcomeTweetTab.xaml.cs">
+      <DependentUpon>WelcomeTweetTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\TwtBlaster\TweetTo.xaml.cs">
+      <DependentUpon>TweetTo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\TwtBlaster\WelcomeTweet.xaml.cs">
+      <DependentUpon>WelcomeTweet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\TwtEngage\TwtUnLiker.xaml.cs">
+      <DependentUpon>TwtUnLiker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\TwtMessenger\AutoReply.xaml.cs">
+      <DependentUpon>AutoReply.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\TwtMessenger\BroadCastMessage.xaml.cs">
+      <DependentUpon>BroadCastMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\Message\MessageConfiguration.xaml.cs">
+      <DependentUpon>MessageConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\ReposterTab.xaml.cs">
+      <DependentUpon>ReposterTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\Reposter\ReposterConfiguration.xaml.cs">
+      <DependentUpon>ReposterConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\RetweetTab.xaml.cs">
+      <DependentUpon>RetweetTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\Retweet\RetweetConfiguration.xaml.cs">
+      <DependentUpon>RetweetConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\ScrapeTweetTab.xaml.cs">
+      <DependentUpon>ScrapeTweetTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\ScrapeTweet\ScrapeTweetConfiguration.xaml.cs">
+      <DependentUpon>ScrapeTweetConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\ScrapeUserTab.xaml.cs">
+      <DependentUpon>ScrapeUserTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\ScrapeUser\ScrapeUserConfiguration.xaml.cs">
+      <DependentUpon>ScrapeUserConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\TweetTab.xaml.cs">
+      <DependentUpon>TweetTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\Tweet\TweetConfiguration.xaml.cs">
+      <DependentUpon>TweetConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\UnfollowTab.xaml.cs">
+      <DependentUpon>UnfollowTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\Tools\Unfollow\UnfollowConfiguration.xaml.cs">
+      <DependentUpon>UnfollowConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\TwtEngage\Delete.xaml.cs">
+      <DependentUpon>Delete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\TwtBlaster\Reposter.xaml.cs">
+      <DependentUpon>Reposter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\TwtBlaster\Retweet.xaml.cs">
+      <DependentUpon>Retweet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\TwtEngage\Comment.xaml.cs">
+      <DependentUpon>Comment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\TwtEngage\TwtLiker.xaml.cs">
+      <DependentUpon>TwtLiker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TDViews\TwtMessenger\ReplyToNewFollowers.xaml.cs">
+      <DependentUpon>ReplyToNewFollowers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\GrowFollowersReportPack\FollowBackPack\FollowBackBaseFactory.cs" />
+    <Compile Include="Utility\GrowFollowersReportPack\FollowBackPack\FollowBackReport.cs" />
+    <Compile Include="Utility\GrowFollowersReportPack\FollowBackPack\FollowBackViewCampaign.cs" />
+    <Compile Include="Utility\GrowFollowersReportPack\FollowerPack\FollowerBaseFactory.cs" />
+    <Compile Include="Utility\GrowFollowersReportPack\FollowerPack\FollowerReport.cs" />
+    <Compile Include="Utility\GrowFollowersReportPack\FollowerPack\FollowerViewCampaign.cs" />
+    <Compile Include="Utility\GrowFollowersReportPack\MuteUsersPack\MuteUsersBaseFactory.cs" />
+    <Compile Include="Utility\GrowFollowersReportPack\MuteUsersPack\MuteUsersReport.cs" />
+    <Compile Include="Utility\GrowFollowersReportPack\MuteUsersPack\MuteUsersViewCampaign.cs" />
+    <Compile Include="Utility\GrowFollowersReportPack\UnfollowerPack\UnfollowerBaseFactory.cs" />
+    <Compile Include="Utility\GrowFollowersReportPack\UnfollowerPack\UnfollowerReport.cs" />
+    <Compile Include="Utility\GrowFollowersReportPack\UnfollowerPack\UnfollowerViewCampaign.cs" />
+    <Compile Include="Utility\ScraperReportPack\ScrapeTweetPack\ScrapeTweetBaseFactory.cs" />
+    <Compile Include="Utility\ScraperReportPack\ScrapeTweetPack\ScrapeTweetReport.cs" />
+    <Compile Include="Utility\ScraperReportPack\ScrapeTweetPack\ScrapeTweetViewCampaign.cs" />
+    <Compile Include="Utility\ScraperReportPack\ScrapeUserPack\ScrapeUserBaseFactory.cs" />
+    <Compile Include="Utility\ScraperReportPack\ScrapeUserPack\ScrapeUserReport.cs" />
+    <Compile Include="Utility\ScraperReportPack\ScrapeUserPack\ScrapeUserViewCampaign.cs" />
+    <Compile Include="Utility\TwtBlasterReportPack\DeletePack\DeleteBaseFactory.cs" />
+    <Compile Include="Utility\TwtBlasterReportPack\DeletePack\DeleteReport.cs" />
+    <Compile Include="Utility\TwtBlasterReportPack\DeletePack\DeleteViewCampaign.cs" />
+    <Compile Include="Utility\TwtBlasterReportPack\ReposterPack\ReposterBaseFactory.cs" />
+    <Compile Include="Utility\TwtBlasterReportPack\ReposterPack\ReposterReport.cs" />
+    <Compile Include="Utility\TwtBlasterReportPack\ReposterPack\ReposterViewCampaign.cs" />
+    <Compile Include="Utility\TwtBlasterReportPack\RetweetPack\RetweetBaseFactory.cs" />
+    <Compile Include="Utility\TwtBlasterReportPack\RetweetPack\RetweetReport.cs" />
+    <Compile Include="Utility\TwtBlasterReportPack\RetweetPack\RetweetViewCampaign.cs" />
+    <Compile Include="Utility\TwtBlasterReportPack\TweetToPack\TweetToBaseFactory.cs" />
+    <Compile Include="Utility\TwtBlasterReportPack\TweetToPack\TweetToReport.cs" />
+    <Compile Include="Utility\TwtBlasterReportPack\TweetToPack\TweetToViewCampaign.cs" />
+    <Compile Include="Utility\TwtBlasterReportPack\WelcomeTweetPack\WelcomeTweetBaseFactory.cs" />
+    <Compile Include="Utility\TwtBlasterReportPack\WelcomeTweetPack\WelcomeTweetReport.cs" />
+    <Compile Include="Utility\TwtBlasterReportPack\WelcomeTweetPack\WelcomeTweetViewCampaign.cs" />
+    <Compile Include="Utility\TwtEngageReportPack\CommentPack\CommentBaseFactory.cs" />
+    <Compile Include="Utility\TwtEngageReportPack\CommentPack\CommentReport.cs" />
+    <Compile Include="Utility\TwtEngageReportPack\CommentPack\CommentViewCampaign.cs" />
+    <Compile Include="Utility\TwtEngageReportPack\TwtLikerPack\TwtLikerBaseFactory.cs" />
+    <Compile Include="Utility\TwtEngageReportPack\TwtLikerPack\TwtLikerReport.cs" />
+    <Compile Include="Utility\TwtEngageReportPack\TwtLikerPack\TwtLikerViewCampaign.cs" />
+    <Compile Include="Utility\TwtEngageReportPack\TwtUnLikerPack\TwtUnLikerBaseFactory.cs" />
+    <Compile Include="Utility\TwtEngageReportPack\TwtUnLikerPack\TwtUnLikerReport.cs" />
+    <Compile Include="Utility\TwtEngageReportPack\TwtUnLikerPack\TwtUnLikerViewCampaign.cs" />
+    <Compile Include="Utility\TwtMessengerReportPack\AutoReplyPack\AutoReplyBaseFactory.cs" />
+    <Compile Include="Utility\TwtMessengerReportPack\AutoReplyPack\AutoReplyReport.cs" />
+    <Compile Include="Utility\TwtMessengerReportPack\AutoReplyPack\AutoReplyViewCampaign.cs" />
+    <Compile Include="Utility\TwtMessengerReportPack\BroadCastMessagePack\BroadCastMessageBaseFactory.cs" />
+    <Compile Include="Utility\TwtMessengerReportPack\BroadCastMessagePack\BroadCastMessageReport.cs" />
+    <Compile Include="Utility\TwtMessengerReportPack\BroadCastMessagePack\BroadCastMessageViewCampaign.cs" />
+    <Compile Include="Utility\TwtMessengerReportPack\DirectMessagePack\DirectMessageReport.cs" />
+    <Compile Include="Utility\TwtMessengerReportPack\DirectMessagePack\DirectMessageViewCampaign.cs" />
+    <Compile Include="Utility\TwtMessengerReportPack\ReplyToNewFollowersPack\ReplyToNewFollowersBaseFactory.cs" />
+    <Compile Include="Utility\TwtMessengerReportPack\ReplyToNewFollowersPack\ReplyToNewFollowersReport.cs" />
+    <Compile Include="Utility\TwtMessengerReportPack\ReplyToNewFollowersPack\ReplyToNewFollowersViewCampaign.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="COMODO DOM.pfx" />
+    <None Include="ComodoCertificate.pfx" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\dominatorhouse-social\DominatorHouseCore\DominatorHouseCore.csproj">
+      <Project>{f40a5c83-8eda-43c5-88b9-dfaab492a497}</Project>
+      <Name>DominatorHouseCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dominatorhouse-social\DominatorUIUtility\DominatorUIUtility.csproj">
+      <Project>{e8d95af0-e99b-4059-9140-5c02b3f52e06}</Project>
+      <Name>DominatorUIUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwtDominatorCore\TwtDominatorCore.csproj">
+      <Project>{e41bf7d2-231f-4d58-ad45-95f7146e1979}</Project>
+      <Name>TwtDominatorCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.106.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.106.0\build\net46\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.106.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.106.0\build\net46\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\CommonServiceLocator.2.0.4\lib\net46\CommonServiceLocator.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\DominatorHouse.ThreadUtils.1.0.0.4\lib\net46\DominatorHouse.ThreadUtils.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\DominatorHouseCore\bin\Release\DominatorHouseCore.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\DominatorUIUtility\bin\Release\DominatorUIUtility.exe" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\Dragablz.0.0.3.203\lib\net45\Dragablz.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\FluentScheduler.5.3.0\lib\net40\FluentScheduler.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\MahApps.Metro.1.6.5\lib\net46\MahApps.Metro.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Microsoft.CSharp.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\mscorlib.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\NLog.4.6.6\lib\net45\NLog.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\PresentationCore.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\PresentationFramework.4.6.0\lib\PresentationFramework.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\Prism.Core.7.2.0.1367\lib\net45\Prism.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\Prism.Unity.7.2.0.1367\lib\net45\Prism.Unity.Wpf.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\Prism.Wpf.7.2.0.1367\lib\net45\Prism.Wpf.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.ComponentModel.DataAnnotations.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.Configuration.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.Data.DataSetExtensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.Data.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.Drawing.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.IO.Compression.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.Management.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.Net.Http.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.Runtime.Serialization.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.ServiceModel.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\System.Threading.Tasks.Extensions.4.5.3\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.Transactions.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.Web.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\System.Windows.Controls.DataVisualization.Toolkit.4.0.0.0\lib\net40-Client\System.Windows.Controls.DataVisualization.Toolkit.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.Windows.Forms.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\Prism.Wpf.7.2.0.1367\lib\net45\System.Windows.Interactivity.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.Xaml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.Xml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.Xml.Linq.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorCore\bin\Release\TwtDominatorCore.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\Unity.Abstractions.5.11.1\lib\net46\Unity.Abstractions.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\Unity.5.8.11\lib\net46\Unity.Configuration.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\Unity.Container.5.11.1\lib\net46\Unity.Container.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\Unity.5.8.11\lib\net46\Unity.Interception.Configuration.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\Unity.5.8.11\lib\net46\Unity.Interception.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\Unity.5.8.11\lib\net46\Unity.RegistrationByConvention.dll" />
+    <ReferencePath Include="E:\Globussoft Work\Projects\Socinator\dominatorhouse-social\packages\Unity.5.8.11\lib\net46\Unity.ServiceLocation.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\WindowsBase.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Collections.Concurrent.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Collections.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.ComponentModel.Annotations.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.ComponentModel.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.ComponentModel.EventBasedAsync.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Diagnostics.Contracts.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Diagnostics.Debug.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Diagnostics.Tools.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Diagnostics.Tracing.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Dynamic.Runtime.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Globalization.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.IO.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Linq.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Linq.Expressions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Linq.Parallel.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Linq.Queryable.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Net.NetworkInformation.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Net.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Net.Requests.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Net.WebHeaderCollection.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.ObjectModel.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Reflection.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Reflection.Emit.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Reflection.Emit.ILGeneration.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Reflection.Emit.Lightweight.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Reflection.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Reflection.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Resources.ResourceManager.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Runtime.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Runtime.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Runtime.Handles.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Runtime.InteropServices.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Runtime.InteropServices.WindowsRuntime.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Runtime.Numerics.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Runtime.Serialization.Json.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Runtime.Serialization.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Runtime.Serialization.Xml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Security.Principal.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.ServiceModel.Duplex.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.ServiceModel.Http.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.ServiceModel.NetTcp.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.ServiceModel.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.ServiceModel.Security.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Text.Encoding.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Text.Encoding.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Text.RegularExpressions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Threading.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Threading.Tasks.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Threading.Tasks.Parallel.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Threading.Timer.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Xml.ReaderWriter.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Xml.XDocument.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\Facades\System.Xml.XmlSerializer.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\CustomControl\AccountWiseReport.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\CustomControl\AfterFollowActionUserControl.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\CustomControl\OtherConfiguration.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\CustomControl\TweetFiltersControl.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\CustomControl\TwtManageMessages.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\CustomControl\TwtMessagesControl.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\CustomControl\UserFiltersControl.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TabManager\AccountTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TabManager\CampaignTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TabManager\GrowFollowersTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TabManager\ScraperTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TabManager\SettingsTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TabManager\ToolsTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TabManager\TweetTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TabManager\TwtBlasterTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TabManager\TwtEngageTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TabManager\TwtMessengerTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\GrowFollowers\FollowBack.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\GrowFollowers\Follower.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\GrowFollowers\MuteUsers.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\GrowFollowers\Unfollower.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Scraper\ScrapeTweet.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Scraper\ScrapeUser.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\AutoReplyTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\BroadcastMessageTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\CommentTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\Comment\CommentConfiguration.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\DeleteTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\Delete\DeleteConfiguration.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\DownloadTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\Download\DownloadScraperConfig.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\FollowBackTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\FollowBack\FollowBackConfiguration.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\FollowTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\Follow\FollowConfiguration.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\LikeTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\Like\LikeConfiguration.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\MessageTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\MessageToNewFollowerTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\Message\AutoReplyConfig.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\Message\BroadCastMessageConfig.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\Message\MessageToNewFollowersConfig.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\MuteTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\Mute\MuteConfiguration.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\TweetToTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\Tweet\TweetToConfiguration.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\Tweet\WelcomeTweetConfiguration.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\UnLikeTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\UnLike\UnLikeConfiguration.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\WelcomeTweetTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\TwtBlaster\TweetTo.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\TwtBlaster\WelcomeTweet.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\TwtEngage\TwtUnLiker.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\TwtMessenger\AutoReply.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\TwtMessenger\BroadCastMessage.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\Message\MessageConfiguration.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\ReposterTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\Reposter\ReposterConfiguration.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\RetweetTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\Retweet\RetweetConfiguration.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\ScrapeTweetTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\ScrapeTweet\ScrapeTweetConfiguration.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\ScrapeUserTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\ScrapeUser\ScrapeUserConfiguration.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\TweetTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\Tweet\TweetConfiguration.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\UnfollowTab.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\Tools\Unfollow\UnfollowConfiguration.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\TwtEngage\Delete.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\TwtBlaster\Reposter.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\TwtBlaster\Retweet.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\TwtEngage\Comment.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\TwtEngage\TwtLiker.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TDViews\TwtMessenger\ReplyToNewFollowers.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\App.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\TwtDominatorUI_Content.g.cs" />
+    <Compile Include="E:\Globussoft Work\Projects\Socinator\twtdominator-library\TwtDominatorUI\obj\Release\GeneratedInternalTypeHelper.g.cs" />
+  </ItemGroup>
+</Project>

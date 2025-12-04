@@ -1,0 +1,403 @@
+﻿<local:FollowerBase
+    x:Class="TwtDominatorUI.TDViews.GrowFollowers.Follower"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:customControl1="clr-namespace:TwtDominatorUI.CustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TwtDominatorUI.TDViews.GrowFollowers"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="FollowerUserControl"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel VerticalAlignment="Top">
+            <customControl:HeaderControl
+                Name="FollowHeader"
+                Grid.Row="0"
+                CampaignName="{Binding CampaignName}"
+                CancelEditCommand="{Binding CancelEditCommand}"
+                InfoCommand="{Binding InfoCommand}"
+                IsCampaignNameEditable="{Binding IsEditCampaignName}"
+                IsCancelEditVisible="{Binding CancelEditVisibility}" />
+
+        </StackPanel>
+
+        <Grid
+            Name="MainGrid"
+            Margin="0,40,0,80"
+            ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+
+                    <Expander
+                        Margin="5"
+                        Header="{DynamicResource LangKeySearchQuery}"
+                        IsExpanded="True">
+                        <customControl:SearchQueryControl
+                            Name="FollowerSearchControl"
+                            AddQueryCommand="{Binding AddQueryCommand}"
+                            CommandParameter="{Binding ElementName=FollowerUserControl}"
+                            CustomFilterCommand="{Binding CustomFilterCommand}"
+                            DeleteMulipleCommand="{Binding DeleteMulipleCommand}"
+                            DeleteQueryCommand="{Binding DeleteQueryCommand}"
+                            IsExpanded="True"
+                            ListQueryInfo="{Binding FollowerModel.SavedQueries}"
+                            ListQueryType="{Binding FollowerModel.ListQueryType}" />
+                        <!--
+                            AddQuery="FollowerSearchControl_AddQuery"
+                            CustomFilterChanged="FollowerSearchControl_CustomFilterChanged"/>
+                        -->
+                    </Expander>
+                    <!--  JobConfiguration  Expander  -->
+                    <Expander Margin="5,5" Header="{DynamicResource LangKeyJobConfiguration}">
+                        <customControl:JobConfigControl JobConfiguration="{Binding FollowerModel.JobConfiguration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                    </Expander>
+
+                    <!--  UserFilterControl Expander  -->
+                    <Expander
+                        Margin="5,5"
+                        Header="{DynamicResource LangKeyUserFilters}"
+                        Visibility="{Binding FollowerModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <customControl1:UserFiltersControl x:Name="UserFilterControl" UserFilter="{Binding FollowerModel.UserFilterModel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                    </Expander>
+
+                    <!--  After Follow Action  -->
+
+                    <Expander
+                        Margin="5,5"
+                        Header="{DynamicResource LangKeyAfterFollowAction}"
+                        Visibility="{Binding FollowerModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <customControl1:AfterFollowActionUserControl x:Name="AfterFollowActionControl" AfterFollowAction="{Binding FollowerModel.AfterFollowAction}" />
+                    </Expander>
+
+                    <!--  Other Configurations filter Expander  -->
+                    <Expander
+                        Margin="5,5"
+                        Header="{DynamicResource LangKeyOtherConfigurations}"
+                        Visibility="{Binding FollowerModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+
+                            <!--  Enable auto Follow/Unfollow  -->
+                            <CheckBox
+                                Name="ChkEnableAutoFollowUnfollow"
+                                Margin="5,0,0,0"
+                                Content="{DynamicResource LangKeyEnableAutoUnfollow}"
+                                IsChecked="{Binding FollowerModel.IsChkEnableAutoFollowUnfollow}" />
+
+                            <StackPanel Margin="30,0,0,0" Visibility="{Binding FollowerModel.IsChkEnableAutoFollowUnfollow, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                                <RadioButton
+                                    Margin="0,10,0,0"
+                                    Content="{DynamicResource LangKeyStopFollowTool}"
+                                    FontFamily="{DynamicResource GabaritoMedium}"
+                                    GroupName="RadioGroupStartStopFollowTool"
+                                    IsChecked="{Binding FollowerModel.IsChkStopFollow}" />
+                                <StackPanel
+                                    Name="StopFollowToolSection"
+                                    Margin="10,0"
+                                    Orientation="Vertical"
+                                    Visibility="{Binding FollowerModel.IsChkStopFollow, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox
+                                            VerticalAlignment="Center"
+                                            Content="{DynamicResource LangKeyWhenReaching}"
+                                            IsChecked="{Binding FollowerModel.IsChkStopFollowToolWhenReach}" />
+                                        <Controls:NumericUpDown
+                                            Margin="5,5,5,0"
+                                            IsEnabled="{Binding FollowerModel.IsChkStopFollowToolWhenReach}"
+                                            Minimum="1"
+                                            Value="{Binding FollowerModel.StopFollowToolWhenReach.StartValue}" />
+                                        <Label
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="{DynamicResource LangKeyTo}" />
+                                        <Controls:NumericUpDown
+                                            Margin="5,5,5,0"
+                                            IsEnabled="{Binding FollowerModel.IsChkStopFollowToolWhenReach}"
+                                            Minimum="{Binding FollowerModel.StopFollowToolWhenReach.StartValue}"
+                                            Value="{Binding FollowerModel.StopFollowToolWhenReach.EndValue}" />
+                                        <Label
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="{DynamicResource LangKeyFollowings}" />
+                                    </StackPanel>
+
+                                    <StackPanel Margin="0,5" Orientation="Horizontal">
+                                        <CheckBox
+                                            VerticalAlignment="Center"
+                                            Content="{DynamicResource LangKeyWhenFollowerOrFollowingsIsSmallerThan}"
+                                            IsChecked="{Binding FollowerModel.IsChkStopFollowWhenFollowerFollowingsIsSmallerThan}" />
+                                        <Controls:NumericUpDown
+                                            Margin="3,0,0,0"
+                                            HasDecimals="False"
+                                            IsEnabled="{Binding FollowerModel.IsChkStopFollowWhenFollowerFollowingsIsSmallerThan}"
+                                            Minimum="1"
+                                            Value="{Binding FollowerModel.FollowerFollowingsMaxValue}" />
+                                        <!--  FollowerFollowingsMaxValue  -->
+                                    </StackPanel>
+
+                                    <CheckBox
+                                        Margin="0,5"
+                                        Content="{DynamicResource LangKeyWhenTheFollowToolGetsTemporaryBlocked}"
+                                        IsChecked="{Binding FollowerModel.IschkwhenTheUnFollowToolGetsTemporaryBlocked}" />
+                                </StackPanel>
+
+                                <RadioButton
+                                    Margin="0,10,0,0"
+                                    Content="{DynamicResource LangKeyStartUnfollowAndStopFollow}"
+                                    FontFamily="{DynamicResource GabaritoMedium}"
+                                    GroupName="RadioGroupStartStopFollowTool"
+                                    IsChecked="{Binding FollowerModel.IsChkStartUnFollow}" />
+                                <StackPanel
+                                    Margin="10,0"
+                                    Orientation="Vertical"
+                                    Visibility="{Binding FollowerModel.IsChkStartUnFollow, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox
+                                            VerticalAlignment="Center"
+                                            Content="{DynamicResource LangKeyWhenReaching}"
+                                            IsChecked="{Binding FollowerModel.IsChkStopFollowToolWhenReach}" />
+                                        <Controls:NumericUpDown
+                                            Name="StopunFollowStartValue"
+                                            Margin="5,5,5,0"
+                                            IsEnabled="{Binding FollowerModel.IsChkStopFollowToolWhenReach}"
+                                            Minimum="1"
+                                            Value="{Binding FollowerModel.StartUnFollowToolWhenReach.StartValue}" />
+                                        <Label
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="{DynamicResource LangKeyTo}" />
+                                        <Controls:NumericUpDown
+                                            Margin="5,5,5,0"
+                                            IsEnabled="{Binding FollowerModel.IsChkStopFollowToolWhenReach}"
+                                            Minimum="{Binding FollowerModel.StartUnFollowToolWhenReach.StartValue}"
+                                            Value="{Binding FollowerModel.StartUnFollowToolWhenReach.EndValue}" />
+                                        <Label
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="{DynamicResource LangKeyFollowings}" />
+                                    </StackPanel>
+
+                                    <StackPanel Margin="0,5" Orientation="Horizontal">
+                                        <CheckBox
+                                            VerticalAlignment="Center"
+                                            Content="{DynamicResource LangKeyWhenFollowerOrFollowingsIsSmallerThan}"
+                                            IsChecked="{Binding FollowerModel.IsChkWhenFollowerFollowingsIsSmallerThan}" />
+                                        <Controls:NumericUpDown
+                                            Margin="3,0,0,0"
+                                            IsEnabled="{Binding FollowerModel.IsChkWhenFollowerFollowingsIsSmallerThan}"
+                                            Minimum="1"
+                                            Value="{Binding FollowerModel.UnFollowerFollowingsMaxValue}" />
+                                    </StackPanel>
+
+                                    <CheckBox
+                                        Margin="0,5"
+                                        Content="{DynamicResource LangKeyWhenTheFollowToolGetsTemporaryBlocked}"
+                                        IsChecked="{Binding FollowerModel.IschkwhenTheUnFollowToolGetsTemporaryBlocked}" />
+
+                                </StackPanel>
+
+                            </StackPanel>
+
+                            <StackPanel Margin="5,0,0,0">
+                                <CheckBox
+                                    Margin="0,5,0,0"
+                                    Content="{DynamicResource LangKeyFollowUniqueUsersFromEachAccount}"
+                                    IsChecked="{Binding FollowerModel.IsCampaignWiseUniqueChecked}" />
+                                <CheckBox
+                                    Margin="0,5,0,0"
+                                    Content="{DynamicResource LangKeySavePagination}"
+                                    IsChecked="{Binding FollowerModel.IsSavePagination}" />
+                                <!--<CheckBox Margin="0,0,0,5" Content="{DynamicResource LangKeyAutoSchedule}" IsChecked="{Binding FollowerModel.IsNeedToStart}"/>-->
+                            </StackPanel>
+
+                            <!--<StackPanel Orientation="Horizontal"  Margin="5,5" ToolTip="It run after given hour even showing no more data in 'Specific users'">
+                                <CheckBox Content="{DynamicResource LangKeyAutoActivity}" Margin="5,5" IsChecked="{Binding FollowerModel.IsRunAfterSomeHour}"  />
+                                <Controls:NumericUpDown Minimum="1"  IsEnabled="{Binding FollowerModel.IsRunAfterSomeHour}" Value="{Binding FollowerModel.RunAfterSomeHour}" TextAlignment="Center" Margin="5,10,0,0"  />
+                                <Label Content="Hour"/>
+                            </StackPanel>-->
+
+                            <!--<StackPanel >
+                            <CheckBox Content="{DynamicResource LangKeyEnableAutoFollowUnfollow}" Margin="5,0,0,0" Name="chkEnableAutoFollowUnfollow" IsChecked="{Binding IsChkEnableAutoFollowUnfollow}"/>
+                            <StackPanel  Margin="40,0,0,0" Visibility="{Binding IsChkEnableAutoFollowUnfollow, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <CheckBox Content="{DynamicResource TdLangStopFollowTool}" Margin="5,0,0,0" IsChecked="{Binding IsChkStopFollow}"/>
+                                <StackPanel Margin="15,0" Visibility="{Binding IsChkStopFollow,Converter={StaticResource BooleanToVisibilityConverter}}" Orientation="Vertical" Name="AutoFollowUnfollowSection" >
+                                    <StackPanel Orientation="Horizontal" >
+                                        <CheckBox Content="{DynamicResource LangKeyWhenReaching}" IsChecked="{Binding IsChkStopFollowToolWhenReach}"/>
+                                        <Controls:NumericUpDown Minimum="1" Margin="5,5,5,0"  Value="{Binding StopFollowToolWhenReach.StartValue}"
+                                                                        Name="StopFollowStartValue" IsEnabled="{Binding IsChkStopFollowToolWhenReach}"/>
+                                        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{DynamicResource LangKeyTo}" />
+                                        <Controls:NumericUpDown Margin="5,5,5,0" Minimum="{Binding StopFollowToolWhenReach.StartValue}"  Value="{Binding StopFollowToolWhenReach.EndValue}"  IsEnabled="{Binding IsChkStopFollowToolWhenReach}"/>
+                                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyFollowings}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,5">
+                                        <CheckBox Content="{DynamicResource TdLangWhenFollowerFollowingsIsSmallerThan}" IsChecked="{Binding IsChkStopFollowWhenFollowerFollowingsIsSmallerThan}"/>
+                                        <Controls:NumericUpDown Minimum="1" Margin="3,0,0,0" Value="{Binding FollowerFollowingsMaxValue}"
+                                                                        IsEnabled="{Binding IsChkStopFollowWhenFollowerFollowingsIsSmallerThan}"/>
+                                    </StackPanel>
+                                    <CheckBox Margin="0,5,0,0" Content="{DynamicResource TdLangwhenTheFollowToolGetsTemporaryBlocked}" IsChecked="{Binding IsChkFollowToolGetsTemporaryBlocked}"/>
+                                </StackPanel>
+
+                                <CheckBox Content="{DynamicResource TdLangStartUnFollowTool}" Margin="5,5,0,0" IsChecked="{Binding IsChkStartUnFollow}"/>
+
+                                <StackPanel Margin="15,0" Visibility="{Binding IsChkStartUnFollow,Converter={StaticResource BooleanToVisibilityConverter}}" Orientation="Vertical" Name="AutounFollowUnfollowSection" >
+                                    <StackPanel Orientation="Horizontal" >
+                                        <CheckBox Content="{DynamicResource LangKeyWhenReaching}" IsChecked="{Binding IsChkStartUnFollowWhenReached}"/>
+                                        <Controls:NumericUpDown Minimum="1" Margin="5,5,5,0"  Value="{Binding StartUnFollowToolWhenReach.StartValue}"
+                                                                        Name="StopunFollowStartValue" IsEnabled="{Binding IsChkStartUnFollowWhenReached}"/>
+                                        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{DynamicResource LangKeyTo}" />
+                                        <Controls:NumericUpDown  Margin="5,5,5,0" Minimum="{Binding StartUnFollowToolWhenReach.StartValue}"  Value="{Binding StartUnFollowToolWhenReach.EndValue}" IsEnabled="{Binding IsChkStartUnFollowWhenReached}"/>
+                                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyFollowings}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,5">
+                                        <CheckBox Content="{DynamicResource TdLangWhenFollowerFollowingsIsSmallerThan}" IsChecked="{Binding IsChkWhenFollowerFollowingsIsSmallerThan}"/>
+                                        <Controls:NumericUpDown Minimum="1" Margin="3,0,0,0" Value="{Binding UnFollowerFollowingsMaxValue}"
+                                                                        IsEnabled="{Binding IsChkWhenFollowerFollowingsIsSmallerThan}"/>
+                                    </StackPanel>
+                                    <CheckBox Margin="0,5" Content="{DynamicResource TdLangwhenTheFollowToolGetsTemporaryBlocked}" IsChecked="{Binding IschkwhenTheUnFollowToolGetsTemporaryBlocked}"/>
+                                </StackPanel>
+
+                            </StackPanel>
+                        </StackPanel>-->
+
+                            <!--  Unfollow previously followed users  -->
+                            <!--<StackPanel Margin="5,0,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox  Content="{DynamicResource TdLangUnfollowPrevious}" Name="chkUnfollowUers" IsChecked="{Binding IsChkUnfollowUsers}" />
+                                <Controls:NumericUpDown Minimum="1" Margin="5,10,5,0" Maximum="1500" Value="{Binding UnfollowPrevious.StartValue}"
+                                                                Name="UnfollowFromHrs" IsEnabled="{Binding IsChkUnfollowUsers}"/>
+                                <Label HorizontalAlignment="Center" VerticalAlignment="Center"   Content="{DynamicResource LangKeyTo}"  Margin="0,5,0,0"  />
+                                <Controls:NumericUpDown Margin="5,10,5,0" Maximum="1500" Minimum="{Binding UnfollowPrevious.StartValue}"
+                                                                Value="{Binding UnfollowPrevious.EndValue}" IsEnabled="{Binding IsChkUnfollowUsers}"/>
+                                <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyHours}"  Margin="5,5,0,0" />
+                            </StackPanel>
+                            <StackPanel  Margin="40,0" Visibility="{Binding IsChkUnfollowUsers,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <CheckBox   Name="chkUnfollowfollowedback" Margin="0,0,0,5" IsChecked="{Binding IsChkUnfollowfollowedback}"  Content="{DynamicResource TdLangWhofollowedback}"/>
+                                    <CheckBox  Name="chkUnfollownotfollowedback" Margin="0,0,0,5"  IsChecked="{Binding IsChkUnfollownotfollowedback}"  Content="{DynamicResource TdLangWhohasnotfollowedback}"/>
+                            </StackPanel>
+                        </StackPanel>-->
+
+                            <!--  Auto accept Follow request  -->
+                            <StackPanel Margin="5,0,0,0">
+                                <CheckBox
+                                    Name="ChkAcceptPendingFollowRequest"
+                                    Margin="0,10,0,0"
+                                    Content="{DynamicResource LangKeyAcceptPendingFollowRequestAppliesOnlyForPrivateUsers}"
+                                    IsChecked="{Binding FollowerModel.IsChkAcceptPendingFollowRequest}" />
+                                <StackPanel
+                                    Margin="40,5,0,0"
+                                    Orientation="Horizontal"
+                                    Visibility="{Binding FollowerModel.IsChkAcceptPendingFollowRequest, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <CheckBox
+                                        VerticalAlignment="Center"
+                                        Content="{DynamicResource LangKeyAcceptBetween}"
+                                        IsChecked="{Binding FollowerModel.IsChkAcceptbetween}" />
+                                    <Controls:NumericUpDown
+                                        Name="AcceptBetweenStartValue"
+                                        Margin="5,5,5,0"
+                                        IsEnabled="{Binding FollowerModel.IsChkAcceptbetween}"
+                                        Minimum="1"
+                                        Value="{Binding FollowerModel.AcceptBetween.StartValue}" />
+                                    <Label
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Content="{DynamicResource LangKeyAnd}" />
+                                    <Controls:NumericUpDown
+                                        Margin="5,5,5,0"
+                                        IsEnabled="{Binding FollowerModel.IsChkAcceptbetween}"
+                                        Minimum="{Binding Value, ElementName=AcceptBetweenStartValue}"
+                                        Value="{Binding FollowerModel.AcceptBetween.EndValue}" />
+                                    <TextBlock VerticalAlignment="Center" Text="{DynamicResource LangKeyFollowRequestsPerOperation}" />
+                                </StackPanel>
+                            </StackPanel>
+
+
+                        </StackPanel>
+                    </Expander>
+
+                    <!--  Blacklists Expander  -->
+                    <Expander
+                        Margin="5,5"
+                        Header="{DynamicResource LangKeyManageBlacklistedUsers}"
+                        Visibility="{Binding FollowerModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel>
+                            <CheckBox
+                                Margin="5,5"
+                                Content="{DynamicResource LangKeySkipBlacklistedUsers}"
+                                IsChecked="{Binding FollowerModel.SkipBlacklist.IsSkipBlackListUsers}" />
+                            <StackPanel
+                                Margin="5,5"
+                                Orientation="Horizontal"
+                                Visibility="{Binding FollowerModel.SkipBlacklist.IsSkipBlackListUsers, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <CheckBox
+                                    Margin="5,5"
+                                    Content="{DynamicResource LangKeyUsePrivateBlacklist}"
+                                    IsChecked="{Binding FollowerModel.SkipBlacklist.IsSkipPrivateBlackListUser}" />
+                                <CheckBox
+                                    Margin="5,5"
+                                    Content="{DynamicResource LangKeyUseGroupBlacklist}"
+                                    IsChecked="{Binding FollowerModel.SkipBlacklist.IsSkipGroupBlackListUsers}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Expander>
+
+                </StackPanel>
+
+            </ScrollViewer>
+        </Grid>
+
+
+        <StackPanel VerticalAlignment="Bottom">
+            <customControl:FooterControl
+                x:Name="FollowFooter"
+                Height="96"
+                VerticalAlignment="Top"
+                CampaignManager="{Binding CampaignButtonContent}"
+                CreateCampaignCommand="{Binding CreateCampaignCommand}"
+                NoOfAccountsSelected="{Binding SelectedAccountCount, Mode=TwoWay}"
+                SelectAccountCommand="{Binding SelectAccountCommand}" />
+            <!--
+                SelectAccountChanged="FollowerControl_OnSelectAccountChanged"
+                CreateCampaignChanged="FollowerControl_OnCreateCampaignChanged"
+                UpdateCampaignChanged="FollowerControl_OnUpdateCampaignChanged" />
+            -->
+        </StackPanel>
+
+        <!--  Create campaign and select account section  -->
+        <!--  Help section  -->
+        <Controls:FlyoutsControl>
+            <Controls:Flyout
+                Name="HelpFlyout"
+                Width="300"
+                Background="{DynamicResource AccentBaseColorBrush}"
+                BorderBrush="Black"
+                BorderThickness="2"
+                DataContext="{Binding ElementName=FollowFooter, Path=DataContext}"
+                FontSize="10"
+                FontWeight="Bold"
+                Foreground="White"
+                Header="{DynamicResource LangKeyModuleDescription}"
+                IsOpen="{Binding IsOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                Position="Right"
+                Theme="Accent"
+                Visibility="Collapsed">
+
+                <customControl:HelpControl
+                    ContactSupportLink="{Binding ContactSupportLink}"
+                    DataContext="{Binding ElementName=FollowFooter, Path=DataContext}"
+                    KnowledgeBaseLink="{Binding KnowledgeBaseLink}"
+                    ModuleDescription="{DynamicResource LangKeyModuleDescriptionTwitterAutoFollow}"
+                    VideoTutorial="{Binding VideoTutorialLink}" />
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+
+
+    </Grid>
+
+</local:FollowerBase>

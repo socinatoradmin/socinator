@@ -1,0 +1,86 @@
+<<<<<<< Updated upstream
+﻿using Newtonsoft.Json;
+using System;
+using System.Net;
+using DominatorHouseCore.Request;
+=======
+﻿using DominatorHouseCore.Request;
+using Newtonsoft.Json;
+using System;
+using System.Net;
+>>>>>>> Stashed changes
+using TwtDominatorCore.TDUtility;
+
+namespace TwtDominatorCore.Requests
+{
+    public class TdRequestParameters : RequestParameters
+    {
+        public JsonElementsForPostReq Body { private get; set; }
+        public TdRequestParameters()
+        {
+            SetupHeaders();
+            Cookies = new CookieCollection();
+        }
+        public byte[] GeneratePostBody(JsonElementsForPostReq elements)
+        {
+            this.Body = elements;
+            string str = this.Body == null ? (string)null : JsonConvert.SerializeObject((object)this.Body, new JsonSerializerSettings()
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            });
+            return this.GeneratePostData(str);
+        }
+        /// <summary>
+        /// set default headers  
+        /// </summary>
+        public void SetupHeaders(string TypeOfReq = null, string Token = null)
+        {
+            this.Headers.Clear();
+            WebHeaderCollection objWebHeaderCollection = new WebHeaderCollection();
+            objWebHeaderCollection.Add("Origin", "https://twitter.com");
+
+            // check
+            objWebHeaderCollection.Add("User-Agent", TdConstants.NewUserAgent);
+            objWebHeaderCollection.Add("Accept-Language", TdConstants.AcceptLanguage);
+            this.Accept = TdConstants.AcceptJavaScript;
+            this.Referer = TdConstants.MainUrl;
+            this.UserAgent = TdConstants.NewUserAgent;
+            this.KeepAlive = true;
+            try
+            {
+                switch (TypeOfReq)
+                {
+                    case ("Json"):
+                        objWebHeaderCollection.Add("x-csrf-token", Token);
+                        objWebHeaderCollection.Add("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+                        objWebHeaderCollection.Add("authorization", "Bearer AAAAAAAAAAAAAAAAAAAAAPYXBAAAAAAACLXUNDekMxqa8h%2F40K4moUkGsoc%3DTYfbDKbT3jJPCEVnMYqilB28NHfOPqkca3qaAxGfsyKCs0wRbw");
+                        objWebHeaderCollection.Add("x-twitter-auth-type", "OAuth2Session");
+                        objWebHeaderCollection.Add("X-Twitter-Active-User", "yes");
+                        this.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
+                        break;
+                    case ("XML"):
+                        objWebHeaderCollection.Add("X-Requested-With", "XMLHttpRequest");
+                        objWebHeaderCollection.Add("X-Twitter-Active-User", "yes");
+                        objWebHeaderCollection.Add("X-Asset-Version", "2f2f06");
+                        this.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
+                        break;
+
+                    default:
+                        objWebHeaderCollection.Add("Upgrade-Insecure-Requests", "1");
+                        objWebHeaderCollection.Add("Content-Type", "application/x-www-form-urlencoded");
+                        objWebHeaderCollection.Add("Cache-Control", "max-age=0");
+                        this.ContentType = TdConstants.ContentType;
+                        this.Accept = TdConstants.AcceptHtml;
+                        break;
+
+                }
+                this.Headers = objWebHeaderCollection;
+
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+    }
+}

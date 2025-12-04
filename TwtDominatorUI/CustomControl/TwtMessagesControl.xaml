@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="TwtDominatorUI.CustomControl.TwtMessagesControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:TwtDominatorUI.CustomControl"
+             xmlns:dominatorCustomControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="800">
+    <StackPanel x:Name="MainGrid">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock FontWeight="Bold" Margin="0,10" FontSize="16" Text="{DynamicResource LangKeyMessageText}"
+                           VerticalAlignment="Center" />
+                <dominatorCustomControl:InputBoxControl SaveCommand="{Binding InputMessageCommand}"
+                                                        InputText="{Binding Messages.MessagesText}"
+                                                        SaveVisiblity="Collapsed" />
+
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="btnPhotos" Background="{DynamicResource AccentBaseColorBrush}" Height="30"
+                            HorizontalAlignment="Left" Foreground="White" Width="100" Click="btnPhotos_Click"
+                            Margin="5">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="15" Height="15" Fill="White">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Visual="{StaticResource appbar_image_export}" Stretch="Fill" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <TextBlock Text="{DynamicResource LangKeyPhoto}" Margin="6,0" />
+
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+
+                    <Image Source="{Binding Messages.MediaPath}" Height="Auto" MaxHeight="60" Margin="5"
+                           VerticalAlignment="Center">
+                        <Image.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="{DynamicResource LangKeyDelete}" Click="DeleteMedia_Click">
+                                    <MenuItem.Icon>
+                                        <Rectangle Width="15" Height="18" Fill="Black" Margin="0,0,0,3"
+                                                   VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_delete}" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </Image.ContextMenu>
+                    </Image>
+                </StackPanel>
+
+            </StackPanel>
+
+            <Grid Margin="10,30" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Collapsed"
+                  Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{DynamicResource LangKeyQueries}" VerticalAlignment="Center" />
+                <ComboBox Width="200" Margin="10" Grid.Column="1" x:Name="ComboBoxQueries" x:FieldModifier="public"
+                          ItemsSource="{Binding Messages.LstQueries,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox x:Name="chkQuery"
+                                      IsChecked="{Binding IsContentSelected}" Checked="chkQuery_Checked"
+                                      Unchecked="chkQuery_Unchecked">
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0} [ {1} ]">
+                                            <Binding Path="Content.QueryValue" />
+                                            <Binding Path="Content.QueryType" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </CheckBox>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+            </Grid>
+
+        </Grid>
+        <Button Content="{DynamicResource LangKeyAddMessageToList}" Width="200" Name="btnAddMessagesToList"
+                Command="{Binding AddMessagesCommand}" CommandParameter="{Binding CommandParameter}"
+                Background="{DynamicResource AccentBaseColorBrush}" Foreground="White" Margin="10,30,0,0"
+                x:FieldModifier="public" />
+
+    </StackPanel>
+</UserControl>

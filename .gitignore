@@ -1,0 +1,15 @@
+                                                      
+TwtDominatorCore/obj/
+TwtDominatorCore/bin/
+TwtDominatorUI/bin/
+TwtDominatorUI/obj/
+TwtDominatorUI/publish/
+/.vs
+/TwtDominatorCore/.vs/TwtDominatorCore/v15/.suo
+packages
+**/*.user
+
+obj/
+bin/
+/TwtDominatorCore/.vs
+/TwtDominatorUI/.vs

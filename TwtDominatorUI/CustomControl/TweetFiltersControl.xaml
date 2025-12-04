@@ -1,0 +1,136 @@
+﻿<UserControl x:Class="TwtDominatorUI.CustomControl.TweetFiltersControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:TwtDominatorUI.CustomControl"
+             mc:Ignorable="d"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+             xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility">
+
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+
+    <Grid Name="MainGrid">
+
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <CheckBox x:Name="ChkboxTweetsAreLessThanHours"
+                          VerticalAlignment="Center"
+                          IsChecked="{Binding TweetFilter.IsFilterTweetsLessThanSpecificHoursOld}" Margin="5,5,0,0"
+                          Content="{DynamicResource LangKeyTweetsAreLessThan}" />
+                <controls:NumericUpDown Minimum="1" Margin="5,5,0,0" Maximum="23"
+                                        IsEnabled="{Binding TweetFilter.IsFilterTweetsLessThanSpecificHoursOld}"
+                                        Value="{Binding TweetFilter.FilterTweetsLessThanSpecificHoursOldValue}"
+                                        x:Name="TxtboxTweetsAreLessThanHours" />
+                <Label Content="{DynamicResource LangKeyHoursOld}" Margin="0,5,0,0" VerticalContentAlignment="Center" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <CheckBox x:Name="ChkboxTweetsAreLessThanDays"
+                          VerticalAlignment="Center"
+                          IsChecked="{Binding TweetFilter.IsFilterTweetsLessThanSpecificDaysOld}" Margin="5,5,0,0"
+                          Content="{DynamicResource LangKeyTweetsAreLessThan}" />
+                <controls:NumericUpDown Minimum="1" Margin="5,10,0,0"
+                                        IsEnabled="{Binding TweetFilter.IsFilterTweetsLessThanSpecificDaysOld}"
+                                        Value="{Binding TweetFilter.FilterTweetsLessThanSpecificDaysOldValue}"
+                                        x:Name="TxtboxTweetsAreLessThanDays" />
+                <Label Content="{DynamicResource LangKeyDaysOld}" Margin="0,5,0,0" VerticalContentAlignment="Center" />
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Margin="5,5,0,0" x:Name="ChkboxTweetsHaveBetweenRetweets"
+                          VerticalAlignment="Center"
+                          IsChecked="{Binding TweetFilter.IsFilterTweetsHaveBetweenRetweets}"
+                          Content="{DynamicResource LangKeyTweetsHaveBetween}" />
+                <controls:NumericUpDown Minimum="0" x:Name="TxtboxMinimumTweetsRangeRetweets"
+                                        IsEnabled="{Binding TweetFilter.IsFilterTweetsHaveBetweenRetweets}"
+                                        Value="{Binding TweetFilter.FilterTweetsHaveBetweenRetweets.StartValue}"
+                                        TextAlignment="Center" Margin="5,10,0,0" />
+                <Label Content="{DynamicResource LangKeyAnd}" Margin="0,5,0,0" VerticalContentAlignment="Center" />
+                <controls:NumericUpDown x:Name="TxtboxMaximumTweetsRangeRetweets"
+                                        IsEnabled="{Binding TweetFilter.IsFilterTweetsHaveBetweenRetweets}"
+                                        Minimum="{Binding TweetFilter.FilterTweetsHaveBetweenRetweets.StartValue}"
+                                        Value="{Binding TweetFilter.FilterTweetsHaveBetweenRetweets.EndValue}"
+                                        TextAlignment="Center" Margin="5,10,0,0" />
+                <Label Content="{DynamicResource LangKeyRetweets}" Margin="0,5,0,0" VerticalContentAlignment="Center" />
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Margin="5,5,0,0" x:Name="ChkboxTweetsHaveBetweenFavorites"
+                          VerticalAlignment="Center"
+                          IsChecked="{Binding TweetFilter.IsFilterTweetsHaveBetweenFavorites}"
+                          Content="{DynamicResource LangKeyTweetsHaveBetween}" />
+                <controls:NumericUpDown Minimum="0" x:Name="TxtboxMinimumTweetsRangeFavorites"
+                                        IsEnabled="{Binding TweetFilter.IsFilterTweetsHaveBetweenFavorites}"
+                                        Value="{Binding TweetFilter.FilterTweetsHaveBetweenFavorites.StartValue}"
+                                        TextAlignment="Center" Margin="5,10,0,0" />
+                <Label Content="{DynamicResource LangKeyAnd}" Margin="0,5,0,0" VerticalContentAlignment="Center" />
+                <controls:NumericUpDown x:Name="TxtboxMaximumTweetsRangeFavorites"
+                                        IsEnabled="{Binding TweetFilter.IsFilterTweetsHaveBetweenFavorites}"
+                                        Minimum="{Binding TweetFilter.FilterTweetsHaveBetweenFavorites.StartValue}"
+                                        Value="{Binding TweetFilter.FilterTweetsHaveBetweenFavorites.EndValue}"
+                                        TextAlignment="Center" Margin="5,10,0,0" />
+                <Label Content="{DynamicResource LangKeyFavorites}" Margin="0,5,0,0" VerticalContentAlignment="Center" />
+            </StackPanel>
+
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="5,5,0,0" x:Name="ChkboxSkipTweetsContaining"
+                              VerticalAlignment="Center"
+                              IsChecked="{Binding TweetFilter.IsFilterSkipTweetsContainingSpecificWords}"
+                              Content="{DynamicResource LangKeySkipTweetsContaining}" />
+                    <Label Content="{DynamicResource LangKeySeparateWordsByAComma}" Margin="0,5,0,0"
+                           VerticalContentAlignment="Center" />
+                </StackPanel>
+                <customControl:InputBoxControl Margin="30,5" x:Name="SkipTweetsContainingSpecificWordsInputBox"
+                                               SaveCommand="{Binding SaveInvalidWordCommand}"
+                                               InputText="{Binding TweetFilter.SkipTweetsContainingWords}"
+                                               Visibility="{Binding TweetFilter.IsFilterSkipTweetsContainingSpecificWords,Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            </StackPanel>
+
+            <!--<CheckBox x:Name="ChkboxSkipAlreadyLikedTweets"  Margin="5,5,0,0" IsChecked="{Binding TweetFilter.IsFilterAlreadyLiked}" Content="{DynamicResource LangKeySkipAlreadyLikedTweets}"/>-->
+
+            <CheckBox x:Name="ChkboxSkipAlreadyRetweetedTweets" Margin="5,5,0,0"
+                      VerticalAlignment="Center"
+                      IsChecked="{Binding TweetFilter.IsFilterAlreadyRetweeted}"
+                      Content="{DynamicResource LangKeySkipAlreadyRetweetedTweets}" />
+
+            <CheckBox x:Name="ChkboxSkipTweetsWithAtSign" Margin="5,5,0,0"
+                      VerticalAlignment="Center"
+                      IsChecked="{Binding TweetFilter.IsFilterSkipTweetsContainingAtSign}"
+                      Content="{DynamicResource LangKeySkipTweetsWithAtTheRate}" />
+
+            <CheckBox x:Name="ChkboxSkipRetweets" Margin="5,5,0,0"
+                      IsChecked="{Binding TweetFilter.IsFilterSkipRetweets}"
+                      Content="{DynamicResource LangKeySkipRetweets}" />
+
+            <CheckBox x:Name="ChkboxSkipTweetsWithLinks" Margin="5,5,0,0"
+                      VerticalAlignment="Center"
+                      IsChecked="{Binding TweetFilter.IsFilterSkipTweetsWithLinks}"
+                      Content="{DynamicResource LangKeySkipTweetsWithLinks}" />
+
+            <CheckBox x:Name="ChkboxSkipTweetsWithoutLinks" Margin="5,5,0,0"
+                      VerticalAlignment="Center"
+                      IsChecked="{Binding TweetFilter.IsFilterSkipTweetsWithoutLinks}"
+                      Content="{DynamicResource LangKeySkipTweetsWithoutLinks}" />
+
+            <CheckBox x:Name="ChkboxSkipTweetsThatcontainNonEnglishCharacters"
+                      VerticalAlignment="Center"
+                      IsChecked="{Binding TweetFilter.IsFilterSkipTweetsContainNonEnglishChar}" Margin="5,5,0,0"
+                      Content="{DynamicResource LangKeySkipTweetsThatContainNonEnglishCharacters}" />
+
+            <!--<CheckBox x:Name="ChkboxUseRealTimeResults"  Margin="5,5,0,0" IsChecked="{Binding TweetFilter.IsFilterUseRealTimeResults}" Content="{DynamicResource LangKeyUseRealtimeResults}"/>-->
+
+
+        </StackPanel>
+    </Grid>
+
+
+</UserControl>
