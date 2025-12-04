@@ -1,0 +1,58 @@
+﻿[
+  {
+    "_MediaPath": "",
+    "MessageId": "fefb1ed0-ce5d-4ad1-80d4-4263a2c413ea",
+    "MessagesText": "hi",
+    "MediaPath": "",
+    "SelectedQuery": [
+      {
+        "Content": {
+          "Index": 0,
+          "Id": "4ad837c8-77b0-4079-bab3-de04ba5dfcea",
+          "QueryType": "Keywords",
+          "QueryValue": "viru",
+          "IsCustomFilterSelected": false,
+          "CustomFilters": null,
+          "AddedDateTime": 1554967119,
+          "QueryPriority": 0,
+          "IsQuerySelected": false,
+          "QueryTypeDisplayName": null
+        },
+        "IsContentSelected": false
+      }
+    ],
+    "LstQueries": [
+      {
+        "Content": {
+          "Index": 0,
+          "Id": "20f4aa92-9826-49eb-bde0-e5b4795b2250",
+          "QueryType": "All",
+          "QueryValue": "All",
+          "IsCustomFilterSelected": false,
+          "CustomFilters": null,
+          "AddedDateTime": 1554967109,
+          "QueryPriority": 0,
+          "IsQuerySelected": false,
+          "QueryTypeDisplayName": null
+        },
+        "IsContentSelected": false
+      },
+      {
+        "Content": {
+          "Index": 0,
+          "Id": "4ad837c8-77b0-4079-bab3-de04ba5dfcea",
+          "QueryType": "Keywords",
+          "QueryValue": "viru",
+          "IsCustomFilterSelected": false,
+          "CustomFilters": null,
+          "AddedDateTime": 1554967119,
+          "QueryPriority": 0,
+          "IsQuerySelected": false,
+          "QueryTypeDisplayName": null
+        },
+        "IsContentSelected": false
+      }
+    ]
+  }
+
+]

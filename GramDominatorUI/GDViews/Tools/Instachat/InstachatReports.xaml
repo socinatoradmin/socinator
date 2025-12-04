@@ -1,0 +1,65 @@
+﻿<UserControl
+    x:Class="GramDominatorUI.GDViews.Tools.Instachat.InstachatReports"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:GramDominatorUI.GDViews.Tools.Instachat"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <StackPanel>
+
+        <Button
+            Margin="0,0,15,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Background="{DynamicResource AccentBaseColorBrush}"
+            Content="{DynamicResource LangKeyDeleteAll}"
+            Foreground="White" />
+
+        <StackPanel>
+            <DataGrid HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="*" Header="{DynamicResource LangKeyDate}" />
+                    <DataGridTextColumn Width="*" Header="{DynamicResource LangKeyNumOfLikes}" />
+                    <DataGridTextColumn Width="*" Header="{DynamicResource LangKeyKeyword}" />
+                    <DataGridTemplateColumn Width="*" Header="{DynamicResource LangKeyAction}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button
+                                        Margin="0,0,15,0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Background="{DynamicResource AccentBaseColorBrush}"
+                                        Content="{DynamicResource LangKeyNumOfDeleted}"
+                                        Foreground="White" />
+                                    <Button
+                                        Margin="0,0,15,0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Background="{DynamicResource AccentBaseColorBrush}"
+                                        Content="{DynamicResource LangKeyBrowse}"
+                                        Foreground="White" />
+                                    <Button
+                                        Margin="0,0,15,0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Background="{DynamicResource AccentBaseColorBrush}"
+                                        Content="{DynamicResource LangKeyKeyword}"
+                                        Foreground="White" />
+                                    <Button
+                                        Margin="0,0,15,0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Background="{DynamicResource AccentBaseColorBrush}"
+                                        Content="{DynamicResource LangKeyCopy}"
+                                        Foreground="White" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,195 @@
+﻿<UserControl
+    x:Class="GramDominatorUI.CustomControl.PostFilterControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:GramDominatorUI.CustomControl"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <StackPanel>
+            <!--  IgnoreTopPost  -->
+            <!--<CheckBox Margin="10,0,0,0" x:Name="IgnoreTopPostCheckBox" Content="{DynamicResource LangKeyIgnoreTopPosts}" IsChecked="{Binding PostFilter.IgnoreTopPost}"/>-->
+
+            <!--  IgnoreAds  -->
+            <!--<CheckBox Margin="10,5,0,0" x:Name="IgnoreAdsCheckBox" Content="{DynamicResource LangKeyIgnoreAds}" IsChecked="{Binding PostFilter.IgnoreAdPost}"/>-->
+
+            <!--  Post age  -->
+            <StackPanel>
+                <CheckBox
+                    x:Name="PostAgeCheckBox"
+                    Margin="10,5,10,0"
+                    Content="{DynamicResource LangKeyPostAgeInDays}"
+                    IsChecked="{Binding PostFilter.FilterPostAge}" />
+                <StackPanel Visibility="{Binding PostFilter.FilterPostAge, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton
+                            Name="PostAgeAfterDays"
+                            Margin="40,5,0,0"
+                            Content="{DynamicResource LangKeyBeforePostInDays}"
+                            GroupName="PostAge"
+                            IsChecked="{Binding PostFilter.FilterBeforePostAge}" />
+                        <controls:NumericUpDown
+                            Margin="5,5,0,0"
+                            Minimum="0"
+                            Value="{Binding PostFilter.MaxPostAge}" />
+                        <Label Content="{DynamicResource LangKeyDays}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton
+                            Name="PostAgeBeforeDays"
+                            Margin="40,5,0,0"
+                            Content="{DynamicResource LangKeyLastPostAgeInDays}"
+                            GroupName="PostAge"
+                            IsChecked="{Binding PostFilter.FilterLastPostAge}" />
+                        <controls:NumericUpDown
+                            Margin="5,5,0,0"
+                            Minimum="0"
+                            Value="{Binding PostFilter.MaxLastPostAge}" />
+                        <Label Content="{DynamicResource LangKeyDays}" />
+                    </StackPanel>
+
+                </StackPanel>
+            </StackPanel>
+
+            <!--  Comment  -->
+            <StackPanel Orientation="Horizontal">
+                <CheckBox
+                    Name="CommentCheckBox"
+                    Margin="10,5,5,0"
+                    Content="{DynamicResource LangKeyComment}"
+                    IsChecked="{Binding PostFilter.FilterComments}" />
+                <controls:NumericUpDown
+                    Margin="0,5,0,0"
+                    Minimum="0"
+                    Visibility="{Binding PostFilter.FilterComments, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding PostFilter.CommentsCountRange.StartValue}" />
+                <Label
+                    Margin="0,5,0,0"
+                    VerticalAlignment="Center"
+                    Content="{DynamicResource LangKeyTo}"
+                    Visibility="{Binding PostFilter.FilterComments, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <controls:NumericUpDown
+                    Margin="0,5,0,0"
+                    Minimum="{Binding PostFilter.CommentsCountRange.StartValue}"
+                    Visibility="{Binding PostFilter.FilterComments, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding PostFilter.CommentsCountRange.EndValue}" />
+            </StackPanel>
+
+            <!--  Like  -->
+            <StackPanel Orientation="Horizontal">
+                <CheckBox
+                    Name="chkLike"
+                    Margin="10,5,5,0"
+                    Content="{DynamicResource LangKeyLike}"
+                    IsChecked="{Binding PostFilter.FilterLikes}" />
+                <controls:NumericUpDown
+                    Margin="0,5,0,0"
+                    Minimum="0"
+                    Visibility="{Binding PostFilter.FilterLikes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding PostFilter.LikesCountRange.StartValue}" />
+                <Label
+                    Margin="0,5,0,0"
+                    VerticalAlignment="Center"
+                    Content="{DynamicResource LangKeyTo}"
+                    Visibility="{Binding PostFilter.FilterLikes, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <controls:NumericUpDown
+                    Margin="0,5,0,0"
+                    Minimum="{Binding PostFilter.LikesCountRange.StartValue}"
+                    Visibility="{Binding PostFilter.FilterLikes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding PostFilter.LikesCountRange.EndValue}" />
+            </StackPanel>
+
+            <!--  Post Type  -->
+            <StackPanel Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=PostTypeVisibility}">
+                <CheckBox
+                    Name="PostTypeCheckBox"
+                    Margin="10,5,0,0"
+                    Content="{DynamicResource LangKeyPostType}"
+                    IsChecked="{Binding PostFilter.PostCategory.FilterPostCategory}" />
+                <StackPanel Name="PostTypeSection" Visibility="{Binding PostFilter.PostCategory.FilterPostCategory, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <CheckBox
+                        Name="IgnoreImagesCheckBox"
+                        Margin="40,5,0,0"
+                        Content="{DynamicResource LangKeyIgnoreImages}"
+                        IsChecked="{Binding PostFilter.PostCategory.IgnorePostImages}" />
+                    <CheckBox
+                        Name="IgnoreVideosCheckBox"
+                        Margin="40,5,0,0"
+                        Content="{DynamicResource LangKeyIgnoreVideos}"
+                        IsChecked="{Binding PostFilter.PostCategory.IgnorePostVideos}" />
+                    <CheckBox
+                        Name="IgnoreAlbumsCheckBox"
+                        Margin="40,5,0,0"
+                        Content="{DynamicResource LangKeyIgnoreAlbums}"
+                        IsChecked="{Binding PostFilter.PostCategory.IgnorePostAlbums}" />
+                </StackPanel>
+            </StackPanel>
+
+            <!--  Minimum Chatacter length in caption  -->
+            <StackPanel Orientation="Horizontal">
+                <CheckBox
+                    x:Name="ChkMinCharInCaption"
+                    Margin="10,5,10,0"
+                    Content="{DynamicResource LangKeyShouldHaveMinimumCharacterLengthInCaption}"
+                    IsChecked="{Binding PostFilter.FilterCharsLenghInCaption}" />
+                <controls:NumericUpDown
+                    Margin="0,5,0,0"
+                    Minimum="0"
+                    Visibility="{Binding PostFilter.FilterCharsLenghInCaption, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding PostFilter.MinimumPostCaptionChars}" />
+            </StackPanel>
+
+            <StackPanel>
+                <CheckBox
+                    Name="ChkFilterByBlacklistedWhitelistedWords"
+                    Margin="10,5,0,0"
+                    Content="{DynamicResource LangKeyFilterByBlacklisted/WhitelistedWordsInCaption}"
+                    IsChecked="{Binding PostFilter.FilterByBlacklistedWhitelistedWordsInCaption}" />
+
+                <!--  BlackList  -->
+                <StackPanel Visibility="{Binding PostFilter.FilterByBlacklistedWhitelistedWordsInCaption, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <RadioButton
+                        Name="CaptionBlacklistsCheckBox"
+                        Margin="40,5,0,0"
+                        Content="{DynamicResource LangKeyAddBlacklistedWordsThatShouldNotContainInCaption}"
+                        FontFamily="{DynamicResource GabaritoMedium}"
+                        GroupName="RadFilterByWhitelistBlacklist"
+                        IsChecked="{Binding PostFilter.FilterRestrictedPostCaptionList}" />
+                    <customControl:InputBoxControl
+                        x:Name="CaptionBlacklistInputBox"
+                        Margin="60,5"
+                        InputText="{Binding PostFilter.CaptionBlacklists}"
+                        SaveCommand="{Binding CaptionBlacklistInputBoxs}"
+                        Visibility="{Binding PostFilter.FilterRestrictedPostCaptionList, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                </StackPanel>
+
+                <!--  WhiteList  -->
+                <StackPanel Visibility="{Binding PostFilter.FilterByBlacklistedWhitelistedWordsInCaption, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <RadioButton
+                        Name="ChkCaptionWhitelist"
+                        Margin="40,5,5,0"
+                        Content="{DynamicResource LangKeyAddWhitelistedWordsThatShouldContainInCaption}"
+                        GroupName="RadFilterByWhitelistBlacklist"
+                        IsChecked="{Binding PostFilter.FilterAcceptedPostCaptionList}" />
+                    <customControl:InputBoxControl
+                        x:Name="CaptionWhitelistInputBox"
+                        Margin="60,5"
+                        InputText="{Binding PostFilter.CaptionWhitelist}"
+                        SaveCommand="{Binding CaptionWhitelistInputBoxs}"
+                        Visibility="{Binding PostFilter.FilterAcceptedPostCaptionList, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                </StackPanel>
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

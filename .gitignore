@@ -1,0 +1,25 @@
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+packages
+.vs
+DH/Debug/DH.msi
+GramDominatorUI/CustomControl/SelectAccountControl.xaml_BACKUP_13844.cs
+GramDominatorUI/CustomControl/SelectAccountControl.xaml_BASE_13844.cs
+GramDominatorUI/CustomControl/SelectAccountControl.xaml_LOCAL_13844.cs
+GramDominatorUI/CustomControl/SelectAccountControl.xaml_REMOTE_13844.cs
+UpgradeLog2.htm
+UpgradeLog3.htm
+UpgradeLog4.htm
+UpgradeLog5.htm
+UpgradeLog6.htm
+UpgradeLog7.htm
+UpgradeLog8.htm
+UpgradeLog9.htm
+DH/Debug/setup.exe
+SNGramDominator/SNGramDominator.vdproj
+SNGramDominator/
+DH/
+GD Setup For Test/

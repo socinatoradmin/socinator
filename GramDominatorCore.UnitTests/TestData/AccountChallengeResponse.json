@@ -1,0 +1,14 @@
+﻿{
+  "message": "challenge_required",
+  "challenge": {
+    "url": "https://i.instagram.com/challenge/6867784527/3SOCoyI0cQ/",
+    "api_path": "/challenge/6867784527/3SOCoyI0cQ/",
+    "hide_webview_header": true,
+    "lock": true,
+    "logout": false,
+    "native_flow": true
+  },
+  "status": "fail",
+  "error_type": "checkpoint_challenge_required"
+
+}

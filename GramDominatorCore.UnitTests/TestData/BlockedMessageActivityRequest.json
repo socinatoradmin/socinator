@@ -1,0 +1,12 @@
+﻿{
+  "message": "feedback_required",
+  "spam": true,
+  "feedback_title": "Action Blocked",
+  "feedback_message": "This action was blocked. Please try again later. We restrict certain content and actions to protect our community. Tell us if you think we made a mistake.",
+  "feedback_url": "repute/report_problem/ig_direct_v2_thread_create/",
+  "feedback_appeal_label": "Report problem",
+  "feedback_ignore_label": "OK",
+  "feedback_action": "report_problem",
+  "status": "fail"
+
+}

@@ -1,0 +1,122 @@
+﻿<local:ReplyCommentConfigurationBase
+    x:Class="GramDominatorUI.GDViews.Tools.ReplyComment.ReplyCommentConfiguration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:customControl1="clr-namespace:GramDominatorUI.CustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:local="clr-namespace:GramDominatorUI.GDViews.Tools.ReplyComment"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="ReplyCommentConfigControl"
+    mc:Ignorable="d">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand, ElementName=ReplyCommentConfigControl}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Name="MainGrid">
+        <customControl:AccountGrowthModeHeader
+            Name="AccountGrowthHeader"
+            VerticalAlignment="Top"
+            SaveCommand="{Binding SaveConfigurationsCommand}"
+            SelectedIndex="0"
+            SelectionChangedCommand="{Binding SelectionChangedCommand, ElementName=ReplyCommentConfigControl}"
+            VideoTutorialLink="{Binding VideoTutorialLink}" />
+
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel>
+                    <StackPanel Margin="10" Orientation="Horizontal">
+                        <TextBlock
+                            Margin="10,0,10,0"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"
+                            Text="{DynamicResource LangKeyStatus}" />
+                        <Controls:ToggleSwitch
+                            x:Name="TglStatus"
+                            VerticalAlignment="Center"
+                            FontSize="12"
+                            IsChecked="{Binding ReplyCommentModel.IsAccountGrowthActive}"
+                            OffLabel="Stopped﻿"
+                            OnLabel="Active﻿"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}">
+
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction Command="{Binding StatusChangedCommand, ElementName=ReplyCommentConfigControl}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Controls:ToggleSwitch>
+                    </StackPanel>
+                    <StackPanel>
+                        <!--  Search Query Section  -->
+                        <Expander
+                            Margin="5"
+                            Header="{DynamicResource LangKeySearchQuery}"
+                            IsExpanded="True">
+                            <customControl:SearchQueryControl
+                                Name="ReplyCommentConfigSearchControl"
+                                AddQueryCommand="{Binding AddQueryCommand}"
+                                CommandParameter="{Binding ElementName=ReplyCommentConfigControl}"
+                                CustomFilterCommand="{Binding CustomFilterCommand}"
+                                DeleteMulipleCommand="{Binding DeleteMultipleCommand}"
+                                DeleteQueryCommand="{Binding DeleteQueryCommand}"
+                                ListQueryInfo="{Binding ReplyCommentModel.SavedQueries}"
+                                ListQueryType="{Binding ReplyCommentModel.ListQueryType}" />
+                        </Expander>
+                        <StackPanel Orientation="Vertical">
+                            <!--  Manage Comment Expender  -->
+                            <Expander Margin="5,5" Header="{DynamicResource LangKeyManageComments}">
+                                <StackPanel>
+                                    <CheckBox
+                                        Name="ChkMakeCaptionAsSpinText"
+                                        Content="{DynamicResource LangKeyMakeCommentAsSpinText}"
+                                        IsChecked="{Binding ReplyCommentModel.IsChkMakeCaptionAsSpinText}" />
+                                    <!--<CheckBox Content="{DynamicResource LangKeyAddMultipleCommentsSeparatedByNewLine}" Name="ChkAddMultipleComments" IsChecked="{Binding ReplyCommentModel.IsChkAddMultipleComments}"></CheckBox>-->
+                                    <customControl:CommentControl
+                                        Name="CommentControl"
+                                        AddCommentsCommand="{Binding AddCommentsCommand}"
+                                        CommandParameter="{Binding ElementName=CommentControl}"
+                                        Comments="{Binding ReplyCommentModel.ManageCommentModel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                    <customControl:ManageComment LstManageCommentModel="{Binding ReplyCommentModel.LstDisplayManageCommentModel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                </StackPanel>
+                            </Expander>
+
+                            <!--  JobConfiguration  Expender  -->
+                            <Expander Margin="5,5" Header="{DynamicResource LangKeyJobConfiguration}">
+                                <customControl:JobConfigControl
+                                    JobConfiguration="{Binding ReplyCommentModel.JobConfiguration}"
+                                    PerDayActivity="{DynamicResource LangKeyPost}"
+                                    PerHourActivity="{DynamicResource LangKeyPost}"
+                                    PerJobActivity="{DynamicResource LangKeyPost}"
+                                    PerWeekActivity="{DynamicResource LangKeyPost}" />
+                            </Expander>
+
+                            <!--  Post Filter Expender  -->
+                            <Expander
+                                Margin="5,5"
+                                Header="{DynamicResource LangKeyPostFilters}"
+                                Visibility="{Binding ReplyCommentModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <customControl1:PostFilterControl PostFilter="{Binding ReplyCommentModel.PostFilterModel}" />
+                            </Expander>
+                            <!--  User Filters Expender  -->
+                            <Expander
+                                Margin="5,5"
+                                Header="{DynamicResource LangKeyUserFilters}"
+                                Visibility="{Binding ReplyCommentModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <customControl1:UserFiltersControl x:Name="UserFiltersControl" UserFilter="{Binding ReplyCommentModel.UserFilterModel, UpdateSourceTrigger=PropertyChanged}" />
+                            </Expander>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</local:ReplyCommentConfigurationBase>

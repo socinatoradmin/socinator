@@ -1,0 +1,11 @@
+﻿{
+  "step_name": "verify_email",
+  "step_data": {
+    "security_code": "None",
+    "resend_delay": 60,
+    "contact_point": "t*******7@yahoo.com",
+    "form_type": "email"
+  },
+  "user_id": 5514264613,
+  "nonce_code": "CGN8gsQdSy",
+   "status": "ok"}

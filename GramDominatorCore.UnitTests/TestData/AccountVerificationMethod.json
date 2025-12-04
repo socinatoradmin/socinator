@@ -1,0 +1,15 @@
+﻿{
+  "step_name": "select_verify_method",
+  "step_data": {
+    "choice": "1",
+    "fb_access_token": "None",
+    "big_blue_token": "None",
+    "google_oauth_token": "true",
+    "email": "d*******t@gmail.com",
+    "phone_number": "+91 ***** ***12"
+  },
+  "user_id": 6867784527,
+  "nonce_code": "3SOCoyI0cQ",
+  "status": "ok"
+
+}

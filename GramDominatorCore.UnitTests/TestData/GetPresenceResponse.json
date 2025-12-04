@@ -1,0 +1,41 @@
+﻿{
+  "user_presence": {
+    "965893856": {
+      "is_active": false,
+      "last_activity_at_ms": 1567659680189
+    },
+    "1466239746": {
+      "is_active": false,
+      "last_activity_at_ms": 1567661853280
+    },
+    "8120054629": {
+      "is_active": false,
+      "last_activity_at_ms": 1567610035796
+    },
+    "1533426214": {
+      "is_active": false,
+      "last_activity_at_ms": 1567660968975
+    },
+    "6765614694": {
+      "is_active": false,
+      "last_activity_at_ms": 1567519286540
+    },
+    "7150086983": {
+      "is_active": false,
+      "last_activity_at_ms": null
+    },
+    "2071648333": {
+      "is_active": false,
+      "last_activity_at_ms": null
+    },
+    "4186885174": {
+      "is_active": false,
+      "last_activity_at_ms": null
+    },
+    "3040391453": {
+      "is_active": false,
+      "last_activity_at_ms": 1567608253179
+    }
+  },
+  "status": "ok"
+}

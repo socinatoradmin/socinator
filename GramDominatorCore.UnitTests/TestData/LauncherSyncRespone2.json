@@ -1,0 +1,286 @@
+﻿{
+  "configs": {
+    "ig_camera_ard_use_ig_downloader": {
+      "params": {
+        "enable": {
+          "value": false,
+          "logging_id": [ "2108402766134378" ]
+        },
+        "should_set_priority": {
+          "value": false,
+          "logging_id": [ "2108402766134378" ]
+        }
+      }
+    },
+    "ig_android_dogfooding": { "params": { "is_enabled": { "value": true } } },
+    "ig_donation_sticker_public_thanks": { "params": { "show_thanks_sticker_entry": { "value": true } } },
+    "ig_multi_decode_config": {
+      "params": {
+        "multi_decode_enabled": { "value": true },
+        "multi_decode_max_count": { "value": 2 },
+        "multi_decode_min_cores": { "value": 4 }
+      }
+    },
+    "ig_android_memory_manager_holdout": { "params": { "is_enabled": { "value": true } } },
+    "ig_direct_e2e_send_waterfall_sample_rate_config": {
+      "params": {
+        "default_message_send_sample_rate": { "value": 0.01 },
+        "item_seen_sample_rate": { "value": 0.0001 }
+      }
+    },
+    "ig_android_critical_path_manager": {
+      "params": {
+        "enabled": { "value": true },
+        "move_banyan": { "value": true },
+        "move_prefetch_location": { "value": true },
+        "run_some_jobs_in_background": { "value": true }
+      }
+    },
+    "ig_android_pdp_default_sections": { "params": { "enabled": { "value": true } } },
+    "ig_android_video_playback": { "params": { "is_debug_logging_enabled": { "value": false } } },
+    "ig_launcher_explore_sfplt_secondary_response_android": {
+      "params": {
+        "is_enabled": {
+          "value": true,
+          "logging_id": [ "408015726498578" ]
+        },
+        "is_optional": {
+          "value": false,
+          "logging_id": [ "408015726498578" ]
+        }
+      }
+    },
+    "ig_android_upload_heap_on_oom": { "params": { "is_enabled": { "value": false } } },
+    "ig_android_request_compression_launcher": {
+      "params": {
+        "use_for_feed": { "value": true },
+        "use_for_stories": { "value": true }
+      }
+    },
+    "ig_android_feed_attach_report_logs": { "params": { "is_enabled": { "value": true } } },
+    "ig_android_qp_surveys_v1": { "params": { "is_enabled": { "value": true } } },
+    "ig_direct_requests_approval_config": { "params": { "use_dedicated_endpoint": { "value": true } } },
+    "ig_android_react_native_ota_kill_switch": { "params": { "is_enabled": { "value": true } } },
+    "ig_android_video_profiler_loom_traces": { "params": { "is_enabled": { "value": false } } },
+    "video_call_gk": { "params": { "is_enabled": { "value": false } } },
+    "ig_android_geo_gating": { "params": { "is_enabled": { "value": false } } },
+    "post_user_cache_user_based": {
+      "params": {
+        "init_comment_store_synchronously": { "value": true },
+        "retry_reconcile": { "value": false },
+        "use_strong_ref_map": { "value": false },
+        "use_triggers": { "value": false }
+      }
+    },
+    "ig_android_branded_content_story_partner_promote_rollout": { "params": { "show_option": { "value": true } } },
+    "ig_direct_message_type_reporting_config": {
+      "params": {
+        "is_gifs_enabled": { "value": false },
+        "is_link_enabled": { "value": false },
+        "is_live_video_share_enabled": { "value": true },
+        "is_live_viewer_invite_enabled": { "value": true },
+        "is_photo_enabled": { "value": true },
+        "is_product_share_enabled": { "value": true },
+        "is_reel_share_enabled": { "value": true },
+        "is_stories_share_enabled": { "value": false },
+        "is_text_enabled": { "value": true },
+        "is_video_enabled": { "value": true },
+        "is_visual_message_enabled": { "value": true },
+        "is_voice_enabled": { "value": false }
+      }
+    },
+    "ig_android_shopping_influencer_creator_nux": { "params": { "is_new_nux_enabled": { "value": true } } },
+    "ig_android_mobileboost_blacklist": {
+      "params": {
+        "blacklist": { "value": "{\"cpuBoost\":[{\"deviceBrand\":null,\"deviceModel\":\"ASUS_X018D\",\"deviceChipset\":null,\"osVersion\":null,\"yearClass\":null,\"appId\":null,\"appVersion\":null},{\"deviceBrand\":null,\"deviceModel\":\"ASUS_X008DB\",\"deviceChipset\":null,\"osVersion\":null,\"yearClass\":null,\"appId\":null,\"appVersion\":null},{\"deviceBrand\":null,\"deviceModel\":\"ASUS_X008DC\",\"deviceChipset\":null,\"osVersion\":null,\"yearClass\":null,\"appId\":null,\"appVersion\":null},{\"deviceBrand\":null,\"deviceModel\":\"ASUS_X008D\",\"deviceChipset\":null,\"osVersion\":null,\"yearClass\":null,\"appId\":null,\"appVersion\":null},{\"deviceBrand\":null,\"deviceModel\":\"ASUS_X008DA\",\"deviceChipset\":null,\"osVersion\":null,\"yearClass\":null,\"appId\":null,\"appVersion\":null},{\"deviceBrand\":null,\"deviceModel\":\"C2104\",\"deviceChipset\":null,\"osVersion\":\"17\",\"yearClass\":null,\"appId\":null,\"appVersion\":null},{\"deviceBrand\":null,\"deviceModel\":\"C2105\",\"deviceChipset\":null,\"osVersion\":\"17\",\"yearClass\":null,\"appId\":null,\"appVersion\":null},{\"deviceBrand\":\"samsung\",\"deviceModel\":null,\"deviceChipset\":\"sdm845\",\"osVersion\":\"28\",\"yearClass\":null,\"appId\":null,\"appVersion\":null}],\"gpuBoost\":[],\"delayedGC\":[],\"layoutPreinflation\":[],\"threadAffinity\":[]}" },
+        "config": { "value": "{}" }
+      }
+    },
+    "ig_android_direct_gifs_killswitch": { "params": { "is_enabled": { "value": true } } },
+    "ig_android_global_scheduler_direct": {
+      "params": {
+        "in_viewer_prefetch_count": { "value": 2 },
+        "is_direct_in_viewer_enabled": { "value": true }
+      }
+    },
+    "ig_android_image_display_logging": {
+      "params": {
+        "is_enabled": { "value": true },
+        "sample_rate_denominator": { "value": 1000 }
+      }
+    },
+    "ig_android_global_scheduler_infra": {
+      "params": {
+        "chaining_feed_enabled": { "value": true },
+        "disable_manual_prefetch_next_channel": { "value": true },
+        "explore_grid_only_fetch_image_for_nonautoplaying": { "value": true },
+        "explore_loader_prefetch_other_discovery_item_types": { "value": true },
+        "explore_ranker_priority": { "value": "image_first" },
+        "explore_row_fetch_limit": { "value": 100 },
+        "explore_video_preload_limit": { "value": -1 },
+        "explore_wifi_api_check_enabled": { "value": true },
+        "is_explore_enabled": { "value": true },
+        "profile_feed_column_based": { "value": true },
+        "profile_grid_column_based": { "value": true },
+        "profile_ranker_priority": { "value": "image_first" }
+      }
+    },
+    "ig_igtv_branded_content_killswitch": { "params": { "is_enabled": { "value": false } } },
+    "ig_cg_donor_duplicate_sticker": { "params": { "enable_sticker": { "value": true } } },
+    "ig_android_highlighted_products_business_option": { "params": { "is_enabled": { "value": false } } },
+    "ig_android_rage_shake_whitelist": { "params": { "is_enabled": { "value": false } } },
+    "ig_android_shopping_ads_cta_rollout": { "params": { "is_enabled": { "value": true } } },
+    "ig_android_igtv_segmentation": {
+      "params": {
+        "min_segment_duration_sec": { "value": 2 },
+        "segmentation_threshold_sec": { "value": 24 },
+        "target_segment_duration_sec": { "value": 24 }
+      }
+    },
+    "ig_android_instacrash": { "params": { "is_enabled": { "value": true } } },
+    "ig_android_specific_story_url_handling_killswitch": { "params": { "is_enabled": { "value": true } } },
+    "ig_mobile_consent_settings_killswitch": { "params": { "is_enabled": { "value": true } } },
+    "ig_android_influencer_monetization_hub_launcher": { "params": { "is_enabled": { "value": true } } },
+    "ig_android_replay_safe": {
+      "params": {
+        "feed_enabled": { "value": true },
+        "reel_enabled": { "value": true }
+      }
+    },
+    "ig_android_shopping_django_product_search": { "params": { "is_enabled": { "value": true } } },
+    "ig_android_ppr_url_logging_config": { "params": { "log_url": { "value": true } } },
+    "ig_canvas_ad_pixel": { "params": { "is_enabled": { "value": true } } },
+    "ig_android_explore_grid_viewpoint": {
+      "params": {
+        "is_double_logging_event": { "value": false },
+        "is_replacing_existing_framework": { "value": true }
+      }
+    },
+    "ig_android_launcher_value_consistency_checker": {
+      "params": {
+        "is_enabled": { "value": false },
+        "time_interval_in_secs": { "value": 86400 }
+      }
+    },
+    "ig_biz_android_use_professional_account_term": { "params": { "is_enabled": { "value": true } } },
+    "ig_android_settings_search": { "params": { "is_enabled": { "value": false } } },
+    "ig_android_direct_presence_media_viewer": {
+      "params": {
+        "is_enabled_in_raven_viewer": { "value": true },
+        "is_enabled_in_story_viewer": { "value": true }
+      }
+    },
+    "ig_launcher_explore_navigation_redesign_android": {
+      "params": {
+        "is_enabled": { "value": true },
+        "remove_topic_cover_images": { "value": true },
+        "show_fixed_topics": { "value": true },
+        "show_icons": { "value": true },
+        "show_topic_header": { "value": true }
+      }
+    },
+    "ig_qe_value_consistency_checker": {
+      "params": {
+        "is_enabled": { "value": false },
+        "time_interval_in_secs": { "value": 86400 }
+      }
+    },
+    "ig_android_qp_waterfall_logging": { "params": { "is_enabled": { "value": true } } },
+    "ig_redex_dynamic_analysis": {
+      "params": {
+        "enabled_days_of_week": { "value": 1234567 },
+        "is_method_traces_upload_enabled": { "value": false }
+      }
+    },
+    "ig_shopping_android_carousel_product_ids_fix_killswitch": { "params": { "is_enabled": { "value": true } } },
+    "ig_shopping_android_creators_new_tagging_flow": { "params": { "is_enabled": { "value": false } } },
+    "ig_android_qp_keep_promotion_during_cooldown": { "params": { "is_enabled": { "value": true } } },
+    "ig_android_client_config_realtime_subscription": {
+      "params": {
+        "full_refresh_time_interval_in_secs": { "value": 86400 },
+        "is_enabled": { "value": false }
+      }
+    },
+    "ig_android_gps_improvements_launcher": {
+      "params": {
+        "prefetch_start_interval_ms": {
+          "value": 200,
+          "logging_id": [ "685739505154242" ]
+        }
+      }
+    },
+    "ig_android_notification_setting_sync": { "params": { "shouldSyncNotificationSettings": { "value": true } } },
+    "ig_android_iab_session_logging_config": {
+      "params": {
+        "bi_iab_safe_browsing_logging": { "value": true },
+        "iab_file_size_logging": { "value": true },
+        "iab_images_sizes": { "value": false },
+        "logging_request_level": { "value": "DOMAINS_WITH_RESOURCES" },
+        "si_native_webview_redirect_logging": { "value": true },
+        "sim_hash_logging": { "value": true }
+      }
+    },
+    "ig_android_extra_native_debugging_info": { "params": { "is_enabled": { "value": false } } },
+    "ig_contact_invites_netego_killswitch": { "params": { "is_enabled": { "value": true } } },
+    "ig_android_employee_options": { "params": { "is_enabled": { "value": false } } },
+    "ig_story_insights_entry": { "params": { "is_enabled": { "value": true } } },
+    "ig_android_gps_profile_launcher": {
+      "params": {
+        "grid_bottom_up_priority": { "value": false },
+        "grid_generate_image_only": { "value": true },
+        "profile_feed_column_based": { "value": true },
+        "profile_grid_column_based": { "value": true },
+        "profile_ranker_priority": { "value": "image_first" },
+        "video_prefetch_threshold": { "value": -1 }
+      }
+    },
+    "ig_android_rageshake_redesign": {
+      "params": {
+        "is_enabled": {
+          "value": true,
+          "logging_id": [ "458871664892801" ]
+        }
+      }
+    },
+    "ig_cx_promotion_tooltip": { "params": { "is_enabled": { "value": false } } },
+    "ig_android_carrier_signal_timestamp_max_age": { "params": { "max_age": { "value": 30 } } },
+    "ig_android_rollout_gating_payment_settings": {
+      "params": {
+        "fetch_settings_on_profile": { "value": true },
+        "should_see_new_experience": { "value": true }
+      }
+    },
+    "ig_android_mobile_boost_kill_switch": { "params": { "is_enabled": { "value": false } } },
+    "ig_android_betamap_cold_start": { "params": { "sampling_rate": { "value": 0 } } },
+    "ig_android_media_store": {
+      "params": {
+        "check_disk_full": { "value": true },
+        "is_enabled": { "value": true },
+        "max_row_count": { "value": 0 },
+        "row_max_age_seconds": { "value": 172800 }
+      }
+    },
+    "ig_delink_lasso_accounts": { "params": { "is_enabled": { "value": true } } },
+    "ig_android_shopping_insights_events_validator": { "params": { "is_enabled": { "value": true } } },
+    "ig_biz_android_new_logging_architecture": { "params": { "is_enabled": { "value": true } } },
+    "ig_launcher_ig_android_reactnative_realtime_ota": {
+      "params": {
+        "buffer": { "value": 86400000 },
+        "is_buffer_enabled": { "value": true },
+        "is_enabled": { "value": true },
+        "request_distribution": { "value": 600000 }
+      }
+    },
+    "ig_android_boomerang_crash_android_go": { "params": { "is_enabled": { "value": true } } },
+    "ig_android_shopping_influencer_product_sticker_editing": { "params": { "is_enabled": { "value": true } } },
+    "bloks_suggested_hashtag": {
+      "params": {
+        "num_media_to_fetch": {
+          "value": 14,
+          "logging_id": [ "697785940673489" ]
+        }
+      }
+    }
+  },
+  "status": "ok"
+}

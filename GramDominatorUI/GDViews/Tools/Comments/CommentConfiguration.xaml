@@ -1,0 +1,484 @@
+﻿<local:CommentConfigurationBase
+    x:Class="GramDominatorUI.GDViews.Tools.Comments.CommentConfiguration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:converters="clr-namespace:DominatorHouseCore.Converters;assembly=DominatorHouseCore"
+    xmlns:customControl="clr-namespace:DominatorUIUtility.CustomControl;assembly=DominatorUIUtility"
+    xmlns:customControl1="clr-namespace:GramDominatorUI.CustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:local="clr-namespace:GramDominatorUI.GDViews.Tools.Comments"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="CommentConfigControl"
+    mc:Ignorable="d">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand, ElementName=CommentConfigControl}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Name="MainGrid">
+        <customControl:AccountGrowthModeHeader
+            Name="AccountGrowthHeader"
+            VerticalAlignment="Top"
+            SaveCommand="{Binding SaveConfigurationsCommand}"
+            SelectedIndex="0"
+            SelectionChangedCommand="{Binding SelectionChangedCommand, ElementName=CommentConfigControl}"
+            VideoTutorialLink="{Binding VideoTutorialLink}" />
+
+        <Grid Margin="0,40,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ScrollViewer>
+                <StackPanel>
+                    <StackPanel Margin="10" Orientation="Horizontal">
+                        <TextBlock
+                            Margin="10,0,10,0"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"
+                            Text="{DynamicResource LangKeyStatus}" />
+                        <Controls:ToggleSwitch
+                            x:Name="TglStatus"
+                            VerticalAlignment="Center"
+                            FontSize="12"
+                            IsChecked="{Binding CommentModel.IsAccountGrowthActive}"
+                            OffLabel="Stopped﻿"
+                            OnLabel="Active﻿"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}">
+
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction Command="{Binding StatusChangedCommand, ElementName=CommentConfigControl}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Controls:ToggleSwitch>
+                    </StackPanel>
+
+                    <StackPanel>
+
+                        <!--  Search Query Section  -->
+                        <Expander
+                            Margin="5"
+                            Header="{DynamicResource LangKeySearchQuery}"
+                            IsExpanded="True">
+                            <customControl:SearchQueryControl
+                                Name="CommentConfigSearchControl"
+                                AddQueryCommand="{Binding AddQueryCommand}"
+                                CommandParameter="{Binding ElementName=CommentConfigControl}"
+                                CustomFilterCommand="{Binding CustomFilterCommand}"
+                                DeleteMulipleCommand="{Binding DeleteMultipleCommand}"
+                                DeleteQueryCommand="{Binding DeleteQueryCommand}"
+                                ListQueryInfo="{Binding CommentModel.SavedQueries}"
+                                ListQueryType="{Binding CommentModel.ListQueryType}" />
+                        </Expander>
+                        <StackPanel Orientation="Vertical">
+                            <!--  Manage Comment Expender  -->
+                            <Expander Margin="5,5" Header="{DynamicResource LangKeyManageComments}">
+                                <StackPanel>
+                                    <CheckBox
+                                        Name="ChkMakeCaptionAsSpinText"
+                                        Content="{DynamicResource LangKeyMakeCommentAsSpinText}"
+                                        IsChecked="{Binding CommentModel.IsChkMakeCaptionAsSpinText}" />
+                                    <CheckBox
+                                        Name="ChkAddMultipleComments"
+                                        Content="{DynamicResource LangKeyAddMultipleCommentsSeparatedByNewLine}"
+                                        IsChecked="{Binding CommentModel.IsChkAddMultipleComments}" />
+                                    <customControl:CommentControl
+                                        Name="CommentControl"
+                                        AddCommentsCommand="{Binding AddCommentsCommand}"
+                                        CommandParameter="{Binding ElementName=CommentControl}"
+                                        Comments="{Binding CommentModel.ManageCommentModel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                    <customControl:ManageComment LstManageCommentModel="{Binding CommentModel.LstDisplayManageCommentModel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                </StackPanel>
+                            </Expander>
+
+                            <!--  JobConfiguration  Expender  -->
+                            <Expander Margin="5,5" Header="{DynamicResource LangKeyJobConfiguration}">
+                                <customControl:JobConfigControl
+                                    JobConfiguration="{Binding CommentModel.JobConfiguration}"
+                                    PerDayActivity="{DynamicResource LangKeyPost}"
+                                    PerHourActivity="{DynamicResource LangKeyPost}"
+                                    PerJobActivity="{DynamicResource LangKeyPost}"
+                                    PerWeekActivity="{DynamicResource LangKeyPost}" />
+                            </Expander>
+
+                            <!--  Post Filter Expender  -->
+                            <Expander
+                                Margin="5,5"
+                                Header="{DynamicResource LangKeyPostFilters}"
+                                Visibility="{Binding CommentModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <customControl1:PostFilterControl PostFilter="{Binding CommentModel.PostFilterModel}" />
+                            </Expander>
+                            <!--  User Filters Expender  -->
+                            <Expander
+                                Margin="5,5"
+                                Header="{DynamicResource LangKeyUserFilters}"
+                                Visibility="{Binding CommentModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <customControl1:UserFiltersControl x:Name="UserFiltersControl" UserFilter="{Binding CommentModel.UserFilterModel, UpdateSourceTrigger=PropertyChanged}" />
+                            </Expander>
+                            <!--  After Comment Action Expender  -->
+                            <Expander
+                                Margin="5,5"
+                                Header="{DynamicResource LangKeyAfterCommentAction}"
+                                Visibility="{Binding CommentModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                                <StackPanel>
+                                    <CheckBox
+                                        Margin="5,5"
+                                        Content="{DynamicResource LangKeyAfterCommentAction}"
+                                        IsChecked="{Binding CommentModel.IsChkAfterCommentAction}" />
+                                    <StackPanel Margin="20,5,0,0" Visibility="{Binding CommentModel.IsChkAfterCommentAction, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <!--<CheckBox Content="{DynamicResource LangKeyMentionNonExistingUsers}" Margin="5,5" IsChecked="{Binding IsChkMentionNonExistingUsers}"/>-->
+
+                                        <CheckBox
+                                            Margin="5,5"
+                                            Content="{DynamicResource LangKeyLikePostAfterComment}"
+                                            IsChecked="{Binding CommentModel.IsChkLikePostAfterComment}" />
+                                        <StackPanel
+                                            Margin="20,0"
+                                            Orientation="Horizontal"
+                                            Visibility="{Binding CommentModel.IsChkLikePostAfterComment, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <Label VerticalAlignment="Center" Content="{DynamicResource LangKeyDelayBetween}" />
+                                            <Controls:NumericUpDown
+                                                Name="DelayBetweenLikeActivityStartValue"
+                                                Margin="5,5,5,0"
+                                                Minimum="0"
+                                                Value="{Binding CommentModel.DelayBetweenLikesForAfterActivity.StartValue}" />
+                                            <Label
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Content="{DynamicResource LangKeyTo}" />
+                                            <Controls:NumericUpDown
+                                                Margin="5,5,5,0"
+                                                Minimum="{Binding Value, ElementName=DelayBetweenLikeActivityStartValue}"
+                                                Value="{Binding CommentModel.DelayBetweenLikesForAfterActivity.EndValue}" />
+                                            <Label VerticalAlignment="Center" Content="{DynamicResource LangKeySecondsBetweenEachLike}" />
+                                        </StackPanel>
+
+                                        <CheckBox
+                                            Margin="5,5"
+                                            Content="{DynamicResource LangKeyFollowUserAfterComment}"
+                                            IsChecked="{Binding CommentModel.IsChkFollowUserAfterComment}" />
+                                        <StackPanel
+                                            Margin="20,0"
+                                            Orientation="Horizontal"
+                                            Visibility="{Binding CommentModel.IsChkFollowUserAfterComment, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <Label VerticalAlignment="Center" Content="{DynamicResource LangKeyDelayBetween}" />
+                                            <Controls:NumericUpDown
+                                                Name="DelayBetweenFollowActivityStartValue"
+                                                Margin="5,5,5,0"
+                                                Minimum="0"
+                                                Value="{Binding CommentModel.DelayBetweenFollowForAfterActivity.StartValue}" />
+                                            <Label
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Content="{DynamicResource LangKeyTo}" />
+                                            <Controls:NumericUpDown
+                                                Margin="5,5,5,0"
+                                                Minimum="{Binding Value, ElementName=DelayBetweenFollowActivityStartValue}"
+                                                Value="{Binding CommentModel.DelayBetweenFollowForAfterActivity.EndValue}" />
+                                            <Label VerticalAlignment="Center" Content="{DynamicResource LangKeySecondsBetweenEachFollow}" />
+                                        </StackPanel>
+
+                                        <!--<CheckBox Content="{DynamicResource LangKeyRemovePoorQualitySources}" Margin="5,5" IsChecked="{Binding IsChkRemovePoorQuality}"/>
+                                    <StackPanel Orientation="Horizontal" Margin="5,5">
+                                        <CheckBox Content="{DynamicResource LangKeyRemoveSourceIfFollowBackRatioIsLowerThan}" IsChecked="{Binding IsChkRemoveIfFollowBackRatioLimit}"/>
+                                        <Controls:NumericUpDown Margin="5,5,5,0" IsEnabled="{Binding IsChkRemoveIfFollowBackRatioLimit}" Value="{Binding RemoveIfMinFollowBackRatioValue}"
+                                                            Minimum="0"/>
+                                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyAfter}" />
+                                        <Controls:NumericUpDown Margin="5,5,5,0"  IsEnabled="{Binding IsChkRemoveIfFollowBackRatioLimit}" Value="{Binding RemoveIfFollowBackRatioAfterCommentValue}" />
+                                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyDeleteComment}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="5,5">
+                                        <CheckBox Content="{DynamicResource LangKeySuspendTheToolWhenGotTemporaryBlockFor}" IsChecked="{Binding IsChkSuspendToolWhenGotBlock}"/>
+                                        <Controls:NumericUpDown Margin="5,5,5,0" IsEnabled="{Binding IsChkSuspendToolWhenGotBlock}" Value="{Binding SuspendToolWhenGotBlockedValue}"
+                                                            Minimum="0"/>
+                                        <Label HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{DynamicResource LangKeyMinutes}" />
+                                    </StackPanel>-->
+
+                                    </StackPanel>
+                                </StackPanel>
+                            </Expander>
+
+                            <!--  Other Configurations filter Expender  -->
+                            <Expander
+                                Margin="5,5"
+                                Header="{DynamicResource LangKeyOtherConfigurations}"
+                                Visibility="{Binding CommentModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <StackPanel Margin="10,5,0,5">
+
+                                    <!--  Comment specific count per user  -->
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox
+                                            Name="ChkCommentCountPerUser"
+                                            Content="{DynamicResource LangKeyComment}"
+                                            IsChecked="{Binding CommentModel.IsCheckedCommentPerUser}" />
+
+                                        <Controls:NumericUpDown
+                                            Name="NumericUpDownMinCommentCountPerUser"
+                                            Margin="10,0,0,0"
+                                            Interval="1"
+                                            IsEnabled="{Binding CommentModel.IsCheckedCommentPerUser}"
+                                            Maximum="10000"
+                                            Minimum="1"
+                                            TextAlignment="Center"
+                                            Value="{Binding CommentModel.CommentCountPerUser.StartValue}" />
+                                        <Label
+                                            Name="LblCommentCountPerUserTo"
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Content="{DynamicResource LangKeyTo}" />
+                                        <Controls:NumericUpDown
+                                            Name="NumericUpDownMaxCommentCountPerUser"
+                                            Margin="10,0,0,0"
+                                            Interval="1"
+                                            IsEnabled="{Binding CommentModel.IsCheckedCommentPerUser}"
+                                            Maximum="10000"
+                                            Minimum="{Binding CommentModel.CommentCountPerUser.StartValue}"
+                                            TextAlignment="Center"
+                                            Value="{Binding CommentModel.CommentCountPerUser.EndValue}" />
+                                        <Label
+                                            Name="LblCommentCountPostsOfOneUser"
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Content="{DynamicResource LangKeyPostsOfOneUser}" />
+                                    </StackPanel>
+
+                                    <!--  Mention users in Comment  -->
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox Content="{DynamicResource LangKeyMentionBetween}" IsChecked="{Binding CommentModel.IsChkMentionRandomUsers}" />
+                                        <Controls:NumericUpDown
+                                            Name="IsChkMentionRandomUserStartValue"
+                                            Margin="5,5,5,0"
+                                            IsEnabled="{Binding CommentModel.IsChkMentionRandomUsers}"
+                                            Minimum="1"
+                                            Value="{Binding CommentModel.RandomlyGeneratedUsers.StartValue}" />
+                                        <Label
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Content="{DynamicResource LangKeyAnd}" />
+                                        <Controls:NumericUpDown
+                                            Margin="5,5,5,0"
+                                            IsEnabled="{Binding CommentModel.IsChkMentionRandomUsers}"
+                                            Minimum="{Binding CommentModel.RandomlyGeneratedUsers.StartValue}"
+                                            Value="{Binding CommentModel.RandomlyGeneratedUsers.EndValue}" />
+                                    </StackPanel>
+                                    <customControl:InputBoxControl
+                                        x:Name="InputBoxMentionUsers"
+                                        Margin="5,0,0,5"
+                                        InputText="{Binding CommentModel.MentionUsers}"
+                                        Visibility="{Binding CommentModel.IsChkMentionRandomUsers, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+
+                                    <CheckBox
+                                        Margin="0,0,0,5"
+                                        Content="{DynamicResource LangKeyAllowMultipleCommentsOnSamePost}"
+                                        IsChecked="{Binding CommentModel.IsChkMultipleCommentsOnSamePost}" />
+                                    <CheckBox
+                                        Margin="0,5,0,0"
+                                        Content="{DynamicResource LangKeyAllowCommentsOnOwnPosts}"
+                                        IsChecked="{Binding CommentModel.IsChkCommentsOnOwnPost}" />
+
+                                    <StackPanel Margin="0,5,0,5" Orientation="Vertical">
+                                        <CheckBox
+                                            Name="ChkUniqueUserAccount"
+                                            Margin="0,0,10,0"
+                                            Content="{DynamicResource LangKeyPerformActionOnPostsOfUniqueUserFromEachAccountsInThisCampaign}"
+                                            IsChecked="{Binding CommentModel.IschkUniqueUserForAccount}" />
+                                        <CheckBox
+                                            Name="ChkUniqueUserCampaign"
+                                            Margin="0,5,10,0"
+                                            Content="{DynamicResource LangKeyPerformActionOnPostsOfUniqueUserFromAllAccountsInThisCampaign}"
+                                            IsChecked="{Binding CommentModel.IschkUniqueUserForCampaign}" />
+                                        <CheckBox
+                                            Name="ChkUniquePostCampaign"
+                                            Margin="0,5,10,0"
+                                            Content="{DynamicResource LangKeyPerformActionOnUniquePostFromAllAccountsInThisCampaign}"
+                                            IsChecked="{Binding CommentModel.IschkUniquePostForCampaign}" />
+                                        <!--<CheckBox Name="ChkUniqueCommentPerPostFromEachAccount" Content="{DynamicResource LangKeyUniqueCommentPerPostFromEachAccount}"  Foreground="Black" Margin="0,5,10,0" IsChecked="{Binding CommentModel.IschkUniqueCommentPerPostFromEachAccount}" />-->
+                                        <!--<CheckBox Name="ChkUniqueComment" Content="{DynamicResource LangKeyUniqueComment}" Foreground="Black" Margin="0,5,10,0" IsChecked="{Binding CommentModel.IsUniqueComment}"></CheckBox>
+                                        <StackPanel Orientation="Vertical"  Visibility="{Binding CommentModel.IsUniqueComment,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <RadioButton GroupName="UniqueComment" Margin="10,5,5,0" Content="{DynamicResource LangKeyPostUniqueCommentFromEachAccount}" Foreground="Black" IsChecked="{Binding CommentModel.IsPostUniqueCommentFromEachAccount}"></RadioButton>
+                                            <RadioButton GroupName="UniqueComment" Margin="10,5,5,0" Content="{DynamicResource LangKeyCommentOnceFromEachAccount}" Foreground="Black" IsChecked="{Binding CommentModel.IsCommentOnceFromEachAccount}"></RadioButton>
+                                        </StackPanel>
+                                        <CheckBox Name="ChkUniqueMentionPerPostFromEachAccount" Content="{DynamicResource LangKeyUniqueMentionPerPostFromEachAccount}" Foreground="Black" Margin="0,5,10,0" IsChecked="{Binding CommentModel.IschkUniqueMentionPerPostFromEachAccount}" />-->
+                                        <CheckBox
+                                            Name="ChkUniqueCommentAndMention"
+                                            Margin="0,5,10,0"
+                                            Content="{DynamicResource LangKeyUniqueCommentAndMention}"
+                                            IsChecked="{Binding CommentModel.IsUniqueCommentAndMention}" />
+                                        <StackPanel Orientation="Vertical" Visibility="{Binding CommentModel.IsUniqueCommentAndMention, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <RadioButton
+                                                Margin="10,5,5,0"
+                                                Content="{DynamicResource LangKeyUniqueComment}"
+                                                GroupName="UniqueCommentAndMention"
+                                                IsChecked="{Binding CommentModel.IsUniqueComment}" />
+                                            <RadioButton
+                                                Margin="10,5,5,0"
+                                                Content="{DynamicResource LangKeyUniqueMention}"
+                                                GroupName="UniqueCommentAndMention"
+                                                IsChecked="{Binding CommentModel.IsUniqueMention}" />
+                                            <StackPanel>
+                                                <StackPanel Orientation="Vertical" Visibility="{Binding CommentModel.IsUniqueComment, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                    <RadioButton
+                                                        Margin="20,5,5,0"
+                                                        Content="{DynamicResource LangKeyPostUniqueCommentAndMentionFromEachAccount}"
+                                                        GroupName="UniqueCommentMentions"
+                                                        IsChecked="{Binding CommentModel.IsPostUniqueCommentFromEachAccount}" />
+                                                    <RadioButton
+                                                        Margin="20,5,5,0"
+                                                        Content="{DynamicResource LangKeyCommentAndMentionOnceFromEachAccount}"
+                                                        GroupName="UniqueCommentMentions"
+                                                        IsChecked="{Binding CommentModel.IsCommentOnceFromEachAccount}" />
+                                                </StackPanel>
+                                                <StackPanel Orientation="Vertical" Visibility="{Binding CommentModel.IsUniqueMention, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                    <RadioButton
+                                                        Margin="20,5,5,0"
+                                                        Content="{DynamicResource LangKeyPostUniqueCommentAndMentionFromEachAccount}"
+                                                        GroupName="UniqueCommentMention"
+                                                        IsChecked="{Binding CommentModel.IsPostUniqueCommentFromEachAccount}" />
+                                                    <RadioButton
+                                                        Margin="20,5,5,0"
+                                                        Content="{DynamicResource LangKeyCommentAndMentionOnceFromEachAccount}"
+                                                        GroupName="UniqueCommentMention"
+                                                        IsChecked="{Binding CommentModel.IsCommentOnceFromEachAccount}" />
+                                                </StackPanel>
+
+                                            </StackPanel>
+
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <CheckBox
+                                                Name="ChkUpvoteFromRandomPercentageOfAccount"
+                                                Margin="0,5,10,0"
+                                                Content="{DynamicResource LangKeyPerformActionFromRandom}"
+                                                FontWeight="SemiBold"
+                                                IsChecked="{Binding CommentModel.IsPerformActionFromRandomPercentageOfAccounts}" />
+                                            <Controls:NumericUpDown
+                                                Margin="0,5,0,0"
+                                                IsEnabled="{Binding CommentModel.IsPerformActionFromRandomPercentageOfAccounts}"
+                                                Minimum="10"
+                                                Value="{Binding CommentModel.PerformActionFromRandomPercentage.StartValue}" />
+                                            <Label
+                                                Margin="0,5,0,0"
+                                                VerticalAlignment="Center"
+                                                Content="{DynamicResource LangKeyTo}" />
+                                            <Controls:NumericUpDown
+                                                Margin="0,5,0,0"
+                                                IsEnabled="{Binding CommentModel.IsPerformActionFromRandomPercentageOfAccounts}"
+                                                Minimum="{Binding CommentModel.PerformActionFromRandomPercentage.StartValue}"
+                                                Value="{Binding CommentModel.PerformActionFromRandomPercentage.EndValue}" />
+                                            <Label
+                                                Margin="0,5,0,0"
+                                                VerticalAlignment="Center"
+                                                Content="{DynamicResource LangKeyPercentageOfSelectedAccounts}" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <CheckBox
+                                                Name="ChkDelayBetweenUpvotesOnSamePost"
+                                                Margin="0,0,10,0"
+                                                Content="{DynamicResource LangKeyKeepDelayBetween}"
+                                                FontWeight="SemiBold"
+                                                IsChecked="{Binding CommentModel.EnableDelayBetweenPerformingActionOnSamePost}" />
+                                            <Controls:NumericUpDown
+                                                Margin="0,5,0,0"
+                                                IsEnabled="{Binding CommentModel.EnableDelayBetweenPerformingActionOnSamePost}"
+                                                Minimum="10"
+                                                Value="{Binding CommentModel.DelayBetweenPerformingActionOnSamePost.StartValue}" />
+                                            <Label
+                                                Margin="0,5,0,0"
+                                                VerticalAlignment="Center"
+                                                Content="{DynamicResource LangKeyTo}" />
+                                            <Controls:NumericUpDown
+                                                Margin="0,5,0,0"
+                                                IsEnabled="{Binding CommentModel.EnableDelayBetweenPerformingActionOnSamePost}"
+                                                Minimum="{Binding CommentModel.DelayBetweenPerformingActionOnSamePost.StartValue}"
+                                                Value="{Binding CommentModel.DelayBetweenPerformingActionOnSamePost.EndValue}" />
+                                            <Label
+                                                Margin="0,5,0,0"
+                                                VerticalAlignment="Center"
+                                                Content="{DynamicResource LangKeySecondsWhenPerformingActionOnASpecificPost}" />
+                                        </StackPanel>
+                                        <StackPanel Margin="0,5,0,0">
+                                            <CheckBox
+                                                Margin="0,10,0,0"
+                                                Content="{DynamicResource LangKeyTopRecentHashTagPost}"
+                                                IsChecked="{Binding CommentModel.IsTopRecentHashTagPost}" />
+                                            <StackPanel Visibility="{Binding CommentModel.IsTopRecentHashTagPost, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                <RadioButton
+                                                    Margin="20,5"
+                                                    Content="{DynamicResource LangKeyRecentHashTagPost}"
+                                                    GroupName="HashtagPost"
+                                                    IsChecked="{Binding CommentModel.IsRecentHashTagPost}" />
+                                                <RadioButton
+                                                    Margin="20,5"
+                                                    Content="{DynamicResource LangKeyTopHashTagPost}"
+                                                    GroupName="HashtagPost"
+                                                    IsChecked="{Binding CommentModel.IsTopHashTagPost}" />
+                                                <RadioButton
+                                                    Margin="20,5"
+                                                    Content="{DynamicResource LangKeyTopAndRecentHashTagPost}"
+                                                    GroupName="HashtagPost"
+                                                    IsChecked="{Binding CommentModel.IsTopAndRecentHashTagPost}" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock VerticalAlignment="Center" Text="{StaticResource LangKeyDelayBetweenEachActionBlock}" />
+                                            <Controls:NumericUpDown
+                                                Name="DelayOperationStartValue"
+                                                Margin="5,5,5,0"
+                                                Minimum="0"
+                                                Value="{Binding CommentModel.DelayBetweenEachActionBlock.StartValue}" />
+                                            <Label
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Content="{DynamicResource LangKeyTo}" />
+                                            <Controls:NumericUpDown
+                                                Margin="5,5,5,0"
+                                                Minimum="{Binding Value, ElementName=DelayOperationStartValue}"
+                                                Value="{Binding CommentModel.DelayBetweenEachActionBlock.EndValue}" />
+                                            <Label VerticalAlignment="Center" Content="{DynamicResource LangKeyMin}" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Expander>
+
+                            <!--  Manage Blacklists Expander  -->
+                            <Expander
+                                Margin="5,5"
+                                Header="{DynamicResource LangKeyManageBlacklistedUsers}"
+                                Visibility="{Binding CommentModel.IsEnableAdvancedUserMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <StackPanel>
+                                    <CheckBox
+                                        Margin="5,5"
+                                        Content="{DynamicResource LangKeySkipBlacklistedUsersPosts}"
+                                        IsChecked="{Binding CommentModel.SkipBlacklist.IsSkipBlackListUsers}" />
+                                    <StackPanel
+                                        Margin="5,5"
+                                        Orientation="Horizontal"
+                                        Visibility="{Binding CommentModel.SkipBlacklist.IsSkipBlackListUsers, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <CheckBox
+                                            Margin="5,5"
+                                            Content="{DynamicResource LangKeyPrivateBlacklist}"
+                                            IsChecked="{Binding CommentModel.SkipBlacklist.IsSkipPrivateBlackListUser}" />
+                                        <CheckBox
+                                            Margin="5,5"
+                                            Content="{DynamicResource LangKeyGroupBlacklist}"
+                                            IsChecked="{Binding CommentModel.SkipBlacklist.IsSkipGroupBlackListUsers}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Expander>
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+
+</local:CommentConfigurationBase>

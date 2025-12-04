@@ -1,0 +1,5068 @@
+﻿{
+  "experiments": [
+    {
+      "name": "ig_android_push_notifications_settings_redesign_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ],
+      "logging_id": "2232161556829689"
+    },
+    {
+      "name": "ig_android_video_ssim_fix_pts_universe",
+      "group": "test_1000",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "ssim_fix_pts",
+          "value": "1000000"
+        }
+      ],
+      "logging_id": "2962613207114646"
+    },
+    {
+      "name": "android_ig_camera_ar_asset_manager_improvements_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_prevent_duplicated_face_effect_download",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_autoscroll_to_first_unread_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_seen_state_serialization",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "memory_only",
+          "value": "false"
+        },
+        {
+          "name": "serialize_async",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_delayed_comments",
+      "group": "warning1",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "comment_warning_new_copy",
+          "value": "false"
+        },
+        {
+          "name": "is_comment_warning_enabled_detail",
+          "value": "true"
+        },
+        {
+          "name": "is_comment_warning_enabled_ads",
+          "value": "false"
+        },
+        {
+          "name": "daily_cap",
+          "value": "2"
+        },
+        {
+          "name": "comment_warning_in_seconds",
+          "value": "8.0"
+        }
+      ]
+    },
+    {
+      "name": "ig_smb_ads_holdout_2019_h1_universe",
+      "group": "pass",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "group_type",
+          "value": "pass"
+        }
+      ]
+    },
+    {
+      "name": "ig_fb_graph_differentiation",
+      "group": "control_top5",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "ig_fb_graph_differentiation_feature_limit",
+          "value": "5"
+        },
+        {
+          "name": "ig_fb_graph_differentiation_source_limit",
+          "value": "5"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_share_extension_video_segmentation",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_reshare_chaining",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "show_floating_send",
+          "value": "false"
+        },
+        {
+          "name": "enabled",
+          "value": "false"
+        }
+      ],
+      "logging_id": "386309478652693"
+    },
+    {
+      "name": "ig_android_direct_app_reel_grid_search",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_viewer_viewpoint_universe",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "log_vpvd_events",
+          "value": "true"
+        },
+        {
+          "name": "allow_double_logging",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_newer_single_line_composer_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enable_newer_single_row_composer_without_overflow",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_direct_holdout_h1_2019",
+      "group": "deploy",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "behavior",
+          "value": "pass"
+        }
+      ],
+      "logging_id": "770179543315701"
+    },
+    {
+      "name": "ig_explore_2019_h1_destination_cover",
+      "group": "test_no_vyml_new_cover",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "use_destination_cover",
+          "value": "true"
+        },
+        {
+          "name": "remove_vyml_overlay",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_stories_in_direct_inbox",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "show_presence_on_seen_story",
+          "value": "true"
+        },
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "show_seen_story",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_music_precapture",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_precapture_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_double_tap_to_like_hearts",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_android_api_rewrite_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "graphql_query_id",
+          "value": "1982443435199755"
+        },
+        {
+          "name": "query_id_v2",
+          "value": "2846812355392285"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_realtime_timeout",
+      "group": "test_10",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "timeout_ttl_ms",
+          "value": "10000"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_gallery_recyclerview_kit_universe",
+      "group": "deploy",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_business_signup_biz_id_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_ttcp_improvements",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "prefetch_colors",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_camera_ar_platform_profile_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_ar_effects_profile_tab_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_separate_sms_n_email_invites_setting_universe",
+      "group": "release",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ],
+      "logging_id": "397489877570331"
+    },
+    {
+      "name": "ig_android_recyclerview_binder_group_enabled_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": []
+    },
+    {
+      "name": "ig_android_stories_viewer_tall_android_cap_media_universe",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "cap_live_media",
+          "value": "true"
+        },
+        {
+          "name": "cap_media_size",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_share_sheet_custom_fast_scroller",
+      "group": "test_custom_fastscroll_disable_sticky",
+      "additional_params": [],
+      "params": []
+    },
+    {
+      "name": "native_contact_invites_universe",
+      "group": "release",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "filter_high_cost",
+          "value": "false"
+        },
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ],
+      "logging_id": "2359241714124005"
+    },
+    {
+      "name": "ig_android_direct_group_creation_flow_redesign",
+      "group": "test_with_typeahead",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_typeahead_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_2018_h1_hashtag_report_universe",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabeld",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_share_to_story_toggle_include_shopping_product",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_interactions_verified_badge_on_comment_details",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_fix_story_ring_for_deleted_story",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "skip_cache",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_payments_billing_address",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "collect_billing_address",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_fs_new_gallery_hashtag_prompts",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_remove_display_rotation_cb_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_interactions_migrate_inline_composer_to_viewpoint_universe",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_fix_playing_invalid_visual_message",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_deeplink_invites_url_to_profile_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enable",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_enable_zero_rating",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_import_page_post_after_biz_conversion",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "max_media_count",
+          "value": "6"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_main_feed_refresh_style_universe",
+      "group": "test_pill",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "defer_enabled",
+          "value": "true"
+        },
+        {
+          "name": "scroll_to_top_on_feed_refresh_start",
+          "value": "false"
+        },
+        {
+          "name": "reload_on_tap_scroll_to_top",
+          "value": "true"
+        },
+        {
+          "name": "hide_indicator_on_stories",
+          "value": "true"
+        },
+        {
+          "name": "allow_defer_on_ptr",
+          "value": "false"
+        },
+        {
+          "name": "indicator_requires_view_visible",
+          "value": "true"
+        },
+        {
+          "name": "reload_on_scroll_to_top",
+          "value": "true"
+        },
+        {
+          "name": "use_pill_spring_animation",
+          "value": "true"
+        },
+        {
+          "name": "reload_on_view_disappeared",
+          "value": "true"
+        },
+        {
+          "name": "remove_uncacheable_items",
+          "value": "true"
+        },
+        {
+          "name": "indicator_requires_foreground",
+          "value": "true"
+        },
+        {
+          "name": "reload_on_background",
+          "value": "true"
+        },
+        {
+          "name": "defer_new_content_always",
+          "value": "false"
+        },
+        {
+          "name": "defer_new_content_if_engaged",
+          "value": "true"
+        },
+        {
+          "name": "cached_feed_load_distance",
+          "value": "1"
+        },
+        {
+          "name": "defer_new_content_if_scrolled_below",
+          "value": "story_tray_bottom"
+        },
+        {
+          "name": "scroll_to_top_action",
+          "value": "force_reload"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_story_ads_performance_universe_1",
+      "group": "test",
+      "additional_params": [],
+      "params": []
+    },
+    {
+      "name": "ig_android_quick_conversion_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ],
+      "logging_id": "267184094231267"
+    },
+    {
+      "name": "ig_android_story_import_intent",
+      "group": "deploy",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_ads_paid_branded_content_stories",
+      "group": "show_partner_boost_switch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "allow_partner_boost",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_feed_seen_state_with_view_info",
+      "group": "test_view_info",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_disable_verification",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_runtime_verification_disabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_ads_profile_cta_feed_universe",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "comments_enabled",
+          "value": "true"
+        },
+        {
+          "name": "profile_enabled",
+          "value": "true"
+        },
+        {
+          "name": "media_enabled",
+          "value": "true"
+        },
+        {
+          "name": "bottom_cta_type",
+          "value": "button"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_django_push_phase_logginig",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_live_qa_viewer_v1_universe",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_shopping_insights_wc_copy_update_android",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_igtv_reshare",
+      "group": "deploy",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_serialize_to_sqlite_memory_improvements",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "use_byte_array",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_wellbeing_timeinapp_v1_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "instrumentation_enabled",
+          "value": "true"
+        },
+        {
+          "name": "analytics_logging_enabled",
+          "value": "true"
+        },
+        {
+          "name": "usage_events_logging_enabled",
+          "value": "true"
+        },
+        {
+          "name": "heartbeat_rate_ms",
+          "value": "30000"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_cache_video_autoplay_checker",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "cache_time",
+          "value": "500"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_vc_start_from_direct_inbox_universe",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_perf_android_holdout",
+      "group": "everyone_else",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "behavior",
+          "value": "pass"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_mutation_manager_queue_thread_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "seen_state_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_video_prefetch_kb",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "prefetch_kb",
+          "value": "5120"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_wellbeing_timeinapp_v1_migration",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "v1_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_cookie_injection_retry_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "should_retry",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_inventory_connections",
+      "group": "refresh_ucg",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "contacts_ranking_feature_id",
+          "value": "23133935"
+        },
+        {
+          "name": "contacts_ranking_model_id",
+          "value": "2332113660235294"
+        },
+        {
+          "name": "contacts_ranking_method",
+          "value": "LAMBDAMART_RANKING"
+        },
+        {
+          "name": "is_enabled",
+          "value": "enabled"
+        }
+      ],
+      "logging_id": "394204811448831"
+    },
+    {
+      "name": "ig_android_stories_disable_highlights_media_preloading",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "tray_prefetch_disabled",
+          "value": "true"
+        },
+        {
+          "name": "max_media_in_preloaded_reel",
+          "value": "5"
+        },
+        {
+          "name": "num_reels_to_preload",
+          "value": "2"
+        },
+        {
+          "name": "preload_small_reels_only",
+          "value": "enabled"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_android_attribution_bottomsheet_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "attribution_query_id",
+          "value": "1059196754204683"
+        }
+      ],
+      "logging_id": "2436205093108502"
+    },
+    {
+      "name": "ig_android_explore_viewpoint_autoplay",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_interactions_h1_2019_team_holdout_universe",
+      "group": "deploy",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_h1_2019_holdout",
+          "value": "pass"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_music_story_fb_crosspost_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "ig_android_music_story_fb_crosspost",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_vc_participants_grid_refactor_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_android_camera_filter_downsample_fix_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_pre_filter_output_resolution_fix_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_android_effect_info_bottom_sheet_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_igtv_audio_always_on",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_sorting_on_self_following_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_sorting_enabled",
+          "value": "true"
+        },
+        {
+          "name": "sorting_options",
+          "value": "date_followed_latest, date_followed_earliest"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_edit_location_page_info",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_edit_enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_android_segmentation_v106_igdjango_universe",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "version",
+          "value": "103"
+        }
+      ],
+      "logging_id": "407192423262052"
+    },
+    {
+      "name": "ig_android_interactions_feed_label_below_comments_refactor_universe",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_android_qcc_constructor_opt_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_async_camera_effect_facade",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_alignment_guides_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_rn_ads_manager_universe",
+      "group": "test_entrypoint",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "has_profile_entry_point",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_video_visual_quality_score_based_abr",
+      "group": "in_play_and_prefetch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_enabled_for_prefetch",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_explore_2018_post_chaining_account_recs_dedupe_universe",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_video_seeking_audio_bug_fix",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_feed_post_sticker",
+      "group": "deploy",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_invite_xout_universe",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "should_show_hide_button",
+          "value": "true"
+        },
+        {
+          "name": "should_show_xout_button",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_low_data_mode_backup_5",
+      "group": "test_no_video_prefetch_and_low_res_on_cellular",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "hide_advanced_settings",
+          "value": "false"
+        },
+        {
+          "name": "disable_video_prefetch",
+          "value": "true"
+        },
+        {
+          "name": "only_hide_autoplay_settings",
+          "value": "true"
+        },
+        {
+          "name": "show_megaphone_on_wifi",
+          "value": "true"
+        },
+        {
+          "name": "high_quality_media",
+          "value": "1"
+        },
+        {
+          "name": "master_flag",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_unregister_decor_listener_universe",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_video_abr_universe",
+      "group": "test_release_fix",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "remove_surface_listener",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_biz_graph_unify_assoc_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "manage_ads_assoc",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_challenge_general_v2",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_eligible_for_hl",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_place_signature_universe",
+      "group": "rollout_story",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_story_and_quick_tag_signature_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_place_signature_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_cancel_on_exit_enabled",
+          "value": "true"
+        }
+      ],
+      "logging_id": "2445871752323224"
+    },
+    {
+      "name": "ig_android_direct_inbox_cache_universe",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "initialize_mutation_manager_on_start",
+          "value": "true"
+        },
+        {
+          "name": "remove_cache_warmup",
+          "value": "false"
+        },
+        {
+          "name": "use_independent_thread_for_mutation",
+          "value": "false"
+        },
+        {
+          "name": "fix_dispatch_from_disk",
+          "value": "false"
+        },
+        {
+          "name": "dispatch_to_handler",
+          "value": "false"
+        }
+      ],
+      "logging_id": "481191632706535"
+    },
+    {
+      "name": "ig_android_ig_branding_in_fb_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_business_promote_tooltip",
+      "group": "test_v5",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_tap_to_capture_universe",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_tap_to_capture",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_updated_story_reference_ui",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "solid_line",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_composer_overflow_tray_test",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_music_continuous_capture",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_view_more_qe",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_churned_find_friends_redirect_to_discover_people",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_activity_feed",
+          "value": "true"
+        },
+        {
+          "name": "is_push_notification",
+          "value": "true"
+        },
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_android_ar_effect_stories_deeplink",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_viewing_deeplink_story_enabled",
+          "value": "true"
+        },
+        {
+          "name": "attributed_effects_query_id",
+          "value": "2253728161315083"
+        }
+      ]
+    },
+    {
+      "name": "ig_ios_queue_time_qpl_universe",
+      "group": "request_sampled",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "log_urls",
+          "value": "true"
+        },
+        {
+          "name": "sample_rate",
+          "value": "500"
+        },
+        {
+          "name": "sample_type",
+          "value": "REQUEST"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_viewer_responsiveness_universe",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enable_overshoot_clamping",
+          "value": "true"
+        },
+        {
+          "name": "paging_friction",
+          "value": "9.2"
+        },
+        {
+          "name": "paging_tension",
+          "value": "60.0"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_live_ama_viewer_universe",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_realtime_submissions_enabled",
+          "value": "false"
+        },
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_business_id_conversion_universe",
+      "group": "test_1_25_18",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_smb_ads_holdout_2018_h2_universe",
+      "group": "pass",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "show_tips",
+          "value": "true"
+        },
+        {
+          "name": "group_type",
+          "value": "pass"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_camera_post_smile_low_end_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_video_transcoding_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_photo_preview_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_multi_upload_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_video_preview_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_double_buffer_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_photo_optimization_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_managing_surfacetexture_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_dark_test_enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_profile_follow_tab_hashtag_row_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "igtv_feed_previews",
+      "group": "deploy",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "igtv_feed_preview_read_enabled",
+          "value": "true"
+        },
+        {
+          "name": "igtv_feed_preview_learn_more_url",
+          "value": "https://help.instagram.com/225190788256708"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_group_admin_tools",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_approvals_toggle_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "read_only_thread_details_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_notifications_nux_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_admin_nux_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_end_chat_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_request_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_vc_renderer_type_universe",
+      "group": "treatment",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "use_texture_view",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_downloadable_slam",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enable_download",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_business_transaction_in_stories_creator",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "android_cameracore_ard_ig_integration",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "use_cameracore_delivery",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_video_experimental_encoding_consumption_universe",
+      "group": "treatment_progressive",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "dash_holdout_enabled",
+          "value": "true"
+        },
+        {
+          "name": "enabled",
+          "value": "false"
+        },
+        {
+          "name": "dash_cutoff_timestamp",
+          "value": "1558310400"
+        }
+      ],
+      "logging_id": "422701891921514"
+    },
+    {
+      "name": "ig_camera_android_segmentation_async_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_android_target_recognition_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        },
+        {
+          "name": "version",
+          "value": "5"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_android_skip_camera_initialization_open_to_post_capture",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_camera_focus_v2",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "ids",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "name": "ig_android_user_url_deeplink_fbpage_endpoint",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enable_deeplink",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_ad_holdout_watchandmore_universe",
+      "group": "pass",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "behavior",
+          "value": "pass"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_shopping_hero_carousel_load_animation",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_explore_use_shopping_endpoint",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "allow_publish_page_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_multi_upload_universe",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "multi_visual_photo_pmm_dmm",
+          "value": "false"
+        },
+        {
+          "name": "multi_visual_video_pmm_dmm",
+          "value": "false"
+        },
+        {
+          "name": "direct_multi_gallery_uploads",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_text_mode_composer_controller_opt_universe",
+      "group": "test_on_text_format_selected",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "initialization_config",
+          "value": "on_text_format_selected"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_follow_requests_copy_improvements",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enable_group_request_subtitle_change",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_android_profile_ar_notification_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_sort_thread_members_list",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_country_code_fix_universe",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "guess",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_render_output_surface_timeout_universe",
+      "group": "test7500ms",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "render_surface_timeout_ms",
+          "value": "7500"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_unified_iab_logging_universe",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_aggressive_cookie",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "inject_at_delivery",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_offline_mode_holdout",
+      "group": "everyone_else",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "behavior",
+          "value": "pass"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_react_native_universe_kill_switch",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "ig_android_react_native_push_notification_settings_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_gallery_video_segmentation",
+      "group": "test_15_secs_10_seg",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "max_num_segments",
+          "value": "10"
+        },
+        {
+          "name": "max_segment_duration_ms",
+          "value": "15000"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_in_feed_preview_notify_fix_universe",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_biz_graph_remove_unowned_page_v2",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "remove_unowned_page",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_xposting_upsell_directly_after_sharing_to_story",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "fetch_eligibility_in_reel_viewer",
+          "value": "true"
+        },
+        {
+          "name": "check_story_share_type_enabled",
+          "value": "true"
+        },
+        {
+          "name": "fetch_eligibility_every_time_open_camera",
+          "value": "true"
+        },
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_camera_focus_low_end_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_interactions_new_comment_like_pos_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enable_double_clicking_to_like_comments_in_comment_detail",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_suggested_highlights",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_branded_content_access_upsell",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ],
+      "logging_id": "2927468180660153"
+    },
+    {
+      "name": "ig_android_vc_background_call_toast_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_cta_animation_fix",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_music_dash",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "should_use_dash",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_android_badge_face_effects_universe",
+      "group": "test_badge_button_and_icons",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "ig_camera_android_badge_face_effect_button_qe",
+          "value": "true"
+        },
+        {
+          "name": "ig_camera_android_badge_face_effect_icon_qe",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_recommend_accounts_destination_routing_fix",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "android_enable_destination_routing_fix",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_fix_prepare_direct_push",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_building_aymf_universe",
+      "group": "follow_button_only",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "show_welcome_card",
+          "value": "false"
+        },
+        {
+          "name": "show_follow_button",
+          "value": "true"
+        }
+      ],
+      "logging_id": "2127867254137168"
+    },
+    {
+      "name": "ig_explore_2018_h2_account_rec_deduplication_android",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_logging_metric_universe_v2",
+      "group": "Rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "use_file_based_session",
+          "value": "true"
+        },
+        {
+          "name": "use_idle_handler",
+          "value": "true"
+        },
+        {
+          "name": "redirect_low_to_zero",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_xposting_newly_fbc_people",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_visualcomposer_inapp_notification_universe",
+      "group": "show_inapp_notif_no_tap_action",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "should_show_inapp_notification",
+          "value": "true"
+        },
+        {
+          "name": "should_allow_notif_tap",
+          "value": "false"
+        }
+      ],
+      "logging_id": "2256855041307645"
+    },
+    {
+      "name": "ig_android_do_not_show_social_context_on_follow_list_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_contact_point_upload_rate_limit_killswitch",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_search_impression_logging",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "always_init",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_handle_username_in_media_urls_universe",
+      "group": "feature",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_fix_profile_pic_from_fb_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_sso_kototoro_app_universe",
+      "group": "enable_sso",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ],
+      "logging_id": "2170716769807863"
+    },
+    {
+      "name": "ig_android_profile_picture_change_fbupload",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "profile_picture_change_fbupload",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_shopping_pdp_hero_carousel",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_unread_count_badge",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "show_unread_message_digest",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_profile_thumbnail_impression",
+      "group": "allow",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_igtv_autoplay_on_prepare",
+      "group": "deploy",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "false"
+        },
+        {
+          "name": "visibility_threshold",
+          "value": "0.05"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_infeed_lower_threshold_launch",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "min_inventory_num",
+          "value": "4"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_live_ama_universe",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_realtime_submissions_enabled",
+          "value": "false"
+        },
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_voting_enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_search_hashtag_content_advisory_remove_snooze",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "remove_snooze",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_category_search_edit_profile",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_updatelistview_on_loadmore",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_payment_checkout_info",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "checkout_info_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_stories_ads_delivery_rules",
+      "group": "prod",
+      "additional_params": [],
+      "params": [],
+      "logging_id": "264410260941843"
+    },
+    {
+      "name": "ig_android_video_upload_iframe_interval",
+      "group": "test_4s",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "iframe_interval_secs",
+          "value": "4"
+        }
+      ]
+    },
+    {
+      "name": "ig_direct_feed_media_sticker_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enable_feed_media_sticker_in_direct",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_fetch_xpost_setting_in_camera_fully_open",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_hashtag_discover_tab",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "should_show_discover_tab",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_viewpoint_netego_universe",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_replace_existing",
+          "value": "true"
+        },
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_login_onetap_upsell_universe",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "enable_creator_account_conversion_v0_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enable_relevant_pending_inbox",
+          "value": "true"
+        },
+        {
+          "name": "enable_inbox_folder",
+          "value": "true"
+        },
+        {
+          "name": "insights_media_enabled",
+          "value": "true"
+        },
+        {
+          "name": "insights_chart_enabled",
+          "value": "true"
+        },
+        {
+          "name": "conversion_animation",
+          "value": "true"
+        },
+        {
+          "name": "enable_creator_account_conversion_v0",
+          "value": "true"
+        },
+        {
+          "name": "insights_media_mode",
+          "value": "mixed"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_test_not_signing_address_book_unlink_endpoint",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "do_not_sign",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_android_supported_capabilities_api_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_story_ads_reel_position_fix",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "force_0_index_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "android_cameracore_safe_makecurrent_ig",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "use_safe_egl_make_current",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_direct_android_mentions_sender",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_in_qe",
+          "value": "true"
+        },
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_reaction_setup_delay_universe",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_insights_creation_growth_universe",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "primary_content_tab",
+          "value": "true"
+        },
+        {
+          "name": "loud_create_button",
+          "value": "true"
+        },
+        {
+          "name": "variation",
+          "value": "all"
+        }
+      ],
+      "logging_id": "344733746416465"
+    },
+    {
+      "name": "ig_android_profile_unified_follow_view",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "display_only_mutual_in_see_all_view",
+          "value": "true"
+        },
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_collect_os_usage_events_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_fbpage_on_profile_side_tray",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enable_fbpage_profile_side_tray",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_hashtag_remove_share_hashtag",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "remove_share_hashtag",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_business_profile_entrypoint",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enable_login_entrypont_location",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_show_create_content_pages_universe",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_search_without_typed_hashtag_autocomplete",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "include_tagged",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_video_product_specific_abr",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "remove_video_type",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_ad_redesign_iab_universe",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_react_native_email_sms_settings_universe",
+      "group": "Test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "ig_android_react_native_email_sms_settings_universe_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ag_family_bridges_2018_h2_holdout",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "in_holdout",
+          "value": "false"
+        }
+      ],
+      "logging_id": "745148039159247"
+    },
+    {
+      "name": "ig_promote_net_promoter_score_universe",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_save_auto_sharing_to_fb_option_on_server",
+      "group": "enabled",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "sync_server_in_linked_accounts_page_enabled",
+          "value": "true"
+        },
+        {
+          "name": "sync_server_in_story_viewer",
+          "value": "true"
+        },
+        {
+          "name": "sync_server_in_camera_enabled",
+          "value": "true"
+        },
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_last_seen_message_indicator",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "aymt_instagram_promote_flow_abandonment_ig_universe",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "show_tip",
+          "value": "true"
+        },
+        {
+          "name": "in_payments_campaign",
+          "value": "true"
+        },
+        {
+          "name": "use_see_how_alt",
+          "value": "true"
+        },
+        {
+          "name": "show_promote_icon",
+          "value": "true"
+        }
+      ],
+      "logging_id": "537034260163943"
+    },
+    {
+      "name": "ig_android_whitehat_options_universe",
+      "group": "disable_options",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_delete_ssim_compare_img_soon",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "delete_compare_image_soon",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_felix_video_upload_length",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "max_duration_ms",
+          "value": "900000"
+        },
+        {
+          "name": "min_duration_ms",
+          "value": "60000"
+        }
+      ],
+      "logging_id": "514144456009488"
+    },
+    {
+      "name": "ig_android_direct_message_follow_button",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "activity_enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_remove_visual_messages_nuxs",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "remove_reply_pill",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_android_boomerang_attribution_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_feed_survey_viewpoint",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_igtv_browse_long_press",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_profile_neue_infra_rollout_universe",
+      "group": "new_infra",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enable_neue_infra",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_instacrash_detection",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_logging_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_mitigation_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_profile_company_holdout_h2_2018",
+      "group": "deploy",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_community_holdout",
+          "value": "pass"
+        },
+        {
+          "name": "is_interests_holdout",
+          "value": "pass"
+        },
+        {
+          "name": "is_profile_holdout",
+          "value": "pass"
+        },
+        {
+          "name": "is_share_experiences_holdout",
+          "value": "pass"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_ads_manager_pause_resume_ads_universe",
+      "group": "Test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_vc_capture_universe",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "use_camera_core_renderer",
+          "value": "true"
+        },
+        {
+          "name": "use_textureview_preview",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_smaller_permanent_media_in_thread_test",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        },
+        {
+          "name": "height_in_dp",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "name": "ig_nametag_local_ocr_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        },
+        {
+          "name": "android_model_ver",
+          "value": "2.2.1"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_interactions_nav_to_permalink_followup_universe",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "from_actvity_feed_scroll_down_50_pct",
+          "value": "true"
+        },
+        {
+          "name": "like_push_notif_to_permalink",
+          "value": "true"
+        },
+        {
+          "name": "post_like_push_notif_scroll_down_a_little",
+          "value": "true"
+        },
+        {
+          "name": "post_tag_push_notif_to_permalink",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_discovery_surface_universe",
+      "group": "test_cap",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_discovery_search_enabled",
+          "value": "false"
+        },
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "pre_fetch_enabled",
+          "value": "false"
+        },
+        {
+          "name": "should_cap_tray",
+          "value": "true"
+        },
+        {
+          "name": "should_show_hero_unit",
+          "value": "true"
+        },
+        {
+          "name": "pre_fetch_fresh_in_minutes",
+          "value": "1440"
+        },
+        {
+          "name": "query_id",
+          "value": "2139298446180175"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_dismiss_sheet_on_pop_to_root_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_segmented_video",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_interactions_comment_like_for_all_feed_universe",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_cameracore_android_new_optic_camera2",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "use_new_optic_if_camera1",
+          "value": "true"
+        },
+        {
+          "name": "use_camera2",
+          "value": "false"
+        }
+      ],
+      "logging_id": "752030858549237"
+    },
+    {
+      "name": "ig_android_fbc_upsell_on_dp_first_load",
+      "group": "test_old_dialog",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "show_facepile",
+          "value": "true"
+        },
+        {
+          "name": "use_old_dialog",
+          "value": "true"
+        },
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_rename_share_option_in_dialog_menu_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enable_rename",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_video_call_participant_state_caller_universe",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "reject_enabled",
+          "value": "true"
+        },
+        {
+          "name": "ringing_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_privacy_and_security_settings_redesign",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_business_attribute_sync",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_view_and_likes_cta_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_redirect_to_web_on_oembed_fail_universe",
+      "group": "feature",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_presence_for_groups",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "use_small_size_dot",
+          "value": "false"
+        },
+        {
+          "name": "is_green_dot_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_search_hashtag_badges",
+      "group": "default",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_video_live_trace_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": []
+    },
+    {
+      "name": "ig_android_igtv_browse_with_pip_v2",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_auto_launch_tv_guide_enabled",
+          "value": "false"
+        },
+        {
+          "name": "should_use_browse_items_in_up_next",
+          "value": "false"
+        },
+        {
+          "name": "is_hero_unit_sound_enabled",
+          "value": "false"
+        },
+        {
+          "name": "is_explore_pinned_nav_enabled",
+          "value": "false"
+        },
+        {
+          "name": "is_explore_browse_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_pip_enabled",
+          "value": "false"
+        },
+        {
+          "name": "pip_surface_exposure",
+          "value": "browse_and_profile_only"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_igtv_feed_banner_universe",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "banner_enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_unfollow_from_main_feed_v2",
+      "group": "test_v2",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "max_number_of_followers",
+          "value": "10000"
+        },
+        {
+          "name": "variant",
+          "value": "v2"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_igtv_garfield",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_self_story_setting_option_in_menu",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "false"
+        },
+        {
+          "name": "setting_dialog_times_limit",
+          "value": "-1"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_render_cleanup",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_rendersize_centralized",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_camera_ar_platform_details_view_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_save_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_direct_enabled",
+          "value": "false"
+        },
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "saved_effects_before_formats_count",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "name": "ufi_share",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "force_direct_reply",
+          "value": "false"
+        },
+        {
+          "name": "tall_uss",
+          "value": "false"
+        },
+        {
+          "name": "tooltip_after_dwelling",
+          "value": "false"
+        },
+        {
+          "name": "v3_on_private_posts",
+          "value": "false"
+        },
+        {
+          "name": "overflow_wa_or_share_to",
+          "value": "false"
+        },
+        {
+          "name": "use_direct_share_sheet_actions",
+          "value": "false"
+        },
+        {
+          "name": "overflow_everything_else",
+          "value": "false"
+        },
+        {
+          "name": "use_messenger_action",
+          "value": "false"
+        },
+        {
+          "name": "overflow_share_to",
+          "value": "true"
+        },
+        {
+          "name": "tooltip_after_overflow",
+          "value": "false"
+        },
+        {
+          "name": "use_whatsapp_action",
+          "value": "false"
+        },
+        {
+          "name": "use_share_to_not_share_link",
+          "value": "true"
+        },
+        {
+          "name": "overflow_copy_link",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_camera_should_lazy_init_persistent_dial",
+      "group": "test_lazy_only",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "disable_updates_for_gallery_and_swipe",
+          "value": "false"
+        },
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_remix_visual_messages",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_quick_story_placement_validation_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_custom_story_import_intent",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_whitelist_gating_disabled",
+          "value": "true"
+        },
+        {
+          "name": "new_story_holdout_behavior",
+          "value": "pass"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_mention_bootstrap_surface",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_close_friends_surface_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_live_qa_broadcaster_v1_universe",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ],
+      "logging_id": "275574160019048"
+    },
+    {
+      "name": "ig_android_biz_new_choose_category",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_typeahead",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_view_info_universe",
+      "group": "test_json_onpause",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "store_adapter",
+          "value": "json"
+        },
+        {
+          "name": "write_strategy",
+          "value": "on_pause"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_camera_upsell_dialog",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_business_transaction_in_stories_consumer",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_scroll_stories_tray_to_front_when_stories_ready",
+      "group": "no_wait_no_smooth_no_duplicate_scroll",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "no_smooth_scroll",
+          "value": "true"
+        },
+        {
+          "name": "no_scroll_to_front_when_feed_ready",
+          "value": "true"
+        },
+        {
+          "name": "scroll_to_front_when_stories_ready",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_ad_watchbrowse_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_pbia_proxy_profile_universe",
+      "group": "button",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "story_entry_point_enabled",
+          "value": "false"
+        },
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "bottom_of_profile_cta_style",
+          "value": "button"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_qp_kill_switch",
+      "group": "control_v1",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_android_superzoom_icon_position_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_gap_rule_enforcer_universe",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "below_eof_demarcator_check_enabled",
+          "value": "false"
+        },
+        {
+          "name": "highest_position_check_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_business_cross_post_with_biz_id_infra",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enable_tooltip",
+          "value": "true"
+        },
+        {
+          "name": "tooltip_impression_cap",
+          "value": "3"
+        },
+        {
+          "name": "tooltip_impression_delay_days",
+          "value": "7"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_delete_or_block_from_message_requests",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_reel_tray_item_impression_logging_viewpoint",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "use_viewpoint",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_left_aligned_navigation_bar",
+      "group": "test_activity_status",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "activity_status_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_feed_load_more_viewpoint_universe",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "in_feed_stories_absolute_position_insertion",
+          "value": "true"
+        },
+        {
+          "name": "in_feed_stories_first_absolute_position",
+          "value": "8"
+        },
+        {
+          "name": "in_feed_stories_second_absolute_position",
+          "value": "22"
+        },
+        {
+          "name": "organic_first_page_size",
+          "value": "8"
+        },
+        {
+          "name": "organic_subsequent_page_size",
+          "value": "20"
+        },
+        {
+          "name": "trigger_post_count",
+          "value": "6"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_reshare_reply_msg",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_ads_history_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_direct_holdout_h2_2018",
+      "group": "deploy",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "behavior",
+          "value": "pass"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_wab_adjust_resize_universe",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ],
+      "logging_id": "767495610368936"
+    },
+    {
+      "name": "ig_android_direct_presence_digest_improvements",
+      "group": "test_groups_and_one",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled_for_groups",
+          "value": "true"
+        },
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_enable_main_feed_reel_tray_preloading",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_ad_view_ads_native_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_profile_neue_universe",
+      "group": "justdoit",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enable_chaining_action_button",
+          "value": "true"
+        },
+        {
+          "name": "enable_context_feed_efficiency_improvements",
+          "value": "true"
+        },
+        {
+          "name": "enable_new_header_layout",
+          "value": "true"
+        },
+        {
+          "name": "ig_enable_contact_sheet",
+          "value": "true"
+        },
+        {
+          "name": "enable_new_header_ye_olde",
+          "value": "true"
+        },
+        {
+          "name": "enable_contextual_feed",
+          "value": "true"
+        },
+        {
+          "name": "enable_header_inline_buttons",
+          "value": "true"
+        },
+        {
+          "name": "enable_archive_in_side_tray",
+          "value": "true"
+        },
+        {
+          "name": "enable_follow_button_sheet",
+          "value": "true"
+        },
+        {
+          "name": "enable_igtv_tab",
+          "value": "false"
+        },
+        {
+          "name": "enable_fading_follow_button",
+          "value": "true"
+        },
+        {
+          "name": "enable_follow_similar_tab",
+          "value": "true"
+        },
+        {
+          "name": "enable_tab_swiping",
+          "value": "true"
+        },
+        {
+          "name": "enable_shopping_tab",
+          "value": "true"
+        },
+        {
+          "name": "enable_collapsible_bio",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_igtv_whitelisted_for_web",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_whitelisted_for_longer_uploads",
+          "value": "false"
+        }
+      ],
+      "logging_id": "1756627297769237"
+    },
+    {
+      "name": "ig_company_profile_holdout",
+      "group": "deploy",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_business_profile_holdout",
+          "value": "pass"
+        },
+        {
+          "name": "is_creation_communication_holdout",
+          "value": "pass"
+        },
+        {
+          "name": "is_growth_holdout",
+          "value": "pass"
+        },
+        {
+          "name": "is_home_discovery_holdout",
+          "value": "pass"
+        }
+      ]
+    },
+    {
+      "name": "ig_rti_inapp_notifications_universe",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enable_comment_mention_and_reply",
+          "value": "true"
+        },
+        {
+          "name": "enable_comment",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_add_ci_upsell_in_normal_account_chaining_universe",
+      "group": "test_1",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "position",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "name": "ig_close_friends_v4_global",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_v4_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_share_publish_page_universe",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "show_dialog",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_new_camera_design_universe",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_dial_dimming_enabled",
+          "value": "false"
+        },
+        {
+          "name": "is_enabled",
+          "value": "false"
+        },
+        {
+          "name": "is_boomerang_button_enabled",
+          "value": "false"
+        },
+        {
+          "name": "display_format_picker_above_shutter_button",
+          "value": "false"
+        },
+        {
+          "name": "display_dial_in_type_mode",
+          "value": "false"
+        },
+        {
+          "name": "is_dial_effect_picker_enabled",
+          "value": "false"
+        },
+        {
+          "name": "is_persistent_dial_enabled",
+          "value": "false"
+        },
+        {
+          "name": "is_hw_layer_enabled",
+          "value": "false"
+        },
+        {
+          "name": "is_dial_enabled_in_android_4_4",
+          "value": "true"
+        },
+        {
+          "name": "display_capture_formats_in_dial",
+          "value": "false"
+        },
+        {
+          "name": "control_buttons_position",
+          "value": "bottom"
+        },
+        {
+          "name": "layer_type_for_android_4_4",
+          "value": "none"
+        },
+        {
+          "name": "layer_type_for_android_6",
+          "value": "software"
+        }
+      ]
+    },
+    {
+      "name": "ig_direct_max_participants",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "group_size",
+          "value": "32"
+        },
+        {
+          "name": "max_participants",
+          "value": "32"
+        }
+      ]
+    },
+    {
+      "name": "ig_promote_hide_local_awareness_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_shopping_home_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_directory_save_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_igtv_save",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_graphql_survey_new_proxy_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "cooldown_time",
+          "value": "3600"
+        },
+        {
+          "name": "whitelist",
+          "value": "132059717479731, 765399463563089, 418081715287063, 222204518291436, 793736047497610"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_android_try_on_camera_universe",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "false"
+        },
+        {
+          "name": "query_id",
+          "value": "2124590980973162"
+        }
+      ],
+      "logging_id": "442690669652634"
+    },
+    {
+      "name": "ig_android_camera_new_tray_behavior_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_front_facing_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_new_picker_ui_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_direct_blocking_redesign_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_claim_location_page",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_claim_enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_3pspp",
+      "group": "release",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "allow_share_link",
+          "value": "true"
+        },
+        {
+          "name": "experiment_all_sharing",
+          "value": "false"
+        },
+        {
+          "name": "allow_copy_link",
+          "value": "true"
+        },
+        {
+          "name": "experiment_copy_link",
+          "value": "true"
+        },
+        {
+          "name": "experiment_share_link",
+          "value": "true"
+        },
+        {
+          "name": "allow_all_sharing",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_timestamp_public_test",
+      "group": "ui_holdout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_feed_ui_holdout",
+          "value": "false"
+        },
+        {
+          "name": "is_seamless_holdout",
+          "value": "false"
+        },
+        {
+          "name": "behavior",
+          "value": "test"
+        },
+        {
+          "name": "experiment_flavor",
+          "value": "timestamp_below_comments_with_explore_attribution"
+        },
+        {
+          "name": "timestamp_style",
+          "value": "text_row_under"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_feed_auto_share_to_facebook_dialog",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "dialog_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_skip_button_content_on_connect_fb_universe",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "skip_button_content",
+          "value": "dont_connect"
+        }
+      ],
+      "logging_id": "243602196508151"
+    },
+    {
+      "name": "ig_android_interactions_inline_composer_extensions_universe",
+      "group": "rollout",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enable_feed_emoji_picker",
+          "value": "true"
+        },
+        {
+          "name": "enable_async_bind_emojis",
+          "value": "true"
+        },
+        {
+          "name": "enable_emoji_picker_v1",
+          "value": "true"
+        },
+        {
+          "name": "enable_async_inflate",
+          "value": "true"
+        },
+        {
+          "name": "enable_background_emoji_init",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_async_space_validation_for_ar",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_su_follow_back",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "send_follow_back_from_server",
+          "value": "true"
+        },
+        {
+          "name": "enable",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_iab_clickid_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_story_camera_reverse_video_experiment",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_vpvd_impressions_universe",
+      "group": "test_new_definition_persist",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "should_double_log",
+          "value": "false"
+        },
+        {
+          "name": "log_validation_events",
+          "value": "false"
+        },
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "use_new_definition",
+          "value": "true"
+        },
+        {
+          "name": "store_to_disk_max_count",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_allow_multiline_composition",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_story_ads_direct_cta_universe",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_message_box",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_sso_use_trustedapp_universe",
+      "group": "use_trustedapp",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_search_bar_redesign",
+      "group": "redesign_with_add",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "show_add_button",
+          "value": "true"
+        },
+        {
+          "name": "use_redesign",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_music_awareness_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_sound_wave_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_consumption_sheet_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_new_fb_page_selection",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_video_holdout_h2_2017",
+      "group": "deploy",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "behavior",
+          "value": "pass"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_android_focus_in_post_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "focus_in_post_id",
+          "value": "186009551969230"
+        }
+      ],
+      "logging_id": "2434647266820110"
+    },
+    {
+      "name": "ig_android_time_spent_dashboard",
+      "group": "ui",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_logging_enabled",
+          "value": "true"
+        },
+        {
+          "name": "is_enabled_in_profile_slideout",
+          "value": "true"
+        },
+        {
+          "name": "logging_method",
+          "value": "in_app_browser_included"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_story_sharing_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "highlight_share_link",
+          "value": "true"
+        }
+      ],
+      "logging_id": "1932946050141500"
+    },
+    {
+      "name": "ig_nelson_strings",
+      "group": "strings_enabled",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "add_action_with_name",
+          "value": "Restrict {username}"
+        },
+        {
+          "name": "add_endpoint_name",
+          "value": "restrict_action/restrict/"
+        },
+        {
+          "name": "bloks_learn_more_app_id",
+          "value": "com.instagram.bullying.restrict.screens.learn_more"
+        },
+        {
+          "name": "bloks_nux_app_id",
+          "value": "com.instagram.bullying.restrict_nux_action"
+        },
+        {
+          "name": "comment_action_1_endpoint_name",
+          "value": "restrict_action/approve_restricted_comment/"
+        },
+        {
+          "name": "comment_action_1_sheet_description",
+          "value": "Only you and {username} can see this comment. If you approve it, it'll be visible to everyone."
+        },
+        {
+          "name": "comment_action_1_sheet_option_1",
+          "value": "Approve"
+        },
+        {
+          "name": "comment_action_1_sheet_option_2",
+          "value": "Approve and Unrestrict"
+        },
+        {
+          "name": "comment_action_1_sheet_title",
+          "value": "Approve This Comment?"
+        },
+        {
+          "name": "comment_row_action_1",
+          "value": "Approve"
+        },
+        {
+          "name": "comment_row_action_2",
+          "value": "Delete"
+        },
+        {
+          "name": "comments_entrypoint_sheet_action",
+          "value": "Restrict {username}"
+        },
+        {
+          "name": "comments_entrypoint_success_dialog_description",
+          "value": "Only you and {username} can see their new comments on your posts. You can approve individual comments to make them visible to everyone."
+        },
+        {
+          "name": "comments_entrypoint_success_dialog_primary_button",
+          "value": "Delete Comment"
+        },
+        {
+          "name": "comments_entrypoint_success_dialog_title",
+          "value": "You Restricted {username}"
+        },
+        {
+          "name": "confirmation_modal_sheet_title",
+          "value": "Are you having a problem with {username}?"
+        },
+        {
+          "name": "confirmation_sheet_button_action",
+          "value": "Restrict Account"
+        },
+        {
+          "name": "confirmation_sheet_description_1",
+          "value": "Protect yourself from unwanted interactions without them knowing."
+        },
+        {
+          "name": "confirmation_sheet_description_2",
+          "value": "Only you and {username} will see their new comments on your posts."
+        },
+        {
+          "name": "confirmation_sheet_description_3",
+          "value": "They won't see when you're online or when you've read their messages."
+        },
+        {
+          "name": "dm_context_row",
+          "value": "Restricted Account"
+        },
+        {
+          "name": "dm_entrypoint_button_title",
+          "value": "Restrict"
+        },
+        {
+          "name": "dm_entrypoint_menu_title_remove",
+          "value": "Unrestrict"
+        },
+        {
+          "name": "dm_group_dialog_message",
+          "value": "If you stay in this group, you'll see messages from accounts you've restricted. "
+        },
+        {
+          "name": "dm_group_dialog_title",
+          "value": "Someone You've Restricted Is in This Group"
+        },
+        {
+          "name": "dm_thread_body",
+          "value": "They can't see when you're online or when you've read their messages."
+        },
+        {
+          "name": "dm_thread_header",
+          "value": "You have restricted {username}"
+        },
+        {
+          "name": "entrypoint_settings_menu_title",
+          "value": "Restricted Accounts"
+        },
+        {
+          "name": "get_list_endpoint_name",
+          "value": "restrict_action/get_restricted_users/"
+        },
+        {
+          "name": "hud_alert_confirmation_title",
+          "value": "Account Restricted"
+        },
+        {
+          "name": "list_description",
+          "value": "Protect yourself from unwanted interactions without having to block or unfollow people you know."
+        },
+        {
+          "name": "list_empty_description",
+          "value": "You haven't restricted anyone."
+        },
+        {
+          "name": "list_header",
+          "value": "Restrict"
+        },
+        {
+          "name": "list_learn_more_cta",
+          "value": "Learn how it works"
+        },
+        {
+          "name": "list_learn_more_title",
+          "value": "How It Works"
+        },
+        {
+          "name": "list_tab_title_1",
+          "value": "Restricted"
+        },
+        {
+          "name": "list_tab_title_2",
+          "value": "Accounts"
+        },
+        {
+          "name": "list_title",
+          "value": "Restricted Accounts"
+        },
+        {
+          "name": "profile_link_text",
+          "value": "Unrestrict"
+        },
+        {
+          "name": "profile_option_add",
+          "value": "Restrict"
+        },
+        {
+          "name": "profile_option_remove",
+          "value": "Unrestrict"
+        },
+        {
+          "name": "profile_status_text",
+          "value": "You have restricted {username}. Unrestrict"
+        },
+        {
+          "name": "remove_action_with_name",
+          "value": "Unrestrict {username}"
+        },
+        {
+          "name": "remove_endpoint_name",
+          "value": "restrict_action/unrestrict/"
+        },
+        {
+          "name": "toast_add_success",
+          "value": "Account restricted"
+        },
+        {
+          "name": "toast_remove_success",
+          "value": "Account unrestricted"
+        }
+      ],
+      "logging_id": "601855356979646"
+    },
+    {
+      "name": "ig_promote_political_ads_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_promote_post_insights_entry_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_branded_content_paid_branded_content",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ],
+      "logging_id": "186601281975144"
+    },
+    {
+      "name": "ig_android_direct_presence_media_viewer",
+      "group": "test_enabled_in_both",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled_in_raven_viewer",
+          "value": "true"
+        },
+        {
+          "name": "is_enabled_in_story_viewer",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_ad_iab_qpl_kill_switch_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_live_subscribe_user_level_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_igtv_creation_flow",
+      "group": "test_wo_edge_tapping",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "updates_are_enabled",
+          "value": "true"
+        },
+        {
+          "name": "edge_tapping_enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_android_cache_format_picker_children",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_vc_early_attempt_reporting_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_mqtt_send",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_realtime_share_location_enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_self_story_button_non_fbc_accounts",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "fetch_eligibility_from_server_enabled",
+          "value": "true"
+        },
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_vc_directapp_integration_universe",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "false"
+        },
+        {
+          "name": "directapp_mininum_supported_version",
+          "value": "57"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_inbox_typing_indicator",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "multi_status_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_activator_cards",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "force_show_upsell_in_contacts",
+          "value": "true"
+        },
+        {
+          "name": "enabled",
+          "value": "true"
+        },
+        {
+          "name": "max_thread_count_suggestions",
+          "value": "5"
+        }
+      ]
+    },
+    {
+      "name": "ig_promote_prefill_destination_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_promote_insights_video_views_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": []
+    },
+    {
+      "name": "ig_android_dismiss_recent_searches",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        },
+        {
+          "name": "enable_recent_x_out_filtering",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_fb_link_ui_polish_universe",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "unlink_content_update_enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_tags_unification_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "combined_tagging_limit_enabled",
+          "value": "true"
+        },
+        {
+          "name": "combined_tagging_enabled",
+          "value": "true"
+        },
+        {
+          "name": "combined_tagging_enabled_for_carousel",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_mixed_attribution_universe",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_mixed_attribution_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_nametag_effect_deeplink_universe",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        },
+        {
+          "name": "query_param",
+          "value": "2398084383577567"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_reshare_media_preview_in_share_sheet",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_optic_surface_texture_cleanup",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "release_camera_before_surface",
+          "value": "true"
+        },
+        {
+          "name": "nullify_on_camera",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_combined_asset_search",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_promote_enter_error_screens_universe",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_scroll_main_feed",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_intialization_chunk_410",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_optic_photo_cropping_fixes",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_direct_character_limit",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_camera_regiontracking_use_similarity_tracker_for_scaling",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enable",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_biz_endpoint_switch",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "conversion_url",
+          "value": "2"
+        }
+      ],
+      "logging_id": "941990696149584"
+    },
+    {
+      "name": "ig_android_direct_continuous_capture",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_shopping_hero_carousel_prefetching",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_remove_follow_all_fb_list",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_specific_story_sharing",
+      "group": "test_copy_link",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "self_story_show_share_link",
+          "value": "true"
+        },
+        {
+          "name": "enable_self_story_system_share",
+          "value": "false"
+        },
+        {
+          "name": "enable_self_story_copy_link",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_anr",
+      "group": "control",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_reporter_enabled",
+          "value": "false"
+        },
+        {
+          "name": "is_detector_enabled",
+          "value": "true"
+        }
+      ],
+      "logging_id": "209895779881814"
+    },
+    {
+      "name": "ig_android_optic_new_architecture",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_stories_viewer_as_modal_high_end_launch",
+      "group": "test",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "should_use_modal_for_high_end",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ig_android_local_info_page",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "is_enabled",
+          "value": "true"
+        }
+      ],
+      "logging_id": "372398630111837"
+    },
+    {
+      "name": "ig_new_eof_demarcator_universe",
+      "group": "launch",
+      "additional_params": [],
+      "params": [
+        {
+          "name": "new_demarcator_enabled",
+          "value": "true"
+        }
+      ]
+    }
+  ],
+  "status": "ok"
+}

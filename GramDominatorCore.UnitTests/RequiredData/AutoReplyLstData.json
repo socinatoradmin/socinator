@@ -1,0 +1,26 @@
+﻿[
+  {
+    "_MediaPath": "",
+    "MessagesText": "wow",
+    "MediaPath": "",
+    "LstQueries": [
+      {
+        "IsContentSelected": false,
+        "Content": {
+          "QueryType": "All",
+          "QueryValue": "All",
+          "IsCustomFilterSelected": false,
+          "Index": 0,
+          "Id": "1076360b-5f99-48a4-a685-8ba9a563a0cb",
+          "CustomFilters": null,
+          "AddedDateTime": 1554871477,
+          "QueryPriority": 0,
+          "IsQuerySelected": false,
+          "QueryTypeDisplayName": null
+        }
+      }
+    ],
+    "SelectedQuery": [ ],
+    "MessageId": "7f28082a-0858-49be-8dce-6e6efd5dd865"
+  }
+]

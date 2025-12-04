@@ -1,0 +1,696 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\dominatorhouse-social\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.props" Condition="Exists('..\..\dominatorhouse-social\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B04813EA-A4B5-40AE-B705-743687F74770}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GramDominatorCore</RootNamespace>
+    <AssemblyName>GramDominatorCore</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug-fast-test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug-fast-test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug-fast-test|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug-fast-test\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SKIP_DELAYS</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\..\dominatorhouse-social\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp, Version=112.3.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dominatorhouse-social\packages\CefSharp.Common.112.3.0\lib\net452\CefSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp.Core, Version=112.3.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dominatorhouse-social\packages\CefSharp.Common.112.3.0\lib\net452\CefSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp.Wpf, Version=112.3.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dominatorhouse-social\packages\CefSharp.Wpf.112.3.0\lib\net452\CefSharp.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\CommonServiceLocator.2.0.5\lib\net46\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CsvHelper">
+      <HintPath>..\..\dominatorhouse-social\packages\CsvHelper.33.1.0\lib\net48\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentScheduler, Version=5.3.0.0, Culture=neutral, PublicKeyToken=b76503528a14ebd1, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\FluentScheduler.5.3.0\lib\net40\FluentScheduler.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.8.5.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\HtmlAgilityPack.1.8.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="IGEncrypt, Version=1.0.14.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\IGEncrypt.1.0.14\lib\net461\IGEncrypt.dll</HintPath>
+    </Reference>
+    <Reference Include="imagetyperzapi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\imagetyperz-api-latest.1.0.3\lib\net40\imagetyperzapi.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\MahApps.Metro.1.6.5\lib\net46\MahApps.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Microsoft.Extensions.Configuration.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Microsoft.Extensions.Configuration.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Microsoft.Extensions.Configuration.Binder.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Microsoft.Extensions.Logging.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Microsoft.Extensions.Logging.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Microsoft.Extensions.Options.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Microsoft.Extensions.Primitives.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\MSTest.TestFramework.2.1.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\MSTest.TestFramework.2.1.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NReco.VideoConverter, Version=1.1.2.0, Culture=neutral, PublicKeyToken=395ccb334978a0cd, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\NReco.VideoConverter.1.1.2\lib\net20\NReco.VideoConverter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NReco.VideoInfo, Version=1.1.1.0, Culture=neutral, PublicKeyToken=8f59ee36d2987295, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\NReco.VideoInfo.1.1.1\lib\net35\NReco.VideoInfo.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework">
+      <HintPath>..\..\dominatorhouse-social\packages\PresentationFramework.4.6.0\lib\PresentationFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Prism.Core.7.2.0.1422\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.3.7.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\protobuf-net.2.3.7\lib\net40\protobuf-net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PuppeteerSharp, Version=16.0.0.0, Culture=neutral, PublicKeyToken=db12f80f85d8ba23, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\PuppeteerSharp.16.0.0\lib\netstandard2.0\PuppeteerSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PuppeteerUtility, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\PuppeteerUtility.1.0.9\lib\net461\PuppeteerUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.CodeFirst, Version=1.5.1.25, Culture=neutral, PublicKeyToken=eb96ba0a78d831a7, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\SQLite.CodeFirst.1.5.1.25\lib\net45\SQLite.CodeFirst.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\lib\net46\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Data.SQLite.EF6.1.0.108.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Data.SQLite.Linq.1.0.108.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=9.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Diagnostics.DiagnosticSource.9.0.1\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ThreadUtils">
+      <HintPath>..\..\dominatorhouse-social\packages\ThreadUtils.1.0.1\lib\net461\ThreadUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.Abstractions.5.11.1\lib\net46\Unity.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\dominatorhouse-social\packages\Unity.Container.5.11.1\lib\net46\Unity.Container.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CaptchaResolver\ImageTyperzHelper.cs" />
+    <Compile Include="CaptchaResolver\two_captcha_helper.cs" />
+    <Compile Include="DbMigrations\GdAccountDbMigrations.cs" />
+    <Compile Include="DbMigrations\GdCampaignDbMigrations.cs" />
+    <Compile Include="DbMigrations\GdDbMigrationUnityExtension.cs" />
+    <Compile Include="GDEnums\DirectMessageType.cs" />
+    <Compile Include="GDEnums\Enums.cs" />
+    <Compile Include="GDEnums\HealthState.cs" />
+    <Compile Include="GDEnums\InstagramError.cs" />
+    <Compile Include="GDEnums\InstagramGender.cs" />
+    <Compile Include="GDEnums\IpLocationDetails.cs" />
+    <Compile Include="GDEnums\ScrapingParameters.cs" />
+    <Compile Include="Factories\GdQueryScraperFactory.cs" />
+    <Compile Include="Factories\GdJobProcessFactory.cs" />
+    <Compile Include="GDEnums\StorySource.cs" />
+    <Compile Include="GDFactories\GDAccountCountFactory.cs" />
+    <Compile Include="GDFactories\GdAccountDbConnection.cs" />
+    <Compile Include="GDFactories\GDAccountUpdateFactory.cs" />
+    <Compile Include="GDFactories\GdAccountVerificationFactory.cs" />
+    <Compile Include="GDFactories\GdCampaignDbConnection.cs" />
+    <Compile Include="GDFactories\GdCampaignInteractionDetails.cs" />
+    <Compile Include="GDFactories\GdGlobalInteractionDetails.cs" />
+    <Compile Include="GDFactories\GdLiveChatFactory.cs" />
+    <Compile Include="GDFactories\GdPublisherCoreFactory.cs" />
+    <Compile Include="GDFactories\GdReportFactory.cs" />
+    <Compile Include="GDFactories\GdUtilityFactory.cs" />
+    <Compile Include="GDFactories\IBrowserManagerFactory.cs" />
+    <Compile Include="GDFactories\InstaFunctFactory.cs" />
+    <Compile Include="GDLibrary\InstaFunct.cs" />
+    <Compile Include="GDLibrary\InstagramBrowser\PuppeteerBrowser\PupBrowserRequest.cs" />
+    <Compile Include="GDLibrary\LoginAndUpdate\AccountUpdateProcess.cs" />
+    <Compile Include="GDLibrary\AddInstagramDataIntoDatabase.cs" />
+    <Compile Include="GDLibrary\LoginAndUpdate\EncryptPassword.cs" />
+    <Compile Include="GDLibrary\Processor\User\MakeCloseFriendProcessor.cs" />
+    <Compile Include="GDLibrary\Process\AddStoryProcess.cs" />
+    <Compile Include="GDLibrary\Process\AutoReplyToNewMessagesProcess.cs" />
+    <Compile Include="GDLibrary\BlackListWhitelistHandler.cs" />
+    <Compile Include="GDLibrary\Process\BlockFollowerProcess.cs" />
+    <Compile Include="GDLibrary\CheckResponse.cs" />
+    <Compile Include="GDLibrary\Process\CommentProcess.cs" />
+    <Compile Include="GDLibrary\Process\CommentScraperProcess.cs" />
+    <Compile Include="GDLibrary\DAL\DbAccountService.cs" />
+    <Compile Include="GDLibrary\DAL\DbCampaignService.cs" />
+    <Compile Include="GDLibrary\DAL\DbGlobalService.cs" />
+    <Compile Include="GDLibrary\Process\DeletePostProcess.cs" />
+    <Compile Include="GDLibrary\Process\DownloadPhotoProcess.cs" />
+    <Compile Include="GDLibrary\LoginAndUpdate\GdProfileFactory.cs" />
+    <Compile Include="GDLibrary\Process\FollowBackProcess.cs" />
+    <Compile Include="GDLibrary\Process\FollowProcess.cs" />
+    <Compile Include="GDLibrary\GdJobProcess.cs" />
+    <Compile Include="GDLibrary\GdPublisherJobProcess.cs" />
+    <Compile Include="GDLibrary\GetCampaignReportData.cs" />
+    <Compile Include="GDLibrary\Process\HashtagScrapeProcess.cs" />
+    <Compile Include="GDLibrary\InstagramBrowser\GdBrowserManager.cs" />
+    <Compile Include="GDLibrary\Process\LikeCommentProcess.cs" />
+    <Compile Include="GDLibrary\Process\LikeProcess.cs" />
+    <Compile Include="GDLibrary\LoginAndUpdate\LogInProcess.cs" />
+    <Compile Include="GDLibrary\MangeBlacklist.cs" />
+    <Compile Include="GDLibrary\Process\CloseFriendProcess.cs" />
+    <Compile Include="GDLibrary\Process\MediaUnlikeProcess.cs" />
+    <Compile Include="GDLibrary\Processor\BaseInstagramProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\IQueryProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\Post\BaseInstagramPostProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\Post\CustomPostProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\Post\DeletePostProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\Post\FollowersOfFollowersPostProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\Post\FollowersOfFollowingsPostProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\Post\HashtagUserPostProcessors.cs" />
+    <Compile Include="GDLibrary\Processor\Post\HashTagPostProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\Post\LocationPostProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\Post\LocationUserPostProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\Post\PostOfUsersWhoCommentedOnPostProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\Post\PostOfUsersWhoLikedPostProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\Post\PublisherCampaignPostProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\Post\ScrapAllLikedPostProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\Post\SomeonesFollowersPostProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\Post\SomeonesFollowingsPostProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\Post\SpecificUsersPostsProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\Post\SuggestedUsersPostsProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\Post\TaggedPostProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\Post\UnlikingPostProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\User\AutoReplyToNewMessageProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\User\BaseInstagramUserProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\User\BlockFollowerProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\User\CustomUsersProcessors.cs" />
+    <Compile Include="GDLibrary\Processor\User\FollowBackProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\User\FollowersOfFollowersProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\User\FollowersOfFollowingsProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\User\HashtagScraperProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\User\HashtagUsersProcessors.cs" />
+    <Compile Include="GDLibrary\Processor\User\KeywordProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\User\LocationUsersProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\User\OwnFollowersProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\User\OwnFollowingsProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\User\ScrapUserWhoMessagedUsProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\User\SendMessageToNewFollowersProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\User\SomeonesFollowersProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\User\SomeonesFollowingsProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\User\SuggestedUsersProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\User\UnfollowProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\User\UsersWhoCommentedOnPostProcessor.cs" />
+    <Compile Include="GDLibrary\Processor\User\UsersWhoLikedPostProcessor.cs" />
+    <Compile Include="GDLibrary\MessageProcessUtility.cs" />
+    <Compile Include="GDLibrary\Process\ReplyCommentProcess.cs" />
+    <Compile Include="GDLibrary\Process\StoryProcess.cs" />
+    <Compile Include="GDLibrary\Process\ReposterProcess.cs" />
+    <Compile Include="GDLibrary\Process\BroadcastMessageProcess.cs" />
+    <Compile Include="GDLibrary\Process\SendMessageToNewFollowersProcess.cs" />
+    <Compile Include="GDLibrary\Process\UnFollowProcess.cs" />
+    <Compile Include="GDLibrary\Process\UserScrapeProcess.cs" />
+    <Compile Include="GDModel\AccountModel.cs" />
+    <Compile Include="GDModel\AddInstaStoryModel.cs" />
+    <Compile Include="GDModel\AddPostModel.cs" />
+    <Compile Include="GDModel\AutoReplyToNewMessageModel.cs" />
+    <Compile Include="GDModel\BlockFollowerModel.cs" />
+    <Compile Include="GDModel\BroadcastMessagesModel.cs" />
+    <Compile Include="GDModel\CloseFriendModel.cs" />
+    <Compile Include="GDModel\CommentScraperModel.cs" />
+    <Compile Include="GDModel\CountryCodeForLogin.cs" />
+    <Compile Include="GDModel\DeleteCommentIgResponseHandler.cs" />
+    <Compile Include="GDModel\DeleteMediaIgResponseHandler.cs" />
+    <Compile Include="GDModel\FollowBackModel.cs" />
+    <Compile Include="GDModel\GetReportFollowCountModel.cs" />
+    <Compile Include="GDModel\HashtagsScraperModel.cs" />
+    <Compile Include="GDModel\IgPublisherModel.cs" />
+    <Compile Include="GDModel\IGWebParameter.cs" />
+    <Compile Include="GDModel\InstaChatModel.cs" />
+    <Compile Include="GDModel\InstagramMessageBox.cs" />
+    <Compile Include="GDModel\InstagramStoryModel.cs" />
+    <Compile Include="GDModel\InstagramUserDetails.cs" />
+    <Compile Include="GDModel\InstaHightlight.cs" />
+    <Compile Include="GDModel\InteractedPost.cs" />
+    <Compile Include="GDModel\InteractedUser.cs" />
+    <Compile Include="GDModel\LikeCommentModel.cs" />
+    <Compile Include="GDModel\ManageDestinationModel.cs" />
+    <Compile Include="GDModel\MediaUnlikerModel.cs" />
+    <Compile Include="GDModel\MessageDetails.cs" />
+    <Compile Include="GDModel\MessageModel.cs" />
+    <Compile Include="GDModel\MessageThreads.cs" />
+    <Compile Include="GDModel\PosterModel.cs" />
+    <Compile Include="GDModel\RemoveProfilePicIgResponseHandler.cs" />
+    <Compile Include="GDModel\ReplyCommentModel.cs" />
+    <Compile Include="GDModel\ScrapeResultNewTag.cs" />
+    <Compile Include="GDModel\SearchKeywordIgResponseHandler.cs" />
+    <Compile Include="GDModel\SendMessageIgResponseHandler.cs" />
+    <Compile Include="GDModel\SendMessageToFollowerModel.cs" />
+    <Compile Include="GDModel\SettingsModel.cs" />
+    <Compile Include="GDModel\StoryAdsDetails.cs" />
+    <Compile Include="GDModel\StoryCollection.cs" />
+    <Compile Include="GDModel\StoryImagePostDetails.cs" />
+    <Compile Include="GDModel\StoryModel.cs" />
+    <Compile Include="GDModel\StoryPostDetails.cs" />
+    <Compile Include="GDModel\ThreadDetails.cs" />
+    <Compile Include="GDModel\UnfollowedUser.cs" />
+    <Compile Include="GDModel\UserRequiredDatas.cs" />
+    <Compile Include="GDModel\UsersStory.cs" />
+    <Compile Include="GDUtility\GdAccountsBrowserDetails.cs" />
+    <Compile Include="GDUtility\IGMobileUtilities.cs" />
+    <Compile Include="GDUtility\ImageHelper.cs" />
+    <Compile Include="GDLibrary\InstagramScraper.cs" />
+    <Compile Include="GDLibrary\ScrapeFilter.cs" />
+    <Compile Include="GDModel\ActivityItem.cs" />
+    <Compile Include="GDModel\BlacklistedUser.cs" />
+    <Compile Include="GDModel\CommentModel.cs" />
+    <Compile Include="GDModel\DeleteCommentModel.cs" />
+    <Compile Include="GDModel\DeletePostModel.cs" />
+    <Compile Include="GDModel\ExternalMetadata.cs" />
+    <Compile Include="GDModel\FilterGender.cs" />
+    <Compile Include="GDModel\FilterPostType.cs" />
+    <Compile Include="GDModel\FollowerModel.cs" />
+    <Compile Include="GDModel\IFilterPost.cs" />
+    <Compile Include="GDModel\IFilterUser.cs" />
+    <Compile Include="GDModel\ImageResizer.cs" />
+    <Compile Include="GDModel\InstagramAction.cs" />
+    <Compile Include="GDModel\InstagramIssue.cs" />
+    <Compile Include="GDModel\InternalMetadata.cs" />
+    <Compile Include="GDModel\IScrapingSettings.cs" />
+    <Compile Include="GDModel\LikeModel.cs" />
+    <Compile Include="GDModel\MediaDetails.cs" />
+    <Compile Include="GDModel\MediaLikersIgResponseHandler.cs" />
+    <Compile Include="GDModel\ModuleSetting.cs" />
+    <Compile Include="GDModel\PhotoDetails.cs" />
+    <Compile Include="GDModel\RangeHelper.cs" />
+    <Compile Include="GDModel\ReportModel.cs" />
+    <Compile Include="GDUtility\InstagramHelper.cs" />
+    <Compile Include="GDUtility\JsonJArrayHandler.cs" />
+    <Compile Include="GDUtility\Macros.cs" />
+    <Compile Include="GDUtility\ModelHelper.cs" />
+    <Compile Include="GDUtility\GdUtilities.cs" />
+    <Compile Include="GDViewModel\Account\CreateAccountViewModel.cs" />
+    <Compile Include="GDViewModel\GrowFollower\BlockFollowerViewModel.cs" />
+    <Compile Include="GDViewModel\GrowFollower\CloseFriendViewModel.cs" />
+    <Compile Include="GDViewModel\GrowFollower\FollowBackViewModel.cs" />
+    <Compile Include="GDViewModel\InstaChat\AutoReplyToNewMessageViewModel.cs" />
+    <Compile Include="GDViewModel\InstaChat\BroadcastMessagesViewModel.cs" />
+    <Compile Include="GDViewModel\InstaChat\SendMessageToFollowerViewModel.cs" />
+    <Compile Include="GDViewModel\InstaLikerCommenter\LikeCommentViewModel.cs" />
+    <Compile Include="GDViewModel\InstaLikerCommenter\MediaUnlikerViewModel.cs" />
+    <Compile Include="GDViewModel\InstaLikerCommenter\ReplyCommentViewModel.cs" />
+    <Compile Include="GDViewModel\InstaPoster\PosterViewModel.cs" />
+    <Compile Include="GDViewModel\InstaScraper\CommentScraperViewModel.cs" />
+    <Compile Include="GDViewModel\InstaScraper\HashtagsScraperViewModel.cs" />
+    <Compile Include="GDViewModel\ManageDestinationViewModel.cs" />
+    <Compile Include="GDViewModel\Posts\AddPostViewModel.cs" />
+    <Compile Include="GDModel\ResultCommentItemUser.cs" />
+    <Compile Include="GDModel\ScrapeResult.cs" />
+    <Compile Include="GDModel\ScrapingFilters.cs" />
+    <Compile Include="GDModel\SearchTagIgResponseHandler.cs" />
+    <Compile Include="GDModel\SyncIgResponseHandler.cs" />
+    <Compile Include="GDModel\TagDetails.cs" />
+    <Compile Include="GDModel\TimelineFeedIgResponseHandler.cs" />
+    <Compile Include="GDModel\TrackedUser.cs" />
+    <Compile Include="GDModel\UnfollowerModel.cs" />
+    <Compile Include="GDModel\UserFeedIgResponseHandler.cs" />
+    <Compile Include="GDModel\UserInfoDetailed.cs" />
+    <Compile Include="GDModel\UserInfoWithFeed.cs" />
+    <Compile Include="GDModel\UsernameInfoIgResponseHandler.cs" />
+    <Compile Include="GDViewModel\DeleteComment\DeleteCommentViewModel.cs" />
+    <Compile Include="GDViewModel\DeletePost\DeletePostViewModel.cs" />
+    <Compile Include="GDViewModel\PrivateBlackListViewModel.cs" />
+    <Compile Include="GDViewModel\PrivateWhiteListViewModel.cs" />
+    <Compile Include="GDViewModel\Publisher\GdPostPublisher.cs" />
+    <Compile Include="GDViewModel\Publisher\GdPublisherPostDetailsScraper.cs" />
+    <Compile Include="GDViewModel\Publisher\GdPublisherPostScraper.cs" />
+    <Compile Include="GDViewModel\StoryViewer\AddInstaStoryViewModel.cs" />
+    <Compile Include="GDViewModel\StoryViewer\InstagramStoryViewModel.cs" />
+    <Compile Include="GDViewModel\StoryViewer\StoryViewModel.cs" />
+    <Compile Include="ImageTyperzHelper.cs" />
+    <Compile Include="Interface\IGdBaseFactory.cs" />
+    <Compile Include="Interface\IGdReportFactory.cs" />
+    <Compile Include="Interface\IGdUtilityFactory.cs" />
+    <Compile Include="Interface\IGdViewCampaign.cs" />
+    <Compile Include="PowerAdSpy\InstaAdsScrappers.cs" />
+    <Compile Include="PowerAdSpy\ScrapperModel.cs" />
+    <Compile Include="Report\AutoReplyToNewMessagesReportDetails.cs" />
+    <Compile Include="Report\BlockFollowerReportDetails.cs" />
+    <Compile Include="Report\BroadcastMessageReportDetails.cs" />
+    <Compile Include="Report\CloseFriendReportDetails.cs" />
+    <Compile Include="Report\CommentReportDetails.cs" />
+    <Compile Include="Report\CommentScraperReportDetails.cs" />
+    <Compile Include="Report\DeletePostReportDetails.cs" />
+    <Compile Include="Report\DownloadPhotoReportDetails.cs" />
+    <Compile Include="Report\FollowBackReportDetails.cs" />
+    <Compile Include="Report\FollowReportDetails.cs" />
+    <Compile Include="Report\HashtagScrapeReportDetails.cs" />
+    <Compile Include="Report\LikeCommentReportDetails.cs" />
+    <Compile Include="Report\LikeReportDetails.cs" />
+    <Compile Include="Report\MediaUnlikerReportDetails.cs" />
+    <Compile Include="Report\ReplyCommentReportDetails.cs" />
+    <Compile Include="Report\ReposterReportDetails.cs" />
+    <Compile Include="Report\SendMessageToNewFollowerReportDetails.cs" />
+    <Compile Include="Report\StoryReportDetails.cs" />
+    <Compile Include="Report\UnfollowReportDetails.cs" />
+    <Compile Include="Report\UserScrapeReportDetails.cs" />
+    <Compile Include="Request\IGHttpHelper.cs" />
+    <Compile Include="Request\IgRequestParameters.cs" />
+    <Compile Include="GDViewModel\GrowFollower\UnfollowerViewModel.cs" />
+    <Compile Include="GDViewModel\InstaLikerCommenter\CommentViewModel.cs" />
+    <Compile Include="GDViewModel\InstaLikerCommenter\LikeViewModel.cs" />
+    <Compile Include="Request\JsonElements.cs" />
+    <Compile Include="Response\ActivityNewsResponse.cs" />
+    <Compile Include="Response\BlockedMediaResponse.cs" />
+    <Compile Include="Response\CaptchaRequestResponseHandler.cs" />
+    <Compile Include="Response\ChatInfoIgResponseHandler.cs" />
+    <Compile Include="Response\CheckOffensiveCommentResponseHandler.cs" />
+    <Compile Include="Response\CheckUsernameResponse.cs" />
+    <Compile Include="Response\CloseFriendsResponseHandler.cs" />
+    <Compile Include="Response\CommonIgResponseHandler.cs" />
+    <Compile Include="Response\ExploreResponse.cs" />
+    <Compile Include="Response\FeedIgResponseHandler.cs" />
+    <Compile Include="Response\FeedIgResponseHandlerAlternate.cs" />
+    <Compile Include="Response\FollowerAndFollowingIgResponseHandler.cs" />
+    <Compile Include="Response\FriendShipPendingResponseHandler.cs" />
+    <Compile Include="Response\FriendshipResponse.cs" />
+    <Compile Include="Response\FriendshipsShowManyResponse.cs" />
+    <Compile Include="Response\HashTagFeedIgResponseHandler.cs" />
+    <Compile Include="Response\InstagramException.cs" />
+    <Compile Include="Response\InstagramStoriesResponseHandler.cs" />
+    <Compile Include="Response\LikeResponse.cs" />
+    <Compile Include="Response\LocationIdIgReponseHandler.cs" />
+    <Compile Include="Response\LocationIgReponseHandler.cs" />
+    <Compile Include="Response\LogAttributionResponse.cs" />
+    <Compile Include="Response\LoginIgResponseHandler.cs" />
+    <Compile Include="GDModel\InstaGramImage.cs" />
+    <Compile Include="GDModel\Location.cs" />
+    <Compile Include="Response\MediaCommentsIgResponseHandler.cs" />
+    <Compile Include="Response\MediaInfoIgResponseHandler.cs" />
+    <Compile Include="Response\MediaInteractionIgResponseHandler.cs" />
+    <Compile Include="Response\IGResponseHandler.cs" />
+    <Compile Include="Response\MsisdnHeaderResponse.cs" />
+    <Compile Include="Response\PostStoryResponse.cs" />
+    <Compile Include="Response\PreLoginData.cs" />
+    <Compile Include="Response\ProfileNoticeResponse.cs" />
+    <Compile Include="Response\ReelsTrayFeedResponse.cs" />
+    <Compile Include="Response\ResendTwoFactorLoginCodeResponseHandler.cs" />
+    <Compile Include="Response\StoryAdsResponse.cs" />
+    <Compile Include="Response\SubmitPhoneCodeForCaptchaResponseHandler.cs" />
+    <Compile Include="Response\SubmitPhoneNumberAfterCaptchaResponseHandler.cs" />
+    <Compile Include="Response\SuggestedUsersIgResponseHandler.cs" />
+    <Compile Include="GDModel\BaseUser.cs" />
+    <Compile Include="GDModel\CampaignModel.cs" />
+    <Compile Include="GDModel\DownloadPhotosModel.cs" />
+    <Compile Include="GDModel\IAccountModel.cs" />
+    <Compile Include="GDModel\PostFilterModel.cs" />
+    <Compile Include="GDModel\RePosterModel.cs" />
+    <Compile Include="GDModel\UserFilterModel.cs" />
+    <Compile Include="GDModel\UserScraperModel.cs" />
+    <Compile Include="GDModel\CarouselMedia.cs" />
+    <Compile Include="GDModel\InstagramPost.cs" />
+    <Compile Include="GDModel\InstagramUser.cs" />
+    <Compile Include="GDUtility\ConstantHelpDetails.cs" />
+    <Compile Include="GDViewModel\GrowFollower\FollowerViewModel.cs" />
+    <Compile Include="GDViewModel\InstaPoster\RePosterViewModel.cs" />
+    <Compile Include="GDViewModel\InstaScraper\DownloadPhotosViewModel.cs" />
+    <Compile Include="GDViewModel\InstaScraper\UserScraperViewModel.cs" />
+    <Compile Include="Interface\IPostFilter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Language.Designer.cs">
+      <DependentUpon>Language.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Language.en.Designer.cs">
+      <DependentUpon>Language.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Response\CommentResponse.cs" />
+    <Compile Include="Response\SyncResponse.cs" />
+    <Compile Include="Response\TaggedPostResponseHandler.cs" />
+    <Compile Include="Response\UploadMediaResponse.cs" />
+    <Compile Include="Response\UserFeedResponse.cs" />
+    <Compile Include="Response\UserFriendshipResponse.cs" />
+    <Compile Include="Response\UsernameInfoResponse.cs" />
+    <Compile Include="Response\V2InboxResponse.cs" />
+    <Compile Include="Response\VisualThreadResponse.cs" />
+    <Compile Include="Settings\AccountGroup.cs" />
+    <Compile Include="Settings\ActivityManager.cs" />
+    <Compile Include="Settings\IJobConfigurationFilter.cs" />
+    <Compile Include="Settings\IPostFilter.cs" />
+    <Compile Include="Interface\IUserFilter.cs" />
+    <Compile Include="Settings\PostCategory.cs" />
+    <Compile Include="two_captcha_helper.cs" />
+    <Compile Include="UnityContainers\GDJobProcessUnityExtension.cs" />
+    <Compile Include="Utility\CountrySource.cs" />
+    <Compile Include="Utility\GdBaseFactoryBuilder.cs" />
+    <Compile Include="Utility\GramStatic.cs" />
+    <Compile Include="Utility\HtmlAgilityHelper.cs" />
+    <Compile Include="Utility\InstagramInitialize.cs" />
+    <Compile Include="Utility\PasswordEncryptionProcess.cs" />
+    <Compile Include="Utility\StoryFetcher.cs" />
+    <Compile Include="WebResponseHandler\HashPostInfoWeb.cs" />
+    <Compile Include="WebResponseHandler\IpInfo.cs" />
+    <Compile Include="WebResponseHandler\PostInfoWeb.cs" />
+    <Compile Include="WebResponseHandler\PostLocationWebResponseHandler.cs" />
+    <Compile Include="WebResponseHandler\UserInfoWeb.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <Content Include="Aveny T Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
+    <Content Include="Sticker\Content\Fonts\Aveny T Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+    <Resource Include="Resources\Aveny T Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Language.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Language.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.en.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GDViewModel\Appearance\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\dominatorhouse-social\DominatorHouseCore\DominatorHouseCore.csproj">
+      <Project>{f40a5c83-8eda-43c5-88b9-dfaab492a497}</Project>
+      <Name>DominatorHouseCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dominatorhouse-social\DominatorUIUtility\DominatorUIUtility.csproj">
+      <Project>{e8d95af0-e99b-4059-9140-5c02b3f52e06}</Project>
+      <Name>DominatorUIUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dominatorhouse-social\EmbeddedBrowser\EmbeddedBrowser.csproj">
+      <Project>{21F00635-AAF7-466B-9214-A830EA9C8963}</Project>
+      <Name>EmbeddedBrowser</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\dominatorhouse-social\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets'))" />
+    <Error Condition="!Exists('..\..\dominatorhouse-social\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\dominatorhouse-social\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.props'))" />
+    <Error Condition="!Exists('..\..\dominatorhouse-social\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\dominatorhouse-social\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.targets'))" />
+  </Target>
+  <PropertyGroup>
+    <PostBuildEvent>if "$(Configuration)" == "Release" signtool sign /fd SHA256 /f "C:\Globussoft_Dotnet\code_signing_certificate_gbs.cer" "$(TargetDir)GramDominatorCore.dll"</PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\..\dominatorhouse-social\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\..\dominatorhouse-social\packages\MSTest.TestAdapter.2.1.2\build\net45\MSTest.TestAdapter.targets')" />
+</Project>

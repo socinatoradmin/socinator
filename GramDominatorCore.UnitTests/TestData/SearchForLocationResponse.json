@@ -1,0 +1,274 @@
+﻿{
+  "venues": [
+    {
+      "lat": 21,
+      "lng": 77,
+      "address": "",
+      "external_id": "109524955741121",
+      "external_id_source": "facebook_places",
+      "name": "India",
+      "minimum_age": 0
+    },
+    {
+      "lat": 39.933333333333,
+      "lng": -86.216666666667,
+      "address": "",
+      "external_id": "111957282154793",
+      "external_id_source": "facebook_places",
+      "name": "Indiana",
+      "minimum_age": 0
+    },
+    {
+      "lat": 34.09762,
+      "lng": -118.34993,
+      "address": "7300 Sunset Blvd, Los Angeles",
+      "external_id": "482135132264919",
+      "external_id_source": "facebook_places",
+      "name": "Indias Tandoori Hollywood",
+      "minimum_age": 0
+    },
+    {
+      "lat": 34.0204211,
+      "lng": -118.1924453,
+      "address": "1059 S Indiana St, East Los Angeles",
+      "external_id": "213364008867404",
+      "external_id_source": "facebook_places",
+      "name": "Tacos indiana",
+      "minimum_age": 0
+    },
+    {
+      "lat": 33.97531,
+      "lng": -118.16494,
+      "address": "5602 Gage Ave, Bell Gardens",
+      "external_id": "121067274573473",
+      "external_id_source": "facebook_places",
+      "name": "Indian Revival Church",
+      "minimum_age": 0
+    },
+    {
+      "lat": 34.0385721,
+      "lng": -118.2551667,
+      "address": "1008 Santee St Ste B, Los Angeles",
+      "external_id": "853398894732092",
+      "external_id_source": "facebook_places",
+      "name": "Indian Jewelry Mall",
+      "minimum_age": 0
+    },
+    {
+      "lat": 34.019585291,
+      "lng": -118.192150161,
+      "address": "1142 S Indiana St, Los Angeles",
+      "external_id": "115697218453476",
+      "external_id_source": "facebook_places",
+      "name": "La Indiana Tamales",
+      "minimum_age": 0
+    },
+    {
+      "lat": 34.021473,
+      "lng": -117.95246,
+      "address": "144 1st St, La Puente",
+      "external_id": "246139422925575",
+      "external_id_source": "facebook_places",
+      "name": "La Indiana Mariscos",
+      "minimum_age": 0
+    },
+    {
+      "lat": 34.0732432,
+      "lng": -118.3767125,
+      "address": "8504 w 3rd st, Los Angeles",
+      "external_id": "183236045890688",
+      "external_id_source": "facebook_places",
+      "name": "Currybowl Indian Express",
+      "minimum_age": 0
+    },
+    {
+      "lat": 34.0502899,
+      "lng": -118.46053,
+      "address": "11645 Wilshire Blvd, Los Angeles",
+      "external_id": "544841688957806",
+      "external_id_source": "facebook_places",
+      "name": "Indiasoven",
+      "minimum_age": 0
+    },
+    {
+      "lat": 34.0092799,
+      "lng": -118.21291,
+      "address": "3109  Bandini Blvd, Vernon",
+      "external_id": "840412189387807",
+      "external_id_source": "facebook_places",
+      "name": "Indiana Sales",
+      "minimum_age": 0
+    },
+    {
+      "lat": 34.16375,
+      "lng": -118.52342,
+      "address": "17934 Ventura Blvd. Encino CA 91316, Encino",
+      "external_id": "284966418823934",
+      "external_id_source": "facebook_places",
+      "name": "Indian Masala House",
+      "minimum_age": 0
+    },
+    {
+      "lat": 39.7692,
+      "lng": -86.1582,
+      "address": "Indianapolis",
+      "external_id": "110419212320033",
+      "external_id_source": "facebook_places",
+      "name": "Indianapolis, Indiana",
+      "minimum_age": 0
+    },
+    {
+      "lat": 34.018692,
+      "lng": -118.4889561,
+      "address": "860 Broadway st, Santa Monica",
+      "external_id": "1775809869308670",
+      "external_id_source": "facebook_places",
+      "name": "Indian Gastronomy",
+      "minimum_age": 0
+    },
+    {
+      "lat": 34.1503353,
+      "lng": -117.229094,
+      "address": "777 San Manuel Blvd, Highland",
+      "external_id": "261616462997",
+      "external_id_source": "facebook_places",
+      "name": "San Manuel Casino",
+      "minimum_age": 0
+    },
+    {
+      "lat": 34.0546621943,
+      "lng": -118.26286965843,
+      "address": "1125 W 6th St, Ste 103, Los Angeles",
+      "external_id": "103924366317577",
+      "external_id_source": "facebook_places",
+      "name": "United American Indian Involvement, Inc.",
+      "minimum_age": 0
+    },
+    {
+      "lat": 33.885292975634,
+      "lng": -118.39592491527,
+      "address": "916 N Sepulveda Blvd, Manhattan Beach",
+      "external_id": "287825784588451",
+      "external_id_source": "facebook_places",
+      "name": "India's Tandoori",
+      "minimum_age": 0
+    },
+    {
+      "lat": 34.021487733937,
+      "lng": -117.95249159131,
+      "address": "144 N 1st St, La Puente",
+      "external_id": "115510031800292",
+      "external_id_source": "facebook_places",
+      "name": "La Indiana Restaurant",
+      "minimum_age": 0
+    },
+    {
+      "lat": 33.930626448,
+      "lng": -118.415642438,
+      "address": "958 Main St, El Segundo",
+      "external_id": "1486332551675227",
+      "external_id_source": "facebook_places",
+      "name": "Indian Summer Grill",
+      "minimum_age": 0
+    },
+    {
+      "lat": 34.071013632158,
+      "lng": -118.37582230226,
+      "address": "428 S San Vicente Blvd, Los Angeles",
+      "external_id": "111346942232757",
+      "external_id_source": "facebook_places",
+      "name": "India's Grill",
+      "minimum_age": 0
+    },
+    {
+      "lat": 32.940389925587,
+      "lng": -116.87357211651,
+      "address": "1932 Wildcat Canyon Rd, Lakeside",
+      "external_id": "116496451764268",
+      "external_id_source": "facebook_places",
+      "name": "Barona Indian Reservation",
+      "minimum_age": 0
+    },
+    {
+      "lat": 33.781033128947,
+      "lng": -116.91801641351,
+      "address": "San Jacinto",
+      "external_id": "174476352582835",
+      "external_id_source": "facebook_places",
+      "name": "Soboba Indian Reservation",
+      "minimum_age": 0
+    },
+    {
+      "lat": 28.612863888889,
+      "lng": 77.229305555556,
+      "address": "New Delhi, India, New Delhi",
+      "external_id": "108450462513598",
+      "external_id_source": "facebook_places",
+      "name": "India Gate",
+      "minimum_age": 0
+    },
+    {
+      "lat": 34.3322,
+      "lng": -118.333,
+      "address": "Indian Springs",
+      "external_id": "113148815362984",
+      "external_id_source": "facebook_places",
+      "name": "Indian Springs, California",
+      "minimum_age": 0
+    },
+    {
+      "lat": 34.05334,
+      "lng": -118.37772,
+      "address": "8566 W Pico Blvd, Los Angeles",
+      "external_id": "158300210858591",
+      "external_id_source": "facebook_places",
+      "name": "Tajmahl of India",
+      "minimum_age": 0
+    },
+    {
+      "lat": 34.12389,
+      "lng": -118.26713,
+      "address": "3126 Los Feliz Blvd, Los Angeles",
+      "external_id": "114508971922075",
+      "external_id_source": "facebook_places",
+      "name": "India Sweets \u0026 Spices",
+      "minimum_age": 0
+    },
+    {
+      "lat": 34.095639546833,
+      "lng": -118.28515144943,
+      "address": "4366 Fountain Ave, Los Angeles",
+      "external_id": "733825336631861",
+      "external_id_source": "facebook_places",
+      "name": "India's Restaurant",
+      "minimum_age": 0
+    },
+    {
+      "lat": 33.817866426001,
+      "lng": -117.99136852551,
+      "address": "2955 W Ball Rd, Anaheim",
+      "external_id": "330104887509028",
+      "external_id_source": "facebook_places",
+      "name": "India Table",
+      "minimum_age": 0
+    },
+    {
+      "lat": 36.385912772877,
+      "lng": -117.421875,
+      "address": "9721 Artesia Blvd Suite A, Bellflower",
+      "external_id": "1934141353527007",
+      "external_id_source": "facebook_places",
+      "name": "India One News",
+      "minimum_age": 0
+    },
+    {
+      "lat": 33.98034,
+      "lng": -118.21868,
+      "address": "6518 Miles Ave., Huntington Park",
+      "external_id": "1559006074408699",
+      "external_id_source": "facebook_places",
+      "name": "American Indian Resource Center",
+      "minimum_age": 0
+    }
+  ],
+  "request_id": "b6509b2114af426abeddba5c270d4eb2", "status": "ok"}
