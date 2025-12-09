@@ -266,8 +266,7 @@ namespace YoutubeDominatorCore.Response
                     "results", "contents", 2, "itemSectionRenderer", "contents", 0, "commentsEntryPointHeaderRenderer", "commentCount",
                     "simpleText");
             if (string.IsNullOrEmpty(YoutubePost.CommentCount))
-                YoutubePost.CommentCount = handler.GetJTokenValue(jobject, "engagementPanels", 3, "engagementPanelSectionListRenderer", "header",
-                    "engagementPanelTitleHeaderRenderer", "contextualInfo", "runs", 0, "text");
+                YoutubePost.CommentCount = handler.GetJTokenValue(JsonSearcher.FindByKey(jobject, "contextualInfo"), "runs", 0, "text");
             YoutubePost.CommentCount = YoutubeUtilities.YoutubeElementsCountInNumber(YoutubePost.CommentCount);
 
             GetDescription(jobject);
