@@ -97,8 +97,8 @@ namespace YoutubeDominatorUI.Utility.PostScraperUtility
                         {ColumnHeaderText = "Reaction(Like) On Post", ColumnBindingText = "Reaction"},
                     new GridViewColumnDescriptor {ColumnHeaderText = "Views Count", ColumnBindingText = "ViewsCount"},
                     new GridViewColumnDescriptor {ColumnHeaderText = "Likes Count", ColumnBindingText = "LikeCount"},
-                    new GridViewColumnDescriptor
-                        {ColumnHeaderText = "Dislike Count", ColumnBindingText = "DislikeCount"},
+                    //new GridViewColumnDescriptor
+                    //    {ColumnHeaderText = "Dislike Count", ColumnBindingText = "DislikeCount"},
                     new GridViewColumnDescriptor
                         {ColumnHeaderText = "Comment Count", ColumnBindingText = "CommentCount"},
                     new GridViewColumnDescriptor
